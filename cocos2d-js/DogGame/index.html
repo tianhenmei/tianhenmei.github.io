@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Cocos2d-html5 Hello World test</title>
+    <link rel="icon" type="image/GIF" href="res/favicon.ico"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="x5-fullscreen" content="true"/>
+    <meta name="360-fullscreen" content="true"/>
+    <style>
+        body, canvas, div {
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -khtml-user-select: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+    </style>
+</head>
+<body style="padding:0; margin: 0; background: #000;">
+<canvas id="gameCanvas" width="640" height="1036"></canvas>
+
+<script src="game.min.js"></script>
+<script>
+    var LIVES = 2;   // 小狗命的总条数，默认为10
+    var lives = LIVES; // 初始化命有 10 条
+    var step = 0;   // 当前已过关数
+    var jinBone = 0;   // 用于存储当前获得的金骨头的个数
+    var yinBone = 0;
+    var isPlayMusic = true;   // 是否播放音效
+
+    initLIVES();  // 调用第一次传命函数
+
+    //第一次进入游戏需要传命
+    function initLIVES(){
+        //LIVES = ?;
+        //lives = LIVES -1;
+    }
+
+    function updateLIVES(){  // 朋友点赞更新命条数 函数
+        //LIVES = ?;
+        //lives = LIVES -1;
+    }
+
+    //当前命死完之后调用的函数，更新游戏中的  命条数 LIVES lives  骨头数量 jinBone  yinBone
+    function AllDie(){
+        LIVES = 10;
+        lives = LIVES;
+        jinBone = 0;
+        yinBone = 0;
+    }
+
+    function POST() {   // 死一次更新数据库,  注：当前不需要更新LIVES和lives
+        //alert("还剩命条数："+lives);
+    }
+
+    //所过关数，即时更新  , 过一关可更新一次
+    function stepRecive(){
+        //alert("当前过关数："+step);
+    }
+
+    // 获得银骨头 更新数据库
+    function updateYinDate(){
+        //alert("已获银骨头："+yinBone);
+    }
+
+    // 获得金骨头 更新数据库
+    function updateJinDate(){
+        //alert("已获金骨头："+jinBone);
+    }
+
+    //游戏过程中的休息一下(死完之后)
+    function relaxOn(){
+        alert("休息一下");
+        return true;
+    }
+
+    //游戏过程中(死一次的时候提示)的  回到首页
+    function backToHone(){
+        alert("返回首页");
+
+        return true;
+    }
+</script>
+</body>
+</html>
