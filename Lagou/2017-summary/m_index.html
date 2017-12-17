@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>2017互联网职场年度盘点</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        var loadingStatus = false,
+            pageStatus = false,
+            loadingSuccess = function(){
+                var cover = document.getElementById('cover');
+                cover.className = cover.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
+    </script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<!-- <div class="music-box">
+    <div class="music-icon open">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+    </div>
+</div> -->
+<div class="loading" id="loading">
+    <div class="icon">
+        <img src="images/loding.gif" />
+    </div>
+    <div class="title clearfix">
+        <div class="l zoomIn700 delay0">l</div>
+        <div class="o zoomIn700 delay0-2">o</div>
+        <div class="a zoomIn700 delay0-4">a</div>
+        <div class="d zoomIn700 delay0-6">d</div>
+        <div class="t zoomIn700 delay0-8">.</div>
+        <div class="t zoomIn700 delay1-0">.</div>
+        <div class="t zoomIn700 delay1-2">.</div>
+    </div>
+</div>
+<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+<div id="app">
+    <div class="cover hide" id="cover">
+        <div class="bg" :class="cover['animation-'+cover.status]['cover']"></div>
+        <div class="center" :class="cover['animation-'+cover.status]['center']"></div>
+        <div class="logo" :class="cover['animation-'+cover.status]['logo']+' '+from"></div>
+        <div class="time" :class="cover['animation-'+cover.status]['time']"></div>
+        <div class="title" :class="cover['animation-'+cover.status]['title']"></div>
+        <div class="detail" :class="cover['animation-'+cover.status]['detail']"></div>
+        <div class="btn" :class="cover['animation-'+cover.status]['btn']">
+            <div @touchstart.stop.prevent="showPageData"></div>
+        </div>
+    </div>
+    <div class="page page0 hide">
+        <div class="title-bg" :class="page0['animation-'+page0.status]['title-bg']"></div>
+        <div class="icon title" :class="page0['animation-'+page0.status]['title']"></div>
+        <div class="subtitle" :class="page0['animation-'+page0.status]['subtitle']">电子商务，企业服务公司众多，O2O增速最慢。</div>
+        <div class="icon number" :class="page0['animation-'+page0.status]['number']"></div>
+        <div class="icon from" :class="page0['animation-'+page0.status]['from']"></div>
+        <div class="icon ratio" :class="page0['animation-'+page0.status]['ratio']"></div>
+        <div class="icon increase" :class="page0['animation-'+page0.status]['increase']"></div>
+        <div class="mark" :class="page0['animation-'+page0.status]['content']"></div>
+        <div class="content" :class="page0['animation-'+page0.status]['content']">
+            <div class="center">
+                <div class="li0">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li0.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li0.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li0.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li0.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li0.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li0.child.name"></div>
+                </div>
+                <div class="li1">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li1.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li1.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li1.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li1.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li1.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li1.child.name"></div>
+                </div>
+                <div class="li2">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li2.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li2.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li2.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li2.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li2.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li2.child.name"></div>
+                </div>
+                <div class="li3">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li3.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li3.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li3.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li3.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li3.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li3.child.name"></div>
+                </div>
+                <div class="li4">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li4.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li4.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li4.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li4.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li4.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li4.child.name"></div>
+                </div>
+                <div class="li5">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li5.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li5.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li5.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li5.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li5.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li5.child.name"></div>
+                </div>
+                <div class="li6">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li6.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li6.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li6.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li6.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li6.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li6.child.name"></div>
+                </div>
+                <div class="li7">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li7.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li7.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li7.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li7.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li7.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li7.child.name"></div>
+                </div>
+                <div class="li8">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li8.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li8.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li8.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li8.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li8.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li8.child.name"></div>
+                </div>
+                <div class="li9">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li9.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li9.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li9.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li9.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li9.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li9.child.name"></div>
+                </div>
+                <div class="li10">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li10.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li10.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li10.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li10.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li10.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li10.child.name"></div>
+                </div>
+                <div class="li11">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li11.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li11.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li11.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li11.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li11.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li11.child.name"></div>
+                </div>
+                <div class="li12">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li12.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li12.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li12.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li12.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li12.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li12.child.name"></div>
+                </div>
+                <div class="li13">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li13.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li13.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li13.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li13.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li13.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li13.child.name"></div>
+                </div>
+                <div class="li14">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li14.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li14.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li14.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li14.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li14.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li14.child.name"></div>
+                </div>
+                <div class="li15">
+                    <div class="icon bg" :class="page0['animation-'+page0.status].li15.one"></div>
+                    <div class="icon num" :class="page0['animation-'+page0.status].li15.child.num"></div>
+                    <div class="icon value" :class="page0['animation-'+page0.status].li15.child.value"></div>
+                    <div class="icon value2" :class="page0['animation-'+page0.status].li15.child.value2"></div>
+                    <div class="icon num2" :class="page0['animation-'+page0.status].li15.child.num2"></div>
+                    <div class="icon name" :class="page0['animation-'+page0.status].li15.child.name"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page1 hide">
+        <div class="title-bg" :class="page1['animation-'+page1.status]['title-bg']"></div>
+        <div class="icon title" :class="page1['animation-'+page1.status]['title']"></div>
+        <div class="subtitle" :class="page1['animation-'+page1.status]['subtitle']">男女比例6：4，超过8成技术是男性。</div>
+        <div class="icon number" :class="page1['animation-'+page1.status]['number']"></div>
+        <div class="content-bg" :class="page1['animation-'+page1.status]['content']"></div>
+        <div class="mark" :class="page1['animation-'+page1.status]['content']"></div>
+        <div class="content">
+            <div class="center" :class="page1['animation-'+page1.status]['center']">
+                <div class="icon circle"></div>
+                <div class="icon div-li li0"><!--设计-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li0.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li0.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li0.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li0['sex-ratio']"></div>
+                </div>
+                <div class="icon div-li li1"><!--技术-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li1.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li1.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li1.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li1['sex-ratio']"></div>
+                </div>
+                <div class="icon div-li li2"><!--产品-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li2.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li2.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li2.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li2['sex-ratio']"></div>
+                </div>
+                <div class="icon div-li li3"><!--运营-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li3.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li3.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li3.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li3['sex-ratio']"></div>
+                </div>
+                <div class="icon div-li li4"><!--市场-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li4.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li4.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li4.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li4['sex-ratio']"></div>
+                </div>
+                <div class="icon div-li li5"><!--职能-->
+                    <div class="icon bg" :class="page1['animation-'+page1.status].li5.bg"></div>
+                    <div class="icon name" :class="page1['animation-'+page1.status].li5.name"></div>
+                    <div class="icon value" :class="page1['animation-'+page1.status].li5.value"></div>
+                    <div class="icon sex-ratio" :class="page1['animation-'+page1.status].li5['sex-ratio']"></div>
+                </div>
+                <div class="icon bubble" :class="page1['animation-'+page1.status].bubble"></div>
+                <div class="icon origin" :class="page1['animation-'+page1.status].origin"></div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page2 hide">
+        <div class="title-bg" :class="page2['animation-'+page2.status]['title-bg']"></div>
+        <div class="icon title" :class="page2['animation-'+page2.status]['title']"></div>
+        <div class="subtitle" :class="page2['animation-'+page2.status]['subtitle']">增长最大的TOP4：教育、游戏、信息安全、 <br/>文化娱乐(相较2016年）。</div>
+        <div class="icon number" :class="page2['animation-'+page2.status]['number']"></div>
+        <div class="icon from" :class="page2['animation-'+page2.status]['from']"></div>
+        <div class="icon ratio" :class="page2['animation-'+page2.status]['ratio']"></div>
+        <div class="icon increase" :class="page2['animation-'+page2.status]['increase']"></div>
+        <div class="content-bg" :class="page2['animation-'+page2.status]['content']"></div>
+        <div class="mark" :class="page2['animation-'+page2.status]['content']"></div>
+        <div class="content">
+            <div class="center">
+                <div class="icon curve" :class="page2['animation-'+page2.status].curve"></div>
+                <div class="icon div-li li0" :class="page2['animation-'+page2.status].li0.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li0.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li0.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li0.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li0.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li0.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li0.child.name"></div>
+                </div>
+                <div class="icon div-li li1" :class="page2['animation-'+page2.status].li1.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li1.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li1.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li1.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li1.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li1.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li1.child.name"></div>
+                </div>
+                <div class="icon div-li li2" :class="page2['animation-'+page2.status].li2.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li2.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li2.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li2.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li2.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li2.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li2.child.name"></div>
+                </div>
+                <div class="icon div-li li3" :class="page2['animation-'+page2.status].li3.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li3.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li3.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li3.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li3.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li3.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li3.child.name"></div>
+                </div>
+                <div class="icon div-li li4" :class="page2['animation-'+page2.status].li4.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li4.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li4.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li4.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li4.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li4.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li4.child.name"></div>
+                </div>
+                <div class="icon div-li li5" :class="page2['animation-'+page2.status].li5.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li5.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li5.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li5.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li5.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li5.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li5.child.name"></div>
+                </div>
+                <div class="icon div-li li6" :class="page2['animation-'+page2.status].li6.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li6.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li6.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li6.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li6.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li6.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li6.child.name"></div>
+                </div>
+                <div class="icon div-li li7" :class="page2['animation-'+page2.status].li7.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li7.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li7.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li7.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li7.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li7.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li7.child.name"></div>
+                </div>
+                <div class="icon div-li li8" :class="page2['animation-'+page2.status].li8.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li8.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li8.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li8.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li8.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li8.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li8.child.name"></div>
+                </div>
+                <div class="icon div-li li9" :class="page2['animation-'+page2.status].li9.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li9.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li9.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li9.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li9.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li9.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li9.child.name"></div>
+                </div>
+                <div class="icon div-li li10" :class="page2['animation-'+page2.status].li10.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li10.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li10.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li10.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li10.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li10.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li10.child.name"></div>
+                </div>
+                <div class="icon div-li li11" :class="page2['animation-'+page2.status].li11.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li11.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li11.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li11.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li11.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li11.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li11.child.name"></div>
+                </div>
+                <div class="icon div-li li12" :class="page2['animation-'+page2.status].li12.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li12.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li12.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li12.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li12.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li12.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li12.child.name"></div>
+                </div>
+                <div class="icon div-li li13" :class="page2['animation-'+page2.status].li13.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li13.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li13.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li13.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li13.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li13.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li13.child.name"></div>
+                </div>
+                <div class="icon div-li li14" :class="page2['animation-'+page2.status].li14.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li14.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li14.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li14.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li14.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li14.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li14.child.name"></div>
+                </div>
+                <div class="icon div-li li15" :class="page2['animation-'+page2.status].li15.one">
+                    <div class="icon num" :class="page2['animation-'+page2.status].li15.child.num"></div>
+                    <div class="icon value" :class="page2['animation-'+page2.status].li15.child.value"></div>
+                    <div class="icon value-c" :class="page2['animation-'+page2.status].li15.child['value-c']"></div>
+                    <div class="icon value2" :class="page2['animation-'+page2.status].li15.child.value2"></div>
+                    <div class="icon num2" :class="page2['animation-'+page2.status].li15.child.num2"></div>
+                    <div class="icon name" :class="page2['animation-'+page2.status].li15.child.name"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page3 hide">
+        <div class="title-bg" :class="page3['animation-'+page3.status]['title-bg']"></div>
+        <div class="icon title" :class="page3['animation-'+page3.status]['title']"></div>
+        <div class="subtitle" :class="page3['animation-'+page3.status]['subtitle']">长沙最容易，北京最难。</div>
+        <div class="icon number" :class="page3['animation-'+page3.status]['number']"></div>
+        <div class="icon from" :class="page3['animation-'+page3.status]['from']"></div>
+        <div class="icon ratio" :class="page3['animation-'+page3.status]['ratio']"></div>
+        <div class="icon ratio2" :class="page3['animation-'+page3.status]['ratio2']"></div>
+        <div class="icon increase" :class="page3['animation-'+page3.status]['increase']"></div>
+        <div class="content-bg" :class="page3['animation-'+page3.status]['content']"></div>
+        <div class="mark" :class="page3['animation-'+page3.status]['content']"></div>
+        <div class="content">
+            <div class="center">
+                <div class="icon div-li li0" :class="page3['animation-'+page3.status].li0.one"><!--北京-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li0.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li0.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li0.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li0.child.num"></div>
+                </div>
+                <div class="icon div-li li1" :class="page3['animation-'+page3.status].li1.one"><!--上海-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li1.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li1.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li1.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li1.child.num"></div>
+                </div>
+                <div class="icon div-li li2" :class="page3['animation-'+page3.status].li2.one"><!--深圳-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li2.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li2.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li2.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li2.child.num"></div>
+                </div>
+                <div class="icon div-li li3" :class="page3['animation-'+page3.status].li3.one"><!--广州-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li3.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li3.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li3.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li3.child.num"></div>
+                </div>
+                <div class="icon div-li li4" :class="page3['animation-'+page3.status].li4.one"><!--杭州-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li4.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li4.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li4.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li4.child.num"></div>
+                </div>
+                <div class="icon div-li li5" :class="page3['animation-'+page3.status].li5.one"><!--成都-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li5.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li5.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li5.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li5.child.num"></div>
+                </div>
+                <div class="icon div-li li6" :class="page3['animation-'+page3.status].li6.one"><!--武汉-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li6.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li6.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li6.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li6.child.num"></div>
+                </div>
+                <div class="icon div-li li7" :class="page3['animation-'+page3.status].li7.one"><!--南京-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li7.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li7.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li7.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li7.child.num"></div>
+                </div>
+                <div class="icon div-li li8" :class="page3['animation-'+page3.status].li8.one"><!--西安-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li8.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li8.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li8.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li8.child.num"></div>
+                </div>
+                <div class="icon div-li li9" :class="page3['animation-'+page3.status].li9.one"><!--长沙-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li9.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li9.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li9.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li9.child.num"></div>
+                </div>
+                <div class="icon div-li li10" :class="page3['animation-'+page3.status].li10.one"><!--厦门-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li10.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li10.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li10.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li10.child.num"></div>
+                </div>
+                <div class="icon div-li li11" :class="page3['animation-'+page3.status].li11.one"><!--重庆-->
+                    <div class="icon name" :class="page3['animation-'+page3.status].li11.child.name"></div>
+                    <div class="icon value" :class="page3['animation-'+page3.status].li11.child.value"></div>
+                    <div class="icon value2" :class="page3['animation-'+page3.status].li11.child.value2"></div>
+                    <div class="icon num" :class="page3['animation-'+page3.status].li11.child.num"></div>
+                </div>
+                <div class="x-number" :class="page3['animation-'+page3.status]['x-number']">
+                    <div class="icon x0"></div>
+                    <div class="icon x1"></div>
+                    <div class="icon x2"></div>
+                    <div class="icon x3"></div>
+                    <div class="icon x4"></div>
+                    <div class="icon x5"></div>
+                    <div class="icon x6"></div>
+                    <div class="icon x7"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page4 hide">
+        <div class="title-bg" :class="page4['animation-'+page4.status]['title-bg']"></div>
+        <div class="icon title" :class="page4['animation-'+page4.status]['title']"></div>
+        <div class="subtitle" :class="page4['animation-'+page4.status]['subtitle']">武汉、杭州、成都等城市崛起，公司数量、流<br/>入人才增速巨大。</div>
+        <div class="icon number" :class="page4['animation-'+page4.status]['number']"></div>
+        <div class="icon tab" :class="page4['animation-'+page4.status]['tab']">
+            <div class="icon t-company" 
+                :class="{'t-active': page4.tabIndex == 0}"
+                @touchstart.stop.prevent="changePage4Tab(0)"></div>
+            <div class="icon t-talent" 
+                :class="{'t-active':page4.tabIndex == 1}"
+                @touchstart.stop.prevent="changePage4Tab(1)"></div>
+        </div>
+        <div class="content-bg" :class="page4['animation-'+page4.status+page4.showStatus]['content'] + (page4.tabIndex != 0 ? ' hide' : '')"></div>
+        <div class="mark" :class="page4['animation-'+page4.status+page4.showStatus]['content']"></div>
+        <div class="content" :class="{'hide': page4.tabIndex != 0}">
+            <div class="center">
+                <div class="icon c-top-0" :class="page4['animation-'+page4.status+page4.showStatus]['c-top-0']"></div>
+                <div class="icon c-top-1" :class="page4['animation-'+page4.status+page4.showStatus]['c-top-1']"></div>
+                <div class="div-li li0" :class="page4['animation-'+page4.status+page4.showStatus].li0.one"><!--北京-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li0.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li0.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li0.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li0.child.num"></div>
+                </div>
+                <div class="div-li li1" :class="page4['animation-'+page4.status+page4.showStatus].li1.one"><!--深圳-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li1.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li1.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li1.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li1.child.num"></div>
+                </div>
+                <div class="div-li li2" :class="page4['animation-'+page4.status+page4.showStatus].li2.one"><!--上海-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li2.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li2.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li2.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li2.child.num"></div>
+                </div>
+                <div class="div-li li3" :class="page4['animation-'+page4.status+page4.showStatus].li3.one"><!--广州-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li3.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li3.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li3.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li3.child.num"></div>
+                </div>
+                <div class="div-li li4" :class="page4['animation-'+page4.status+page4.showStatus].li4.one"><!--杭州-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li4.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li4.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li4.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li4.child.num"></div>
+                </div>
+                <div class="div-li li5" :class="page4['animation-'+page4.status+page4.showStatus].li5.one"><!--成都-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li5.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li5.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li5.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li5.child.num"></div>
+                </div>
+                <div class="div-li li6" :class="page4['animation-'+page4.status+page4.showStatus].li6.one"><!--武汉-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li6.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li6.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li6.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li6.child.num"></div>
+                </div>
+                <div class="div-li li8" :class="page4['animation-'+page4.status+page4.showStatus].li8.one"><!--西安-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li8.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li8.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li8.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li8.child.num"></div>
+                </div>
+                <div class="div-li li7" :class="page4['animation-'+page4.status+page4.showStatus].li7.one"><!--南京-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li7.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li7.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li7.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li7.child.num"></div>
+                </div>
+                <div class="div-li li9" :class="page4['animation-'+page4.status+page4.showStatus].li9.one"><!--长沙-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li9.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li9.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li9.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li9.child.num"></div>
+                </div>
+                <div class="div-li li11" :class="page4['animation-'+page4.status+page4.showStatus].li11.one"><!--重庆-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li11.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li11.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li11.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li11.child.num"></div>
+                </div>
+                <div class="div-li li10" :class="page4['animation-'+page4.status+page4.showStatus].li10.one"><!--厦门-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+page4.showStatus].li10.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+page4.showStatus].li10.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+page4.showStatus].li10.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+page4.showStatus].li10.child.num"></div>
+                </div>
+                <div class="x-number">
+                    <div class="icon x0" :class="page4['animation-'+page4.status+page4.showStatus].x0"></div> <!--北京-->
+                    <div class="icon x1" :class="page4['animation-'+page4.status+page4.showStatus].x1"></div> <!--深圳-->
+                    <div class="icon x2" :class="page4['animation-'+page4.status+page4.showStatus].x2"></div> <!--上海-->
+                    <div class="icon x3" :class="page4['animation-'+page4.status+page4.showStatus].x3"></div> <!--广州-->
+                    <div class="icon x4" :class="page4['animation-'+page4.status+page4.showStatus].x4"></div> <!--杭州-->
+                    <div class="icon x5" :class="page4['animation-'+page4.status+page4.showStatus].x5"></div> <!--成都-->
+                    <div class="icon x6" :class="page4['animation-'+page4.status+page4.showStatus].x6"></div> <!--武汉-->
+                    <div class="icon x7" :class="page4['animation-'+page4.status+page4.showStatus].x7"></div> <!--西安-->
+                    <div class="icon x8" :class="page4['animation-'+page4.status+page4.showStatus].x8"></div> <!--南京-->
+                    <div class="icon x9" :class="page4['animation-'+page4.status+page4.showStatus].x9"></div> <!--长沙-->
+                    <div class="icon x10" :class="page4['animation-'+page4.status+page4.showStatus].x10"></div> <!--重庆-->
+                    <div class="icon x11" :class="page4['animation-'+page4.status+page4.showStatus].x11"></div> <!--厦门-->
+                </div>
+            </div>
+        </div>
+        <div class="content-bg content-bg2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus]['content'] + (page4.tabIndex != 1 ? ' hide' : '')"></div>
+        <div class="content content2" :class="{'hide': page4.tabIndex != 1}">
+            <div class="center">
+                <div class="icon c-top-0" :class="page4['animation-'+page4.status+'-1'+page4.showStatus]['c-top-0']"></div>
+                <div class="icon c-top-1" :class="page4['animation-'+page4.status+'-1'+page4.showStatus]['c-top-1']"></div>
+                <div class="icon detail" :class="page4['animation-'+page4.status+'-1'+page4.showStatus]['detail']"></div>
+                <div class="div-li li0" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li0.one"><!--北京-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li0.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li0.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li0.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li0.child.num"></div>
+                </div>
+                <div class="div-li li1" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li1.one"><!--深圳-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li1.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li1.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li1.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li1.child.num"></div>
+                </div>
+                <div class="div-li li2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li2.one"><!--上海-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li2.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li2.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li2.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li2.child.num"></div>
+                </div>
+                <div class="div-li li3" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li3.one"><!--广州-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li3.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li3.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li3.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li3.child.num"></div>
+                </div>
+                <div class="div-li li4" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li4.one"><!--杭州-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li4.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li4.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li4.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li4.child.num"></div>
+                </div>
+                <div class="div-li li5" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li5.one"><!--成都-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li5.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li5.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li5.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li5.child.num"></div>
+                </div>
+                <div class="div-li li6" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li6.one"><!--武汉-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li6.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li6.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li6.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li6.child.num"></div>
+                </div>
+                <div class="div-li li8" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li8.one"><!--西安-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li8.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li8.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li8.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li8.child.num"></div>
+                </div>
+                <div class="div-li li7" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li7.one"><!--南京-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li7.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li7.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li7.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li7.child.num"></div>
+                </div>
+                <div class="div-li li9" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li9.one"><!--长沙-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li9.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li9.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li9.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li9.child.num"></div>
+                </div>
+                <div class="div-li li11" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li11.one"><!--重庆-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li11.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li11.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li11.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li11.child.num"></div>
+                </div>
+                <div class="div-li li10" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li10.one"><!--厦门-->
+                    <div class="icon name" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li10.child.name"></div>
+                    <div class="icon value" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li10.child.value"></div>
+                    <div class="icon value2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li10.child.value2"></div>
+                    <div class="icon num" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].li10.child.num"></div>
+                </div>
+                <div class="x-number">
+                    <div class="icon x0" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x0"></div> <!--北京-->
+                    <div class="icon x1" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x1"></div> <!--深圳-->
+                    <div class="icon x2" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x2"></div> <!--上海-->
+                    <div class="icon x3" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x3"></div> <!--广州-->
+                    <div class="icon x4" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x4"></div> <!--杭州-->
+                    <div class="icon x5" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x5"></div> <!--成都-->
+                    <div class="icon x6" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x6"></div> <!--武汉-->
+                    <div class="icon x7" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x7"></div> <!--西安-->
+                    <div class="icon x8" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x8"></div> <!--南京-->
+                    <div class="icon x9" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x9"></div> <!--长沙-->
+                    <div class="icon x10" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x10"></div> <!--重庆-->
+                    <div class="icon x11" :class="page4['animation-'+page4.status+'-1'+page4.showStatus].x11"></div> <!--厦门-->
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page5 hide">
+        <div class="title-bg" :class="page5['animation-'+page5.status]['title-bg']"></div>
+        <div class="icon title" :class="page5['animation-'+page5.status]['title']"></div>
+        <div class="subtitle" :class="page5['animation-'+page5.status]['subtitle']">看剧和健身成为解压良药，<br/>眼疲劳、颈椎、情绪成为“工伤”。</div>
+        <div class="icon number" :class="page5['animation-'+page5.status]['number']"></div>
+        <div class="content-bg" :class="page5['animation-'+page5.status]['content']"></div>
+        <div class="mark" :class="page5['animation-'+page5.status]['content']"></div>
+        <div class="content">
+            <div class="center">
+                <div class="div-li li0">
+                    <div class="info">
+                        <div class="icon info0" :class="page5['animation-'+page5.status].li0.info0"></div>
+                        <div class="icon info1" :class="page5['animation-'+page5.status].li0.info1"></div>
+                        <div class="icon info2" :class="page5['animation-'+page5.status].li0.info2"></div>
+                    </div>
+                    <div class="icon cicle" :class="page5['animation-'+page5.status].li0.cicle"></div>
+                    <div class="icon name" :class="page5['animation-'+page5.status].li0.name"></div>
+                    <div class="data">
+                        <div class="icon d0" :class="page5['animation-'+page5.status].li0.d0"></div>
+                        <div class="icon d1" :class="page5['animation-'+page5.status].li0.d1"></div>
+                        <div class="icon d2" :class="page5['animation-'+page5.status].li0.d2"></div>
+                    </div>
+                </div>
+                <div class="div-li li1">
+                    <div class="l0" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l1" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l2" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l3" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l4" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l5" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                    <div class="l6" :class="page5['animation-'+page5.status].li1.bg">
+                        <div class="icon name" :class="page5['animation-'+page5.status].li1.name"></div>
+                        <div class="icon value" :class="page5['animation-'+page5.status].li1.value"></div>
+                        <div class="icon num" :class="page5['animation-'+page5.status].li1.num"></div>
+                    </div>
+                </div>
+                <div class="div-li li2">
+                    <div class="info">
+                        <div class="icon info0" :class="page5['animation-'+page5.status].li2.info0"></div>
+                        <div class="icon info1" :class="page5['animation-'+page5.status].li2.info1"></div>
+                        <div class="icon info2" :class="page5['animation-'+page5.status].li2.info2"></div>
+                    </div>
+                    <div class="icon cicle" :class="page5['animation-'+page5.status].li2.cicle"></div>
+                    <div class="icon name" :class="page5['animation-'+page5.status].li2.name"></div>
+                    <div class="data">
+                        <div class="icon d0" :class="page5['animation-'+page5.status].li2.d0"></div>
+                        <div class="icon d1" :class="page5['animation-'+page5.status].li2.d1"></div>
+                        <div class="icon d2" :class="page5['animation-'+page5.status].li2.d2"></div>
+                    </div>
+                </div>
+                <div class="div-li li3">
+                    <div class="info">
+                        <div class="icon info0" :class="page5['animation-'+page5.status].li3.info0"></div>
+                        <div class="icon info1" :class="page5['animation-'+page5.status].li3.info1"></div>
+                        <div class="icon info2" :class="page5['animation-'+page5.status].li3.info2"></div>
+                        <div class="icon info3" :class="page5['animation-'+page5.status].li3.info3"></div>
+                    </div>
+                    <div class="icon cicle" :class="page5['animation-'+page5.status].li3.cicle"></div>
+                    <div class="icon name" :class="page5['animation-'+page5.status].li3.name"></div>
+                    <div class="data">
+                        <div class="icon d0" :class="page5['animation-'+page5.status].li3.d0"></div>
+                        <div class="icon d1" :class="page5['animation-'+page5.status].li3.d1"></div>
+                        <div class="icon d2" :class="page5['animation-'+page5.status].li3.d2"></div>
+                        <div class="icon d3" :class="page5['animation-'+page5.status].li3.d3"></div>
+                    </div>
+                </div>
+                <div class="div-li li4">
+                    <div class="info">
+                        <div class="icon info0" :class="page5['animation-'+page5.status].li4.info0"></div>
+                        <div class="icon info1" :class="page5['animation-'+page5.status].li4.info1"></div>
+                        <div class="icon info2" :class="page5['animation-'+page5.status].li4.info2"></div>
+                    </div>
+                    <div class="icon cicle" :class="page5['animation-'+page5.status].li4.cicle"></div>
+                    <div class="icon name" :class="page5['animation-'+page5.status].li4.name"></div>
+                    <div class="data">
+                        <div class="icon d0" :class="page5['animation-'+page5.status].li4.d0"></div>
+                        <div class="icon d1" :class="page5['animation-'+page5.status].li4.d1"></div>
+                        <div class="icon d2" :class="page5['animation-'+page5.status].li4.d2"></div>
+                    </div>
+                </div>
+                <div class="icon btn" :class="page5['animation-'+page5.status]['btn']"></div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page6 hide">
+        <div class="title-bg" :class="page6['animation-'+page6.status]['title-bg']"></div>
+        <div class="icon title" :class="page6['animation-'+page6.status]['title']"></div>
+        <div class="subtitle" :class="page6['animation-'+page6.status]['subtitle']">36%的没有年假，<br/>38.8%年终奖仅有一个月。</div>
+        <div class="icon number" :class="page6['animation-'+page6.status]['number']"></div>
+        <div class="content-bg" :class="page6['animation-'+page6.status]['content']"></div>
+        <div class="mark" :class="page6['animation-'+page6.status]['content']"></div>
+        <div class="content">
+            <div class="center">
+                <div class="div-li li0" :class="page6['animation-'+page6.status].li0.one">
+                    <div class="icon bg" :class="page6['animation-'+page6.status].li0.bg"></div>
+                    <div class="icon water" :class="page6['animation-'+page6.status].li0.water"></div>
+                    <div class="text">
+                        <div class="icon t0" :class="page6['animation-'+page6.status].li0.child.t0"></div>
+                        <div class="icon t1" :class="page6['animation-'+page6.status].li0.child.t1"></div>
+                        <div class="icon t2" :class="page6['animation-'+page6.status].li0.child.t2"></div>
+                        <div class="icon t3" :class="page6['animation-'+page6.status].li0.child.t3"></div>
+                        <div class="icon t4" :class="page6['animation-'+page6.status].li0.child.t4"></div>
+                        <div class="icon t5" :class="page6['animation-'+page6.status].li0.child.t5"></div>
+                    </div>
+                    <div class="icon name"></div>
+                </div>
+                <div class="div-li li1">
+                    <div class="icon name" :class="page6['animation-'+page6.status].li1.one"></div>
+                    <div class="one">
+                        <div class="o0">
+                            <div class="icon value" :class="page6['animation-'+page6.status].li1.o0.value"></div>
+                            <div class="icon num-cn" :class="page6['animation-'+page6.status].li1.o0['num-cn']"></div>
+                        </div>
+                        <div class="o1">
+                            <div class="icon value" :class="page6['animation-'+page6.status].li1.o1.value"></div>
+                            <div class="icon num-cn" :class="page6['animation-'+page6.status].li1.o1['num-cn']"></div>
+                        </div>
+                        <div class="o2">
+                            <div class="icon value" :class="page6['animation-'+page6.status].li1.o2.value"></div>
+                            <div class="icon num-cn" :class="page6['animation-'+page6.status].li1.o2['num-cn']"></div>
+                        </div>
+                        <div class="o3">
+                            <div class="icon value" :class="page6['animation-'+page6.status].li1.o3.value"></div>
+                            <div class="icon num-cn" :class="page6['animation-'+page6.status].li1.o3['num-cn']"></div>
+                        </div>
+                    </div>
+                    <div class="icon bg" :class="page6['animation-'+page6.status].li1.bg"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page7 hide">
+        <div class="title-bg" :class="page7['animation-'+page7.status]['title-bg']"></div>
+        <div class="icon title" :class="page7['animation-'+page7.status]['title']"></div>
+        <div class="subtitle" :class="page7['animation-'+page7.status]['subtitle']">计算机系最好找工作，数据开发加班最多，美<br/>团点评最受欢迎，北京通勤时间最长。</div>
+        <div class="icon number" :class="page7['animation-'+page7.status]['number']"></div>
+        <div class="icon tab" :class="page7['animation-'+page7.status]['tab']">
+            <div class="icon t-company" 
+                :class="{'t-active': page7.tabIndex == 0,'t-hasLine':page7.tabIndex == 2}"
+                @touchstart.stop.prevent="changePage7Tab(0)"></div>
+            <div class="icon t-talent" 
+                :class="{'t-active':page7.tabIndex == 1, 't-hasLine':page7.tabIndex == 0}"
+                @touchstart.stop.prevent="changePage7Tab(1)"></div>
+            <div class="icon t-duty" 
+                :class="{'t-active':page7.tabIndex == 2}"
+                @touchstart.stop.prevent="changePage7Tab(2)"></div>
+        </div>
+        <div class="content-bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus]['content'] + (page7.tabIndex != 0 ? ' hide' : '')"></div>
+        <div class="mark" :class="page7['animation-'+page7.status+'-0'+page7.showStatus]['content']"></div>
+        <div class="content" :class="{'hide': page7.tabIndex != 0}">
+            <div class="center">
+                <div class="icon c-top-0" :class="page7['animation-'+page7.status+'-0'+page7.showStatus]['c-top-0']"></div>
+                <div class="div-li li0"><!--北京-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li0.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li0.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li0.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li0.child.num"></div>
+                </div>
+                <div class="div-li li1"><!--深圳-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li1.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li1.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li1.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li1.child.num"></div>
+                </div>
+                <div class="div-li li2"><!--上海-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li2.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li2.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li2.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li2.child.num"></div>
+                </div>
+                <div class="div-li li3"><!--广州-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li3.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li3.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li3.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li3.child.num"></div>
+                </div>
+                <div class="div-li li4"><!--杭州-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li4.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li4.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li4.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li4.child.num"></div>
+                </div>
+                <div class="div-li li5"><!--成都-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li5.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li5.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li5.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li5.child.num"></div>
+                </div>
+                <div class="div-li li6"><!--武汉-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li6.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li6.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li6.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li6.child.num"></div>
+                </div>
+                <div class="div-li li7"><!--西安-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li7.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li7.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li7.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li7.child.num"></div>
+                </div>
+                <div class="div-li li8"><!--南京-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li8.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li8.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li8.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li8.child.num"></div>
+                </div>
+                <div class="div-li li9"><!--长沙-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li9.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li9.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li9.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-0'+page7.showStatus].li9.child.num"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content-bg content-bg2" :class="page7['animation-'+page7.status+'-1'+page7.showStatus]['content'] + (page7.tabIndex != 1 ? ' hide' : '')"></div>
+        <div class="content content2" :class="{'hide': page7.tabIndex != 1}">
+            <div class="center">
+                <div class="icon c-top-0" :class="page7['animation-'+page7.status+'-1'+page7.showStatus]['c-top-0']"></div>
+                <div class="icon c-top-1" :class="page7['animation-'+page7.status+'-1'+page7.showStatus]['c-top-1']"></div>
+                <div class="div-li li0">
+                    <div class="c0" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.num"></div>
+                    </div>
+                    <div class="c1" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.num"></div>
+                    </div>
+                    <div class="c2" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.num"></div>
+                    </div>
+                    <div class="c3" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.num"></div>
+                    </div>
+                    <div class="c4" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.num"></div>
+                    </div>
+                    <div class="c5" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.num"></div>
+                    </div>
+                    <div class="c6" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.num"></div>
+                    </div>
+                    <div class="c7" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.num"></div>
+                    </div>
+                    <div class="c8" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.num"></div>
+                    </div>
+                    <div class="c9" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.num"></div>
+                    </div>
+                </div>
+                <div class="div-li li1">
+                    <div class="c0" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li0.child.num"></div>
+                    </div>
+                    <div class="c1" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li1.child.num"></div>
+                    </div>
+                    <div class="c2" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li2.child.num"></div>
+                    </div>
+                    <div class="c3" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li3.child.num"></div>
+                    </div>
+                    <div class="c4" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li4.child.num"></div>
+                    </div>
+                    <div class="c5" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li5.child.num"></div>
+                    </div>
+                    <div class="c6" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li6.child.num"></div>
+                    </div>
+                    <div class="c7" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li7.child.num"></div>
+                    </div>
+                    <div class="c8" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li8.child.num"></div>
+                    </div>
+                    <div class="c9" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.one">
+                        <div class="icon bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.bg"></div>
+                        <div class="icon rank-bg" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child['rank-bg']"></div>
+                        <div class="icon rank" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.rank"></div>
+                        <div class="icon name" :class="page7['animation-'+page7.status+'-1'+page7.showStatus].li9.child.num"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-bg content-bg3" :class="page7['animation-'+page7.status+'-2'+page7.showStatus]['content'] + (page7.tabIndex != 2 ? ' hide' : '')"></div>
+        <div class="content content3" :class="{'hide': page7.tabIndex != 2}">
+            <div class="center">
+                <div class="icon c-top-0" :class="page7['animation-'+page7.status+'-2'+page7.showStatus]['c-top-0']"></div>
+                <div class="div-li li0"><!--北京-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li0.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li0.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li0.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li0.child.num"></div>
+                </div>
+                <div class="div-li li1"><!--深圳-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li1.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li1.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li1.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li1.child.num"></div>
+                </div>
+                <div class="div-li li2"><!--上海-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li2.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li2.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li2.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li2.child.num"></div>
+                </div>
+                <div class="div-li li3"><!--广州-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li3.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li3.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li3.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li3.child.num"></div>
+                </div>
+                <div class="div-li li4"><!--杭州-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li4.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li4.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li4.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li4.child.num"></div>
+                </div>
+                <div class="div-li li5"><!--成都-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li5.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li5.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li5.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li5.child.num"></div>
+                </div>
+                <div class="div-li li6"><!--武汉-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li6.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li6.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li6.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li6.child.num"></div>
+                </div>
+                <div class="div-li li7"><!--西安-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li7.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li7.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li7.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li7.child.num"></div>
+                </div>
+                <div class="div-li li8"><!--南京-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li8.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li8.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li8.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li8.child.num"></div>
+                </div>
+                <div class="div-li li9"><!--长沙-->
+                    <div class="icon bg" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li9.one"></div>
+                    <div class="icon name" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li9.child.name"></div>
+                    <div class="icon value" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li9.child.value"></div>
+                    <div class="icon num" :class="page7['animation-'+page7.status+'-2'+page7.showStatus].li9.child.num"></div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
+        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+            <div class="page-icon prev-text"></div>
+            <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
+        </div>
+        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
+            <div class="page-icon next-text"></div>
+            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        </div>
+    </div>
+    <div class="page page8 hide">
+        <div class="title-bg" :class="page8['animation-'+page8.status]['title-bg'] + ' '+from"></div>
+        <div class="icon title" :class="page8['animation-'+page8.status]['title'] + ' '+from"></div>
+        <div class="subtitle" :class="page8['animation-'+page8.status]['subtitle']+ ' '+from">
+            还有<span>{{page8.day}}</span>天 ，又要立2018年flag了<br/>
+            岁月无可回顾，人生不能辜负<br/>
+            还未确定的事需要你去确定
+        </div>
+        <div class="icon number" :class="page8['animation-'+page8.status]['number']+ ' '+from"></div>
+        <div class="corperation" :class="from">
+            <div class="icon ctitle" :class="page8['animation-'+page8.status]['ctitle']"></div>
+            <div class="icon c0" :class="page8['animation-'+page8.status]['c0']"></div>
+            <div class="icon c1" :class="page8['animation-'+page8.status]['c1']"></div>
+            <div class="icon c2" :class="page8['animation-'+page8.status]['c2']"></div>
+        </div>
+        <div class="welfare" :class="from">
+            <div class="icon wtitle" :class="page8['animation-'+page8.status]['wtitle']"></div>
+            <div class="icon w0" :class="page8['animation-'+page8.status]['w0']">
+                <a href="http://op.t.sohu.com/mail-lagou/views/game.html" target="_blank"></a>
+            </div>
+            <div class="icon w1" :class="page8['animation-'+page8.status]['w1']">
+                <a href="http://you.163.com/act/static/F5dlHsX1Aa.html" target="_blank"></a>
+            </div>
+        </div>
+        <div class="icon info" :class="page8['animation-'+page8.status]['info']"></div>
+        <div class="icon btn" :class="page8['animation-'+page8.status]['btn']">
+            <div @touchstart.stop.prevent="showShareLayer"></div>
+        </div>
+        <div class="share-layer" 
+            v-show="page8.shareStatus"
+            @touchstart.stop.prevent="hideShareLayer">
+            <div class="light opacityChange delay0"></div>
+            <div class="other littleLeftBottomIn delay0-2"></div>
+            <div class="plane littleRightTopIn delay0-2"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "2017互联网职场年度盘点",
+        desc: "拉勾｜1621W+互联网人 28W+企业书写2017互联网职场",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
+        activityType: '2017LEADERRESULT',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>
