@@ -112,6 +112,11 @@ var Loader = function(){
 	this.success = function(){
 		// progress.style.width = w+"px";
 		// number.innerHTML = "100%";
+		var last = new Date().getTime(),
+			middle = last - startTime;
+		if(middle >= 2000){
+			middle = 50;
+		}
 		setTimeout(function(){
 			console.log("加载完毕");
 			loadingStatus = true;
@@ -120,7 +125,7 @@ var Loader = function(){
 				loadingStatus = false;
 				loadingSuccess();
 			}
-		},50);
+		},middle);
 		//init.initDate();  // 设置时间
 		// init.page1Play();  // 播放音乐
 		// init(now);

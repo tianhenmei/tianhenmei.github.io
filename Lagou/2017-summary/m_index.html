@@ -108,6 +108,7 @@
         // }
         var loadingStatus = false,
             pageStatus = false,
+            startTime = new Date().getTime(),
             loadingSuccess = function(){
                 var cover = document.getElementById('cover');
                 cover.className = cover.className.replace(' hide','');
@@ -294,13 +295,17 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page1 hide">
@@ -354,13 +359,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page2 hide">
@@ -507,13 +517,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page3 hide">
@@ -614,13 +629,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page4 hide">
@@ -825,13 +845,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page5 hide">
@@ -942,13 +967,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page6 hide">
@@ -998,13 +1028,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page7 hide">
@@ -1288,13 +1323,18 @@
             </div>
         </div>
         <div class="bottom page-icon logo" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['logo']"></div>
-        <div class="bottom prev" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']">
+        <div class="bottom prev" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prev']"
+            @touchstart.stop.prevent="toBackEvent">
             <div class="page-icon prev-text"></div>
             <div class="page-icon prev-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['prevLine']"></div>
         </div>
-        <div class="bottom next" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']">
-            <div class="page-icon next-text"></div>
-            <div class="page-icon next-line" :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']"></div>
+        <div class="bottom next" 
+            :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['next']"
+            @touchstart.stop.prevent="toNextEvent">
+            <div class="page-icon next-text" :class="bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite"></div>
+            <div class="page-icon next-line" 
+                :class="bottom['animation-'+bottom.status+'-'+bottom.direction]['nextLine']+(bottom.status == 'in' ? bottom['animation-'+bottom.status+'-'+bottom.direction].nextInfinite : '')"></div>
         </div>
     </div>
     <div class="page page8 hide">
@@ -1352,8 +1392,8 @@
 <script type="text/javascript">
     //微信分享
     var datas = {
-        title: "2017互联网职场年度盘点",
-        desc: "拉勾｜1621W+互联网人 28W+企业书写2017互联网职场",
+        title: "2017年互联网职场竟然这么“难”",
+        desc: "加班、心烦、买房难 ……8个数据告诉你2017互联网职场",
         imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
         activityType: '2017LEADERRESULT',
         shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'

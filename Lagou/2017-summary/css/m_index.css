@@ -3579,6 +3579,26 @@ html, body {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
 
+.rightInfinite {
+  -webkit-animation: rightInfinite 2s ease-in-out both infinite;
+  animation: rightInfinite 2s ease-in-out both infinite; }
+
+@-webkit-keyframes rightInfinite {
+  10% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0); }
+  0%, 25%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
+@keyframes rightInfinite {
+  10% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0); }
+  0%, 25%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+
 .rightTopIn {
   -webkit-animation: rightTopIn 0.5s ease-in-out both;
   animation: rightTopIn 0.5s ease-in-out both; }
@@ -3661,6 +3681,48 @@ html, body {
   100% {
     -webkit-transform: translate3d(0, 20px, 0);
     transform: translate3d(0, 20px, 0);
+    opacity: 0; } }
+
+.bottomIn80 {
+  -webkit-animation: bottomIn80 0.5s ease-in-out both;
+  animation: bottomIn80 0.5s ease-in-out both; }
+
+@-webkit-keyframes bottomIn80 {
+  0% {
+    -webkit-transform: translate3d(0, 80px, 0);
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+@keyframes bottomIn80 {
+  0% {
+    -webkit-transform: translate3d(0, 80px, 0);
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1; } }
+
+.bottomOut80 {
+  -webkit-animation: bottomOut80 0.5s ease-in-out both;
+  animation: bottomOut80 0.5s ease-in-out both; }
+
+@-webkit-keyframes bottomOut80 {
+  0% { }
+  100% {
+    -webkit-transform: translate3d(0, 80px, 0);
+    transform: translate3d(0, 80px, 0);
+    opacity: 0; } }
+
+@keyframes bottomOut80 {
+  0% { }
+  100% {
+    -webkit-transform: translate3d(0, 80px, 0);
+    transform: translate3d(0, 80px, 0);
     opacity: 0; } }
 
 .littleLeftBottomIn {

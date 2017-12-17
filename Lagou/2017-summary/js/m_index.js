@@ -164,12 +164,12 @@ var PageMove = function () {
                     if (self.data.direction.x == "up") {
                         self.data.now += 1;
                     } else {
-                        if(self.data.now == 8){
-                            self.data.isMoving = false;
-                            self.data.clickStatus = false;
-                            app.$data.flipStatus = false;
-                            return;
-                        }
+                        // if(self.data.now == 8){
+                        //     self.data.isMoving = false;
+                        //     self.data.clickStatus = false;
+                        //     app.$data.flipStatus = false;
+                        //     return;
+                        // }
                         self.data.now -= 1;
                         od = "up";
                     }
@@ -252,18 +252,18 @@ app = new Vue({
                 'center':'rightTopIn delay0-5',
                 'logo':'leftIn delay0-5',
                 'time':'opacityChange15 delay1-0',
-                'title':'leftIn delay1-0',
-                'detail':'littleBottomIn delay1-2',
-                'btn':'littleBottomIn delay1-4'
+                'title':'bottomIn80 delay1-0',
+                'detail':'bottomIn80 delay1-2',
+                'btn':'bottomIn80 delay1-4'
             },
             'animation-out':{
                 'cover':'opacityChangeOut delay0',
                 'center':'rightTopOut delay0',
                 'logo':'leftOut delay0',
                 'time':'opacityChangeOut delay0',
-                'title':'leftOut delay0',
-                'detail':'littleBottomOut delay0',
-                'btn':'littleBottomOut delay0'
+                'title':'bottomOut80 delay0',
+                'detail':'bottomOut80 delay0',
+                'btn':'bottomOut80 delay0'
             }
         },
         bottom:{
@@ -274,14 +274,16 @@ app = new Vue({
                 'prevLine':'',
                 'logo':'bottomIn delay0-5',
                 'next':'rightIn delay0-5',
-                'nextLine':''
+                'nextLine':'',
+                'nextInfinite':'rightInfinite delay1-0'
             },
             "animation-in-next":{
                 'prev':'leftIn delay0-5',
                 'prevLine':'',
                 'logo':'bottomIn delay0-5',
                 'next':'rightIn delay0-5',
-                'nextLine':''
+                'nextLine':'',
+                'nextInfinite':'rightInfinite delay1-0'
             },
             "animation-out-prev":{
                 'prev':'opacityChangeOut delay0',
@@ -1834,42 +1836,46 @@ app = new Vue({
                     d2:'opacityChange delay2-6',
                 },
                 'li1':{
-                    bg:'opacityChange delay2-0',
-                    name:'littleTopIn delay2-8',
-                    value:'heightChange delay2-4',
-                    num:'opacityChange delay2-2'
+                    bg:'opacityChange delay2-2',
+                    name:'littleTopIn delay3-0',
+                    value:'heightChange delay2-6',
+                    num:'opacityChange delay2-4'
+                    // bg:'opacityChange delay2-0',
+                    // name:'littleTopIn delay2-8',
+                    // value:'heightChange delay2-4',
+                    // num:'opacityChange delay2-2'
                 },
                 'li2':{
-                    info0:'littleTopIn delay2-2',
-                    info1:'littleTopIn delay2-4',
-                    info2:'littleTopIn delay2-6',
-                    cicle:'rotate360 delay2-0',
-                    name:'opacityChange delay2-2',
-                    d0:'opacityChange delay2-2',
-                    d1:'opacityChange delay2-4',
-                    d2:'opacityChange delay2-6',
+                    info0:'littleTopIn delay2-6',
+                    info1:'littleTopIn delay2-8',
+                    info2:'littleTopIn delay3-0',
+                    cicle:'rotate360 delay2-4',
+                    name:'opacityChange delay2-6',
+                    d0:'opacityChange delay2-6',
+                    d1:'opacityChange delay2-8',
+                    d2:'opacityChange delay3-0'
                 },
                 'li3':{
-                    info0:'littleTopIn delay2-2',
-                    info1:'littleTopIn delay2-4',
-                    info2:'littleTopIn delay2-6',
-                    info3:'littleTopIn delay2-8',
-                    cicle:'rotate360 delay2-0',
-                    name:'opacityChange delay2-2',
-                    d0:'opacityChange delay2-2',
-                    d1:'opacityChange delay2-4',
-                    d2:'opacityChange delay2-6',
-                    d3:'opacityChange delay2-8',
+                    info0:'littleTopIn delay2-8',
+                    info1:'littleTopIn delay3-0',
+                    info2:'littleTopIn delay3-2',
+                    info3:'littleTopIn delay3-4',
+                    cicle:'rotate360 delay2-6',
+                    name:'opacityChange delay2-8',
+                    d0:'opacityChange delay2-8',
+                    d1:'opacityChange delay3-0',
+                    d2:'opacityChange delay3-2',
+                    d3:'opacityChange delay3-4'
                 },
                 'li4':{
-                    info0:'littleTopIn delay2-2',
-                    info1:'littleTopIn delay2-4',
-                    info2:'littleTopIn delay2-6',
-                    cicle:'rotate360 delay2-0',
-                    name:'opacityChange delay2-2',
-                    d0:'opacityChange delay2-2',
-                    d1:'opacityChange delay2-4',
-                    d2:'opacityChange delay2-6',
+                    info0:'littleTopIn delay3-0',
+                    info1:'littleTopIn delay3-2',
+                    info2:'littleTopIn delay3-4',
+                    cicle:'rotate360 delay2-8',
+                    name:'opacityChange delay3-0',
+                    d0:'opacityChange delay3-0',
+                    d1:'opacityChange delay3-2',
+                    d2:'opacityChange delay3-4',
                 },
                 'btn':'littleTopIn delay2-2'
             },
@@ -2037,7 +2043,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li1':{
@@ -2045,7 +2051,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li2':{
@@ -2053,7 +2059,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li3':{
@@ -2061,7 +2067,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li4':{
@@ -2069,7 +2075,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li5':{
@@ -2077,7 +2083,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li6':{
@@ -2085,7 +2091,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li7':{
@@ -2093,7 +2099,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li8':{
@@ -2101,7 +2107,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li9':{
@@ -2109,7 +2115,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 }
             },
@@ -2121,7 +2127,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li1':{
@@ -2129,7 +2135,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li2':{
@@ -2137,7 +2143,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li3':{
@@ -2145,7 +2151,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li4':{
@@ -2153,7 +2159,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li5':{
@@ -2161,7 +2167,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li6':{
@@ -2169,7 +2175,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li7':{
@@ -2177,7 +2183,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li8':{
@@ -2185,7 +2191,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li9':{
@@ -2193,7 +2199,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 }
             },
@@ -2212,7 +2218,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li1':{
@@ -2220,7 +2226,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li2':{
@@ -2228,7 +2234,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li3':{
@@ -2236,7 +2242,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li4':{
@@ -2244,7 +2250,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li5':{
@@ -2252,7 +2258,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li6':{
@@ -2260,7 +2266,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li7':{
@@ -2268,7 +2274,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li8':{
@@ -2276,7 +2282,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li9':{
@@ -2284,7 +2290,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 }
             },
@@ -2296,7 +2302,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li1':{
@@ -2304,7 +2310,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li2':{
@@ -2312,7 +2318,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li3':{
@@ -2320,7 +2326,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li4':{
@@ -2328,7 +2334,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li5':{
@@ -2336,7 +2342,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li6':{
@@ -2344,7 +2350,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li7':{
@@ -2352,7 +2358,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li8':{
@@ -2360,7 +2366,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li9':{
@@ -2368,7 +2374,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 }
             },
@@ -2565,7 +2571,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li1':{
@@ -2573,7 +2579,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li2':{
@@ -2581,7 +2587,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li3':{
@@ -2589,7 +2595,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li4':{
@@ -2597,7 +2603,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li5':{
@@ -2605,7 +2611,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li6':{
@@ -2613,7 +2619,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li7':{
@@ -2621,7 +2627,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li8':{
@@ -2629,7 +2635,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 },
                 'li9':{
@@ -2637,7 +2643,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'littleTopIn delay3-4'
+                        'num':'opacityChange delay3-4'
                     }
                 }
             },
@@ -2649,7 +2655,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li1':{
@@ -2657,7 +2663,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li2':{
@@ -2665,7 +2671,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li3':{
@@ -2673,7 +2679,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li4':{
@@ -2681,7 +2687,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li5':{
@@ -2689,7 +2695,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li6':{
@@ -2697,7 +2703,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li7':{
@@ -2705,7 +2711,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li8':{
@@ -2713,7 +2719,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 },
                 'li9':{
@@ -2721,7 +2727,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'littleTopIn delay1-4'
+                        'num':'opacityChange delay1-4'
                     }
                 }
             },
@@ -2733,7 +2739,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li1':{
@@ -2741,7 +2747,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li2':{
@@ -2749,7 +2755,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li3':{
@@ -2757,7 +2763,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li4':{
@@ -2765,7 +2771,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li5':{
@@ -2773,7 +2779,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li6':{
@@ -2781,7 +2787,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li7':{
@@ -2789,7 +2795,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li8':{
@@ -2797,7 +2803,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li9':{
@@ -2805,7 +2811,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 }
             },
@@ -2817,7 +2823,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li1':{
@@ -2825,7 +2831,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li2':{
@@ -2833,7 +2839,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li3':{
@@ -2841,7 +2847,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li4':{
@@ -2849,7 +2855,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li5':{
@@ -2857,7 +2863,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li6':{
@@ -2865,7 +2871,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li7':{
@@ -2873,7 +2879,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li8':{
@@ -2881,7 +2887,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 },
                 'li9':{
@@ -2889,7 +2895,7 @@ app = new Vue({
                     child:{
                         'name':'opacityChangeOut delay0',
                         'value':'opacityChangeOut delay0',
-                        'num':'littleTopOut delay0'
+                        'num':'opacityChangeOut delay0'
                     }
                 }
             },
@@ -3005,6 +3011,22 @@ app = new Vue({
         },
         hideShareLayer:function(e){
             this.page8.shareStatus = false;
+        },
+        toBackEvent:function(e){
+            if(!this.flipStatus){
+                this.flipStatus = true;
+                PM.data.last = PM.data.now;
+                PM.data.now -= 1;
+                PM.pageMove("up",PM);
+            }
+        },
+        toNextEvent:function(e){
+            if(!this.flipStatus){
+                this.flipStatus = true;
+                PM.data.last = PM.data.now;
+                PM.data.now += 1;
+                PM.pageMove("down",PM);
+            }
         }
     }
 })
