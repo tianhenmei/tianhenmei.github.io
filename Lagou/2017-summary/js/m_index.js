@@ -1836,46 +1836,42 @@ app = new Vue({
                     d2:'opacityChange delay2-6',
                 },
                 'li1':{
-                    bg:'opacityChange delay2-2',
-                    name:'littleTopIn delay3-0',
-                    value:'heightChange delay2-6',
-                    num:'opacityChange delay2-4'
-                    // bg:'opacityChange delay2-0',
-                    // name:'littleTopIn delay2-8',
-                    // value:'heightChange delay2-4',
-                    // num:'opacityChange delay2-2'
+                    bg:'opacityChange delay2-0',
+                    name:'littleTopIn delay2-8',
+                    value:'heightChange delay2-4',
+                    num:'opacityChange delay2-2'
                 },
                 'li2':{
-                    info0:'littleTopIn delay2-6',
-                    info1:'littleTopIn delay2-8',
-                    info2:'littleTopIn delay3-0',
-                    cicle:'rotate360 delay2-4',
-                    name:'opacityChange delay2-6',
-                    d0:'opacityChange delay2-6',
-                    d1:'opacityChange delay2-8',
-                    d2:'opacityChange delay3-0'
+                    info0:'littleTopIn delay2-2',
+                    info1:'littleTopIn delay2-4',
+                    info2:'littleTopIn delay2-6',
+                    cicle:'rotate360 delay2-0',
+                    name:'opacityChange delay2-2',
+                    d0:'opacityChange delay2-2',
+                    d1:'opacityChange delay2-4',
+                    d2:'opacityChange delay2-6',
                 },
                 'li3':{
-                    info0:'littleTopIn delay2-8',
-                    info1:'littleTopIn delay3-0',
-                    info2:'littleTopIn delay3-2',
-                    info3:'littleTopIn delay3-4',
-                    cicle:'rotate360 delay2-6',
-                    name:'opacityChange delay2-8',
-                    d0:'opacityChange delay2-8',
-                    d1:'opacityChange delay3-0',
-                    d2:'opacityChange delay3-2',
-                    d3:'opacityChange delay3-4'
+                    info0:'littleTopIn delay2-2',
+                    info1:'littleTopIn delay2-4',
+                    info2:'littleTopIn delay2-6',
+                    info3:'littleTopIn delay2-8',
+                    cicle:'rotate360 delay2-0',
+                    name:'opacityChange delay2-2',
+                    d0:'opacityChange delay2-2',
+                    d1:'opacityChange delay2-4',
+                    d2:'opacityChange delay2-6',
+                    d3:'opacityChange delay2-8',
                 },
                 'li4':{
-                    info0:'littleTopIn delay3-0',
-                    info1:'littleTopIn delay3-2',
-                    info2:'littleTopIn delay3-4',
-                    cicle:'rotate360 delay2-8',
-                    name:'opacityChange delay3-0',
-                    d0:'opacityChange delay3-0',
-                    d1:'opacityChange delay3-2',
-                    d2:'opacityChange delay3-4',
+                    info0:'littleTopIn delay2-2',
+                    info1:'littleTopIn delay2-4',
+                    info2:'littleTopIn delay2-6',
+                    cicle:'rotate360 delay2-0',
+                    name:'opacityChange delay2-2',
+                    d0:'opacityChange delay2-2',
+                    d1:'opacityChange delay2-4',
+                    d2:'opacityChange delay2-6',
                 },
                 'btn':'littleTopIn delay2-2'
             },
@@ -2043,79 +2039,79 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'num':'opacityZoomChange delay3-4'
                     }
                 },
                 'li1':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-1',
+                        'num':'opacityZoomChange delay3-5'
                     }
                 },
                 'li2':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-2',
+                        'num':'opacityZoomChange delay3-6'
                     }
                 },
                 'li3':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-3',
+                        'num':'opacityZoomChange delay3-7'
                     }
                 },
                 'li4':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-4',
+                        'num':'opacityZoomChange delay3-8'
                     }
                 },
                 'li5':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-5',
+                        'num':'opacityZoomChange delay3-9'
                     }
                 },
                 'li6':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-6',
+                        'num':'opacityZoomChange delay4-0'
                     }
                 },
                 'li7':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-7',
+                        'num':'opacityZoomChange delay4-1'
                     }
                 },
                 'li8':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-8',
+                        'num':'opacityZoomChange delay4-2'
                     }
                 },
                 'li9':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-9',
+                        'num':'opacityZoomChange delay4-3'
                     }
                 }
             },
@@ -2127,79 +2123,79 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'num':'opacityZoomChange delay1-4'
                     }
                 },
                 'li1':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-1',
+                        'num':'opacityZoomChange delay1-5'
                     }
                 },
                 'li2':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-2',
+                        'num':'opacityZoomChange delay1-6'
                     }
                 },
                 'li3':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-3',
+                        'num':'opacityZoomChange delay1-7'
                     }
                 },
                 'li4':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-4',
+                        'num':'opacityZoomChange delay1-8'
                     }
                 },
                 'li5':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-5',
+                        'num':'opacityZoomChange delay1-9'
                     }
                 },
                 'li6':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-6',
+                        'num':'opacityZoomChange delay2-0'
                     }
                 },
                 'li7':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-7',
+                        'num':'opacityZoomChange delay2-1'
                     }
                 },
                 'li8':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-8',
+                        'num':'opacityZoomChange delay2-2'
                     }
                 },
                 'li9':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-9',
+                        'num':'opacityZoomChange delay2-3'
                     }
                 }
             },
@@ -2571,79 +2567,79 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay2-8',
                         'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'num':'opacityZoomChange delay3-4'
                     }
                 },
                 'li1':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-1',
+                        'num':'opacityZoomChange delay3-5'
                     }
                 },
                 'li2':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-2',
+                        'num':'opacityZoomChange delay3-6'
                     }
                 },
                 'li3':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-3',
+                        'num':'opacityZoomChange delay3-7'
                     }
                 },
                 'li4':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-4',
+                        'num':'opacityZoomChange delay3-8'
                     }
                 },
                 'li5':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-5',
+                        'num':'opacityZoomChange delay3-9'
                     }
                 },
                 'li6':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-6',
+                        'num':'opacityZoomChange delay4-0'
                     }
                 },
                 'li7':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-7',
+                        'num':'opacityZoomChange delay4-1'
                     }
                 },
                 'li8':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-8',
+                        'num':'opacityZoomChange delay4-2'
                     }
                 },
                 'li9':{
                     one:'opacityChange delay2-8',  // bg
                     child:{
                         'name':'opacityChange delay2-8',
-                        'value':'heightChange delay3-0',
-                        'num':'opacityChange delay3-4'
+                        'value':'heightChange delay3-9',
+                        'num':'opacityZoomChange delay4-3'
                     }
                 }
             },
@@ -2655,79 +2651,79 @@ app = new Vue({
                     child:{
                         'name':'opacityChange delay0-8',
                         'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'num':'opacityZoomChange delay1-4'
                     }
                 },
                 'li1':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-1',
+                        'num':'opacityZoomChange delay1-5'
                     }
                 },
                 'li2':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-2',
+                        'num':'opacityZoomChange delay1-6'
                     }
                 },
                 'li3':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-3',
+                        'num':'opacityZoomChange delay1-7'
                     }
                 },
                 'li4':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-4',
+                        'num':'opacityZoomChange delay1-8'
                     }
                 },
                 'li5':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-5',
+                        'num':'opacityZoomChange delay1-9'
                     }
                 },
                 'li6':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-6',
+                        'num':'opacityZoomChange delay2-0'
                     }
                 },
                 'li7':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-7',
+                        'num':'opacityZoomChange delay2-1'
                     }
                 },
                 'li8':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-8',
+                        'num':'opacityZoomChange delay2-2'
                     }
                 },
                 'li9':{
                     one:'opacityChange delay0-5',  // bg
                     child:{
                         'name':'opacityChange delay0-8',
-                        'value':'heightChange delay1-0',
-                        'num':'opacityChange delay1-4'
+                        'value':'heightChange delay1-9',
+                        'num':'opacityZoomChange delay2-3'
                     }
                 }
             },

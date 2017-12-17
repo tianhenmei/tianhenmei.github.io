@@ -3917,6 +3917,38 @@ html, body {
   100% {
     opacity: 0; } }
 
+.opacityZoomChange {
+  -webkit-animation: opacityZoomChange 0.5s both linear;
+  animation: opacityZoomChange 0.5s both linear; }
+
+@-webkit-keyframes opacityZoomChange {
+  0% {
+    opacity: 0; }
+  50% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  75% {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+    transform: scale3d(1.5, 1.5, 1.5); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); } }
+
+@keyframes opacityZoomChange {
+  0% {
+    opacity: 0; }
+  50% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  75% {
+    -webkit-transform: scale3d(1.5, 1.5, 1.5);
+    transform: scale3d(1.5, 1.5, 1.5); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); } }
+
 .shake-animation {
   -webkit-animation: shakeAnimation 0.5s linear both;
   animation: shakeAnimation 0.5s linear both; }
