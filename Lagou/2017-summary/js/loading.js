@@ -26,7 +26,7 @@ var imgArray = [
 	// "images/page5-center-bg.png",
 	"images/page5-icon.png",
 	// "images/page6-center-bg.png",
-	"images/page6-icon.png",
+	"images/page6-icon.png?v=2",
 	"images/page7-center-bg.png",
 	"images/page7-icon.png",
 	"images/page7-icon2.png",
