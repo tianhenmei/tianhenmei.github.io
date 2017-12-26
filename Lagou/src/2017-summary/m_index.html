@@ -1340,8 +1340,13 @@
     <div class="page page8 hide">
         <div class="title-bg" :class="page8['animation-'+page8.status]['title-bg'] + ' '+from"></div>
         <div class="icon title" :class="page8['animation-'+page8.status]['title'] + ' '+from"></div>
-        <div class="subtitle" :class="page8['animation-'+page8.status]['subtitle']+ ' '+from">
+        <div class="subtitle" :class="page8['animation-'+page8.status]['subtitle']+ ' '+from" v-if="!testStatus && page8.day > 0">
             还有<span>{{page8.day}}</span>天 ，又要立2018年flag了<br/>
+            岁月无可回顾，人生不能辜负<br/>
+            还未确定的事需要你去确定
+        </div>
+        <div class="subtitle" :class="page8['animation-'+page8.status]['subtitle']+ ' '+from" v-else>
+            新年伊始，2018flag走起。<br/>
             岁月无可回顾，人生不能辜负<br/>
             还未确定的事需要你去确定
         </div>
@@ -1354,11 +1359,14 @@
         </div>
         <div class="welfare" :class="from">
             <div class="icon wtitle" :class="page8['animation-'+page8.status]['wtitle']"></div>
-            <div class="icon w0" :class="page8['animation-'+page8.status]['w0']">
+            <div class="w0" :class="page8['animation-'+page8.status]['w0']">
                 <a href="http://op.t.sohu.com/mail-lagou/views/game.html" target="_blank"></a>
             </div>
-            <div class="icon w1" :class="page8['animation-'+page8.status]['w1']">
+            <div class="w1" :class="page8['animation-'+page8.status]['w1']">
                 <a href="http://you.163.com/act/static/F5dlHsX1Aa.html" target="_blank"></a>
+            </div>
+            <div class="w2" :class="page8['animation-'+page8.status]['w2']">
+                <a href="https://activity.lagou.com/topic/baipishuaiqiyi.html" target="_blank"></a>
             </div>
         </div>
         <div class="icon info" :class="page8['animation-'+page8.status]['info']"></div>

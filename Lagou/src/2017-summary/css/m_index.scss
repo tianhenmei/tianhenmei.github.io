@@ -3019,7 +3019,7 @@ html,body {
         }
     }
     .welfare {
-        width:rem(600);
+        width:rem(750);
         height:rem(156);
         @include center(0,577);
         .wtitle {
@@ -3029,26 +3029,41 @@ html,body {
             background-position:0 rem(-199);
         }
         .w0 {
-            width:rem(332);
-            height:rem(180);
-            @include leftTop(29,53);
-            background-position:0 rem(-251);
+            width:rem(289);
+            height:rem(185);
+            @include leftTop(28,52);
+            background:url('../images/page8-logo-0.png') no-repeat center top;
+            background-size:100% 100%;
             > a {
-                width:rem(272);
-                height:rem(94);
-                @include leftTop(30,30);
+                width:rem(200);
+                height:rem(93);
+                @include leftTop(40,30);
                 display:block;
             }
         }
         .w1 {
-            width:rem(332);
-            height:rem(180);
-            @include leftTop(335,53);
-            background-position:rem(-306) rem(-251);
+            width:rem(283);
+            height:rem(185);
+            @include leftTop(244,52);
+            background:url('../images/page8-logo-1.png') no-repeat center top;
+            background-size:100% 100%;
             > a {
-                width:rem(272);
-                height:rem(94);
-                @include leftTop(25,30);
+                width:rem(194);
+                height:rem(93);
+                @include leftTop(40,30);
+                display:block;
+            }
+        }
+        .w2 {
+            width:rem(283);
+            height:rem(185);
+            @include leftTop(456,52);
+            background:url('../images/page8-logo-2.png') no-repeat center top;
+            background-size:100% 100%;
+            > a {
+                width:rem(194);
+                height:rem(93);
+                @include leftTop(40,30);
                 display:block;
             }
         }
@@ -3092,7 +3107,7 @@ html,body {
                 display:block;
             }
         }
-        .w1 {
+        .w1,.w2 {
             display:none;
         }
     }

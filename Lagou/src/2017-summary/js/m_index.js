@@ -2912,6 +2912,7 @@ app = new Vue({
                 'wtitle':'littleBottomIn delay1-6',
                 'w0':'littleBottomIn delay1-8',
                 'w1':'littleBottomIn delay1-8',
+                'w2':'littleBottomIn delay1-8',
                 'info':'littleBottomIn delay2-0',
                 'btn':'littleBottomIn delay2-2',
             },
@@ -2927,12 +2928,14 @@ app = new Vue({
                 'wtitle':'littleBottomOut delay0',
                 'w0':'littleBottomOut delay0',
                 'w1':'littleBottomOut delay0',
+                'w2':'littleBottomOut delay0',
                 'info':'littleBottomOut delay0',
                 'btn':'littleBottomOut delay0',
             }
         },
         totalDay:0,
-        isiPhone:false
+        isiPhone:false,
+        testStatus:false
     },
     mounted:function(){
         // this.setDay();
@@ -2945,6 +2948,9 @@ app = new Vue({
             first = new Date('2018/01/01 00:00:00').getTime(),
             middle = (first - now) > 0 ? (first - now) : 0;
         this.page8.day = Math.ceil(middle / 3600 / 1000 / 24);
+        if(getQueryString('xtest')){
+            this.testStatus = true
+        }
     },
     methods:{
         ismobile:function(){
