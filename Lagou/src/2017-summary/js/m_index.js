@@ -51,6 +51,7 @@ var PageMove = function () {
                 app.$data.bottom.direction = 'prev';
             }
             setTimeout(function(){
+                jQuery(".page").removeClass("pageCurrent");
                 jQuery(".page" + self.data.last).attr('style','').addClass("hide");
                 jQuery(".page" + self.data.now).removeClass("hide").addClass("pageCurrent");
                 self.data.isMoving = false;
