@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>2018全民升职记</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            if(rightSize < currentSize){  //按宽度算
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                htmlStatus = 1;
+                if(app == 'ios' || app == 'android'){
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                }
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+    
+        setFontSize();
+    </script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<div id="app">
+    <div clsss="yh-center">
+        <div class="yh-center__banner">
+            <div class="banner__title"></div>
+            <div class="banner__lagou"></div>
+            <a class="banner__oppo" :href="oppo.href"></a>
+        </div>
+        <div class="yh-center__tab">
+            <div class="tab__center">
+                <div class="tab__list clearfix"
+                    ref="tab__list">
+                    <ul class="tab__ul clearfix"
+                        ref="tab"
+                        :style="{
+                            'width':tab.width+'px',
+                            'left':tab.left+'px'
+                        }"
+                        @touchstart="tabStartEvent"
+                        @touchmove.prevent="tabMoveEvent"
+                        @touchend="tabEndEvent">
+                        <li v-for="(one,index) in tab.list"
+                            class="tab__li" 
+                            :class="{'tab__li--active':index == tab.active_index}"
+                            @click="tabClickEvent(index,$event)">
+                            <div class="bg"></div>
+                            <div class="name">{{one.name}}</div>
+                            <div class="icon"></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab__more clearfix">
+                    <div class="more__shadow" :class="{'hide':!tab.shadow_status}"></div>
+                    <div class="more">
+                        <div class="more__text">展开</div>
+                        <div class="more__icon"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__bullet">
+            <div class="bullet__center clearfix">
+                <div class="bullet__list">
+                    <ul class="bullet__ul bullet_move"
+                        :style="{
+                            '-webkit-animation-duration':hot.duration+'s',
+                            'animation-duration':hot.duration+'s'
+                        }">
+                        <li v-for="(one,index) in hot.list.concat(hot.list)"
+                            class="bullet__li">
+                            <span class="green">{{one.name}}</span> 刚刚投递  <span class="green">{{one.company}}-{{one.position}}</span> 职位
+                        </li>
+                    </ul>
+                </div>
+                <a class="bullet__more" :href="hot.href"></a>
+            </div>
+        </div>
+        <div class="yh-center__popular">
+            <div class="popular__center">
+                <div class="popular__title">
+                    <a class="popular__more" :href="popular.href">查看更多</a>
+                </div>
+                <div class="popular__content clearfix">
+                    <div class="popular__list clearfix popular__list--0">
+                        <div class="list__title">最In</div>
+                        <ul class="popular__ul">
+                            <li v-for="(one,index) in popular.in.list"
+                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                        </ul>
+                    </div>
+                    <div class="popular__list clearfix popular__list--1">
+                        <div class="list__title">最极速响应</div>
+                        <ul class="popular__ul">
+                            <li v-for="(one,index) in popular.quickest.list"
+                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                        </ul>
+                    </div>
+                    <div class="popular__list clearfix popular__list--2">
+                        <div class="list__title">最受欢迎</div>
+                        <ul class="popular__ul">
+                            <li v-for="(one,index) in popular.most.list"
+                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__leader">
+            <div class="leader__center">
+                <div class="leader__title"></div>
+                <div class="leader__content">
+                    <div class="leader__list">
+                        <div v-for="(one,index) in leader.list"
+                            class="leader__one">
+                            <div class="logo">
+                                <img src="images/leader-logo.png" />
+                            </div>
+                            <div class="info">{{one.industry}} \ 坐标{{one.location}} \ {{one.scale}}</div>
+                            <div class="label clearfix">
+                                <span v-for="(one,index) in one.label">{{one}}</span>
+                            </div>
+                            <div class="position">
+                                <a class="one clearfix" 
+                                    v-for="(one,index) in one.position"
+                                    :href="one.id">
+                                    <span class="position__name">{{one.name}}</span>
+                                    <span class="position__salary">{{one.salary}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="leader__more" :href="leader.href">一键直达</a>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__employer">
+            <div class="employer__center">
+                <div class="employer__title">
+                    <div class="title__info">加入超级大公司，职场竞争力火速爆表，人脉关系瞬间开挂</div>
+                </div>
+                <div class="employer__content">
+                    <div class="employer__list">
+                        <div v-for="(one,index) in employer.list"
+                            class="employer__one">
+                            <div class="employer__top clearfix">
+                                <div class="logo">
+                                    <img :src="one.logo" />
+                                </div>
+                                <div class="info">
+                                    <div class="info__name">{{one.name}}</div>
+                                    <div class="info__detail">{{one.location}}  | {{one.level}}</div>
+                                </div>
+                                <div class="intro">{{one.introduce}}</div>
+                            </div>
+                            <div class="employer__label clearfix">
+                                <span v-for="(one,index) in one.label">{{one}}</span>
+                            </div>
+                            <div class="employer__position">
+                                <a class="one clearfix" 
+                                    v-for="(one,index) in one.position"
+                                    :href="one.id">
+                                    <span class="position__name">{{one.name}}</span>
+                                    <span class="position__info">{{one.year}}{{one.education}}</span>
+                                    <span class="position__salary">{{one.salary}}</span>
+                                    <span class="position__icon">></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="employer__arrow employer__arrow--left"></div>
+                    <div class="employer__arrow employer__arrow--right"></div>
+                    <a class="employer__more" :href="employer.href">查看更多</a>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__first">
+            <div class="first__center">
+                <div class="first__title">
+                    <a class="first__more" :href="first.href">查看更多</a>
+                </div>
+                <div class="first__content clearfix">
+                    <div class="first__company">
+                        <ul class="company__ul">
+                            <li v-for="(one,index) in first.company.list"
+                                class="company__li">
+                                <div class="li__intro">{{one.intro}}</div>
+                                <div class="li__company clearfix">
+                                    <div class="company__logo">
+                                        <img :src="one.logo" />
+                                    </div>
+                                    <div class="company__info">
+                                        <div class="company__name">{{one.name}}</div>
+                                        <div class="company__position clearfix">
+                                            <span class="position__name">{{one.position}}</span>
+                                            <span class="position__location">{{one.location}}</span>
+                                            <span class="position__salary">{{one.salary}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="first__bottom clearfix">
+                        <div class="first__question">
+                            <ul class="question__ul">
+                                <li v-for="(one,index) in first.question.list"
+                                    class="question__li">
+                                    <div class="li__ask">{{one.ask}}</div>
+                                    <div class="li__answer">{{one.answer}}</div>
+                                    <div class="li__guest">{{one.guest}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="first__recommend">
+                            <ul class="recommend__ul">
+                                <li v-for="(one,index) in first.recommend.list"
+                                    class="recommend__li">
+                                    <div class="li__guest">我是{{one.guest}}, <br/>我为你推荐:</div>
+                                    <div class="li__companys">
+                                        <span v-for="c in one.companys">{{c}}</span>
+                                    </div>
+                                    <div class="li__companys__more">查看全部</div>
+                                    <div class="li__leader">
+                                        <img :src="one.leader" />
+                                    </div>
+                                    <div class="li__name">{{one.name}}</div>
+                                    <div class="li__position">{{one.position}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__rich">
+            <div class="rich__center">
+                <div class="rich__title">
+                    <div class="title__info">心心念念18W年薪小目标，总要找个实力靠山为你实现</div>
+                </div>
+                <div class="rich__content">
+                    <div class="rich__container clearfix"
+                        :style="{'width':getRem(730 * rich.list.length)}">
+                        <div  v-for="list in rich.list"
+                            class="rich__list clearfix">
+                            <div v-for="(one,index) in list"
+                                class="rich__one">
+                                <div class="rich__top clearfix">
+                                    <div class="logo">
+                                        <img :src="one.logo" />
+                                    </div>
+                                    <div class="info">
+                                        <div class="info__name">{{one.name}}</div>
+                                        <div class="info__detail">{{one.location}}</div>
+                                    </div>
+                                </div>
+                                <div class="rich__position">
+                                    <a class="one clearfix" 
+                                        v-for="(one,index) in one.position"
+                                        :href="one.id">
+                                        <span class="position__name">{{one.name}}</span>
+                                        <span class="position__salary">{{one.salary}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="rich__dot clearfix" :style="{
+                        'width':getRem(18*Math.ceil(rich.list.length))
+                        }">
+                        <span v-for="(one,index) in new Array(Math.ceil(rich.list.length))" 
+                            class="dot"
+                            :class="{'dot--active':index == rich.active_index}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__will">
+            <div class="will__center">
+                <div class="will__title">
+                    <div class="title__info">老铁，连续多年职场抗战，不能再让贫穷限制你的想象力</div>
+                </div>
+                <div class="will__content">
+                    <div class="will__container clearfix"
+                        :style="{'width':getRem(730 * will.list.length)}">
+                        <div  v-for="(list,i) in will.list"
+                            class="will__list clearfix"
+                            :class="'will__list--'+i">
+                            <div class="will__one">
+                                <div class="one__title">{{list.title}}</div>
+                                <div class="one__intro">{{list.intro}}</div>
+                                <div class="will__company">
+                                    <div class="one clearfix" 
+                                        v-for="(one,index) in list.company"
+                                        :class="{'is-first':index == 0}"
+                                        :href="one.id">
+                                        <a :href="one.companyId" class="company__logo">
+                                            <img :src="one.logo" />
+                                        </a>
+                                        <div class="company__info">
+                                            <a :href="one.companyId" class="company__name">{{one.name}}</a>
+                                            <a v-for="i in one.position" 
+                                                :href="i.id" 
+                                                class="company__position">
+                                                <span class="company__position-name">{{i.name}}</span>
+                                                <span class="company__salary">{{i.salary}}</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="will__more" :href="will.href">高薪快速通道</a>
+            </div>
+        </div>
+        <div class="yh-center__storm">
+            <div class="storm__center">
+                <div class="storm__title">
+                    <div class="title__info">如果已经焦躁不安，不如干脆换个更好的选择</div>
+                </div>
+                <div class="storm__content">
+                    <div class="storm__container clearfix">
+                        <div  v-for="(list,i) in storm.list"
+                            class="storm__list clearfix"
+                            :class="'storm__list--'+i">
+                            <div class="storm__one">
+                                <div class="storm__info clearfix">
+                                    <div class="one__title"></div>
+                                    <div class="one__intro">{{list.intro}}</div>
+                                </div>
+                                <div class="storm__company">
+                                    <a class="one clearfix" 
+                                        v-for="(one,index) in list.company"
+                                        :class="{'is-first':index == 0}"
+                                        :href="one.id">
+                                        <img class="company__logo" :src="one.logo" />
+                                        <div class="company__name" :href="one.companyId">{{one.name}}</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="storm__more" :href="storm.href">春季热招通道</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "2017年互联网职场竟然这么“难”",
+        desc: "加班、心烦、买房难 ……8个数据告诉你2017互联网职场",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
+        activityType: '2017LEADERRESULT',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>

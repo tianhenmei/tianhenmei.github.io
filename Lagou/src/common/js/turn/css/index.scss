@@ -1,0 +1,131 @@
+@function getEleN($n) {
+	@return $n / (750 / 16) + rem;
+}
+/*reset style**/
+* {
+	margin:0;
+	padding:0;
+}
+img {
+	display:block;
+}
+ul,li,ol,dl,dd,dt {
+	list-style:none;
+}
+.clearfix:after {
+	content: "020";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden; }
+
+.clearfix {
+	zoom: 1; }
+
+body {
+	width:100%;
+	height:100%;
+}
+
+.disappear{
+	-webkit-animation:disappear 0.5s both;
+	animation:disappear 0.5s both;
+}
+@-webkit-keyframes disappear {
+	0%{
+		opacity:1;
+	}
+	100% {
+		opacity:0;
+	}
+}
+@keyframes disappear {
+	0%{
+		opacity:1;
+	}
+	100% {
+		opacity:0;
+	}
+}
+
+#gameCanvas {
+	//width:100%;
+	//height:100%;
+	position:absolute;
+	left:0;
+	top:0;
+	z-index:20;
+}
+/*page style**/
+.main {
+	width:100%;
+	height:100%;
+}
+.page {
+	width:100%;
+	height:100%;
+	/*width:getEleN(600);
+	height:getEleN(900);*/
+	position:absolute;
+	/*top:getEleN(206);
+	left:getEleN(50);*/
+	top:0;
+	left:0;
+}
+/***page0 style**********************/
+.page0 {
+	background:#00fff0;
+	z-index:10;
+	overflow: hidden;
+	h3{
+		width:getEleN(375);
+		position:absolute;
+		left:0;
+		top:0;
+		background:#fff;
+		white-space: nowrap;
+	}
+	.bg{
+		width:100%;
+		height:100%;
+		background:#00ff00;
+	}
+}
+/***page1 style**********************/
+.page2,.page3,.page4,.page5,
+.page1 {
+	background:#00fff0;
+	z-index:1;
+	overflow: hidden;
+	.bg{
+		width:100%;
+		height:100%;
+		background:#00ff00;
+	}
+}
+.page2{
+	.button {
+		width:getEleN(400);
+		height:getEleN(200);
+		line-height:getEleN(200);
+		background:#00fff0;
+		text-align:center;
+		font-size:getEleN(30);
+		color:#fff;
+		position:absolute;
+		left:getEleN(100);
+		top:getEleN(300);
+	}
+}
+
+
+
+
+
+.hide {
+	display:none;
+}
+.page-current {
+	display:block;
+}
+
