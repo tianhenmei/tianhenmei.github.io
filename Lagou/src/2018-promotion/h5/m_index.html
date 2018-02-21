@@ -407,6 +407,107 @@
                 <a class="storm__more" :href="storm.href">春季热招通道</a>
             </div>
         </div>
+        <div class="yh-center__ai">
+            <div class="ai__center">
+                <div class="ai__title">
+                    <div class="title__info">25万+年薪专场</div>
+                    <a class="title__more" :href="ai.href">查看更多</a>
+                </div>
+                <div class="ai__content">
+                    <div class="ai__list">
+                        <div v-for="(one,index) in ai.list"
+                            class="ai__one">
+                            <div class="ai__left">
+                                <a :href="one.companyId" class="logo">
+                                    <img :src="one.logo" />
+                                </a>
+                            </div>
+                            <div class="ai__right">
+                                <a :href="one.companyId" class="right__name">{{one.name}}</a>
+                                <div class="ai__position">
+                                    <a class="one clearfix" 
+                                        v-for="(one,index) in one.position"
+                                        :href="one.id">
+                                        <span class="position__name">{{one.name}}</span>
+                                        <span class="position__salary">{{one.salary}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ai__special">
+                        <div class="special__top clearfix">
+                            <a :href="ai.engineer" class="special__01 icon-02"></a>
+                            <a :href="ai.product"class="special__02 icon-02"></a>
+                        </div>
+                        <a :href="ai.other" class="special__03 icon-02"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__choice">
+            <div class="choice__center">
+                <div class="choice__title icon-02">
+                    <div class="title__info">看了那么多职位，还是选不出想要的工作，来看这些吸睛<br/>公司的高人之处</div>
+                </div>
+                <div class="choice__content">
+                    <div class="choice__list clearfix">
+                        <div v-for="(one,index) in choice.list"
+                            class="choice__one icon-02">
+                            <div class="choice__top clearfix">
+                                <a :href="one.companyId" class="logo">
+                                    <img :src="one.logo" />
+                                </a>
+                                <div class="info">
+                                    <a :href="one.companyId" class="info__name">{{one.name}}<span class="name__icon icon-02"></span><span class="info__line icon-02"></span></a>
+                                    <div class="info__detail">{{one.industry}} | {{one.level}} | {{one.location}}<span class="info__line icon-02"></span></div>
+                                </div>
+                            </div>
+                            <div class="choice__label clearfix">
+                                <span v-for="(one,index) in one.label">{{one}}</span>
+                            </div>
+                            <div class="choice__position">
+                                <a class="one clearfix" 
+                                    v-for="(one,index) in one.position"
+                                    :href="one.id">
+                                    <span class="position__name">{{one.name}}</span>
+                                    <span class="position__salary">{{one.salary}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="choice__companys clearfix">
+                        <div  v-for="(list,i) in choice.companys"
+                            class="choice__companys__list clearfix icon-02"
+                            :class="'choice__companys__list--'+i">
+                            <div class="choice__companys__one">
+                                <div class="choice__companys__info clearfix">
+                                    <div class="companys__one__title">{{list.name}}</div>
+                                </div>
+                                <div class="companys__list">
+                                    <div class="companys__list__one clearfix"
+                                        v-for="(one,index) in list.list">
+                                        <a :href="one.companyId"  class="company__logo"><img class="company__logo-img" :src="one.logo" /></a>
+                                        <div class="company__info">
+                                            <a class="company__info-name" 
+                                                :href="one.companyId">
+                                                {{one.name}}
+                                            </a>
+                                            <a class="company__info-position" 
+                                                :href="one.positionId">
+                                                {{one.position}}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="choice__more" :href="choice.href">人气热招通道</a>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__logo icon-02"></div>
     </div>
 </div>
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
