@@ -75,10 +75,6 @@
     
         setFontSize();
     </script>
-<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
-<script type="text/javascript">
-    var jQuery = jQuery.noConflict();
-</script>
 </head>
 <body>
 <div id="app">
@@ -86,36 +82,47 @@
         <div class="yh-center__banner">
             <div class="banner__title"></div>
             <div class="banner__lagou"></div>
-            <a class="banner__oppo" :href="oppo.href"></a>
+            <a class="banner__oppo" :href="oppo.href"
+                :data-lg-tj-id="countId" 
+                data-lg-tj-no="0001" 
+                :data-lg-tj-cid="null"></a>
         </div>
-        <div class="yh-center__tab">
-            <div class="tab__center">
-                <div class="tab__list clearfix"
-                    ref="tab__list">
-                    <ul class="tab__ul clearfix"
-                        ref="tab"
-                        :style="{
-                            'width':tab.width+'px',
-                            'left':tab.left+'px'
-                        }"
-                        @touchstart="tabStartEvent"
-                        @touchmove.prevent="tabMoveEvent"
-                        @touchend="tabEndEvent">
-                        <li v-for="(one,index) in tab.list"
-                            class="tab__li" 
-                            :class="{'tab__li--active':index == tab.active_index}"
-                            @click="tabClickEvent(index,$event)">
-                            <div class="bg"></div>
-                            <div class="name">{{one.name}}</div>
-                            <div class="icon"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="tab__more clearfix">
-                    <div class="more__shadow" :class="{'hide':!tab.shadow_status}"></div>
-                    <div class="more">
-                        <div class="more__text">展开</div>
-                        <div class="more__icon"></div>
+        <div class="yh-center__tab" ref="yh-center__tab">
+            <div class="tab__layer" :class="{'tab__layer--fixed':tab.fixed}">
+                <div class="tab__center">
+                    <div class="tab__list clearfix"
+                        ref="tab__list">
+                        <ul class="tab__ul clearfix"
+                            ref="tab"
+                            :style="{
+                                'width':tab.width+'px',
+                                'left':tab.left+'px'
+                            }"
+                            @touchstart="tabStartEvent"
+                            @touchmove.prevent="tabMoveEvent"
+                            @touchend="tabEndEvent">
+                            <li v-for="(one,index) in tab.list"
+                                class="tab__li" 
+                                :class="'tab__li--'+index+(index == tab.active_index ? ' tab__li--active' : '')"
+                                @click="tabClickEvent(index,$event)"
+                                :data-lg-tj-id="countId" 
+                                :data-lg-tj-no="getCount(tab.count+index)" 
+                                :data-lg-tj-cid="null">
+                                <div class="bg"></div>
+                                <div class="name">{{one.name}}</div>
+                                <div class="icon"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab__more clearfix">
+                        <div class="more__shadow" :class="{'hide':!tab.shadow_status}"></div>
+                        <div class="more"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(tab.count+20)" 
+                            :data-lg-tj-cid="null">
+                            <div class="more__text">展开</div>
+                            <div class="more__icon"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -140,28 +147,44 @@
         <div class="yh-center__popular">
             <div class="popular__center">
                 <div class="popular__title">
-                    <a class="popular__more" :href="popular.href">查看更多</a>
+                    <a class="popular__more" 
+                        :href="popular.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(popular.count)" 
+                        :data-lg-tj-cid="null">查看更多</a>
                 </div>
                 <div class="popular__content clearfix">
                     <div class="popular__list clearfix popular__list--0">
                         <div class="list__title">最In</div>
                         <ul class="popular__ul">
                             <li v-for="(one,index) in popular.in.list"
-                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                                class="popular__li">
+                                <a :href="one.id" class="popular__li-a"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(popular.in.count+index)" 
+                                    :data-lg-tj-cid="one.id">{{index+1}}.{{one.position}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--1">
                         <div class="list__title">最极速响应</div>
                         <ul class="popular__ul">
                             <li v-for="(one,index) in popular.quickest.list"
-                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                                class="popular__li">
+                                <a :href="one.id" class="popular__li-a"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(popular.quickest.count+index)" 
+                                    :data-lg-tj-cid="one.id">{{index+1}}.{{one.position}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--2">
                         <div class="list__title">最受欢迎</div>
                         <ul class="popular__ul">
                             <li v-for="(one,index) in popular.most.list"
-                                class="popular__li">{{index+1}}.{{one.position}}</li>
+                                class="popular__li">
+                                <a :href="one.id" class="popular__li-a"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(popular.most.count+index)" 
+                                    :data-lg-tj-cid="one.id">{{index+1}}.{{one.position}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -172,73 +195,102 @@
                 <div class="leader__title"></div>
                 <div class="leader__content">
                     <div class="leader__list">
-                        <div v-for="(one,index) in leader.list"
+                        <div v-for="(list,lindex) in leader.list"
                             class="leader__one">
-                            <div class="logo">
+                            <a class="logo" :href="list.companyId"
+                                :data-lg-tj-id="countId" 
+                                :data-lg-tj-no="getCount(leader.count)" 
+                                :data-lg-tj-cid="list.companyId">
                                 <img src="images/leader-logo.png" />
-                            </div>
-                            <div class="info">{{one.industry}} \ 坐标{{one.location}} \ {{one.scale}}</div>
+                            </a>
+                            <div class="info">{{list.industry}} \ 坐标{{list.location}} \ {{list.scale}}</div>
                             <div class="label clearfix">
-                                <span v-for="(one,index) in one.label">{{one}}</span>
+                                <span v-for="(i,iindex) in list.label">{{i}}</span>
                             </div>
                             <div class="position">
                                 <a class="one clearfix" 
-                                    v-for="(one,index) in one.position"
-                                    :href="one.id">
+                                    v-for="(one,index) in list.position"
+                                    :href="one.id"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(list.count+lindex*10+index)" 
+                                    :data-lg-tj-cid="one.id">
                                     <span class="position__name">{{one.name}}</span>
                                     <span class="position__salary">{{one.salary}}</span>
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <a class="leader__more" :href="leader.href">一键直达</a>
+                    <a class="leader__more" 
+                        :href="leader.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(leader.count)" 
+                        :data-lg-tj-cid="null">一键直达</a>
                 </div>
             </div>
         </div>
-        <div class="yh-center__employer">
+        <div class="yh-center__employer" ref="yh-center__employer">
             <div class="employer__center">
                 <div class="employer__title">
                     <div class="title__info">加入超级大公司，职场竞争力火速爆表，人脉关系瞬间开挂</div>
                 </div>
-                <div class="employer__content">
-                    <div class="employer__list">
-                        <div v-for="(one,index) in employer.list"
-                            class="employer__one">
-                            <div class="employer__top clearfix">
-                                <div class="logo">
-                                    <img :src="one.logo" />
+                <div class="employer__layer">
+                    <div class="employer__content" ref="employer__animation" id="employer__animation">
+                        <div class="employer__list clearfix" id="employer__animation-content">
+                            <div v-for="(one,oindex) in employer.list"
+                                class="employer__one">
+                                <div class="employer__top clearfix">
+                                    <a class="logo" 
+                                        :href="one.companyId"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(employer.count+10+oindex*20)" 
+                                        :data-lg-tj-cid="one.companyId">
+                                        <img :src="one.logo" />
+                                    </a>
+                                    <div class="info">
+                                        <a class="info__name"
+                                            :href="one.companyId"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(employer.count+11+oindex*20)" 
+                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
+                                        <div class="info__detail">{{one.location}}  | {{one.level}}</div>
+                                    </div>
+                                    <div class="intro">{{one.introduce}}</div>
                                 </div>
-                                <div class="info">
-                                    <div class="info__name">{{one.name}}</div>
-                                    <div class="info__detail">{{one.location}}  | {{one.level}}</div>
+                                <div class="employer__label clearfix">
+                                    <span v-for="(one,iindex) in one.label">{{one}}</span>
                                 </div>
-                                <div class="intro">{{one.introduce}}</div>
-                            </div>
-                            <div class="employer__label clearfix">
-                                <span v-for="(one,index) in one.label">{{one}}</span>
-                            </div>
-                            <div class="employer__position">
-                                <a class="one clearfix" 
-                                    v-for="(one,index) in one.position"
-                                    :href="one.id">
-                                    <span class="position__name">{{one.name}}</span>
-                                    <span class="position__info">{{one.year}}{{one.education}}</span>
-                                    <span class="position__salary">{{one.salary}}</span>
-                                    <span class="position__icon">></span>
-                                </a>
+                                <div class="employer__position">
+                                    <a class="one clearfix" 
+                                        v-for="(one,index) in one.position"
+                                        :href="one.id"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
+                                        :data-lg-tj-cid="one.id">
+                                        <span class="position__name">{{one.name}}</span>
+                                        <span class="position__info">{{one.year}}{{one.education}}</span>
+                                        <span class="position__salary">{{one.salary}}</span>
+                                        <span class="position__icon">></span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="employer__arrow employer__arrow--left"></div>
-                    <div class="employer__arrow employer__arrow--right"></div>
-                    <a class="employer__more" :href="employer.href">查看更多</a>
+                    <div class="employer__arrow employer__arrow--left" id="employer__animation-arrow-left"></div>
+                    <div class="employer__arrow employer__arrow--right" id="employer__animation-arrow-right"></div>
+                    <a class="employer__more" :href="employer.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(employer.count)" 
+                        :data-lg-tj-cid="null">查看更多</a>
                 </div>
             </div>
         </div>
-        <div class="yh-center__first">
+        <div class="yh-center__first" ref="yh-center__first">
             <div class="first__center">
                 <div class="first__title">
-                    <a class="first__more" :href="first.href">查看更多</a>
+                    <a class="first__more" :href="first.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(first.count)" 
+                        :data-lg-tj-cid="null">查看更多</a>
                 </div>
                 <div class="first__content clearfix">
                     <div class="first__company">
@@ -247,16 +299,28 @@
                                 class="company__li">
                                 <div class="li__intro">{{one.intro}}</div>
                                 <div class="li__company clearfix">
-                                    <div class="company__logo">
+                                    <a class="company__logo"
+                                        :href="one.companyId"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(first.count+index*10+1)" 
+                                        :data-lg-tj-cid="one.companyId">
                                         <img :src="one.logo" />
-                                    </div>
+                                    </a>
                                     <div class="company__info">
-                                        <div class="company__name">{{one.name}}</div>
-                                        <div class="company__position clearfix">
+                                        <a class="company__name"
+                                            :href="one.companyId"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(first.count+index*10+2)" 
+                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
+                                        <a class="company__position clearfix"
+                                            :href="one.positionId"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(first.count+index*10+3)" 
+                                            :data-lg-tj-cid="one.positionId">
                                             <span class="position__name">{{one.position}}</span>
                                             <span class="position__location">{{one.location}}</span>
                                             <span class="position__salary">{{one.salary}}</span>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </li>
@@ -267,9 +331,15 @@
                             <ul class="question__ul">
                                 <li v-for="(one,index) in first.question.list"
                                     class="question__li">
-                                    <div class="li__ask">{{one.ask}}</div>
-                                    <div class="li__answer">{{one.answer}}</div>
-                                    <div class="li__guest">{{one.guest}}</div>
+                                    <a class="li__layer"
+                                        :href="first.question.href"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(first.question.count+index)" 
+                                        :data-lg-tj-cid="null">
+                                        <div class="li__ask">{{one.ask}}</div>
+                                        <div class="li__answer">{{one.answer}}</div>
+                                        <div class="li__guest">{{one.guest}}</div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -277,16 +347,22 @@
                             <ul class="recommend__ul">
                                 <li v-for="(one,index) in first.recommend.list"
                                     class="recommend__li">
-                                    <div class="li__guest">我是{{one.guest}}, <br/>我为你推荐:</div>
-                                    <div class="li__companys">
-                                        <span v-for="c in one.companys">{{c}}</span>
-                                    </div>
-                                    <div class="li__companys__more">查看全部</div>
-                                    <div class="li__leader">
-                                        <img :src="one.leader" />
-                                    </div>
-                                    <div class="li__name">{{one.name}}</div>
-                                    <div class="li__position">{{one.position}}</div>
+                                    <a class="li__layer"
+                                        :href="first.recommend.href"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(first.recommend.count+index)" 
+                                        :data-lg-tj-cid="null">
+                                        <div class="li__guest">我是{{one.guest}}, <br/>我为你推荐:</div>
+                                        <div class="li__companys">
+                                            <span v-for="c in one.companys">{{c}}</span>
+                                        </div>
+                                        <div class="li__companys__more">查看全部</div>
+                                        <div class="li__leader">
+                                            <img :src="one.leader" />
+                                        </div>
+                                        <div class="li__name">{{one.name}}</div>
+                                        <div class="li__position">{{one.position}}</div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
@@ -294,31 +370,43 @@
                 </div>
             </div>
         </div>
-        <div class="yh-center__rich">
+        <div class="yh-center__rich" ref="yh-center__rich">
             <div class="rich__center">
                 <div class="rich__title">
                     <div class="title__info">心心念念18W年薪小目标，总要找个实力靠山为你实现</div>
                 </div>
-                <div class="rich__content">
-                    <div class="rich__container clearfix"
-                        :style="{'width':getRem(730 * rich.list.length)}">
+                <div class="rich__content" id="rich__animation" ref="rich__animation">
+                    <!-- :style="{'width':getRem(730 * rich.list.length)}" -->
+                    <div class="rich__container clearfix" id="rich__animation-content"
+                        >
                         <div  v-for="list in rich.list"
                             class="rich__list clearfix">
-                            <div v-for="(one,index) in list"
+                            <div v-for="(one,lindex) in list"
                                 class="rich__one">
                                 <div class="rich__top clearfix">
-                                    <div class="logo">
+                                    <a class="logo"
+                                        :href="one.companyId"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(rich.count+lindex*10+1)" 
+                                        :data-lg-tj-cid="one.companyId">
                                         <img :src="one.logo" />
-                                    </div>
+                                    </a>
                                     <div class="info">
-                                        <div class="info__name">{{one.name}}</div>
+                                        <a class="info__name"
+                                            :href="one.companyId"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(rich.count+lindex*10+2)" 
+                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
                                         <div class="info__detail">{{one.location}}</div>
                                     </div>
                                 </div>
                                 <div class="rich__position">
                                     <a class="one clearfix" 
                                         v-for="(one,index) in one.position"
-                                        :href="one.id">
+                                        :href="one.id"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(rich.count+lindex*10+3+index)" 
+                                        :data-lg-tj-cid="one.id">
                                         <span class="position__name">{{one.name}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                     </a>
@@ -328,7 +416,8 @@
                     </div>
                     <div class="rich__dot clearfix" :style="{
                         'width':getRem(18*Math.ceil(rich.list.length))
-                        }">
+                        }"
+                        id="rich__animation-pagination">
                         <span v-for="(one,index) in new Array(Math.ceil(rich.list.length))" 
                             class="dot"
                             :class="{'dot--active':index == rich.active_index}"></span>
@@ -336,7 +425,7 @@
                 </div>
             </div>
         </div>
-        <div class="yh-center__will">
+        <div class="yh-center__will" ref="yh-center__will">
             <div class="will__center">
                 <div class="will__title">
                     <div class="title__info">老铁，连续多年职场抗战，不能再让贫穷限制你的想象力</div>
@@ -353,18 +442,26 @@
                                 <div class="will__company">
                                     <div class="one clearfix" 
                                         v-for="(one,index) in list.company"
-                                        :class="{'is-first':index == 0}"
-                                        :href="one.id">
-                                        <a :href="one.companyId" class="company__logo">
+                                        :class="{'is-first':index == 0}">
+                                        <a :href="one.companyId" class="company__logo"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(will.count+i*20+index*4+1)" 
+                                            :data-lg-tj-cid="one.companyId">
                                             <img :src="one.logo" />
                                         </a>
                                         <div class="company__info">
-                                            <a :href="one.companyId" class="company__name">{{one.name}}</a>
-                                            <a v-for="i in one.position" 
-                                                :href="i.id" 
+                                            <a :href="one.companyId" class="company__name"
+                                                :data-lg-tj-id="countId" 
+                                                :data-lg-tj-no="getCount(will.count+i*20+index*4+2)" 
+                                                :data-lg-tj-cid="one.companyId">{{one.name}}</a>
+                                            <a v-for="j in one.position" 
+                                                :href="j.id" 
+                                                :data-lg-tj-id="countId" 
+                                                :data-lg-tj-no="getCount(will.count+i*20+index*4+3+j)" 
+                                                :data-lg-tj-cid="j.id"
                                                 class="company__position">
-                                                <span class="company__position-name">{{i.name}}</span>
-                                                <span class="company__salary">{{i.salary}}</span>
+                                                <span class="company__position-name">{{j.name}}</span>
+                                                <span class="company__salary">{{j.salary}}</span>
                                             </a>
                                         </div>
                                     </div>
@@ -373,10 +470,13 @@
                         </div>
                     </div>
                 </div>
-                <a class="will__more" :href="will.href">高薪快速通道</a>
+                <a class="will__more" :href="will.href"
+                    :data-lg-tj-id="countId" 
+                    :data-lg-tj-no="getCount(will.count)" 
+                    :data-lg-tj-cid="null">高薪快速通道</a>
             </div>
         </div>
-        <div class="yh-center__storm">
+        <div class="yh-center__storm" ref="yh-center__storm">
             <div class="storm__center">
                 <div class="storm__title">
                     <div class="title__info">如果已经焦躁不安，不如干脆换个更好的选择</div>
@@ -395,7 +495,10 @@
                                     <a class="one clearfix" 
                                         v-for="(one,index) in list.company"
                                         :class="{'is-first':index == 0}"
-                                        :href="one.id">
+                                        :href="one.id"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(storm.count+i*20+1+index)" 
+                                        :data-lg-tj-cid="one.id">
                                         <img class="company__logo" :src="one.logo" />
                                         <div class="company__name" :href="one.companyId">{{one.name}}</div>
                                     </a>
@@ -404,30 +507,45 @@
                         </div>
                     </div>
                 </div>
-                <a class="storm__more" :href="storm.href">春季热招通道</a>
+                <a class="storm__more" :href="storm.href"
+                    :data-lg-tj-id="countId" 
+                    :data-lg-tj-no="getCount(storm.count)" 
+                    :data-lg-tj-cid="null">春季热招通道</a>
             </div>
         </div>
-        <div class="yh-center__ai">
+        <div class="yh-center__ai" ref="yh-center__ai">
             <div class="ai__center">
                 <div class="ai__title">
                     <div class="title__info">25万+年薪专场</div>
-                    <a class="title__more" :href="ai.href">查看更多</a>
+                    <a class="title__more" :href="ai.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(ai.count)" 
+                        :data-lg-tj-cid="null">查看更多</a>
                 </div>
                 <div class="ai__content">
                     <div class="ai__list">
-                        <div v-for="(one,index) in ai.list"
+                        <div v-for="(one,iindex) in ai.list"
                             class="ai__one">
                             <div class="ai__left">
-                                <a :href="one.companyId" class="logo">
+                                <a :href="one.companyId" class="logo"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(ai.count+iindex*5+1)" 
+                                    :data-lg-tj-cid="one.companyId">
                                     <img :src="one.logo" />
                                 </a>
                             </div>
                             <div class="ai__right">
-                                <a :href="one.companyId" class="right__name">{{one.name}}</a>
+                                <a :href="one.companyId" class="right__name"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(ai.count+iindex*5+2)" 
+                                    :data-lg-tj-cid="one.companyId">{{one.name}}</a>
                                 <div class="ai__position">
                                     <a class="one clearfix" 
                                         v-for="(one,index) in one.position"
-                                        :href="one.id">
+                                        :href="one.id"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(ai.count+iindex*5+3+index)" 
+                                        :data-lg-tj-cid="one.id">
                                         <span class="position__name">{{one.name}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                     </a>
@@ -437,29 +555,44 @@
                     </div>
                     <div class="ai__special">
                         <div class="special__top clearfix">
-                            <a :href="ai.engineer" class="special__01 icon-02"></a>
-                            <a :href="ai.product"class="special__02 icon-02"></a>
+                            <a :href="ai.engineer" class="special__01 icon-02"
+                                :data-lg-tj-id="countId" 
+                                :data-lg-tj-no="getCount(ai.count+100)" 
+                                :data-lg-tj-cid="null"></a>
+                            <a :href="ai.product" class="special__02 icon-02"
+                                :data-lg-tj-id="countId" 
+                                :data-lg-tj-no="getCount(ai.count+101)" 
+                                :data-lg-tj-cid="null"></a>
                         </div>
-                        <a :href="ai.other" class="special__03 icon-02"></a>
+                        <a :href="ai.other" class="special__03 icon-02"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(ai.count+102)" 
+                            :data-lg-tj-cid="null"></a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="yh-center__choice">
+        <div class="yh-center__choice" ref="yh-center__choice">
             <div class="choice__center">
                 <div class="choice__title icon-02">
                     <div class="title__info">看了那么多职位，还是选不出想要的工作，来看这些吸睛<br/>公司的高人之处</div>
                 </div>
                 <div class="choice__content">
                     <div class="choice__list clearfix">
-                        <div v-for="(one,index) in choice.list"
+                        <div v-for="(one,iindex) in choice.list"
                             class="choice__one icon-02">
                             <div class="choice__top clearfix">
-                                <a :href="one.companyId" class="logo">
+                                <a :href="one.companyId" class="logo"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(choice.count+1+iindex*10+1)" 
+                                    :data-lg-tj-cid="one.companyId">
                                     <img :src="one.logo" />
                                 </a>
                                 <div class="info">
-                                    <a :href="one.companyId" class="info__name">{{one.name}}<span class="name__icon icon-02"></span><span class="info__line icon-02"></span></a>
+                                    <a :href="one.companyId" class="info__name"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(choice.count+1+iindex*10+2)" 
+                                        :data-lg-tj-cid="one.companyId">{{one.name}}<span class="name__icon icon-02"></span><span class="info__line icon-02"></span></a>
                                     <div class="info__detail">{{one.industry}} | {{one.level}} | {{one.location}}<span class="info__line icon-02"></span></div>
                                 </div>
                             </div>
@@ -469,7 +602,10 @@
                             <div class="choice__position">
                                 <a class="one clearfix" 
                                     v-for="(one,index) in one.position"
-                                    :href="one.id">
+                                    :href="one.id"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(choice.count+1+iindex*10+3+index)" 
+                                    :data-lg-tj-cid="one.id">
                                     <span class="position__name">{{one.name}}</span>
                                     <span class="position__salary">{{one.salary}}</span>
                                 </a>
@@ -487,14 +623,23 @@
                                 <div class="companys__list">
                                     <div class="companys__list__one clearfix"
                                         v-for="(one,index) in list.list">
-                                        <a :href="one.companyId"  class="company__logo"><img class="company__logo-img" :src="one.logo" /></a>
+                                        <a :href="one.companyId"  class="company__logo"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+1)" 
+                                            :data-lg-tj-cid="one.companyId"><img class="company__logo-img" :src="one.logo" /></a>
                                         <div class="company__info">
                                             <a class="company__info-name" 
-                                                :href="one.companyId">
+                                                :href="one.companyId"
+                                                :data-lg-tj-id="countId" 
+                                                :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+2)" 
+                                                :data-lg-tj-cid="one.companyId">
                                                 {{one.name}}
                                             </a>
                                             <a class="company__info-position" 
-                                                :href="one.positionId">
+                                                :href="one.positionId"
+                                                :data-lg-tj-id="countId" 
+                                                :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+3)" 
+                                                :data-lg-tj-cid="one.positionId">
                                                 {{one.position}}
                                             </a>
                                         </div>
@@ -503,17 +648,24 @@
                             </div>
                         </div>
                     </div>
-                    <a class="choice__more" :href="choice.href">人气热招通道</a>
+                    <a class="choice__more" :href="choice.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(choice.count)" 
+                        :data-lg-tj-cid="null">人气热招通道</a>
                 </div>
             </div>
         </div>
         <div class="yh-center__logo icon-02"></div>
     </div>
 </div>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<!-- <script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> -->
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
 <script type="text/javascript" src="js/m_index.js?v=$version$"></script>
 
-<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
  <script type="text/javascript" src="../../common/js/share2.js?v=$version$"></script> 
 <script type="text/javascript">

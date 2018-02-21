@@ -18,6 +18,12 @@ ul, ol, li {
 img {
   display: block; }
 
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none; }
+
 html, body {
   width: 100%;
   height: auto;
@@ -79,9 +85,17 @@ html, body {
 .yh-center__tab {
   width: 100%;
   height: 4.13867rem;
-  margin: -0.21333rem auto 0;
-  background: url("../images/tab_bg.png") no-repeat center top;
-  background-size: 16.14933rem 4.13867rem; }
+  margin: -0.21333rem auto 0; }
+  .yh-center__tab .tab__layer {
+    width: 100%;
+    height: 4.13867rem;
+    background: url("../images/tab_bg.png") no-repeat center top;
+    background-size: 16.14933rem 4.13867rem; }
+  .yh-center__tab .tab__layer--fixed {
+    position: fixed;
+    left: 0;
+    top: -0.21333rem;
+    z-index: 100; }
   .yh-center__tab .tab__center {
     width: 15.14667rem;
     height: 3.11467rem;
@@ -292,14 +306,21 @@ html, body {
     height: 1.17333rem;
     line-height: 1.17333rem;
     font-size: 0.512rem;
-    color: #fff;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     font-style: italic; }
+    .yh-center__popular .popular__li .popular__li-a {
+      color: #fff;
+      display: block;
+      text-decoration: none; }
+    .yh-center__popular .popular__li .popular__li-a:hover {
+      text-decoration: none; }
     .yh-center__popular .popular__li .green {
       color: #00ffa5; }
+  .yh-center__popular .popular__list--2 .popular__ul {
+    width: 3.41333rem; }
 
 /***page-popular start***************************************************/
 /***page-leader start***************************************************/
@@ -328,7 +349,8 @@ html, body {
     .yh-center__leader .leader__one .logo {
       width: 5.35467rem;
       height: 1.68533rem;
-      padding: 0.576rem 0 0 0; }
+      padding: 0.576rem 0 0 0;
+      display: block; }
       .yh-center__leader .leader__one .logo img {
         width: 100%;
         height: 100%; }
@@ -434,19 +456,26 @@ html, body {
       left: 50%;
       bottom: 0.59733rem;
       margin: 0 0 0 -50%; }
-  .yh-center__employer .employer__content {
+  .yh-center__employer .employer__layer {
     width: 15.12533rem;
     position: relative; }
-  .yh-center__employer .employer__list {
+  .yh-center__employer .employer__content {
     width: 13.888rem;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden; }
+  .yh-center__employer .employer__list {
+    width: 99999px;
     margin: 0 auto; }
   .yh-center__employer .employer__one {
-    width: 12.58667rem;
-    height: 10.53867rem;
+    width: 13.888rem;
+    height: 11.56267rem;
+    box-sizing: border-box;
     border-radius: 0.21333rem;
     padding: 1.024rem 0 0 1.30133rem;
     overflow: hidden;
-    background: #2a2797; }
+    background: #2a2797;
+    float: left; }
   .yh-center__employer .employer__top .logo {
     width: 1.77067rem;
     height: 1.77067rem;
@@ -465,6 +494,8 @@ html, body {
     width: 4.26667rem;
     line-height: 0.98133rem;
     font-size: 0.64rem;
+    color: #fff;
+    display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap; }
@@ -673,14 +704,16 @@ html, body {
       text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap; }
+      white-space: nowrap;
+      display: block; }
     .yh-center__first .company__li .company__info .company__position {
       height: 1.024rem;
       line-height: 1.024rem;
       padding: 0 0 0 0.704rem;
       font-size: 0.59733rem;
       color: #dad7ff;
-      text-align: left; }
+      text-align: left;
+      display: block; }
       .yh-center__first .company__li .company__info .company__position > span {
         float: left; }
     .yh-center__first .company__li .company__info .position__name {
@@ -707,41 +740,44 @@ html, body {
     height: 4.288rem;
     background: url("../images/first-question.png") no-repeat center top;
     background-size: 100% 100%; }
-    .yh-center__first .question__li > div {
-      font-size: 0.64rem;
-      color: #fff;
-      font-style: italic; }
-    .yh-center__first .question__li .li__ask {
-      line-height: 1.04533rem;
-      padding: 0.832rem 0 0 0.61867rem;
-      text-align: left;
-      font-weight: bold;
-      position: relative; }
-    .yh-center__first .question__li .li__ask:before {
-      content: "";
-      width: 0.29867rem;
-      height: 0.21333rem;
-      background: url("../images/first-quoto.png") no-repeat center top;
-      background-size: 100% 100%;
-      position: absolute;
-      left: 0.64rem;
-      top: 0.64rem; }
-    .yh-center__first .question__li .li__answer {
-      height: 0.85333rem;
-      text-align: center; }
-    .yh-center__first .question__li .li__guest {
-      height: 0.85333rem;
-      text-align: center;
-      position: relative; }
-    .yh-center__first .question__li .li__guest:after {
-      content: "";
-      width: 0.49067rem;
-      height: 0.448rem;
-      background: url("../images/first-question-icon.png") no-repeat center top;
-      background-size: 100% 100%;
-      position: absolute;
-      right: 0.66133rem;
-      top: 0.256rem; }
+    .yh-center__first .question__li .li__layer {
+      height: 4.288rem;
+      display: block; }
+      .yh-center__first .question__li .li__layer > div {
+        font-size: 0.64rem;
+        color: #fff;
+        font-style: italic; }
+      .yh-center__first .question__li .li__layer .li__ask {
+        line-height: 1.04533rem;
+        padding: 0.832rem 0 0 0.61867rem;
+        text-align: left;
+        font-weight: bold;
+        position: relative; }
+      .yh-center__first .question__li .li__layer .li__ask:before {
+        content: "";
+        width: 0.29867rem;
+        height: 0.21333rem;
+        background: url("../images/first-quoto.png") no-repeat center top;
+        background-size: 100% 100%;
+        position: absolute;
+        left: 0.64rem;
+        top: 0.64rem; }
+      .yh-center__first .question__li .li__layer .li__answer {
+        height: 0.85333rem;
+        text-align: center; }
+      .yh-center__first .question__li .li__layer .li__guest {
+        height: 0.85333rem;
+        text-align: center;
+        position: relative; }
+      .yh-center__first .question__li .li__layer .li__guest:after {
+        content: "";
+        width: 0.49067rem;
+        height: 0.49067rem;
+        background: url("../images/first-question-icon.png") no-repeat center top;
+        background-size: 100% 100%;
+        position: absolute;
+        right: 0.66133rem;
+        top: 0.256rem; }
   .yh-center__first .first__recommend {
     float: left; }
   .yh-center__first .recommend__li {
@@ -750,6 +786,9 @@ html, body {
     background: url("../images/first-recommend.png") no-repeat center top;
     background-size: 100% 100%;
     position: relative; }
+    .yh-center__first .recommend__li .li__layer {
+      height: 4.288rem;
+      display: block; }
     .yh-center__first .recommend__li .li__guest {
       height: 1.45067rem;
       line-height: 0.72533rem;
@@ -863,7 +902,10 @@ html, body {
       left: 50%;
       bottom: 0.59733rem;
       margin: 0 0 0 -50%; }
+  .yh-center__rich .rich__container {
+    width: 99999px; }
   .yh-center__rich .rich__content {
+    width: 15.57333rem;
     height: 15.18933rem;
     position: relative; }
   .yh-center__rich .rich__list {
@@ -910,7 +952,8 @@ html, body {
       -webkit-transform-origin: 0 50%;
       transform-origin: 0 50%;
       -webkit-transform: scale3d(0.83, 0.83, 0.83);
-      transform: scale3d(0.83, 0.83, 0.83); }
+      transform: scale3d(0.83, 0.83, 0.83);
+      display: block; }
     .yh-center__rich .rich__top .info__detail {
       width: 3.94667rem;
       line-height: 0.576rem;
