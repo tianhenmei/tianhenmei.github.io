@@ -145,7 +145,9 @@
                         }">
                         <li v-for="(one,index) in hot.list.concat(hot.list)"
                             class="bullet__li">
-                            <span class="green">{{one.name}}</span> 刚刚投递  <span class="green">{{one.company}}-{{one.position}}</span> 职位
+                            <div v-if="one.type == 1"><span class="green">{{one.companyShort}} HR</span> 刚查看  <span class="green">{{one.userName}}</span> 的简历</div>
+                            <div v-else-if="one.type == 2"><span class="green">{{one.companyShort}}</span> 向  <span class="green">{{one.userName}}</span> 发出面试邀请</div>
+                            <div v-else><span class="green">{{one.userName}}</span> 刚刚投递  <span class="green">{{one.companyShort}}-{{one.positionName}}</span> 职位</div>
                         </li>
                     </ul>
                 </div>
@@ -170,7 +172,7 @@
                                 <a href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two" class="popular__li-a"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(popular.in.count+index)" 
-                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.position}}</a></li>
+                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.positionName}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--1">
@@ -181,7 +183,7 @@
                                 <a href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two" class="popular__li-a"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(popular.quickest.count+index)" 
-                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.position}}</a></li>
+                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.positionName}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--2">
@@ -192,7 +194,7 @@
                                 <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="popular__li-a"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(popular.most.count+index)" 
-                                    :data-lg-tj-cid="one.companyId">{{index+1}}.{{one.position}}</a></li>
+                                    :data-lg-tj-cid="one.companyId">{{index+1}}.{{one.shortName}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -211,18 +213,18 @@
                                 :data-lg-tj-cid="list.companyId">
                                 <img src="images/leader-logo.png" />
                             </a>
-                            <div class="info">{{list.industry}} \ 坐标{{list.location}} \ {{list.scale}}</div>
+                            <div class="info">{{list.industryFields}} \ 坐标{{list.city}} \ {{list.companySize}}</div>
                             <div class="label clearfix">
-                                <span v-for="(i,iindex) in list.label">{{i}}</span>
+                                <span v-for="(i,iindex) in list.companyLabel">{{i}}</span>
                             </div>
                             <div class="position">
                                 <a class="one clearfix" 
-                                    v-for="(one,index) in list.position"
+                                    v-for="(one,index) in list.positionVo"
                                     href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(list.count+lindex*10+index)" 
                                     :data-lg-tj-cid="one.positionId">
-                                    <span class="position__name">{{one.name}}</span>
+                                    <span class="position__name">{{one.positionName}}</span>
                                     <span class="position__salary">{{one.salary}}</span>
                                 </a>
                             </div>
@@ -259,22 +261,22 @@
                                             href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(employer.count+11+oindex*20)" 
-                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
-                                        <div class="info__detail">{{one.location}}  | {{one.level}}</div>
+                                            :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
+                                        <div class="info__detail">{{one.city}}  | {{one.level}}</div>
                                     </div>
-                                    <div class="intro">{{one.introduce}}</div>
+                                    <div class="intro">{{one.oneWord}}</div>
                                 </div>
                                 <div class="employer__label clearfix">
-                                    <span v-for="(one,iindex) in one.label">{{one}}</span>
+                                    <span v-for="(one,iindex) in one.companyLabel">{{one}}</span>
                                 </div>
                                 <div class="employer__position">
                                     <a class="one clearfix" 
-                                        v-for="(one,index) in one.position"
+                                        v-for="(one,index) in one.positionVo"
                                         href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
                                         :data-lg-tj-cid="one.positionId">
-                                        <span class="position__name">{{one.name}}</span>
+                                        <span class="position__name">{{one.positionName}}</span>
                                         <span class="position__info">{{one.year}}{{one.education}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                         <span class="position__icon">></span>
@@ -305,7 +307,7 @@
                         <ul class="company__ul" id="first__company-content">
                             <li v-for="(one,index) in first.company.list"
                                 class="company__li">
-                                <div class="li__intro">{{one.intro}}</div>
+                                <div class="li__intro">{{one.oneWord}}</div>
                                 <div class="li__company clearfix">
                                     <a class="company__logo"
                                         href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
@@ -319,15 +321,15 @@
                                             href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(first.company.count+index*10+2)" 
-                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
+                                            :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
                                         <a class="company__position clearfix"
-                                            href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                            href="javascript:void(0);" :onclick="positionHref.one+one.positionVo[0].positionId+positionHref.two"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(first.company.count+index*10+3)" 
-                                            :data-lg-tj-cid="one.positionId">
-                                            <span class="position__name">{{one.position}}</span>
-                                            <span class="position__location">{{one.location}}</span>
-                                            <span class="position__salary">{{one.salary}}</span>
+                                            :data-lg-tj-cid="one.positionVo[0].positionId">
+                                            <span class="position__name">{{one.positionVo[0].positionName}}</span>
+                                            <span class="position__location">{{one.positionVo[0].location}}</span>
+                                            <span class="position__salary">{{one.positionVo[0].salary}}</span>
                                         </a>
                                     </div>
                                 </div>
@@ -404,18 +406,18 @@
                                             href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(rich.count+lindex*10+2)" 
-                                            :data-lg-tj-cid="one.companyId">{{one.name}}</a>
-                                        <div class="info__detail">{{one.location}}</div>
+                                            :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
+                                        <div class="info__detail">{{one.city}}</div>
                                     </div>
                                 </div>
                                 <div class="rich__position">
                                     <a class="one clearfix" 
-                                        v-for="(one,index) in one.position"
+                                        v-for="(one,index) in one.positionVo"
                                         href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(rich.count+lindex*10+3+index)" 
                                         :data-lg-tj-cid="one.positionId">
-                                        <span class="position__name">{{one.name}}</span>
+                                        <span class="position__name">{{one.positionName}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                     </a>
                                 </div>
@@ -461,14 +463,14 @@
                                             <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="company__name"
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(will.count+i*20+index*4+2)" 
-                                                :data-lg-tj-cid="one.companyId">{{one.name}}</a>
-                                            <a v-for="j in one.position" 
+                                                :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
+                                            <a v-for="j in one.positionVo" 
                                                 href="javascript:void(0);" :onclick="positionHref.one+j.positionId+positionHref.two"
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(will.count+i*20+index*4+3+j)" 
                                                 :data-lg-tj-cid="j.positionId"
                                                 class="company__position">
-                                                <span class="company__position-name">{{j.name}}</span>
+                                                <span class="company__position-name">{{j.positionName}}</span>
                                                 <span class="company__salary">{{j.salary}}</span>
                                             </a>
                                         </div>
@@ -506,9 +508,9 @@
                                         href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(storm.count+i*20+1+index)" 
-                                        :data-lg-tj-cid="one.id">
+                                        :data-lg-tj-cid="one.companyId">
                                         <img class="company__logo" :src="one.logo" />
-                                        <div class="company__name" href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two">{{one.name}}</div>
+                                        <div class="company__name">{{one.shortName}}</div>
                                     </a>
                                 </div>
                             </div>
@@ -546,15 +548,15 @@
                                 <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="right__name"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(ai.count+iindex*5+2)" 
-                                    :data-lg-tj-cid="one.companyId">{{one.name}}</a>
+                                    :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
                                 <div class="ai__position">
                                     <a class="one clearfix" 
-                                        v-for="(one,index) in one.position"
+                                        v-for="(one,index) in one.positionVo"
                                         href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(ai.count+iindex*5+3+index)" 
-                                        :data-lg-tj-cid="one.id">
-                                        <span class="position__name">{{one.name}}</span>
+                                        :data-lg-tj-cid="one.positionId">
+                                        <span class="position__name">{{one.positionName}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                     </a>
                                 </div>
@@ -600,21 +602,21 @@
                                     <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="info__name"
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(choice.count+1+iindex*10+2)" 
-                                        :data-lg-tj-cid="one.companyId">{{one.name}}<span class="name__icon icon-02"></span><span class="info__line icon-02"></span></a>
-                                    <div class="info__detail">{{one.industry}} | {{one.level}} | {{one.location}}<span class="info__line icon-02"></span></div>
+                                        :data-lg-tj-cid="one.companyId">{{one.shortName}}<span class="name__icon icon-02"></span><span class="info__line icon-02"></span></a>
+                                    <div class="info__detail">{{one.industryFields}} | {{one.financeStage}} | {{one.city}}<span class="info__line icon-02"></span></div>
                                 </div>
                             </div>
                             <div class="choice__label clearfix">
-                                <span v-for="(one,index) in one.label">{{one}}</span>
+                                <span v-for="(one,index) in one.companyLabel">{{one}}</span>
                             </div>
                             <div class="choice__position">
                                 <a class="one clearfix" 
-                                    v-for="(one,index) in one.position"
+                                    v-for="(one,index) in one.positionVo"
                                     href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(choice.count+1+iindex*10+3+index)" 
-                                    :data-lg-tj-cid="one.id">
-                                    <span class="position__name">{{one.name}}</span>
+                                    :data-lg-tj-cid="one.positionId">
+                                    <span class="position__name">{{one.positionName}}</span>
                                     <span class="position__salary">{{one.salary}}</span>
                                 </a>
                             </div>
@@ -641,14 +643,14 @@
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+2)" 
                                                 :data-lg-tj-cid="one.companyId">
-                                                {{one.name}}
+                                                {{one.companyName}}
                                             </a>
                                             <a class="company__info-position" 
-                                                href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                                href="javascript:void(0);" :onclick="positionHref.one+one.positionVo[0].positionId+positionHref.two"
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+3)" 
-                                                :data-lg-tj-cid="one.positionId">
-                                                {{one.position}}
+                                                :data-lg-tj-cid="one.positionVo[0].positionId">
+                                                {{one.positionVo[0].positionName}}
                                             </a>
                                         </div>
                                     </div>

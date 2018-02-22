@@ -2,7 +2,7 @@
 var app = new Vue({
     el:"#app",
     data:{
-        countId:'',
+        countId:'1b2f',
         fontSize:16,
         from:'',
         isiPhone:false,
@@ -101,25 +101,35 @@ var app = new Vue({
         hot:{
             href:"https://www.lagou.com",
             list:[{
-                name:'李**',
-                company:'京东1',
-                position:'Java工程师1'
+                "type":1,//快报类型：1、查看简历；2、面试邀请；3、投递
+                "userName":"free1",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
             },{
-                name:'孙**',
-                company:'京东2',
-                position:'Java工程师2'
+                "type":2,
+                "userName":"free2",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
             },{
-                name:'高**',
-                company:'京东3',
-                position:'Java工程师3'
+                "type":3,
+                "userName":"free3",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
             },{
-                name:'陈**',
-                company:'京东4',
-                position:'Java工程师4'
+                "type":1,//快报类型：1、查看简历；2、面试邀请；3、投递
+                "userName":"free1",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
             },{
-                name:'张**',
-                company:'京东5',
-                position:'Java工程师5'
+                "type":2,
+                "userName":"free2",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
+            },{
+                "type":3,
+                "userName":"free3",
+                "companyShort":"拉勾",
+                "positionName":"java开发"
             }],
             duration:50
         },
@@ -130,40 +140,145 @@ var app = new Vue({
             in:{
                 count:120,
                 list:[{
-                    positionId:4123331,
-                    position:'Java开发'
+                    "companyId":781,
+                    "companyName":"贵州四方鼎立咨询服务有限公司",
+                    "logo":"image1/M00/00/04/CgYXBlTUV_6AG-L8AAB2-ox3Ikg157.jpg",
+                    "shortName":"移折通",
+                    "positionId":112547,
+                    "positionName":"产品运营总监",
+                    "oneWord":"最牛的公司",
+                    "salary":"15k-30k"
                 },{
-                    positionId:4123331,
-                    position:'Python开发'
+                    "companyId":18725,
+                    "companyName":"齐分享（上海）纺织科技有限公司",
+                    "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
+                    "shortName":"齐分享",
+                    "positionId":93411,
+                    "positionName":"运营总监",
+                    "oneWord":"钱最多的公司",
+                    "salary":"15k-25k"
                 },{
-                    positionId:4123331,
-                    position:'商业化运营'
+                    "companyId":18725,
+                    "companyName":"齐分享（上海）纺织科技有限公司",
+                    "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
+                    "shortName":"齐分享",
+                    "positionId":93411,
+                    "positionName":"运营总监",
+                    "oneWord":"钱最多的公司",
+                    "salary":"15k-25k"
                 }]
             },
             quickest:{
                 count:130,
                 list:[{
-                    positionId:4123331,
-                    position:'销售主管'
+                    "companyId":781,
+                    "companyName":"贵州四方鼎立咨询服务有限公司",
+                    "logo":"image1/M00/00/04/CgYXBlTUV_6AG-L8AAB2-ox3Ikg157.jpg",
+                    "shortName":"移折通",
+                    "positionId":112547,
+                    "positionName":"产品运营总监",
+                    "oneWord":"最牛的公司",
+                    "salary":"15k-30k"
                 },{
-                    positionId:4123331,
-                    position:'首席架构师'
+                    "companyId":18725,
+                    "companyName":"齐分享（上海）纺织科技有限公司",
+                    "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
+                    "shortName":"齐分享",
+                    "positionId":93411,
+                    "positionName":"运营总监",
+                    "oneWord":"钱最多的公司",
+                    "salary":"15k-25k"
                 },{
-                    positionId:4123331,
-                    position:'市场营销主管'
+                    "companyId":18725,
+                    "companyName":"齐分享（上海）纺织科技有限公司",
+                    "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
+                    "shortName":"齐分享",
+                    "positionId":93411,
+                    "positionName":"运营总监",
+                    "oneWord":"钱最多的公司",
+                    "salary":"15k-25k"
                 }]
             },
             most:{
                 count:140,
                 list:[{
-                    companyId:322564,
-                    position:'OPPO'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
                 },{
-                    companyId:322564,
-                    position:'Vivo'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
                 },{
-                    companyId:322564,
-                    position:'点我达'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
                 }]
             }
         },
@@ -173,24 +288,35 @@ var app = new Vue({
             href:"https://www.lagou.com",
             list:[{
                 count:160,
-                companyId:322564,
-                industry:'移动互联网行业',
-                location:'深圳',
-                scale:'2000人以上',
-                label:['长期激励','长期激励','长期激励'],
-                position:[{
-                    positionId:4123331,
-                    name:'工程师工程师工',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'工程师工程师工',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'工程师工程师工',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             }]
         },
         // 超级雇主
@@ -198,34 +324,36 @@ var app = new Vue({
             count:210,
             href:"https://www.lagou.com",
             list:[{
-                companyId:322564,
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                level:'不需要融资',
-                industry:'移动互联网行业',
-                location:'深圳',
-                scale:'2000人以上',
-                label:['长期激励','长期激励','长期激励'],
-                introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                }]
+                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             }]
         },
         // 名企首发
@@ -235,59 +363,191 @@ var app = new Vue({
             company:{
                 count:5000,
                 list:[{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:322564,
-                    positionId:4123331,
-                    position:'高级架构师',
-                    location:'北京',
-                    salary:'50K',
-                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             },
             question:{
@@ -317,227 +577,383 @@ var app = new Vue({
         },
         // 千万豪门
         rich:{
-            count:800,
+            count:7000,
             href:"https://www.lagou.com",
             active_index:0,
             list:[
                 [{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }],[{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                     },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
-                    },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        },{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     }],
                 [{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    location:'深圳',
-                    position:[{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    },{
-                        positionId:4123331,
-                        name:'高级产品经理',
-                        salary:'20K-30K'
-                    }]
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             ]
         },
@@ -551,70 +967,196 @@ var app = new Vue({
                     title:'丰厚起薪系列',
                     intro:'没有高薪，是谁给你的勇气买房买车',
                     company:[{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     }],
                 },
                 {
                     title:'优越福利系列',
                     intro:'别看这些小福利，能增多不少幸福感',
                     company:[{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城',
-                        location:'深圳',
-                        position:[{
-                            positionId:4123331,
-                            name:'高级产品经理',
-                            salary:'20K-30K'
-                        }]
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
+                        "oneWord":"最牛的招聘公司",
+                        "companySize":"2000人以上",
+                        "positionVo":[
+                            {
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"设计",
+                                "salary":"15-40K"
+                            },{
+                                "positionId":1,
+                                "positionName":"产品经理",
+                                "salary":"15-40K"
+                            }
+                        ],
+                        "companyLabel":[
+                            "绩效奖金",
+                            "年底双薪",
+                            "五险一金",
+                            "节日礼物"
+                        ],
+                        "industryFields":"互联网招聘",
+                        "financeStage":"不需要融资",
+                        "city":"北京"
                     }]
                 }
             ]
@@ -629,74 +1171,90 @@ var app = new Vue({
                     title:'',
                     intro:'无法让你涨姿势的工作，这样的生活和咸鱼没什么区别',
                     company:[{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     }],
                 },
                 {
                     title:'优越福利系列',
                     intro:'真相了！队友属性基本决定你会在怎样的氛围中工作',
                     company:[{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     },{
-                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                        name:'京东商城'
+                        "companyId":147,
+                        "companyName":"拉勾网",
+                        "shortName":"拉勾",
                     }],
                 }
             ]
@@ -709,41 +1267,129 @@ var app = new Vue({
             product:"https://www.lagou.com",  // 产品专场
             other:"https://www.lagou.com",  // 市场/商业化/运营专场
             list:[{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             },{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             },{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             },{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             }]
         },
         // 人气精选
@@ -751,152 +1397,457 @@ var app = new Vue({
             count:1310,
             href:"https://www.lagou.com",
             list:[{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                level:'不需要融资',
-                industry:'移动互联网行业',
-                location:'深圳',
-                scale:'2000人以上',
-                label:['长期激励','长期激励','长期激励'],
-                introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             },{
-                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                name:'京东商城',
-                level:'不需要融资',
-                industry:'移动互联网行业',
-                location:'深圳',
-                scale:'2000人以上',
-                label:['长期激励','长期激励','长期激励'],
-                introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
-                position:[{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                },{
-                    positionId:4123331,
-                    name:'Java工程师',
-                    year:'1-3年',
-                    education:'本科',
-                    salary:'20K-30K'
-                }]
+                "companyId":147,
+                "companyName":"拉勾网",
+                "shortName":"拉勾",
+                "oneWord":"最牛的招聘公司",
+                "companySize":"2000人以上",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+                "companyLabel":[
+                    "绩效奖金",
+                    "年底双薪",
+                    "五险一金",
+                    "节日礼物"
+                ],
+                "industryFields":"互联网招聘",
+                "financeStage":"不需要融资",
+                "city":"北京"
             }],
             companys:[{
                 name:'团队超给力',
                 list:[{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             },{
                 name:'环境高大上',
                 list:[{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             },{
                 name:'领导超 Nice',
                 list:[{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             },{
                 name:'成长空间大',
                 list:[{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 },{
-                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
-                    name:'京东商城',
-                    position:'资深视觉设计师',
-                    positionId:4123331,
+                    "companyId":147,
+                    "companyName":"拉勾网",
+                    "shortName":"拉勾",
+                    "oneWord":"最牛的招聘公司",
+                    "companySize":"2000人以上",
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                    "companyLabel":[
+                        "绩效奖金",
+                        "年底双薪",
+                        "五险一金",
+                        "节日礼物"
+                    ],
+                    "industryFields":"互联网招聘",
+                    "financeStage":"不需要融资",
+                    "city":"北京"
                 }]
             }]
         },
     },
     mounted:function(){
+        this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         this.hot.duration = this.hot.list.length * 1.5
         this.browserType = this.getBrowserType()
 
@@ -906,6 +1857,33 @@ var app = new Vue({
 
         this.addJSCSS();
         this.initWindowScrollEvent();
+
+        // 热招快报
+        // this.getBulletData()
+        // 24小时热力排行榜 - 最In
+        this.getPopularInData()
+        // 24小时热力排行榜 - 极速响应
+        this.getPopularQuickestData()
+        // 24小时热力排行榜 - 最受欢迎
+        this.getPopularMostData()
+        // 领先雇主
+        this.getLeaderData()
+        // 超级雇主
+        this.getEmployerData()
+        // 名企首发 - 公司列表
+        this.getFirstData()
+        // 名企首发 - 大咖
+        this.getFirstRecommendData()
+        // 千万豪门
+        this.getRichData()
+        // 高薪必投
+        this.getWillData()
+        // 热招风暴
+        this.getStormData()
+        // AI狂热季
+        this.getAiData()
+        // 人气精选
+        this.getChoiceData()
     },
     methods:{
         getCount:function(num){
@@ -1036,6 +2014,26 @@ var app = new Vue({
                 right = this.getPointValue(elem,"padding-right"),
                 value = width + left + right;
             return value;
+        },
+        getAjaxData:function(url,callback,params){
+            $.ajax({
+                url:'https://activity.lagou.com/'+url,
+                type:'get',
+                data:params ? params : {},
+                // dataType:'jsonp',
+                // jsonp:'jsoncallback',
+                success:function(data){
+                    var content = data.content;
+                    if(data.success){
+                        callback(content)
+                    }else {
+                        alert('出错啦～刷新重试～')
+                    }
+                },
+                error:function(error){
+                    console.log(error)
+                },
+            })
         },
         /***********************************
          **  功能函数
@@ -1424,6 +2422,138 @@ var app = new Vue({
                     }
                 }
             });
-        }
+        },
+        getBulletData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-express.json',function(data){
+                self.hot.list = data;
+            })
+        },
+        getPopularInData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/app-most-delivery.json',function(data){
+                self.popular.in.list = data;
+            },{
+                count:3
+            })
+        },
+        getPopularQuickestData:function(){
+            var self = this,
+                url = '';
+            if(this.from == 'ios' || this.from == 'android'){
+                url = 'activityapi/smallActivity/app-deal-fast.json'
+            }else {
+                url = 'activityapi/smallActivity/pc-deal-fast.json'
+            }
+            this.getAjaxData(url,function(data){
+                self.popular.quickest.list = data;
+            },{
+                count:3
+            })
+        },
+        getPopularMostData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.popular.most.list = data;
+            },{
+                templateId:'2018MustVoteGoodCompany',
+                count:3,
+                positionCount:0
+            })
+        },
+        getLeaderData:function(){
+            var self = this,
+                count = self.leader.list[0].count;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                var i = 0;
+                for(i = 0; i < data.length; i++){
+                    data[i].count = count
+                }
+                self.leader.list = data;
+            },{
+                templateId:'2018LeadEmployer',
+                count:1,
+                positionCount:3
+            })
+        },
+        getEmployerData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.employer.list = data;
+            },{
+                templateId:'2018SuperEmployer',
+                positionCount:3
+            })
+        },
+        getFirstData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.first.company.list = data;
+            },{
+                templateId:'2018FamousFirst',
+                positionCount:1
+            })
+        },
+        getFirstRecommendData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.first.recommend.list = data;
+            },{
+                templateId:'2018BigCoffee',
+                positionCount:0
+            })
+        },
+        getRichData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.rich.list = data;
+            },{
+                templateId:'2018ThousandsWealthy',
+                positionCount:3
+            })
+        },
+        getWillData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.will.list[0].company = data.slice(0,3);
+                self.will.list[1].company = data.slice(3,6);
+            },{
+                templateId:'2018HighPayMustVote',
+                positionCount:1
+            })
+        },
+        getStormData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.storm.list[0].company = data.slice(0,8);
+                self.storm.list[1].company = data.slice(8,16);
+            },{
+                templateId:'2018HotTrickstorm',
+                positionCount:0
+            })
+        },
+        getAiData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.ai.list = data;
+            },{
+                templateId:'2018AIPosition',
+                positionCount:1
+            })
+        },
+        getChoiceData:function(){
+            var self = this;
+            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                self.choice.list[0] = data[0];
+                self.choice.list[1] = data[1];
+                self.choice.companys[0].list = data.slice(2,5);
+                self.choice.companys[1].list = data.slice(5,8);
+                self.choice.companys[2].list = data.slice(8,11);
+                self.choice.companys[3].list = data.slice(11,14);
+            },{
+                templateId:'2018PopularSelection',
+                positionCount:3
+            })
+        },
     }
 })

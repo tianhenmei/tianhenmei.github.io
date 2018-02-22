@@ -542,14 +542,16 @@ html,body {
             font-style:italic;
         }
         .label {
+            height:rem(48);
             padding:0 0 0 rem(23);
+            overflow:hidden;
             span {
                 height:rem(38);
                 line-height:rem(38);
                 padding:0 rem(16);
                 border:1px solid #98e3ff;
                 border-radius:rem(38);
-                margin:0 rem(20) 0 0;
+                margin:0 rem(20) rem(10) 0;
                 color:#98e3ff;
                 font-size:rem(22);
                 text-align:center;
@@ -557,7 +559,7 @@ html,body {
             }
         }
         .position {
-            padding:rem(23) 0 0 rem(29);
+            padding:rem(13) 0 0 rem(29);
             .one {
                 width:rem(660);
                 height:rem(97);
@@ -738,15 +740,17 @@ html,body {
         }
     }
     .employer__label {
-        height:rem(94);
+        height:rem(48);
         padding:rem(27) 0 0 0;
+        margin:0 0 rem(46) 0;
+        overflow:hidden;
         span {
             height:rem(38);
             line-height:rem(38);
             padding:0 rem(16);
             border:1px solid rgba(253,254,254,0.5);
             border-radius:rem(38);
-            margin:0 rem(20) 0 0;
+            margin:0 rem(20) rem(10) 0;
             color:#f1f0f8;
             font-size:rem(22);
             text-align:center;
@@ -767,6 +771,7 @@ html,body {
             text-align:left;
             text-decoration:none;
             > span {
+                height:rem(74);
                 float:left;
             }
         }
@@ -1455,6 +1460,8 @@ html,body {
         }
     }
     .company__info {
+        height:rem(92);
+        overflow:hidden;
         padding:0 0 0 rem(20);
         float:left;
     }
@@ -1823,6 +1830,8 @@ html,body {
         }
     }
     .ai__position {
+        height:rem(55);
+        overflow:hidden;
         .one {
             width:rem(192);
             // height:rem(74);

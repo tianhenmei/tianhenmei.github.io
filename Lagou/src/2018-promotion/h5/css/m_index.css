@@ -408,20 +408,22 @@ html, body {
       text-align: left;
       font-style: italic; }
     .yh-center__leader .leader__one .label {
-      padding: 0 0 0 0.49067rem; }
+      height: 1.024rem;
+      padding: 0 0 0 0.49067rem;
+      overflow: hidden; }
       .yh-center__leader .leader__one .label span {
         height: 0.81067rem;
         line-height: 0.81067rem;
         padding: 0 0.34133rem;
         border: 1px solid #98e3ff;
         border-radius: 0.81067rem;
-        margin: 0 0.42667rem 0 0;
+        margin: 0 0.42667rem 0.21333rem 0;
         color: #98e3ff;
         font-size: 0.46933rem;
         text-align: center;
         float: left; }
     .yh-center__leader .leader__one .position {
-      padding: 0.49067rem 0 0 0.61867rem; }
+      padding: 0.27733rem 0 0 0.61867rem; }
       .yh-center__leader .leader__one .position .one {
         width: 14.08rem;
         height: 2.06933rem;
@@ -572,15 +574,17 @@ html, body {
     left: 0;
     top: 0.08533rem; }
   .yh-center__employer .employer__label {
-    height: 2.00533rem;
-    padding: 0.576rem 0 0 0; }
+    height: 1.024rem;
+    padding: 0.576rem 0 0 0;
+    margin: 0 0 0.98133rem 0;
+    overflow: hidden; }
     .yh-center__employer .employer__label span {
       height: 0.81067rem;
       line-height: 0.81067rem;
       padding: 0 0.34133rem;
       border: 1px solid rgba(253, 254, 254, 0.5);
       border-radius: 0.81067rem;
-      margin: 0 0.42667rem 0 0;
+      margin: 0 0.42667rem 0.21333rem 0;
       color: #f1f0f8;
       font-size: 0.46933rem;
       text-align: center;
@@ -598,6 +602,7 @@ html, body {
     text-align: left;
     text-decoration: none; }
     .yh-center__employer .employer__position .one > span {
+      height: 1.57867rem;
       float: left; }
   .yh-center__employer .employer__position .one:hover {
     text-decoration: none; }
@@ -1172,6 +1177,8 @@ html, body {
       width: 100%;
       height: 100%; }
   .yh-center__will .company__info {
+    height: 1.96267rem;
+    overflow: hidden;
     padding: 0 0 0 0.42667rem;
     float: left; }
   .yh-center__will .company__name {
@@ -1489,15 +1496,18 @@ html, body {
       display: block; }
     .yh-center__ai .ai__right .right__name:hover {
       text-decoration: none; }
-  .yh-center__ai .ai__position .one {
-    width: 4.096rem;
-    display: block;
-    text-align: left;
-    text-decoration: none; }
-    .yh-center__ai .ai__position .one > span {
-      display: block; }
-  .yh-center__ai .ai__position .one:hover {
-    text-decoration: none; }
+  .yh-center__ai .ai__position {
+    height: 1.17333rem;
+    overflow: hidden; }
+    .yh-center__ai .ai__position .one {
+      width: 4.096rem;
+      display: block;
+      text-align: left;
+      text-decoration: none; }
+      .yh-center__ai .ai__position .one > span {
+        display: block; }
+    .yh-center__ai .ai__position .one:hover {
+      text-decoration: none; }
   .yh-center__ai .position__name {
     width: 4.9152rem;
     line-height: 0.61867rem;
