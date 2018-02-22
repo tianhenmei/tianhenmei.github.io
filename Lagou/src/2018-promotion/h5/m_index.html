@@ -114,13 +114,21 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="tab__unfold clearfix" :class="{'hide':!tab.unfoldStatus}">
+                        <a class="unfold__a" 
+                            v-for="(one,index) in tab.unfold"
+                            :class="{'unfold__a--last':one.last}"
+                            :href="one.href">{{one.name}}</a>
+                    </div>
                     <div class="tab__more clearfix">
                         <div class="more__shadow" :class="{'hide':!tab.shadow_status}"></div>
                         <div class="more"
+                            :class="{'more--active':tab.unfoldStatus}"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(tab.count+20)" 
-                            :data-lg-tj-cid="null">
-                            <div class="more__text">展开</div>
+                            :data-lg-tj-cid="null"
+                            @click.stop="unfoldEvent">
+                            <div class="more__text">{{tab.unfoldStatus ? '折叠' : '展开'}}</div>
                             <div class="more__icon"></div>
                         </div>
                     </div>
@@ -293,8 +301,8 @@
                         :data-lg-tj-cid="null">查看更多</a>
                 </div>
                 <div class="first__content clearfix">
-                    <div class="first__company">
-                        <ul class="company__ul">
+                    <div class="first__company" ref="first__company" id="first__company">
+                        <ul class="company__ul" id="first__company-content">
                             <li v-for="(one,index) in first.company.list"
                                 class="company__li">
                                 <div class="li__intro">{{one.intro}}</div>
@@ -302,7 +310,7 @@
                                     <a class="company__logo"
                                         :href="one.companyId"
                                         :data-lg-tj-id="countId" 
-                                        :data-lg-tj-no="getCount(first.count+index*10+1)" 
+                                        :data-lg-tj-no="getCount(first.company.count+index*10+1)" 
                                         :data-lg-tj-cid="one.companyId">
                                         <img :src="one.logo" />
                                     </a>
@@ -310,12 +318,12 @@
                                         <a class="company__name"
                                             :href="one.companyId"
                                             :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(first.count+index*10+2)" 
+                                            :data-lg-tj-no="getCount(first.company.count+index*10+2)" 
                                             :data-lg-tj-cid="one.companyId">{{one.name}}</a>
                                         <a class="company__position clearfix"
                                             :href="one.positionId"
                                             :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(first.count+index*10+3)" 
+                                            :data-lg-tj-no="getCount(first.company.count+index*10+3)" 
                                             :data-lg-tj-cid="one.positionId">
                                             <span class="position__name">{{one.position}}</span>
                                             <span class="position__location">{{one.location}}</span>
@@ -343,8 +351,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="first__recommend">
-                            <ul class="recommend__ul">
+                        <div class="first__recommend" ref="first__recommend" id="first__recommend">
+                            <ul class="recommend__ul clearfix" id="first__recommend-content">
                                 <li v-for="(one,index) in first.recommend.list"
                                     class="recommend__li">
                                     <a class="li__layer"
@@ -656,6 +664,7 @@
             </div>
         </div>
         <div class="yh-center__logo icon-02"></div>
+        <div class="yh-center__mask" :class="{'hide':!tab.unfoldStatus}"></div>
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>

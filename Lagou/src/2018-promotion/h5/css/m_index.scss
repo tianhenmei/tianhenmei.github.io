@@ -150,13 +150,27 @@ html,body {
 }
 /***page-banner start***************************************************/
 /***page-tab start***************************************************/
+.yh-center__mask {
+    width:100%;
+    height:100%;
+    // background:#110d4d;
+    background:#000;
+    position:fixed;
+    left:0;
+    top:0;
+    z-index:9;
+    opacity:0.5;
+}
 .yh-center__tab {
     width:100%;
     height:rem(194);
     margin:rem(-10) auto 0;
+    position:relative;
+    z-index:10;
     .tab__layer {
         width:100%;
-        height:rem(194);
+        height:rem(184);
+        padding:rem(10) 0 0 0;
         background:url('../images/tab_bg.png') no-repeat center top;
         background-size:rem(757) rem(194);
     }
@@ -170,8 +184,7 @@ html,body {
         width:rem(710);
         height:rem(146);
         margin:0 auto;
-        padding:rem(10) 0 0 0;
-        overflow:hidden;
+        // overflow:hidden;
         position: relative;
     }
     .tab__list {
@@ -188,6 +201,7 @@ html,body {
         position:absolute;
         left:0;
         top:0;
+        z-index: 11;
     }
     .tab__li{
         // width:rem(166);
@@ -248,12 +262,45 @@ html,body {
             opacity:1;
         }
     }
+    .tab__unfold {
+        width:rem(676);//rem(710);
+        background:url('../images/tab-unfold-bg.png') repeat-y center 0;
+        background-size:rem(757) rem(2);
+        margin:rem(-10) 0 0 0;
+        padding:rem(13) 0 rem(62) rem(34);
+        border-radius:0 0 rem(8) rem(8);
+        overflow:hidden;
+        position:absolute;
+        left:0;
+        top:100%;
+        z-index:10;
+    }
+    .tab__unfold:after {
+        content:"";
+        width:100%;
+        height:rem(62);
+        background:url('../images/tab_bg.png') no-repeat center rem(-132);
+        background-size:rem(757) rem(194);
+        position:absolute;
+        left:0;
+        bottom:0;
+    }
+    .unfold__a {
+        line-height:rem(58);
+        padding:0 rem(58) 0 0;
+        color:#7870d1;
+        font-size:rem(28);
+        float:left;
+    }
+    .unfold__a--last {
+        padding:0;
+    }
     .tab__more {
         width:rem(146);
         height:rem(146);
         position:absolute;
         right:0;
-        top:rem(10);
+        top:0;
         z-index:2;
         .more__shadow {
             width:rem(26);
@@ -264,6 +311,9 @@ html,body {
         }
         .more {
             width:rem(120);
+            height:rem(146);
+            border-radius:0 rem(10) rem(10) 0;
+            overflow:hidden;
             background:#251d7f;
             float:left;
         }
@@ -839,7 +889,10 @@ html,body {
     }
     .first__company {
         width:rem(655);
-        padding:0 0 rem(30) rem(40);
+        height:rem(276);
+        padding:0 0 0 rem(40);
+        margin:0 0 rem(30) 0;
+        overflow:hidden;
     }
     .company__ul {
         width:rem(655);
@@ -928,7 +981,7 @@ html,body {
         }
     }
     .first__bottom {
-        width:rem(710);
+        width:rem(721);
         padding:rem(28) 0 0 0;
     }
     .first__question {
@@ -936,6 +989,8 @@ html,body {
         height:rem(201);
         margin:0 rem(11) 0 0;
         float:left;
+        position:relative;
+        z-index:2;
     }
     .question__li {
         width:rem(341);
@@ -989,13 +1044,24 @@ html,body {
         }
     }
     .first__recommend {
+        width:rem(360);
+        height:rem(239);
+        overflow:hidden;
+        position:relative;
         float:left;
     }
-    .recommend__li {
-        width:rem(349);
+    .recommend__ul {
+        width:9999px;
         height:rem(201);
-        background:url('../images/first-recommend.png') no-repeat center top;
-        background-size:100% 100%;
+    }
+    .recommend__li {
+        width:rem(360);
+        height:rem(201);
+        // padding:0 rem(10) 0 0;
+        // box-sizing: border-box;
+        float:left;
+        background:url('../images/first-recommend.png') no-repeat left top;
+        background-size:rem(349) rem(201);
         position:relative;
         .li__layer {
             height:rem(201);
@@ -1078,7 +1144,7 @@ html,body {
             background:url('../images/first-recommend-name-bg.png') no-repeat left top;
             background-size:100% 100%;
             position:absolute;
-            right:0;
+            right:rem(10);
             bottom:rem(31);
             font-size:rem(26);
             color:#fff;
@@ -1092,7 +1158,7 @@ html,body {
             background:url('../images/first-recommend-position-bg.png') no-repeat right top;
             background-size:100% 100%;
             position:absolute;
-            right:rem(-10);
+            right:rem(2);
             bottom:rem(-14);
             font-size:rem(20);
             color:#fff;

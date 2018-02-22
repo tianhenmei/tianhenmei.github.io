@@ -82,13 +82,26 @@ html, body {
 
 /***page-banner start***************************************************/
 /***page-tab start***************************************************/
+.yh-center__mask {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  opacity: 0.5; }
+
 .yh-center__tab {
   width: 100%;
   height: 4.13867rem;
-  margin: -0.21333rem auto 0; }
+  margin: -0.21333rem auto 0;
+  position: relative;
+  z-index: 10; }
   .yh-center__tab .tab__layer {
     width: 100%;
-    height: 4.13867rem;
+    height: 3.92533rem;
+    padding: 0.21333rem 0 0 0;
     background: url("../images/tab_bg.png") no-repeat center top;
     background-size: 16.14933rem 4.13867rem; }
   .yh-center__tab .tab__layer--fixed {
@@ -100,8 +113,6 @@ html, body {
     width: 15.14667rem;
     height: 3.11467rem;
     margin: 0 auto;
-    padding: 0.21333rem 0 0 0;
-    overflow: hidden;
     position: relative; }
   .yh-center__tab .tab__list {
     width: 12.56533rem;
@@ -112,7 +123,8 @@ html, body {
     width: 9999px;
     position: absolute;
     left: 0;
-    top: 0; }
+    top: 0;
+    z-index: 11; }
   .yh-center__tab .tab__li {
     height: 3.11467rem;
     padding: 0 0.53333rem 0 0.53333rem;
@@ -160,12 +172,41 @@ html, body {
   .yh-center__tab .tab__li--active .icon {
     bottom: 0.55467rem;
     opacity: 1; }
+  .yh-center__tab .tab__unfold {
+    width: 14.42133rem;
+    background: url("../images/tab-unfold-bg.png") repeat-y center 0;
+    background-size: 16.14933rem 0.04267rem;
+    margin: -0.21333rem 0 0 0;
+    padding: 0.27733rem 0 1.32267rem 0.72533rem;
+    border-radius: 0 0 0.17067rem 0.17067rem;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 10; }
+  .yh-center__tab .tab__unfold:after {
+    content: "";
+    width: 100%;
+    height: 1.32267rem;
+    background: url("../images/tab_bg.png") no-repeat center -2.816rem;
+    background-size: 16.14933rem 4.13867rem;
+    position: absolute;
+    left: 0;
+    bottom: 0; }
+  .yh-center__tab .unfold__a {
+    line-height: 1.23733rem;
+    padding: 0 1.23733rem 0 0;
+    color: #7870d1;
+    font-size: 0.59733rem;
+    float: left; }
+  .yh-center__tab .unfold__a--last {
+    padding: 0; }
   .yh-center__tab .tab__more {
     width: 3.11467rem;
     height: 3.11467rem;
     position: absolute;
     right: 0;
-    top: 0.21333rem;
+    top: 0;
     z-index: 2; }
     .yh-center__tab .tab__more .more__shadow {
       width: 0.55467rem;
@@ -175,6 +216,9 @@ html, body {
       float: left; }
     .yh-center__tab .tab__more .more {
       width: 2.56rem;
+      height: 3.11467rem;
+      border-radius: 0 0.21333rem 0.21333rem 0;
+      overflow: hidden;
       background: #251d7f;
       float: left; }
   .yh-center__tab .more .more__text {
@@ -655,7 +699,10 @@ html, body {
     background-size: 15.18933rem 8.576rem; }
   .yh-center__first .first__company {
     width: 13.97333rem;
-    padding: 0 0 0.64rem 0.85333rem; }
+    height: 5.888rem;
+    padding: 0 0 0 0.85333rem;
+    margin: 0 0 0.64rem 0;
+    overflow: hidden; }
   .yh-center__first .company__ul {
     width: 13.97333rem; }
   .yh-center__first .company__li .li__intro {
@@ -728,13 +775,15 @@ html, body {
     .yh-center__first .company__li .company__info .position__salary {
       width: 2.13333rem; }
   .yh-center__first .first__bottom {
-    width: 15.14667rem;
+    width: 15.38133rem;
     padding: 0.59733rem 0 0 0; }
   .yh-center__first .first__question {
     width: 7.27467rem;
     height: 4.288rem;
     margin: 0 0.23467rem 0 0;
-    float: left; }
+    float: left;
+    position: relative;
+    z-index: 2; }
   .yh-center__first .question__li {
     width: 7.27467rem;
     height: 4.288rem;
@@ -779,12 +828,20 @@ html, body {
         right: 0.66133rem;
         top: 0.256rem; }
   .yh-center__first .first__recommend {
+    width: 7.68rem;
+    height: 5.09867rem;
+    overflow: hidden;
+    position: relative;
     float: left; }
+  .yh-center__first .recommend__ul {
+    width: 9999px;
+    height: 4.288rem; }
   .yh-center__first .recommend__li {
-    width: 7.44533rem;
+    width: 7.68rem;
     height: 4.288rem;
-    background: url("../images/first-recommend.png") no-repeat center top;
-    background-size: 100% 100%;
+    float: left;
+    background: url("../images/first-recommend.png") no-repeat left top;
+    background-size: 7.44533rem 4.288rem;
     position: relative; }
     .yh-center__first .recommend__li .li__layer {
       height: 4.288rem;
@@ -855,7 +912,7 @@ html, body {
       background: url("../images/first-recommend-name-bg.png") no-repeat left top;
       background-size: 100% 100%;
       position: absolute;
-      right: 0;
+      right: 0.21333rem;
       bottom: 0.66133rem;
       font-size: 0.55467rem;
       color: #fff;
@@ -868,7 +925,7 @@ html, body {
       background: url("../images/first-recommend-position-bg.png") no-repeat right top;
       background-size: 100% 100%;
       position: absolute;
-      right: -0.21333rem;
+      right: 0.04267rem;
       bottom: -0.29867rem;
       font-size: 0.42667rem;
       color: #fff;

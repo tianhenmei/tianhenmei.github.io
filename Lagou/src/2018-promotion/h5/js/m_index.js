@@ -57,6 +57,28 @@ var app = new Vue({
                 offsetTop:0,
                 height:0
             }],
+            unfoldStatus:false,
+            unfold:[{
+                href:'javascript:void(0);',
+                name:'热招风暴'
+            },{
+                href:'javascript:void(0);',
+                name:'人气精选'
+            },{
+                href:'javascript:void(0);',
+                name:'工程师专场'
+            },{
+                href:'javascript:void(0);',
+                name:'产品专场',
+                last:true
+            },{
+                href:'javascript:void(0);',
+                name:'市场  \  商业化  \  运营专场'
+            },{
+                href:'javascript:void(0);',
+                name:'高薪来袭',
+                last:true
+            }],
             shadow_status:true,
             initWidth:573,//589-26,
             showWidth:573,//589-26,
@@ -203,10 +225,57 @@ var app = new Vue({
             count:600,
             href:"javascript:void(0);",
             company:{
+                count:5000,
                 list:[{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
                     companyId:278,
+                    positionId:457,
+                    position:'高级架构师',
+                    location:'北京',
+                    salary:'50K',
+                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                },{
+                    name:'京东商城',
+                    logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                    companyId:278,
+                    positionId:457,
+                    position:'高级架构师',
+                    location:'北京',
+                    salary:'50K',
+                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                },{
+                    name:'京东商城',
+                    logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                    companyId:278,
+                    positionId:457,
+                    position:'高级架构师',
+                    location:'北京',
+                    salary:'50K',
+                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                },{
+                    name:'京东商城',
+                    logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                    companyId:278,
+                    positionId:457,
+                    position:'高级架构师',
+                    location:'北京',
+                    salary:'50K',
+                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                },{
+                    name:'京东商城',
+                    logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                    companyId:278,
+                    positionId:457,
+                    position:'高级架构师',
+                    location:'北京',
+                    salary:'50K',
+                    intro:'50K犒赏够爽快，说不定下一个年会你就和刘强东和奶茶MM一起过。'
+                },{
+                    name:'京东商城',
+                    logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
+                    companyId:278,
+                    positionId:457,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -990,6 +1059,9 @@ var app = new Vue({
             this.tab.start.x = 0;
             this.tab.start.y = 0;
         },
+        unfoldEvent:function(e){
+            this.tab.unfoldStatus = !this.tab.unfoldStatus; 
+        },
         tabClickEvent:function(index,e){
             this.tab.active_index = index;
             if(!this.tab.status){
@@ -1006,6 +1078,8 @@ var app = new Vue({
                 // animationStatus = true;
                 this.addEmployerAnimation();
                 this.addRichAnimation();
+                this.addFirstAnimation();
+                this.addFirstGuestAnimation();
                 // if (movieElem.length > 0 && movieElem.attr('movie_type') == 'local') {
                 //     getMovie();
                 // }
@@ -1093,6 +1167,79 @@ var app = new Vue({
                     break
             }
         },
+        addFirstAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['first__company'])
+            id = elem.attr('id');
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                direction:'vertical',
+                swiper:null,
+                pagination:false
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'company__ul','company__li')
+                    break
+            }
+        },
+        addFirstGuestAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['first__recommend'])
+            id = elem.attr('id');
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                swiper:null,
+                pagination:false
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'recommend__ul','recommend__li')
+                    break
+            }
+        },
         initMoveAnimation:function(id,wrapperClass,slideClass){
             var self = this,
                 pagination = null,
@@ -1113,6 +1260,7 @@ var app = new Vue({
                 autoplay: data.autoplay ? 3000 : 0,//可选选项，自动滑动
                 loop : true,
                 autoplayDisableOnInteraction:false,
+                direction:data.direction ? data.direction : 'horizontal',
                 // loopedSlides:1,
                 pagination : '#'+id+'-pagination',
                 paginationClickable:true,
