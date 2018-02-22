@@ -20,6 +20,7 @@ var sprite = require('gulp.spritesmith-multi');
 var hash = require('hash-file');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
+var gulp_autoprefixer = require('gulp-autoprefixer');
 var rev = require('gulp-rev');
 var revColl = require('gulp-rev-collector');
 /*var _url = require( 'url' );
@@ -83,7 +84,8 @@ gulp.task('dev:scss', ['dev:init'], function(cb) {
     gulp.src(srcScss)
         .pipe(scss().on('error', gutil.log))
         .pipe(rename({extname: '.css'}))
-        .pipe(postcss([autoprefixer()]))
+        .pipe(gulp_autoprefixer())
+        // .pipe(postcss([autoprefixer()]))
         //.pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest(srcDir))
         .on('end', function() {
@@ -164,7 +166,8 @@ gulp.task('dev:watch', ['dev:init'], function() {
             gulp.src(paths.srcPath)
                 .pipe(scss().on('error', gutil.log))
                 .pipe(rename({extname: '.css'}))
-                .pipe(postcss([autoprefixer()]))
+                .pipe(gulp_autoprefixer())
+                // .pipe(postcss([autoprefixer()]))
                 //.pipe(cleanCSS({compatibility: 'ie8'}))
                 .pipe(gulp.dest(path.dirname(paths.srcPath)));
             /*gulp.src(paths.srcPath)
@@ -183,7 +186,8 @@ gulp.task('dev:watch', ['dev:init'], function() {
             gulp.src(paths.srcPath)
                 .pipe(scss().on('error', gutil.log))
                 .pipe(rename({extname: '.css'}))
-                .pipe(postcss([autoprefixer()]))
+                .pipe(gulp_autoprefixer())
+                // .pipe(postcss([autoprefixer()]))
                 .pipe(gulp.dest(path.dirname(paths.srcPath)));
             /*gulp.src(paths.srcPath)
                 .pipe(rename(function (path) {

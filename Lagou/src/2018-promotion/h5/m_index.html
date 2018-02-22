@@ -254,7 +254,7 @@
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(employer.count+10+oindex*20)" 
                                         :data-lg-tj-cid="one.companyId">
-                                        <img :src="one.logo" />
+                                        <img :src="setLogoHref(one.logo)" />
                                     </a>
                                     <div class="info">
                                         <a class="info__name"
@@ -262,7 +262,7 @@
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(employer.count+11+oindex*20)" 
                                             :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
-                                        <div class="info__detail">{{one.city}}  | {{one.level}}</div>
+                                        <div class="info__detail">{{one.city}}  | {{one.financeStage}}</div>
                                     </div>
                                     <div class="intro">{{one.oneWord}}</div>
                                 </div>
@@ -277,7 +277,7 @@
                                         :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
                                         :data-lg-tj-cid="one.positionId">
                                         <span class="position__name">{{one.positionName}}</span>
-                                        <span class="position__info">{{one.year}}{{one.education}}</span>
+                                        <span class="position__info">{{one.workYear}}{{one.education}}</span>
                                         <span class="position__salary">{{one.salary}}</span>
                                         <span class="position__icon">></span>
                                     </a>
@@ -314,7 +314,7 @@
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(first.company.count+index*10+1)" 
                                         :data-lg-tj-cid="one.companyId">
-                                        <img :src="one.logo" />
+                                        <img :src="setLogoHref(one.logo)" />
                                     </a>
                                     <div class="company__info">
                                         <a class="company__name"
@@ -328,7 +328,7 @@
                                             :data-lg-tj-no="getCount(first.company.count+index*10+3)" 
                                             :data-lg-tj-cid="one.positionVo[0].positionId">
                                             <span class="position__name">{{one.positionVo[0].positionName}}</span>
-                                            <span class="position__location">{{one.positionVo[0].location}}</span>
+                                            <span class="position__location">{{one.positionVo[0].city}}</span>
                                             <span class="position__salary">{{one.positionVo[0].salary}}</span>
                                         </a>
                                     </div>
@@ -399,7 +399,7 @@
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(rich.count+lindex*10+1)" 
                                         :data-lg-tj-cid="one.companyId">
-                                        <img :src="one.logo" />
+                                        <img :src="setLogoHref(one.logo)" />
                                     </a>
                                     <div class="info">
                                         <a class="info__name"
@@ -457,7 +457,7 @@
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(will.count+i*20+index*4+1)" 
                                             :data-lg-tj-cid="one.companyId">
-                                            <img :src="one.logo" />
+                                            <img :src="setLogoHref(one.logo)" />
                                         </a>
                                         <div class="company__info">
                                             <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="company__name"
@@ -509,7 +509,7 @@
                                         :data-lg-tj-id="countId" 
                                         :data-lg-tj-no="getCount(storm.count+i*20+1+index)" 
                                         :data-lg-tj-cid="one.companyId">
-                                        <img class="company__logo" :src="one.logo" />
+                                        <img class="company__logo" :src="setLogoHref(one.logo)" />
                                         <div class="company__name">{{one.shortName}}</div>
                                     </a>
                                 </div>
@@ -541,7 +541,7 @@
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(ai.count+iindex*5+1)" 
                                     :data-lg-tj-cid="one.companyId">
-                                    <img :src="one.logo" />
+                                    <img :src="setLogoHref(one.logo)" />
                                 </a>
                             </div>
                             <div class="ai__right">
@@ -596,7 +596,7 @@
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(choice.count+1+iindex*10+1)" 
                                     :data-lg-tj-cid="one.companyId">
-                                    <img :src="one.logo" />
+                                    <img :src="setLogoHref(one.logo)" />
                                 </a>
                                 <div class="info">
                                     <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" class="info__name"
@@ -636,7 +636,7 @@
                                         <a href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"  class="company__logo"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+1)" 
-                                            :data-lg-tj-cid="one.companyId"><img class="company__logo-img" :src="one.logo" /></a>
+                                            :data-lg-tj-cid="one.companyId"><img class="company__logo-img" :src="setLogoHref(one.logo)" /></a>
                                         <div class="company__info">
                                             <a class="company__info-name" 
                                                 href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"

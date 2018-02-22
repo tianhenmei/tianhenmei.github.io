@@ -10,6 +10,8 @@ var app = new Vue({
         browserType:0,  // 浏览器类型
         loadedCount:0,  // js、css加载数量
         employerAnimation:{},
+        logoHref:'http://www.lgstatic.com/thumbnail_100x100/',
+        logoHrefO:'http://www.lgstatic.com/',
         oppo:{
             href:"https://www.lagou.com"
         },
@@ -334,15 +336,24 @@ var app = new Vue({
                     {
                         "positionId":1,
                         "positionName":"设计",
-                        "salary":"15-40K"
+                        "salary":"15-40K",
+                        "city":"北京",
+					    "education":"本科",
+					    "workYear":"1-3年"
                     },{
                         "positionId":1,
                         "positionName":"设计",
-                        "salary":"15-40K"
+                        "salary":"15-40K",
+                        "city":"北京",
+					    "education":"本科",
+					    "workYear":"1-3年"
                     },{
                         "positionId":1,
                         "positionName":"产品经理",
-                        "salary":"15-40K"
+                        "salary":"15-40K",
+                        "city":"北京",
+					    "education":"本科",
+					    "workYear":"1-3年"
                     }
                 ],
                 "companyLabel":[
@@ -373,15 +384,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"25-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -404,15 +424,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -435,15 +464,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -466,15 +504,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -497,15 +544,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -528,15 +584,24 @@ var app = new Vue({
                         {
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"设计",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         },{
                             "positionId":1,
                             "positionName":"产品经理",
-                            "salary":"15-40K"
+                            "salary":"15-40K",
+                            "city":"北京",
+					        "education":"本科",
+					        "workYear":"1-3年"
                         }
                     ],
                     "companyLabel":[
@@ -1886,6 +1951,17 @@ var app = new Vue({
         this.getChoiceData()
     },
     methods:{
+        setLogoHref:function(logo){
+            if(logo.indexOf('i/image') == 0 || 
+                logo.indexOf('image1') == 0 || 
+                logo.indexOf('image2') == 0){
+                return this.logoHref + logo
+            }else if(logo.indexOf('http') == 0){
+                return logo
+            }else {
+                return this.logoHrefO + logo
+            }
+        },
         getCount:function(num){
             return '0000'.slice((num+'').length)+num
         },
