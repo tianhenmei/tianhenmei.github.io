@@ -11,7 +11,15 @@ var app = new Vue({
         loadedCount:0,  // js、css加载数量
         employerAnimation:{},
         oppo:{
-            href:"javascript:void(0);"
+            href:"https://www.lagou.com"
+        },
+        companyHref:{
+            one:"self.location=\'https://www.lagou.com/center/company_",
+            two:".html\';"
+        },
+        positionHref:{
+            one:"self.location=\'https://www.lagou.com/center/job_",
+            two:".html\';"
         },
         // tab 切换
         tab:{
@@ -59,23 +67,23 @@ var app = new Vue({
             }],
             unfoldStatus:false,
             unfold:[{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'热招风暴'
             },{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'人气精选'
             },{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'工程师专场'
             },{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'产品专场',
                 last:true
             },{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'市场  \  商业化  \  运营专场'
             },{
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 name:'高薪来袭',
                 last:true
             }],
@@ -91,7 +99,7 @@ var app = new Vue({
         },
         // 热招职位
         hot:{
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             list:[{
                 name:'李**',
                 company:'京东1',
@@ -118,43 +126,43 @@ var app = new Vue({
         // 24 小时 热力排行榜
         popular:{
             count:100,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             in:{
                 count:120,
                 list:[{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'Java开发'
                 },{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'Python开发'
                 },{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'商业化运营'
                 }]
             },
             quickest:{
                 count:130,
                 list:[{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'销售主管'
                 },{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'首席架构师'
                 },{
-                    id:'3437947',
+                    positionId:4123331,
                     position:'市场营销主管'
                 }]
             },
             most:{
                 count:140,
                 list:[{
-                    id:'3437947',
+                    companyId:322564,
                     position:'OPPO'
                 },{
-                    id:'3437947',
+                    companyId:322564,
                     position:'Vivo'
                 },{
-                    id:'3437947',
+                    companyId:322564,
                     position:'点我达'
                 }]
             }
@@ -162,24 +170,24 @@ var app = new Vue({
         // 领先雇主
         leader:{
             count:150,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             list:[{
                 count:160,
-                companyId:'778',
+                companyId:322564,
                 industry:'移动互联网行业',
                 location:'深圳',
                 scale:'2000人以上',
                 label:['长期激励','长期激励','长期激励'],
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'工程师工程师工',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'工程师工程师工',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'工程师工程师工',
                     salary:'20K-30K'
                 }]
@@ -188,9 +196,9 @@ var app = new Vue({
         // 超级雇主
         employer:{
             count:210,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             list:[{
-                companyId:2356,
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 level:'不需要融资',
@@ -200,19 +208,19 @@ var app = new Vue({
                 label:['长期激励','长期激励','长期激励'],
                 introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
@@ -223,14 +231,14 @@ var app = new Vue({
         // 名企首发
         first:{
             count:600,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             company:{
                 count:5000,
                 list:[{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -238,8 +246,8 @@ var app = new Vue({
                 },{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -247,8 +255,8 @@ var app = new Vue({
                 },{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -256,8 +264,8 @@ var app = new Vue({
                 },{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -265,8 +273,8 @@ var app = new Vue({
                 },{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -274,8 +282,8 @@ var app = new Vue({
                 },{
                     name:'京东商城',
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
-                    companyId:278,
-                    positionId:457,
+                    companyId:322564,
+                    positionId:4123331,
                     position:'高级架构师',
                     location:'北京',
                     salary:'50K',
@@ -284,7 +292,7 @@ var app = new Vue({
             },
             question:{
                 count:700,
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 list:[{
                     ask:'你觉得钱是什么颜色？',
                     answer:'互联网名企面试题',
@@ -293,7 +301,7 @@ var app = new Vue({
             },
             recommend:{
                 count:750,
-                href:'javascript:void(0);',
+                href:'https://www.lagou.com',
                 list:[{
                     guest:'ELLA',
                     companys:[
@@ -310,211 +318,223 @@ var app = new Vue({
         // 千万豪门
         rich:{
             count:800,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             active_index:0,
             list:[
                 [{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 }],[{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                     },{
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         },{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     }],
                 [{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
                 },{
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     location:'深圳',
                     position:[{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     },{
-                        id:'247',
+                        positionId:4123331,
                         name:'高级产品经理',
                         salary:'20K-30K'
                     }]
@@ -524,39 +544,39 @@ var app = new Vue({
         // 高薪必投
         will:{
             count:1000,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             active_index:0,
             list:[
                 {   
                     title:'丰厚起薪系列',
                     intro:'没有高薪，是谁给你的勇气买房买车',
                     company:[{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
@@ -566,32 +586,32 @@ var app = new Vue({
                     title:'优越福利系列',
                     intro:'别看这些小福利，能增多不少幸福感',
                     company:[{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城',
                         location:'深圳',
                         position:[{
-                            id:'247',
+                            positionId:4123331,
                             name:'高级产品经理',
                             salary:'20K-30K'
                         }]
@@ -602,42 +622,42 @@ var app = new Vue({
         // 热招风暴
         storm:{
             count:1100,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             active_index:0,
             list:[
                 {   
                     title:'',
                     intro:'无法让你涨姿势的工作，这样的生活和咸鱼没什么区别',
                     company:[{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     }],
@@ -646,35 +666,35 @@ var app = new Vue({
                     title:'优越福利系列',
                     intro:'真相了！队友属性基本决定你会在怎样的氛围中工作',
                     company:[{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     },{
-                        companyId:147,
+                        companyId:322564,
                         logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                         name:'京东商城'
                     }],
@@ -684,43 +704,43 @@ var app = new Vue({
         // AI狂热季
         ai:{
             count:1200,
-            href:"javascript:void(0);",
-            engineer:"javascript:void(0);",  // 工程师专场
-            product:"javascript:void(0);",  // 产品专场
-            other:"javascript:void(0);",  // 市场/商业化/运营专场
+            href:"https://www.lagou.com",
+            engineer:"https://www.lagou.com",  // 工程师专场
+            product:"https://www.lagou.com",  // 产品专场
+            other:"https://www.lagou.com",  // 市场/商业化/运营专场
             list:[{
-                companyId:'2345',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     salary:'20K-30K'
                 }]
             },{
-                companyId:'2345',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     salary:'20K-30K'
                 }]
             },{
-                companyId:'2345',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     salary:'20K-30K'
                 }]
             },{
-                companyId:'2345',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     salary:'20K-30K'
                 }]
@@ -729,9 +749,9 @@ var app = new Vue({
         // 人气精选
         choice:{
             count:1310,
-            href:"javascript:void(0);",
+            href:"https://www.lagou.com",
             list:[{
-                companyId:'234',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 level:'不需要融资',
@@ -741,26 +761,26 @@ var app = new Vue({
                 label:['长期激励','长期激励','长期激励'],
                 introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 }]
             },{
-                companyId:'234',
+                companyId:322564,
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 name:'京东商城',
                 level:'不需要融资',
@@ -770,19 +790,19 @@ var app = new Vue({
                 label:['长期激励','长期激励','长期激励'],
                 introduce:'150天涨薪计划，游戏平台一人当关,万夫莫敌！',
                 position:[{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
                     salary:'20K-30K'
                 },{
-                    id:'247',
+                    positionId:4123331,
                     name:'Java工程师',
                     year:'1-3年',
                     education:'本科',
@@ -792,86 +812,86 @@ var app = new Vue({
             companys:[{
                 name:'团队超给力',
                 list:[{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 }]
             },{
                 name:'环境高大上',
                 list:[{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 }]
             },{
                 name:'领导超 Nice',
                 list:[{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 }]
             },{
                 name:'成长空间大',
                 list:[{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 },{
-                    companyId:147,
+                    companyId:322564,
                     logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                     name:'京东商城',
                     position:'资深视觉设计师',
-                    positionId:'12345'
+                    positionId:4123331,
                 }]
             }]
         },
