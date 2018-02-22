@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>2017互联网领先雇主入围名单</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        var loadingStatus = false,
+            pageStatus = false,
+            loadingSuccess = function(){
+                var page0 = document.getElementsByClassName('page0')[0];
+                page0.className = page0.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
+    </script>
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    // var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<!-- <div class="loading" id="loading">
+    <div class="icon title hide" id="loading-title"></div>
+    <div class="day hide" id="day"></div>
+    <div class="icon progress-bg" id="progress-bg"></div>
+    <div class="progress" id="progress"></div>
+    <div class="progress-number" id="progress-number">0%</div>
+</div> -->
+<script type="text/javascript">
+    // setDay();
+</script>
+<div class="music-box">
+    <div class="music-icon open">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+    </div>
+</div>
+<!-- <script type="text/javascript" src="js/loading.js?v=$version$"></script>  -->
+<div id="app">
+    <div id="page-loading">
+        <div id="loading-progress" class="loading-progress">
+            <div class="loading-fill"></div>
+        </div>
+    </div>
+    <div id="page-theme" class="hide">
+        <div class="circle">
+            <div id="theme-title" class="theme-title theme-title-anim"></div>
+            <div id="lu" class="lu lu-anim"></div>
+            <div id="year" class="year year-anim"></div>
+            <div id="logo" class="logo logo-anim"></div>
+            <div id="lxz" class="lxz lxz-anim">
+                <img id="lxz-img" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/image/lxz/1.png">
+            </div>
+            <div class="rules">
+                <div class="fuli rule-icon" data-idx="5"></div>
+                <div class="jiangxiang rule-icon" data-idx="2"></div>
+                <div class="richeng rule-icon" data-idx="0"></div>
+            </div>
+            <div id="circle-1" class="circle-1 circle-init circle-anim"></div>
+            <div id="circle-2" class="circle-2 circle-init circle-anim"></div>
+            <div id="circle-3" class="circle-3 circle-init circle-anim"></div>
+        </div>
+        <div id="btn-signup" class="btn-signup"></div>
+        <div id="theme-rules-box">
+            <div id="theme-rules" class="theme-rules">
+                <div class="nav-btn" data-idx="0"></div>
+                <div class="nav-btn" data-idx="1"></div>
+                <div class="nav-btn" data-idx="2"></div>
+                <div class="nav-btn" data-idx="3"></div>
+                <div class="nav-btn" data-idx="4"></div>
+                <div class="nav-btn" data-idx="5"></div>
+            </div>
+        </div>
+        <!--规则详情-->
+        <div id="rules-detail-box" class="rules-detail-box">
+            <ul id="rules-detail-list" class="rules-detail-list">
+                <li class="pxrc">
+                    <div>
+                        <img src="images/pxrc2.png" alt="">
+                    </div>
+                </li>
+                <li class="cxgz special">
+                    <div>
+                        <img src="images/pxgz2.png" alt="">
+                    </div>
+                </li>
+                <li class="jxsz special">
+                    <div>
+                        <img src="images/jxsz2.png" alt="">
+                    </div>
+                </li>
+                <li class="pxwd">
+                    <div>
+                        <img src="images/pxwd2.png" alt="">
+                    </div>
+                </li>
+                <li class="zsfs special">
+                    <div>
+                        <img src="images/zsfs3.png" alt="">
+                    </div>
+                </li>
+                <li class="hjfl">
+                    <div>
+                        <img src="images/hjfl2.png" alt="">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="page page0 cover hide">
+        
+    </div> -->
+    <div id="page-rank" class="page page1 form hide">
+        <!-- <div class="c1 zommIn iterationCount-infinite delay1-7"></div>
+            <div class="c2 zommIn iterationCount-infinite delay2-2"></div>
+            <div class="c3 zommIn iterationCount-infinite delay2-7"></div> -->
+        <!-- <div class="circle circleAnimation">
+            <div class="c1"></div>
+            <div class="c2"></div>
+            <div class="c3"></div>
+        </div>
+        <div class="icon year downToCenter"></div>
+        <div class="icon title downToCenter delay0-8"></div>
+        <div class="icon logo downToCenter delay1-1"></div>
+        <div class="icon subtitle downToCenter delay1-4"></div> -->
+        <div class="icon title2 downToCenter"></div>
+        <div class="icon subtitle2 downToCenter delay0-8"></div>
+        <div class="icon line opacityChange delay1-4"></div>
+        <div class="icon name leftToCenter delay1-1"></div>
+        <div class="tabs-title clearfix opacityChange delay1-7">
+            <div class="tab-one" :class="{'tab-active':activeStatus == 0}"
+                @click.top.prevent="changeTabEvent(0)">
+                <span class="icon t1"></span>
+                <span class="text">综合类</span>
+            </div>
+            <div class="tab-line"></div>
+            <div class="tab-one nopaddingl" :class="{'tab-active':activeStatus == 1}"
+                @click.top.prevent="changeTabEvent(1)">
+                <span class="icon t2"></span>
+                <span class="text">行业类</span>
+            </div>
+            <div class="tab-line"></div>
+            <div class="tab-one nopaddingl" :class="{'tab-active':activeStatus == 2}"
+                @click.top.prevent="changeTabEvent(2)">
+                <span class="icon t3"></span>
+                <span class="text">区域类</span>
+            </div>
+            <div class="tab-line"></div>
+            <div class="tab-one nopaddingl" :class="{'tab-active':activeStatus == 3}"
+                @click.top.prevent="changeTabEvent(3)">
+                <span class="icon t4"></span>
+                <span class="text">特别类</span>
+            </div>
+        </div>
+        <div class="rank-layer opacityChange delay2-0">
+            <div class="rank-name">{{rank[activeStatus].name}}</div>
+            <div class="rank-title">
+                <span class="rtitle">{{rank[activeStatus].title}}</span><span class="rsubtitle">{{rank[activeStatus].content[currentIndex].subtitle}}</span>
+            </div>
+            <div class="rank-content">
+                <!-- <swiper class="rank-list" 
+                    :options="swiperOption" ref="mySwiper">
+                    <swiper-slide v-for="(item, index) in rank[activeStatus].content">
+                        <div v-for="(one , index) in item.list" class="item">
+                            <div class="company-logo"><img :src="one.logo" /></div>
+                            <div class="company-name">{{one.name}}</div>
+                        </div>
+                    </swiper-slide>
+                    <div class="shadow-layer" slot="pagination">
+                        <div v-for="(item, index) in rank[activeStatus].content"
+                            class="classify">{{item.name}}</div>
+                    </div>
+                </swiper> -->
+                <div class="rank-list clearfix" 
+                    v-for="(rankList, parentIndex) in rank"
+                    v-show="activeStatus == parentIndex">
+                    <div v-for="(item, contentIndex) in rankList.content" class="rank-parent"
+                        :class="currentIndex == contentIndex ? 'rank-list-active '+currentClass : contentIndex == prevIndex ? prevClass : contentIndex == nextIndex ? nextClass : contentIndex == bprevIndex ? bprevClass : contentIndex == bnextIndex ? bnextClass : ''">
+                        <div class="rank">
+                            <ul class="item-list" v-if="!(parentIndex == 3 && contentIndex ==0)" :id="'item-list'+parentIndex+contentIndex">
+                                <li v-for="(one , index) in item.list" class="item"
+                                    :class="{'last':index >= ((Math.ceil(item.list.length / 3) - 1) * 3)}">
+                                    <div class="company-logo"><img :src="'https://static.lagou.com/thumbnail_200x200/'+one.logo" /></div>
+                                    <div class="company-name">{{dealStringLine(one.shortName ? one.shortName : one.companyName ? one.companyName : one.name)}}</div>
+                                </li>
+                            </ul>
+                            <ul class="item-list" :class="'item-list'+parentIndex+contentIndex" v-else :id="'item-list'+parentIndex+contentIndex">
+                                <li><img src="images/itemList30.png" /></li>
+                            </ul>
+                            <div class="rank-tips">*   排名不分先后</div>
+                        </div>
+                        <div class="rank_bar_bg">
+                            <div class="rank_bar" :id="'rank_bar'+parentIndex+contentIndex"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="rank-area clearfix"
+                :class="'rank-area-'+activeStatus">
+                <div v-for="(item, index) in rank[activeStatus].content" 
+                    class="one"
+                    :class="{'rank-area-active': currentIndex == index}"
+                    @click.stop.prevent="changeRankArea(index)">
+                    {{item.name}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<!-- <script type="text/javascript" src="//cdn.bootcss.com/vue/2.1.10/vue.js"></script> -->
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
+<!--<script type="text/javascript" src="js/d3.v3.js?v=$version$"></script>-->
+<!-- <script type="text/javascript" src="js/circle-progress.js?v=$version$"></script> -->
+<!-- <script src="js/zepto.js?v=$version$"></script>  -->
+<!-- <script src="js/touch.js?v=$version$"></script>  -->
+<script type="text/javascript" src="js/rank.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "领先者|2017中国互联网雇主评选入围名单",
+        desc: "雇主评选入围Top公司，都在拉勾，谁将成为最终的领先者，终极评审即将开启！",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2017-employSelect/image/share.jpg',
+        activityType: '2017LEADERRESULT',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2017-leaderResult/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>
