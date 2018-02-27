@@ -173,7 +173,7 @@ var app = new Vue({
                 "companyShort":"拉勾",
                 "positionName":"java开发"
             }],
-            duration:50
+            duration:150
         },
         // 24 小时 热力排行榜
         popular:{
@@ -2202,7 +2202,7 @@ var app = new Vue({
             this.tab.unfoldStatus = !this.tab.unfoldStatus; 
         },
         tabClickEvent:function(index,e){
-            let self = this;
+            var self = this;
             this.tab.active_index = index;
             this.tab.click_status = true;
             if(this.tab.list[index].elem){
@@ -2430,7 +2430,7 @@ var app = new Vue({
                         // li = ul.children('li'),
                         // activeLi = ul.children('.' + this.slideActiveClass).length > 0 ? ul.children('.' + this.slideActiveClass) : ul.children('.active'),
                         // index = activeLi.index(),
-                    let index = swiper.activeIndex,
+                    var index = swiper.activeIndex,
                         // id = ul.attr('id'),
                         // logo = $('.' + id + 'Button').children('img'),
                         endIndex = index - 1;
@@ -2445,7 +2445,7 @@ var app = new Vue({
             })
         },
         initZoomInAnimation:function(id){
-            let pagination = $('#'+id+'-pagination').children(),
+            var pagination = $('#'+id+'-pagination').children(),
                 length = pagination.length,
                 totalLength = 3
             this.employerAnimation[id].swiper = new Swiper('#'+id+'-container', {
@@ -2492,7 +2492,7 @@ var app = new Vue({
                         // li = ul.children('li'),
                         // activeLi = ul.children('.' + this.slideActiveClass).length > 0 ? ul.children('.' + this.slideActiveClass) : ul.children('.active'),
                         // index = activeLi.index(),
-                    let index = swiper.activeIndex,
+                    var index = swiper.activeIndex,
                         // id = ul.attr('id'),
                         // logo = $('.' + id + 'Button').children('img'),
                         endIndex = index //index - 1;

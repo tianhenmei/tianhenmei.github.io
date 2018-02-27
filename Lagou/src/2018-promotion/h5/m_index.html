@@ -169,8 +169,8 @@
                 <div class="bullet__list">
                     <ul class="bullet__ul bullet_move"
                         :style="{
-                            '-webkit-animation-duration':hot.duration+'s',
-                            'animation-duration':hot.duration+'s'
+                            webkitAnimationDuration:hot.duration+'s',
+                            animationDuration:hot.duration+'s'
                         }">
                         <li v-for="(one,index) in hot.list.concat(hot.list)"
                             class="bullet__li">

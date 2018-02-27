@@ -215,6 +215,22 @@ html,body {
             right:0;
         }
     }
+    .animation__list .example-rotate-bg {
+        .in,.out {
+            width:100px;
+            height:100px;
+            background:url('http://flv.whcedu.cn/files/2013-04/08/08124249724.jpg_b.jpg') no-repeat center top;
+            background-size:100px 100px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        .out {
+            background-image:url('http://pic12.photophoto.cn/20090818/0005018311242406_b.jpg');
+            left:auto;
+            right:0;
+        }
+    }
     .animation__list .example-rotate-3 {
         .one__animate {
             width:400px;
@@ -324,6 +340,28 @@ html,body {
     }
     100% {
         transform:scale3d(0,0,0);
+    }
+}
+.skewXChange {
+    animation:skewXChange 1s 0.2s both linear;
+}
+@keyframes skewXChange {
+    0% {
+        transform:skewX(60deg);
+    }
+    100% {
+
+    }
+}
+.skewYChange {
+    animation:skewYChange 1s 0.2s both linear;
+}
+@keyframes skewYChange {
+    0% {
+        transform:skewY(60deg);
+    }
+    100% {
+        
     }
 }
 .moveRight {
@@ -522,4 +560,10 @@ html,body {
 }
 .timing-function-ease-in-out {
     animation-timing-function:ease-in-out;
+}
+.backface-hidden {
+    backface-visibility:hidden;
+}
+.origin0-0 {
+    transform-origin:0 0;
 }

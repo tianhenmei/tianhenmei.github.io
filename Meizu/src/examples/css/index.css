@@ -166,6 +166,18 @@ html, body {
   .animation .animation__list .example-rotate .out {
     left: auto;
     right: 0; }
+  .animation .animation__list .example-rotate-bg .in, .animation .animation__list .example-rotate-bg .out {
+    width: 100px;
+    height: 100px;
+    background: url("http://flv.whcedu.cn/files/2013-04/08/08124249724.jpg_b.jpg") no-repeat center top;
+    background-size: 100px 100px;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .animation .animation__list .example-rotate-bg .out {
+    background-image: url("http://pic12.photophoto.cn/20090818/0005018311242406_b.jpg");
+    left: auto;
+    right: 0; }
   .animation .animation__list .example-rotate-3 .one__animate {
     width: 400px; }
   .animation .animation__list .example-rotate-3 .middle {
@@ -269,6 +281,38 @@ html, body {
   100% {
     -webkit-transform: scale3d(0, 0, 0);
             transform: scale3d(0, 0, 0); } }
+
+.skewXChange {
+  -webkit-animation: skewXChange 1s 0.2s both linear;
+          animation: skewXChange 1s 0.2s both linear; }
+
+@-webkit-keyframes skewXChange {
+  0% {
+    -webkit-transform: skewX(60deg);
+            transform: skewX(60deg); }
+  100% { } }
+
+@keyframes skewXChange {
+  0% {
+    -webkit-transform: skewX(60deg);
+            transform: skewX(60deg); }
+  100% { } }
+
+.skewYChange {
+  -webkit-animation: skewYChange 1s 0.2s both linear;
+          animation: skewYChange 1s 0.2s both linear; }
+
+@-webkit-keyframes skewYChange {
+  0% {
+    -webkit-transform: skewY(60deg);
+            transform: skewY(60deg); }
+  100% { } }
+
+@keyframes skewYChange {
+  0% {
+    -webkit-transform: skewY(60deg);
+            transform: skewY(60deg); }
+  100% { } }
 
 .moveRight {
   -webkit-animation: moveRight 1s 0.2s both linear;
@@ -583,3 +627,11 @@ html, body {
 .timing-function-ease-in-out {
   -webkit-animation-timing-function: ease-in-out;
           animation-timing-function: ease-in-out; }
+
+.backface-hidden {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden; }
+
+.origin0-0 {
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0; }

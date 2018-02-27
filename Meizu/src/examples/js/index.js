@@ -3,7 +3,7 @@ var app = new Vue({
     el:"#app",
     data:{
         fontSize:16,
-        current_index:0,
+        current_index:1,
         list:[{
             title:'常用CSS3动画',
             animation:{
@@ -28,6 +28,17 @@ var app = new Vue({
                     },{
                         en:'out',
                         classname:'scaleChangeOut'
+                    }],
+                    status:false
+                },{
+                    name:'偏移改变',
+                    en:'skew',
+                    animate:[{
+                        en:'in',
+                        classname:'skewXChange'
+                    },{
+                        en:'out',
+                        classname:'skewYChange'
                     }],
                     status:false
                 },{
@@ -95,6 +106,17 @@ var app = new Vue({
             animation:{
                 active_index:-1,
                 list:[{
+                    name:'动画时间: animation-duration',
+                    en:'example-rotate example-rotate-bg',
+                    animate:[{
+                        en:'in',
+                        classname:'rotateYChange'
+                    },{
+                        en:'out',
+                        classname:'rotateYChange duration2-2'
+                    }],
+                    status:false
+                },{
                     name:'延迟: animation-delay',
                     en:'example-rotate',
                     animate:[{
@@ -157,6 +179,39 @@ var app = new Vue({
                         en:'',
                         classname:'move-x',
                         content:'<div class="same cubic-bezier-move"></div>'
+                    }],
+                    status:false
+                },{
+                    name:'背面显示状态: backface-visibility',
+                    en:'example-rotate example-rotate-bg',
+                    animate:[{
+                        en:'in',
+                        classname:'rotateYChange'
+                    },{
+                        en:'out',
+                        classname:'rotateYChange backface-hidden'
+                    }],
+                    status:false
+                },{
+                    name:'动画原点：transfrom-origin',
+                    en:'example-rotate',
+                    animate:[{
+                        en:'in',
+                        classname:'scaleChangeIn'
+                    },{
+                        en:'out',
+                        classname:'scaleChangeIn origin0-0'
+                    }],
+                    status:false
+                },{
+                    name:'视距：perspective',
+                    en:'example-rotate',
+                    animate:[{
+                        en:'in',
+                        classname:'scaleChangeIn'
+                    },{
+                        en:'out',
+                        classname:'scaleChangeIn origin0-0'
                     }],
                     status:false
                 }]
