@@ -163,16 +163,22 @@ html,body {
 }
 .yh-center__tab {
     width:100%;
-    height:rem(194);
+    // height:rem(194);
+    height:rem(174);
     margin:rem(-10) auto 0;
     position:relative;
     z-index:10;
     .tab__layer {
         width:100%;
-        height:rem(184);
+        height:rem(164);
         padding:rem(10) 0 0 0;
-        background:url('../images/tab_bg.png') no-repeat center top;
-        background-size:rem(757) rem(194);
+        background:url('../images/tab-bg-02.png') no-repeat center top;
+        background-size:rem(757) rem(164);
+        // width:100%;
+        // height:rem(184);
+        // padding:rem(10) 0 0 0;
+        // background:url('../images/tab_bg.png') no-repeat center top;
+        // background-size:rem(757) rem(194);
     }
     .tab__layer--fixed {
         position:fixed;
@@ -182,14 +188,17 @@ html,body {
     }
     .tab__center {
         width:rem(710);
-        height:rem(146);
+        // height:rem(146);
+        height:rem(116);
         margin:0 auto;
         // overflow:hidden;
         position: relative;
     }
     .tab__list {
-        width:rem(589);
-        height:rem(146);
+        width:rem(706);
+        height:rem(116);
+        // height:rem(146);
+        // width:rem(589);
         position:relative;
         overflow:hidden;
         // overflow-x:auto;
@@ -203,10 +212,14 @@ html,body {
         top:0;
         z-index: 11;
     }
+    .tab__ul--transition {
+        transition:0.5s all;
+    }
     .tab__li{
         // width:rem(166);
-        height:rem(146);
-        padding:0 rem(25) 0 rem(25);
+        // height:rem(146);
+        height:rem(116);
+        padding:0 rem(32) 0 rem(32);
         display:inline-block;
         position:relative;
         float:left;
@@ -221,7 +234,8 @@ html,body {
             opacity:0;
         }
         .name {
-            line-height:rem(146);
+            // line-height:rem(146);
+            line-height:rem(116);
             color:#8d85e6;
             font-size:rem(30);
             text-align:center;
@@ -238,13 +252,27 @@ html,body {
             opacity:0;
         }
     }
+    .tab__shadow {
+        width:rem(40);
+        height:rem(116);
+        background:url('../images/tab-shadow-03.png') no-repeat right center;
+        background-size:rem(40) rem(116);
+        // background-size:rem(40) rem(85);
+        position:absolute;
+        right:0;
+        top:0;
+        z-index: 20;
+    }
     .tab__li--active {
         .bg {
             width:100%;
-            height:rem(146);
+            // height:rem(146);
+            height:rem(116);
             border-radius:rem(8);
-            background:url('../images/tab-active.png') repeat-x 0 0;
-            background-size:1px rem(145);
+            // background:url('../images/tab-active.png') repeat-x 0 0;
+            // background-size:1px rem(145);
+            background:url('../images/tab-active-02.png') repeat-x 0 0;
+            background-size:1px rem(116);
             position:absolute;
             left:0;
             top:0;
@@ -253,8 +281,8 @@ html,body {
             opacity:1;
         }
         .name {
-            line-height:rem(73);
-            padding:rem(15) 0 0 0;
+            // line-height:rem(73);
+            // padding:rem(15) 0 0 0;
             color:#fff;
         }
         .icon {
@@ -352,7 +380,7 @@ html,body {
         margin:0 auto;
         overflow:hidden;
         position: relative;
-        background:url('../images/bullet.png') no-repeat center top;
+        background:url('../images/bullet-02.png') no-repeat center top;
         background-size:100% 100%;
     }
     .bullet__list {
@@ -1190,6 +1218,34 @@ html,body {
         background:url('../images/rich.png') no-repeat center top;
         background-size:rem(666) rem(123);
         position:relative;
+        .rich__more {
+            width:rem(124);
+            height:rem(40);
+            line-height:rem(40);
+            padding:0 rem(22) 0 0;
+            position: absolute;
+            right:0;
+            bottom:rem(66);
+            font-size:rem(24);
+            color:#00ffa5;
+            text-align:right;
+            display:block;
+            text-decoration:none;
+        }
+        .rich__more:after {
+            width:0;
+            height:0;
+            content:"";
+            border-left:rem(10) solid #00ffa5;
+            border-top:rem(10) solid transparent;
+            border-bottom:rem(10) solid transparent;
+            position:absolute;
+            right:0;
+            top:rem(8);
+        }
+        .rich__more:hover {
+            text-decoration:none;
+        }
         .title__info {
             width:100%;
             height:rem(37);

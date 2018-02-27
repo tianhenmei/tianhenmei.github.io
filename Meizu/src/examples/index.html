@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>动画游戏例子</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+    </head>
+    <body>
+        <div id="app">
+            <div class="animation">
+                <div class="animation__one"
+                    v-for="(al,pindex) in list">
+                    <div class="animation__title"
+                        @click.stop.prevent="changeIndex(pindex)">{{al.title}}</div>
+                    <ul class="animation__list" v-show="pindex == current_index">
+                        <li class="one"
+                            v-for="(one,index) in al.animation.list"
+                            :class="one.en+(one.status ? ' one--active' : '')">
+                            <div class="one__name"
+                                @click.stop.prevent="changeAnimationStatus(one,index,pindex)">{{one.name}}</div>
+                            <div class="one__animate clearfix" v-show="one.status">
+                                <div v-for="a in one.animate"
+                                    :class="a.en+' '+a.classname" v-html="a.content"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="js/vue2.1.10.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

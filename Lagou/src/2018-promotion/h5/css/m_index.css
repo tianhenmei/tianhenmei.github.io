@@ -94,16 +94,16 @@ html, body {
 
 .yh-center__tab {
   width: 100%;
-  height: 4.13867rem;
+  height: 3.712rem;
   margin: -0.21333rem auto 0;
   position: relative;
   z-index: 10; }
   .yh-center__tab .tab__layer {
     width: 100%;
-    height: 3.92533rem;
+    height: 3.49867rem;
     padding: 0.21333rem 0 0 0;
-    background: url("../images/tab_bg.png") no-repeat center top;
-    background-size: 16.14933rem 4.13867rem; }
+    background: url("../images/tab-bg-02.png") no-repeat center top;
+    background-size: 16.14933rem 3.49867rem; }
   .yh-center__tab .tab__layer--fixed {
     position: fixed;
     left: 0;
@@ -111,12 +111,12 @@ html, body {
     z-index: 100; }
   .yh-center__tab .tab__center {
     width: 15.14667rem;
-    height: 3.11467rem;
+    height: 2.47467rem;
     margin: 0 auto;
     position: relative; }
   .yh-center__tab .tab__list {
-    width: 12.56533rem;
-    height: 3.11467rem;
+    width: 15.06133rem;
+    height: 2.47467rem;
     position: relative;
     overflow: hidden; }
   .yh-center__tab .tab__ul {
@@ -125,9 +125,12 @@ html, body {
     left: 0;
     top: 0;
     z-index: 11; }
+  .yh-center__tab .tab__ul--transition {
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all; }
   .yh-center__tab .tab__li {
-    height: 3.11467rem;
-    padding: 0 0.53333rem 0 0.53333rem;
+    height: 2.47467rem;
+    padding: 0 0.68267rem 0 0.68267rem;
     display: inline-block;
     position: relative;
     float: left; }
@@ -139,7 +142,7 @@ html, body {
     .yh-center__tab .tab__li .bg {
       opacity: 0; }
     .yh-center__tab .tab__li .name {
-      line-height: 3.11467rem;
+      line-height: 2.47467rem;
       color: #8d85e6;
       font-size: 0.64rem;
       text-align: center; }
@@ -153,12 +156,21 @@ html, body {
       bottom: -1.06667rem;
       margin: 0 0 0 -0.33067rem;
       opacity: 0; }
+  .yh-center__tab .tab__shadow {
+    width: 0.85333rem;
+    height: 2.47467rem;
+    background: url("../images/tab-shadow-03.png") no-repeat right center;
+    background-size: 0.85333rem 2.47467rem;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 20; }
   .yh-center__tab .tab__li--active .bg {
     width: 100%;
-    height: 3.11467rem;
+    height: 2.47467rem;
     border-radius: 0.17067rem;
-    background: url("../images/tab-active.png") repeat-x 0 0;
-    background-size: 1px 3.09333rem;
+    background: url("../images/tab-active-02.png") repeat-x 0 0;
+    background-size: 1px 2.47467rem;
     position: absolute;
     left: 0;
     top: 0;
@@ -166,8 +178,6 @@ html, body {
     z-index: 1;
     opacity: 1; }
   .yh-center__tab .tab__li--active .name {
-    line-height: 1.55733rem;
-    padding: 0.32rem 0 0 0;
     color: #fff; }
   .yh-center__tab .tab__li--active .icon {
     bottom: 0.55467rem;
@@ -248,7 +258,7 @@ html, body {
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    background: url("../images/bullet.png") no-repeat center top;
+    background: url("../images/bullet-02.png") no-repeat center top;
     background-size: 100% 100%; }
   .yh-center__bullet .bullet__list {
     width: 10.45333rem;
@@ -954,6 +964,31 @@ html, body {
     background: url("../images/rich.png") no-repeat center top;
     background-size: 14.208rem 2.624rem;
     position: relative; }
+    .yh-center__rich .rich__title .rich__more {
+      width: 2.64533rem;
+      height: 0.85333rem;
+      line-height: 0.85333rem;
+      padding: 0 0.46933rem 0 0;
+      position: absolute;
+      right: 0;
+      bottom: 1.408rem;
+      font-size: 0.512rem;
+      color: #00ffa5;
+      text-align: right;
+      display: block;
+      text-decoration: none; }
+    .yh-center__rich .rich__title .rich__more:after {
+      width: 0;
+      height: 0;
+      content: "";
+      border-left: 0.21333rem solid #00ffa5;
+      border-top: 0.21333rem solid transparent;
+      border-bottom: 0.21333rem solid transparent;
+      position: absolute;
+      right: 0;
+      top: 0.17067rem; }
+    .yh-center__rich .rich__title .rich__more:hover {
+      text-decoration: none; }
     .yh-center__rich .rich__title .title__info {
       width: 100%;
       height: 0.78933rem;

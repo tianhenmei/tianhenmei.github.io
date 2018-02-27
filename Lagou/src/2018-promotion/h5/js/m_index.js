@@ -31,41 +31,81 @@ var app = new Vue({
             active_index:0,
             count:2,
             status:false,
+            click_status:false,
+            transition:true,
             list:[{
                 name:'超级雇主',
                 elem:'yh-center__employer',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:0
             },{
                 name:'名企首发',
                 elem:'yh-center__first',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:1
+            },{
+                name:'AI专场',
+                elem:'yh-center__ai',
+                offsetTop:0,
+                // initHeight:105+35+252+18+15-15,
+                height:0,
+                index:2
+            },{
+                name:'24Hour排行榜',
+                elem:'yh-center__popular',
+                offsetTop:0,
+                height:0,
+                index:3
             },{
                 name:'千万豪门',
                 elem:'yh-center__rich',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:4
             },{
                 name:'高薪必投',
                 elem:'yh-center__will',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:5
             },{
                 name:'热招风暴',
                 elem:'yh-center__storm',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:6
             },{
-                name:'AI狂热季',
-                elem:'yh-center__ai',
+                name:'工程师专场',
+                elem:'yh-center__special',
+                parent:[2],
+                top:105+35+252+18+15,
                 offsetTop:0,
-                height:0
+                height:0,
+                index:7
+            },{
+                name:'产品专场',
+                parent:[2],
+                top:105+35+252+18+15,
+                elem:'yh-center__special',
+                offsetTop:0,
+                height:0,
+                index:8
+            },{
+                name:'市场商业运营',
+                parent:[2],
+                elem:'yh-center__other',
+                top:105+35+252+18+15+102+16,
+                offsetTop:0,
+                height:0,
+                index:9
             },{
                 name:'人气精选',
                 elem:'yh-center__choice',
                 offsetTop:0,
-                height:0
+                height:0,
+                index:10
             }],
             unfoldStatus:false,
             unfold:[{
@@ -90,8 +130,8 @@ var app = new Vue({
                 last:true
             }],
             shadow_status:true,
-            initWidth:573,//589-26,
-            showWidth:573,//589-26,
+            initWidth:710,//573,//589-26,
+            showWidth:710,//573,//589-26,
             width:9999,
             left:0,
             start:{
@@ -2066,6 +2106,9 @@ var app = new Vue({
         getRemValue:function(value){
             return value / (750 / 16)
         },
+        getPX:function(value){
+            return value / (750 / 16) * this.fontSize
+        },
         getRem:function(n){
             return n/(750/16) +'rem'
         },
@@ -2129,6 +2172,7 @@ var app = new Vue({
             var touch = e.touches[0];
             this.tab.start.x = touch.clientX;
             this.tab.start.y = touch.clientY;
+            this.tab.transition = false;
         },
         tabMoveEvent:function(e){
             var touch = e.touches[0],
@@ -2152,18 +2196,27 @@ var app = new Vue({
         tabEndEvent:function(e){
             this.tab.start.x = 0;
             this.tab.start.y = 0;
+            this.tab.transition = true;
         },
         unfoldEvent:function(e){
             this.tab.unfoldStatus = !this.tab.unfoldStatus; 
         },
         tabClickEvent:function(index,e){
+            let self = this;
             this.tab.active_index = index;
-            if(!this.tab.status){
-                this.getTabHeight();
-                this.tab.offsetTop = this.$refs['yh-center__tab'].offsetTop;
+            this.tab.click_status = true;
+            if(this.tab.list[index].elem){
+                // if(!this.tab.status){
+                    this.getTabHeight();
+                    this.tab.offsetTop = this.$refs['yh-center__tab'].offsetTop;
+                // }
+                this.tab.height = this.$refs['yh-center__tab'].offsetHeight; // this.$refs['yh-center__tab-center'].offsetHeight;
+                $('html,body').animate({'scrollTop': (this.tab.list[index].offsetTop - this.tab.height)+ "px"},500,function(){
+                    self.tab.click_status = false;
+                });
+            }else{  // 跳页面
+                window.location.href = this.tab.list[index].href
             }
-            this.tab.height = this.$refs['yh-center__tab'].offsetHeight;
-            $('html,body').animate({'scrollTop': (this.tab.list[index].offsetTop - this.tab.height)+ "px"},500);
         },
         loadedJSCSS:function(){
             this.loadedCount++;
@@ -2456,14 +2509,37 @@ var app = new Vue({
         getTabHeight:function(){
             var list = this.tab.list,
                 elem = null,
+                parent = [],
+                height = 0,
+                top = 0,
                 status = false,
-                i = 0;
+                i = 0,j = 0;
             for(i = 0; i < list.length; i++){
-                elem = this.$refs[list[i].elem];
-                if(list[i].offsetTop != elem.offsetTop || list[i].height != elem.offsetHeight){
-                    this.tab.list[i].offsetTop = elem.offsetTop;
-                    this.tab.list[i].height = elem.offsetHeight;
-                    status = true
+                if(list[i].elem){
+                    elem = this.$refs[list[i].elem];
+                    top = 0;
+                    height = 0;
+                    if(list[i].parent){
+                        parent = list[i].parent;
+                        for(j = 0; j < parent.length; j++){
+                            top += this.tab.list[parent[j]].offsetTop;
+                            // height += this.tab.list[parent[j]].height;
+                        }
+                        // top += elem.offsetTop;
+                        top += this.getPX(list[i].top)
+                    }else{
+                        top += elem.offsetTop;
+                    }
+                    if(list[i].initHeight){
+                        height = this.getPX(list[i].initHeight);
+                    }else{
+                        height = elem.offsetHeight;
+                    }
+                    if(list[i].offsetTop != top || list[i].height != height){
+                        this.tab.list[i].offsetTop = top;
+                        this.tab.list[i].height = height;
+                        status = true
+                    }
                 }
             }
             if(!status) {
@@ -2471,20 +2547,27 @@ var app = new Vue({
             }
         },
         initWindowScrollEvent:function(){
-            var self = this;
+            var self = this,
+                min = this.getPX(58);
             self.getTabHeight();
             self.tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
-            self.tab.height = self.$refs['yh-center__tab'].offsetHeight;
+            self.tab.height = self.$refs['yh-center__tab-center'].offsetHeight;
             $(window).scroll(function() {
-                var scrollTop = $(window).scrollTop(),
-                    one = null,
-                    halfWidow = $(window).height() / 2,
-                    i = 0;
-                if(!self.tab.status){
-                    self.getTabHeight();
-                    self.tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
-                    self.tab.height = self.$refs['yh-center__tab'].offsetHeight;
+                if(self.tab.click_status){
+                    return
                 }
+                var tab = self.$refs['yh-center__tab'],
+                    scrollTop = $(window).scrollTop(),
+                    one = null,
+                    // halfWidow = tab.offsetHeight,//self.$refs['yh-center__tab-center'].offsetHeight,//$(window).height() / 8,
+                    halfWidow = $(window).height() / 4,
+                    left = 0,
+                    i = 0;
+                // if(!self.tab.status){
+                    self.getTabHeight();
+                    self.tab.offsetTop = tab.offsetTop;
+                    self.tab.height = tab.offsetHeight;//self.$refs['yh-center__tab-center'].offsetHeight;
+                // }
                 if(self.tab.offsetTop <= scrollTop){
                     self.tab.fixed = true;
                 }else{
@@ -2492,8 +2575,18 @@ var app = new Vue({
                 }
                 for (i = 0; i < self.tab.list.length; i++) {
                     one = self.tab.list[i];
-                    if ((one.offsetTop - halfWidow) <= scrollTop && (one.offsetTop + one.height - halfWidow) >= scrollTop) {
+                    // if (one.elem && (one.offsetTop - halfWidow + min) < scrollTop && (one.offsetTop + one.height - halfWidow - min) > scrollTop) {
+                    if (one.elem && (one.offsetTop - halfWidow) < scrollTop && (one.offsetTop + one.height - halfWidow) > scrollTop) {
                         self.tab.active_index = i;
+                        left = self.$refs['tab__li--'+i][0].offsetLeft;
+                        if(left >= (self.tab.width - self.tab.showWidth)){
+                            self.tab.left = -1 * (self.tab.width - self.tab.showWidth);
+                            self.tab.shadow_status = false;
+                        }else {
+                            self.tab.left = -1 * left;
+                            self.tab.shadow_status = true;
+                        }
+                        // 
                         break;
                     }
                 }

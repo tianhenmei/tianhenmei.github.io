@@ -89,7 +89,36 @@
         </div>
         <div class="yh-center__tab" ref="yh-center__tab">
             <div class="tab__layer" :class="{'tab__layer--fixed':tab.fixed}">
-                <div class="tab__center">
+                <div class="tab__center" ref="yh-center__tab-center">
+                    <div class="tab__list clearfix"
+                        ref="tab__list">
+                        <ul class="tab__ul clearfix"
+                            ref="tab"
+                            :style="{
+                                'width':tab.width+'px',
+                                'left':tab.left+'px'
+                            }"
+                            :class="{'tab__ul--transition':tab.transition}"
+                            @touchstart="tabStartEvent"
+                            @touchmove.prevent="tabMoveEvent"
+                            @touchend="tabEndEvent">
+                            <li v-for="(one,index) in tab.list"
+                                class="tab__li" 
+                                :class="'tab__li--'+index+(index == tab.active_index ? ' tab__li--active' : '')"
+                                :ref="'tab__li--'+index"
+                                @click="tabClickEvent(index,$event)"
+                                :data-lg-tj-id="countId" 
+                                :data-lg-tj-no="getCount(tab.count+index)" 
+                                :data-lg-tj-cid="null">
+                                <div class="bg"></div>
+                                <div class="name">{{one.name}}</div>
+                                <!-- <div class="icon"></div> -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab__shadow" :class="{'hide':!tab.shadow_status}"></div>
+                </div>
+                <!-- <div class="tab__center">
                     <div class="tab__list clearfix"
                         ref="tab__list">
                         <ul class="tab__ul clearfix"
@@ -132,7 +161,7 @@
                             <div class="more__icon"></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="yh-center__bullet">
@@ -154,7 +183,7 @@
                 <a class="bullet__more" :href="hot.href"></a>
             </div>
         </div>
-        <div class="yh-center__popular">
+        <div class="yh-center__popular" ref="yh-center__popular">
             <div class="popular__center">
                 <div class="popular__title">
                     <a class="popular__more" 
@@ -383,6 +412,10 @@
         <div class="yh-center__rich" ref="yh-center__rich">
             <div class="rich__center">
                 <div class="rich__title">
+                    <a class="rich__more" :href="first.href"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(rich.count)" 
+                        :data-lg-tj-cid="null">查看更多</a>
                     <div class="title__info">心心念念18W年薪小目标，总要找个实力靠山为你实现</div>
                 </div>
                 <div class="rich__content" id="rich__animation" ref="rich__animation">
@@ -563,7 +596,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="ai__special">
+                    <div class="ai__special" ref="yh-center__special">
                         <div class="special__top clearfix">
                             <a :href="ai.engineer" class="special__01 icon-02"
                                 :data-lg-tj-id="countId" 
@@ -574,7 +607,7 @@
                                 :data-lg-tj-no="getCount(ai.count+101)" 
                                 :data-lg-tj-cid="null"></a>
                         </div>
-                        <a :href="ai.other" class="special__03 icon-02"
+                        <a :href="ai.other" class="special__03 icon-02"  ref="yh-center__other"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(ai.count+102)" 
                             :data-lg-tj-cid="null"></a>
