@@ -149,7 +149,7 @@ var app = new Vue({
         },
         // 热招职位
         hot:{
-            href:"https://www.lagou.com",
+            href:"javascript:void(0);",
             status:false,
             list:[{
                 "type":1,//快报类型：1、查看简历；2、面试邀请；3、投递
