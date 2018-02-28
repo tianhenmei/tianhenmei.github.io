@@ -4,6 +4,7 @@ var app = new Vue({
     data:{
         fontSize:16,
         current_index:1,
+        p_value:200,
         list:[{
             title:'常用CSS3动画',
             animation:{
@@ -223,15 +224,8 @@ var app = new Vue({
                         en:'Z',
                         classname:'perspective100RotateY60'
                     }],
-                    other:  '<div class="container">'+
-                                '<div class="cube perspectiveOriginChange">'+
-                                    '<div class="face face-front">1</div>'+
-                                    '<div class="face face-back">2</div>'+
-                                    '<div class="face face-left">3</div>'+
-                                    '<div class="face face-right">4</div>'+
-                                    '<div class="face face-top">5</div>'+
-                                    '<div class="face face-bottom">6</div>'+
-                                '</div>'+
+                    other:  '<div class="per">'+
+                                '<div class="per-div">perspective:{{p_value}}px</div>'+
                             '</div>',
                     status:false
                 },{
@@ -277,6 +271,16 @@ var app = new Vue({
                                 '</div>'+
                                 '<div class="container">'+
                                     '<div class="cube" style="perspective-origin:right;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:center;">'+
                                         '<div class="face face-front">1</div>'+
                                         '<div class="face face-back">2</div>'+
                                         '<div class="face face-left">3</div>'+
@@ -334,6 +338,26 @@ var app = new Vue({
                                     '<div class="face face-right">4</div>'+
                                     '<div class="face face-top">5</div>'+
                                     '<div class="face face-bottom">6</div>'+
+                                '</div>'+
+                            '</div>',
+                    status:false
+                },{
+                    name:'transform-style',
+                    detail:'指定嵌套元素如何在3D空间中呈现。可能的值： flat  |   preserve-3d<br/>'+
+                            'flat: 默认值，表示所有子元素在2D平面呈现<br/>'+
+                            'preserve-3d： 表示所有子元素在3D空间中呈现<br/>',
+                    en:'rotate example-perspective',
+                    animate:[],
+                    other:  '<div class="wrapper clearfix">'+
+                                '<div class="spin">'+
+                                    '<div class="rotate-div">'+
+                                        '<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1519825090705&di=e31c97c0ba1e0af6506f6028cfa3ba2b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D5b1ac40baa8b87d6444fa35f6e704d54%2F58ee3d6d55fbb2fbab102e28444a20a44623dcd5.jpg" />'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="spin">'+
+                                    '<div class="rotate-div three-d">'+
+                                        '<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1519825090705&di=e31c97c0ba1e0af6506f6028cfa3ba2b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dpixel_huitu%252C0%252C0%252C294%252C40%2Fsign%3D5b1ac40baa8b87d6444fa35f6e704d54%2F58ee3d6d55fbb2fbab102e28444a20a44623dcd5.jpg" />'+
+                                    '</div>'+
                                 '</div>'+
                             '</div>',
                     status:false
