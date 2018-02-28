@@ -9,6 +9,7 @@ var app = new Vue({
         isAPP:false,
         isiPhone:false,
         testStatus:false,
+        partnerStatus:false,
         browserType:0,  // 浏览器类型
         loadedCount:0,  // js、css加载数量
         employerAnimation:{},
@@ -1963,6 +1964,8 @@ var app = new Vue({
     },
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
+        var frompartner = getQueryString('frompartner');
+        this.partnerStatus = frompartner ? true : false;
         this.isAPP = this.from == 'ios' || this.from == 'android'
         this.hot.duration = this.hot.list.length * 1.5
         this.browserType = this.getBrowserType()
