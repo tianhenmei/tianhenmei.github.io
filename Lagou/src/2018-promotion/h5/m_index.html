@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>2018全民升职记</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <link rel="stylesheet" href="https://www.lgstatic.com/topic/css/swiper.min.css"/>
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <script type="text/javascript">
         function getQueryString(parm){
@@ -167,12 +168,14 @@
         <div class="yh-center__bullet">
             <div class="bullet__center clearfix">
                 <div class="bullet__list">
-                    <ul class="bullet__ul bullet_move"
+                    <ul class="bullet__ul"
+                        :class="{'bullet_move':hot.status}"
                         :style="{
+                            height:getPX(hot.list.length * 2 * 86)+'px',
                             webkitAnimationDuration:hot.duration+'s',
                             animationDuration:hot.duration+'s'
                         }">
-                        <li v-for="(one,index) in hot.list.concat(hot.list)"
+                        <li v-for="(one,index) in hot.list"
                             class="bullet__li">
                             <div v-if="one.type == 1"><span class="green">{{one.companyShort}} HR</span> 刚查看  <span class="green">{{one.userName}}</span> 的简历</div>
                             <div v-else-if="one.type == 2"><span class="green">{{one.companyShort}}</span> 向  <span class="green">{{one.userName}}</span> 发出面试邀请</div>
@@ -237,6 +240,7 @@
                         <div v-for="(list,lindex) in leader.list"
                             class="leader__one">
                             <a class="logo" href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
+                                target="_blank"
                                 :data-lg-tj-id="countId" 
                                 :data-lg-tj-no="getCount(leader.count)" 
                                 :data-lg-tj-cid="list.companyId">
@@ -250,6 +254,7 @@
                                 <a class="one clearfix" 
                                     v-for="(one,index) in list.positionVo"
                                     href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                    target="_blank"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(list.count+lindex*10+index)" 
                                     :data-lg-tj-cid="one.positionId">
@@ -273,6 +278,47 @@
                     <div class="title__info">加入超级大公司，职场竞争力火速爆表，人脉关系瞬间开挂</div>
                 </div>
                 <div class="employer__layer">
+                    <!-- <div class="employer__content" ref="employer__animation" id="employer__animation">
+                        <swiper :options="swiperOption" class="employer__list clearfix" id="employer__animation-content">
+                            <swiper-slide v-for="(one,oindex) in employer.list"
+                                class="employer__one">
+                                <div class="employer__top clearfix">
+                                    <a class="logo" 
+                                        href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(employer.count+10+oindex*20)" 
+                                        :data-lg-tj-cid="one.companyId">
+                                        <img :src="setLogoHref(one.logo)" />
+                                    </a>
+                                    <div class="info">
+                                        <a class="info__name"
+                                            href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
+                                            :data-lg-tj-id="countId" 
+                                            :data-lg-tj-no="getCount(employer.count+11+oindex*20)" 
+                                            :data-lg-tj-cid="one.companyId">{{one.shortName}}</a>
+                                        <div class="info__detail">{{one.city}}  | {{one.financeStage}}</div>
+                                    </div>
+                                    <div class="intro">{{one.oneWord}}</div>
+                                </div>
+                                <div class="employer__label clearfix">
+                                    <span v-for="(one,iindex) in one.companyLabel">{{one}}</span>
+                                </div>
+                                <div class="employer__position">
+                                    <a class="one clearfix" 
+                                        v-for="(one,index) in one.positionVo"
+                                        href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
+                                        :data-lg-tj-cid="one.positionId">
+                                        <span class="position__name">{{one.positionName}}</span>
+                                        <span class="position__info">{{one.workYear}}{{one.education}}</span>
+                                        <span class="position__salary">{{one.salary}}</span>
+                                        <span class="position__icon">></span>
+                                    </a>
+                                </div>
+                            </swiper-slide>
+                        </swiper>
+                    </div> -->
                     <div class="employer__content" ref="employer__animation" id="employer__animation">
                         <div class="employer__list clearfix" id="employer__animation-content">
                             <div v-for="(one,oindex) in employer.list"
@@ -676,7 +722,7 @@
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(choice.count+100+i*20+index*5+2)" 
                                                 :data-lg-tj-cid="one.companyId">
-                                                {{one.companyName}}
+                                                {{one.shortName}}
                                             </a>
                                             <a class="company__info-position" 
                                                 href="javascript:void(0);" :onclick="positionHref.one+one.positionVo[0].positionId+positionHref.two"
@@ -707,6 +753,8 @@
     var jQuery = jQuery.noConflict();
 </script> -->
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
+<!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
+<script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
 <script type="text/javascript" src="js/m_index.js?v=$version$"></script>
 
 <!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
@@ -717,9 +765,9 @@
     var datas = {
         title: "2017年互联网职场竟然这么“难”",
         desc: "加班、心烦、买房难 ……8个数据告诉你2017互联网职场",
-        imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
-        activityType: '2017LEADERRESULT',
-        shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'
+        imgUrl: 'https://activity.lagou.com/activity/dist/2018-promotion/h5/images/share.png',
+        activityType: '2018PROMOTIONH5',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2018-promotion/h5/m_index.html'
     };
     share(datas);
     //app 分享

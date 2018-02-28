@@ -68,6 +68,9 @@ html, body {
     font-size: 16px;
     color: #fff;
     cursor: pointer; }
+  .animation .animation__list .one__detail {
+    font-size: 12px;
+    padding: 0 0 0 25px; }
   .animation .animation__list .one__animate {
     width: 210px;
     margin: 0 auto; }
@@ -209,6 +212,56 @@ html, body {
     border-radius: 50px;
     border: 10px solid #0f0;
     background: #ff0084; }
+  .animation .one__other .container {
+    width: 200px;
+    height: 200px;
+    margin: 50px auto 0; }
+    .animation .one__other .container .cube {
+      width: 100px;
+      height: 100px;
+      -webkit-backface-visibility: visible;
+              backface-visibility: visible;
+      -webkit-perspective: 250px;
+              perspective: 250px;
+      -webkit-perspective-origin: center;
+              perspective-origin: center;
+      -webkit-transform-style: preserve-3d;
+              transform-style: preserve-3d; }
+    .animation .one__other .container .face {
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      font-size: 30px;
+      color: #fff;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: rgba(255, 99, 71, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.5); }
+    .animation .one__other .container .face-front {
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px); }
+    .animation .one__other .container .face-back {
+      -webkit-transform: rotateY(180deg) translateZ(50px);
+              transform: rotateY(180deg) translateZ(50px); }
+    .animation .one__other .container .face-left {
+      -webkit-transform: rotateY(-90deg) translateZ(50px);
+              transform: rotateY(-90deg) translateZ(50px); }
+    .animation .one__other .container .face-right {
+      -webkit-transform: rotateY(90deg) translateZ(50px);
+              transform: rotateY(90deg) translateZ(50px); }
+    .animation .one__other .container .face-top {
+      -webkit-transform: rotateX(90deg) translateZ(50px);
+              transform: rotateX(90deg) translateZ(50px); }
+    .animation .one__other .container .face-bottom {
+      -webkit-transform: rotateX(-90deg) translateZ(50px);
+              transform: rotateX(-90deg) translateZ(50px); }
+  .animation .wrapper {
+    margin-top: -100px; }
+    .animation .wrapper .container {
+      float: left; }
 
 .opacityChangeIn {
   -webkit-animation: opacityChangeIn 1s 0.2s both linear;
@@ -588,6 +641,38 @@ html, body {
     -webkit-transform: translateY(300px);
             transform: translateY(300px); } }
 
+.perspectiveOriginChange {
+  -webkit-animation: perspectiveOriginChange 3s 0.2s both linear infinite;
+          animation: perspectiveOriginChange 3s 0.2s both linear infinite; }
+
+@-webkit-keyframes perspectiveOriginChange {
+  0%, 100% {
+    -webkit-perspective-origin: right bottom;
+            perspective-origin: right bottom; }
+  25% {
+    -webkit-perspective-origin: left bottom;
+            perspective-origin: left bottom; }
+  50% {
+    -webkit-perspective-origin: left top;
+            perspective-origin: left top; }
+  75% {
+    -webkit-perspective-origin: right top;
+            perspective-origin: right top; } }
+
+@keyframes perspectiveOriginChange {
+  0%, 100% {
+    -webkit-perspective-origin: right bottom;
+            perspective-origin: right bottom; }
+  25% {
+    -webkit-perspective-origin: left bottom;
+            perspective-origin: left bottom; }
+  50% {
+    -webkit-perspective-origin: left top;
+            perspective-origin: left top; }
+  75% {
+    -webkit-perspective-origin: right top;
+            perspective-origin: right top; } }
+
 .delay1-2 {
   -webkit-animation-delay: 1.2s;
           animation-delay: 1.2s; }
@@ -635,3 +720,11 @@ html, body {
 .origin0-0 {
   -webkit-transform-origin: 0 0;
           transform-origin: 0 0; }
+
+.rotateY {
+  -webkit-transform: rotateY(60deg);
+          transform: rotateY(60deg); }
+
+.perspective100RotateY60 {
+  -webkit-transform: perspective(100) rotateY(60deg);
+          transform: perspective(100) rotateY(60deg); }

@@ -1,10 +1,12 @@
 "use strict";
+// Vue.use(VueAwesomeSwiper)
 var app = new Vue({
     el:"#app",
     data:{
         countId:'1b2f',
         fontSize:16,
         from:'',
+        isAPP:false,
         isiPhone:false,
         testStatus:false,
         browserType:0,  // 浏览器类型
@@ -22,6 +24,12 @@ var app = new Vue({
         positionHref:{
             one:"self.location=\'https://www.lagou.com/center/job_",
             two:".html\';"
+        },
+        swiperOption: {
+            navigation: {
+                nextEl: '.employer__arrow--left',
+                prevEl: '.employer__arrow--right'
+            }
         },
         // tab 切换
         tab:{
@@ -142,6 +150,7 @@ var app = new Vue({
         // 热招职位
         hot:{
             href:"https://www.lagou.com",
+            status:false,
             list:[{
                 "type":1,//快报类型：1、查看简历；2、面试邀请；3、投递
                 "userName":"free1",
@@ -178,7 +187,7 @@ var app = new Vue({
         // 24 小时 热力排行榜
         popular:{
             count:100,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/activi/promotion2018/pages/h5/index.html#/hotRankH5",
             in:{
                 count:120,
                 list:[{
@@ -364,7 +373,8 @@ var app = new Vue({
         // 超级雇主
         employer:{
             count:210,
-            href:"https://www.lagou.com",
+            animateStatus:false,
+            href:"https://activity.lagou.com/topic/2018qmszjcjgz.html",
             list:[{
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/47/15/CgpFT1ll1HSAJd7KAABwVghAOK4012.png',
                 "companyId":147,
@@ -410,7 +420,7 @@ var app = new Vue({
         // 名企首发
         first:{
             count:600,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/activi/promotion2018/pages/h5/index.html#/firstreleaseposition",
             company:{
                 count:5000,
                 list:[{
@@ -657,7 +667,7 @@ var app = new Vue({
             },
             question:{
                 count:700,
-                href:'https://www.lagou.com',
+                href:'https://activity.lagou.com/activity/dist/interviewQA/m_index.html',
                 list:[{
                     ask:'你觉得钱是什么颜色？',
                     answer:'互联网名企面试题',
@@ -666,7 +676,7 @@ var app = new Vue({
             },
             recommend:{
                 count:750,
-                href:'https://www.lagou.com',
+                href:'https://activity.lagou.com/activi/promotion2018/pages/h5/index.html#/firstreleaseposition',
                 list:[{
                     guest:'ELLA',
                     companys:[
@@ -683,7 +693,7 @@ var app = new Vue({
         // 千万豪门
         rich:{
             count:7000,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/topic/2018qmszjqwhm.html",
             active_index:0,
             list:[
                 [{
@@ -1065,7 +1075,7 @@ var app = new Vue({
         // 高薪必投
         will:{
             count:1000,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/topic/2018qmszjgx.html",
             active_index:0,
             list:[
                 {   
@@ -1269,7 +1279,7 @@ var app = new Vue({
         // 热招风暴
         storm:{
             count:1100,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/topic/2018qmszjrz.html",
             active_index:0,
             list:[
                 {   
@@ -1367,10 +1377,10 @@ var app = new Vue({
         // AI狂热季
         ai:{
             count:1200,
-            href:"https://www.lagou.com",
-            engineer:"https://www.lagou.com",  // 工程师专场
-            product:"https://www.lagou.com",  // 产品专场
-            other:"https://www.lagou.com",  // 市场/商业化/运营专场
+            href:"https://activity.lagou.com/activity/dist/AI2018/h5/m_index.html",
+            engineer:"https://activity.lagou.com/topic/engineers1010.html",  // 工程师专场
+            product:"https://activity.lagou.com/topic/qmszjcpzc.html",  // 产品专场
+            other:"https://activity.lagou.com/topic/qmszjssy.html",  // 市场/商业化/运营专场
             list:[{
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 "companyId":147,
@@ -1500,7 +1510,7 @@ var app = new Vue({
         // 人气精选
         choice:{
             count:1310,
-            href:"https://www.lagou.com",
+            href:"https://activity.lagou.com/topic/2018qmszjrqjx.html",
             list:[{
                 logo:'https://www.lgstatic.com/thumbnail_300x300/i/image3/M00/16/6B/CgpOIFpzqwSAScO4AADvrDAWMAM49.jpeg',
                 "companyId":147,
@@ -1953,6 +1963,7 @@ var app = new Vue({
     },
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
+        this.isAPP = this.from == 'ios' || this.from == 'android'
         this.hot.duration = this.hot.list.length * 1.5
         this.browserType = this.getBrowserType()
 
@@ -1960,11 +1971,12 @@ var app = new Vue({
         this.tab.showWidth = this.getRemValue(this.tab.initWidth) * this.fontSize;
         this.setTabWidth();
 
-        this.addJSCSS();
+        // this.addJSCSS();
+        // this.loadedJSCSS();
         this.initWindowScrollEvent();
 
         // 热招快报
-        // this.getBulletData()
+        this.getBulletData()
         // 24小时热力排行榜 - 最In
         this.getPopularInData()
         // 24小时热力排行榜 - 极速响应
@@ -1992,14 +2004,18 @@ var app = new Vue({
     },
     methods:{
         setLogoHref:function(logo){
-            if(logo.indexOf('i/image') == 0 || 
-                logo.indexOf('image1') == 0 || 
-                logo.indexOf('image2') == 0){
-                return this.logoHref + logo
-            }else if(logo.indexOf('http') == 0){
-                return logo
-            }else {
-                return this.logoHrefO + logo
+            if(logo){
+                if(logo.indexOf('i/image') == 0 || 
+                    logo.indexOf('image1') == 0 || 
+                    logo.indexOf('image2') == 0){
+                    return this.logoHref + logo
+                }else if(logo.indexOf('http') == 0){
+                    return logo
+                }else {
+                    return this.logoHrefO + logo
+                }
+            }else{
+                return '';
             }
         },
         getCount:function(num){
@@ -2146,13 +2162,16 @@ var app = new Vue({
                     if(data.success){
                         callback(content)
                     }else {
-                        alert('出错啦～刷新重试～')
+                        console.log('出错啦～刷新重试～')
                     }
                 },
                 error:function(error){
                     console.log(error)
                 },
             })
+        },
+        isObject:function(e){
+            return e instanceof Object
         },
         /***********************************
          **  功能函数
@@ -2227,11 +2246,11 @@ var app = new Vue({
                 this.addRichAnimation();
                 this.addFirstAnimation();
                 this.addFirstGuestAnimation();
-                // if (movieElem.length > 0 && movieElem.attr('movie_type') == 'local') {
-                //     getMovie();
-                // }
-                // 添加轮播动画
-                // lunAnimation(browserType);
+                //if (movieElem.length > 0 && movieElem.attr('movie_type') == 'local') {
+                //    getMovie();
+                //}
+                //添加轮播动画
+                //lunAnimation(browserType);
             }
         },
         addEmployerAnimation:function(){
@@ -2595,12 +2614,20 @@ var app = new Vue({
         getBulletData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-express.json',function(data){
-                self.hot.list = data;
+                self.hot.list = data.concat(data);
+                self.hot.duration = self.hot.list.length * 1.5
+                self.$nextTick(function(){
+                    self.hot.status = true;
+                })
             })
         },
         getPopularInData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/app-most-delivery.json',function(data){
+            var self = this,
+                url = 'activityapi/smallActivity/most-delivery.json';
+            if(this.isAPP){
+                url = 'activityapi/smallActivity/app-most-delivery.json'
+            }
+            this.getAjaxData(url,function(data){
                 self.popular.in.list = data;
             },{
                 count:3
@@ -2615,7 +2642,9 @@ var app = new Vue({
                 url = 'activityapi/smallActivity/pc-deal-fast.json'
             }
             this.getAjaxData(url,function(data){
-                self.popular.quickest.list = data;
+                if(self.isObject(data)){
+                    self.popular.quickest.list = data;
+                }
             },{
                 count:3
             })
@@ -2649,6 +2678,9 @@ var app = new Vue({
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
                 self.employer.list = data;
+                self.$nextTick(function(){
+                    self.addEmployerAnimation();
+                })
             },{
                 templateId:'2018SuperEmployer',
                 positionCount:3
@@ -2657,7 +2689,12 @@ var app = new Vue({
         getFirstData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.first.company.list = data;
+                if(self.isObject(data)){
+                    self.first.company.list = data;
+                    self.$nextTick(function(){
+                        self.addFirstAnimation();
+                    })
+                }
             },{
                 templateId:'2018FamousFirst',
                 positionCount:1
@@ -2665,17 +2702,32 @@ var app = new Vue({
         },
         getFirstRecommendData:function(){
             var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.first.recommend.list = data;
+            this.getAjaxData('activityapi/smallActivity/query-bigCoffee.json',function(data){
+                // self.first.recommend.list = data;
+                console.log(data)
+                self.$nextTick(function(){
+                    self.addFirstGuestAnimation();
+                })
             },{
-                templateId:'2018BigCoffee',
+                // templateId:arr[0],
                 positionCount:0
             })
         },
         getRichData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.rich.list = data;
+                var length = data.length,
+                    num = 4,
+                    l = Math.ceil(length / num),
+                    list = [],
+                    i = 0;
+                for(i = 0; i < l; i++){
+                    list.push(data.slice(i*num,(i+1)*num))
+                }
+                self.rich.list = list;
+                self.$nextTick(function(){
+                    self.addRichAnimation();
+                })
             },{
                 templateId:'2018ThousandsWealthy',
                 positionCount:3
@@ -2704,7 +2756,9 @@ var app = new Vue({
         getAiData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.ai.list = data;
+                if(self.isObject(data)){
+                    self.ai.list = data;   
+                }
             },{
                 templateId:'2018AIPosition',
                 positionCount:1

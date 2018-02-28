@@ -384,7 +384,7 @@ html,body {
         background-size:100% 100%;
     }
     .bullet__list {
-        width:rem(490);
+        width:rem(546);// rem(490);
         height:rem(86);
         overflow:hidden;
         position:absolute;
@@ -392,16 +392,18 @@ html,body {
         top:rem(30);
     }
     .bullet__li {
-        width:rem(490);
+        width:rem(546);// rem(490);
         height:rem(86);
         line-height:rem(86);
         font-size:rem(24);
         color:#fff;
         text-align:center;
-        overflow:hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
         font-style:italic;
+        > div {
+            overflow:hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
         .green {
             color:#00ffa5;
         }
@@ -504,9 +506,13 @@ html,body {
         text-overflow: ellipsis;
         font-style:italic;
         .popular__li-a {
+            width:100%;
             color:#fff;
             display:block;
             text-decoration:none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         .popular__li-a:hover {
             text-decoration:none;
@@ -685,6 +691,7 @@ html,body {
         position:relative;
     }
     .employer__content {
+        // width:rem(839);
         width:rem(651);
         margin:0 auto;
         position:relative;
@@ -694,11 +701,15 @@ html,body {
         // width:rem(651);
         width:99999px;
         margin:0 auto;
+        // overflow:auto;
+    }
+    .employer__list .swiper-wrapper {
+        width:rem(651);
     }
     .employer__one {
         // width:rem(590);
         // height:rem(494);
-        width:rem(651);
+        width:rem(651);//!important;
         height:rem(542);
         box-sizing:border-box;
         border-radius:rem(10);
@@ -828,6 +839,7 @@ html,body {
         background-size:rem(256) rem(86);
         position:absolute;
         top:rem(242);
+        z-index: 10;
     }
     .employer__arrow--left {
         left:rem(-66);

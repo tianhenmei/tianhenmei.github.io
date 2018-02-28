@@ -205,18 +205,148 @@ var app = new Vue({
                     status:false
                 },{
                     name:'视距：perspective',
-                    en:'example-rotate',
+                    detail:'该属性会设置查看者的位置，并将可视内容映射到一个视锥上，继而投到一个2D视平面上。<br/>'+
+                            '可理解为视距，用来设置用户和元素3D空间Z平面之间的距离。<br/>'+
+                            '值越小，用户与3D空间Z平面距离越近，视觉效果更令人印象深刻；<br/>'+
+                            '反之，值越大，用户与3D控件Z平面距离越远，视觉效果就很小。<br/>'+
+                            '默认值：none，表示无限的角度来看3D物体，但看上去是平的<br/>'+
+                            '<length>接受一个长度单位大于0的值，单位不能为百分比。<br/>'+
+                            'perspective的值无穷大，或值为0时与取值为none效果一样。',
+                    en:'rotate example-perspective',
                     animate:[{
-                        en:'in',
-                        classname:'scaleChangeIn'
+                        en:'X',
+                        classname:''
                     },{
-                        en:'out',
-                        classname:'scaleChangeIn origin0-0'
+                        en:'Y',
+                        classname:'rotateY'
+                    },{
+                        en:'Z',
+                        classname:'perspective100RotateY60'
                     }],
+                    other:  '<div class="container">'+
+                                '<div class="cube perspectiveOriginChange">'+
+                                    '<div class="face face-front">1</div>'+
+                                    '<div class="face face-back">2</div>'+
+                                    '<div class="face face-left">3</div>'+
+                                    '<div class="face face-right">4</div>'+
+                                    '<div class="face face-top">5</div>'+
+                                    '<div class="face face-bottom">6</div>'+
+                                '</div>'+
+                            '</div>',
+                    status:false
+                },{
+                    name:'视距原点：perspective-origin',
+                    detail:'决定perspective属性的源点角度，实际上设置了X轴和Y轴位置。<br/>'+
+                            '可能的值： [percentage] | [length] | left(top) | center | right(bottom)<br/>'+
+                            '默认值：50% 50%；<br/>'+
+                            '<span style="font-weight:bold;">必须定义在父元素上，本身不做任何事情，它必须定义在设置了perspective属性的元素上</span><br/>'+
+                            '<a href="https://css-tricks.com/almanac/properties/p/perspective-origin/" target="_blank">可通过此了解</a><br/>'+
+                            '',
+                    en:'rotate example-perspective',
+                    animate:[],
+                    other:  '<div class="wrapper clearfix">'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:left top;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:top;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:top right;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:right;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:right bottom;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:bottom;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:bottom left;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="container">'+
+                                    '<div class="cube" style="perspective-origin:left;">'+
+                                        '<div class="face face-front">1</div>'+
+                                        '<div class="face face-back">2</div>'+
+                                        '<div class="face face-left">3</div>'+
+                                        '<div class="face face-right">4</div>'+
+                                        '<div class="face face-top">5</div>'+
+                                        '<div class="face face-bottom">6</div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="container">'+
+                                '<div class="cube perspectiveOriginChange">'+
+                                    '<div class="face face-front">1</div>'+
+                                    '<div class="face face-back">2</div>'+
+                                    '<div class="face face-left">3</div>'+
+                                    '<div class="face face-right">4</div>'+
+                                    '<div class="face face-top">5</div>'+
+                                    '<div class="face face-bottom">6</div>'+
+                                '</div>'+
+                            '</div>',
                     status:false
                 }]
             }
         }],
+        other_list:[{
+            title:'CSS3其他属性',
+            animation:{
+                active_index:-1,
+                list:[]
+            }
+        }]
     },
     mounted:function(){
         

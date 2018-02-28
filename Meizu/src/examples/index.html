@@ -18,10 +18,12 @@
                             :class="one.en+(one.status ? ' one--active' : '')">
                             <div class="one__name"
                                 @click.stop.prevent="changeAnimationStatus(one,index,pindex)">{{one.name}}</div>
+                            <div class="one__detail" v-show="one.status" v-html="one.detail"></div>
                             <div class="one__animate clearfix" v-show="one.status">
                                 <div v-for="a in one.animate"
                                     :class="a.en+' '+a.classname" v-html="a.content"></div>
                             </div>
+                            <div class="one__other" v-show="one.status" v-html="one.other"></div>
                         </li>
                     </ul>
                 </div>

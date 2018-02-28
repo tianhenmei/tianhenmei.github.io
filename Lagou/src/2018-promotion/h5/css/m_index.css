@@ -261,23 +261,24 @@ html, body {
     background: url("../images/bullet-02.png") no-repeat center top;
     background-size: 100% 100%; }
   .yh-center__bullet .bullet__list {
-    width: 10.45333rem;
+    width: 11.648rem;
     height: 1.83467rem;
     overflow: hidden;
     position: absolute;
     left: 3.17867rem;
     top: 0.64rem; }
   .yh-center__bullet .bullet__li {
-    width: 10.45333rem;
+    width: 11.648rem;
     height: 1.83467rem;
     line-height: 1.83467rem;
     font-size: 0.512rem;
     color: #fff;
     text-align: center;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     font-style: italic; }
+    .yh-center__bullet .bullet__li > div {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
     .yh-center__bullet .bullet__li .green {
       color: #00ffa5; }
   .yh-center__bullet .bullet__more {
@@ -366,9 +367,13 @@ html, body {
     text-overflow: ellipsis;
     font-style: italic; }
     .yh-center__popular .popular__li .popular__li-a {
+      width: 100%;
       color: #fff;
       display: block;
-      text-decoration: none; }
+      text-decoration: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; }
     .yh-center__popular .popular__li .popular__li-a:hover {
       text-decoration: none; }
     .yh-center__popular .popular__li .green {
@@ -523,6 +528,8 @@ html, body {
   .yh-center__employer .employer__list {
     width: 99999px;
     margin: 0 auto; }
+  .yh-center__employer .employer__list .swiper-wrapper {
+    width: 13.888rem; }
   .yh-center__employer .employer__one {
     width: 13.888rem;
     height: 11.56267rem;
@@ -634,7 +641,8 @@ html, body {
     background: url("../images/employer-arrow.png") no-repeat 0 0;
     background-size: 5.46133rem 1.83467rem;
     position: absolute;
-    top: 5.16267rem; }
+    top: 5.16267rem;
+    z-index: 10; }
   .yh-center__employer .employer__arrow--left {
     left: -1.408rem; }
   .yh-center__employer .employer__arrow--right {
