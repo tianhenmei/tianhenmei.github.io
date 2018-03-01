@@ -1,0 +1,27 @@
+.font-dpr(@fontSize){
+    font-size: @fontSize;
+
+    [data-dpr="2"] & {
+        font-size: @fontSize * 2;
+    }
+
+    [data-dpr="3"] & {
+        font-size: @fontSize * 3;
+    }
+
+    [data-dpr="4"] & {
+        font-size: @fontSize * 4;
+    }
+}
+
+.inline-middle(@height) {
+	height: @height;
+	line-height: @height * 1.125;
+}
+
+.one-line() {
+	width: 100%; 
+	text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

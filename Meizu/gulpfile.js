@@ -12,6 +12,7 @@ var Proxy = require('gulp-connect-proxy');
 var connect = require('gulp-connect');
 var reload = require('require-nocache')(module);
 var scss = require('gulp-sass');
+var less = require('gulp-less');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 var minifyImg = require('gulp-imagemin');
@@ -39,6 +40,7 @@ var srcJs = path.join(srcDir, '/**/*.js');
 var srcAll = path.join(srcDir, '/**/*');
 //var sourJs = path.join(srcDir, '/**/*[^(.min)].js');
 var srcScss = path.join(srcDir, '/**/*.scss');
+var srcLess = path.join(srcDir, '/**/*.less');
 
 var distPng = path.join(distDir, '/**/*.png');
 var distJpg = path.join(distDir, '/**/*.jpg');
@@ -65,7 +67,7 @@ params[type] = _.reduce(paramGroups, function(res, grp) {
 }, {});
 /*****************/
 
-gulp.task('dev', ['dev:scss', 'dev:watch', 'dev:reload', 'server']);
+gulp.task('dev', ['dev:scss','dev:less', 'dev:watch', 'dev:reload', 'server']);
 
 /** 初始化, 比如生成文件夹 **/
 gulp.task('dev:init', function() {
@@ -74,6 +76,7 @@ gulp.task('dev:init', function() {
 
     srcJs = path.join(srcDir, params.dev.dir || '.', '/**/*.js');
     srcScss = path.join(srcDir, params.dev.dir || '.', '/**/*.scss');
+    srcLess = path.join(srcDir, params.dev.dir || '.', '/**/*.less');
     srcAll = path.join(srcDir, params.dev.dir || '.', '/**/*');
     srcDir = path.join(srcDir, params.dev.dir || '');
 });
@@ -92,12 +95,25 @@ gulp.task('dev:scss', ['dev:init'], function(cb) {
             cb();
         });
 });
+/** 转译less文件 **/
+gulp.task('dev:less', ['dev:init'], function(cb) {
+    gulp.src(srcLess)
+        .pipe(less().on('error', gutil.log))
+        .pipe(rename({extname: '.css'}))
+        .pipe(gulp_autoprefixer())
+        // .pipe(postcss([autoprefixer()]))
+        //.pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest(srcDir))
+        .on('end', function() {
+            cb();
+        });
+});
 /***************/
 
 /** 自动刷新页面 **/
 gulp.task('dev:reload', ['dev:init'], function() {
-    gulp.src([srcAll, '!' + srcScss])
-        .pipe(watch([srcAll, '!' + srcScss]))
+    gulp.src([srcAll, '!' + srcScss,'!' + srcLess])
+        .pipe(watch([srcAll, '!' + srcScss,'!' + srcLess]))
         .pipe(connect.reload());
 
     gulp.src(mockJs)
@@ -202,6 +218,50 @@ gulp.task('dev:watch', ['dev:init'], function() {
             var paths = getPaths(absFilePath);
 
             del(paths.srcPath.replace('.scss', '.css'));
+        });
+    watch(srcLess)
+        .on('change', function(absFilePath) {
+            var paths = getPaths(absFilePath);
+            
+            gulp.src(paths.srcPath)
+                .pipe(less().on('error', gutil.log))
+                .pipe(rename({extname: '.css'}))
+                .pipe(gulp_autoprefixer())
+                // .pipe(postcss([autoprefixer()]))
+                //.pipe(cleanCSS({compatibility: 'ie8'}))
+                .pipe(gulp.dest(path.dirname(paths.srcPath)));
+            /*gulp.src(paths.srcPath)
+                .pipe(rename(function (path) {
+                    if(path.basename.indexOf('.min') == -1){
+                        path.basename += ".min";
+                    }
+                    path.extname = ".css";
+                }))
+                .pipe(cleanCSS({compatibility: 'ie8'}))
+                .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
+        })
+        .on('add', function(absFilePath) {
+            var paths = getPaths(absFilePath);
+
+            gulp.src(paths.srcPath)
+                .pipe(less().on('error', gutil.log))
+                .pipe(rename({extname: '.css'}))
+                .pipe(gulp_autoprefixer())
+                // .pipe(postcss([autoprefixer()]))
+                .pipe(gulp.dest(path.dirname(paths.srcPath)));
+            /*gulp.src(paths.srcPath)
+                .pipe(rename(function (path) {
+                    if(path.basename.indexOf('.min') == -1){
+                        path.basename += ".min";
+                    }
+                    path.extname = ".css"
+                }))
+                .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
+        })
+        .on('unlink', function(absFilePath) {
+            var paths = getPaths(absFilePath);
+
+            del(paths.srcPath.replace('.less', '.css'));
         });
 });
 
@@ -466,13 +526,14 @@ gulp.task('dist:copy', function(cb) {
     var targetDir = path.join(srcDir, params.dist && params.dist.dir || '.');
     var targetAll = path.join(targetDir, '/**/*.*');
     var targetScss = path.join(targetDir, '/**/*.scss');
+    var targetLess = path.join(targetDir, '/**/*.less');
 
     var targetDistDir = path.join(distDir, params.dist && params.dist.dir || '.');
     gulp.src([targetAll])
         .pipe(through2.obj(function(file, encoding, done) {
             var name = file.path.split('.'),
                 extname = name[name.length - 1];
-            if(extname != 'scss'){
+            if(extname != 'scss' && extname != 'less'){
                 this.push(file);
             }
             done();

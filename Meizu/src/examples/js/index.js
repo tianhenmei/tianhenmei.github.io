@@ -398,7 +398,11 @@ var app = new Vue({
     },
     methods:{
         changeIndex:function(pindex){
-            this.current_index = pindex
+            if(this.current_index == pindex){
+                this.current_index = -1
+            }else{
+                this.current_index = pindex
+            }   
         },
         changeAnimationStatus:function(one,index,pindex){
             var active_index = this.list[pindex].animation.active_index

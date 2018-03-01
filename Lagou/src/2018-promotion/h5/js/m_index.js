@@ -16,6 +16,7 @@ var app = new Vue({
         logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
         logoHrefO:'https://www.lgstatic.com/',
         oppo:{
+            id:'6927',
             href:"https://www.lagou.com"
         },
         companyHref:{
@@ -349,6 +350,7 @@ var app = new Vue({
         // 领先雇主
         leader:{
             count:150,
+            id:'6927',
             href:"https://www.lagou.com",
             list:[{
                 count:160,
@@ -693,43 +695,47 @@ var app = new Vue({
                 list:[{
                     guest:'倪正东',
                     companys:[
-                        'Face++',
-                        '爱奇艺AI',
-                        '爱奇艺AI'
+                        '京东商城',
+                        '饿了么',
+                        '美团点评',
+                        '滴滴出行'
                     ],
                     name:'倪正东',
                     leader:'images/first/nizhengdong.png',
-                    position:'创新工场董事长'
+                    position:'清科集团创始人、董事长'
                 },{
                     guest:'寿远',
                     companys:[
+                        '清科集团',
+                        '映客直播',
                         'Face++',
-                        '爱奇艺AI',
-                        '爱奇艺AI'
+                        '万向区块链'
                     ],
                     name:'寿远',
                     leader:'images/first/shouyuan.png',
-                    position:'创新工场董事长'
+                    position:'初橙资本CEO'
                 },{
                     guest:'李倩',
                     companys:[
-                        'Face++',
-                        '爱奇艺AI',
-                        '爱奇艺AI'
+                        '挖财',
+                        '蚂蚁金服',
+                        '众安保险',
+                        '高德地图'
                     ],
                     name:'李倩',
                     leader:'images/first/liqian.png',
-                    position:'创新工场董事长'
+                    position:'有情绪零食创始人'
                 },{
                     guest:'陈顺刚',
                     companys:[
-                        'Face++',
-                        '爱奇艺AI',
-                        '爱奇艺AI'
+                        'DJI大疆创新',
+                        '小电',
+                        '小叶子',
+                        'EasyStack'
                     ],
                     name:'陈顺刚',
                     leader:'images/first/chenshungang.png',
-                    position:'创新工场董事长'
+                    position:'人人都是产品经理COO'
                 }]
             }
         },
@@ -2659,6 +2665,12 @@ var app = new Vue({
         getBulletData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-express.json',function(data){
+                var i = 0,
+                    u = '';
+                for(i = 0; i < data.length; i++){
+                    u = data[i].userName;
+                    data[i].userName = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/.test(u[0]) ? u[0]+'**' : u.slice(0,2)+'***';//('***************'.slice(0,u.length - 1))
+                }
                 self.hot.list = data.concat(data);
                 self.hot.duration = self.hot.list.length * 1.5
                 self.$nextTick(function(){
@@ -2807,8 +2819,34 @@ var app = new Vue({
                 }
             },{
                 templateId:'2018AIPosition',
+                count:4,
                 positionCount:1
             })
+            // var self = this,
+            //     arr = ['深度学习','机器学习','图像处理','图像识别','语音识别','机器视觉','算法工程师','自然语言处理'],
+            //     length = arr.length;
+            // this.getAjaxData('activityapi/smallActivity/ai-position.json',function(data){
+            //     if(self.isObject(data)){
+            //         var col = 4,
+            //             i = 0,
+            //             num = [],
+            //             list = [],
+            //             l = data.length,
+            //             o = -1;
+            //         for(i = 0; i < l; i++){
+            //             num.push(i)
+            //         }
+            //         for(i = 0; i < col; i++){
+            //             o = Math.floor(Math.random() * num.length);
+            //             list.push(data[num[o]])
+            //             num.splice(o,1)
+            //         }
+            //         self.ai.list = list;   
+            //     }
+            // },{
+            //     position:arr[Math.floor(Math.random()*length)],
+            //     count:1
+            // })
         },
         getChoiceData:function(){
             var self = this;

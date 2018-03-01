@@ -83,10 +83,11 @@
         <div class="yh-center__banner">
             <div class="banner__title"></div>
             <div class="banner__lagou"></div>
-            <a class="banner__oppo" target="_blank" :href="oppo.href"
+            <a class="banner__oppo" href="javascript:void(0);" :onclick="companyHref.one+oppo.id+companyHref.two" 
+                target="_blank" 
                 :data-lg-tj-id="countId" 
                 data-lg-tj-no="0001" 
-                :data-lg-tj-cid="null"></a>
+                :data-lg-tj-cid="oppo.id"></a>
         </div>
         <div class="yh-center__tab" ref="yh-center__tab">
             <div class="tab__layer" :class="{'tab__layer--fixed':tab.fixed}">
@@ -267,10 +268,10 @@
                         </div>
                     </div>
                     <a class="leader__more" 
-                        :href="leader.href"
+                        href="javascript:void(0);" :onclick="companyHref.one+leader.id+companyHref.two" 
                         :data-lg-tj-id="countId" 
                         :data-lg-tj-no="getCount(leader.count)" 
-                        :data-lg-tj-cid="null">一键直达</a>
+                        :data-lg-tj-cid="leader.id">一键直达</a>
                 </div>
             </div>
         </div>

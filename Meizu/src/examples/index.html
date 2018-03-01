@@ -9,7 +9,8 @@
         <div id="app">
             <div class="animation">
                 <div class="animation__one"
-                    v-for="(al,pindex) in list">
+                    v-for="(al,pindex) in list"
+                    :style="pindex == current_index ? 'padding:0 0 500px 0;' : ''">
                     <div class="animation__title"
                         @click.stop.prevent="changeIndex(pindex)">{{al.title}}</div>
                     <ul class="animation__list" v-show="pindex == current_index">
@@ -19,7 +20,7 @@
                             <div class="one__name"
                                 @click.stop.prevent="changeAnimationStatus(one,index,pindex)">{{one.name}}</div>
                             <div class="one__detail" v-show="one.status" v-html="one.detail"></div>
-                            <div class="one__link" v-show="one.status && one.link">参考链接：<a :href="one.link" target="_blank">{{one.link}}</a>
+                            <div class="one__link" v-show="one.link && one.status">参考链接：<a :href="one.link" target="_blank">{{one.link}}</a></div>
                             <div class="one__animate clearfix" v-show="one.status">
                                 <div v-for="a in one.animate"
                                     :class="a.en+' '+a.classname" v-html="a.content"></div>
