@@ -1091,6 +1091,8 @@ html,body {
     .first__recommend {
         width:rem(360);
         height:rem(239);
+        padding:rem(28) 0 0 0;
+        margin:rem(-28) 0 0 0;
         overflow:hidden;
         position:relative;
         float:left;
@@ -1172,11 +1174,14 @@ html,body {
             top:rem(23);
         }
         .li__leader {
-            width:rem(168);
-            height:rem(219);
+            // width:rem(168);
+            // height:rem(219);
+            width:rem(213);
+            height:rem(229);
             position:absolute;
             right:0;
-            top:rem(-18);
+            // top:rem(-18);
+            top:rem(-28);
             img {
                 width:100%;
             }
@@ -2265,13 +2270,11 @@ html,body {
     }
 }
 .yh-center__partner {
-    width:100%;
-    height:rem(36);
-    line-height: rem(36);
-    margin:0 auto;
-    text-align:center;
-    font-size:rem(24);
-    color:#fff;
+    width:rem(473);
+    height:rem(27);
+    margin:rem(-32) auto rem(20) auto;
+    background:url('../images/partner.png') no-repeat center top;
+    background-size:rem(473) rem(27);
 }
 /***page-choice start***************************************************/
 .yh-center__logo {

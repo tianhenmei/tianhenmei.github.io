@@ -679,14 +679,44 @@ var app = new Vue({
                 count:750,
                 href:'https://activity.lagou.com/activi/promotion2018/pages/h5/index.html#/firstreleaseposition',
                 list:[{
-                    guest:'ELLA',
+                    guest:'倪正东',
                     companys:[
                         'Face++',
                         '爱奇艺AI',
                         '爱奇艺AI'
                     ],
-                    name:'李开复',
-                    leader:'images/first/ella.png',
+                    name:'倪正东',
+                    leader:'images/first/nizhengdong.png',
+                    position:'创新工场董事长'
+                },{
+                    guest:'寿远',
+                    companys:[
+                        'Face++',
+                        '爱奇艺AI',
+                        '爱奇艺AI'
+                    ],
+                    name:'寿远',
+                    leader:'images/first/shouyuan.png',
+                    position:'创新工场董事长'
+                },{
+                    guest:'李倩',
+                    companys:[
+                        'Face++',
+                        '爱奇艺AI',
+                        '爱奇艺AI'
+                    ],
+                    name:'李倩',
+                    leader:'images/first/liqian.png',
+                    position:'创新工场董事长'
+                },{
+                    guest:'陈顺刚',
+                    companys:[
+                        'Face++',
+                        '爱奇艺AI',
+                        '爱奇艺AI'
+                    ],
+                    name:'陈顺刚',
+                    leader:'images/first/chenshungang.png',
                     position:'创新工场董事长'
                 }]
             }
@@ -2705,16 +2735,17 @@ var app = new Vue({
         },
         getFirstRecommendData:function(){
             var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-bigCoffee.json',function(data){
-                // self.first.recommend.list = data;
-                console.log(data)
-                self.$nextTick(function(){
-                    self.addFirstGuestAnimation();
-                })
-            },{
-                // templateId:arr[0],
-                positionCount:0
-            })
+            self.addFirstGuestAnimation();
+            // this.getAjaxData('activityapi/smallActivity/query-bigCoffee.json',function(data){
+            //     // self.first.recommend.list = data;
+            //     console.log(data)
+            //     self.$nextTick(function(){
+            //         self.addFirstGuestAnimation();
+            //     })
+            // },{
+            //     // templateId:arr[0],
+            //     positionCount:0
+            // })
         },
         getRichData:function(){
             var self = this;
