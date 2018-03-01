@@ -41,6 +41,9 @@ html,body {
 
 .animation {
     width:100%;
+    .animation__one {
+        padding:0 0 500px 0;
+    }
     .animation__title {
         line-height:36px;
         padding:0 0 0 10px;
@@ -285,6 +288,20 @@ html,body {
             background:#ff0084;
         }
     }
+    .animation__list .example-steps {
+        .one__animate {
+            width:410px;
+            height:250px;
+            border:1px solid #ff0084;
+        }
+        .same {
+            width:100px;
+            padding:0 0 10px 0;
+            img {
+                width:100px;
+            }
+        }
+     }
     .one__other .container{
         width:200px;
         height:200px;
@@ -359,6 +376,38 @@ html,body {
                 transform:rotateY(360deg)   
             }   
         }  
+    }
+    .per1 {
+        width:100px;
+        height:100px;
+        margin:20px auto;
+        perspective:200px;
+        .per-div {
+            width:100px;
+            height:100px;
+            background:#0f0;
+            transform:translateZ(50px);
+        }
+    }
+    .per {
+        width:330px;
+        height:100px;
+        padding:0 0 0 10px;
+        margin: 0 auto;
+        perspective:200px;
+        transition:all 1.5s;
+        .per-div {
+            width:100px;
+            height:100px;
+            margin:0 10px 0 0;
+            background:#ff0084;
+            // transform:translateZ(50px);
+            transform:rotateY(95deg);
+            float:left;
+        }
+    }
+    .per:hover {
+        perspective:5px;
     }
 }
 
@@ -618,6 +667,20 @@ html,body {
     25% {perspective-origin: left bottom; }
     50% {perspective-origin: left top; }
     75% {perspective-origin: right top; }
+}
+.s-start {
+    animation:stepAnimation 5s 0.2s steps(5,start) both infinite;
+}
+.s-end {
+    animation:stepAnimation 5s 0.2s steps(5,end) both infinite;
+}
+@keyframes stepAnimation{
+    0% { transform:translateX(0);}
+    // 20% { transform:translateX(80px);}
+    // 40% { transform:translateX(160px);}
+    // 60% { transform:translateX(240px);}
+    // 80% { transform:translateX(320px);}
+    100% { transform:translateX(400px);}
 }
 .delay1-2 {
     animation-delay:1.2s;

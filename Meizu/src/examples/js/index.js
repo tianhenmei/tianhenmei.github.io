@@ -175,11 +175,27 @@ var app = new Vue({
                     status:false
                 },{
                     name:'动画时间曲线: animation-timing-function:cubic-bezier',
+                    link:'http://web.chacuo.net/css3beziertool',
                     en:'example-cubic-bezier',
                     animate:[{
                         en:'',
                         classname:'move-x',
                         content:'<div class="same cubic-bezier-move"></div>'
+                    }],
+                    status:false
+                },{
+                    name:'动画时间曲线: animation-timing-function:steps()',
+                    detail: '允许我们将动画或者过渡分割成段，而不是从一种状态持续到另一种状态的过渡<br/>'+
+                            '这个函数有两个参数——第一个参数是一个正值，指定我们希望动画分割的段数。<br/>'+
+                            'Steps(number_of_steps，direction)<br/>'+
+                            '第二个参数定义了这个要点 在我们的@keyframes中申明的动作将会发生的关键。这个值是可选的，在没有传递参数时，默认为”end”。方向为”start”表示一个左--持续函数，在动画开始时，动画的第一段将会马上完成。以左侧端点为起点，立即跳到第一个step的结尾处。它会立即跳到第一段的结束并且保持这样的状态直到第一步的持续时间结束。后面的每一帧都将按照此模式来完成动画。<br/>'+
+                            '方向为”end”表示一个右--持续函数。动画执行时，在每一帧里，动画保持当前状态直到这一段的持续时间完成，才会跳到下一步的起点，后面的每一帧都按照这个模式来进行，在最后一帧的起点，等到这一帧的持续时间结束，整个动画的执行也已经结束，执行动画的元素来不及跳到这一帧的终点，直接回到了整个动画起点，开始了第二次动画。每个选择本质上从一个不同的面移动这个元素并且将产生一个不同的位置在这个相同的动画里。',
+                    en:'example-steps',
+                    animate:[{
+                        en:'',
+                        classname:'',
+                        content:'<div class="same s-start"><img src="http://pic.58pic.com/58pic/13/20/61/89B58PIC5Nz_1024.jpg" /></div>'+
+                                '<div class="same s-end"><img src="http://pic.58pic.com/58pic/13/20/61/89B58PIC5Nz_1024.jpg" /></div>',
                     }],
                     status:false
                 },{
@@ -224,8 +240,13 @@ var app = new Vue({
                         en:'Z',
                         classname:'perspective100RotateY60'
                     }],
-                    other:  '<div class="per">'+
-                                '<div class="per-div">perspective:{{p_value}}px</div>'+
+                    other:  '<div class="per1">'+
+                                '<div class="per-div"></div>'+
+                            '</div>'+
+                            '<div class="per clearfix">'+
+                                '<div class="per-div"></div>'+
+                                '<div class="per-div"></div>'+
+                                '<div class="per-div"></div>'+
                             '</div>',
                     status:false
                 },{

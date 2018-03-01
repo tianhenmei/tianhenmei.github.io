@@ -19,6 +19,7 @@
                             <div class="one__name"
                                 @click.stop.prevent="changeAnimationStatus(one,index,pindex)">{{one.name}}</div>
                             <div class="one__detail" v-show="one.status" v-html="one.detail"></div>
+                            <div class="one__link" v-show="one.status && one.link">参考链接：<a :href="one.link" target="_blank">{{one.link}}</a>
                             <div class="one__animate clearfix" v-show="one.status">
                                 <div v-for="a in one.animate"
                                     :class="a.en+' '+a.classname" v-html="a.content"></div>

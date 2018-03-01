@@ -13,8 +13,8 @@ var app = new Vue({
         browserType:0,  // 浏览器类型
         loadedCount:0,  // js、css加载数量
         employerAnimation:{},
-        logoHref:'http://www.lgstatic.com/thumbnail_100x100/',
-        logoHrefO:'http://www.lgstatic.com/',
+        logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
+        logoHrefO:'https://www.lgstatic.com/',
         oppo:{
             href:"https://www.lagou.com"
         },
@@ -196,28 +196,34 @@ var app = new Vue({
                     "companyName":"贵州四方鼎立咨询服务有限公司",
                     "logo":"image1/M00/00/04/CgYXBlTUV_6AG-L8AAB2-ox3Ikg157.jpg",
                     "shortName":"移折通",
-                    "positionId":112547,
-                    "positionName":"产品运营总监",
                     "oneWord":"最牛的公司",
-                    "salary":"15k-30k"
+                    positionVo:[{
+                        "positionId":112547,
+                        "positionName":"产品运营总监",
+                        "salary":"15k-30k",
+                    }]
                 },{
                     "companyId":18725,
                     "companyName":"齐分享（上海）纺织科技有限公司",
                     "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
                     "shortName":"齐分享",
-                    "positionId":93411,
-                    "positionName":"运营总监",
                     "oneWord":"钱最多的公司",
-                    "salary":"15k-25k"
+                    positionVo:[{
+                        "positionId":93411,
+                        "positionName":"运营总监",
+                        "salary":"15k-25k",
+                    }]
                 },{
                     "companyId":18725,
                     "companyName":"齐分享（上海）纺织科技有限公司",
                     "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
                     "shortName":"齐分享",
-                    "positionId":93411,
-                    "positionName":"运营总监",
                     "oneWord":"钱最多的公司",
-                    "salary":"15k-25k"
+                    positionVo:[{
+                        "positionId":93411,
+                        "positionName":"运营总监",
+                        "salary":"15k-25k",
+                    }]
                 }]
             },
             quickest:{
@@ -227,28 +233,34 @@ var app = new Vue({
                     "companyName":"贵州四方鼎立咨询服务有限公司",
                     "logo":"image1/M00/00/04/CgYXBlTUV_6AG-L8AAB2-ox3Ikg157.jpg",
                     "shortName":"移折通",
-                    "positionId":112547,
-                    "positionName":"产品运营总监",
                     "oneWord":"最牛的公司",
-                    "salary":"15k-30k"
+                    positionVo:[{
+                        "positionId":112547,
+                        "positionName":"产品运营总监",
+                        "salary":"15k-30k",
+                    }]
                 },{
                     "companyId":18725,
                     "companyName":"齐分享（上海）纺织科技有限公司",
                     "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
                     "shortName":"齐分享",
-                    "positionId":93411,
-                    "positionName":"运营总监",
                     "oneWord":"钱最多的公司",
-                    "salary":"15k-25k"
+                    positionVo:[{
+                        "positionId":93411,
+                        "positionName":"运营总监",
+                        "salary":"15k-25k",
+                    }]
                 },{
                     "companyId":18725,
                     "companyName":"齐分享（上海）纺织科技有限公司",
                     "logo":"image1/M00/00/23/CgYXBlTUWHiALBkvAAClxZtES4I255.jpg",
                     "shortName":"齐分享",
-                    "positionId":93411,
-                    "positionName":"运营总监",
                     "oneWord":"钱最多的公司",
-                    "salary":"15k-25k"
+                    positionVo:[{
+                        "positionId":93411,
+                        "positionName":"运营总监",
+                        "salary":"15k-25k",
+                    }]
                 }]
             },
             most:{

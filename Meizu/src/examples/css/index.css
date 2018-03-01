@@ -38,6 +38,8 @@ html, body {
 
 .animation {
   width: 100%; }
+  .animation .animation__one {
+    padding: 0 0 500px 0; }
   .animation .animation__title {
     line-height: 36px;
     padding: 0 0 0 10px;
@@ -213,6 +215,15 @@ html, body {
     border-radius: 50px;
     border: 10px solid #0f0;
     background: #ff0084; }
+  .animation .animation__list .example-steps .one__animate {
+    width: 410px;
+    height: 250px;
+    border: 1px solid #ff0084; }
+  .animation .animation__list .example-steps .same {
+    width: 100px;
+    padding: 0 0 10px 0; }
+    .animation .animation__list .example-steps .same img {
+      width: 100px; }
   .animation .one__other .container {
     width: 200px;
     height: 200px;
@@ -308,6 +319,38 @@ html, body {
   100% {
     -webkit-transform: rotateY(360deg);
             transform: rotateY(360deg); } }
+  .animation .per1 {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    -webkit-perspective: 200px;
+            perspective: 200px; }
+    .animation .per1 .per-div {
+      width: 100px;
+      height: 100px;
+      background: #0f0;
+      -webkit-transform: translateZ(50px);
+              transform: translateZ(50px); }
+  .animation .per {
+    width: 330px;
+    height: 100px;
+    padding: 0 0 0 10px;
+    margin: 0 auto;
+    -webkit-perspective: 200px;
+            perspective: 200px;
+    -webkit-transition: all 1.5s;
+    transition: all 1.5s; }
+    .animation .per .per-div {
+      width: 100px;
+      height: 100px;
+      margin: 0 10px 0 0;
+      background: #ff0084;
+      -webkit-transform: rotateY(95deg);
+              transform: rotateY(95deg);
+      float: left; }
+  .animation .per:hover {
+    -webkit-perspective: 5px;
+            perspective: 5px; }
 
 .opacityChangeIn {
   -webkit-animation: opacityChangeIn 1s 0.2s both linear;
@@ -718,6 +761,30 @@ html, body {
   75% {
     -webkit-perspective-origin: right top;
             perspective-origin: right top; } }
+
+.s-start {
+  -webkit-animation: stepAnimation 5s 0.2s steps(5, start) both infinite;
+          animation: stepAnimation 5s 0.2s steps(5, start) both infinite; }
+
+.s-end {
+  -webkit-animation: stepAnimation 5s 0.2s steps(5, end) both infinite;
+          animation: stepAnimation 5s 0.2s steps(5, end) both infinite; }
+
+@-webkit-keyframes stepAnimation {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  100% {
+    -webkit-transform: translateX(400px);
+            transform: translateX(400px); } }
+
+@keyframes stepAnimation {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0); }
+  100% {
+    -webkit-transform: translateX(400px);
+            transform: translateX(400px); } }
 
 .delay1-2 {
   -webkit-animation-delay: 1.2s;

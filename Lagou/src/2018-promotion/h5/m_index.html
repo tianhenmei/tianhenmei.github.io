@@ -200,22 +200,24 @@
                         <div class="list__title">最In</div>
                         <ul class="popular__ul">
                             <li v-for="(one,index) in popular.in.list"
+                                v-if="index < 3"
                                 class="popular__li">
-                                <a href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two" class="popular__li-a"
+                                <a href="javascript:void(0);" :onclick="positionHref.one+one.positionVo[0].positionId+positionHref.two" class="popular__li-a"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(popular.in.count+index)" 
-                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.positionName}}</a></li>
+                                    :data-lg-tj-cid="one.positionVo[0].positionId">{{index+1}}.{{one.positionVo[0].positionName}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--1">
                         <div class="list__title">最极速响应</div>
                         <ul class="popular__ul">
                             <li v-for="(one,index) in popular.quickest.list"
+                                v-if="index < 3"
                                 class="popular__li">
-                                <a href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two" class="popular__li-a"
+                                <a href="javascript:void(0);" :onclick="positionHref.one+one.positionVo[0].positionId+positionHref.two" class="popular__li-a"
                                     :data-lg-tj-id="countId" 
                                     :data-lg-tj-no="getCount(popular.quickest.count+index)" 
-                                    :data-lg-tj-cid="one.positionId">{{index+1}}.{{one.positionName}}</a></li>
+                                    :data-lg-tj-cid="one.positionVo[0].positionId">{{index+1}}.{{one.positionVo[0].positionName}}</a></li>
                         </ul>
                     </div>
                     <div class="popular__list clearfix popular__list--2">
@@ -749,27 +751,26 @@
         <div class="yh-center__mask" :class="{'hide':!tab.unfoldStatus}"></div>
     </div>
 </div>
-<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
 <!-- <script type="text/javascript">
     var jQuery = jQuery.noConflict();
 </script> -->
-<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
 <!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
 <script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
 <script type="text/javascript" src="js/m_index.js?v=$version$"></script>
 
 <!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
- <script type="text/javascript" src="../../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
 <script type="text/javascript">
     //微信分享
     var datas = {
         title: "你现在的薪水啥样，心里没点数？",
         desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
-        imgUrl: './images/share.png',
+        imgUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/images/share-2.png',
         activityType: '2018PROMOTIONH5',
-        // shareUrl: 'https://activity.lagou.com/activity/dist/2018-promotion/h5/m_index.html'
-        shareUrl:'http://tianhenmei.github.io/Lagou/src/2018-promotion/h5/m_index.html'
+        shareUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/m_index.html'
     };
     share(datas);
     //app 分享
