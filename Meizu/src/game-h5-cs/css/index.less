@@ -26,7 +26,7 @@ li {
 }
 
 .none {
-	// display: none !important;
+	display: none !important;
 }
 
 .tap {
@@ -97,6 +97,19 @@ li {
 	font-weight: 500;
 	color: #000;
 }
+.action-list li .hr:after {
+	display:none;
+}
+.action-list li:after {
+	content:"";
+	width:8.777778rem;  // 948px
+	height:1px;
+	position:absolute;
+	left:50%;
+	bottom:0;
+	margin:0 0 0 -4.388889rem; //0 0 0 -474px;  
+	background:#e5e5e5;
+}
 
 .action-list h1 {
 	display: flex;
@@ -111,13 +124,13 @@ li {
 }
 
 .my-problems, .online-cs {
-	background: transparent url(../images/mine.png?__inline) no-repeat;
+	background: transparent url(../images/mine-2.png?__inline) no-repeat;
 	background-size: 0.722222rem 0.722222rem;
 	background-position: 0.703704rem center; 
 }
 
 .online-cs {
-	background-image: url(../images/online.png?__inline);
+	background-image: url(../images/online-2.png?__inline);
 }
 
 .my-problem-item {

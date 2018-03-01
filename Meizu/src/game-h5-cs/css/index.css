@@ -148,6 +148,9 @@ body {
 li {
   list-style: none;
 }
+.none {
+  display: none !important;
+}
 .tap {
   position: relative;
 }
@@ -201,6 +204,19 @@ li {
   font-weight: 500;
   color: #000;
 }
+.action-list li .hr:after {
+  display: none;
+}
+.action-list li:after {
+  content: "";
+  width: 8.777778rem;
+  height: 1px;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin: 0 0 0 -4.388889rem;
+  background: #e5e5e5;
+}
 .action-list h1 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -219,12 +235,12 @@ li {
 }
 .my-problems,
 .online-cs {
-  background: transparent url(../images/mine.png?__inline) no-repeat;
+  background: transparent url(../images/mine-2.png?__inline) no-repeat;
   background-size: 0.722222rem 0.722222rem;
   background-position: 0.703704rem center;
 }
 .online-cs {
-  background-image: url(../images/online.png?__inline);
+  background-image: url(../images/online-2.png?__inline);
 }
 .my-problem-item {
   position: relative;
