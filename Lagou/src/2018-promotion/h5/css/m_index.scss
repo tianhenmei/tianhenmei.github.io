@@ -1204,18 +1204,28 @@ html,body {
             text-align:left;
         }
         .li__position {
-            width:rem(209);
+            width:rem(309);
             height:rem(32);
-            line-height:rem(32);
             padding:0 rem(26) 0 0;
             background:url('../images/first-recommend-position-bg.png') no-repeat right top;
-            background-size:100% 100%;
+            background-size:rem(241) rem(32);
             position:absolute;
             right:rem(2);
             bottom:rem(-14);
-            font-size:rem(20);
+            
+        }
+        .li__position-div {
+            width:100%;
+            height:rem(32);
+            line-height:rem(32);
+            font-size:rem(24);
             color:#fff;
             text-align:right;
+            -webkit-transform-origin:100% 50%;
+            transform-origin:100% 50%;
+            -webkit-transform:scale3d(0.83,0.83,0.83);
+            transform:scale3d(0.83,0.83,0.83);
+            float:right;
         }
     }
 }
