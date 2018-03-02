@@ -797,7 +797,7 @@ html, body {
       width: 2.13333rem;
       padding: 0 0.21333rem 0 0; }
     .yh-center__first .company__li .company__info .position__salary {
-      width: 2.26133rem; }
+      width: 2.56rem; }
   .yh-center__first .first__bottom {
     width: 15.38133rem;
     padding: 0.59733rem 0 0 0; }
@@ -821,11 +821,15 @@ html, body {
         color: #fff;
         font-style: italic; }
       .yh-center__first .question__li .li__layer .li__ask {
+        width: 7.27467rem;
         line-height: 1.04533rem;
         padding: 0.832rem 0 0 0.61867rem;
         text-align: left;
         font-weight: bold;
-        position: relative; }
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap; }
       .yh-center__first .question__li .li__layer .li__ask:before {
         content: "";
         width: 0.29867rem;

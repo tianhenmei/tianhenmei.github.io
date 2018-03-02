@@ -2731,9 +2731,25 @@ var app = new Vue({
                 positionCount:3
             })
         },
+        cutString:function(str,num){
+            str = str ? str : ''
+            var str2 = str.replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,"çç"),
+                result = '';
+            if (str2.length > num){
+                var length = str2.slice(0,num).replace(/çç/g,'ç').length;
+                result = str.slice(0,length)+'...';
+            }else {
+                result = str;
+            }
+            return result;
+        },
         getEmployerData:function(){
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
+                var i = 0;
+                for(i = 0; i < data.length; i++){
+                    data[i].oneWord = self.cutString(data[i].oneWord,34);
+                }
                 self.employer.list = data;
                 self.$nextTick(function(){
                     self.addEmployerAnimation();
@@ -2747,6 +2763,10 @@ var app = new Vue({
             var self = this;
             this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
                 if(self.isObject(data)){
+                    var i = 0;
+                    for(i = 0; i < data.length; i++){
+                        data[i].oneWord = self.cutString(data[i].oneWord,80);
+                    }
                     self.first.company.list = data;
                     self.$nextTick(function(){
                         self.addFirstAnimation();

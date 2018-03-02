@@ -1021,7 +1021,7 @@ html,body {
                 padding:0 rem(10) 0 0;
             }
             .position__salary {
-                width:rem(106);
+                width:rem(120);
             }
         }
     }
@@ -1051,11 +1051,15 @@ html,body {
                 font-style:italic;
             }
             .li__ask {
+                width:rem(341);
                 line-height:rem(49);
                 padding:rem(39) 0 0 rem(29);
                 text-align:left;
                 font-weight:bold;
                 position:relative;
+                overflow:hidden;
+                text-overflow:ellipsis;
+                white-space:nowrap;
             }
             .li__ask:before {
                 content:"";
