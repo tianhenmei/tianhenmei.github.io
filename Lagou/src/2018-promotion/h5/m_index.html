@@ -79,7 +79,7 @@
 </head>
 <body>
 <div id="app">
-    <div clsss="yh-center">
+    <div clsss="yh-center" :class="{'yh-center--bottom':floating.status}">
         <div class="yh-center__banner">
             <div class="banner__title"></div>
             <div class="banner__lagou"></div>
@@ -748,6 +748,20 @@
             </div>
         </div>
         <div class="yh-center__partner" v-show="partnerStatus"></div>
+        <div class="yh-center__floating" v-show="floating.status">
+            <a class="push_bottom_download" 
+                href="http://a.app.qq.com/o/simple.jsp?pkgname=com.alpha.lagouapk&amp;ckey=CK1337790743204" 
+                target="_blank" 
+                :data-lg-tj-id="countId" 
+                :data-lg-tj-no="floating.count" 
+                data-lg-tj-cid="idnull">
+                <div class="floating__bg"></div>
+                <div class="floating__info"></div>
+                <div class="floating__one"></div>
+                <div class="floating__close" @click.stop.prevent="floatingCloseEvent"></div>
+                <div class="floating__button"></div>
+            </a>
+        </div>
         <div class="yh-center__logo icon-02"></div>
         <div class="yh-center__mask" :class="{'hide':!tab.unfoldStatus}"></div>
     </div>
@@ -768,7 +782,7 @@
     //微信分享
     var datas = {
         title: "你现在的薪水啥样，心里没点数？",
-        desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
+        desc: "平均年薪15W起，实现小目标！腾讯/京东等大厂职位首发，全民升职季来袭！",
         imgUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/images/share-2.png',
         activityType: '2018PROMOTIONH5',
         shareUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/m_index.html'

@@ -2009,12 +2009,19 @@ var app = new Vue({
                 }]
             }]
         },
+        floating:{
+            count:'f000',
+            status:false,
+        },
     },
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         var frompartner = getQueryString('frompartner');
         this.partnerStatus = frompartner ? true : false;
         this.isAPP = this.from == 'ios' || this.from == 'android'
+        if(!this.isAPP){
+            this.floating.status = true;
+        }
         this.hot.duration = this.hot.list.length * 1.5
         this.browserType = this.getBrowserType()
 
@@ -2882,5 +2889,11 @@ var app = new Vue({
                 positionCount:3
             })
         },
+        floatingCloseEvent:function(){
+            this.floating.status = false;
+        },
+        appDownload:function(){
+
+        }
     }
 })
