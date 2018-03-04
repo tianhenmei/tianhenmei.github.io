@@ -385,7 +385,7 @@
                         <ul class="company__ul" id="first__company-content">
                             <li v-for="(one,index) in first.company.list"
                                 class="company__li">
-                                <div class="li__intro">{{one.oneWord}}</div>
+                                <div class="li__intro">{{one.positionVo[0].oneWord}}</div>
                                 <div class="li__company clearfix">
                                     <a class="company__logo"
                                         href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
