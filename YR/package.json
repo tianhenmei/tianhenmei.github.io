@@ -1,0 +1,72 @@
+{
+  "name": "LG-AFE",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "gulp-upload": "0.0.2",
+    "lodash": "^3.10.1"
+  },
+  "scripts": {
+    "dev": "gulp dev",
+    "dist": "gulp dist",
+    "remove": "gulp remove",
+    "sprite": "gulp sprite",
+    "imagemin": "gulp imagemin",
+    "lib": "jspm",
+    "upload": "gulp upload"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "del": "^2.2.0",
+    "glob": "^6.0.4",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.3.1",
+    "gulp-connect-proxy": "^0.3.1",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-postcss": "^6.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-rev": "^7.1.2",
+    "gulp-rev-collector": "^1.0.5",
+    "gulp-sass": "^2.3.1",
+    "gulp-spriter": "^1.1.5",
+    "gulp-uglify": "^1.5.3",
+    "gulp-upload": "0.0.2",
+    "gulp-util": "^3.0.7",
+    "gulp-watch": "^4.3.5",
+    "gulp.spritesmith-multi": "^2.2.2",
+    "hash-file": "^2.1.0",
+    "http-proxy-middleware": "^0.17.4",
+    "imagemin-pngquant": "^4.2.0",
+    "jspm": "^0.16.24",
+    "mkdirp": "^0.5.1",
+    "require-nocache": "^1.0.0",
+    "through2": "^2.0.0"
+  },
+  "jspm": {
+    "configFile": "jspm.config.js",
+    "dependencies": {
+      "art-template": "npm:art-template@^3.0.3",
+      "bootstrap": "github:twbs/bootstrap@^3.3.6",
+      "clean-css": "npm:clean-css@^3.4.9",
+      "css": "github:systemjs/plugin-css@^0.1.20",
+      "d3": "npm:d3@^3.5.15",
+      "font-awesome": "npm:font-awesome@^4.5.0",
+      "hammerjs": "npm:hammerjs@^2.0.6",
+      "image": "github:systemjs/plugin-image@^0.1.0",
+      "jquery": "npm:jquery@^2.2.0",
+      "lodash": "npm:lodash@^4.0.0",
+      "scss": "github:mobilexag/plugin-sass@^0.2.0",
+      "swiper": "npm:swiper@^3.3.0",
+      "text": "github:systemjs/plugin-text@^0.0.4",
+      "zepto": "npm:zepto@^1.0.1"
+    },
+    "devDependencies": {
+      "babel": "npm:babel-core@^5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
+      "core-js": "npm:core-js@^1.1.4"
+    }
+  }
+}

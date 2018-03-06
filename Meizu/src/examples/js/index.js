@@ -382,6 +382,101 @@ var app = new Vue({
                                 '</div>'+
                             '</div>',
                     status:false
+                },{
+                    name:'transform:matrix',
+                    detail:'transform: matrix(a,b,c,d,e,f);<br/>'+
+                            '<img src="./images/css-transforms-matrix3.gif" /><br/>'+
+                            '即为矩阵，要让其发生变化，只有与另外矩阵相乘<br/>'+
+                            '<img src="./images/css-transforms-matrix5.gif" /><br/>'+
+                            '其中，x, y表示转换元素的所有坐标（变量）了。<br/>'+
+                            '3*3矩阵每一行的第1个值与后面1*3的第1个值相乘，第2个值与第2个相乘，第3个与第3个，然后相加，如下图同色标注：<br/>'+
+                            '<img src="./images/2012-06-07_160412.png" /><br/>'+
+                            'ax+cy+e为变换后的水平坐标，bx+dy+f表示变换后的垂直位置。<br/>'+
+                            '<h3>位移（translate）</h3>'+
+                            '假设矩阵参数如下：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">transform: matrix(1, 0, 0, 1, 30, 30); <span style="color:green;">/* a=1, b=0, c=0, d=1, e=30, f=30 */</span></p>'+
+                            '现在，我们根据这个矩阵偏移元素的中心点，假设是(0, 0)，即x=0, y=0。<br/>'+
+                            '于是，变换后的x坐标就是ax+cy+e = 1*0+0*0+30 =30, y坐标就是bx+dy+f = 0*0+1*0+30 =30.<br/>'+
+                            '于是，中心点坐标从(0, 0)变成了→(30, 30)<br/>'+
+                            '<div style="width:100px;height:100px;background:#ccc;" id="matrix-translate"></div>'+
+                            '<div style="width:250px; height:30px; line-height:30px; margin:10px 0 0 0; cursor:pointer; color:#fff; background-color:#ff0084; text-align:center;" id="matrixShowTranslate">点击应用matrix(1,0,0,0,30,30)</div><br/>'+
+                            '<h3>缩放（scale）</h3>'+
+                            'matrix(1, 0, 0, 1, 30, 30);的元素比例与原来一样，1:1, 而这几个参数中，有两个1, 所以这两个1就是缩放相关的参数。<br/>'+
+                            '其中，第一个缩放x轴，第二个缩放y轴。<br/>'+
+                            '假设比例是s，则有matrix(s, 0, 0, s, 0, 0);，于是，套用公式，就有：<br/>'+
+                            'x‘ = ax+cy+e = s*x+0*y+0 = s*x;<br/>'+
+                            'y’ = bx+dy+f = 0*x+s*y+0 = s*y;<br/>'+
+                            '也就是matrix(sx, 0, 0, sy, 0, 0);，等同于scale(sx, sy);<br/>'+
+                            '目前属性值：<span id="matrix-scale-value">matrix(1,0,0,1,0,0)</span><br/>'+
+                            'X轴比例（0.1-3）：<input type="range" id="matrix-scale-x" value="1" min="0.1" max="3" step="0.1" /><br/>'+
+                            'Y轴比例（0.1-3）：<input type="range" id="matrix-scale-y" value="1" min="0.1" max="3" step="0.1" /><br/>'+
+                            '<div style="width:100px;height:100px;background:#ccc; transform-origin:0 0; transform:matrix(1,0,0,1,0,0);" id="matrix-scale"></div><br/>'+
+                            '<h3>旋转（rotate）</h3>'+
+                            '方法以及参数使用如下（假设角度为θ）：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">matrix(cosθ,sinθ,-sinθ,cosθ,0,0)</p>'+
+                            '结合矩阵公式，就有：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">x‘ = x*cosθ-y*sinθ+0 = x*cosθ-y*sinθ</p>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">y‘ = x*sinθ+y*cosθ+0 = x*sinθ+y*cosθ</p>'+
+                            '目前属性值：<span id="matrix-rotate-value">0</span><br/>'+
+                            '目前角度：<span id="matrix-rotate-angle">0</span><br/>'+
+                            '旋转角度（0-360）：<input type="range" id="matrix-rotate-input" value="1" min="0" max="360" step="1" /><br/>'+
+                            '<div style="width:100px;height:100px;background:#ccc; transform:matrix(1,0,0,1,0,0); transition:all 0.5s;" id="matrix-rotate"></div><br/>'+
+                            '<h3>拉伸（skew）</h3>'+
+                            '拉伸也用到了三角函数，不过是tanθ，其只于b, c两个参数相关，书写如下（注意y轴倾斜角度在前）：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">matrix(1,tan(θy),tan(θx),1,0,0)</p>'+
+                            '套用矩阵公式计算结果为：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">x‘ = x+y*tan(θx)+0 = x+y*tan(θx) </p>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">y‘ = x*tan(θy)+y+0 = x*tan(θy)+y</p>'+
+                            '其中，θx表示x轴倾斜的角度，θy表示y轴，两者并无关联。'+
+                            '目前属性值：<span id="matrix-skew-value">0</span><br/>'+
+                            '倾斜角度-X(0-89)：<input type="range" id="matrix-skew-x" value="1" min="0" max="89" step="1" /><br/>'+
+                            '旋转角度-Y(0-89)：<input type="range" id="matrix-skew-y" value="1" min="0" max="89" step="1" /><br/>'+
+                            '<div style="width:100px;height:100px;background:#ccc; transform:matrix(1,0,0,1,0,0); transition:all 0.5s;" id="matrix-skew"></div><br/>'+
+                            '<h3>matrix用处-镜像对称效果</h3>'+
+                            '镜像对称围绕的那个点就是CSS3中transform变换的中心点，因为该轴永远经过原点，因此，任意对称轴都可以用y = k * x表示。则matrix表示就是：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">matrix((1-k*k) / (1+k*k), 2k / (1 + k*k), 2k / (1 + k*k), (k*k - 1) / (1+k*k), 0, 0)</p>'+
+                            '如何得到的呢,如下图，已经y=kx，并且知道点(x, y)坐标，求其对称点(x’, y’)的坐标<br/>'+
+                            '<img src="./images/css-transforms-matrix-mirror.png" /><br/>'+
+                            '一是垂直，二是中心点在轴线上，因此有：<br/>'+
+                            '(y-y‘) / (x - x’) = -1/ k → ky-ky‘ = -x+x’<br/>'+
+                            '(x + x‘) / 2 * k = (y + y’)/2 → kx+kx‘ = y+y’<br/>'+
+                            '把x‘和y’提出来，就有：<br/>'+
+                            'x‘ = (1-k*k)/(k*k+1) *x + 2k/(k*k+1) *y;<br/>'+
+                            'y‘ = 2k/(k*k+1) *x + (k*k-1)/(k*k+1) *y;<br/>'+
+                            '再结合矩阵公式<br/>'+
+                            'x’ = ax+cy+e;<br/>'+
+                            'y‘ = bx+dy+f;<br/>'+
+                            '可以得到：<br/>'+
+                            'a = (1-k*k)/(k*k+1);<br/>'+
+                            'b = 2k/(k*k+1);<br/>'+
+                            'c = 2k/(k*k+1);<br/>'+
+                            'd = -(1-k*k)/(k*k+1);<br/>'+
+                            '例：改变对称轴的角度：<br/>'+
+                            '目前属性值：<span id="matrix-mirror-value">0</span><br/>'+
+                            '目前角度：<span id="matrix-mirror-angle">0</span><br/>'+
+                            '旋转角度（0-360）：<input type="range" id="matrix-mirror-input" value="1" min="0" max="360" step="10" /><br/>'+
+                            '<div class="clearfix">'+
+                                '<img id="martrix-origin" style="width:200px; float:left;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520243089508&di=d7b6ba3da52bb6fb0df82d7d4830e170&imgtype=0&src=http%3A%2F%2Fpic17.nipic.com%2F20111102%2F8185414_173746037356_2.jpg" />'+
+                                '<div style="height:266px; position:relative; float:left; margin:0 0 0 200px;">'+
+                                    '<img id="matrix-mirror" style="width:200px; transform:matrix(1,0,0,1,0,0); transition:all 0.5s;" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1520243089508&di=d7b6ba3da52bb6fb0df82d7d4830e170&imgtype=0&src=http%3A%2F%2Fpic17.nipic.com%2F20111102%2F8185414_173746037356_2.jpg" /><br/>'+
+                                    '<div id="matrix-mirror-center" style="width:200px; height:4px; background:#000; position:absolute; left:0; top:131px;">'+
+                                        '<div style="width:20px; height:4px; transform:rotateZ(45deg); position:absolute; right:-2px; bottom:7px; background:#000;"></div>'+
+                                        '<div style="width:20px; height:4px; transform:rotateZ(-45deg); position:absolute; right:-2px; bottom:-7px; background:#000;"></div>'+
+                                    '</div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<h3>3D变换中的矩阵</h3>'+
+                            '从二维到三维，是从4到9；而在矩阵里头是从3*3变成4*4, 9到16了<br/>'+
+                            '其实，本质上很多东西都与2D一致的，只是复杂度不一样而已。这里就举一个简单的3D缩放变换的例子。<br/>'+
+                            '对于3D缩放效果，其矩阵如下：<br/>'+
+                            '<img src="./images/css-transforms-matrix8.gif" /><br/>'+
+                            '代码表示就是：<br/>'+
+                            '<p style="height:36px; line-height:36px; padding:0 0 0 15px; color:blue; background:#ccc;">transform: matrix3d(sx, 0, 0, 0, 0, sy, 0, 0, 0, 0, sz, 0, 0, 0, 0, 1)</p>'+
+                            '',
+                    en:'rotate example-perspective',
+                    animate:[],
+                    other:  '',
+                    status:false
                 }]
             }
         }],
@@ -394,7 +489,94 @@ var app = new Vue({
         }]
     },
     mounted:function(){
-        
+        document.getElementById('matrixShowTranslate').addEventListener('click',function(e){
+            e.stopPropagation();
+            var elem = document.getElementById('matrix-translate')
+            elem.style.transform = 'matrix(1,0,0,1,30,30)'
+            setTimeout(function(){
+                elem.style.transform = 'none'
+            },2000)
+        },false)
+        var elemX = document.getElementById('matrix-scale-x'),
+            elemY = document.getElementById('matrix-scale-y'),
+            eleminput = document.getElementById('matrix-scale-value'),
+            scale = document.getElementById('matrix-scale'),
+            X = 1,
+            Y = 1
+        elemX.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            X = elemX.value;
+            eleminput.innerHTML = 'matrix('+X+',0,0,'+Y+',0,0)'
+            scale.style.transform = 'matrix('+X+',0,0,'+Y+',0,0)'
+        },false)
+        elemY.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            Y = elemY.value;
+            eleminput.innerHTML = 'matrix('+X+',0,0,'+Y+',0,0)'
+            scale.style.transform = 'matrix('+X+',0,0,'+Y+',0,0)'
+        },false)
+
+        var rotateValue = document.getElementById('matrix-rotate-value'),
+            rotateInput = document.getElementById('matrix-rotate-input'),
+            rotateAngle = document.getElementById('matrix-rotate-angle'),
+            rotate = document.getElementById('matrix-rotate')
+        rotateInput.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            var value = rotateInput.value,
+                a = Math.cos(2*Math.PI/360 * value),
+                b = Math.sin(2*Math.PI/360 * value),
+                ac = '';
+            ac = 'matrix('+a+','+b+','+(-b)+','+a+',0,0)'
+            rotateValue.innerHTML = ac
+            rotateAngle.innerHTML = value
+            rotate.style.transform = ac
+        },false)
+
+        var skewValue = document.getElementById('matrix-skew-value'),
+            skewX = document.getElementById('matrix-skew-x'),
+            skewY = document.getElementById('matrix-skew-y'),
+            skew = document.getElementById('matrix-skew'),
+            sx = 0,
+            sy = 0
+        skewX.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            sx = Math.tan(Math.PI / 180 * skewX.value)
+            skewValue.innerHTML = 'matrix(1,'+sy+','+sx+',1,0,0)'
+            skew.style.transform = 'matrix(1,'+sy+','+sx+',1,0,0)'
+        },false)
+        skewY.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            sy = Math.tan(Math.PI / 180 * skewY.value)
+            skewValue.innerHTML = 'matrix(1,'+sy+','+sx+',1,0,0)'
+            skew.style.transform = 'matrix(1,'+sy+','+sx+',1,0,0)'
+        },false)
+
+        var mirrorValue = document.getElementById('matrix-mirror-value'),
+            mirrorInput = document.getElementById('matrix-mirror-input'),
+            mirrorAngle = document.getElementById('matrix-mirror-angle'),
+            mirrorCenter = document.getElementById('matrix-mirror-center'),
+            mirrorOrigin = document.getElementById('martrix-origin'),
+            mirror = document.getElementById('matrix-mirror')
+        mirrorInput.addEventListener('change',function(e){
+            e.stopPropagation();
+
+            var value = mirrorInput.value,
+                k = Math.tan(-1 * value * Math.PI / 180),
+                u1 = (1-k*k) / (k*k+1),
+                u2 = 2 * k / (k*k+1),
+                ac = ''
+            ac = 'matrix('+u1+','+u2+','+u2+','+(-u1)+',0,0)'
+            mirrorValue.innerHTML = ac
+            mirrorAngle.innerHTML = value
+            // mirrorOrigin.style.transform = 'rotateZ('+value+'deg)'
+            mirror.style.transform = ac
+            mirrorCenter.style.transform = 'rotateZ('+value+'deg)'
+        },false)
     },
     methods:{
         changeIndex:function(pindex){

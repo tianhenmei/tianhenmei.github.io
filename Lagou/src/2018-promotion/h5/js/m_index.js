@@ -2017,7 +2017,7 @@ var app = new Vue({
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         var frompartner = getQueryString('frompartner');
-        this.partnerStatus = frompartner ? true : false;
+        this.partnerStatus = frompartner// ? true : false;
         this.isAPP = this.from == 'ios' || this.from == 'android'
         if(!this.isAPP){
             this.floating.status = true;

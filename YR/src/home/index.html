@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>深圳煜睿天下文化传播有限公司</title>
+    <link rel="Shortcut Icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../common/css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            if(rightSize < currentSize){  //按宽度算
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                htmlStatus = 1;
+                if(app == 'ios' || app == 'android'){
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                }
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+    
+        setFontSize();
+    </script>
+</head>
+<body>
+<div id="app">
+    <div clsss="yh-center"
+        :class="{
+            'yh-center--pc':pc,
+            'yh-center--mobile':!pc,
+        }">
+        <div class="yh-center__nav clearfix" ref="yh-center__nav">
+            <a class="nav__logo-a clearfix" target="_blank"
+                href="javascript:void(0);">
+                <img class="nav__logo" src="images/logo.png" />
+                <div class="nav__name"></div>
+            </a>
+            <div class="nav__list clearfix">
+                <div class="nav__list__center">
+                    <ul class="nav__ul" ref="nav"
+                        v-if="!pc"
+                        @touchstart.stop.prevent="navStartEvent"
+                        @touchmove.stop.prevent="navMoveEvent"
+                        @touchend.stop.prevent="navEndEvent">
+                        <li class="nav__li"
+                            v-for="(one,index) in nav.list"
+                            :class="{'nav__li--active':nav.active_index == index}"
+                            @click.stop.prevent="navClickEvent(index,$event)">
+                            {{one.cn}}
+                        </li>
+                    </ul>
+                    <ul class="nav__ul" ref="nav"
+                        v-else>
+                        <li class="nav__li"
+                            v-for="(one,index) in nav.list"
+                            :class="{'nav__li--active':nav.active_index == index}"
+                            @click.stop.prevent="navClickEvent(index,$event)">
+                            {{one.cn}}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../common/js/swiper.min.js"></script>
+<script type="text/javascript" src="../common/js/vue.2.1.10.js"></script>
+<script type="text/javascript" src="js/index.js?v=$version$"></script>
+</body>
+</html>
