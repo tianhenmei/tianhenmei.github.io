@@ -9,6 +9,7 @@ var app = new Vue({
         },
         fontSize:16,
         animation:{},
+        init_status:false,
         nav:{
             active_index:0,
             click_status:false,
@@ -34,10 +35,15 @@ var app = new Vue({
                 top:0
             },{
                 cn:'吉吉课程',
-                en:'JJ CLASSES'
+                en:'JJ CLASSES',
+                elem:'yh-center__classes'
             },{
                 cn:'吉吉外教',
                 en:'JJ TEACHERS'
+            },{
+                cn:'吉吉教材',
+                en:'JJ MATRIALS',
+                elem:'yh-center__matrials'
             },{
                 cn:'关于我们',
                 en:'ABOUT US'
@@ -100,6 +106,96 @@ var app = new Vue({
                 }]
             ]
         },
+        classes:{
+            title:'吉吉课程',
+            en:'JJ CLASSES',
+            list:[{
+                src:'images/classes-01.jpg',
+                title:'科学教学体系助力幼小衔接',
+                list:[{
+                    icon:'images/classes-01-icon-01.png',
+                    content:'课程有效衔接小学课程，旨在帮助孩子们掌握500多个核心英语单词，拓宽词汇量。'
+                },{
+                    icon:'images/classes-01-icon-02.png',
+                    content:'我们的教材被英国文化协会ELTons创新大奖提名，配合英孚自主研发Efekta™学习系统，致力于培养孩子听说读写各项基础，提高学习效果。'
+                },{
+                    icon:'images/classes-01-icon-03.png',
+                    content:'贯穿课程始终的自然拼读法学习，帮助孩子通过学习字母和发音的对应联系，准确发音，学习拼读单词。'
+                },{
+                    icon:'images/classes-01-icon-04.png',
+                    content:'自主研发的iLab学习系统同步课堂学习内容，包括配套音视频、在线英语练习和趣味英语游戏，让孩子在课后也能巩固课堂所学，助力幼小衔接。'
+                }]
+            },{
+                src:'images/classes-02.jpg',
+                title:'多元教学法提高英语学习兴趣',
+                list:[{
+                    icon:'images/classes-02-icon-01.png',
+                    content:'外籍培训师主持的Life Club主题活动，为孩子创建英文浸入式环境，让孩子在真实语境中锻炼口语，培养表达的自信。'
+                },{
+                    icon:'images/classes-02-icon-02.png',
+                    content:'课程配套歌曲，童谣、视频，手偶，英语词卡及互动白板等工具的综合使用，将多方位调动孩子的视听动三大感官，提高英语学习兴趣。'
+                },{
+                    icon:'images/classes-02-icon-03.png',
+                    content:'	通过课后作业本、配套CD、卡通动画视频、APP互动游戏等工具，将语言学习空间从教室延伸至家中，打造360度浸入式语言学习环境。'
+                }]
+            },{
+                src:'images/classes-03.jpg',
+                title:'丰富活动培养综合软技能',
+                list:[{
+                    icon:'images/classes-03-icon-01.png',
+                    content:'课程根据3-6岁孩子的认知特点和学习习惯，基于大量调研，系统研发而成。'
+                },{
+                    icon:'images/classes-03-icon-02.png',
+                    content:'丰富的课堂游戏和小组活动，旨在培养孩子动手能力、社交技能、解决问题的能力、团队协作能力等综合软技能。'
+                },{
+                    icon:'images/classes-03-icon-03.png',
+                    content:'我们的课程注重“全人教育”，帮助孩子在学习语言的同时，了解西方文化，提高综合素养和全球视野。'
+                }]
+            }]
+        },
+        matrials:{
+            title:'吉吉教材',
+            en:'JJ MATRIALS',
+            active_index:-1,
+            list:[{
+                name:"蓝皮书",
+                img:"images/book-01.png",
+                intro:'通过这一阶段的学习，孩子们将通过简单句的练习，建立地道语感和开口自信。',
+                list:[
+                    'images/book-01-intro-01.png',
+                    'images/book-01-intro-02.png',
+                    'images/book-01-intro-03.png'
+                ]
+            },{
+                name:"教材A",
+                img:"images/book-02.png",
+                intro:'学生们将会通过大量的字母和单词描红锻炼书写技巧，并学习不同字母和字母组的自然拼读发音。',
+                list:[
+                    'images/book-02-intro-01.png',
+                    'images/book-02-intro-02.png',
+                    'images/book-02-intro-03.png'
+                ]
+            },{
+                name:"教材B",
+                img:"images/book-03.png",
+                intro:'此外，孩子们将通过自然拼读法的练习，进一步学习不同字母组合和元音的发音变化，提高口语和听力水平。拼写和书写练习同样涵盖在这一阶段的课程学习中。',
+                list:[
+                    'images/book-03-intro-01.png',
+                    'images/book-03-intro-02.png',
+                    'images/book-03-intro-03.png'
+                ]
+            },{
+                name:"教材C",
+                img:"images/book-04.png",
+                intro:'学生们将通过角色扮演锻炼口语表达，运用自然拼读法则读出发音相似而拼写不同的复杂单词，并完成带有标点符号的整句写作。',
+                list:[
+                    'images/book-04-intro-01.png',
+                    'images/book-04-intro-02.png',
+                    'images/book-04-intro-03.png'
+                ]
+            }],
+            view:{},
+        }
     },
     created:function(){
         this.GC.w = document.documentElement.clientWidth || window.innerWidth || screen.width,
@@ -109,12 +205,16 @@ var app = new Vue({
         this.fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size'));
     },
     mounted:function(){
+        this.init_status = true
         if(!this.pc){
             this.setNavWidth()
             this.nav.showWidth = this.getRemValue(this.nav.initWidth) * this.fontSize;
         }
         this.initWindowScrollEvent()
         this.addBannerAnimation()
+        if(!this.pc){
+            this.addClassesAnimation()
+        }
     },
     methods:{
         ismobile:function(){
@@ -299,29 +399,23 @@ var app = new Vue({
                     break
             }
         },
-        addRichAnimation:function(){
+        addClassesAnimation:function(){
             var i = 0,
                 autoplay = true, //false,
                 animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['rich__animation'])
-            id = elem.attr('id');
+                elem = this.$refs['classes__list'],
+                id = elem.id,
+                content = this.$refs[id+'-content'],
+                childs = content.children,
+                length = childs.length,
+                first = childs[0];
             // autoplay = elem.attr('autoplay');
             // autoplay = autoplay ? true : false;
             // animation = elem.attr('animation');
             // animation = animation ? animation : 'move';
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
+            content.style.left = 0;
+            this.animation[id] = {
+                width:this.getPointOuterWidth(first),
                 currentIndex:0,
                 length:length,
                 autoplay:autoplay,
@@ -335,36 +429,33 @@ var app = new Vue({
                     this.initZoomInAnimation(id)
                     break
                 default:
-                    this.initMoveAnimation(id,'rich__container','rich__list')
+                    this.initMoveAnimation(id,'classes__ul','classes__li')
                     break
             }
         },
-        addFirstAnimation:function(){
+        addMatrialViewAnimation:function(){
             var i = 0,
                 autoplay = true, //false,
                 animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['first__company'])
-            id = elem.attr('id');
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
+                elem = this.$refs['view__list'],
+                id = elem.id,
+                content = this.$refs[id+'-content'],
+                childs = content.children,
+                length = childs.length,
+                first = childs[0];
+            // autoplay = elem.attr('autoplay');
+            // autoplay = autoplay ? true : false;
+            // animation = elem.attr('animation');
+            // animation = animation ? animation : 'move';
+            content.style.left = 0;
+            this.animation[id] = {
+                width:this.getPointOuterWidth(first),
                 currentIndex:0,
                 length:length,
                 autoplay:autoplay,
                 animation:animation,
-                direction:'vertical',
                 swiper:null,
-                pagination:false
+                pagination:true
                 // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
             }
             switch(animation){
@@ -372,43 +463,7 @@ var app = new Vue({
                     this.initZoomInAnimation(id)
                     break
                 default:
-                    this.initMoveAnimation(id,'company__ul','company__li')
-                    break
-            }
-        },
-        addFirstGuestAnimation:function(){
-            var i = 0,
-                autoplay = true, //false,
-                animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['first__recommend'])
-            id = elem.attr('id');
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
-                currentIndex:0,
-                length:length,
-                autoplay:autoplay,
-                animation:animation,
-                swiper:null,
-                pagination:false
-                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
-            }
-            switch(animation){
-                case 'zoomIn':
-                    this.initZoomInAnimation(id)
-                    break
-                default:
-                    this.initMoveAnimation(id,'recommend__ul','recommend__li')
+                    this.initMoveAnimation(id,'view__ul','view__li')
                     break
             }
         },
@@ -420,7 +475,7 @@ var app = new Vue({
                 data = this.animation[id],
                 pstatus = data.pagination;
             if(pstatus){
-                pagination = $('#'+id+'-pagination').children();
+                pagination = this.$refs[id+'-pagination'].children;
                 length = data.length;//pagination.length
             }else {
                 length = data.length
@@ -840,6 +895,21 @@ var app = new Vue({
         },
         appDownload:function(){
 
-        }
+        },
+        matrialViewEvent:function(index){
+            if(this.animation['view__list'] && this.animation['view__list'].swiper){
+                this.animation['view__list'].swiper.destroy(true,true)
+                this.animation['view__list'].swiper = null
+            }
+            this.matrials.active_index = index
+            this.matrials.view = this.matrials.list[this.matrials.active_index]
+            this.$nextTick(function(){
+                this.addMatrialViewAnimation()
+            })
+        },
+        matrialViewClose:function(){
+            this.matrials.active_index = -1
+            this.matrials.view = {}
+        },
     }
 })

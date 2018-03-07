@@ -125,8 +125,9 @@
                             @touchstart.stop="navStartEvent"
                             @touchmove.stop.prevent="navMoveEvent"
                             @touchend.stop="navEndEvent">
-                            <li class="nav__li"
-                                v-for="(one,index) in nav.list"
+                            <li v-for="(one,index) in nav.list"
+                                :ref="'nav__li--'+index"
+                                class="nav__li"
                                 :class="'nav__li--'+index+(nav.active_index == index ? ' nav__li--active' : '')"
                                 @click.stop.prevent="navClickEvent(index,$event)">
                                 {{one.cn}}
@@ -136,7 +137,8 @@
                             v-else>
                             <li class="nav__li"
                                 v-for="(one,index) in nav.list"
-                                :class="{'nav__li--active':nav.active_index == index}"
+                                :ref="'nav__li--'+index"
+                                :class="'nav__li--'+index+(nav.active_index == index ? ' nav__li--active' : '')"
                                 @click.stop.prevent="navClickEvent(index,$event)">
                                 {{one.cn}}
                             </li>
@@ -182,6 +184,91 @@
                             <div class="card__title">{{one.title}}</div>
                         </div>
                         <div class="card__detail" v-html="one.detail"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__classes" ref="yh-center__classes">
+            <div class="classes__center">
+                <div class="classes__title">{{classes.title}}</div>
+                <div class="classes__en">{{classes.en}}</div>
+                <div class="classes__list" 
+                    ref="classes__list"
+                    id="classes__list">
+                    <ul class="classes__ul clearfix"
+                        ref="classes__list-content">
+                        <li class="classes__li clearfix"
+                            v-for="(one,index) in classes.list"
+                            :class="{'classes__li--right':index%2 == 1}">
+                            <div class="li__img">
+                                <img :src="one.src" />
+                            </div>
+                            <div class="li__bottom">
+                                <div class="li__title">{{one.title}}</div>
+                                <div class="li__detail">
+                                    <div class="li__one clearfix" v-for="(i,iindex) in one.list">
+                                        <img class="detail__icon" :src="i.icon" />
+                                        <div class="detail__content">{{i.content}}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="classes__pagination clearfix"
+                        id="classes__list-pagination"
+                        ref="classes__list-pagination"
+                        :style="{
+                            width:getRem(classes.list.length*21),
+                            marginLeft:(-1 * getRemValue(classes.list.length*21) / 2)+'rem'
+                        }"
+                        v-if="!pc">
+                        <span v-for="(one,index) in classes.list"
+                            class="dot"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__matrials" ref="yh-center__matrials">
+            <div class="matrials__center">
+                <div class="matrials__title">{{matrials.title}}</div>
+                <div class="matrials__en">{{matrials.en}}</div>
+                <div class="matrials__list">
+                    <ul class="matrials__ul clearfix"
+                        :style="{
+                            width:pc ? matrials.list.length * 210 +'px' : getRem(2 * 360)
+                        }">
+                        <li class="matrials__li"
+                            v-for="(one,index) in matrials.list"
+                            @click.stop.prevent="matrialViewEvent(index)">
+                            <img class="li__img" :src="one.img" />
+                            <img class="li__view" src="images/book-view.png"/>
+                        </li>
+                    </ul>
+                    <!-- <div class="matrials__bottom"></div> -->
+                </div>
+                <div class="matrials__layer" 
+                    :class="{'matrials__layer--show':init_status}"
+                    v-show="matrials.active_index != -1">
+                    <div class="matrials__view">
+                        <div class="view__name">{{matrials.view.name}}</div>
+                        <div class="view__intro">{{matrials.view.intro}}</div>
+                        <div class="view__list" ref="view__list" id="view__list">
+                            <ul class="view__ul clearfix" ref="view__list-content">
+                                <li class="view__li"
+                                    v-for="(one,index) in matrials.view.list">
+                                    <img class="li_one" :src="one" />
+                                </li>
+                            </ul>
+                            <div class="view__list-pagination clearfix" ref="view__list-pagination"
+                                id="view__list-pagination"
+                                :style="{
+                                    width:matrials.view.list ? (pc ? matrials.view.list.length*16+'px' : getRem(matrials.view.list.length*21)) : 0
+                                }">
+                                <span class="dot"
+                                    v-for="i in matrials.view.list"></span>
+                            </div>
+                        </div>
+                        <div class="view__close" @click.stop.prevent="matrialViewClose"></div>
                     </div>
                 </div>
             </div>
