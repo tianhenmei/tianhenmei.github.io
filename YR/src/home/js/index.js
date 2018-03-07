@@ -7,13 +7,16 @@ var app = new Vue({
             w:0,
             h:0
         },
+        fontSize:16,
+        animation:{},
         nav:{
             active_index:0,
             click_status:false,
-            initWidth:0,
-            showWidth:0,
+            initWidth:630,
+            showWidth:630,
             width:99999,
             height:60,
+            list_offset_top:0,
             left:0,
             top:0,
             fixed:false,
@@ -41,16 +44,77 @@ var app = new Vue({
             },{
                 cn:'联系我们',
                 en:'CONTACT US'
+            }],
+        },
+        banner:{
+            theme:'banner-default',
+            list_pc:[{
+                href:'javascript:void(0);',
+                src:'1.jpg'
+            },{
+                href:'javascript:void(0);',
+                src:'2.jpg'
+            }],
+            list_h5:[{
+                href:'javascript:void(0);',
+                src:'1.jpeg'
+            },{
+                href:'javascript:void(0);',
+                src:'2.jpeg'
+            },{
+                href:'javascript:void(0);',
+                src:'3.jpeg'
+            },{
+                href:'javascript:void(0);',
+                src:'4.jpeg'
+            },{
+                href:'javascript:void(0);',
+                src:'5.jpeg'
             }]
+        },
+        introduce:{
+            title:'2-7岁，为什么？',
+            detail:'WHY IS 2-7?',
+            list:[
+                [{
+                    icon:'images/introduce-01.jpg',
+                    title:'英语主题教学，孩子从小爱上英语',
+                    detail:'2-7岁的孩子处于语言学习的黄金期。对于英语，孩子会以"母语"的形式掌握并自然运用。调动孩子的英语兴趣尤为重要。瑞思学科英语采用主题教学的方法，通过故事、歌曲、游戏等方式灵活的表现出来，让孩子在生动有趣的互动过程中，在浸入式的英语环境里，英语自然习得。每个主题都会初步涉及数学逻辑、自然科学，为下一阶段系统学习学科知识做好铺垫。'
+                },{
+                    icon:'images/introduce-02.jpg',
+                    title:'用孩子喜欢的方式学英语',
+                    detail:'每个孩子性格不同，有的爱表达、有的动手能力强、有的喜欢音乐，区角活动是指用孩子擅长的不同方式学习同样的英语知识。尊重每个孩子的独特性，从他们的兴趣出发，英语学习事半功倍！'
+                },{
+                    icon:'images/introduce-03.jpg',
+                    title:'看词能读，听音能写',
+                    detail:'通过语音专项训练，让孩子循序渐进的了解到字母及词根的发音。发音练习并非不断重复某个音，而是感受字母在不同的单词、句子中的读音，感知字母的韵律。例如学习an的发音，会把它放在进tan、man、fan中拼读。这样即使是不认识的单词也能拼读、拼写，使孩子对英语阅读产生浓厚的兴趣。无论孩子在什么场合，当孩子看到某个词时会自然而然的拼读出声。'
+                }],
+                [{
+                    icon:'',
+                    title:'口语表达，清晰流利',
+                    detail:'经过语音专项训练，孩子能够用地道的英语读出单词。接下来老师会引入词群的概念，引导孩子找到词与词之间的联系。孩子借助词群，在朗读时减少停顿时间，从而提升流利度。孩子能够流利朗读后，注意力就会从词的层面转移到句子的理解层面，进而提升阅读能力。'
+                },{
+                    icon:'',
+                    title:'选词填句，启蒙孩子的写作兴趣',
+                    detail:'这个阶段的孩子有强烈的表达欲，但不具备写句的能力。选词填句是孩子借助词库来填写一个有意义的句子。孩子能够根据场景，选择一个合适的单词填空，完成一个有意义的句子，逐步培养孩子写句的兴趣。'
+                }]
+            ]
         },
     },
     created:function(){
         this.GC.w = document.documentElement.clientWidth || window.innerWidth || screen.width,
         this.GC.h = document.documentElement.clientHeight || window.innerHeight || screen.height
         this.pc = this.GC.w > 1080 ? true : false
+        this.nav.list_offset_top = this.pc ? 80 : 0
+        this.fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size'));
     },
     mounted:function(){
-        this.nav.showWidth = this.getRemValue(this.nav.initWidth) * this.fontSize;
+        if(!this.pc){
+            this.setNavWidth()
+            this.nav.showWidth = this.getRemValue(this.nav.initWidth) * this.fontSize;
+        }
+        this.initWindowScrollEvent()
+        this.addBannerAnimation()
     },
     methods:{
         ismobile:function(){
@@ -154,7 +218,7 @@ var app = new Vue({
             if(this.nav.left > 0){
                 this.nav.left = 0;
             }
-            // alert(this.nav.width +' , '+ this.nav.showWidth)
+            // console.log(this.nav.width +' , '+ this.nav.showWidth)
             if(Math.abs(this.nav.left) >= (this.nav.width - this.nav.showWidth)){
                 this.nav.left = -1 * (this.nav.width - this.nav.showWidth);
                 this.nav.shadow_status = false;
@@ -182,9 +246,8 @@ var app = new Vue({
                     this.nav.top = this.$refs['yh-center__nav'].offsetTop;
                 // }
                 this.nav.height = this.$refs['yh-center__nav'].offsetHeight;
-                $('html,body').animate({'scrollTop': (this.nav.list[index].top - this.nav.height)+ "px"},500,function(){
-                    self.nav.click_status = false;
-                });
+                window.scrollTo(0,this.nav.list[index].top - this.nav.height+ "px");
+                self.nav.click_status = false;
             }else if(this.nav.list[index].href){  // 跳页面
                 window.location.href = this.nav.list[index].href
             }
@@ -205,29 +268,20 @@ var app = new Vue({
                 //lunAnimation(browserType);
             }
         },
-        addEmployerAnimation:function(){
+        addBannerAnimation:function(){
             var i = 0,
                 autoplay = true, //false,
                 animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['employer__animation'])
-            id = elem.attr('id');
-            // autoplay = elem.attr('autoplay');
-            // autoplay = autoplay ? true : false;
-            // animation = elem.attr('animation');
-            // animation = animation ? animation : 'move';
+                elem = this.$refs['banner__animation'],
+                id = elem.id,
+                content = this.$refs['banner__animation-content'],
+                childs = content.children,
+                first = childs[0],
+                length = childs.length;
 
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
+            content.style.left = 0;
+            this.animation[id] = {
+                width:this.getPointOuterWidth(first),
                 currentIndex:0,
                 length:length,
                 autoplay:autoplay,
@@ -241,7 +295,7 @@ var app = new Vue({
                     this.initZoomInAnimation(id)
                     break
                 default:
-                    this.initMoveAnimation(id,'employer__list','employer__one')
+                    this.initMoveAnimation(id,'banner__ul','banner__li')
                     break
             }
         },
@@ -363,7 +417,7 @@ var app = new Vue({
                 pagination = null,
                 length = 0,
                 totalLength = 3,
-                data = this.employerAnimation[id],
+                data = this.animation[id],
                 pstatus = data.pagination;
             if(pstatus){
                 pagination = $('#'+id+'-pagination').children();
@@ -521,23 +575,24 @@ var app = new Vue({
             var self = this,
                 min = this.getPX(58);
             self.getNavHeight();
-            self.nav.top = self.$refs['yh-center__nav'].offsetTop;
-            self.nav.height = self.$refs['yh-center__nav'].offsetHeight;
-            $(window).scroll(function() {
+            self.nav.top = self.$refs['yh-center__nav'].offsetTop + self.nav.list_offset_top;
+            self.nav.height = self.$refs['yh-center__nav-list'].offsetHeight;
+            window.addEventListener('scroll',function() {
                 if(self.nav.click_status){
                     return
                 }
                 var nav = self.$refs['yh-center__nav'],
-                    scrollTop = $(window).scrollTop(),
+                    scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
                     one = null,
-                    halfWidow = $(window).height() / 4,
+                    halfWidow = document.documentElement.clientHeight / 4,
                     left = 0,
                     i = 0;
                
                 self.getNavHeight();
-                self.nav.top = nav.offsetTop;
-                self.nav.height = nav.offsetHeight;
+                self.nav.top = nav.offsetTop + self.nav.list_offset_top;
+                self.nav.height = self.$refs['yh-center__nav-list'].offsetHeight;
                 
+                // alert(self.nav.top +' , '+scrollTop)
                 if(self.nav.top <= scrollTop){
                     self.nav.fixed = true;
                 }else{
@@ -558,7 +613,7 @@ var app = new Vue({
                         break;
                     }
                 }
-            });
+            },false);
         },
         getBulletData:function(){
             var self = this;

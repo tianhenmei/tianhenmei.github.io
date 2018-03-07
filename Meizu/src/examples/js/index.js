@@ -3,7 +3,7 @@ var app = new Vue({
     el:"#app",
     data:{
         fontSize:16,
-        current_index:1,
+        current_index:2,
         p_value:200,
         list:[{
             title:'常用CSS3动画',
@@ -486,7 +486,11 @@ var app = new Vue({
                 active_index:-1,
                 list:[]
             }
-        }]
+        }],
+        canvas:{
+            mode:0,
+            MAX_RECF_SPACE:250,
+        },
     },
     mounted:function(){
         document.getElementById('matrixShowTranslate').addEventListener('click',function(e){
@@ -577,8 +581,26 @@ var app = new Vue({
             mirror.style.transform = ac
             mirrorCenter.style.transform = 'rotateZ('+value+'deg)'
         },false)
+        this.initTextPath()
     },
     methods:{
+        initTextPath:function(){
+            var canvas = document.getElementById('text-path'),
+                ctx = canvas.getContext('2d')
+        },
+        drawLinePathAndText:function(ctx){
+            if(this.canvas.mode == 0){
+                this.drawLinePath()
+            }else{
+                this.drawArcPath()
+            }
+        },
+        drawLinePath:function(ctx){
+
+        },
+        drawArcPath:function(ctx){
+
+        },
         changeIndex:function(pindex){
             if(this.current_index == pindex){
                 this.current_index = -1

@@ -84,35 +84,105 @@
             'yh-center--pc':pc,
             'yh-center--mobile':!pc,
         }">
+        <div class="yh-center__banner"
+            :class="{'yh-center__banner--mobile':!pc}"
+            v-if="!pc">
+            <div class="banner__center">
+                <div class="banner__list" ref="banner__animation" id="banner__animation">
+                    <ul class="banner__ul clearfix" ref="banner__animation-content" id="banner__animation-content">
+                        <li v-for="(one,index) in banner.list_h5"
+                            class="banner__li">
+                            <a :href="one.href"
+                                target="_blank"
+                                class="banner__a">
+                                <div class="banner__img"
+                                    :style="{
+                                        backgroundImage:'url(images/'+banner.theme+'/h5/'+one.src+')'
+                                }"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="yh-center__nav clearfix" ref="yh-center__nav">
-            <a class="nav__logo-a clearfix" target="_blank"
-                href="javascript:void(0);">
-                <img class="nav__logo" src="images/logo.png" />
-                <div class="nav__name"></div>
-            </a>
-            <div class="nav__list clearfix">
-                <div class="nav__list__center">
-                    <ul class="nav__ul" ref="nav"
-                        v-if="!pc"
-                        @touchstart.stop.prevent="navStartEvent"
-                        @touchmove.stop.prevent="navMoveEvent"
-                        @touchend.stop.prevent="navEndEvent">
-                        <li class="nav__li"
-                            v-for="(one,index) in nav.list"
-                            :class="{'nav__li--active':nav.active_index == index}"
-                            @click.stop.prevent="navClickEvent(index,$event)">
-                            {{one.cn}}
+            <div class="nav__center"
+                :class="{'nav__center--fixed':nav.fixed}">
+                <a class="nav__logo-a clearfix" target="_blank"
+                    ref="nav__logo-a"
+                    href="javascript:void(0);">
+                    <img class="nav__logo" :class="{'rotateInfinite':!pc}" src="images/logo.png" />
+                    <div class="nav__name"></div>
+                </a>
+                <div class="nav__list clearfix" ref="yh-center__nav-list">
+                    <div class="nav__list__center">
+                        <ul class="nav__ul" ref="nav"
+                            v-if="!pc"
+                            :style="{
+                                'width':nav.width+'px',
+                                'left':nav.left+'px'
+                            }"
+                            @touchstart.stop="navStartEvent"
+                            @touchmove.stop.prevent="navMoveEvent"
+                            @touchend.stop="navEndEvent">
+                            <li class="nav__li"
+                                v-for="(one,index) in nav.list"
+                                :class="'nav__li--'+index+(nav.active_index == index ? ' nav__li--active' : '')"
+                                @click.stop.prevent="navClickEvent(index,$event)">
+                                {{one.cn}}
+                            </li>
+                        </ul>
+                        <ul class="nav__ul" ref="nav"
+                            v-else>
+                            <li class="nav__li"
+                                v-for="(one,index) in nav.list"
+                                :class="{'nav__li--active':nav.active_index == index}"
+                                @click.stop.prevent="navClickEvent(index,$event)">
+                                {{one.cn}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__banner"
+            :class="{
+                'yh-center__banner--pc':pc
+            }"
+            v-if="pc">
+            <div class="banner__center">
+                <div class="banner__list" ref="banner__animation" id="banner__animation">
+                    <ul class="banner__ul clearfix" ref="banner__animation-content" id="banner__animation-content">
+                        <li v-for="(one,index) in banner.list_pc"
+                            class="banner__li">
+                            <a :href="one.href"
+                                target="_blank"
+                                class="banner__a">
+                                <div class="banner__img"
+                                    :style="{
+                                        backgroundImage:'url(images/'+banner.theme+'/pc/'+one.src+')'
+                                }"></div>
+                            </a>
                         </li>
                     </ul>
-                    <ul class="nav__ul" ref="nav"
-                        v-else>
-                        <li class="nav__li"
-                            v-for="(one,index) in nav.list"
-                            :class="{'nav__li--active':nav.active_index == index}"
-                            @click.stop.prevent="navClickEvent(index,$event)">
-                            {{one.cn}}
-                        </li>
-                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__introduce">
+            <div class="introduce__center clearfix">
+                <div class="introduce__title">{{introduce.title}}</div>
+                <div class="introduce__detail">{{introduce.detail}}</div>
+                <div class="introduce__list clearfix"
+                    v-for="(list,pindex) in introduce.list"
+                    :class="'introduce__list--'+list.length">
+                    <div class="introduce__card"
+                        v-for="(one,index) in list">
+                        <div class="card__top clearfix">
+                            <img class="card__icon" v-if="one.icon" :src="one.icon" />
+                            <div class="card__title">{{one.title}}</div>
+                        </div>
+                        <div class="card__detail" v-html="one.detail"></div>
+                    </div>
                 </div>
             </div>
         </div>
