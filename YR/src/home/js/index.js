@@ -45,6 +45,10 @@ var app = new Vue({
                 en:'JJ MATRIALS',
                 elem:'yh-center__matrials'
             },{
+                cn:'吉吉成果',
+                en:'JJ RESULTS',
+                elem:'yh-center__results'
+            },{
                 cn:'关于我们',
                 en:'ABOUT US'
             },{
@@ -195,7 +199,76 @@ var app = new Vue({
                 ]
             }],
             view:{},
-        }
+        },
+        results:{
+            title:'吉吉学习成果',
+            en:'JJ RESULTS',
+            active_index:0,
+            list:[{
+                name:'听力与口语要点',
+                img:'images/results-01.png',
+                detail:'在英孚360度浸入式语言学习环境中，孩子们将循序渐进地提高听力与口语水平，从音节发音、单词拼读再到简单对话，帮助自信开口，流利表达。',
+                func:'在课程中学员将学到：',
+                list:[{
+                    title:'1. 自然拼读/音节',
+                    detail:'理解字母表中的字母与它们独特发音的联系'
+                },{
+                    title:'2. 单词/表达',
+                    detail:'理解并回答简单的问题。学生开始通过循环递进的方式建立词汇量。'
+                },{
+                    title:'3. 完整句/对话',
+                    detail:'参与简单的日常对话，并能用简短的完整句描述日常生活中的物品与情景。'
+                }]
+            },{
+                name:'阅读要点',
+                img:'images/results-02.png',
+                detail:'孩子们将在每个单元中学习认读核心词汇和短句，部分常用词汇会在每个单元中重复出现，让孩子在不断强化的过程中加深记忆，熟练运用。学生课本和练习册中都包含了阅读和书写练习，旨在提高阅读兴趣，培养阅读习惯。',
+                func:'在课程中学员将学到：',
+                list:[{
+                    title:'1. 字母与单词认读',
+                    detail:'通过图像记忆认读字母、单词和数字'
+                },{
+                    title:'2. 单词',
+                    detail:'有能力将字母组合成单词.'
+                },{
+                    title:'3. 完整句',
+                    detail:'用正确的语音语调读出短句子。'
+                }]
+            },{
+                name:'写作要点',
+                img:'images/results-03.png',
+                detail:'这一阶段的书写练习将锻炼孩子们精细肌肉的发展，提高字母笔画、字母结构等书写技巧，而通过大量的重复练习和即时反馈，孩子们对单词拼写和句型结构的记忆也将得到强化。',
+                func:'在课程中学员将学到：',
+                list:[{
+                    title:'1. 基础描红',
+                    detail:'通过对线条和形状的描红和标记，为书写能力的发展打好基础'
+                },{
+                    title:'2. 字母和单词描红',
+                    detail:'通过字母和单词的描红，提高肌肉运动技巧，锻炼书写能力'
+                },{
+                    title:'3. 句子抄写',
+                    detail:'描红和抄写由3到5个单词组成的简短句子'
+                }]
+            },{
+                name:'自然拼读法',
+                img:'images/results-04.png',
+                detail:'自然拼读法是以英语为母语国家的孩子学习英语发音的一种方法，帮助孩子通过学习字母和发音的对应联系，准确发音，学习拼读单词。',
+                func:'自然拼读法中，教师旨在培养孩子：',
+                list:[{
+                    title:'',
+                    detail:'<span class="num">1</span><span class="normal">可以轻松、流畅地阅读，并很好地理解</span>'
+                },{
+                    title:'',
+                    detail:'<span class="num">2</span><span class="normal">可以连贯、清晰、准确地书写</span>'
+                },{
+                    title:'',
+                    detail:'<span class="num">3</span><span class="normal">掌握丰富的词汇</span>'
+                },{
+                    title:'',
+                    detail:'<span class="num">4</span><span class="normal">养成广泛涉猎不同题材书本的良好阅读习惯</span>'
+                }]
+            }]
+        },
     },
     created:function(){
         this.GC.w = document.documentElement.clientWidth || window.innerWidth || screen.width,
@@ -346,7 +419,7 @@ var app = new Vue({
                     this.nav.top = this.$refs['yh-center__nav'].offsetTop;
                 // }
                 this.nav.height = this.$refs['yh-center__nav'].offsetHeight;
-                window.scrollTo(0,this.nav.list[index].top - this.nav.height+ "px");
+                window.scrollTo(0,this.nav.list[index].top - this.nav.height);
                 self.nav.click_status = false;
             }else if(this.nav.list[index].href){  // 跳页面
                 window.location.href = this.nav.list[index].href
@@ -910,6 +983,9 @@ var app = new Vue({
         matrialViewClose:function(){
             this.matrials.active_index = -1
             this.matrials.view = {}
+        },
+        resultsChangeEvent:function(index){
+            this.results.active_index = index
         },
     }
 })

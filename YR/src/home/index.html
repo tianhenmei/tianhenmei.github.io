@@ -273,6 +273,39 @@
                 </div>
             </div>
         </div>
+        <div class="yh-center__results" ref="yh-center__results">
+            <div class="results__center">
+                <div class="results__title">{{results.title}}</div>
+                <div class="results__en">{{results.en}}</div>
+                <div class="results__list">
+                    <ul class="results__ul clearfix">
+                        <li class="results__li"
+                            :class="{'results__li--active':results.active_index == index}"
+                            v-for="(one,index) in results.list"
+                            @click.stop.prevent="resultsChangeEvent(index)">
+                            <img class="li__img" :src="one.img" />
+                            <div class="li__name">{{one.name}}</div>
+                        </li>
+                    </ul>
+                    <div class="results__content">
+                        <div class="content__one"
+                            v-for="(one,index) in results.list"
+                            v-show="index == results.active_index">
+                            <div class="content__detail">{{one.detail}}</div>
+                            <div class="content__func">{{one.func}}</div>
+                            <ul class="content__list clearfix">
+                                <li class="list__one"
+                                    :class="'list__one--'+one.list.length"
+                                    v-for="(item,i) in one.list">
+                                    <div class="item__title" v-if="item.title" v-html="item.title"></div>
+                                    <div class="item__detail clearfix" v-html="item.detail"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="../common/js/swiper.min.js"></script>
