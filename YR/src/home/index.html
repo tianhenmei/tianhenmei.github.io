@@ -122,6 +122,7 @@
                                 'width':nav.width+'px',
                                 'left':nav.left+'px'
                             }"
+                            :class="{'nav__ul--transition':nav.transition}"
                             @touchstart.stop="navStartEvent"
                             @touchmove.stop.prevent="navMoveEvent"
                             @touchend.stop="navEndEvent">
@@ -228,6 +229,41 @@
                 </div>
             </div>
         </div>
+        <div class="yh-center__teacher" ref="yh-center__teacher">
+            <div class="teacher__center">
+                <div class="teacher__title">{{teacher.title}}</div>
+                <div class="teacher__en">{{teacher.en}}</div>
+                <div class="teacher__content clearfix">
+                    <div class="teacher__img"></div>
+                    <div class="teacher__list" v-if="pc">
+                        <ul class="teacher__ul clearfix">
+                            <li class="teacher__li--top">
+                                <div class="top-title">{{teacher.detail}}</div>
+                                <div class="top-info top-info1" v-html="teacher.info1"></div>
+                                <div class="top-info top-info2" v-html="teacher.info2"></div>
+                            </li>
+                            <li class="teacher__li clearfix"
+                                v-for="(one,index) in teacher.list">
+                                <img class="li__img" :src="one.img" />
+                                <div class="li__intro" v-html="one.intro"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="teacher__li--top" v-else>
+                        <div class="top-title">{{teacher.detail}}</div>
+                        <div class="top-info top-info1" v-html="teacher.info1"></div>
+                        <div class="top-info top-info2" v-html="teacher.info2"></div>
+                    </div>
+                </div>
+                <ul class="teacher__ul clearfix" v-if="!pc">
+                    <li class="teacher__li clearfix"
+                        v-for="(one,index) in teacher.list">
+                        <img class="li__img" :src="one.img" />
+                        <div class="li__intro" v-html="one.intro"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <div class="yh-center__matrials" ref="yh-center__matrials">
             <div class="matrials__center">
                 <div class="matrials__title">{{matrials.title}}</div>
@@ -306,8 +342,41 @@
                 </div>
             </div>
         </div>
+        <div class="yh-center__about" ref="yh-center__about">
+            <div class="about__center">
+                <div class="about__title">{{about.title}}</div>
+                <div class="about__en">{{about.en}}</div>
+                <div class="about__list">
+                    <ul class="about__ul clearfix">
+                        <li class="about__li"
+                            v-for="(one,index) in about.list">
+                            <div class="li__title" v-html="one.title"></div>
+                            <div class="li__detail" v-html="one.detail"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="yh-center__contact" ref="yh-center__contact">
+            <div class="contact__center">
+                <div class="contact__title">{{contact.title}}</div>
+                <div class="contact__en">{{contact.en}}</div>
+                <div class="contact__ercode">
+                    <img class="ercode__img" src="images/ercode.png" />
+                </div>
+                <div class="contact__info">{{pc ? '扫码' : '长按识别二维码'}}加入吉吉英语吧</div>
+            </div>
+        </div>
+        <div class="yh-center__bottom"
+            ref="yh-center__bottom">
+            <div class="bottom__center clearfix">
+                <img class="bottom__logo" src="images/logo.png" />
+                <div class="bottom__name"></div>
+            </div>
+        </div>
     </div>
 </div>
+<script type="text/javascript" src="../common/js/jquery.1.10.1.min.js"></script>
 <script type="text/javascript" src="../common/js/swiper.min.js"></script>
 <script type="text/javascript" src="../common/js/vue.2.1.10.js"></script>
 <script type="text/javascript" src="js/index.js?v=$version$"></script>

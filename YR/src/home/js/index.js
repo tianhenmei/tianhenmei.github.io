@@ -31,6 +31,7 @@ var app = new Vue({
             list:[{
                 cn:'首页',
                 en:'HOME PAGE',
+                position:0,
                 height:0,
                 top:0
             },{
@@ -39,7 +40,8 @@ var app = new Vue({
                 elem:'yh-center__classes'
             },{
                 cn:'吉吉外教',
-                en:'JJ TEACHERS'
+                en:'JJ TEACHERS',
+                elem:'yh-center__teacher'
             },{
                 cn:'吉吉教材',
                 en:'JJ MATRIALS',
@@ -50,10 +52,12 @@ var app = new Vue({
                 elem:'yh-center__results'
             },{
                 cn:'关于我们',
-                en:'ABOUT US'
+                en:'ABOUT US',
+                elem:'yh-center__about'
             },{
                 cn:'联系我们',
-                en:'CONTACT US'
+                en:'CONTACT US',
+                elem:'yh-center__contact'
             }],
         },
         banner:{
@@ -156,6 +160,24 @@ var app = new Vue({
                     content:'我们的课程注重“全人教育”，帮助孩子在学习语言的同时，了解西方文化，提高综合素养和全球视野。'
                 }]
             }]
+        },
+        teacher:{
+            title:'吉吉外教',
+            en:'JJ TEACHER',
+            detail:'为孩子全球优选 5A好外教',
+            info1:'超过 <span class="num">14,800</span> 名外教',
+            info2:'每天超过 <span class="num">50,000</span> 节课程，大数据帮家长找到适合孩子的好外教',
+            list:[{
+                img:"images/teacher-icon-01.png",
+                intro:'全部老师均来自欧美等英语官方语言国家，更有国际名校毕业的外教一线授课',
+            },{
+                img:"images/teacher-icon-02.png",
+                intro:'每一位外教都经过6轮面试和试讲筛选，录取率仅3%，对外教，我们优中选优',
+            },{
+                img:"images/teacher-icon-03.png",
+                intro:'系统性的岗前培训，每天高频次多元化教学方法培训，塑造更专业、优秀外教',
+            }],
+            view:{},
         },
         matrials:{
             title:'吉吉教材',
@@ -269,6 +291,24 @@ var app = new Vue({
                 }]
             }]
         },
+        about:{
+            title:'关于我们',
+            en:'ABOUT US',
+            list:[{
+                title:'吉吉英语相信， 每个人都有沟通世界的权利。',
+                detail:'吉吉英语是北京大生知行科技有限公司旗下的在线英语教育品牌，其作为中国在线英语教育的领导品牌，51Talk无忧英语专注于外教1对1，通过有效的沉浸式学习法，打破传统的英语“知识”学习模式。专业国际团队研发的适合中国人学习的英语课程，帮助中国人用更快捷有效的方式，达成英语水平的提升。<br/><br/>'+
+                '51Talk的创始人CEO黄佳佳先生来自于清华大学外语系， 首创“外教一对一，在线学英语”的互联网学习模式，以优质的外籍师资、经济实惠的价格和全球专家研发的专业英语课程赢得了数万名英语学习者的认可和好评。<br/><br/>'+
+                '51Talk是新东方联合创始人、著名英语教育专家徐小平老师唯一推荐的在线英语教育品牌学员打开电脑、带上耳机，即可与远在海外的真人外教一对一实时互动学习，互联网帮助众多英语学习者足不出户实现了平价“留学”的梦想，让教育公平化成为了可能。<br/><br/>'
+            },{
+                title:'“你在说，全世界都在听。”',
+                detail:'学英语很重要。因为它不仅仅是一种沟通工具，而是一种现代生活方式的表达。<br/><br/>'+
+                '我们相信互联网平等开放的力量，相信用最实惠的价格、优质的服务，让数千万对英语和生活怀抱着热爱和执着，渴望通过努力改变生活的普通人，从见证小小改变的发生，到实现大大的梦想：）'
+            }]
+        },
+        contact:{
+            title:'联系我们',
+            en:'CONTACT US'
+        }
     },
     created:function(){
         this.GC.w = document.documentElement.clientWidth || window.innerWidth || screen.width,
@@ -418,11 +458,19 @@ var app = new Vue({
                     this.getNavHeight();
                     this.nav.top = this.$refs['yh-center__nav'].offsetTop;
                 // }
-                this.nav.height = this.$refs['yh-center__nav'].offsetHeight;
-                window.scrollTo(0,this.nav.list[index].top - this.nav.height);
-                self.nav.click_status = false;
+                this.nav.height = this.pc ? this.$refs['yh-center__nav-list'].offsetHeight : this.$refs['yh-center__nav'].offsetHeight;
+                // window.scrollTo(0,this.nav.list[index].top - this.nav.height);
+                // this.nav.click_status = false;
+                $('html,body').animate({'scrollTop': (this.nav.list[index].top - this.nav.height)+ "px"},500,function(){
+                    self.nav.click_status = false;
+                });
             }else if(this.nav.list[index].href){  // 跳页面
                 window.location.href = this.nav.list[index].href
+            }else if(this.nav.list[index].hasOwnProperty('position') && this.nav.list[index].position == 0){
+                $('html,body').animate({'scrollTop':"0px"},500,function(){
+                    self.nav.click_status = false;
+                    self.nav.fixed = false;
+                });
             }
         },
         loadedJSCSS:function(){

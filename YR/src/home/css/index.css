@@ -90,11 +90,13 @@ body {
     bottom: 0;
     background: #ffff00;
     opacity: 0; }
-  .yh-center__nav .nav__li:hover,
   .yh-center__nav .nav__li--active {
     color: #ffff00; }
   .yh-center__nav .nav__li--active:after {
     opacity: 1; }
+
+.yh-center--pc .yh-center__nav .nav__li:hover {
+  color: #ffff00; }
 
 .yh-center--mobile .yh-center__nav {
   height: 2.56rem;
@@ -126,6 +128,9 @@ body {
     position: absolute;
     left: 0;
     top: 0; }
+  .yh-center--mobile .yh-center__nav .nav__ul--transition {
+    -webkit-transition: 0.5s all;
+    transition: 0.5s all; }
   .yh-center--mobile .yh-center__nav .nav__li {
     height: 2.56rem;
     line-height: 2.56rem;
@@ -386,10 +391,119 @@ body {
     background: #ffff00; }
 
 /***page-classes end***************************************************/
+/***page-teacher start***************************************************/
+.yh-center__teacher {
+  padding: 0 0 30px 0;
+  background: #fff; }
+  .yh-center__teacher .teacher__center {
+    width: 1200px;
+    margin: 0 auto; }
+  .yh-center__teacher .teacher__title {
+    height: 60px;
+    line-height: 60px;
+    padding: 30px 0 0 0;
+    font-size: 36px;
+    color: #333;
+    text-align: center; }
+  .yh-center__teacher .teacher__en {
+    font-size: 12px;
+    color: #666;
+    text-align: center; }
+  .yh-center__teacher .teacher__content {
+    padding: 20px 0 0 0; }
+  .yh-center__teacher .teacher__img {
+    width: 629px;
+    height: 682px;
+    margin: 0 20px 0 0;
+    float: left;
+    background: url("../images/foreigner.png") no-repeat center top;
+    background-size: 100% 100%; }
+  .yh-center__teacher .teacher__list {
+    float: left; }
+  .yh-center__teacher .teacher__ul {
+    margin: 0 auto; }
+  .yh-center__teacher .teacher__li--top {
+    width: 551px;
+    height: 230px;
+    padding: 40px 0 0 0; }
+    .yh-center__teacher .teacher__li--top .top-title {
+      height: 80px;
+      line-height: 60px;
+      font-size: 40px;
+      color: #333;
+      text-align: left; }
+    .yh-center__teacher .teacher__li--top .top-info {
+      color: #666;
+      font-size: 14px;
+      text-align: left; }
+      .yh-center__teacher .teacher__li--top .top-info .num {
+        color: #7eff01;
+        font-size: 40px; }
+  .yh-center__teacher .teacher__li {
+    margin: 0 0 50px 0;
+    position: relative; }
+    .yh-center__teacher .teacher__li .li__img {
+      width: 74px;
+      float: left; }
+    .yh-center__teacher .teacher__li .li__intro {
+      width: 467px;
+      line-height: 32px;
+      padding: 0 0 0 10px;
+      font-size: 16px;
+      color: #666;
+      text-align: justify;
+      float: left; }
+
+.yh-center--mobile .yh-center__teacher {
+  padding-bottom: 0.64rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__center {
+    width: 15.36rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__title {
+    height: 1.28rem;
+    line-height: 1.28rem;
+    padding: 0.85333rem 0 0 0;
+    font-size: 0.85333rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__detail {
+    padding: 0 0 0.42667rem 0;
+    line-height: 0.768rem;
+    font-size: 0.512rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__ul {
+    width: 15.36rem;
+    padding: 0.42667rem 0 0 0;
+    margin: 0 auto; }
+  .yh-center--mobile .yh-center__teacher .teacher__img {
+    width: 8rem;
+    height: 8.66133rem;
+    margin-right: 0.42667rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__li--top {
+    width: 6.93333rem;
+    height: auto;
+    padding-top: 0.85333rem;
+    float: left; }
+    .yh-center--mobile .yh-center__teacher .teacher__li--top .top-title {
+      height: auto;
+      line-height: 0.85333rem;
+      padding: 0 0 0.42667rem 0;
+      font-size: 0.68267rem; }
+    .yh-center--mobile .yh-center__teacher .teacher__li--top .top-info {
+      font-size: 0.256rem; }
+      .yh-center--mobile .yh-center__teacher .teacher__li--top .top-info .num {
+        font-size: 0.68267rem; }
+  .yh-center--mobile .yh-center__teacher .teacher__li {
+    margin-bottom: 0.42667rem; }
+    .yh-center--mobile .yh-center__teacher .teacher__li .li__img {
+      width: 1.57867rem; }
+    .yh-center--mobile .yh-center__teacher .teacher__li .li__intro {
+      width: 13.568rem;
+      line-height: 0.64rem;
+      font-size: 0.512rem;
+      padding-left: 0.21333rem; }
+
+/***page-teacher end***************************************************/
 /***page-matrials start***************************************************/
 .yh-center__matrials {
   padding: 0 0 30px 0;
-  background: #fff; }
+  background: #7dff01; }
   .yh-center__matrials .matrials__center {
     width: 1200px;
     margin: 0 auto; }
@@ -398,11 +512,11 @@ body {
     line-height: 60px;
     padding: 30px 0 0 0;
     font-size: 36px;
-    color: #333;
+    color: #fff;
     text-align: center; }
   .yh-center__matrials .matrials__en {
     font-size: 12px;
-    color: #666;
+    color: #fff;
     text-align: center; }
   .yh-center__matrials .matrials__list {
     padding: 20px 0 0 0; }
@@ -514,6 +628,10 @@ body {
   padding: 0.85333rem 0 0 0;
   font-size: 0.85333rem; }
 
+.yh-center--mobile .yh-center__matrials .matrials__en {
+  padding-bottom: 0.21333rem;
+  font-size: 0.512rem; }
+
 .yh-center--mobile .yh-center__matrials .matrials__detail {
   padding: 0 0 0.42667rem 0;
   line-height: 0.768rem;
@@ -576,7 +694,7 @@ body {
 /***page-matrials end***************************************************/
 /***page-results start***************************************************/
 .yh-center__results {
-  background: #ffff00; }
+  background: #fff; }
   .yh-center__results .results__center {
     width: 1200px;
     margin: 0 auto; }
@@ -721,6 +839,152 @@ body {
   font-size: 0.59733rem; }
 
 /***page-results end***************************************************/
+/***page-about start***************************************************/
+.yh-center__about {
+  padding: 0 0 20px 0;
+  background: #ffff00; }
+  .yh-center__about .about__center {
+    width: 1200px;
+    margin: 0 auto; }
+  .yh-center__about .about__title {
+    height: 60px;
+    line-height: 60px;
+    padding: 30px 0 0 0;
+    font-size: 36px;
+    color: #333;
+    text-align: center; }
+  .yh-center__about .about__en {
+    font-size: 12px;
+    color: #666;
+    text-align: center; }
+  .yh-center__about .about__list {
+    padding: 20px 0 0 0; }
+  .yh-center__about .about__ul {
+    width: 1000px;
+    margin: 0 auto; }
+  .yh-center__about .about__li {
+    position: relative;
+    cursor: pointer; }
+    .yh-center__about .about__li .li__title {
+      line-height: 48px;
+      font-size: 30px;
+      text-align: left;
+      color: #ff7300;
+      font-weight: bold; }
+    .yh-center__about .about__li .li__detail {
+      line-height: 24px;
+      font-size: 14px;
+      color: #666;
+      text-align: left; }
+
+.yh-center--mobile .yh-center__about {
+  padding-bottom: 0.42667rem; }
+  .yh-center--mobile .yh-center__about .about__center {
+    width: 15.36rem; }
+  .yh-center--mobile .yh-center__about .about__title {
+    height: 1.28rem;
+    line-height: 1.28rem;
+    padding: 0.85333rem 0 0 0;
+    font-size: 0.85333rem; }
+  .yh-center--mobile .yh-center__about .about__detail {
+    padding: 0 0 0.42667rem 0;
+    line-height: 0.768rem;
+    font-size: 0.512rem; }
+  .yh-center--mobile .yh-center__about .about__list {
+    padding-top: 0.42667rem; }
+  .yh-center--mobile .yh-center__about .about__ul {
+    width: 15.36rem;
+    padding-left: 0; }
+  .yh-center--mobile .yh-center__about .about__li .li__title {
+    line-height: 1.19467rem;
+    font-size: 0.85333rem; }
+  .yh-center--mobile .yh-center__about .about__li .li__detail {
+    line-height: 0.68267rem;
+    font-size: 0.512rem; }
+
+/***page-about end***************************************************/
+/***page-contact start***************************************************/
+.yh-center__contact {
+  padding: 0 0 20px 0;
+  background: #fff; }
+  .yh-center__contact .contact__center {
+    width: 1200px;
+    margin: 0 auto; }
+  .yh-center__contact .contact__title {
+    height: 60px;
+    line-height: 60px;
+    padding: 30px 0 0 0;
+    font-size: 36px;
+    color: #333;
+    text-align: center; }
+  .yh-center__contact .contact__en {
+    font-size: 12px;
+    color: #666;
+    text-align: center; }
+  .yh-center__contact .contact__ercode {
+    width: 200px;
+    margin: 0 auto;
+    padding: 20px 20px 10px 20px; }
+    .yh-center__contact .contact__ercode .ercode__img {
+      width: 200px; }
+  .yh-center__contact .contact__info {
+    line-height: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #666; }
+
+.yh-center--mobile .yh-center__contact {
+  padding-bottom: 0.42667rem; }
+  .yh-center--mobile .yh-center__contact .contact__center {
+    width: 15.36rem; }
+  .yh-center--mobile .yh-center__contact .contact__title {
+    height: 1.28rem;
+    line-height: 1.28rem;
+    padding: 0.85333rem 0 0 0;
+    font-size: 0.85333rem; }
+  .yh-center--mobile .yh-center__contact .contact__ercode {
+    width: 8.53333rem;
+    padding: 0.42667rem 0.42667rem 0.21333rem 0.42667rem; }
+    .yh-center--mobile .yh-center__contact .contact__ercode .ercode__img {
+      width: 8.53333rem; }
+  .yh-center--mobile .yh-center__contact .contact__info {
+    line-height: 0.768rem;
+    font-size: 0.512rem; }
+
+/***page-contact end***************************************************/
+/***page-bottom start***************************************************/
+.yh-center__bottom {
+  width: 100%;
+  background: #fff; }
+  .yh-center__bottom .bottom__center {
+    width: 135px;
+    margin: 0 auto;
+    padding: 20px 0; }
+  .yh-center__bottom .bottom__logo {
+    width: 30px;
+    height: 30px;
+    float: left; }
+  .yh-center__bottom .bottom__name {
+    width: 100px;
+    height: 30px;
+    margin: 0 0 0 5px;
+    background: url("../images/logo-name.png") no-repeat left center;
+    background-size: 100%;
+    float: left; }
+
+.yh-center--mobile .yh-center__bottom .bottom__center {
+  width: 5.76rem; }
+
+.yh-center--mobile .yh-center__bottom .bottom__logo {
+  width: 1.28rem;
+  height: 1.28rem; }
+
+.yh-center--mobile .yh-center__bottom .bottom__name {
+  width: 4.26667rem;
+  height: 1.28rem;
+  margin-left: 0.21333rem; }
+
+/***page-bottom end***************************************************/
 .rotateInfinite {
   -webkit-animation: rotateInfinite 2s linear both infinite;
           animation: rotateInfinite 2s linear both infinite; }
