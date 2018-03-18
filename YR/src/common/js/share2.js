@@ -30,7 +30,7 @@ function share(datas){
         return
     }
     surl = window.location.href;
-    var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+    var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode('https://activity.lagou.com/activity/dist/interviewQA/m_index.html');//)window.location.href.split('#')[0]);
     var callback = function (json) {
         var data = json.message;
         data = eval("(" + data + ")");
@@ -38,8 +38,8 @@ function share(datas){
             debug: false,
             appId: data.appId,
             timestamp: data.timestamp,
-            nonceStr: data.nonceStr,
-            signature: data.signature,
+            nonceStr: data.nonceStr,   // 动态
+            signature: data.signature,  // 动态
             jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
         });
 
@@ -53,9 +53,9 @@ function share(datas){
                     // 用户确认分享后执行的回调函数
 
                     //如果存在统计类型 则统计分享次数
-                    if(datas.activityType){
-                        countShare(datas);
-                    }
+                    // if(datas.activityType){
+                    //     countShare(datas);
+                    // }
 
                 }
             };
@@ -96,8 +96,8 @@ function share(datas){
     //     dataType: "jsonp",
     //     jsonp: "jsoncallback",
     //     success: function (response) {
-            // callback && callback(response);
-        // },
+    //         callback && callback(response);
+    //     },
     //     error: function (xhr, type) {
     //         console.log('xhr:' + xhr + "type:" + type);
 

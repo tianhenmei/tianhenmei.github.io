@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>2018拉勾梦想者市集</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <link rel="stylesheet" href="https://www.lgstatic.com/topic/css/swiper.min.css"/>
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            if(rightSize < currentSize){  //按宽度算
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                htmlStatus = 1;
+                if(app == 'ios' || app == 'android'){
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                }
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+    
+        setFontSize();
+    </script>
+</head>
+<body>
+<div id="app">
+    <div clsss="yh-center">
+        <div class="yh-ceenter__loading page0" ref="page0">
+            <div class="pieces-08 right_bottom_in"></div>
+            <div class="icon pieces-01 right_in"></div>
+            <div class="icon pieces-02 left_in"></div>
+            <div class="icon pieces-03 right_in"></div>
+            <div class="icon pieces-04 left_in"></div>
+            <div class="icon pieces-05 left_in"></div>
+            <div class="icon pieces-06 right_in"></div>
+            <div class="icon pieces-07 left_in"></div>
+            <div v-for="(one,index) in loading.text" 
+                class="loading_text"
+                :class="'loading_text'+index+' '+one.classname">{{one.word}}</div>
+            <div class="loading__number little_move_top delay1-2">{{loading.number}}%</div>
+        </div>
+        <div class="yh-center__first page1 hide" ref="page1">
+            <div class="pieces-08 left_in"></div>
+            <div class="icon pieces-01 right_in"></div>
+            <div class="icon pieces-02 left_in"></div>
+            <div class="icon pieces-03 left_in"></div>
+            <div class="icon pieces-04 left_in"></div>
+            <div class="icon pieces-05 left_in"></div>
+            <div class="icon pieces-06 right_in"></div>
+            <div class="icon pieces-07 left_in"></div>
+            <div class="first__title down-skew-in delay1-0"></div>
+            <div class="first__time clearfix right-shake-in delay1-5">
+                <div class="icon"></div>
+                <div class="time">{{first.time}}</div>
+            </div>
+            <div class="first__address clearfix right-shake-in delay1-7">
+                <div class="icon"></div>
+                <div class="address">{{first.address}}</div>
+            </div>
+            <ul class="first__list">
+                <li v-for="(one,index) in first.list"
+                    class="first__li"
+                    :class="'first__li--'+index+' '+one.classname">
+                    {{one.word}}
+                </li>
+            </ul>
+            <div class="first__circle" @click.stop.prevent="showContent"
+                :data-lg-tj-id="countId" 
+                :data-lg-tj-no="getCount(first.count)" 
+                :data-lg-tj-cid="null">
+                <div class="circle one zoom-in infinite delay2-0"></div>
+                <div class="circle two zoom-in infinite delay2-5"></div>
+                <div class="circle three zoom-in infinite  delay3-0"></div>
+            </div>
+        </div>
+        <div class="yh-center__long page2 hide" ref="yh-center__long">
+            <div class="yh-center__longc">
+                <div class="yh-center__almighty" :class="{'active':long.active_index.indexOf(0) != -1}" ref="yh-center__almighty">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{almighty.title}}</div>
+                        <div class="common__detail">{{almighty.detail}}</div>
+                    </div>
+                    <div class="yh-center__pieces">
+                        <div class="icon pieces-01"></div>
+                        <div class="icon pieces-02"></div>
+                        <div class="icon pieces-03"></div>
+                        <div class="icon pieces-04"></div>
+                        <div class="icon pieces-05"></div>
+                        <div class="icon pieces-06"></div>
+                    </div>
+                    <div class="yh-center__content">
+                        <div v-for="(one,index) in almighty.content"
+                            class="content__one"
+                            :class="'content__one--'+index+(index % 2 == 0 ? ' content__one--even' :'')">
+                            <img class="one__img" :src="one.src" />
+                            <div class="icon one__number"></div>
+                            <div class="icon one__en one__en0"></div>
+                            <div class="icon one__en one__en1"></div>
+                            <div class="one__name">{{one.name}}</div>
+                            <div class="one__info" v-html="one.info"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__plus" :class="{'active':long.active_index.indexOf(1) != -1}" ref="yh-center__plus">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{plus.title}}</div>
+                        <div class="common__detail">{{plus.detail}}</div>
+                    </div>
+                    <div class="yh-center__content">
+                        <div v-for="(one,index) in plus.content"
+                            class="content__one clearfix"
+                            :class="'content__one--'+index">
+                            <div class="one__time">{{one.time}}</div>
+                            <div class="icon one__dash"
+                                v-if="index < plus.content.length - 1"></div>
+                            <img class="one__img" :src="one.photo" />
+                            <div class="one__info">
+                                <div class="info__top clearfix">
+                                    <div class="one__name">{{one.name}}</div>
+                                    <div class="one__position">{{one.position}}</div>
+                                </div>
+                                <div class="info__book">{{one.book}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__workshop" :class="{'active':long.active_index.indexOf(2) != -1}" ref="yh-center__workshop">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{workshop.title}}</div>
+                        <div class="common__detail">{{workshop.detail}}</div>
+                        <a class="common__checkin"
+                            :href="workshop.checkin"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(workshop.count)" 
+                            :data-lg-tj-cid="null">需要单独报名</a>
+                    </div>
+                    <div class="workshop__content" ref="workshop__animation" id="workshop__animation">
+                        <div class="content__list clearfix" id="workshop__animation-content">
+                            <div v-for="(one,index) in workshop.content"
+                                class="content__one clearfix"
+                                :class="'content__one--'+index">
+                                <div class="one__top">
+                                    <img class="one__img" :src="one.img" />
+                                    <div class="one__shop" v-html="one.shop"></div>
+                                    <div class="one__title">{{one.title}}</div>
+                                    <div class="one__time">{{one.time}}</div>
+                                </div>
+                                <div class="one__detail">{{one.detail}}</div>
+                                <div v-if="one.button" 
+                                    class="one__button">
+                                    <a :href="one.button.href" 
+                                        class="button__a"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(workshop.count+index+1)" 
+                                        :data-lg-tj-cid="null">{{one.button.text}}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__street" :class="{'active':long.active_index.indexOf(3) != -1}" ref="yh-center__street">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{street.title}}</div>
+                        <div class="common__detail">{{street.detail}}</div>
+                    </div>
+                    <div class="street__content" ref="street__animation" id="street__animation">
+                        <div class="content__list clearfix" id="street__animation-content">
+                            <div v-for="(one,index) in street.content"
+                                class="content__one clearfix"
+                                :class="'content__one--'+index">
+                                <a v-for="i in one"
+                                    class="one__logo"
+                                    :href="i.href">
+                                    <img class="one__img" :src="i.logo" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__activity" :class="{'active':long.active_index.indexOf(4) != -1}" ref="yh-center__activity">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{activity.title}}</div>
+                        <div class="common__detail">{{activity.detail}}</div>
+                    </div>
+                    <div class="activity__pieces">
+                        <div class="icon pieces-01"></div>
+                        <div class="icon pieces-02"></div>
+                    </div>
+                    <div class="activity__content">
+                        <div v-for="(one,index) in activity.content"
+                            class="content__one clearfix"
+                            :class="'content__one--'+index">
+                            <div class="one__left">
+                                <img class="one__img" :src="one.img" />
+                                <div class="one__bline"></div>
+                                <div class="one__rline"></div>
+                            </div>
+                            <div class="one__info" :class="'one__info--row'+one.row">
+                                <div class="info__top clearfix">
+                                    <div class="one__number">{{'0'+(index+1)}}</div>
+                                    <div class="one__name">{{one.name}}</div>
+                                </div>
+                                <div class="info__text" v-html="one.info"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__club" :class="{'active':long.active_index.indexOf(5) != -1}" ref="yh-center__club">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{club.title}}</div>
+                        <div class="common__detail">{{club.detail}}</div>
+                        <a class="common__checkin"
+                            :href="club.checkin"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(club.count)" 
+                            :data-lg-tj-cid="null">需要单独报名</a>
+                    </div>
+                    <div class="club__content" ref="club__animation" id="club__animation">
+                        <div class="content__list clearfix" id="workshop__animation-content">
+                            <div v-for="(one,index) in club.content"
+                                class="content__one clearfix"
+                                :class="'content__one--'+index">
+                                <img class="one__img" :src="one.img" />
+                                <div class="icon one__quote"></div>
+                                <div class="icon one__en1"></div>
+                                <div class="icon one__en2"></div>
+                                <div class="one__name">{{one.name}}</div>
+                                <div class="one__detail" v-html="one.detail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__market" :class="{'active':long.active_index.indexOf(6) != -1}" ref="yh-center__market">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{market.title}}</div>
+                    </div>
+                    <div class="market__content">
+                        <div class="market__map">
+                            <img class="map__img" :src="market.src" />
+                            <div class="icon map__icon"></div>
+                        </div>
+                        <div class="market__time clearfix">
+                            <div class="icon icon"></div>
+                            <div class="text">市集时间</div>
+                        </div>
+                        <div class="time">{{market.time}}</div>
+                        <div class="market__address clearfix">
+                            <div class="icon icon"></div>
+                            <div class="text">市集地址</div>
+                        </div>
+                        <div class="address">{{market.address}}</div>
+                    </div>
+                </div>
+                <div class="yh-center__partner" :class="{'active':long.active_index.indexOf(7) != -1}" ref="yh-center__partner">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{partner.title}}</div>
+                    </div>
+                    <div class="partner__content clearfix">
+                        <a v-for="(one,index) in partner.content"
+                            class="icon content__one"
+                            :href="one.href"
+                            :class="'content__one--'+one.logo">
+                        </a>
+                    </div>
+                </div>
+                <a class="icon yh-center__baoming"
+                    :href="baoming"
+                    :data-lg-tj-id="countId" 
+                    :data-lg-tj-no="getCount(count)" 
+                    :data-lg-tj-cid="null">立即报名</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
+<!-- <script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script> -->
+<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
+<!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
+<script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
+
+<!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "10个互联网人跳一跳，9个用拉勾！",
+        desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
+        imgUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/images/share-2.png',
+        activityType: '2018PROMOTIONH5',
+        shareUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>
