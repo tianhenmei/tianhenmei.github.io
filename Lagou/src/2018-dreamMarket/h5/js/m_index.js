@@ -9,290 +9,299 @@ var app = new Vue({
         isAPP:false,
         isiPhone:false,
         employerAnimation:{},
-        baoming:'https://activity.lagou.com/topic/signup.html',
-        count:1,
+        current:'sz',
         active_index:0,
         move_out:-1,
         move_in:-1,
-        loading:{
-            number:0,
-            text:[
-                {
-                    classname:'little_move_top delay0-5',
-                    word:"优秀的你安放理想替代文案",
-                },{
-                    classname:'little_move_top delay0-7',
-                    word:"优秀的你安放理想",
-                },{
-                    classname:'little_move_top delay0-9',
-                    word:"为每一个优秀的你安放理想"
+        location:{
+            sz:{
+                count:1,
+                baoming:'https://activity.lagou.com/topic/signup.html',
+                loading:{
+                    number:0,
+                    text:[
+                        {
+                            classname:'little_move_top delay0-5',
+                            word:"优秀的你安放理想替代文案",
+                        },{
+                            classname:'little_move_top delay0-7',
+                            word:"优秀的你安放理想",
+                        },{
+                            classname:'little_move_top delay0-9',
+                            word:"为每一个优秀的你安放理想"
+                        }
+                    ]
+                },
+                first:{
+                    time:'2018.03.31',
+                    address:'北京   中关村创业大街',
+                    count:20,
+                    list:[
+                        {
+                            classname:'little_move_top delay2-0',
+                            word:'Top50好公司现场直招'
+                        },{
+                            classname:'little_move_top delay2-2',
+                            word:'大咖亲授职场思维养成法'
+                        },{
+                            classname:'little_move_top delay2-4',
+                            word:'Workshop前沿行业探讨'
+                        },{
+                            classname:'little_move_top delay2-6',
+                            word:'1to1职业咨询顾问'
+                        }
+                    ]
+                },
+                long:{
+                    active_index:[],
+                    list:[{
+                        elem:'yh-center__almighty',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__plus',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__workshop',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__street',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__activity',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__club',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__market',
+                        height:0,
+                        top:0
+                    },{
+                        elem:'yh-center__partner',
+                        height:0,
+                        top:0
+                    }]
+                },
+                almighty:{
+                    title:'万能的拉勾',
+                    detail:'治愈系职场体验店，带你击破职场低情绪泡沫',
+                    content:[{
+                        name:'职场情绪黑室',
+                        info:'职场里无处安放的小情绪， <br/>来这里当伪装者尽情宣泄，出</br/>来又是一条好汉。',
+                        src:'images/almighty-01.png'
+                    },{
+                        name:'Boss面试间',
+                        info:'模拟压力面试，解锁奇葩问题，<br/> K.O.给你脸色的面试官，现场获得惊喜特权。  ',
+                        src:'images/almighty-02.png'
+                    },{
+                        name:'职场30问',
+                        info:'从面试技巧到行业知识， <br/>多种锦囊，教你化解内心焦虑， <br/>解决职场疑惑。 ',
+                        src:'images/almighty-03.png'
+                    }]
+                },
+                plus:{
+                    title:'梦想PLUS',
+                    detail:'透过现象看本质的职场思维运用，大咖教你成为职场高手',
+                    content:[{
+                        time:'14:00',
+                        name:'鲍艾乐',
+                        photo:'images/plus/ella.png',
+                        position:'拉勾联合创始人／CMO',
+                        book:'《用有效穿透造就职场心法》'
+                    },{
+                        time:'14:30',
+                        name:'李松蔚',
+                        photo:'images/plus/lisongwei.png',
+                        position:'清华大学心理发展指导中心讲师',
+                        book:'《思维穿透和开放性思考》'
+                    },{
+                        time:'15:00',
+                        name:'李松蔚',
+                        photo:'images/plus/ella.png',
+                        position:'FACE++',
+                        book:'《思维穿透和开放性思考》'
+                    },{
+                        time:'15:30',
+                        name:'王明远',
+                        photo:'images/plus/wangmingyuan.png',
+                        position:'Node Family技术合伙人',
+                        book:'《思维穿透和开放性思考》'
+                    },{
+                        time:'16:00',
+                        name:'吴冰',
+                        photo:'images/plus/ella.png',
+                        position:'石墨CEO',
+                        book:'《思维穿透和开放性思考》'
+                    }]
+                },
+                workshop:{
+                    title:'WORKSHOP',
+                    detail:'深度探讨式工作坊，了解个人职业定位与发展，看懂行业趋势',
+                    checkin:'https://activity.lagou.com/topic/signup.html',
+                    count:2,
+                    content:[{
+                        img:'images/workshop-01.png',
+                        shop:'阿里云栖社区<span class="icon x"></span>拉勾',
+                        title:'《未来人机交互技术》',
+                        time:'09:00-12:05',
+                        detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
+                    },{
+                        img:'images/workshop-02.png',
+                        shop:'特邀咨询师严嘉伟<span class="icon x"></span>拉勾',
+                        title:'《职业锚测试》',
+                        time:'13:00-14:30',
+                        detail:'做完测试后，需要在报名页填写报名信息，最终凭借短信进入工作坊。',
+                        button:{
+                            text:'进入测试题',
+                            href:'javascript:void(0);'
+                        }
+                    },{
+                        img:'images/workshop-01.png',
+                        shop:'阿里云栖社区<span class="icon x"></span>拉勾',
+                        title:'《未来人机交互技术》',
+                        time:'3.31   09:00-12:05',
+                        detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
+                    }]
+                },
+                street:{
+                    title:'梦想大街',
+                    detail:'Top50公司特展，争取面试机会，收割心仪Offer',
+                    content:[[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
+                        href:'javascript:void(0);'
+                    }],[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
+                        href:'javascript:void(0);'
+                    }],[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
+                        href:'javascript:void(0);'
+                    }],[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
+                        href:'javascript:void(0);'
+                    }],[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
+                        href:'javascript:void(0);'
+                    }],[{
+                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
+                        href:'javascript:void(0);'
+                    }]]
+                },
+                activity:{
+                    title:'市集体验式主题活动',
+                    detail:'放肆吃喝，奖励多多，激发快乐的荷尔蒙',
+                    content:[{
+                        img:'images/activity-01.png',
+                        name:'超级抽奖机',
+                        info:'市集区内参与活动集齐奖章即<br/>可召唤礼品。',
+                        row:2
+                    },{
+                        img:'images/activity-02.png',
+                        name:'OFFER王',
+                        info:'现场收割面试邀请数量的No.1<br/>获得666元现金奖励。',
+                        row:2
+                    },{
+                        img:'images/activity-03.png',
+                        name:'阅读马拉松',
+                        info:'华章书院联合拉勾发起的读书接力<br/>每人阅读1-2章，合作完成整本书的读书<br/>笔记完成任务送重磅好书。',
+                        row:3
+                    },{
+                        img:'images/activity-04.png',
+                        name:'吃喝玩乐',
+                        info:'拉勾+来电+连咖啡趣味联名定制饮品<br/>Master达人手工制作享乐；有品创意<br/>生活间体验；新氧为职场Lady皮肤检<br/>测，打造完美眉形',
+                        row:4
+                    },{
+                        img:'images/activity-05.png',
+                        name:'同行吃鸡',
+                        info:'拉勾网CEO马德龙坐等高手呼朋引<br/>伴，现场组队，大吉大利，一起吃<br/>鸡。',
+                        row:3
+                    }]
+                },
+                club:{
+                    title:'超新星俱乐部',
+                    detail:'闪闪发光的你如何与好公司相遇',
+                    count:10,
+                    checkin:'https://activity.lagou.com/topic/signup.html',
+                    content:[{
+                        img:'images/club-01.png',
+                        name:'一对一职业顾问',
+                        detail:'报名筛选且现场完成任务即<br/>可与咨询导师现场进行咨询<br/>服务。'
+                    },{
+                        img:'images/club-02.png',
+                        name:'梦想者午餐会',
+                        detail:'定向邀约30位求职者与一线<br/>互联网名企30位HRD\\CXO<br/>共进午餐，拉勾买单。'
+                    }]
+                },
+                market:{
+                    title:'市集信息',
+                    src:'images/market-map-01.png',
+                    time:'2018年3月31日(周六)  10:00',
+                    address:'北京市海淀区海淀西大街48号中关村创业大街'
+                },
+                partner:{
+                    title:'合作伙伴',
+                    content:[{
+                        logo:'wangyi',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'yanxuan',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'aiqiyi',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'yuanquan',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'beimi',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'boqi',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'changtang',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'paobu',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'jingdong',
+                        href:'javascript:void(0);'
+                    }]
                 }
-            ]
+            },
         },
-        long:{
-            active_index:[],
-            list:[{
-                elem:'yh-center__almighty',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__plus',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__workshop',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__street',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__activity',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__club',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__market',
-                height:0,
-                top:0
-            },{
-                elem:'yh-center__partner',
-                height:0,
-                top:0
-            }]
-        },
-        first:{
-            time:'2018.03.31',
-            address:'北京   中关村创业大街',
-            count:20,
-            list:[
-                {
-                    classname:'little_move_top delay2-0',
-                    word:'Top50好公司现场直招'
-                },{
-                    classname:'little_move_top delay2-2',
-                    word:'大咖亲授职场思维养成法'
-                },{
-                    classname:'little_move_top delay2-4',
-                    word:'Workshop前沿行业探讨'
-                },{
-                    classname:'little_move_top delay2-6',
-                    word:'1to1职业咨询顾问'
-                }
-            ]
-        },
-        almighty:{
-            title:'万能的拉勾',
-            detail:'治愈系职场体验店，带你击破职场低情绪泡沫',
-            content:[{
-                name:'职场情绪黑室',
-                info:'职场里无处安放的小情绪， <br/>来这里当伪装者尽情宣泄，出</br/>来又是一条好汉。',
-                src:'images/almighty-01.png'
-            },{
-                name:'Boss面试间',
-                info:'模拟压力面试，解锁奇葩问题，<br/> K.O.给你脸色的面试官，现场获得惊喜特权。  ',
-                src:'images/almighty-02.png'
-            },{
-                name:'职场30问',
-                info:'从面试技巧到行业知识， <br/>多种锦囊，教你化解内心焦虑， <br/>解决职场疑惑。 ',
-                src:'images/almighty-03.png'
-            }]
-        },
-        plus:{
-            title:'梦想PLUS',
-            detail:'透过现象看本质的职场思维运用，大咖教你成为职场高手',
-            content:[{
-                time:'14:00',
-                name:'鲍艾乐',
-                photo:'images/plus/ella.png',
-                position:'拉勾联合创始人／CMO',
-                book:'《用有效穿透造就职场心法》'
-            },{
-                time:'14:30',
-                name:'李松蔚',
-                photo:'images/plus/lisongwei.png',
-                position:'清华大学心理发展指导中心讲师',
-                book:'《思维穿透和开放性思考》'
-            },{
-                time:'15:00',
-                name:'李松蔚',
-                photo:'images/plus/ella.png',
-                position:'FACE++',
-                book:'《思维穿透和开放性思考》'
-            },{
-                time:'15:30',
-                name:'王明远',
-                photo:'images/plus/wangmingyuan.png',
-                position:'Node Family技术合伙人',
-                book:'《思维穿透和开放性思考》'
-            },{
-                time:'16:00',
-                name:'吴冰',
-                photo:'images/plus/ella.png',
-                position:'石墨CEO',
-                book:'《思维穿透和开放性思考》'
-            }]
-        },
-        workshop:{
-            title:'WORKSHOP',
-            detail:'深度探讨式工作坊，了解个人职业定位与发展，看懂行业趋势',
-            checkin:'https://activity.lagou.com/topic/signup.html',
-            count:2,
-            content:[{
-                img:'images/workshop-01.png',
-                shop:'阿里云栖社区<span class="icon x"></span>拉勾',
-                title:'《未来人机交互技术》',
-                time:'09:00-12:05',
-                detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
-            },{
-                img:'images/workshop-02.png',
-                shop:'特邀咨询师严嘉伟<span class="icon x"></span>拉勾',
-                title:'《职业锚测试》',
-                time:'13:00-14:30',
-                detail:'做完测试后，需要在报名页填写报名信息，最终凭借短信进入工作坊。',
-                button:{
-                    text:'进入测试题',
-                    href:'javascript:void(0);'
-                }
-            },{
-                img:'images/workshop-01.png',
-                shop:'阿里云栖社区<span class="icon x"></span>拉勾',
-                title:'《未来人机交互技术》',
-                time:'3.31   09:00-12:05',
-                detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
-            }]
-        },
-        street:{
-            title:'梦想大街',
-            detail:'Top50公司特展，争取面试机会，收割心仪Offer',
-            content:[[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
-                href:'javascript:void(0);'
-            }],[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
-                href:'javascript:void(0);'
-            }],[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
-                href:'javascript:void(0);'
-            }],[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
-                href:'javascript:void(0);'
-            }],[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
-                href:'javascript:void(0);'
-            }],[{
-                logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
-                href:'javascript:void(0);'
-            },{
-                logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
-                href:'javascript:void(0);'
-            }]]
-        },
-        activity:{
-            title:'市集体验式主题活动',
-            detail:'放肆吃喝，奖励多多，激发快乐的荷尔蒙',
-            content:[{
-                img:'images/activity-01.png',
-                name:'超级抽奖机',
-                info:'市集区内参与活动集齐奖章即<br/>可召唤礼品。',
-                row:2
-            },{
-                img:'images/activity-02.png',
-                name:'OFFER王',
-                info:'现场收割面试邀请数量的No.1<br/>获得666元现金奖励。',
-                row:2
-            },{
-                img:'images/activity-03.png',
-                name:'阅读马拉松',
-                info:'华章书院联合拉勾发起的读书接力<br/>每人阅读1-2章，合作完成整本书的读书<br/>笔记完成任务送重磅好书。',
-                row:3
-            },{
-                img:'images/activity-04.png',
-                name:'吃喝玩乐',
-                info:'拉勾+来电+连咖啡趣味联名定制饮品<br/>Master达人手工制作享乐；有品创意<br/>生活间体验；新氧为职场Lady皮肤检<br/>测，打造完美眉形',
-                row:4
-            },{
-                img:'images/activity-05.png',
-                name:'同行吃鸡',
-                info:'拉勾网CEO马德龙坐等高手呼朋引<br/>伴，现场组队，大吉大利，一起吃<br/>鸡。',
-                row:3
-            }]
-        },
-        club:{
-            title:'超新星俱乐部',
-            detail:'闪闪发光的你如何与好公司相遇',
-            count:10,
-            checkin:'https://activity.lagou.com/topic/signup.html',
-            content:[{
-                img:'images/club-01.png',
-                name:'一对一职业顾问',
-                detail:'报名筛选且现场完成任务即<br/>可与咨询导师现场进行咨询<br/>服务。'
-            },{
-                img:'images/club-02.png',
-                name:'梦想者午餐会',
-                detail:'定向邀约30位求职者与一线<br/>互联网名企30位HRD\\CXO<br/>共进午餐，拉勾买单。'
-            }]
-        },
-        market:{
-            title:'市集信息',
-            src:'images/market-map-01.png',
-            time:'2018年3月31日(周六)  10:00',
-            address:'北京市海淀区海淀西大街48号中关村创业大街'
-        },
-        partner:{
-            title:'合作伙伴',
-            content:[{
-                logo:'wangyi',
-                href:'javascript:void(0);'
-            },{
-                logo:'yanxuan',
-                href:'javascript:void(0);'
-            },{
-                logo:'aiqiyi',
-                href:'javascript:void(0);'
-            },{
-                logo:'yuanquan',
-                href:'javascript:void(0);'
-            },{
-                logo:'beimi',
-                href:'javascript:void(0);'
-            },{
-                logo:'boqi',
-                href:'javascript:void(0);'
-            },{
-                logo:'changtang',
-                href:'javascript:void(0);'
-            },{
-                logo:'paobu',
-                href:'javascript:void(0);'
-            },{
-                logo:'jingdong',
-                href:'javascript:void(0);'
-            }]
-        }
     },
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         this.isAPP = this.from == 'ios' || this.from == 'android'
+        var locate = getQueryString('lagoufrom')
+        if(locate != 'sz' && this.location[locate]){
+            this.current = locate
+        }
         
         this.setLoading()
         this.initWorkshopAnimation()
@@ -481,9 +490,9 @@ var app = new Vue({
             timer = setInterval(function(){
                 var ran = Math.floor(Math.random() * 5 + i * 5);
                 i++;
-                self.loading.number = ran;
+                self.location[self.current].loading.number = ran;
                 if(i == 20){
-                    self.loading.number = 100;
+                    self.location[self.current].loading.number = 100;
                     clearInterval(timer);
                     $('.page0').addClass('page-move-out');
                     $('.page1').removeClass('hide').addClass('page-move-in');
@@ -508,7 +517,7 @@ var app = new Vue({
                     'overflow-y':'auto'
                 });
                 self.$refs['yh-center__long'].className += ' active';
-                self.long.active_index = [0]
+                self.location[self.current].long.active_index = [0]
             },500)
         },
         initWorkshopAnimation:function(){
@@ -716,7 +725,7 @@ var app = new Vue({
             })
         },
         getTabHeight:function(){
-            var list = this.long.list,
+            var list = this.location[this.current].long.list,
                 elem = null,
                 parent = [],
                 height = 0,
@@ -731,7 +740,7 @@ var app = new Vue({
                     if(list[i].parent){
                         parent = list[i].parent;
                         for(j = 0; j < parent.length; j++){
-                            top += this.tab.list[parent[j]].offsetTop;
+                            top += this.location[this.current].tab.list[parent[j]].offsetTop;
                             // height += this.tab.list[parent[j]].height;
                         }
                         // top += elem.offsetTop;
@@ -745,24 +754,24 @@ var app = new Vue({
                         height = elem.offsetHeight;
                     }
                     if(list[i].offsetTop != top || list[i].height != height){
-                        this.tab.list[i].offsetTop = top;
-                        this.tab.list[i].height = height;
+                        this.location[this.current].tab.list[i].offsetTop = top;
+                        this.location[this.current].tab.list[i].height = height;
                         status = true
                     }
                 }
             }
             if(!status) {
-                this.tab.status = true;
+                this.location[this.current].tab.status = true;
             }
         },
         initWindowScrollEvent:function(){
             var self = this,
                 min = this.getPX(58);
             self.getTabHeight();
-            self.tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
-            self.tab.height = self.$refs['yh-center__tab-center'].offsetHeight;
+            self.location[self.current].tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
+            self.location[self.current].tab.height = self.$refs['yh-center__tab-center'].offsetHeight;
             $(window).scroll(function() {
-                if(self.tab.click_status){
+                if(self.location[self.current].tab.click_status){
                     return
                 }
                 var tab = self.$refs['yh-center__tab'],
@@ -774,26 +783,26 @@ var app = new Vue({
                     i = 0;
                 // if(!self.tab.status){
                     self.getTabHeight();
-                    self.tab.offsetTop = tab.offsetTop;
-                    self.tab.height = tab.offsetHeight;//self.$refs['yh-center__tab-center'].offsetHeight;
+                    self.location[self.current].tab.offsetTop = tab.offsetTop;
+                    self.location[self.current].tab.height = tab.offsetHeight;//self.$refs['yh-center__tab-center'].offsetHeight;
                 // }
-                if(self.tab.offsetTop <= scrollTop){
-                    self.tab.fixed = true;
+                if(self.location[self.current].tab.offsetTop <= scrollTop){
+                    self.location[self.current].tab.fixed = true;
                 }else{
-                    self.tab.fixed = false;
+                    self.location[self.current].tab.fixed = false;
                 }
-                for (i = 0; i < self.tab.list.length; i++) {
-                    one = self.tab.list[i];
+                for (i = 0; i < self.location[self.current].tab.list.length; i++) {
+                    one = self.location[self.current].tab.list[i];
                     // if (one.elem && (one.offsetTop - halfWidow + min) < scrollTop && (one.offsetTop + one.height - halfWidow - min) > scrollTop) {
                     if (one.elem && (one.offsetTop - halfWidow) < scrollTop && (one.offsetTop + one.height - halfWidow) > scrollTop) {
-                        self.tab.active_index = i;
+                        self.location[self.current].tab.active_index = i;
                         left = self.$refs['tab__li--'+i][0].offsetLeft;
-                        if(left >= (self.tab.width - self.tab.showWidth)){
-                            self.tab.left = -1 * (self.tab.width - self.tab.showWidth);
-                            self.tab.shadow_status = false;
+                        if(left >= (self.location[self.current].tab.width - self.location[self.current].tab.showWidth)){
+                            self.location[self.current].tab.left = -1 * (self.location[self.current].tab.width - self.location[self.current].tab.showWidth);
+                            self.location[self.current].tab.shadow_status = false;
                         }else {
-                            self.tab.left = -1 * left;
-                            self.tab.shadow_status = true;
+                            self.location[self.current].tab.left = -1 * left;
+                            self.location[self.current].tab.shadow_status = true;
                         }
                         // 
                         break;
@@ -821,7 +830,7 @@ var app = new Vue({
 
         },
         getLongHeight:function(){
-            var list = this.long.list,
+            var list = this.location[this.current].long.list,
                 elem = null,
                 parent = [],
                 height = 0,
@@ -836,8 +845,8 @@ var app = new Vue({
                     if(list[i].parent){
                         parent = list[i].parent;
                         for(j = 0; j < parent.length; j++){
-                            top += this.long.list[parent[j]].offsetTop;
-                            // height += this.long.list[parent[j]].height;
+                            top += this.location[this.current].long.list[parent[j]].offsetTop;
+                            // height += this.location[this.current].long.list[parent[j]].height;
                         }
                         // top += elem.offsetTop;
                         top += this.getPX(list[i].top)
@@ -850,14 +859,14 @@ var app = new Vue({
                         height = elem.offsetHeight;
                     }
                     if(list[i].offsetTop != top || list[i].height != height){
-                        this.long.list[i].top = top;
-                        this.long.list[i].height = height;
+                        this.location[this.current].long.list[i].top = top;
+                        this.location[this.current].long.list[i].height = height;
                         status = true
                     }
                 }
             }
             if(!status) {
-                this.long.status = true;
+                this.location[this.current].long.status = true;
             }
         },
         initLongAnimate:function(){
@@ -875,15 +884,15 @@ var app = new Vue({
                     self.getLongHeight();
                     // status = true;
                 // }
-                for (i = 0; i < self.long.list.length; i++) {
-                    one = self.long.list[i];
+                for (i = 0; i < self.location[self.current].long.list.length; i++) {
+                    one = self.location[self.current].long.list[i];
                     // if (one.elem && (one.top - halfWidow) < scrollTop && (one.top + one.height) > scrollTop) {
                     if (one.elem && scrollTop > (one.top - halfWidow * 7) && scrollTop <= (one.top + one.height)) {
                         arr.push(i)
                     }
                 }
                 // alert(scrollTop);
-                self.long.active_index = arr;
+                self.location[self.current].long.active_index = arr;
                 // console.log(arr)
             });
         }

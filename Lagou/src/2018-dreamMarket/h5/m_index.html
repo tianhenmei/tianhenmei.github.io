@@ -89,10 +89,10 @@
             <div class="icon pieces-05 left_in"></div>
             <div class="icon pieces-06 right_in"></div>
             <div class="icon pieces-07 left_in"></div>
-            <div v-for="(one,index) in loading.text" 
+            <div v-for="(one,index) in location[current].loading.text" 
                 class="loading_text"
                 :class="'loading_text'+index+' '+one.classname">{{one.word}}</div>
-            <div class="loading__number little_move_top delay1-2">{{loading.number}}%</div>
+            <div class="loading__number little_move_top delay1-2">{{location[current].loading.number}}%</div>
         </div>
         <div class="yh-center__first page1 hide" ref="page1">
             <div class="pieces-08 left_in"></div>
@@ -106,14 +106,14 @@
             <div class="first__title down-skew-in delay1-0"></div>
             <div class="first__time clearfix right-shake-in delay1-5">
                 <div class="icon"></div>
-                <div class="time">{{first.time}}</div>
+                <div class="time">{{location[current].first.time}}</div>
             </div>
             <div class="first__address clearfix right-shake-in delay1-7">
                 <div class="icon"></div>
-                <div class="address">{{first.address}}</div>
+                <div class="address">{{location[current].first.address}}</div>
             </div>
             <ul class="first__list">
-                <li v-for="(one,index) in first.list"
+                <li v-for="(one,index) in location[current].first.list"
                     class="first__li"
                     :class="'first__li--'+index+' '+one.classname">
                     {{one.word}}
@@ -121,7 +121,7 @@
             </ul>
             <div class="first__circle" @click.stop.prevent="showContent"
                 :data-lg-tj-id="countId" 
-                :data-lg-tj-no="getCount(first.count)" 
+                :data-lg-tj-no="getCount(location[current].first.count+location[current].count)" 
                 :data-lg-tj-cid="null">
                 <div class="circle one zoom-in infinite delay2-0"></div>
                 <div class="circle two zoom-in infinite delay2-5"></div>
@@ -130,10 +130,10 @@
         </div>
         <div class="yh-center__long page2 hide" ref="yh-center__long">
             <div class="yh-center__longc">
-                <div class="yh-center__almighty" :class="{'active':long.active_index.indexOf(0) != -1}" ref="yh-center__almighty">
+                <div class="yh-center__almighty" :class="{'active':location[current].long.active_index.indexOf(0) != -1}" ref="yh-center__almighty">
                     <div class="yh-center__common">
-                        <div class="common__title">{{almighty.title}}</div>
-                        <div class="common__detail">{{almighty.detail}}</div>
+                        <div class="common__title">{{location[current].almighty.title}}</div>
+                        <div class="common__detail">{{location[current].almighty.detail}}</div>
                     </div>
                     <div class="yh-center__pieces">
                         <div class="icon pieces-01"></div>
@@ -144,7 +144,7 @@
                         <div class="icon pieces-06"></div>
                     </div>
                     <div class="yh-center__content">
-                        <div v-for="(one,index) in almighty.content"
+                        <div v-for="(one,index) in location[current].almighty.content"
                             class="content__one"
                             :class="'content__one--'+index+(index % 2 == 0 ? ' content__one--even' :'')">
                             <img class="one__img" :src="one.src" />
@@ -156,18 +156,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__plus" :class="{'active':long.active_index.indexOf(1) != -1}" ref="yh-center__plus">
+                <div class="yh-center__plus" :class="{'active':location[current].long.active_index.indexOf(1) != -1}" ref="yh-center__plus">
                     <div class="yh-center__common">
-                        <div class="common__title">{{plus.title}}</div>
-                        <div class="common__detail">{{plus.detail}}</div>
+                        <div class="common__title">{{location[current].plus.title}}</div>
+                        <div class="common__detail">{{location[current].plus.detail}}</div>
                     </div>
                     <div class="yh-center__content">
-                        <div v-for="(one,index) in plus.content"
+                        <div v-for="(one,index) in location[current].plus.content"
                             class="content__one clearfix"
                             :class="'content__one--'+index">
                             <div class="one__time">{{one.time}}</div>
                             <div class="icon one__dash"
-                                v-if="index < plus.content.length - 1"></div>
+                                v-if="index < location[current].plus.content.length - 1"></div>
                             <img class="one__img" :src="one.photo" />
                             <div class="one__info">
                                 <div class="info__top clearfix">
@@ -179,19 +179,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__workshop" :class="{'active':long.active_index.indexOf(2) != -1}" ref="yh-center__workshop">
+                <div class="yh-center__workshop" :class="{'active':location[current].long.active_index.indexOf(2) != -1}" ref="yh-center__workshop">
                     <div class="yh-center__common">
-                        <div class="common__title">{{workshop.title}}</div>
-                        <div class="common__detail">{{workshop.detail}}</div>
+                        <div class="common__title">{{location[current].workshop.title}}</div>
+                        <div class="common__detail">{{location[current].workshop.detail}}</div>
                         <a class="common__checkin"
-                            :href="workshop.checkin"
+                            :href="location[current].workshop.checkin"
                             :data-lg-tj-id="countId" 
-                            :data-lg-tj-no="getCount(workshop.count)" 
+                            :data-lg-tj-no="getCount(location[current].workshop.count+location[current].count)" 
                             :data-lg-tj-cid="null">需要单独报名</a>
                     </div>
                     <div class="workshop__content" ref="workshop__animation" id="workshop__animation">
                         <div class="content__list clearfix" id="workshop__animation-content">
-                            <div v-for="(one,index) in workshop.content"
+                            <div v-for="(one,index) in location[current].workshop.content"
                                 class="content__one clearfix"
                                 :class="'content__one--'+index">
                                 <div class="one__top">
@@ -206,20 +206,20 @@
                                     <a :href="one.button.href" 
                                         class="button__a"
                                         :data-lg-tj-id="countId" 
-                                        :data-lg-tj-no="getCount(workshop.count+index+1)" 
+                                        :data-lg-tj-no="getCount(location[current].workshop.count+index+1+location[current].count)" 
                                         :data-lg-tj-cid="null">{{one.button.text}}</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__street" :class="{'active':long.active_index.indexOf(3) != -1}" ref="yh-center__street">
+                <div class="yh-center__street" :class="{'active':location[current].long.active_index.indexOf(3) != -1}" ref="yh-center__street">
                     <div class="yh-center__common">
-                        <div class="common__title">{{street.title}}</div>
-                        <div class="common__detail">{{street.detail}}</div>
+                        <div class="common__title">{{location[current].street.title}}</div>
+                        <div class="common__detail">{{location[current].street.detail}}</div>
                     </div>
                     <div class="street__content" ref="street__animation" id="street__animation">
                         <div class="content__list clearfix" id="street__animation-content">
-                            <div v-for="(one,index) in street.content"
+                            <div v-for="(one,index) in location[current].street.content"
                                 class="content__one clearfix"
                                 :class="'content__one--'+index">
                                 <a v-for="i in one"
@@ -231,17 +231,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__activity" :class="{'active':long.active_index.indexOf(4) != -1}" ref="yh-center__activity">
+                <div class="yh-center__activity" :class="{'active':location[current].long.active_index.indexOf(4) != -1}" ref="yh-center__activity">
                     <div class="yh-center__common">
-                        <div class="common__title">{{activity.title}}</div>
-                        <div class="common__detail">{{activity.detail}}</div>
+                        <div class="common__title">{{location[current].activity.title}}</div>
+                        <div class="common__detail">{{location[current].activity.detail}}</div>
                     </div>
                     <div class="activity__pieces">
                         <div class="icon pieces-01"></div>
                         <div class="icon pieces-02"></div>
                     </div>
                     <div class="activity__content">
-                        <div v-for="(one,index) in activity.content"
+                        <div v-for="(one,index) in location[current].activity.content"
                             class="content__one clearfix"
                             :class="'content__one--'+index">
                             <div class="one__left">
@@ -259,19 +259,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__club" :class="{'active':long.active_index.indexOf(5) != -1}" ref="yh-center__club">
+                <div class="yh-center__club" :class="{'active':location[current].long.active_index.indexOf(5) != -1}" ref="yh-center__club">
                     <div class="yh-center__common">
-                        <div class="common__title">{{club.title}}</div>
-                        <div class="common__detail">{{club.detail}}</div>
+                        <div class="common__title">{{location[current].club.title}}</div>
+                        <div class="common__detail">{{location[current].club.detail}}</div>
                         <a class="common__checkin"
-                            :href="club.checkin"
+                            :href="location[current].club.checkin"
                             :data-lg-tj-id="countId" 
-                            :data-lg-tj-no="getCount(club.count)" 
+                            :data-lg-tj-no="getCount(location[current].club.count+location[current].count)" 
                             :data-lg-tj-cid="null">需要单独报名</a>
                     </div>
                     <div class="club__content" ref="club__animation" id="club__animation">
                         <div class="content__list clearfix" id="workshop__animation-content">
-                            <div v-for="(one,index) in club.content"
+                            <div v-for="(one,index) in location[current].club.content"
                                 class="content__one clearfix"
                                 :class="'content__one--'+index">
                                 <img class="one__img" :src="one.img" />
@@ -284,33 +284,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="yh-center__market" :class="{'active':long.active_index.indexOf(6) != -1}" ref="yh-center__market">
+                <div class="yh-center__market" :class="{'active':location[current].long.active_index.indexOf(6) != -1}" ref="yh-center__market">
                     <div class="yh-center__common">
-                        <div class="common__title">{{market.title}}</div>
+                        <div class="common__title">{{location[current].market.title}}</div>
                     </div>
                     <div class="market__content">
                         <div class="market__map">
-                            <img class="map__img" :src="market.src" />
+                            <img class="map__img" :src="location[current].market.src" />
                             <div class="icon map__icon"></div>
                         </div>
                         <div class="market__time clearfix">
                             <div class="icon icon"></div>
                             <div class="text">市集时间</div>
                         </div>
-                        <div class="time">{{market.time}}</div>
+                        <div class="time">{{location[current].market.time}}</div>
                         <div class="market__address clearfix">
                             <div class="icon icon"></div>
                             <div class="text">市集地址</div>
                         </div>
-                        <div class="address">{{market.address}}</div>
+                        <div class="address">{{location[current].market.address}}</div>
                     </div>
                 </div>
-                <div class="yh-center__partner" :class="{'active':long.active_index.indexOf(7) != -1}" ref="yh-center__partner">
+                <div class="yh-center__partner" :class="{'active':location[current].long.active_index.indexOf(7) != -1}" ref="yh-center__partner">
                     <div class="yh-center__common">
-                        <div class="common__title">{{partner.title}}</div>
+                        <div class="common__title">{{location[current].partner.title}}</div>
                     </div>
                     <div class="partner__content clearfix">
-                        <a v-for="(one,index) in partner.content"
+                        <a v-for="(one,index) in location[current].partner.content"
                             class="icon content__one"
                             :href="one.href"
                             :class="'content__one--'+one.logo">
@@ -318,9 +318,9 @@
                     </div>
                 </div>
                 <a class="icon yh-center__baoming"
-                    :href="baoming"
+                    :href="location[current].baoming"
                     :data-lg-tj-id="countId" 
-                    :data-lg-tj-no="getCount(count)" 
+                    :data-lg-tj-no="getCount(location[current].count)" 
                     :data-lg-tj-cid="null">立即报名</a>
             </div>
         </div>
