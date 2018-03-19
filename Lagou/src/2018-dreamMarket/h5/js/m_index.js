@@ -23,13 +23,13 @@ var app = new Vue({
                         {
                             classname:'little_move_top delay0-5',
                             word:"优秀的你安放理想替代文案",
-                        },{
+                        }/*,{
                             classname:'little_move_top delay0-7',
                             word:"优秀的你安放理想",
                         },{
                             classname:'little_move_top delay0-9',
                             word:"为每一个优秀的你安放理想"
-                        }
+                        }*/
                     ]
                 },
                 first:{
@@ -589,7 +589,7 @@ var app = new Vue({
                 length:length,
                 autoplay:autoplay,
                 animation:animation,
-                slidesPerView:4.9,
+                slidesPerView:5.3,//4.9,
                 loop:false,
                 swiper:null,
                 pagination:false
@@ -887,7 +887,7 @@ var app = new Vue({
                 for (i = 0; i < self.location[self.current].long.list.length; i++) {
                     one = self.location[self.current].long.list[i];
                     // if (one.elem && (one.top - halfWidow) < scrollTop && (one.top + one.height) > scrollTop) {
-                    if (one.elem && scrollTop > (one.top - halfWidow * 7) && scrollTop <= (one.top + one.height)) {
+                    if (one.elem && scrollTop > (one.top - halfWidow * 7)){// && scrollTop <= (one.top + one.height)) {
                         arr.push(i)
                     }
                 }
