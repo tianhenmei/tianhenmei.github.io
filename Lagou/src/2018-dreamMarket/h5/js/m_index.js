@@ -225,6 +225,54 @@ var app = new Vue({
                         logo:'images/street/logo-12.png',
                         href:'javascript:void(0);',
                         id:1561
+                    }],[{
+                        logo:'images/street/logo-13.png',
+                        href:'javascript:void(0);',
+                        id:50702
+                    },{
+                        logo:'images/street/logo-14.png',
+                        href:'javascript:void(0);',
+                        id:4188
+                    }],[{
+                        logo:'images/street/logo-15.png',
+                        href:'javascript:void(0);',
+                        id:5706
+                    },{
+                        logo:'images/street/logo-16.png',
+                        href:'javascript:void(0);',
+                        id:26782
+                    }],[{
+                        logo:'images/street/logo-17.png',
+                        href:'javascript:void(0);',
+                        id:1537
+                    },{
+                        logo:'images/street/logo-18.png',
+                        href:'javascript:void(0);',
+                        id:113856
+                    }],[{
+                        logo:'images/street/logo-19.png',
+                        href:'javascript:void(0);',
+                        id:28818
+                    },{
+                        logo:'images/street/logo-20.png',
+                        href:'javascript:void(0);',
+                        id:91
+                    }],[{
+                        logo:'images/street/logo-21.png',
+                        href:'javascript:void(0);',
+                        id:1101
+                    },{
+                        logo:'images/street/logo-22.png',
+                        href:'javascript:void(0);',
+                        id:46956
+                    }],[{
+                        logo:'images/street/logo-23.png',
+                        href:'javascript:void(0);',
+                        id:262476
+                    },{
+                        logo:'images/street/logo-24.png',
+                        href:'javascript:void(0);',
+                        id:1970
                     }]]
                 },
                 activity:{
@@ -927,14 +975,14 @@ var app = new Vue({
         initLongAnimate:function(){
             var long = this.$refs['yh-center__long'],
                 self = this,
-                status = false;
+                status = false,
+                arr = [];
             $(window).scroll(function(){
                 var scrollTop = document.documentElement.scrollTop || document.body.scrollTop,
                     height = $(window).height(),
                     halfWidow =  height / 8,
                     one = null,
-                    i = 0,
-                    arr = [];
+                    i = 0;
                 // if(!status){
                     self.getLongHeight();
                     // status = true;
@@ -942,7 +990,7 @@ var app = new Vue({
                 for (i = 0; i < self.location[self.current].long.list.length; i++) {
                     one = self.location[self.current].long.list[i];
                     // if (one.elem && (one.top - halfWidow) < scrollTop && (one.top + one.height) > scrollTop) {
-                    if (one.elem && scrollTop > (one.top - halfWidow * 7)){// && scrollTop <= (one.top + one.height)) {
+                    if (one.elem && scrollTop > (one.top - halfWidow * 7) && arr.indexOf(i) == -1){// && scrollTop <= (one.top + one.height)) {
                         arr.push(i)
                     }
                 }
