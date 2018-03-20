@@ -274,14 +274,14 @@ html, body {
     background: url("../images/first__circle.png") no-repeat 0 0;
     background-size: 100% 100%; }
   .yh-center__first .first__title {
-    width: 12.82133rem;
-    height: 7.46667rem;
-    background: url("../images/first__title.png") no-repeat center top;
+    width: 12.33067rem;
+    height: 7.40267rem;
+    background: url("../images/first-title-02.png") no-repeat center top;
     background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 2.304rem;
-    margin: 0 0 0 -6.208rem; }
+    top: 2.368rem;
+    margin: 0 0 0 -5.99467rem; }
   .yh-center__first .first__address .icon,
   .yh-center__first .first__time .icon {
     width: 0.81067rem;
@@ -315,6 +315,17 @@ html, body {
     .yh-center__first .first__address .address {
       line-height: 0.74667rem;
       font-size: 0.576rem; }
+    .yh-center__first .first__address .gap {
+      padding: 0 0.34133rem; }
+  .yh-center__first .first__address:before {
+    content: "";
+    width: 0.14933rem;
+    height: 0.14933rem;
+    border-radius: 0.14933rem;
+    background: #3bb26e;
+    position: absolute;
+    left: 2.34667rem;
+    top: 0.34133rem; }
   .yh-center__first .first__list {
     position: absolute;
     left: 50%;
@@ -800,6 +811,7 @@ html, body {
     background-position: -18.34667rem -2.56rem;
     display: inline-block; }
   .yh-center__workshop .content__one .one__title {
+    width: 8.96rem;
     line-height: 0.74667rem;
     padding: 0 0 0 0.256rem;
     font-size: 0.512rem;
@@ -857,6 +869,24 @@ html, body {
               transform: scale3d(0.916, 0.916, 0.916);
       display: block; }
 
+.yh-center__workshop .content__one--2 .one__time,
+.yh-center__workshop .content__one--2 .one__shop,
+.yh-center__workshop .content__one--1 .one__time,
+.yh-center__workshop .content__one--1 .one__shop {
+  padding-left: 0.42667rem; }
+
+.yh-center__workshop .content__one--2 .one__title,
+.yh-center__workshop .content__one--1 .one__title {
+  padding-left: 0.064rem; }
+
+.yh-center__workshop .content__one--2 .one__detail,
+.yh-center__workshop .content__one--1 .one__detail {
+  padding-left: 0.32rem; }
+
+.yh-center__workshop .content__one--2 .one__button,
+.yh-center__workshop .content__one--1 .one__button {
+  margin-left: 0.32rem; }
+
 .yh-center__workshop.active .common__checkin,
 .yh-center__workshop.active .common__detail,
 .yh-center__workshop.active .common__title {
@@ -908,10 +938,10 @@ html, body {
   width: 3.264rem;
   float: left; }
   .yh-center__street .content__one .one__logo {
-    width: 2.304rem;
-    height: 2.304rem;
+    width: 2.38933rem;
+    height: 2.38933rem;
     margin: 0.576rem auto 0;
-    border: 1px solid #4ef394;
+    background: #f1f1f1;
     border-radius: 2.304rem;
     overflow: hidden;
     display: block; }
@@ -1308,50 +1338,19 @@ html, body {
   opacity: 0; }
 
 .yh-center__partner .partner__content {
-  padding: 0 0 1.94133rem 0.78933rem;
+  margin: 0 0 1.94133rem 0;
   -webkit-transition: all 0.5s 0.5s;
   transition: all 0.5s 0.5s;
   opacity: 0; }
 
+.yh-center__partner .partner-logo {
+  background: url("../images/logo.png") no-repeat 0 0;
+  background-size: 16.128rem 19.328rem; }
+
 .yh-center__partner .content__one {
-  height: 1.17333rem;
+  width: 4.05333rem;
+  height: 1.38667rem;
   float: left; }
-
-.yh-center__partner .content__one--wangyi {
-  width: 4.01067rem;
-  background-position: 0 -16rem; }
-
-.yh-center__partner .content__one--yanxuan {
-  width: 3.41333rem;
-  background-position: -4.01067rem -16rem; }
-
-.yh-center__partner .content__one--aiqiyi {
-  width: 3.66933rem;
-  background-position: -7.424rem -16rem; }
-
-.yh-center__partner .content__one--yuanquan {
-  width: 3.456rem;
-  background-position: -11.09333rem -16rem; }
-
-.yh-center__partner .content__one--beimi {
-  width: 3.60533rem;
-  background-position: 0 -17.49333rem; }
-
-.yh-center__partner .content__one--boqi {
-  width: 3.81867rem;
-  background-position: -3.60533rem -17.49333rem; }
-
-.yh-center__partner .content__one--changtang {
-  width: 3.66933rem;
-  background-position: -7.424rem -17.49333rem; }
-
-.yh-center__partner .content__one--paobu {
-  width: 1.57867rem;
-  background-position: -11.09333rem -17.49333rem; }
-
-.yh-center__partner .content__one--jingdong {
-  width: 1.89867rem;
-  background-position: -12.672rem -17.49333rem; }
 
 .yh-center__partner.active .common__title {
   -webkit-transform: translate(0, 0);

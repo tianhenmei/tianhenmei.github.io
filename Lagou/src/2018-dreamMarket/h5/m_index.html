@@ -16,7 +16,7 @@
     <title>2018拉勾梦想者市集</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="https://www.lgstatic.com/topic/css/swiper.min.css"/>
-    <link rel="stylesheet" href="css/m_index.css?v=123$version$">
+    <link rel="stylesheet" href="css/m_index.css?v=234$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -110,7 +110,7 @@
             </div>
             <div class="first__address clearfix right-shake-in delay1-7">
                 <div class="icon"></div>
-                <div class="address">{{location[current].first.address}}</div>
+                <div class="address" v-html="location[current].first.address"></div>
             </div>
             <ul class="first__list">
                 <li v-for="(one,index) in location[current].first.list"
@@ -224,7 +224,12 @@
                                 :class="'content__one--'+index">
                                 <a v-for="i in one"
                                     class="one__logo"
-                                    :href="i.href">
+                                    :onclick="companyHref.one+i.id+companyHref.two" 
+                                    href="javascript:void(0);"
+                                    target="_blank"
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(location[current].street.count+location[current].count)" 
+                                    :data-lg-tj-cid="null">
                                     <img class="one__img" :src="i.logo" />
                                 </a>
                             </div>
@@ -309,11 +314,16 @@
                     <div class="yh-center__common">
                         <div class="common__title">{{location[current].partner.title}}</div>
                     </div>
-                    <div class="partner__content clearfix">
+                    <div class="partner__content clearfix partner-logo">
                         <a v-for="(one,index) in location[current].partner.content"
-                            class="icon content__one"
-                            :href="one.href"
-                            :class="'content__one--'+one.logo">
+                            class="content__one"
+                            :class="'content__one--'+one.logo"
+                            :onclick="one.id ? companyHref.one+one.id+companyHref.two : ''" 
+                            href="javascript:void(0);"
+                            target="_blank"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(location[current].partner.count+location[current].count)" 
+                            :data-lg-tj-cid="null">
                         </a>
                     </div>
                 </div>
@@ -333,7 +343,7 @@
 <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
 <!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
 <script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=123$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=234$version$"></script>
 
 <!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -344,7 +354,7 @@
         title: "10个互联网人跳一跳，9个用拉勾！",
         desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
         imgUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/images/share-2.png',
-        activityType: '2018PROMOTIONH5',
+        activityType: '2018DREAMMARKETH5',
         shareUrl: 'https://activity.lagou.com/activity/dist/promotion2018/h5/m_index.html'
     };
     share(datas);

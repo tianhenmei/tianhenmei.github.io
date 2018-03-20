@@ -3,7 +3,7 @@
 var app = new Vue({
     el:"#app",
     data:{
-        countId:'1b2f',
+        countId:'1b74',
         fontSize:16,
         from:'',
         isAPP:false,
@@ -13,6 +13,10 @@ var app = new Vue({
         active_index:0,
         move_out:-1,
         move_in:-1,
+        companyHref:{
+            one:"self.location=\'https://www.lagou.com/center/company_",
+            two:".html\';"
+        },
         location:{
             sz:{
                 count:1,
@@ -22,7 +26,7 @@ var app = new Vue({
                     text:[
                         {
                             classname:'little_move_top delay0-5',
-                            word:"优秀的你安放理想替代文案",
+                            word:"为每一个优秀的你安放理想",
                         }/*,{
                             classname:'little_move_top delay0-7',
                             word:"优秀的你安放理想",
@@ -34,7 +38,7 @@ var app = new Vue({
                 },
                 first:{
                     time:'2018.03.31',
-                    address:'北京   中关村创业大街',
+                    address:'北京<span class="gap"></span>中关村创业大街',
                     count:20,
                     list:[
                         {
@@ -96,8 +100,8 @@ var app = new Vue({
                         info:'职场里无处安放的小情绪， <br/>来这里当伪装者尽情宣泄，出</br/>来又是一条好汉。',
                         src:'images/almighty-01.png'
                     },{
-                        name:'Boss面试间',
-                        info:'模拟压力面试，解锁奇葩问题，<br/> K.O.给你脸色的面试官，现场获得惊喜特权。  ',
+                        name:'"Yes,And"戏剧社',
+                        info:'沉浸式体验即兴戏剧的"Yes,And"精神，解锁<br/>面试官奇葩问题，从容应对职场人际交往',
                         src:'images/almighty-02.png'
                     },{
                         name:'职场30问',
@@ -122,22 +126,22 @@ var app = new Vue({
                         book:'《思维穿透和开放性思考》'
                     },{
                         time:'15:00',
-                        name:'李松蔚',
-                        photo:'images/plus/ella.png',
-                        position:'FACE++',
-                        book:'《思维穿透和开放性思考》'
+                        name:'敖翔',
+                        photo:'images/plus/aoxiang.png',
+                        position:'Face++副总裁',
+                        book:'《后人工智能时代：新技术革命》'
                     },{
                         time:'15:30',
                         name:'王明远',
                         photo:'images/plus/wangmingyuan.png',
                         position:'Node Family技术合伙人',
-                        book:'《思维穿透和开放性思考》'
+                        book:'《让我们谈谈钱：风口上的区块链》'
                     },{
                         time:'16:00',
                         name:'吴冰',
-                        photo:'images/plus/ella.png',
+                        photo:'images/plus/wubing.png',
                         position:'石墨CEO',
-                        book:'《思维穿透和开放性思考》'
+                        book:'《当极致的灵魂穿透产品》'
                     }]
                 },
                 workshop:{
@@ -152,62 +156,75 @@ var app = new Vue({
                         time:'09:00-12:05',
                         detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
                     },{
+                        img:'images/workshop-03.png',
+                        shop:'Node Family<span class="icon x"></span>拉勾',
+                        title:'《区块链行业内的个人定位》',
+                        time:'10:00-11:30',
+                        detail:'区块链领域有什么样的工作机会？该如何寻找自己的定位？以什么样的“姿势”加入？这个工作坊将对这些问题一网打尽，为你全面解析。'
+                    },{
                         img:'images/workshop-02.png',
                         shop:'特邀咨询师严嘉伟<span class="icon x"></span>拉勾',
                         title:'《职业锚测试》',
                         time:'13:00-14:30',
-                        detail:'做完测试后，需要在报名页填写报名信息，最终凭借短信进入工作坊。',
+                        detail:'你的工作观如何影响职业定位与发展？如何更加了解自己？进入测试并报名，嘉伟老师从职业锚的角度在现场为你解析。',
                         button:{
                             text:'进入测试题',
                             href:'javascript:void(0);'
                         }
-                    },{
-                        img:'images/workshop-01.png',
-                        shop:'阿里云栖社区<span class="icon x"></span>拉勾',
-                        title:'《未来人机交互技术》',
-                        time:'3.31   09:00-12:05',
-                        detail:'随着语音交互、自然语言处理、多模态等技术的发展，未来人机交互的发展趋势怎样？云栖社区4位顶级专家为你解读。'
                     }]
                 },
                 street:{
                     title:'梦想大街',
+                    count:20,
                     detail:'Top50公司特展，争取面试机会，收割心仪Offer',
                     content:[[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-01.png',
+                        href:'javascript:void(0);',
+                        id:109
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-02.png',
+                        href:'javascript:void(0);',
+                        id:4602
                     }],[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-03.png',
+                        href:'javascript:void(0);',
+                        id:55446
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-04.png',
+                        href:'javascript:void(0);',
+                        id:44091
                     }],[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-05.png',
+                        href:'javascript:void(0);',
+                        id:201747
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-06.png',
+                        href:'javascript:void(0);',
+                        id:1686
                     }],[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/BF/1D/CgqKkVjPbZ2ANMGuAABWVaYH0CE104.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-07.png',
+                        href:'javascript:void(0);',
+                        id:22666
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/17/19/CgqKkVbw82CAAmBDAABb58-N6IM299.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-08.png',
+                        href:'javascript:void(0);',
+                        id:436
                     }],[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/48/D5/CgpEMlljHSGAB21aAACtONdWOYY644.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-09.png',
+                        href:'javascript:void(0);',
+                        id:35422
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/B6/D5/Cgp3O1i_xUuAHHlTAACFCusOLq0950.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-10.png',
+                        href:'javascript:void(0);',
+                        id:8103
                     }],[{
-                        logo:'https://www.lgstatic.com/thumbnail_300x300/i/image/M00/02/F9/CgpFT1jTkUCAUordAAAYS43iNFE259.jpg',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-11.png',
+                        href:'javascript:void(0);',
+                        id:40459
                     },{
-                        logo:'https://www.lgstatic.com/thumbnail_160x160/image1/M00/44/75/Cgo8PFXVl1qAUcI2AADi2R3OVic572.png',
-                        href:'javascript:void(0);'
+                        logo:'images/street/logo-12.png',
+                        href:'javascript:void(0);',
+                        id:1561
                     }]]
                 },
                 activity:{
@@ -243,7 +260,7 @@ var app = new Vue({
                 club:{
                     title:'超新星俱乐部',
                     detail:'闪闪发光的你如何与好公司相遇',
-                    count:10,
+                    count:100,
                     checkin:'https://activity.lagou.com/topic/signup.html',
                     content:[{
                         img:'images/club-01.png',
@@ -263,32 +280,70 @@ var app = new Vue({
                 },
                 partner:{
                     title:'合作伙伴',
+                    count:150,
                     content:[{
-                        logo:'wangyi',
+                        logo:'',
+                        href:'javascript:void(0);',
+                        id:164989
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);',
+                        id:117543
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);',
+                        id:317246
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);',
+                        id:165758
+                    },{
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'yanxuan',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'aiqiyi',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'yuanquan',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'beimi',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'boqi',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'changtang',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'paobu',
+                        logo:'',
                         href:'javascript:void(0);'
                     },{
-                        logo:'jingdong',
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
+                        href:'javascript:void(0);'
+                    },{
+                        logo:'',
                         href:'javascript:void(0);'
                     }]
                 }

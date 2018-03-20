@@ -325,11 +325,14 @@ html,body {
         background-size:100% 100%;
     }
     .first__title {
-        width:rem(601);
-        height:rem(350);
-        background:url('../images/first__title.png') no-repeat center top;
+        // width:rem(601);
+        // height:rem(350);
+        width:rem(578);
+        height:rem(347);
+        background:url('../images/first-title-02.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(84,108);
+        @include center(94,111);
+        // @include center(84,108);
     }
     .first__address,
     .first__time {
@@ -363,6 +366,19 @@ html,body {
             line-height:rem(35);
             font-size:rem(27);
         }
+        .gap {
+            padding:0 rem(16);
+        }
+    }
+    .first__address:before {
+        content:"";
+        width:rem(7);
+        height:rem(7);
+        border-radius:rem(7);
+        background:#3bb26e;
+        position:absolute;
+        left:rem(110);
+        top:rem(16);
     }
     .first__list {
         @include center(164,574);
@@ -831,6 +847,7 @@ html,body {
             display: inline-block;
         }
         .one__title {
+            width:rem(420);
             line-height:rem(35);
             padding:0 0 0 rem(12);
             font-size:rem(24);
@@ -881,6 +898,22 @@ html,body {
                 transform:scale3d(0.916,0.916,0.916);
                 display:block;
             }
+        }
+    }
+    .content__one--2,
+    .content__one--1 {
+        .one__time,
+        .one__shop {
+            padding-left:rem(20);
+        }
+        .one__title {
+            padding-left:rem(3);
+        }
+        .one__detail {
+            padding-left:rem(15);
+        }
+        .one__button {
+            margin-left:rem(15);
         }
     }
 }
@@ -934,10 +967,11 @@ html,body {
         width:rem(153);
         float:left;
         .one__logo {
-            width:rem(108);
-            height:rem(108);
+            width:rem(112);
+            height:rem(112);
             margin:rem(27) auto 0;
-            border:1px solid #4ef394;
+            // border:1px solid #4ef394;
+            background:#f1f1f1;
             border-radius:rem(108);
             overflow:hidden;
             display:block;
@@ -1333,50 +1367,56 @@ html,body {
         opacity:0;
     }
     .partner__content {
-        padding:0 0 rem(91) rem(37);
+        margin:0 0 rem(91) 0;//rem(37);
         transition:all 0.5s 0.5s;
         opacity:0;
     }
+    .partner-logo {
+        background:url('../images/logo.png') no-repeat 0 0;
+        background-size:rem(756) rem(906);
+    }
     .content__one {
-        height:rem(55);
+        // height:rem(55);
+        width:rem(190);
+        height:rem(65);
         float:left;
     }
-    .content__one--wangyi {
-        width:rem(188);
-        background-position:0 rem(-750);
-    }
-    .content__one--yanxuan {
-        width:rem(160);
-        background-position:rem(-188) rem(-750);
-    }
-    .content__one--aiqiyi {
-        width:rem(172);
-        background-position:rem(-348) rem(-750);
-    }
-    .content__one--yuanquan {
-        width:rem(162);
-        background-position:rem(-520) rem(-750);
-    }
-    .content__one--beimi {
-        width:rem(169);
-        background-position:0 rem(-820);
-    }
-    .content__one--boqi {
-        width:rem(179);
-        background-position:rem(-169) rem(-820);
-    }
-    .content__one--changtang {
-        width:rem(172);
-        background-position:rem(-348) rem(-820);
-    }
-    .content__one--paobu {
-        width:rem(74);
-        background-position:rem(-520) rem(-820);
-    }
-    .content__one--jingdong {
-        width:rem(89);
-        background-position:rem(-594) rem(-820);
-    }
+    // .content__one--wangyi {
+    //     width:rem(188);
+    //     background-position:0 rem(-750);
+    // }
+    // .content__one--yanxuan {
+    //     width:rem(160);
+    //     background-position:rem(-188) rem(-750);
+    // }
+    // .content__one--aiqiyi {
+    //     width:rem(172);
+    //     background-position:rem(-348) rem(-750);
+    // }
+    // .content__one--yuanquan {
+    //     width:rem(162);
+    //     background-position:rem(-520) rem(-750);
+    // }
+    // .content__one--beimi {
+    //     width:rem(169);
+    //     background-position:0 rem(-820);
+    // }
+    // .content__one--boqi {
+    //     width:rem(179);
+    //     background-position:rem(-169) rem(-820);
+    // }
+    // .content__one--changtang {
+    //     width:rem(172);
+    //     background-position:rem(-348) rem(-820);
+    // }
+    // .content__one--paobu {
+    //     width:rem(74);
+    //     background-position:rem(-520) rem(-820);
+    // }
+    // .content__one--jingdong {
+    //     width:rem(89);
+    //     background-position:rem(-594) rem(-820);
+    // }
 }
 .yh-center__partner.active {
     .common__title {
