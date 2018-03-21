@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>2018拉勾梦想者市集</title>
+    <title>2018拉勾梦想市集</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="https://www.lgstatic.com/topic/css/swiper.min.css"/>
     <link rel="stylesheet" href="css/m_index.css?v=235$version$">
@@ -332,6 +332,12 @@
                     :data-lg-tj-id="countId" 
                     :data-lg-tj-no="getCount(location[current].count)" 
                     :data-lg-tj-cid="null">立即报名</a>
+                <div class="bgmusic"
+                    :class="music" @click.stop.prevent="musicEvent">
+                    <div class="bgmusic--center">
+                        <audio id="music" autoplay="autoplay" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -341,18 +347,15 @@
     var jQuery = jQuery.noConflict();
 </script> -->
 <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
-<!-- <script type="text/javascript" src="js/vue-awesome-swiper.min.js"></script> -->
 <script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
 <script type="text/javascript" src="js/m_index.js?v=235$version$"></script>
-
-<!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script> -->
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
 <script type="text/javascript">
     //微信分享
     var datas = {
-        title: "10个互联网人跳一跳，9个用拉勾！",
-        desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
+        title: "拉勾梦想市集|如何找到快乐又有钱的工作？",
+        desc: "京东、爱奇艺等名企现场直招，大咖分享职场心法！从职业选择到职业规划，拉勾让你和好公司相遇！",
         imgUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/images/share.png',
         activityType: '2018DREAMMARKETH5',
         shareUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/m_index.html'

@@ -396,6 +396,41 @@ html, body {
     width: 100%;
     height: auto;
     padding: 0 0 2.13333rem 0; }
+  .yh-center__long .bgmusic {
+    width: 1.30133rem;
+    height: 1.30133rem;
+    position: fixed;
+    right: 1.06667rem;
+    top: 1.06667rem;
+    z-index: 100; }
+    .yh-center__long .bgmusic .bgmusic--center {
+      width: 1.30133rem;
+      height: 1.30133rem;
+      background: url("../images/music.png") no-repeat 0 0;
+      background-size: 100% 100%;
+      -webkit-animation: rotateY 1s both infinite linear;
+              animation: rotateY 1s both infinite linear; }
+
+@-webkit-keyframes rotateY {
+  0% { }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg); } }
+
+@keyframes rotateY {
+  0% { }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg); } }
+    .yh-center__long .bgmusic audio {
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: none;
+      opacity: 0; }
+  .yh-center__long .bgmusic.close .bgmusic--center {
+    -webkit-animation: none;
+            animation: none; }
 
 .yh-center__long.active {
   position: static; }
@@ -693,6 +728,7 @@ html, body {
             transform: translateX(16rem);
     opacity: 0; }
   .yh-center__plus .content__one .one__info {
+    width: 8.96rem;
     padding: 0 0 0 0.85333rem;
     float: left;
     -webkit-transition: all 0.5s 1.2s;
@@ -701,6 +737,7 @@ html, body {
             transform: translateX(16rem);
     opacity: 0; }
   .yh-center__plus .content__one .info__top {
+    width: 10.66667rem;
     padding: 0.29867rem 0 0 0; }
   .yh-center__plus .content__one .one__name {
     line-height: 0.896rem;
@@ -720,6 +757,7 @@ html, body {
     -webkit-transform: scale3d(0.916, 0.916, 0.916);
             transform: scale3d(0.916, 0.916, 0.916); }
   .yh-center__plus .content__one .info__book {
+    width: 10.66667rem;
     line-height: 0.74667rem;
     margin: 0 0 0 -0.21333rem;
     font-size: 0.512rem;

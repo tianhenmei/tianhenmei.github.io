@@ -23,6 +23,11 @@ var autoprefixer = require('autoprefixer');
 var gulp_autoprefixer = require('gulp-autoprefixer');
 var rev = require('gulp-rev');
 var revColl = require('gulp-rev-collector');
+var babel = require('gulp-babel');
+// 将es6编译后的es5打包（require浏览器不识别）
+var browserify = require("browserify");
+var source = require('vinyl-source-stream');
+var through2 = require('through2');
 /*var _url = require( 'url' );
 // 压缩css
 var cleanCSS = require('gulp-clean-css'),
@@ -64,6 +69,49 @@ params[type] = _.reduce(paramGroups, function(res, grp) {
     return res;
 }, {});
 /*****************/
+
+var js_src = './src',
+    js_dist = './dist'
+/********************************************************************
+ * compile: 将es6 打包成 es5
+ * ****************************************************/
+gulp.task('compile:es6',function(){
+    var file = js_src+'/'+params.compile.dir
+    return gulp.src(file+'/**/*.js')
+        .pipe(babel())
+        .pipe(gulp.dest(js_dist+'/'+params.compile.dir));
+});
+/********************************************************************
+ * compile: 将es6 打包成 es5 后能在浏览器上直接调用
+ * ****************************************************/
+gulp.task('compile:browser',['compile:es6'],function(){
+    var initJSPath = js_dist+'/'+params.compile.dir
+    return gulp.src(initJSPath+'/**/*.js')
+        .pipe(through2.obj(function(file, enc, next) {
+            var folder = file.path.split(/\//g),
+                filename = folder[folder.length - 1],
+                filePath = folder.slice(0,folder.length-1).join('/'),
+                bundlePath = file.path.replace(/(\.js)?$/, '.bundle.js'),
+                extname = /(.bundle)/g.test(filename) ? '.js' : '.bundle.js';
+
+            browserify(file.path)
+                // .transform(reactify)
+                .bundle(function(err, res) {
+                    err && console.log(err.stack);
+                    file.contents = res;
+                    next(null, file);
+                })
+                .pipe(source(filename))
+                .pipe(rename({
+                    extname:extname,//'.bundle.js'
+                }))
+                .pipe(gulp.dest(filePath));
+    }));
+});
+
+
+gulp.task('compile',['compile:es6','compile:browser']);
+
 
 gulp.task('dev', ['dev:scss', 'dev:watch', 'dev:reload', 'server']);
 
