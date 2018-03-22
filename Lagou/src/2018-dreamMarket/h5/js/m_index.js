@@ -748,7 +748,8 @@
                 }, 100);
             },
             showContent: function () {
-                var self = this;
+                var self = this,
+                    audio = document.getElementById("music");
                 this.initLongAnimate();
                 $('.page1').addClass('page-move-out');
                 $('.page2').removeClass('hide').addClass('page-move-in');
@@ -1150,6 +1151,7 @@
                 });
             },
             musicEvent:function(e){
+                var audio = document.getElementById("music");
                 if(this.music == 'open'){
                     audio.pause();
                     this.music = 'close';
