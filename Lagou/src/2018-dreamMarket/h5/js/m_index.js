@@ -1,142 +1,147 @@
 (function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
     "use strict";
-    
-    var bgmusic_button = $(".bgmusic");
-    var audio = document.getElementById("music");
-    audio.preload = 'auto';
-    audio.play();
+    var bgmusic_button = null,
+        audio = null;
+    function bgMusicPlay(){
+        var bgmusic_button = $(".bgmusic");
+        var audio = document.getElementById("music");
+        audio.preload = 'auto';
+        audio.loop = 'true'
+        audio.play();
 
-    //webPlayAudio();
+        //webPlayAudio();
 
-    function webPlayAudio(){
-        var context,
-            dogBarkingBuffer;
-        init();
-        function init() {
-            try {
-                // Fix up for prefixing
-                window.AudioContext = window.AudioContext||window.webkitAudioContext;
-                context = new AudioContext();
+        function webPlayAudio(){
+            var context,
+                dogBarkingBuffer;
+            init();
+            function init() {
+                try {
+                    // Fix up for prefixing
+                    window.AudioContext = window.AudioContext||window.webkitAudioContext;
+                    context = new AudioContext();
+                }
+                catch(e) {
+                    alert('Web Audio API is not supported in this browser');
+                }
             }
-            catch(e) {
-                alert('Web Audio API is not supported in this browser');
+
+            var source = null;
+            var audioBuffer = null;
+            function stopSound() {
+                if (source) {
+                    source.noteOff(0); //立即停止
+                }
             }
-        }
+            function playSound() {
+                var absn = context.createBufferSource();
+                var analyser = context.createAnalyser();
+                absn.connect(analyser);
+                absn.connect(context.destination);
+                absn.buffer = audioBuffer;
+                absn.loop = true;
+                absn.start(0);
 
-        var source = null;
-        var audioBuffer = null;
-        function stopSound() {
-            if (source) {
-                source.noteOff(0); //立即停止
+                /*source = context.createBufferSource();
+                var analyser = context.createAnalyser();
+                source.connect(analyser);
+                source.connect(context.destination);
+                source.buffer = audioBuffer;
+                source.loop = true;
+                //source.noteOn(0); //立即播放
+                //(source.start || source.noteOn)(0);
+                if(source.start){
+                    source.start(0);
+                }else if(source.noteOn){
+                    source.noteOn(0);
+                }*/
             }
+            function initSound(arrayBuffer) {
+                context.decodeAudioData(arrayBuffer, function(buffer) { //解码成功时的回调函数
+                    audioBuffer = buffer;
+                    playSound();
+                }, function(e) { //解码出错时的回调函数
+                    console.log('Error decoding file', e);
+                });
+            }
+            function loadAudioFile(url) {
+                var xhr = new XMLHttpRequest(); //通过XHR下载音频文件
+                xhr.open('GET', url, true);
+                xhr.responseType = 'arraybuffer';
+                xhr.onload = function(e) { //下载完成
+                    initSound(this.response);
+                };
+                xhr.send();
+            }
+            loadAudioFile('images/bg.mp3');
         }
-        function playSound() {
-            var absn = context.createBufferSource();
-            var analyser = context.createAnalyser();
-            absn.connect(analyser);
-            absn.connect(context.destination);
-            absn.buffer = audioBuffer;
-            absn.loop = true;
-            absn.start(0);
 
-            /*source = context.createBufferSource();
-            var analyser = context.createAnalyser();
-            source.connect(analyser);
-            source.connect(context.destination);
-            source.buffer = audioBuffer;
-            source.loop = true;
-            //source.noteOn(0); //立即播放
-            //(source.start || source.noteOn)(0);
-            if(source.start){
-                source.start(0);
-            }else if(source.noteOn){
-                source.noteOn(0);
-            }*/
-        }
-        function initSound(arrayBuffer) {
-            context.decodeAudioData(arrayBuffer, function(buffer) { //解码成功时的回调函数
-                audioBuffer = buffer;
-                playSound();
-            }, function(e) { //解码出错时的回调函数
-                console.log('Error decoding file', e);
-            });
-        }
-        function loadAudioFile(url) {
-            var xhr = new XMLHttpRequest(); //通过XHR下载音频文件
-            xhr.open('GET', url, true);
-            xhr.responseType = 'arraybuffer';
-            xhr.onload = function(e) { //下载完成
-                initSound(this.response);
-            };
-            xhr.send();
-        }
-        loadAudioFile('images/bg.mp3');
-    }
+        // bgmusic_button.click(function(e){
+        //     //e.stopPropagation();
+        //     if($(this).hasClass('open')){
+        //         audio.pause();
 
-    // bgmusic_button.click(function(e){
-    //     //e.stopPropagation();
-    //     if($(this).hasClass('open')){
-    //         audio.pause();
+        //         bgmusic_button.removeClass("open").addClass("close");
+        //     }else{
+        //         audio.play();
 
-    //         bgmusic_button.removeClass("open").addClass("close");
-    //     }else{
-    //         audio.play();
+        //         bgmusic_button.removeClass("close").addClass("open");
+        //     }
+        // });
 
-    //         bgmusic_button.removeClass("close").addClass("open");
-    //     }
-    // });
-
-    autoPlayMusic(audio);
-    // 音乐播放
-    function autoPlayMusic(audio) {
-        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-        function musicInBrowserHandler() {
-            musicPlay(audio,true);
-            document.body.removeEventListener('touchstart', musicInBrowserHandler);
-        }
-        document.body.addEventListener('touchstart', musicInBrowserHandler);
-
-        // 自动播放音乐效果，解决微信自动播放问题
-        function musicInWeixinHandler() {
-            musicPlay(audio,true);
-            document.addEventListener("WeixinJSBridgeReady", function () {
+        autoPlayMusic(audio);
+        // 音乐播放
+        function autoPlayMusic(audio) {
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            function musicInBrowserHandler() {
                 musicPlay(audio,true);
-            }, false);
-            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-        }
-        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-    }
-    function musicPlay(audio,isPlay) {
-        if (isPlay && audio.paused) {
-            audio.play();
-        }
-        if (!isPlay && !audio.paused) {
-            audio.pause();
-        }
-    }
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
 
-    //autoPlayMusic(audio);
-
-    // 音乐播放
-    /*function autoPlayMusic(audio) {
-        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-        function musicInBrowserHandler() {
-            audio.play();
-            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                musicPlay(audio,true);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    musicPlay(audio,true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
         }
-        document.body.addEventListener('touchstart', musicInBrowserHandler);
-
-        // 自动播放音乐效果，解决微信自动播放问题
-        function musicInWeixinHandler() {
-            audio.play();
-            document.addEventListener("WeixinJSBridgeReady", function () {
+        function musicPlay(audio,isPlay) {
+            if (isPlay && audio.paused) {
                 audio.play();
-            }, false);
-            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            if (!isPlay && !audio.paused) {
+                audio.pause();
+            }
         }
-        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-    }*/
 
+        //autoPlayMusic(audio);
+
+        // 音乐播放
+        /*function autoPlayMusic(audio) {
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            function musicInBrowserHandler() {
+                audio.play();
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                audio.play();
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    audio.play();
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }*/
+
+
+    }
     var app = new Vue({
         el: "#app",
         data: {
@@ -539,7 +544,7 @@
             if (locate != 'sz' && this.location[locate]) {
                 this.current = locate;
             }
-    
+            bgMusicPlay();
             this.setLoading();
             this.initWorkshopAnimation();
             this.initStreetAnimation();
@@ -747,6 +752,9 @@
                 this.initLongAnimate();
                 $('.page1').addClass('page-move-out');
                 $('.page2').removeClass('hide').addClass('page-move-in');
+                if(audio.paused){
+                    audio.play();
+                }
                 setTimeout(function () {
                     $('.page1').addClass('hide');
                     $('.page2').removeClass('page-move-in');
