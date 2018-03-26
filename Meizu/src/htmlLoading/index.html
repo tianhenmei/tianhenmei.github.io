@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>页面内容加载</title>
+    <!-- -CSS阻塞DOM渲染 -->
+    <!-- -JS阻塞DOM解析 -->
+    <style>  
+        body{margin:0;padding:0;background:#ccc;font-size:12px;overflow:auto}  
+        .main{width: 500px;height: 330px;position: relative;margin: 250px auto 0;background-color: #eee;}  
+        .box{position: absolute;width: 220px;height: 180px;background-color: orange;top: 80px;left: 80px;}  
+    </style> 
+</head>
+<body style="height:1600px;">  
+    <div class="main">  
+        <div class="box" id="box"></div>  
+    </div>  
+  <h2>Hello</h2>
+  <script> 
+    function printH2(){
+        console.log('first script', document.querySelectorAll('h2')); 
+    }
+    printH2();
+    setTimeout(printH2);
+  </script>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css">
+  
+  <!-- <script>console.log('first script', document.querySelectorAll('h2')); </script> -->
+  <h2>World</h2>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      alert('DOM loaded!');
+    });
+  </script>
+  <script> console.log('second script'); </script>
+  <script src="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/js/bootstrap.js"></script>
+  <script>
+      document.addEventListener('click',function(e){
+          console.log(e)
+      },false)
+      var oBox = document.getElementById('box');  
+  
+        window.onload = function(){  
+            
+            oBox.onmousedown = function(ev){  
+                ev = ev || window.event;  
+                
+                console.log(ev.offsetX, ev.offsetY);  
+                console.log(ev.clientX, ev.clientY);  
+                console.log(ev.pageX, ev.pageY);  
+                console.log(ev.screenX, ev.screenY);  
+                console.log(ev.layerX, ev.layerY);  
+                console.log(ev.x, ev.y);  
+            }  
+        }
+  </script>
+</body>
+</html>

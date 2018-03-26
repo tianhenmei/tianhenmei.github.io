@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ajax跨域请求</title>
+    </head>
+    <body>
+        <script type="text/javascript" src="../common/js/jquery.1.10.1.min.js"></script>
+        <script>
+            $.ajax({
+                url:'http://0.0.0.0:9000/test/ajaxCross',
+                type:'get',
+                success:function(data){
+                    console.log(data)
+                },
+                error:function(error){
+                    console.log(error)
+                }
+            })
+            function getCompanyData() {
+                $.ajax({
+                    async: false,
+                    url:"http://meta.lagou.com/code/create-jsonp",
+                    jsonp:'callback',
+                    dataType:'jsonp',
+                    success: function(data) {
+                        console.log(data)
+                    },
+                    error: function(error) {
+                        console.log(error.message);
+                    }
+                });
+            }
+            getCompanyData()
+        </script>
+    </body>
+</html>
