@@ -265,22 +265,22 @@
                             book: '《思维穿透和开放性思考》'
                         }, {
                             time: '15:00',
-                            name: '敖翔',
-                            photo: 'images/plus/aoxiang.png',
-                            position: 'Face++副总裁',
-                            book: '《后人工智能时代：新技术革命》'
+                            name: '吴冰',
+                            photo: 'images/plus/wubing.png',
+                            position: '石墨CEO',
+                            book: '《思维的极致是听从自己内心真实的声音》'
                         }, {
                             time: '15:30',
                             name: '王明远',
                             photo: 'images/plus/wangmingyuan.png',
                             position: 'Node Family技术合伙人',
-                            book: '《让我们谈谈钱：风口上的区块链》'
+                            book: '《区块链技术下的世界重构》'
                         }, {
                             time: '16:00',
-                            name: '吴冰',
-                            photo: 'images/plus/wubing.png',
-                            position: '石墨CEO',
-                            book: '《当极致的灵魂穿透产品》'
+                            name: '敖翔',
+                            photo: 'images/plus/aoxiang.png',
+                            position: 'Face++副总裁',
+                            book: '《思维的穿透力，人工智能如何改变世界》'
                         }]
                     },
                     workshop: {
@@ -484,6 +484,12 @@
                             logo: '',
                             href: 'javascript:void(0);',
                             id: 165758
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
                         }, {
                             logo: '',
                             href: 'javascript:void(0);'
