@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>2018拉勾梦想市集</title>
+    <title>拉勾梦想市集·深圳站</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="https://www.lgstatic.com/topic/css/swiper.min.css"/>
     <link rel="stylesheet" href="css/m_index.css?v=236$version$">
@@ -94,7 +94,8 @@
                 :class="'loading_text'+index+' '+one.classname">{{one.word}}</div>
             <div class="loading__number little_move_top delay1-2">{{location[current].loading.number}}%</div>
         </div>
-        <div class="yh-center__first page1 hide" ref="page1">
+        <div class="yh-center__first page1 hide" ref="page1"
+            :class="'yh-center__first--'+current">
             <div class="pieces-08 left_in"></div>
             <div class="icon pieces-01 right_in"></div>
             <div class="icon pieces-02 left_in"></div>
@@ -103,16 +104,21 @@
             <div class="icon pieces-05 left_in"></div>
             <div class="icon pieces-06 right_in"></div>
             <div class="icon pieces-07 left_in"></div>
-            <div class="first__title down-skew-in delay1-0"></div>
-            <div class="first__time clearfix right-shake-in delay1-5">
+            <div class="first__entitle" v-if="current == 'sz'"></div>
+            <div class="first__title down-skew-in delay1-0"
+                :class="'first__title--'+current"></div>
+            <div class="first__time clearfix right-shake-in delay1-5"
+                :class="'first__time--'+current">
                 <div class="icon"></div>
                 <div class="time">{{location[current].first.time}}</div>
             </div>
-            <div class="first__address clearfix right-shake-in delay1-7">
+            <div class="first__address clearfix right-shake-in delay1-7"
+                :class="'first__address--'+current">
                 <div class="icon"></div>
                 <div class="address" v-html="location[current].first.address"></div>
             </div>
-            <ul class="first__list">
+            <ul class="first__list"
+                :class="'first__list--'+current">
                 <li v-for="(one,index) in location[current].first.list"
                     class="first__li"
                     :class="'first__li--'+index+' '+one.classname">
@@ -129,7 +135,7 @@
             </div>
         </div>
         <div class="yh-center__long page2 hide" ref="yh-center__long">
-            <div class="yh-center__longc">
+            <div class="yh-center__longc" v-if="current == 'bj'">
                 <div class="yh-center__almighty" :class="{'active':location[current].long.active_index.indexOf(0) != -1}" ref="yh-center__almighty">
                     <div class="yh-center__common">
                         <div class="common__title">{{location[current].almighty.title}}</div>
@@ -339,6 +345,193 @@
                     </div>
                 </div>
             </div>
+            <div class="yh-center__longc" v-else>
+                <div class="yh-center__street" :class="{'active':location[current].long.active_index.indexOf(0) != -1}" ref="yh-center__street--sz">
+                        <div class="yh-center__common">
+                            <div class="common__title">{{location[current].street.title}}</div>
+                            <div class="common__detail">{{location[current].street.detail}}</div>
+                        </div>
+                        <div class="street__content"
+                            :class="'street__content--'+current" ref="street__animation" id="street__animation">
+                            <div class="content__list clearfix" id="street__animation-content">
+                                <div v-for="(one,index) in location[current].street.content"
+                                    class="content__one clearfix"
+                                    :class="'content__one--'+index">
+                                    <a v-for="i in one"
+                                        class="one__logo"
+                                        :onclick="companyHref.one+i.id+companyHref.two" 
+                                        href="javascript:void(0);"
+                                        target="_blank"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(location[current].street.count+location[current].count)" 
+                                        :data-lg-tj-cid="null">
+                                        <img class="one__img" :src="i.logo" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <div class="yh-center__almighty" :class="{'active':location[current].long.active_index.indexOf(1) != -1}" ref="yh-center__almighty--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].almighty.title}}</div>
+                        <div class="common__detail">{{location[current].almighty.detail}}</div>
+                    </div>
+                    <div class="yh-center__pieces">
+                        <div class="icon pieces-01"></div>
+                        <div class="icon pieces-02"></div>
+                        <div class="icon pieces-03"></div>
+                        <div class="icon pieces-04"></div>
+                        <div class="icon pieces-05"></div>
+                        <div class="icon pieces-06"></div>
+                    </div>
+                    <div class="yh-center__content">
+                        <div v-for="(one,index) in location[current].almighty.content"
+                            class="content__one"
+                            :class="'content__one--'+index+(index % 2 == 0 ? ' content__one--even' :'')+' content__one--'+index+'--'+current">
+                            <img class="one__img" :src="one.src" />
+                            <div class="icon one__number"></div>
+                            <div class="icon one__en one__en0"></div>
+                            <div class="icon one__en one__en1"></div>
+                            <div class="one__name">{{one.name}}</div>
+                            <div class="one__info" v-html="one.info"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__plus" :class="{'active':location[current].long.active_index.indexOf(2) != -1}" ref="yh-center__plus--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].plus.title}}</div>
+                        <div class="common__detail" v-html="location[current].plus.detail"></div>
+                    </div>
+                    <div class="yh-center__content">
+                        <div v-for="(one,index) in location[current].plus.content"
+                            class="content__one clearfix"
+                            :class="'content__one--'+index">
+                            <div class="one__time">{{one.time}}</div>
+                            <div class="icon one__dash"
+                                :class="one.nonsure ? 'one__dash--'+current : ''"
+                                v-if="index < location[current].plus.content.length - 1"></div>
+                            <div class="one__nonsure" v-if="one.nonsure">拟邀</div>
+                            <img class="one__img" :class="'one__img--'+current" :src="one.photo" />
+                            <div class="one__info" :class="'one__info--'+current">
+                                <div class="info__top clearfix">
+                                    <div class="one__name">{{one.name}}</div>
+                                    <div class="one__position">{{one.position}}</div>
+                                </div>
+                                <div class="info__book">{{one.book}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__workshop" :class="{'active':location[current].long.active_index.indexOf(3) != -1}" ref="yh-center__workshop--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].workshop.title}}</div>
+                        <div class="common__detail">{{location[current].workshop.detail}}</div>
+                        <a class="common__checkin"
+                            v-if="location[current].workshop.checkin"
+                            :href="location[current].workshop.checkin"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(location[current].workshop.count+location[current].count)" 
+                            :data-lg-tj-cid="null">需要单独报名</a>
+                    </div>
+                    <div class="workshop__content" :class="'workshop__content--'+current" ref="workshop__animation" id="workshop__animation">
+                        <div class="content__list clearfix" id="workshop__animation-content">
+                            <div v-for="(one,index) in location[current].workshop.content"
+                                class="content__one clearfix"
+                                :class="'content__one--'+index+' content__one--'+index+'--'+current">
+                                <div class="one__top" :class="'one__top--'+current">
+                                    <img class="one__img" :src="one.img" />
+                                    <div class="one__shop" v-html="one.shop"></div>
+                                    <div class="one__title">{{one.title}}</div>
+                                    <div class="one__time">{{one.time}}</div>
+                                </div>
+                                <div class="one__detail" v-html="one.detail"></div>
+                                <div v-if="one.button" 
+                                    class="one__button">
+                                    <a :href="one.button.href" 
+                                        class="button__a"
+                                        :data-lg-tj-id="countId" 
+                                        :data-lg-tj-no="getCount(location[current].workshop.count+index+1+location[current].count)" 
+                                        :data-lg-tj-cid="null">{{one.button.text}}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__club" :class="{'active':location[current].long.active_index.indexOf(4) != -1}" ref="yh-center__club--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].club.title}}</div>
+                        <div class="common__detail">{{location[current].club.detail}}</div>
+                        <a class="common__checkin"
+                            v-if="location[current].club.checkin"
+                            :href="location[current].club.checkin"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(location[current].club.count+location[current].count)" 
+                            :data-lg-tj-cid="null">需要单独报名</a>
+                    </div>
+                    <div class="club__content" ref="club__animation" id="club__animation">
+                        <div class="content__list clearfix" id="workshop__animation-content">
+                            <div v-for="(one,index) in location[current].club.content"
+                                class="content__one clearfix"
+                                :class="'content__one--'+index+' content__one--'+index+'--'+current">
+                                <img class="one__img" :src="one.img" />
+                                <div class="icon one__quote"></div>
+                                <div class="icon one__en1"></div>
+                                <div class="icon one__en2"></div>
+                                <div class="one__name">{{one.name}}</div>
+                                <div class="one__detail" v-html="one.detail"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="yh-center__market" :class="{'active':location[current].long.active_index.indexOf(5) != -1}" ref="yh-center__market--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].market.title}}</div>
+                    </div>
+                    <div class="market__content">
+                        <div class="market__map">
+                            <img class="map__img" :src="location[current].market.src" />
+                            <div class="icon map__icon"></div>
+                        </div>
+                        <div class="market__time clearfix">
+                            <div class="icon icon"></div>
+                            <div class="text">市集时间</div>
+                        </div>
+                        <div class="time">{{location[current].market.time}}</div>
+                        <div class="market__address clearfix">
+                            <div class="icon icon"></div>
+                            <div class="text">市集地址</div>
+                        </div>
+                        <div class="address">{{location[current].market.address}}</div>
+                    </div>
+                </div>
+                <div class="yh-center__partner" :class="{'active':location[current].long.active_index.indexOf(6) != -1}" ref="yh-center__partner--sz">
+                    <div class="yh-center__common">
+                        <div class="common__title">{{location[current].partner.title}}</div>
+                    </div>
+                    <div class="partner__content clearfix partner-logo" :class="'partner__content--'+current">
+                        <a v-for="(one,index) in location[current].partner.content"
+                            class="content__one"
+                            :class="'content__one--'+one.logo"
+                            :onclick="one.id ? companyHref.one+one.id+companyHref.two : ''" 
+                            href="javascript:void(0);"
+                            target="_blank"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(location[current].partner.count+location[current].count)" 
+                            :data-lg-tj-cid="null">
+                        </a>
+                    </div>
+                </div>
+                <a class="icon yh-center__baoming"
+                    :href="location[current].baoming"
+                    :data-lg-tj-id="countId" 
+                    :data-lg-tj-no="getCount(location[current].count)" 
+                    :data-lg-tj-cid="null">立即报名</a>
+                <div class="bgmusic"
+                    :class="music" @click.stop.prevent="musicEvent">
+                    <div class="bgmusic--center">
+                        <audio id="music" autoplay="autoplay" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -348,18 +541,17 @@
 </script> -->
 <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/topic/js/swiper.min.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=236$version$"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
 <script type="text/javascript">
-    //微信分享
     var datas = {
-        title: "拉勾梦想市集|如何找到快乐又有钱的工作？",
-        desc: "京东、爱奇艺等名企现场直招，大咖分享职场心法！从职业选择到职业规划，拉勾让你和好公司相遇！",
+        title: "拉勾梦想市集|据说八成的深圳互联网人都来这拿OFFER",
+        desc: "平安、顺丰科技等大厂现场直招，从OFFER选择到职业设计，一次搞定高薪工作！",
         imgUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/images/share.png',
-        activityType: '2018DREAMMARKETH5',
+        activityType: '2018DREAMMARKETH5-SZ',
         shareUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/m_index.html'
     };
+    //微信分享
     share(datas);
     //app 分享
     function getShareInfo(){
@@ -372,7 +564,8 @@
         return share;
     }
 </script>
-<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=236$version$"></script>
+<!-- <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script> -->
+<!-- <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script> -->
 </body>
 </html>

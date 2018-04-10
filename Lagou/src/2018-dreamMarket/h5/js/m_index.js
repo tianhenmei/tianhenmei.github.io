@@ -161,7 +161,7 @@
                 two: ".html\';"
             },
             location: {
-                sz: {
+                bj: {
                     count: 1,
                     baoming: 'https://activity.lagou.com/topic/signup.html',
                     loading: {
@@ -540,20 +540,276 @@
                             href: 'javascript:void(0);'
                         }]
                     }
+                },
+                sz: {
+                    count: 5001,
+                    baoming: 'https://activity.lagou.com/topic/dreamtimeSZ.html',
+                    loading: {
+                        number: 0,
+                        text: [{
+                            classname: 'little_move_top delay0-5',
+                            word: "在世界的湾区"
+                        },{
+                            classname:'little_move_top delay0-7',
+                            word:"为每一个优秀的你安放理想",
+                        } /*,{
+                            classname:'little_move_top delay0-9',
+                            word:"为每一个优秀的你安放理想"
+                        }*/]
+                    },
+                    first: {
+                        time: '2018.04.21',
+                        address: '深圳<span class="gap"></span>南山区万科云设计公社',
+                        count: 5020,
+                        list: [{
+                            classname: 'little_move_top delay2-0',
+                            word: 'Top50好公司现场直招'
+                        }, {
+                            classname: 'little_move_top delay2-2',
+                            word: '大咖亲授职场思维养成法'
+                        }, {
+                            classname: 'little_move_top delay2-4',
+                            word: 'Workshop职业设计深度探讨'
+                        }, {
+                            classname: 'little_move_top delay2-6',
+                            word: '职业咨询顾问，解答职场困惑'
+                        }]
+                    },
+                    long: {
+                        active_index: [],
+                        list: [{
+                            elem: 'yh-center__street--sz',
+                            height: 0,
+                            top: 0
+                        },{
+                            elem: 'yh-center__almighty--sz',
+                            height: 0,
+                            top: 0
+                        }, {
+                            elem: 'yh-center__plus--sz',
+                            height: 0,
+                            top: 0
+                        }, {
+                            elem: 'yh-center__workshop--sz',
+                            height: 0,
+                            top: 0
+                        }, {
+                            elem: 'yh-center__club--sz',
+                            height: 0,
+                            top: 0
+                        }, {
+                            elem: 'yh-center__market--sz',
+                            height: 0,
+                            top: 0
+                        }, {
+                            elem: 'yh-center__partner--sz',
+                            height: 0,
+                            top: 0
+                        }]
+                    },
+                    street: {
+                        title: '梦想大街',
+                        count: 5020,
+                        detail: 'Top50公司特展，争取面试机会，收割心仪Offer',
+                        content: [[{
+                            logo: 'images/street-sz/logo-01.png',
+                            href: 'javascript:void(0);',
+                            id: 35996
+                        }, {
+                            logo: 'images/street-sz/logo-02.png',
+                            href: 'javascript:void(0);',
+                            id: 5834
+                        }], [{
+                            logo: 'images/street-sz/logo-03.png',
+                            href: 'javascript:void(0);',
+                            id: 76066
+                        }, {
+                            logo: 'images/street-sz/logo-04.png',
+                            href: 'javascript:void(0);',
+                            id: 44982
+                        }], [{
+                            logo: 'images/street-sz/logo-05.png',
+                            href: 'javascript:void(0);',
+                            id: 1868
+                        }, {
+                            logo: 'images/street-sz/logo-06.png',
+                            href: 'javascript:void(0);',
+                            id: 32720
+                        }], [{
+                            logo: 'images/street-sz/logo-07.png',
+                            href: 'javascript:void(0);',
+                            id: 191470
+                        }, {
+                            logo: 'images/street-sz/logo-08.png',
+                            href: 'javascript:void(0);',
+                            id: 14275
+                        }], [{
+                            logo: 'images/street-sz/logo-09.png',
+                            href: 'javascript:void(0);',
+                            id: 24748
+                        }, {
+                            logo: 'images/street-sz/logo-10.png',
+                            href: 'javascript:void(0);',
+                            id: 131846
+                        }], [{
+                            logo: 'images/street-sz/logo-11.png',
+                            href: 'javascript:void(0);',
+                            id: 13809
+                        }, {
+                            logo: 'images/street-sz/logo-12.png',
+                            href: 'javascript:void(0);',
+                            id: 149167
+                        }]]
+                    },
+                    almighty: {
+                        title: '万能的拉勾',
+                        detail: '治愈系职场体验店，击破职场低情绪泡沫，找回自信心',
+                        content: [{
+                            name: '职场情绪黑室',
+                            info: '职场里无处安放的小情绪，来这里当伪<br/>装者尽情宣泄，出来又是一条好汉。',
+                            src: 'images/almighty-01.png'
+                        }, {
+                            name: '1对1职业顾问',
+                            info: '报名通过筛选并且现场完成任务，即可与咨询<br/>导师现场进行咨询服务',
+                            src: 'images/almighty-02.png'
+                        }, {
+                            name: '职场30问',
+                            info: '从面试技巧到行业知识，多种锦囊，教<br/>你化解内心焦虑，解决职场疑惑。 ',
+                            src: 'images/almighty-03.png'
+                        }]
+                    },
+                    plus: {
+                        title: '梦想PLUS',
+                        detail: '透过现象看本质的职场思维运用，大咖教你成为年薪<br/>百万的职场高手',
+                        content: [{
+                            time: '13:40',
+                            name: '鲍艾乐',
+                            photo: 'images/plus/ella.png',
+                            position: '拉勾联合创始人／CMO',
+                            book: '《穿透力思维--年薪百万的真正秘诀》'
+                        }, {
+                            time: '14:00',
+                            name: '李婷Kris',
+                            photo: 'images/plus/liting.png',
+                            position: '思创客创始人',
+                            book: '《思维转变-你是否有成体系的品牌思维》'
+                        }, {
+                            time: '14:30',
+                            name: '杨帆',
+                            photo: 'images/plus/yangfan.png',
+                            position: '商汤科技副总裁',
+                            book: '《从过去到现在-人工智能下的世界变革》'
+                        }, {
+                            time: '15:00',
+                            name: '马晓轶',
+                            photo: 'images/plus/maxiaoyi.png',
+                            position: '腾讯高级副总裁、游戏业务负责人',
+                            book: '《“吃鸡”了以后还能追求些什么？》',
+                            nonsure:true
+                        }, {
+                            time: '15:30',
+                            name: '陈顺刚',
+                            photo: 'images/plus/chenshungang.png',
+                            position: '人人都是产品经理COO',
+                            book: '《具有穿透力的高阶运营法》',
+                            nonsure:true
+                        }]
+                    },
+                    workshop: {
+                        title: 'WORKSHOP',
+                        detail: '深度探讨式工作坊，了解个人职业定位与发展',
+                        checkin: '',
+                        count: 5002,
+                        content: [{
+                            img: 'images/workshop-04.png',
+                            shop: '特邀咨询师严嘉伟<span class="icon x"></span>拉勾',
+                            title: '《职业设计工作坊》',
+                            time: '2018.4.21  10:30-12:00',
+                            detail: '你的工作观如何影响职业定位和发展？<br/>如何更加了解自己？<br/>嘉伟老师从职业锚的角度为你解析'
+                        }]
+                    },
+                    club: {
+                        title: '市集体验式主题活动',
+                        detail: '放肆吃喝，奖励多多，激发快乐的荷尔蒙',
+                        count: 5100,
+                        checkin: '',
+                        content: [{
+                            img: 'images/club-01.png',
+                            name: '超级抽奖机',
+                            detail: '市集区内，参与活动<br/>集齐奖章，即可召唤礼品'
+                        }, {
+                            img: 'images/club-02.png',
+                            name: '吃喝玩乐',
+                            detail: '来电趣味快闪店，哈罗单车<br/>创意体验，新氧为职场Lady<br/>皮肤测试，打造眉形。'
+                        }]
+                    },
+                    market: {
+                        title: '市集信息',
+                        src: 'images/market-map-02.png',
+                        time: '2018年4月21日 周六 10:00',
+                        address: '广东省深圳市南山区打石二路万科云设计公社'
+                    },
+                    partner: {
+                        title: '合作伙伴',
+                        count: 5150,
+                        content: [{
+                            logo: '',
+                            href: 'javascript:void(0);',
+                            id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);',
+                            id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);',
+                            id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);',
+                            id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }]
+                    }
                 }
             }
         },
         mounted: function () {
             this.from = (getQueryString('lagoufrom') + '').toLocaleLowerCase();
             this.isAPP = this.from == 'ios' || this.from == 'android';
-            var locate = getQueryString('lagoufrom');
+            var locate = getQueryString('city');
             if (locate != 'sz' && this.location[locate]) {
                 this.current = locate;
+                datas = Object.assign(datas,{
+                    title: "拉勾梦想市集|如何找到快乐又有钱的工作？",
+                    desc: "京东、爱奇艺等名企现场直招，大咖分享职场心法！从职业选择到职业规划，拉勾让你和好公司相遇！",
+                    imgUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/images/share.png',
+                    activityType: '2018DREAMMARKETH5',
+                    shareUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/m_index.html'
+                });
+                share(datas);
+                document.title = '2018拉勾梦想市集'
             }
             bgMusicPlay();
             this.setLoading();
-            this.initWorkshopAnimation();
-            this.initStreetAnimation();
+            if(locate == 'sz'){
+                this.initWorkshopAnimation();
+                this.initStreetAnimation();
+            }else{
+                this.$nextTick(function(){
+                    this.initWorkshopAnimation();
+                    this.initStreetAnimation();
+                })
+            }
+            
             // this.initLongAnimate()
         },
         methods: {
@@ -771,7 +1027,11 @@
                         'overflow-y': 'auto'
                     });
                     self.$refs['yh-center__long'].className += ' active';
-                    self.location[self.current].long.active_index = [0];
+                    if(self.current == 'sz'){
+                        self.location[self.current].long.active_index = [0,1];    
+                    }else{
+                        self.location[self.current].long.active_index = [0];
+                    }
                 }, 500);
             },
             initWorkshopAnimation: function () {

@@ -1,0 +1,71 @@
+.clearfix:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.clearfix {
+  zoom: 1; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, ol, li {
+  list-style: none; }
+
+img {
+  display: block; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Hiragino Sans GB,Microsoft Yahei,SimSun,Arial,Helvetica Neue,Helvetica;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  background: #fbfcfb;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden; }
+
+.center {
+  width: 3.66933rem;
+  height: 3.66933rem; }
+
+.bgmusic {
+  width: 1.30133rem;
+  height: 1.30133rem;
+  position: fixed;
+  right: 1.06667rem;
+  top: 1.06667rem;
+  z-index: 100; }
+  .bgmusic .bgmusic--center {
+    width: 1.30133rem;
+    height: 1.30133rem;
+    background: url("../images/music.png") no-repeat 0 0;
+    background-size: 100% 100%;
+    -webkit-animation: rotateY 1s both infinite linear;
+            animation: rotateY 1s both infinite linear; }
+
+@-webkit-keyframes rotateY {
+  0% { }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg); } }
+
+@keyframes rotateY {
+  0% { }
+  100% {
+    -webkit-transform: rotateY(360deg);
+            transform: rotateY(360deg); } }
+  .bgmusic video,
+  .bgmusic audio {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    opacity: 0; }
+
+.bgmusic.close .bgmusic--center {
+  -webkit-animation: none;
+          animation: none; }

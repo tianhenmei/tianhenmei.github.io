@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>svg 绘制圆环</title>
+    <link rel="stylesheet" href="css/index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingSuccess = function(){
+                var cover = document.getElementById('cover');
+                cover.className = cover.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
+    </script>
+</head>
+<body>
+    <div class="center">
+        <svg width="100%" height="100%" viewbox="0 0 172 172">
+            <circle cx="86" cy="86" r="68" stroke-width="18" stroke="#D1D3D7" fill="none"></circle>
+            <circle cx="86" cy="86" r="68" stroke-width="18" stroke="#00A5E0" fill="none" transform="matrix(0,-1,1,0,0,440)" stroke-dasharray="0 1069"></circle>
+        </svg>
+    </div>
+</body>
+</html>

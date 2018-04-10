@@ -23,17 +23,17 @@ Animal.prototype.detail = {
     Cat.prototype.name = 'cat'
 
     var cat = new Cat()
-    console.log(cat.eat('fish'));
-    console.log(cat.sleep());
+    console.log(cat.eat('fish'));  // cat is eating fish
+    console.log(cat.sleep());  // cat is sleeping
     console.log(cat instanceof Animal); //true 
     console.log(cat instanceof Cat); //true
     cat.detail.age = 4
-    console.log('cat is '+cat.detail.age+' years old')
+    console.log('cat is '+cat.detail.age+' years old')  // cat is 4 years old
 
     Animal.prototype.fight = function(){
         console.log(this.name+' can fight')
     }
-    console.log(cat.fight())
+    console.log(cat.fight())  // cat can fight
 
     function Kitty(){
 
@@ -42,8 +42,8 @@ Animal.prototype.detail = {
     Kitty.name = 'kitty'
     var kitty = new Kitty()
     console.log('this is kitty methods or attributes')
-    console.log(kitty.sleep())
-    console.log(kitty.eat('mouse'))
+    console.log(kitty.sleep())  // cat is sleeping
+    console.log(kitty.eat('mouse'))  // cat is eating mouse
 
 
     function Dog(){
@@ -57,6 +57,9 @@ Animal.prototype.detail = {
     dog.detail.age = 2
     console.log('dog is '+dog.detail.age+' years old')
     console.log('cat is '+cat.detail.age+' years old')
+    dog.info.sex = 1
+    console.log('dog is a '+dog.info.sex)  // dog is a 1
+    console.log('cat is a '+cat.info.sex)  // cat is a 0
     console.log(dog.sleep == cat.sleep) // false
     console.log(dog.eat === cat.eat)   // true
 */
@@ -69,8 +72,9 @@ Animal.prototype.detail = {
     }
     // Test Code
     var cat = new Cat();
-    console.log(cat.name);
-    console.log(cat.sleep());
+    console.log(cat.name);  // cat
+    console.log(cat.sleep());  // cat is sleeping
+    console.log(cat.eat)  // undefined
     console.log(cat instanceof Animal); // false
     console.log(cat instanceof Cat); // true
 
@@ -79,7 +83,7 @@ Animal.prototype.detail = {
         this.name = name || 'kitty'
     }
     var kitty = new Kitty('kitty')
-    console.log(kitty.sleep())
+    console.log(kitty.sleep())  // kitty is sleeping
 
     function Dog(name){
         Animal.call(this)
@@ -87,8 +91,8 @@ Animal.prototype.detail = {
     }
     var dog = new Dog()
     dog.info.sex = 1
-    console.log('dog is a '+dog.info.sex)
-    console.log('cat is a '+cat.info.sex)
+    console.log('dog is a '+dog.info.sex)  // dog is a 1
+    console.log('cat is a '+cat.info.sex)  // cat is a 0
 
     console.log(dog.sleep == cat.sleep)  // false
 */
@@ -104,6 +108,7 @@ Animal.prototype.detail = {
     var cat = new Cat('cat');
     console.log(cat.name);
     console.log(cat.sleep());
+    console.log(cat.eat())  // cat is eating undefined
     console.log(cat instanceof Animal); // true
     console.log(cat instanceof Cat); // false
 
@@ -116,6 +121,9 @@ Animal.prototype.detail = {
     dog.detail.age = 2
     console.log(dog.detail.age)
     console.log(cat.detail.age)
+    dog.info.sex = 1
+    console.log(dog.info.sex)  // 1
+    console.log(cat.info.sex)  // 0
 
     function Kitty(name){
         var instance = new Cat()
@@ -136,8 +144,8 @@ Animal.prototype.detail = {
     Cat.prototype = new Animal()
     var cat = new Cat()
     console.log(cat.name);
-    console.log(cat.sleep());
-    console.log(cat.eat('fish'));
+    console.log(cat.sleep());  // cat is sleeping
+    console.log(cat.eat('fish'));  // cat is eating fish
     console.log(cat instanceof Animal); // true
     console.log(cat instanceof Cat); // true
     console.log(cat)
@@ -148,27 +156,50 @@ Animal.prototype.detail = {
     Dog.prototype = new Animal()
     var dog = new Dog()
     dog.detail.age = 2
-    console.log(dog.detail.age)
-    console.log(cat.detail.age)
+    console.log(dog.detail.age)  // 2
+    console.log(cat.detail.age)  // 2
+    dog.info.sex = 1
+    console.log(dog.info.sex)  // 1
+    console.log(cat.info.sex)  // 0
 */
 
 /**6、寄生组合继承 */
-function Cat(name){
-    Animal.call(this)
-    this.name = name || 'cat'
-}
-(function(){
-    // 创建一个没有实例方法的类
-    var Super = function(){};
-    Super.prototype = Animal.prototype;
-    //将实例作为子类的原型
-    Cat.prototype = new Super();
-})();
-var cat = new Cat()
-console.log(cat)
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // true
-console.log(cat instanceof Cat); //true
-console.log(cat)
-console.log(cat.prototype)
+// /*
+    function Cat(name){
+        Animal.call(this)
+        this.name = name || 'cat'
+    }
+    (function(){
+        // 创建一个没有实例方法的类
+        var Super = function(){};
+        Super.prototype = Animal.prototype;
+        //将实例作为子类的原型
+        Cat.prototype = new Super();
+    })();
+    var cat = new Cat()
+    console.log(cat)
+    console.log(cat.name);
+    console.log(cat.sleep());
+    console.log(cat instanceof Animal); // true
+    console.log(cat instanceof Cat); //true
+    console.log(cat)
+    console.log(cat.prototype)
+    function Dog(name){
+        Animal.call(this)
+        this.name = name || 'dog'
+    }
+    (function(){
+        // 创建一个没有实例方法的类
+        var Super = function(){};
+        Super.prototype = Animal.prototype;
+        //将实例作为子类的原型
+        Dog.prototype = new Super();
+    })();
+    var dog = new Dog()
+    dog.detail.age = 2
+    console.log(dog.detail.age)  // 2
+    console.log(cat.detail.age)  // 2
+    dog.info.sex = 1
+    console.log(dog.info.sex)  // 1
+    console.log(cat.info.sex)  // 0
+// */
