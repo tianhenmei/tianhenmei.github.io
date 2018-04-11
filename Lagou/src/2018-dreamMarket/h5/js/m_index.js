@@ -659,6 +659,14 @@
                             logo: 'images/street-sz/logo-12.png',
                             href: 'javascript:void(0);',
                             id: 149167
+                        }], [{
+                            logo: 'images/street-sz/logo-13.png',
+                            href: 'javascript:void(0);',
+                            id: 32684
+                        }, {
+                            logo: 'images/street-sz/logo-14.png',
+                            href: 'javascript:void(0);',
+                            id: 169202
                         }]]
                     },
                     almighty: {
