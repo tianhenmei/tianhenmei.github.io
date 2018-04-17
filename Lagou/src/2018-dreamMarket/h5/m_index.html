@@ -359,7 +359,7 @@
                                     :class="'content__one--'+index">
                                     <a v-for="i in one"
                                         class="one__logo"
-                                        :onclick="companyHref.one+i.id+companyHref.two" 
+                                        :onclick="i.id ? (companyHref.one+i.id+companyHref.two) : ''" 
                                         href="javascript:void(0);"
                                         target="_blank"
                                         :data-lg-tj-id="countId" 
@@ -376,7 +376,8 @@
                         <div class="common__title">{{location[current].almighty.title}}</div>
                         <div class="common__detail">{{location[current].almighty.detail}}</div>
                     </div>
-                    <div class="yh-center__pieces">
+                    <div class="yh-center__pieces"
+                        :class="'yh-center__pieces--'+current">
                         <div class="icon pieces-01"></div>
                         <div class="icon pieces-02"></div>
                         <div class="icon pieces-03"></div>
@@ -384,7 +385,8 @@
                         <div class="icon pieces-05"></div>
                         <div class="icon pieces-06"></div>
                     </div>
-                    <div class="yh-center__content">
+                    <div class="yh-center__content"
+                        :class="'yh-center__content--'+current">
                         <div v-for="(one,index) in location[current].almighty.content"
                             class="content__one"
                             :class="'content__one--'+index+(index % 2 == 0 ? ' content__one--even' :'')+' content__one--'+index+'--'+current">

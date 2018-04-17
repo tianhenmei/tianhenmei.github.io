@@ -123,7 +123,7 @@ html,body {
     background:#fff;
 }
 .icon {
-    background:url('../images/icon.png?v=2') no-repeat 0 0;
+    background:url('../images/icon.png?v=3') no-repeat 0 0;
     background-size:rem(1024) rem(1024);
 }
 .yh-center {
@@ -594,10 +594,39 @@ html,body {
         transition:0.5s all;
         transform:translateX(rem(-750));
     }
+    .yh-center__pieces--sz {
+        .pieces-01 {
+            @include center(50,497);
+            transform:translateX(rem(-750));
+        }
+        .pieces-03  {
+            top:rem(183);
+        }
+        .pieces-04 {
+            @include centerr(48,537);
+            transform:translateX(rem(750));
+        }
+        .pieces-06 {
+            @include center(82,752);
+            transform:translateX(rem(-750));
+        }
+        .pieces-02 {
+            @include center(46,998);
+            transform:translateX(rem(-750));
+        }
+        .pieces-05 {
+            left:auto;
+            @include centerr(34,1635);
+            transform:translateX(rem(750));
+        }
+    }
     .yh-center__content {
         height:rem(1344);
         margin:rem(20) 0 0 0;
         position:relative;
+    }
+    .yh-center__content--sz {
+        height:rem(1779);
     }
     .content__one {
         width:rem(460);
@@ -735,6 +764,21 @@ html,body {
     }
     .content__one--2--sz {
         @include centerr(108,863);
+    }
+    .content__one--3--sz {
+        @include center(37,1298);
+        .one__number {
+            background-position:rem(-440) rem(-610);
+        }
+        .one__en0 {
+            background-position:rem(-440) rem(-750);
+        }
+        .one__en1 {
+            background-position:rem(-440) rem(-803);
+        }
+        .one__info {
+            width:rem(550);
+        }
     }
 }
 .yh-center__almighty.active {
@@ -1561,8 +1605,9 @@ html,body {
         float:left;
     }
     .partner__content--sz .content__one {
-        width:rem(230);
-        height:rem(77);
+        width:rem(182);
+        // width:rem(230);
+        // height:rem(77);
     }
     // .content__one--wangyi {
     //     width:rem(188);

@@ -644,9 +644,9 @@
                             href: 'javascript:void(0);',
                             id: 14275
                         }], [{
-                            logo: 'images/street-sz/logo-09.png',
+                            logo: 'images/street-sz/logo-09-2.png',
                             href: 'javascript:void(0);',
-                            id: 24748
+                            id: 0
                         }, {
                             logo: 'images/street-sz/logo-10.png',
                             href: 'javascript:void(0);',
@@ -656,17 +656,65 @@
                             href: 'javascript:void(0);',
                             id: 13809
                         }, {
-                            logo: 'images/street-sz/logo-12.png',
+                            logo: 'images/street-sz/logo-12-2.png',
                             href: 'javascript:void(0);',
-                            id: 149167
+                            id: 0
                         }], [{
-                            logo: 'images/street-sz/logo-13.png',
+                            logo: 'images/street-sz/logo-13-2.png',
                             href: 'javascript:void(0);',
-                            id: 32684
+                            id: 25205
                         }, {
+                            logo: 'images/street-sz/logo-26.png',
+                            href: 'javascript:void(0);',
+                            id: 174113
+                        }/*, {
                             logo: 'images/street-sz/logo-14.png',
                             href: 'javascript:void(0);',
                             id: 169202
+                        }*/], [{
+                            logo: 'images/street-sz/logo-15.png',
+                            href: 'javascript:void(0);',
+                            id: 0
+                        }, {
+                            logo: 'images/street-sz/logo-16.png',
+                            href: 'javascript:void(0);',
+                            id: 25448
+                        }], [{
+                            logo: 'images/street-sz/logo-17.png',
+                            href: 'javascript:void(0);',
+                            id: 81165
+                        }, {
+                            logo: 'images/street-sz/logo-18.png',
+                            href: 'javascript:void(0);',
+                            id: 114050
+                        }], [{
+                            logo: 'images/street-sz/logo-19.png',
+                            href: 'javascript:void(0);',
+                            id: 16609
+                        }, {
+                            logo: 'images/street-sz/logo-20.png',
+                            href: 'javascript:void(0);',
+                            id: 145153
+                        }], [{
+                            logo: 'images/street-sz/logo-21.png',
+                            href: 'javascript:void(0);',
+                            id: 90420
+                        }, {
+                            logo: 'images/street-sz/logo-22.png',
+                            href: 'javascript:void(0);',
+                            id: 318344
+                        }], [{
+                            logo: 'images/street-sz/logo-23.png',
+                            href: 'javascript:void(0);',
+                            id: 364698
+                        }, {
+                            logo: 'images/street-sz/logo-24.png',
+                            href: 'javascript:void(0);',
+                            id: 286795
+                        }], [{
+                            logo: 'images/street-sz/logo-25.png',
+                            href: 'javascript:void(0);',
+                            id: 96822
                         }]]
                     },
                     almighty: {
@@ -684,43 +732,47 @@
                             name: '职场30问',
                             info: '从面试技巧到行业知识，多种锦囊，教<br/>你化解内心焦虑，解决职场疑惑。 ',
                             src: 'images/almighty-03.png'
+                        }, {
+                            name: '解放天性戏剧社',
+                            info: '也许你已经很久没有轻松过了！职场上的压力如<br/>何释放？来一场全沉浸式的减压互动，在话剧中<br/>全身心解放自我，做一只快活的“戏精”。',
+                            src: 'images/almighty-04.png'
                         }]
                     },
                     plus: {
                         title: '梦想PLUS',
                         detail: '透过现象看本质的职场思维运用，大咖教你成为年薪<br/>百万的职场高手',
                         content: [{
-                            time: '13:40',
+                            time: '13:30',
                             name: '鲍艾乐',
                             photo: 'images/plus/ella.png',
                             position: '拉勾联合创始人／CMO',
                             book: '《穿透力思维--年薪百万的真正秘诀》'
                         }, {
                             time: '14:00',
-                            name: '李婷Kris',
-                            photo: 'images/plus/liting.png',
-                            position: '思创客创始人',
-                            book: '《思维转变-你是否有成体系的品牌思维》'
+                            name: '何文彬',
+                            photo: 'images/plus/hewenbing.png',
+                            position: '职业咨询师，前腾讯产品总监',
+                            book: '《职场中的第一性原理》'
                         }, {
                             time: '14:30',
+                            name: '黄伟强',
+                            photo: 'images/plus/huangweiqiang.png',
+                            position: '壹心理CEO',
+                            book: '《关于职业选择：Fellow your heart》'
+                        }, {
+                            time: '15:00',
                             name: '杨帆',
                             photo: 'images/plus/yangfan.png',
                             position: '商汤科技副总裁',
-                            book: '《从过去到现在-人工智能下的世界变革》'
-                        }, {
-                            time: '15:00',
-                            name: '马晓轶',
-                            photo: 'images/plus/maxiaoyi.png',
-                            position: '腾讯高级副总裁、游戏业务负责人',
-                            book: '《“吃鸡”了以后还能追求些什么？》',
-                            nonsure:true
+                            book: '《从过去到现在-人工智能下的世界变革》',
+                            nonsure:false
                         }, {
                             time: '15:30',
-                            name: '陈顺刚',
-                            photo: 'images/plus/chenshungang.png',
-                            position: '人人都是产品经理COO',
-                            book: '《具有穿透力的高阶运营法》',
-                            nonsure:true
+                            name: '刘鹏祥',
+                            photo: 'images/plus/liupengxiang.png',
+                            position: '运营深度精选联合创始人',
+                            book: '《穿透人心的高阶运营法》',
+                            nonsure:false
                         }]
                     },
                     workshop: {
@@ -776,6 +828,48 @@
                             logo: '',
                             href: 'javascript:void(0);',
                             id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
                         }, {
                             logo: '',
                             href: 'javascript:void(0);'
