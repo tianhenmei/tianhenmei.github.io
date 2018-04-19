@@ -612,9 +612,9 @@
                         count: 5020,
                         detail: 'Top50公司特展，争取面试机会，收割心仪Offer',
                         content: [[{
-                            logo: 'images/street-sz/logo-01.png',
+                            logo: 'images/street-sz/logo-00.png',
                             href: 'javascript:void(0);',
-                            id: 35996
+                            id: 6927
                         }, {
                             logo: 'images/street-sz/logo-02.png',
                             href: 'javascript:void(0);',
@@ -715,6 +715,10 @@
                             logo: 'images/street-sz/logo-25.png',
                             href: 'javascript:void(0);',
                             id: 96822
+                        },{
+                            logo: 'images/street-sz/logo-01.png',
+                            href: 'javascript:void(0);',
+                            id: 35996
                         }]]
                     },
                     almighty: {
@@ -828,6 +832,9 @@
                             logo: '',
                             href: 'javascript:void(0);',
                             id: ''
+                        }, {
+                            logo: '',
+                            href: 'javascript:void(0);'
                         }, {
                             logo: '',
                             href: 'javascript:void(0);'
