@@ -1,0 +1,233 @@
+.clearfix:after {
+  content: "020";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; }
+
+.clearfix {
+  zoom: 1; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+ul, ol, li {
+  list-style: none; }
+
+img {
+  display: block; }
+
+a {
+  text-decoration: none; }
+
+a:hover {
+  text-decoration: none; }
+
+@font-face {
+  font-family: 'gobold';
+  src: url("../images/Gobold.ttf");
+  font-weight: normal;
+  font-style: normal; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Hiragino Sans GB,Microsoft Yahei,SimSun,Arial,Helvetica Neue,Helvetica;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+  background: #fff;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden; }
+
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #fff; }
+
+.yh-center {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+.select-container {
+  width: 15.61481rem;
+  height: 2.59259rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.14815rem;
+  position: absolute;
+  left: 0.19259rem;
+  bottom: 1.98519rem; }
+
+.select_item {
+  height: 1.98519rem;
+  padding: 0.34074rem 0 0 0.31111rem; }
+  .select_item .item__list {
+    overflow-x: auto;
+    white-space: nowrap; }
+  .select_item .item__li {
+    height: 1.98519rem;
+    margin: 0 0.35556rem 0 0;
+    display: inline-block; }
+    .select_item .item__li .item__icon {
+      width: 1.98519rem;
+      height: 1.98519rem;
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: center bottom no-repeat;
+      background-size: contain; }
+    .select_item .item__li .item__name {
+      width: 1.98519rem;
+      line-height: 0.42667rem;
+      position: absolute;
+      bottom: 0.192rem;
+      left: 0;
+      font-size: 0.42667rem;
+      color: #d4d4d4;
+      text-align: center;
+      display: none; }
+
+.sex .sex__list {
+  width: 9.17333rem; }
+
+.sex .sex__li {
+  width: 1.98519rem;
+  position: relative; }
+  .sex .sex__li .sex__icon {
+    background-image: url("../images/man.png"); }
+  .sex .sex__li .sex__icon--1 {
+    background-image: url("../images/woman.png"); }
+
+.facing .facing__list {
+  width: 9.17333rem; }
+
+.facing .facing__li {
+  width: 1.98519rem;
+  position: relative; }
+  .facing .facing__li .facing__icon {
+    background-image: url("../images/mstand.png"); }
+  .facing .facing__li .facing__icon--1 {
+    background-image: url("../images/msit.png"); }
+  .facing .facing__li .facing__icon--2 {
+    background-image: url("../images/mknee.png"); }
+
+.clothes .clothes__li {
+  width: 1.98519rem;
+  position: relative; }
+  .clothes .clothes__li .clothes__icon {
+    background-image: url("../images/sample.png"); }
+
+.motion .motion__li {
+  width: 1.98519rem;
+  position: relative; }
+  .motion .motion__li .motion__icon {
+    background-image: url("../images/sample.png"); }
+
+.hair .hair__li {
+  width: 1.98519rem;
+  position: relative; }
+  .hair .hair__li .hair__icon {
+    background-image: url("../images/sample.png"); }
+
+.room .room__li {
+  width: 1.98519rem;
+  position: relative; }
+  .room .room__li .room__icon {
+    background-image: url("../images/room1.png"); }
+  .room .room__li .room__icon--1 {
+    background-image: url("../images/room2.png"); }
+  .room .room__li .room__icon--2 {
+    background-image: url("../images/room3.png"); }
+  .room .room__li .room__icon--3 {
+    background-image: url("../images/room4.png"); }
+
+.others .others__li {
+  width: 1.98519rem;
+  position: relative; }
+  .others .others__li .others__icon {
+    background-image: url("../images/sample.png"); }
+
+.select-bar {
+  width: 100%;
+  height: 1.79259rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #161110; }
+  .select-bar .select-bar__list {
+    height: 1.64444rem;
+    padding: 0.14815rem 0 0 0.29867rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap; }
+  .select-bar .select-bar__li {
+    width: 1.0963rem;
+    height: 1.42222rem;
+    padding: 0 0.32593rem;
+    margin: 0 0.16296rem 0 0;
+    display: inline-block;
+    position: relative;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    background: transparent; }
+  .select-bar .li--left {
+    width: 1.0963rem;
+    height: 1.0963rem;
+    border-radius: 1.0963rem;
+    background: #fff;
+    overflow: hidden;
+    position: absolute;
+    left: 0.32593rem;
+    top: 0.16296rem; }
+    .select-bar .li--left .icon {
+      width: 1.0963rem;
+      height: 1.0963rem;
+      background: transparent url("../images/icon/icon1.png") no-repeat center center;
+      background-size: 1.00267rem 1.00267rem;
+      -webkit-transition: all 0.3s linear;
+      transition: all 0.3s linear; }
+    .select-bar .li--left .icon--1 {
+      background-image: url("../images/icon/icon2.png");
+      background-size: 0.87467rem 0.87467rem; }
+    .select-bar .li--left .icon--2 {
+      background-image: url("../images/icon/icon3.png");
+      background-size: 0.93867rem 0.896rem; }
+    .select-bar .li--left .icon--3 {
+      background-image: url("../images/icon/icon4.png");
+      background-size: 0.832rem 0.832rem; }
+    .select-bar .li--left .icon--4 {
+      background-image: url("../images/icon/icon5.png");
+      background-size: 0.85333rem 0.85333rem; }
+    .select-bar .li--left .icon--5 {
+      background-image: url("../images/icon/icon6.png");
+      background-size: 0.98133rem 0.85333rem; }
+    .select-bar .li--left .icon--6 {
+      background-image: url("../images/icon/icon7.png");
+      background-size: 1.04533rem 0.832rem; }
+  .select-bar .li--right {
+    height: 1.0963rem;
+    line-height: 1.0963rem;
+    position: absolute;
+    top: 0.16296rem;
+    left: 1.68889rem;
+    display: none;
+    text-align: left;
+    font-size: 0.44444rem;
+    color: #fff; }
+  .select-bar .select-bar__li--active {
+    width: 2.2963rem;
+    background-color: #2c2827; }
+    .select-bar .select-bar__li--active .li--right {
+      display: block; }
+  .select-bar .select-bar__arrow {
+    width: 3.968rem;
+    height: 0.32rem;
+    background: url("../images/icon/black_icon2.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;
+    top: -0.17067rem;
+    -webkit-transition: all 0.3s linear;
+    transition: all 0.3s linear; }
