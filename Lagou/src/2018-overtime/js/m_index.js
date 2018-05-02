@@ -26,6 +26,8 @@ var app = new Vue({
         backgroundStage:null,
         fullscreenStatus:false,
         foldStatus:false,
+        w:1080,
+        h:1920,
         classify:[{
             name:"选人"
         },{
@@ -845,7 +847,10 @@ var app = new Vue({
         var _this = this
         this.width = window.innerWidth
         this.height = window.innerHeight
+        this.w = 1080
+        this.h = 1080 / this.width * this.height,
         this.fontSize = fontSize
+        // alert(this.width+' , '+this.height)
         // iphoneX
         this.fullscreenStatus = /iphone/gi.test(window.navigator.userAgent) && window.screen.width == 375 && window.screen.height == 812 && this.height > 720
         this.initCanvas()
@@ -905,7 +910,7 @@ var app = new Vue({
             var content = this.$refs.content
             // PIXI.Application
             // PIXI.CanvasRenderer
-            var can = new PIXI.Application(this.width,this.height,{
+            var can = new PIXI.Application(1080,1080 / this.width * this.height,{//this.width,this.height,{
                 antialias: true,  
                 backgroundColor:0xffffff
             })
@@ -917,6 +922,9 @@ var app = new Vue({
             this.backgroundStage.index = 0
             this.backgroundStage.addChild(background)
             can.stage.addChild(this.backgroundStage)
+            // can.stage.scale.set(
+            //     this.width / this.w
+            // )
             // can.render(this.stage)
             // 之后的对象都存在于舞台之上
             // this.stage: 用于放置人物
@@ -924,16 +932,16 @@ var app = new Vue({
             this.stage.x = 0
             this.stage.y = 0
             can.stage.addChild(this.stage)
-            this.stageE = new PIXI.Container()
-            can.stage.addChild(this.stageE)
             this.stageO = new PIXI.Container()
             can.stage.addChild(this.stageO)
+            this.stageE = new PIXI.Container()
+            can.stage.addChild(this.stageE)
         },
         setBackground:function(index){
             var current = this.room[index],
                 background = new PIXI.Sprite.fromImage(current.url)
-            background.width = this.width
-            background.height = this.getPx(current.height)
+                background.width = current.width
+                background.height = current.height
             return background
         },
         foldEvent:function(event){
@@ -972,14 +980,13 @@ var app = new Vue({
                 this.stageE.addChild(stage)
             }else if(this.stageE.children.length == 1){
                 var temp = this.stageE.children[0]
+                temp.chosen = false
+                temp.outline.visible = false
                 this.stageO.addChild(temp)
-                temp.chosen = true
-                temp.outline.visible = true
                 this.stageE.removeChildren()
                 stage = this.createRole(index)
                 this.stageE.addChild(stage)
             }
-            
         },
         createRole:function(index){
             var stage = new PIXI.Container(),
@@ -990,10 +997,11 @@ var app = new Vue({
             stage.chosen = true
             stage.interactive = true
             stage.buttonMode = true
-            stage.on("touchstart",function(o){
+            stage.on("touchstart",function(event){
+                console.log("stage touchstart")
                 new TWEEN.Tween(this.scale).to({
-                    x:1.015,
-                    y:1.015
+                    x:1.2,
+                    y:1.2
                 },100).start()
                 if(!this.chosen){
                     this.chosen = true
@@ -1015,11 +1023,13 @@ var app = new Vue({
                 // e(this.role,t)
                 _this.stageE.addChild(this)
                 _this.stageO.removeChild(this)
-            }).on("touchend", function() {
+            }).on("touchend", function(event) {
                 new TWEEN.Tween(this.scale).to({
                     x: 1,
                     y: 1
                 }, 100).start()
+                this.chosen = false
+                this.outline.visible = false
             })
             stage.role = index
             stage.facing = 0
@@ -1052,81 +1062,68 @@ var app = new Vue({
             var body = new PIXI.Sprite.fromImage(data.clothes.url),
                 minx = 0,
                 miny = 0
-            
-            body.width = this.getPx(data.clothes.width)
-            body.height = this.getPx(data.clothes.height)
+                body.width = data.clothes.width
+                body.height = data.clothes.height
             body.position.set(
-                this.getPx(data.role.bodyImgPosition.x),
-                this.getPx(data.role.bodyImgPosition.y))
+                data.role.bodyImgPosition.x,
+                data.role.bodyImgPosition.y)
             bodyStage.position.set(0,
-                this.getPx(data.clothes.position.y-data.emotion.position.y-data.hair.position.y))
+                data.clothes.position.y-data.emotion.position.y-data.hair.position.y)
             bodyStage.addChild(body)
 
             var head = new PIXI.Sprite.fromImage(data.emotion.url)
-            head.width = this.getPx(data.emotion.width)
-            head.height = this.getPx(data.emotion.height)
-            if(data.emotion.position){
-                if(minx > data.emotion.position.x){
-                    minx = data.emotion.position.x
-                }
-                if(miny > data.emotion.position.y){
-                    miny = data.emotion.position.y
-                }
-                head.position.set(
-                    this.getPx(data.role.headPosition.x+data.emotion.position.x), 
-                    this.getPx(data.role.headPosition.y-data.hair.position.y))
-            }else{
-                head.position.set(
-                    this.getPx(data.role.headPosition.x), 
-                    this.getPx(data.role.headPosition.y))
+            head.width = data.emotion.width
+            head.height = data.emotion.height
+            if(minx > data.emotion.position.x){
+                minx = data.emotion.position.x
             }
+            if(miny > data.emotion.position.y){
+                miny = data.emotion.position.y
+            }
+            head.position.set(
+                data.role.headPosition.x+data.emotion.position.x, 
+                data.role.headPosition.y-data.hair.position.y)
             headStage.position.set(
-                -this.getPx(data.clothes.position.x),0)
-                // this.getPx(-data.clothes.position.y))
+                -data.clothes.position.x,0)
             headStage.addChild(head)
             var hair = new PIXI.Sprite.fromImage(data.hair.url)
-            hair.width = this.getPx(data.hair.width)
-            hair.height = this.getPx(data.hair.height)
-            if(data.hair.position){
-                if(minx > data.hair.position.x){
-                    minx = data.hair.position.x
-                }
-                if(miny > data.hair.position.y){
-                    miny = data.hair.position.y
-                }
-                hair.position.set(
-                    this.getPx(data.role.hairPosition.x+data.hair.position.x),0)
-                    // this.getPx(data.role.hairPosition.y+data.hair.position.y))
-            }else{
-                hair.position.set(
-                    this.getPx(data.role.hairPosition.x),
-                    this.getPx(data.role.hairPosition.y))
+            hair.width = data.hair.width
+            hair.height = data.hair.height
+            if(minx > data.hair.position.x){
+                minx = data.hair.position.x
             }
+            if(miny > data.hair.position.y){
+                miny = data.hair.position.y
+            }
+            hair.position.set(
+                data.role.hairPosition.x+data.hair.position.x,0)
             headStage.addChild(hair)
 
             bodyStage.interactive = true
             bodyStage.buttonMode = true
-            bodyStage.on('touchstart',function(o){
-                _this.roleTouchStart(o,this)
+            bodyStage.on('touchstart',function(event){
+                event.stopped = true
+                _this.roleTouchStart(event,this)
             })
-            .on("touchmove", function(o){
-                _this.roleTouchMove(o,this)
+            .on("touchmove", function(event){
+                _this.roleTouchMove(event,this)
             })
-            .on("touchend", function(){
+            .on("touchend", function(event){
                 _this.roleTouchEnd(this)
             })
             headStage.interactive = true
             headStage.buttonMode = true
-            headStage.on('touchstart',function(o){
-                _this.roleTouchStart(o,this)
+            headStage.on('touchstart',function(event){
+                event.stopped = true
+                _this.roleTouchStart(event,this)
             })
-            .on("touchmove", function(o){
-                _this.roleTouchMove(o,this)
+            .on("touchmove", function(event){
+                _this.roleTouchMove(event,this)
             })
             .on("touchend", function(){
                 _this.roleTouchEnd(this)
             })
-            lineStage.position.set(this.getPx(minx),this.getPx(miny))
+            lineStage.position.set(minx,miny)
 
             stage.head = headStage
             stage.body = bodyStage
@@ -1136,10 +1133,6 @@ var app = new Vue({
             stage.pivot.set(stage.width / 2, stage.height / 2)
             stage.position.set(stage.globalPosition.x + stage.width / 2, 
                         stage.globalPosition.y + stage.height / 2)
-            
-            setTimeout(function() {
-                _this.drawSelection(stage)
-            }, 100)
             // if(stage.facing == 1){
             //     stage.pivot.set(0, o.height / 2)
             //     stage.position.set(stage.globalPosition.x + stage.width / 2, 
@@ -1160,7 +1153,34 @@ var app = new Vue({
             //         stage.globalPosition.y + stage.height / 2)
             // }
         },
+        putOnTop:function(self){
+            new TWEEN.Tween(self.scale).to({
+                x:1.015,
+                y:1.015
+            },100).start()
+            if(!self.chosen){
+                self.chosen = true
+                self.outline.visible = true
+                if(this.stageE.children.length){
+
+                }else{
+                    var first = this.stageE.children[0]
+                    first.chosen = false
+                    first.outline.visible = false
+                    this.stageO.addChild(first)
+                    this.stageE.removeChildren()
+                }
+            }
+            // this.people.remove(self)
+            this.people.splice(self.index,1)
+            this.people.push(self)
+            // 更新底部配置界面所有物体的状态
+            // e(this.role,t)
+            this.stageE.addChild(self)
+            this.stageO.removeChild(self)
+        },
         roleTouchStart:function(o,self){
+            this.putOnTop(self.parent)
             // _this.setOnTop(stage)
             self.dragging = true
             self.startPosition = {
@@ -1180,9 +1200,25 @@ var app = new Vue({
             }
         },
         roleTouchEnd:function(self){
-            self.dragging = false
-            self.parent.globalPosition.x = self.parent.position.x - self.parent.pivot._x
-            self.parent.globalPosition.y = self.parent.position.y - self.parent.pivot._y
+            if(self.dragging){
+                self.dragging = false
+                self.parent.globalPosition.x = self.parent.position.x - self.parent.pivot._x
+                self.parent.globalPosition.y = self.parent.position.y - self.parent.pivot._y
+            }else {
+                // 其他元素 拖拽到 别的元素下面，导致继续拖拽时 两个元素会同时动作
+                if(this.stageE.children.length > 0){
+                    var temp = null,
+                        i = 0
+                    for(i = 0; i < this.stageE.children.length; i++){
+                        temp = this.stageE.children[i]
+                        temp.dragging = false
+                        temp.chosen = false
+                        temp.outline.visible = false
+                        this.stageO.addChild(temp)
+                    }
+                    this.stageE.removeChildren()
+                }
+            }
         },
         changeFacing:function(index){
             var length = this.people.length
@@ -1350,8 +1386,8 @@ var app = new Vue({
             },
             otherStage.position.set(otherStage.globalPosition.x, otherStage.globalPosition.y);
             var subject = new PIXI.Sprite.fromImage(_this.others[index].url)
-            subject.width = _this.getPx(_this.others[index].width)
-            subject.height = _this.getPx(_this.others[index].height)
+            subject.width = _this.others[index].width
+            subject.height = _this.others[index].height
             subject.interactive = true
             subject.buttonMode = true
             var outer = new PIXI.Container();
@@ -1372,11 +1408,11 @@ var app = new Vue({
             stage.pivot.set(width / 2, height / 2),
             stage.position.set(stage.globalPosition.x + width / 2, stage.globalPosition.y + height / 2);
             var distance = 4;
-            gra.moveTo(-distance, -distance),
-            _this.drawDashLine(gra, -distance, -distance, width + distance, -distance),
-            _this.drawDashLine(gra, width + distance, -distance, width + distance, height + distance),
-            _this.drawDashLine(gra, width + distance, height + distance, -distance, height + distance),
-            _this.drawDashLine(gra, -distance, height + distance, -distance, -distance),
+            gra.moveTo(-distance, -distance)
+            _this.drawDashLine(gra, -distance, -distance, width + distance, -distance)
+            _this.drawDashLine(gra, width + distance, -distance, width + distance, height + distance)
+            _this.drawDashLine(gra, width + distance, height + distance, -distance, height + distance)
+            _this.drawDashLine(gra, -distance, height + distance, -distance, -distance)
             stage.children[0].on("touchstart", function(o) {
                 this.dragging = true
                 this.startPosition = {
@@ -1400,9 +1436,9 @@ var app = new Vue({
             }),
             stage.outline.addChild(gra);
             var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
-            rotate.width = this.getPx(42)
-            rotate.height = this.getPx(42)
-            rotate.position.set(this.getPx(-distance-42),this.getPx( -distance-42)),
+            rotate.width = 42
+            rotate.height = 42
+            rotate.position.set(-distance-42,-distance-42),
             rotate.interactive = true
             rotate.buttonMode = true
             rotate.on("touchstart", function(o) {
@@ -1429,9 +1465,9 @@ var app = new Vue({
                 _this.currentRotate = null
             });
             var close = new PIXI.Sprite.fromImage("images/close.png")
-            close.width = this.getPx(42)
-            close.height = this.getPx(42)
-            close.position.set(width + this.getPx(distance), this.getPx(-distance - 42))
+            close.width = 42
+            close.height = 42
+            close.position.set(width + distance, -distance - 42)
             close.interactive = true
             close.buttonMode = true
             close.on("tap", function() {
@@ -1454,9 +1490,9 @@ var app = new Vue({
             _this.drawDashLine(gra, 0, height, 0, 0),
             stage.outline.addChild(gra);
             var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
-            rotate.width = this.getPx(42)
-            rotate.height = this.getPx(42)
-            rotate.position.set(this.getPx(-42), this.getPx(-42)),
+            rotate.width = 42
+            rotate.height = 42
+            rotate.position.set(-42, -42)
             rotate.interactive = true
             rotate.buttonMode = true
             rotate.on("touchstart", function(o) {
@@ -1483,9 +1519,9 @@ var app = new Vue({
                 _this.currentRotate = null
             });
             var close = new PIXI.Sprite.fromImage("images/close.png")
-            close.width = this.getPx(42)
-            close.height = this.getPx(42)
-            close.position.set(width, this.getPx(-42))
+            close.width = 42
+            close.height = 42
+            close.position.set(width, -42)
             close.interactive = true
             close.buttonMode = true
             close.on("tap", function() {
