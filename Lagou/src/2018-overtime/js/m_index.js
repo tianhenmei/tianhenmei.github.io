@@ -998,7 +998,6 @@ var app = new Vue({
             stage.interactive = true
             stage.buttonMode = true
             stage.on("touchstart",function(event){
-                console.log("stage touchstart")
                 new TWEEN.Tween(this.scale).to({
                     x:1.2,
                     y:1.2
@@ -1028,8 +1027,6 @@ var app = new Vue({
                     x: 1,
                     y: 1
                 }, 100).start()
-                this.chosen = false
-                this.outline.visible = false
             })
             stage.role = index
             stage.facing = 0
@@ -1052,6 +1049,7 @@ var app = new Vue({
                 clothes:this.clothes[index][stage.facing][stage.clothes],  // 衣服
                 hair:this.hair[index][stage.hair]  // 表情
             })
+            this.drawSelection(stage)
             return stage
         },
         addChild:function(stage,data){
@@ -1162,8 +1160,6 @@ var app = new Vue({
                 self.chosen = true
                 self.outline.visible = true
                 if(this.stageE.children.length){
-
-                }else{
                     var first = this.stageE.children[0]
                     first.chosen = false
                     first.outline.visible = false
@@ -1364,9 +1360,7 @@ var app = new Vue({
                 if (!this.chosen) {
                     this.chosen = true
                     this.outline.visible = true
-                    if (_this.stageE.children.length == 0){
-
-                    }else {
+                    if (_this.stageE.children.length){
                         var last = _this.stageE.children[0];
                         last.chosen = false
                         last.outline.visible = false
@@ -1376,7 +1370,12 @@ var app = new Vue({
                     _this.stageE.addChild(this)
                     _this.stageO.removeChild(this)
                 }
-            }),
+            }).on("touchend",function(o){
+                new TWEEN.Tween(this.scale).to({
+                    x: 1,
+                    y: 1
+                }, 100).start()
+            })
             otherStage.data = {};
             var x = 50 * Math.random() - 50
               , y = 50 * Math.random() - 50;
@@ -1393,7 +1392,7 @@ var app = new Vue({
             var outer = new PIXI.Container();
             otherStage.addChild(subject, outer)
             otherStage.outline = outer
-            subject.texture.baseTexture.hasLoaded ? b(otherStage) : subject.texture.baseTexture.on("loaded", function() {
+            subject.texture.baseTexture.hasLoaded ? _this.setOthersOperation(otherStage) : subject.texture.baseTexture.on("loaded", function() {
                 _this.setOthersOperation(otherStage)
             }),
             _this.stageE.addChild(otherStage)
