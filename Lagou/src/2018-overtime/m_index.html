@@ -85,109 +85,112 @@
         <div class="select-content">
             <div class="content" id="content" ref="content"></div>
         </div>
-        <div class="select-container">
-            <div class="select-box">
-                <div class="select_item sex" v-show="classifyActive == 0">
-                    <ul class="item__list sex__list">
-                        <li class="item__li sex__li"
-                            v-for="(one,index) in sex"
-                            @click.stop.prevent="selectRole(index)">
-                            <div class="item__icon sex__icon" :class="'sex__icon--'+index"></div>
-                            <div class="item__name sex__name">{{one.name}}</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item facing" v-show="classifyActive == 1">
-                    <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
-                        <li class="item__li facing__li" v-for="(one,index) in facing"
-                            @click.stop.prevent="changeFacing(index)">
-                            <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
-                            <div class="item__name facing__name">{{one.name}}</div>
-                        </li>
-                    </ul>
-                    <ul class="item__list facing__list facing__woman" v-show="currentRoleType == 1">
-                        <li class="item__li facing__li" v-for="(one,index) in facing"
-                            @click.stop.prevent="changeFacing(index)">
-                            <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
-                            <div class="item__name facing__name">{{one.name}}</div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item clothes" v-show="classifyActive == 2">
-                    <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
-                        <li class="item__li clothes__li" v-for="(one,index) in cloth"
-                            @click.stop.prevent="changeClothes(index)">
-                            <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                    <ul class="clothes__woman" v-show="currentRoleType == 1">
-                        <li class="item__li clothes__li" v-for="(one,index) in cloth"
-                            @click.stop.prevent="changeClothes(index)">
-                            <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item motion" v-show="classifyActive == 3">
-                    <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
-                        <li class="item__li motion__li" v-for="(one,index) in emotionList"
-                            @click.stop.prevent="changeMotion(index)">
-                            <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                    <ul class="motion__woman" v-show="currentRoleType == 1">
-                        <li class="item__li motion__li" v-for="(one,index) in emotionList"
-                            @click.stop.prevent="changeMotion(index)">
-                            <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item hair" v-show="classifyActive == 4">
-                    <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
-                        <li class="item__li hair__li" v-for="(one,index) in hairList"
-                            @click.stop.prevent="changeHair(index)">
-                            <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                    <ul class="hair__woman" v-show="currentRoleType == 1">
-                        <li class="item__li hair__li" v-for="(one,index) in hairList"
-                            @click.stop.prevent="changeHair(index)">
-                            <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item room" v-show="classifyActive == 5">
-                    <ul class="item__list room__list">
-                        <li class="item__li room__li"
-                            v-for="(one,index) in room"
-                            @click.stop.prevent="changeRoom(index)">
-                            <div class="item__icon room__icon" :class="'room__icon--'+index"></div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="select_item others" v-show="classifyActive == 6">
-                    <ul class="item__list others__list">
-                        <li class="item__li others__li"
-                            v-for="(one,index) in others"
-                            @click.stop.prevent="addOthers(index)">
-                            <div class="item__icon others__icon" :class="'others__icon--'+index"
-                                :style="{backgroundImage:'url('+one.url+')'}"></div>
-                        </li>
-                    </ul>
+        <div class="center-content" :class="fullscreenStatus ? 'center-content--fullscreen' : ''">
+            <div class="select-container" :class="foldStatus ? 'hide' : ''">
+                <div class="select-box">
+                    <div class="select_item sex" v-show="classifyActive == 0">
+                        <ul class="item__list sex__list">
+                            <li class="item__li sex__li"
+                                v-for="(one,index) in sex"
+                                @click.stop.prevent="selectRole(index)">
+                                <div class="item__icon sex__icon" :class="'sex__icon--'+index"></div>
+                                <div class="item__name sex__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item facing" v-show="classifyActive == 1">
+                        <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
+                            <li class="item__li facing__li" v-for="(one,index) in facing"
+                                @click.stop.prevent="changeFacing(index)">
+                                <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__name facing__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                        <ul class="item__list facing__list facing__woman" v-show="currentRoleType == 1">
+                            <li class="item__li facing__li" v-for="(one,index) in facing"
+                                @click.stop.prevent="changeFacing(index)">
+                                <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__name facing__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item clothes" v-show="classifyActive == 2">
+                        <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
+                            <li class="item__li clothes__li" v-for="(one,index) in cloth"
+                                @click.stop.prevent="changeClothes(index)">
+                                <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                        <ul class="clothes__woman" v-show="currentRoleType == 1">
+                            <li class="item__li clothes__li" v-for="(one,index) in cloth"
+                                @click.stop.prevent="changeClothes(index)">
+                                <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item motion" v-show="classifyActive == 3">
+                        <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
+                            <li class="item__li motion__li" v-for="(one,index) in emotionList"
+                                @click.stop.prevent="changeMotion(index)">
+                                <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                        <ul class="motion__woman" v-show="currentRoleType == 1">
+                            <li class="item__li motion__li" v-for="(one,index) in emotionList"
+                                @click.stop.prevent="changeMotion(index)">
+                                <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item hair" v-show="classifyActive == 4">
+                        <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
+                            <li class="item__li hair__li" v-for="(one,index) in hairList"
+                                @click.stop.prevent="changeHair(index)">
+                                <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                        <ul class="hair__woman" v-show="currentRoleType == 1">
+                            <li class="item__li hair__li" v-for="(one,index) in hairList"
+                                @click.stop.prevent="changeHair(index)">
+                                <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item room" v-show="classifyActive == 5">
+                        <ul class="item__list room__list">
+                            <li class="item__li room__li"
+                                v-for="(one,index) in room"
+                                @click.stop.prevent="changeRoom(index)">
+                                <div class="item__icon room__icon" :class="'room__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item others" v-show="classifyActive == 6">
+                        <ul class="item__list others__list">
+                            <li class="item__li others__li"
+                                v-for="(one,index) in others"
+                                @click.stop.prevent="addOthers(index)">
+                                <div class="item__icon others__icon" :class="'others__icon--'+index"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="select-bar">
-            <ul class="select-bar__list">
-                <li v-for="(one,index) in classify" 
-                    class="select-bar__li" :class="(classifyActive == index) ? 'select-bar__li--active' : ''"
-                    @click.stop.prevent="changeClassify(index)">
-                    <div class="li--left">
-                        <div class="icon" :class="'icon--'+index"></div>
-                    </div>
-                    <div class="li--right">{{one.name}}</div>
-                </li>
-            </ul>
-            <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
+            <div class="select-fold" :class="foldStatus ? 'select-folded' : ''" @click.stop.prevent="foldEvent"></div>
+            <div class="select-bar">
+                <ul class="select-bar__list">
+                    <li v-for="(one,index) in classify" 
+                        class="select-bar__li" :class="(classifyActive == index) ? 'select-bar__li--active' : ''"
+                        @click.stop.prevent="changeClassify(index)">
+                        <div class="li--left">
+                            <div class="icon" :class="'icon--'+index"></div>
+                        </div>
+                        <div class="li--right">{{one.name}}</div>
+                    </li>
+                </ul>
+                <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
+            </div>
         </div>
     </div>
 </div>

@@ -51,6 +51,15 @@ html, body {
   height: 100%;
   position: relative; }
 
+.center-content {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0; }
+
+.center-content--fullscreen {
+  bottom: 1.98519rem; }
+
 .select-container {
   width: 15.61481rem;
   height: 2.59259rem;
@@ -58,6 +67,19 @@ html, body {
   border-radius: 0.14815rem;
   position: absolute;
   left: 0.19259rem;
+  bottom: 1.98519rem; }
+
+.select-fold {
+  width: 1.80741rem;
+  height: 0.82963rem;
+  background: url("../images/fold.png") no-repeat center top;
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0.20741rem;
+  bottom: 4.75556rem; }
+
+.select-folded {
+  background-image: url("../images/unfold.png");
   bottom: 1.98519rem; }
 
 .select_item {
@@ -231,3 +253,6 @@ html, body {
     top: -0.17067rem;
     -webkit-transition: all 0.3s linear;
     transition: all 0.3s linear; }
+
+.hide {
+  display: none; }

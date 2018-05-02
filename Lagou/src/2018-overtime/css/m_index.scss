@@ -129,6 +129,15 @@ html,body {
     height:100%;
     position:relative;
 }
+.center-content {
+    width:100%;
+    position:absolute;
+    left:0;
+    bottom:0;
+}
+.center-content--fullscreen {
+    bottom:rem1080(134);
+}
 .select-container {
     width:rem1080(1054);
     height:rem1080(175);
@@ -136,6 +145,19 @@ html,body {
     border-radius:rem1080(10);
     position:absolute;
     left:rem1080(13);
+    bottom:rem1080(134);
+}
+.select-fold {
+    width:rem1080(122);
+    height:rem1080(56);
+    background:url("../images/fold.png") no-repeat center top;
+    background-size:100% 100%;
+    position:absolute;
+    right:rem1080(14);
+    bottom:rem1080(321);
+}
+.select-folded {
+    background-image:url("../images/unfold.png");
     bottom:rem1080(134);
 }
 .select_item {
@@ -376,4 +398,8 @@ html,body {
         top: rem(-8);
         transition:all 0.3s linear;
     }
+}
+
+.hide {
+    display:none;
 }

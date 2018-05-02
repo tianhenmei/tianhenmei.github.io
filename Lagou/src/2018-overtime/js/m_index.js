@@ -9,6 +9,7 @@ function ANGLE(position, global) {
       }
     return an
 }
+
 var app = new Vue({
     el:"#app",
     data:{
@@ -23,6 +24,8 @@ var app = new Vue({
         currentRoleType:0,
         currentRotate:null,
         backgroundStage:null,
+        fullscreenStatus:false,
+        foldStatus:false,
         classify:[{
             name:"选人"
         },{
@@ -843,6 +846,8 @@ var app = new Vue({
         this.width = window.innerWidth
         this.height = window.innerHeight
         this.fontSize = fontSize
+        // iphoneX
+        this.fullscreenStatus = /iphone/gi.test(window.navigator.userAgent) && window.screen.width == 375 && window.screen.height == 812 && this.height > 720
         this.initCanvas()
         document.addEventListener('touchend',function(e){
             if(_this.currentRotate){
@@ -850,6 +855,8 @@ var app = new Vue({
                 _this.currentRotate = null
             }
         },this)
+        this.requestAnimation()
+        this.doAnimation()
     },
     methods:{
         getRem:function(value){
@@ -858,6 +865,38 @@ var app = new Vue({
         },
         getPx:function(value){
             return value * (750 / 1080) / (750 / 16) * this.fontSize
+        },
+        doAnimation:function(){
+            TWEEN.update();
+            requestAnimationFrame(this.doAnimation);
+        },
+        requestAnimation:function(){
+            var lastTime = 0;
+            var vendors = ['webkit', 'moz'];
+            let self = this
+            for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+                window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+                window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
+                                            window[vendors[x] + 'CancelRequestAnimationFrame'];
+            }
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+                    // self.waitTime = timeToCall
+                    var id = window.setTimeout(function() {
+                        callback();
+                    }, timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            }
+            if (!window.cancelAnimationFrame) {
+                window.cancelAnimationFrame = function(id) {
+                    clearTimeout(id);
+                };
+            }
         },
         initCanvas:function(){
             // 创建canvas画布（1080x1736）
@@ -896,6 +935,9 @@ var app = new Vue({
             background.width = this.width
             background.height = this.getPx(current.height)
             return background
+        },
+        foldEvent:function(event){
+            this.foldStatus = !this.foldStatus
         },
         onDragStart:function(event){
             // store a reference to the data
@@ -1094,6 +1136,10 @@ var app = new Vue({
             stage.pivot.set(stage.width / 2, stage.height / 2)
             stage.position.set(stage.globalPosition.x + stage.width / 2, 
                         stage.globalPosition.y + stage.height / 2)
+            
+            setTimeout(function() {
+                _this.drawSelection(stage)
+            }, 100)
             // if(stage.facing == 1){
             //     stage.pivot.set(0, o.height / 2)
             //     stage.position.set(stage.globalPosition.x + stage.width / 2, 
@@ -1115,6 +1161,7 @@ var app = new Vue({
             // }
         },
         roleTouchStart:function(o,self){
+            // _this.setOnTop(stage)
             self.dragging = true
             self.startPosition = {
                 x: o.data.global.x,
@@ -1324,7 +1371,7 @@ var app = new Vue({
                 height = stage.height;
             stage.pivot.set(width / 2, height / 2),
             stage.position.set(stage.globalPosition.x + width / 2, stage.globalPosition.y + height / 2);
-            var distance = 20;
+            var distance = 4;
             gra.moveTo(-distance, -distance),
             _this.drawDashLine(gra, -distance, -distance, width + distance, -distance),
             _this.drawDashLine(gra, width + distance, -distance, width + distance, height + distance),
@@ -1353,7 +1400,9 @@ var app = new Vue({
             }),
             stage.outline.addChild(gra);
             var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
-            rotate.position.set(-distance-42, -distance-42),
+            rotate.width = this.getPx(42)
+            rotate.height = this.getPx(42)
+            rotate.position.set(this.getPx(-distance-42),this.getPx( -distance-42)),
             rotate.interactive = true
             rotate.buttonMode = true
             rotate.on("touchstart", function(o) {
@@ -1380,7 +1429,9 @@ var app = new Vue({
                 _this.currentRotate = null
             });
             var close = new PIXI.Sprite.fromImage("images/close.png")
-            close.position.set(width + distance, -distance - 42)
+            close.width = this.getPx(42)
+            close.height = this.getPx(42)
+            close.position.set(width + this.getPx(distance), this.getPx(-distance - 42))
             close.interactive = true
             close.buttonMode = true
             close.on("tap", function() {
@@ -1403,7 +1454,9 @@ var app = new Vue({
             _this.drawDashLine(gra, 0, height, 0, 0),
             stage.outline.addChild(gra);
             var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
-            rotate.position.set(-42, -42),
+            rotate.width = this.getPx(42)
+            rotate.height = this.getPx(42)
+            rotate.position.set(this.getPx(-42), this.getPx(-42)),
             rotate.interactive = true
             rotate.buttonMode = true
             rotate.on("touchstart", function(o) {
@@ -1430,7 +1483,9 @@ var app = new Vue({
                 _this.currentRotate = null
             });
             var close = new PIXI.Sprite.fromImage("images/close.png")
-            close.position.set(width, -42)
+            close.width = this.getPx(42)
+            close.height = this.getPx(42)
+            close.position.set(width, this.getPx(-42))
             close.interactive = true
             close.buttonMode = true
             close.on("tap", function() {
