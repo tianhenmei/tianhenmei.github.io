@@ -9,6 +9,19 @@ function ANGLE(position, global) {
       }
     return an
 }
+function SCALE(position,global,data,scale){
+    var dx = global.x - position.x,
+        dy = global.y - position.y,
+        absA = Math.abs(dx),
+        absB = Math.abs(dy),
+        s = scale
+    if(dy < 0){ // 缩小
+        s = s * (1 - absB / data.w)
+    }else if(dy > 0){  // 放大
+        s = s * (1 + absB / data.w)
+    }
+    return s < 0.4 ? 0.4 : s
+}
 
 var app = new Vue({
     el:"#app",
@@ -26,6 +39,9 @@ var app = new Vue({
         backgroundStage:null,
         fullscreenStatus:false,
         foldStatus:false,
+        resultStatus:false,
+        canvas:null,
+        result:'',
         w:1080,
         h:1920,
         classify:[{
@@ -129,8 +145,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 },{  // 坐着
                     bodyPosition: {
@@ -150,8 +166,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 },{  // 跪着
                     bodyPosition: {
@@ -171,8 +187,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 }
             ],
@@ -197,8 +213,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 },{  // 坐着
                     bodyPosition: {
@@ -218,8 +234,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 },{  // 跪着
                     bodyPosition: {
@@ -239,8 +255,8 @@ var app = new Vue({
                         y: 0
                     },
                     globalPosition: {
-                        x: 0,
-                        y: 0
+                        x: 327,
+                        y: 200
                     }
                 }
             ]
@@ -859,6 +875,10 @@ var app = new Vue({
                 _this.currentRotate.dragging = false
                 _this.currentRotate = null
             }
+            if(_this.currentScale){
+                _this.currentScale.dragging = false
+                _this.currentScale = null
+            }
         },this)
         this.requestAnimation()
         this.doAnimation()
@@ -914,6 +934,7 @@ var app = new Vue({
                 antialias: true,  
                 backgroundColor:0xffffff
             })
+            this.canvas = can.view
             content.appendChild(can.view)
             // 使用图片方式创建背景精灵
             this.backgroundStage = new PIXI.Container()
@@ -972,6 +993,7 @@ var app = new Vue({
             var length = this.people.length
             this.currentRoleType = length > 0 ? this.people[length - 1].role : 0
             this.classifyActive = index
+            this.foldStatus = false
         },
         selectRole:function(index){
             var stage = null
@@ -999,8 +1021,8 @@ var app = new Vue({
             stage.buttonMode = true
             stage.on("touchstart",function(event){
                 new TWEEN.Tween(this.scale).to({
-                    x:1.2,
-                    y:1.2
+                    x:1.015 * this.scale.x,
+                    y:1.015 * this.scale.y
                 },100).start()
                 if(!this.chosen){
                     this.chosen = true
@@ -1024,8 +1046,8 @@ var app = new Vue({
                 _this.stageO.removeChild(this)
             }).on("touchend", function(event) {
                 new TWEEN.Tween(this.scale).to({
-                    x: 1,
-                    y: 1
+                    x: 1 * this.scale.x,
+                    y: 1 * this.scale.y
                 }, 100).start()
             })
             stage.role = index
@@ -1050,6 +1072,8 @@ var app = new Vue({
                 hair:this.hair[index][stage.hair]  // 表情
             })
             this.drawSelection(stage)
+            stage.originWidth = stage.width
+            stage.originHeight = stage.height
             return stage
         },
         addChild:function(stage,data){
@@ -1153,8 +1177,8 @@ var app = new Vue({
         },
         putOnTop:function(self){
             new TWEEN.Tween(self.scale).to({
-                x:1.015,
-                y:1.015
+                x:1.015 * self.scale.x,
+                y:1.015 * self.scale.y
             },100).start()
             if(!self.chosen){
                 self.chosen = true
@@ -1354,8 +1378,8 @@ var app = new Vue({
             otherStage.buttonMode = true
             otherStage.on("touchstart", function(o) {
                 new TWEEN.Tween(this.scale).to({
-                    x: 1.015,
-                    y: 1.015
+                    x: 1.015 * this.scale.x,
+                    y: 1.015 * this.scale.y
                 }, 100).start()
                 if (!this.chosen) {
                     this.chosen = true
@@ -1372,16 +1396,16 @@ var app = new Vue({
                 }
             }).on("touchend",function(o){
                 new TWEEN.Tween(this.scale).to({
-                    x: 1,
-                    y: 1
+                    x: 1 * this.scale.x,
+                    y: 1 * this.scale.y
                 }, 100).start()
             })
             otherStage.data = {};
             var x = 50 * Math.random() - 50
               , y = 50 * Math.random() - 50;
             otherStage.globalPosition = {
-                x: 200 + x,
-                y: 500 + y
+                x: (1080 - _this.others[index].width) / 2 + x,
+                y: (1920 - _this.others[index].height - 200) / 2 + y
             },
             otherStage.position.set(otherStage.globalPosition.x, otherStage.globalPosition.y);
             var subject = new PIXI.Sprite.fromImage(_this.others[index].url)
@@ -1395,6 +1419,8 @@ var app = new Vue({
             subject.texture.baseTexture.hasLoaded ? _this.setOthersOperation(otherStage) : subject.texture.baseTexture.on("loaded", function() {
                 _this.setOthersOperation(otherStage)
             }),
+            otherStage.originWidth = otherStage.width
+            otherStage.originHeight = otherStage.height
             _this.stageE.addChild(otherStage)
         },
         setOthersOperation:function(stage){
@@ -1463,6 +1489,41 @@ var app = new Vue({
                 this.dragging = false
                 _this.currentRotate = null
             });
+            var scale = new PIXI.Sprite.fromImage("images/scale.png")
+            scale.width = 42
+            scale.height = 42
+            scale.position.set(width, height)
+            scale.interactive = true
+            scale.buttonMode = true
+            scale.on("touchstart", function(event) {
+                event.stopped = true
+                this.dragging = true;
+                var global = event.data.global;
+                this.parent.parent.data.scale = this.parent.parent.scale
+                this.startScale = this.parent.parent.scale
+                this.startScalePosition = event.data.getLocalPosition(this.parent.parent)
+                this.startSize = {
+                    w:this.parent.parent.originWidth,
+                    h:this.parent.parent.originHeight
+                }
+                // console.log("start: "+this.startScalePosition.x+' , '+this.startScalePosition.y)
+                _this.currentScale = this
+            }).on("touchmove", function(event) {
+                if (this.dragging) {
+                    var global = event.data.global,
+                        currentPosition = event.data.getLocalPosition(this.parent.parent)
+                        scale = SCALE(
+                            this.startScalePosition, 
+                            currentPosition, 
+                            this.startSize,
+                            this.startScale.x
+                        );
+                    this.parent.parent.scale.set(scale)
+                }
+            }).on("touchend", function() {
+                this.dragging = false
+                _this.currentScale = null
+            });
             var close = new PIXI.Sprite.fromImage("images/close.png")
             close.width = 42
             close.height = 42
@@ -1472,7 +1533,7 @@ var app = new Vue({
             close.on("tap", function() {
                 this.parent.parent.parent.removeChild(this.parent.parent)
             }),
-            stage.outline.addChild(rotate, close)
+            stage.outline.addChild(rotate, scale, close)
         },
         drawSelection:function(stage){
             var _this = this
@@ -1494,9 +1555,10 @@ var app = new Vue({
             rotate.position.set(-42, -42)
             rotate.interactive = true
             rotate.buttonMode = true
-            rotate.on("touchstart", function(o) {
+            rotate.on("touchstart", function(event) {
+                event.stopped = true
                 this.dragging = true;
-                var global = o.data.global;
+                var global = event.data.global;
                 this.parent.parent.data.rotation = this.parent.parent.rotation;
                 var angle = ANGLE({
                     x: this.parent.parent.position.x,
@@ -1504,18 +1566,60 @@ var app = new Vue({
                 }, global);
                 this.startRotation = angle
                 _this.currentRotate = this
-            }).on("touchmove", function(o) {
+            }).on("touchmove", function(event) {
                 if (this.dragging) {
-                    var global = o.data.global
-                      , angle = ANGLE({
-                        x: this.parent.parent.position.x,
-                        y: this.parent.parent.position.y
-                    }, global);
+                    var global = event.data.global,
+                        angle = ANGLE({
+                            x: this.parent.parent.position.x,
+                            y: this.parent.parent.position.y
+                        }, global),
+                        scale = SCALE({
+                            x: this.parent.parent.position.x,
+                            y: this.parent.parent.position.y
+                        }, global, {
+                            w:this.parent.parent.width,
+                            h:this.parent.parent.height
+                        },this.parent.parent.scale);
                     this.parent.parent.rotation = angle - this.startRotation + this.parent.parent.data.rotation
                 }
             }).on("touchend", function() {
                 this.dragging = false
                 _this.currentRotate = null
+            });
+            var scale = new PIXI.Sprite.fromImage("images/scale.png")
+            scale.width = 42
+            scale.height = 42
+            scale.position.set(width, height)
+            scale.interactive = true
+            scale.buttonMode = true
+            scale.on("touchstart", function(event) {
+                event.stopped = true
+                this.dragging = true;
+                var global = event.data.global;
+                this.parent.parent.data.scale = this.parent.parent.scale
+                this.startScale = this.parent.parent.scale
+                this.startScalePosition = event.data.getLocalPosition(this.parent.parent)
+                this.startSize = {
+                    w:this.parent.parent.originWidth,
+                    h:this.parent.parent.originHeight
+                }
+                // console.log(this.startSize.w+' , '+this.startSize.h)
+                _this.currentScale = this
+            }).on("touchmove", function(event) {
+                if (this.dragging) {
+                    var global = event.data.global,
+                        currentPosition = event.data.getLocalPosition(this.parent.parent)
+                        scale = SCALE(
+                            this.startScalePosition, 
+                            currentPosition, 
+                            this.startSize,
+                            this.startScale.x
+                        );
+                    this.parent.parent.scale.set(scale)
+                }
+            }).on("touchend", function() {
+                this.dragging = false
+                _this.currentScale = null
             });
             var close = new PIXI.Sprite.fromImage("images/close.png")
             close.width = 42
@@ -1533,7 +1637,7 @@ var app = new Vue({
                 //     e(-100)
                 // }
             }),
-            stage.outline.addChild(rotate, close)
+            stage.outline.addChild(rotate, scale, close)
         },
         getBeveling:function(dx, dy) {
             return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
@@ -1555,6 +1659,27 @@ var app = new Vue({
                     startY + (endY - startY) / ra * i
                 )
             }
+        },
+        convertCanvasToImage:function(){
+            var temp = null,
+                i = 0
+            if(this.stageE.children.length > 0){
+                for(i = 0; i < this.stageE.children.length; i++){
+                    temp = this.stageE.children[i]
+                    temp.chosen = false
+                    temp.outline.visible = false
+                    this.stageO.addChild(temp)
+                    this.stageE.removeChild(temp)
+                }
+            }
+            var _this = this
+            setTimeout(function(){
+                setTimeout(function(){
+                    var canvas = document.getElementsByTagName('canvas')[0]
+                    _this.result = _this.canvas.toDataURL("image/png")
+                    _this.resultStatus = true
+                },30)
+            },200)
         }
     }
 })

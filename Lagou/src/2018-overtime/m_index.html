@@ -191,7 +191,11 @@
                 </ul>
                 <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
             </div>
+            <div class="save" :class="foldStatus ? 'save--fold' : ''" @click.stop.prevent="convertCanvasToImage"></div>
         </div>
+    </div>
+    <div class="result-img" v-if="resultStatus">
+        <img class="img" :src="result" />
     </div>
 </div>
 <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
