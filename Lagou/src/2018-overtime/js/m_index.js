@@ -99,6 +99,12 @@ var app = new Vue({
             name:"4"
         },{
             name:"5"
+        },{
+            name:"6"
+        },{
+            name:"7"
+        },{
+            name:"8"
         }],
         hairList:[{
             name:"1"
@@ -110,6 +116,31 @@ var app = new Vue({
             name:"4"
         },{
             name:"5"
+        },{
+            name:"6"
+        },{
+            name:"7"
+        },{
+            name:"8"
+        },{
+            name:"9"
+        }],
+        hairList_woman:[{
+            name:"1"
+        },{
+            name:"2"
+        },{
+            name:"3"
+        },{
+            name:"4"
+        },{
+            name:"5"
+        },{
+            name:"6"
+        },{
+            name:"7"
+        },{
+            name:"8"
         }],
         roomList:[{
             name:"1"
@@ -134,14 +165,14 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 162+77
+                        y: 162+77 - 20
                     },
                     headPosition: {
                         x: 35,
-                        y: 77
+                        y: 77 -20
                     },
                     hairPosition: {
-                        x: 103,
+                        x: 103 - 8,
                         y: 0
                     },
                     globalPosition: {
@@ -155,14 +186,14 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 84+79
+                        y: 84+79-20
                     },
                     headPosition: {
                         x: 90,
-                        y: 79
+                        y: 79-20
                     },
                     hairPosition: {
-                        x: 159,
+                        x: 159 - 8,
                         y: 0
                     },
                     globalPosition: {
@@ -176,14 +207,14 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 0+27
+                        y: 0+27-20
                     },
                     headPosition: {
                         x: 202,
-                        y: 48+27
+                        y: 48+27-20
                     },
                     hairPosition: {
-                        x: 269,
+                        x: 269 - 8,
                         y: 0
                     },
                     globalPosition: {
@@ -202,11 +233,11 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 93+30
+                        y: 93+30+45
                     },
                     headPosition: {
                         x: 173,
-                        y: 30
+                        y: 30+45
                     },
                     hairPosition: {
                         x: 173 - 17,
@@ -223,11 +254,11 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 125+30
+                        y: 125+30+45
                     },
                     headPosition: {
                         x: 233,
-                        y: 30
+                        y: 30+45
                     },
                     hairPosition: {
                         x: 233 - 17,
@@ -244,11 +275,11 @@ var app = new Vue({
                     },
                     bodyImgPosition: {
                         x: 0,
-                        y: 112+30
+                        y: 112+30+45
                     },
                     headPosition: {
                         x: 244,
-                        y: 30
+                        y: 30+45
                     },
                     hairPosition: {
                         x: 244 - 17,
@@ -413,11 +444,11 @@ var app = new Vue({
                 // 站立
                 [{
                     url:'images/woman-stand-01.png',
-                    width:257,
-                    height:900,
+                    width:351,
+                    height:921,
                     position:{
-                        x:132,
-                        y:97
+                        x:40,
+                        y:69
                     }
                 },{
                     url:'images/woman-stand-02.png',
@@ -425,7 +456,7 @@ var app = new Vue({
                     height:924,
                     position:{
                         x:83,
-                        y:6497
+                        y:64
                     }
                 },{
                     url:'images/woman-stand-03.png',
@@ -461,11 +492,11 @@ var app = new Vue({
                     }
                 }],[{// 站立
                     url:'images/woman-sit-01.png',
-                    width:448,
-                    height:461,
+                    width:449,
+                    height:463,
                     position:{
-                        x:102,
-                        y:29
+                        x:104,
+                        y:28
                     }
                 },{
                     url:'images/woman-sit-02.png',
@@ -509,11 +540,11 @@ var app = new Vue({
                     }
                 }],[{// 跪着
                     url:'images/woman-knee-01.png',
-                    width:259,
-                    height:505,
+                    width:347,
+                    height:498,
                     position:{
-                        x:210,
-                        y:41
+                        x:146,
+                        y:43
                     }
                 },{
                     url:'images/woman-knee-02.png',
@@ -568,11 +599,11 @@ var app = new Vue({
             }
         },{
             url:'images/man-head-02.png',
-            width:248,
-            height:269,
+            width:222,
+            height:266,
             position:{
-                x:0,
-                y:0
+                x:26,
+                y:6
             }
         },{
             url:'images/man-head-03.png',
@@ -584,11 +615,11 @@ var app = new Vue({
             }
         },{
             url:'images/man-head-04.png',
-            width:222,
-            height:266,
+            width:248,
+            height:269,
             position:{
-                x:26,
-                y:4
+                x:0,
+                y:3
             }
         },{
             url:'images/man-head-05.png',
@@ -596,7 +627,31 @@ var app = new Vue({
             height:266,
             position:{
                 x:26,
-                y:3
+                y:6
+            }
+        },{
+            url:'images/man-head-06.png',
+            width:222,
+            height:266,
+            position:{
+                x:26,
+                y:6
+            }
+        },{
+            url:'images/man-head-07.png',
+            width:222,
+            height:266,
+            position:{
+                x:26,
+                y:6
+            }
+        },{
+            url:'images/man-head-08.png',
+            width:222,
+            height:266,
+            position:{
+                x:26,
+                y:6
             }
         }],[{
             url:'images/woman-head-1.png',
@@ -666,42 +721,74 @@ var app = new Vue({
         hair:[[{
             url:'images/man-hair-01.png',
             width:146,
-            height:112,
+            height:127,
             position:{
-                x:7,
-                y:51
+                x:16,
+                y:30
             },
         },{
             url:'images/man-hair-02.png',
-            width:146,
-            height:111,
+            width:151,
+            height:138,
             position:{
-                x:10,
-                y:47
+                x:13,
+                y:22
             },
         },{
             url:'images/man-hair-03.png',
-            width:155,
-            height:73,
+            width:137,
+            height:95,
             position:{
-                x:0,
-                y:70
+                x:14,
+                y:56
             }
         },{
             url:'images/man-hair-04.png',
-            width:127,
-            height:64,
+            width:139,
+            height:151,
             position:{
-                x:13,
-                y:76
+                x:11,
+                y:0
             },
         },{
             url:'images/man-hair-05.png',
-            width:139,
-            height:138,
+            width:158,
+            height:102,
             position:{
-                x:3,
-                y:0
+                x:5,
+                y:49
+            }
+        },{
+            url:'images/man-hair-06.png',
+            width:152,
+            height:130,
+            position:{
+                x:1,
+                y:25
+            }
+        },{
+            url:'images/man-hair-07.png',
+            width:149,
+            height:168,
+            position:{
+                x:7,
+                y:25
+            }
+        },{
+            url:'images/man-hair-08.png',
+            width:135,
+            height:117,
+            position:{
+                x:14,
+                y:40
+            }
+        },{
+            url:'images/man-hair-09.png',
+            width:158,
+            height:157,
+            position:{
+                x:0,
+                y:42
             }
         }],[{
             url:'images/woman-hair-01.png',
@@ -709,7 +796,7 @@ var app = new Vue({
             height:166,
             position:{
                 x:14,
-                y:12
+                y:12+47
             }
         },{
             url:'images/woman-hair-02.png',
@@ -717,7 +804,7 @@ var app = new Vue({
             height:226,
             position:{
                 x:26,
-                y:7
+                y:7+47
             }
         },{
             url:'images/woman-hair-03.png',
@@ -725,7 +812,7 @@ var app = new Vue({
             height:131,
             position:{
                 x:33,
-                y:7
+                y:7+47
             }
         },{
             url:'images/woman-hair-04.png',
@@ -733,7 +820,7 @@ var app = new Vue({
             height:243,
             position:{
                 x:0,
-                y:16
+                y:16+47
             }
         },{
             url:'images/woman-hair-05.png',
@@ -741,7 +828,31 @@ var app = new Vue({
             height:231,
             position:{
                 x:28,
+                y:0+47
+            }
+        },{
+            url:'images/woman-hair-06.png',
+            width:167,
+            height:198,
+            position:{
+                x:14,
+                y:0+47
+            }
+        },{
+            url:'images/woman-hair-07.png',
+            width:146,
+            height:228,
+            position:{
+                x:32,
                 y:0
+            }
+        },{
+            url:'images/woman-hair-08.png',
+            width:153,
+            height:133,
+            position:{
+                x:24,
+                y:2+47
             }
         }]],
         room:[{

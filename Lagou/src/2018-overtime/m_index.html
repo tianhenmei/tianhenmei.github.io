@@ -76,11 +76,25 @@
         }
     
         setFontSize();
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingSuccess = function(){
+                var appElement = document.getElementById('yh-center');
+                appElement.className = appElement.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
     </script>
 </head>
 <body>
+<div class="loading" id="loading">
+    <div class="icon">
+        <img src="images/loding.gif" />
+    </div>
+</div>
+<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
 <div id="app">
-    <div class="yh-center">
+    <div class="yh-center hide" id="yh-center">
         <!-- <div class="user"></div> -->
         <div class="select-content">
             <div class="content" id="content" ref="content"></div>
@@ -121,7 +135,7 @@
                                 <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
                             </li>
                         </ul>
-                        <ul class="clothes__woman" v-show="currentRoleType == 1">
+                        <ul class="item__list clothes__woman" v-show="currentRoleType == 1">
                             <li class="item__li clothes__li" v-for="(one,index) in cloth"
                                 @click.stop.prevent="changeClothes(index)">
                                 <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
@@ -135,7 +149,7 @@
                                 <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
                             </li>
                         </ul>
-                        <ul class="motion__woman" v-show="currentRoleType == 1">
+                        <ul class="item__list motion__woman" v-show="currentRoleType == 1">
                             <li class="item__li motion__li" v-for="(one,index) in emotionList"
                                 @click.stop.prevent="changeMotion(index)">
                                 <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
@@ -149,8 +163,8 @@
                                 <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
                             </li>
                         </ul>
-                        <ul class="hair__woman" v-show="currentRoleType == 1">
-                            <li class="item__li hair__li" v-for="(one,index) in hairList"
+                        <ul class="item__list hair__woman" v-show="currentRoleType == 1">
+                            <li class="item__li hair__li" v-for="(one,index) in hairList_woman"
                                 @click.stop.prevent="changeHair(index)">
                                 <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
                             </li>
@@ -198,6 +212,14 @@
         <img class="img" :src="result" />
     </div>
 </div>
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
 <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
 <!-- <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script> -->
 <script type"text/javascript" src="js/vue2.1.10.js"></script>
