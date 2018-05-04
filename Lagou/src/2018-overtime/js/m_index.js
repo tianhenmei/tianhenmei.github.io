@@ -638,6 +638,30 @@ var app = new Vue({
                 x:0,
                 y:0
             }
+        },{
+            url:'images/woman-head-6.png',
+            width:177,
+            height:253,
+            position:{
+                x:0,
+                y:0
+            }
+        },{
+            url:'images/woman-head-7.png',
+            width:177,
+            height:253,
+            position:{
+                x:0,
+                y:0
+            }
+        },{
+            url:'images/woman-head-8.png',
+            width:177,
+            height:253,
+            position:{
+                x:0,
+                y:0
+            }
         }]],
         hair:[[{
             url:'images/man-hair-01.png',
@@ -739,7 +763,7 @@ var app = new Vue({
         }],
         others:[{
             url:'images/others/01.png',
-            width:336,
+            width:338,
             height:1030
         },{
             url:'images/others/02.png',
@@ -807,28 +831,28 @@ var app = new Vue({
             height:175
         },{
             url:'images/others/18.png',
-            width:368,
-            height:633
+            width:418,
+            height:209
         },{
             url:'images/others/19.png',
             width:221,
             height:178
         },{
             url:'images/others/20.png',
-            width:55,
-            height:266
+            width:85,
+            height:273
         },{
             url:'images/others/21.png',
-            width:55,
-            height:266
+            width:85,
+            height:273
         },{
             url:'images/others/22.png',
-            width:55,
-            height:266
+            width:85,
+            height:273
         },{
             url:'images/others/23.png',
-            width:55,
-            height:266
+            width:187,
+            height:123
         },{
             url:'images/others/24.png',
             width:415,
@@ -849,6 +873,98 @@ var app = new Vue({
             url:'images/others/28.png',
             width:454,
             height:365
+        },{
+            url:'images/others/29.png',
+            width:48,
+            height:104
+        },{
+            url:'images/others/30.png',
+            width:86,
+            height:142
+        },{
+            url:'images/others/31.png',
+            width:275,
+            height:327
+        },{
+            url:'images/others/32.png',
+            width:275,
+            height:327
+        },{
+            url:'images/others/33.png',
+            width:132,
+            height:104
+        },{
+            url:'images/others/34.png',
+            width:203,
+            height:89
+        },{
+            url:'images/others/35.png',
+            width:80,
+            height:259
+        },{
+            url:'images/others/36.png',
+            width:229,
+            height:174
+        },{
+            url:'images/others/37.png',
+            width:124,
+            height:264
+        },{
+            url:'images/others/38.png',
+            width:118,
+            height:121
+        },{
+            url:'images/others/39.png',
+            width:907,
+            height:666
+        },{
+            url:'images/others/40.png',
+            width:212,
+            height:306
+        },{
+            url:'images/others/41.png',
+            width:232,
+            height:219
+        },{
+            url:'images/others/42.png',
+            width:174,
+            height:167
+        },{
+            url:'images/others/43.png',
+            width:441,
+            height:729
+        },{
+            url:'images/others/44.png',
+            width:99,
+            height:151
+        },{
+            url:'images/others/45.png',
+            width:214,
+            height:222
+        },{
+            url:'images/others/46.png',
+            width:250,
+            height:163
+        },{
+            url:'images/others/47.png',
+            width:717,
+            height:474
+        },{
+            url:'images/others/48.png',
+            width:394,
+            height:329
+        },{
+            url:'images/others/49.png',
+            width:281,
+            height:205
+        },{
+            url:'images/others/50.png',
+            width:909,
+            height:129
+        },{
+            url:'images/others/51.png',
+            width:909,
+            height:129
         }]
     },
     computed:{
