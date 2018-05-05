@@ -208,6 +208,7 @@
             <div class="save" :class="foldStatus ? 'save--fold' : ''" @click.stop.prevent="convertCanvasToImage"></div>
         </div>
     </div>
+    <canvas id="draw-image" style="width:100%; height:100%;"></canvas>
     <div class="result-img" v-if="resultStatus">
         <img class="img" :src="result" />
     </div>

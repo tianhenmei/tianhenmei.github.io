@@ -5,24 +5,29 @@
         <title>canvas测试</title>
     </head>
     <body>
-        <div id="app" style="width:100%; height:100%;">
+        <!-- <div id="app" style="width:100%; height:100%;">
             <canvas id="gameCanvas" width="750" height="1206" style="width:100%; height:100%;"></canvas>
-        </div>
+        </div>-->
         <div id="save" style="width:100px;height:30px; position:fixed; left:100px; bottom:100px;">保存</div>
         <img id="save-img" style="width:100%; height:100%; position:fixed; left:0; top:0; display:none; margin:0; padding:0;"/>
         <script type="text/javascript">
-            var canvas = document.getElementById("gameCanvas"),
-                saveImg = document.getElementById("save-img"),
-                ctx = canvas.getContext('2d'),
-                img = new Image()
-            img.src = "../2018-overtime/images/others/01.png"
-            img.onload = function(){
-                ctx.drawImage(img,0,0);
-            }
+            // var canvas = document.getElementById("gameCanvas"),
+            //     saveImg = document.getElementById("save-img")
+            //     ctx = canvas.getContext('2d'),
+            //     img = new Image()
+            // img.src = "../2018-overtime/images/others/01.png"
+            // img.onload = function(){
+            //     ctx.drawImage(img,0,0);
+            // }
             document.getElementById('save').addEventListener('click',function(e){
+                var canvas = document.getElementsByTagName("canvas")[0],
+                    saveImg = document.getElementById("save-img")
                 saveImg.src = canvas.toDataURL()
                 saveImg.style.display = 'block'
             },false)
         </script>
+        <script type="text/javascript" src="../2018-overtime/js/pixi.min.4.7.3.js"></script>
+        <script type="text/javascript" src="display.1253938.min.js"></script>
+        <script type="text/javascript" src="normals-drag.js"></script>
     </body>
 </html>

@@ -35,6 +35,7 @@
             stage:null,  // 用于人物舞台
             stageE:null,
             stageO:null,
+            ercodeStage:null,
             classifyActive:0,
             currentRoleType:0,
             currentRotate:null,
@@ -43,6 +44,7 @@
             foldStatus:false,
             resultStatus:false,
             canvas:null,
+            canvasStage:null,
             result:'',
             w:1080,
             h:1920,
@@ -1159,12 +1161,12 @@
                 var content = this.$refs.content
                 // PIXI.Application
                 // PIXI.CanvasRenderer
-                var can = new PIXI.Application(1080,1080 / this.width * this.height,{//this.width,this.height,{
+                var can = new PIXI.Application(this.w,this.h,{//this.width,this.height,{
                     preserveDrawingBuffer:true,
                     antialias: false,  
                     backgroundColor:0xffffff
                 })
-                this.canvas = can.view
+                this.canvas = can
                 content.appendChild(can.view)
                 // 使用图片方式创建背景精灵
                 this.backgroundStage = new PIXI.Container()
@@ -1187,6 +1189,10 @@
                 can.stage.addChild(this.stageO)
                 this.stageE = new PIXI.Container()
                 can.stage.addChild(this.stageE)
+                this.canvasStage = can.stage
+                this.ercodeStage = new PIXI.Container()
+                this.addErcodeChild()
+                can.stage.addChild(this.ercodeStage)
             },
             setBackground:function(index){
                 var current = this.room[index],
@@ -1194,6 +1200,17 @@
                     background.width = current.width
                     background.height = current.height
                 return background
+            },
+            addErcodeChild:function(){
+                this.ercodeStage.position.set(0,0)
+                this.ercodeStage.width = this.w
+                this.ercodeStage.height = this.h
+                var bottomBG = PIXI.Sprite.fromImage("images/bottom.jpg");
+                bottomBG.width = this.w //1014
+                bottomBG.height = 180 / (1014 / this.w)
+                bottomBG.position.set(0, this.h - bottomBG.height);
+                this.ercodeStage.visible = false
+                this.ercodeStage.addChild(bottomBG)
             },
             foldEvent:function(event){
                 this.foldStatus = !this.foldStatus
@@ -1890,6 +1907,24 @@
                     )
                 }
             },
+            ismobile:function(){
+                var u = navigator.userAgent, app = navigator.appVersion;
+                if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+                    if(window.location.href.indexOf("?mobile")<0){
+                        try{
+                            if(/iPhone/i.test(navigator.userAgent)){  // /iPhone|mac|iPod|iPad/i
+                                return 'iphone';
+                            }else{
+                                return 'android';
+                            }
+                        }catch(e){}
+                    }
+                }else if( u.indexOf('iPad') > -1){
+                    return 'iphone';
+                }else{
+                    return 'android';
+                }
+            },
             convertCanvasToImage:function(){
                 var temp = null,
                     i = 0
@@ -1903,10 +1938,12 @@
                     }
                 }
                 var _this = this
+                _this.ercodeStage.visible = true
                 setTimeout(function(){
                     setTimeout(function(){
-                        var canvas = document.getElementsByTagName('canvas')[0]
-                        _this.result = _this.canvas.toDataURL("image/png")
+                        var canvas = document.getElementsByTagName('canvas')[0],
+                            data = _this.canvas.renderer.plugins.extract.image().src
+                        _this.result = data
                         _this.resultStatus = true
                     },30)
                 },200)
