@@ -51,6 +51,8 @@
             classify:[{
                 name:"选人"
             },{
+                name:"卧室"
+            },{
                 name:"朝向"
             },{
                 name:"睡衣"
@@ -58,8 +60,6 @@
                 name:"表情"
             },{
                 name:"发型"
-            },{
-                name:"卧室"
             },{
                 name:"其他"
             }],
@@ -71,11 +71,11 @@
                 en:'woman'
             }],
             facing:[{
-                name:"站立",
-                en:'stand',
-            },{
                 name:"坐着",
                 en:'sit'
+            },{
+                name:"站立",
+                en:'stand',
             },{
                 name:"跪着",
                 en:'knee'
@@ -161,29 +161,7 @@
             role:[
                 // man
                 [
-                    // 站立
-                    {
-                        bodyPosition: {
-                            x: 327,
-                            y: 200
-                        },
-                        bodyImgPosition: {
-                            x: 0,
-                            y: 162+77 - 20
-                        },
-                        headPosition: {
-                            x: 35,
-                            y: 77 -20
-                        },
-                        hairPosition: {
-                            x: 103 - 8,
-                            y: 0
-                        },
-                        globalPosition: {
-                            x: 327,
-                            y: 200
-                        }
-                    },{  // 坐着
+                    {  // 坐着
                         bodyPosition: {
                             x: 327,
                             y: 200
@@ -198,6 +176,27 @@
                         },
                         hairPosition: {
                             x: 159 - 8,
+                            y: 0
+                        },
+                        globalPosition: {
+                            x: 327,
+                            y: 200
+                        }
+                    },{ // 站立
+                        bodyPosition: {
+                            x: 327,
+                            y: 200
+                        },
+                        bodyImgPosition: {
+                            x: 0,
+                            y: 162+77 - 20
+                        },
+                        headPosition: {
+                            x: 35,
+                            y: 77 -20
+                        },
+                        hairPosition: {
+                            x: 103 - 8,
                             y: 0
                         },
                         globalPosition: {
@@ -229,29 +228,7 @@
                 ],
                 // woman
                 [
-                    // 站立
-                    {
-                        bodyPosition: {
-                            x: 327,
-                            y: 200
-                        },
-                        bodyImgPosition: {
-                            x: 0,
-                            y: 93+30+45
-                        },
-                        headPosition: {
-                            x: 173,
-                            y: 30+45
-                        },
-                        hairPosition: {
-                            x: 173 - 17,
-                            y: 0
-                        },
-                        globalPosition: {
-                            x: 327,
-                            y: 200
-                        }
-                    },{  // 坐着
+                    {  // 坐着
                         bodyPosition: {
                             x: 327,
                             y: 200
@@ -266,6 +243,27 @@
                         },
                         hairPosition: {
                             x: 233 - 17,
+                            y: 0
+                        },
+                        globalPosition: {
+                            x: 327,
+                            y: 200
+                        }
+                    },{ // 站立
+                        bodyPosition: {
+                            x: 327,
+                            y: 200
+                        },
+                        bodyImgPosition: {
+                            x: 0,
+                            y: 93+30+45
+                        },
+                        headPosition: {
+                            x: 173,
+                            y: 30+45
+                        },
+                        hairPosition: {
+                            x: 173 - 17,
                             y: 0
                         },
                         globalPosition: {
@@ -298,7 +296,55 @@
             ],
             clothes:[
                 [  // man 
-                    // 站立
+                    [{ // 坐着 
+                        url:'images/man-sit-01.png',
+                        width:477,
+                        height:506,
+                        position:{
+                            x:10,
+                            y:85
+                        }
+                    },{
+                        url:'images/man-sit-02.png',
+                        width:471,
+                        height:510,
+                        position:{
+                            x:13,
+                            y:84
+                        }
+                    },{
+                        url:'images/man-sit-03.png',
+                        width:471,
+                        height:506,
+                        position:{
+                            x:0,
+                            y:87
+                        }
+                    },{
+                        url:'images/man-sit-04.png',
+                        width:479,
+                        height:545,
+                        position:{
+                            x:12,
+                            y:54
+                        }
+                    },{
+                        url:'images/man-sit-05.png',
+                        width:481,
+                        height:587,
+                        position:{
+                            x:9,
+                            y:0
+                        }
+                    },{
+                        url:'images/man-sit-06.png',
+                        width:479,
+                        height:514,
+                        position:{
+                            x:17,
+                            y:87
+                        }
+                    }],// 站立
                     [{
                         url:'images/man-stand-01.png',
                         width:280,
@@ -346,54 +392,6 @@
                         position:{
                             x:25,
                             y:14
-                        }
-                    }],[{ // 坐着 
-                        url:'images/man-sit-01.png',
-                        width:477,
-                        height:506,
-                        position:{
-                            x:10,
-                            y:85
-                        }
-                    },{
-                        url:'images/man-sit-02.png',
-                        width:471,
-                        height:510,
-                        position:{
-                            x:13,
-                            y:84
-                        }
-                    },{
-                        url:'images/man-sit-03.png',
-                        width:471,
-                        height:506,
-                        position:{
-                            x:0,
-                            y:87
-                        }
-                    },{
-                        url:'images/man-sit-04.png',
-                        width:479,
-                        height:545,
-                        position:{
-                            x:12,
-                            y:54
-                        }
-                    },{
-                        url:'images/man-sit-05.png',
-                        width:481,
-                        height:587,
-                        position:{
-                            x:9,
-                            y:0
-                        }
-                    },{
-                        url:'images/man-sit-06.png',
-                        width:479,
-                        height:514,
-                        position:{
-                            x:17,
-                            y:87
                         }
                     }],[{ // 跪着
                         url:'images/man-knee-01.png',
@@ -445,56 +443,7 @@
                         }
                     }]
                 ],[  // woman
-                    // 站立
-                    [{
-                        url:'images/woman-stand-01.png',
-                        width:351,
-                        height:921,
-                        position:{
-                            x:40,
-                            y:69
-                        }
-                    },{
-                        url:'images/woman-stand-02.png',
-                        width:347,
-                        height:924,
-                        position:{
-                            x:83,
-                            y:64
-                        }
-                    },{
-                        url:'images/woman-stand-03.png',
-                        width:525,
-                        height:924,
-                        position:{
-                            x:25,
-                            y:62
-                        }
-                    },{
-                        url:'images/woman-stand-04.png',
-                        width:302,
-                        height:911,
-                        position:{
-                            x:110,
-                            y:93
-                        }
-                    },{
-                        url:'images/woman-stand-05.png',
-                        width:518,
-                        height:945,
-                        position:{
-                            x:0,
-                            y:76
-                        }
-                    },{
-                        url:'images/woman-stand-06.png',
-                        width:459,
-                        height:999,
-                        position:{
-                            x:58,
-                            y:0
-                        }
-                    }],[{// 站立
+                    [{// 站立
                         url:'images/woman-sit-01.png',
                         width:449,
                         height:463,
@@ -541,6 +490,54 @@
                         position:{
                             x:119,
                             y:31
+                        }
+                    }],[{ // 站立
+                        url:'images/woman-stand-01.png',
+                        width:351,
+                        height:921,
+                        position:{
+                            x:40,
+                            y:69
+                        }
+                    },{
+                        url:'images/woman-stand-02.png',
+                        width:347,
+                        height:924,
+                        position:{
+                            x:83,
+                            y:64
+                        }
+                    },{
+                        url:'images/woman-stand-03.png',
+                        width:525,
+                        height:924,
+                        position:{
+                            x:25,
+                            y:62
+                        }
+                    },{
+                        url:'images/woman-stand-04.png',
+                        width:302,
+                        height:911,
+                        position:{
+                            x:110,
+                            y:93
+                        }
+                    },{
+                        url:'images/woman-stand-05.png',
+                        width:518,
+                        height:945,
+                        position:{
+                            x:0,
+                            y:76
+                        }
+                    },{
+                        url:'images/woman-stand-06.png',
+                        width:459,
+                        height:999,
+                        position:{
+                            x:58,
+                            y:0
                         }
                     }],[{// 跪着
                         url:'images/woman-knee-01.png',
@@ -1209,8 +1206,12 @@
                 bottomBG.width = this.w //1014
                 bottomBG.height = 180 / (1014 / this.w)
                 bottomBG.position.set(0, this.h - bottomBG.height);
+                var ercode = PIXI.Sprite.fromImage("images/ercode.png");
+                ercode.width = 127 * (this.w / 1014)  //280
+                ercode.height = 127 * (this.w / 1014)  //280
+                ercode.position.set(this.w - ercode.width - 2, this.h - ercode.height - 14);
                 this.ercodeStage.visible = false
-                this.ercodeStage.addChild(bottomBG)
+                this.ercodeStage.addChild(bottomBG,ercode)
             },
             foldEvent:function(event){
                 this.foldStatus = !this.foldStatus

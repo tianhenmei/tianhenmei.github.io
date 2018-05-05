@@ -14,6 +14,7 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>拉勾·加班</title>
+    <link rel="prefetch" href="images/loading_bg.jpg" /> 
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="css/m_index.css?v=222$version$">
     <script type="text/javascript">
@@ -79,18 +80,44 @@
         var loadingStatus = false,
             pageStatus = false,
             startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var btn = document.getElementById('loading__btn')
+                btn.addEventListener('click',function(e){
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var appElement = document.getElementById('yh-center');
+                    appElement.className = appElement.className.replace(' hide','');
+                    document.getElementById('loading').className += ' hide';
+                },false)
+                btn.className = btn.className.replace(' hide','');
+            },
             loadingSuccess = function(){
-                var appElement = document.getElementById('yh-center');
-                appElement.className = appElement.className.replace(' hide','');
-                document.getElementById('loading').className += ' hide';
+                var now = Date.now(),
+                    space = now - startTime
+                if(space < 5000){
+                    setTimeout(function(){
+                        loadingComplete()
+                    },5000 - space)
+                }else{
+                    loadingComplete()
+                }
             }
     </script>
 </head>
 <body>
 <div class="loading" id="loading">
-    <div class="icon">
-        <img src="images/loding.gif" />
+    <div class="loading__title opacityChange"></div>
+    <div class="loading__detail opacityChange">
+        <div class="detail__content">
+            <div class="detail__center moveToTop">
+                <div class="detail__title">我的加班时刻</div>
+                <div class="detail__info">我是一只加班狗，<br/>不到半夜不能走<br/>快来记录下你的加班姿势</div>
+            </div>
+        </div>
     </div>
+    <div class="loading__desk bottomToCenter"></div>
+    <div class="loading__object changeObject"></div>
+    <div class="loading__btn hide" id="loading__btn"></div>
 </div>
 <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
 <div id="app">
@@ -112,7 +139,16 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item facing" v-show="classifyActive == 1">
+                    <div class="select_item room" v-show="classifyActive == 1">
+                        <ul class="item__list room__list">
+                            <li class="item__li room__li"
+                                v-for="(one,index) in room"
+                                @click.stop.prevent="changeRoom(index)">
+                                <div class="item__icon room__icon" :class="'room__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item facing" v-show="classifyActive == 2">
                         <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
                             <li class="item__li facing__li" v-for="(one,index) in facing"
                                 @click.stop.prevent="changeFacing(index)">
@@ -128,7 +164,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item clothes" v-show="classifyActive == 2">
+                    <div class="select_item clothes" v-show="classifyActive == 3">
                         <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
                             <li class="item__li clothes__li" v-for="(one,index) in cloth"
                                 @click.stop.prevent="changeClothes(index)">
@@ -142,7 +178,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item motion" v-show="classifyActive == 3">
+                    <div class="select_item motion" v-show="classifyActive == 4">
                         <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
                             <li class="item__li motion__li" v-for="(one,index) in emotionList"
                                 @click.stop.prevent="changeMotion(index)">
@@ -156,7 +192,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item hair" v-show="classifyActive == 4">
+                    <div class="select_item hair" v-show="classifyActive == 5">
                         <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
                             <li class="item__li hair__li" v-for="(one,index) in hairList"
                                 @click.stop.prevent="changeHair(index)">
@@ -167,15 +203,6 @@
                             <li class="item__li hair__li" v-for="(one,index) in hairList_woman"
                                 @click.stop.prevent="changeHair(index)">
                                 <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="select_item room" v-show="classifyActive == 5">
-                        <ul class="item__list room__list">
-                            <li class="item__li room__li"
-                                v-for="(one,index) in room"
-                                @click.stop.prevent="changeRoom(index)">
-                                <div class="item__icon room__icon" :class="'room__icon--'+index"></div>
                             </li>
                         </ul>
                     </div>
@@ -208,7 +235,6 @@
             <div class="save" :class="foldStatus ? 'save--fold' : ''" @click.stop.prevent="convertCanvasToImage"></div>
         </div>
     </div>
-    <canvas id="draw-image" style="width:100%; height:100%;"></canvas>
     <div class="result-img" v-if="resultStatus">
         <img class="img" :src="result" />
     </div>
