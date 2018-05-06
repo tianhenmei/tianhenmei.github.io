@@ -16,18 +16,20 @@
             dy = global.y - position.y,
             absA = Math.abs(dx),
             absB = Math.abs(dy),
+            mins = 0.4,//100 / data.w,
             s = scale
         if(dy < 0){ // 缩小
             s = s * (1 - absB / data.w)
         }else if(dy > 0){  // 放大
             s = s * (1 + absB / data.w)
         }
-        return s < 0.4 ? 0.4 : s
+        return s < mins ? mins : s
     }
 
     var app = new Vue({
         el:"#app",
         data:{
+            dataCode:"1bh8",
             width:750,
             height:1206,
             fontSize:16,
@@ -43,25 +45,35 @@
             fullscreenStatus:false,
             foldStatus:false,
             resultStatus:false,
+            resultTipsStatus:false,
             canvas:null,
             canvasStage:null,
             result:'',
             w:1080,
             h:1920,
+            currentSexIndex:-1,
+            currentOthersIndex:-1,        
+            currentPostureIndex:0,
+            currentEmotionIndex:0,
+            currentClothesIndex:0,
+            currentHairIndex:0,
+            host:"",
             classify:[{
-                name:"选人"
+                name:"场景"
             },{
-                name:"卧室"
+                name:"性别"
             },{
-                name:"朝向"
+                name:"姿势"
             },{
-                name:"睡衣"
+                name:"衣服"
             },{
                 name:"表情"
             },{
                 name:"发型"
             },{
-                name:"其他"
+                name:"物品一"
+            },{
+                name:"物品二"
             }],
             sex:[{
                 name:"男",
@@ -294,6 +306,7 @@
                     }
                 ]
             ],
+            clothesIndex:0,
             clothes:[
                 [  // man 
                     [{ // 坐着 
@@ -882,6 +895,51 @@
                 width:213,
                 height:276
             },{
+                url:'images/others/09.png',
+                width:454,
+                height:516
+            },{
+                url:'images/others/15.png',
+                width:332,
+                height:341
+            },{
+                url:'images/others/18.png',
+                width:418,
+                height:209
+            },{
+                url:'images/others/20.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/21.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/22.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/24.png',
+                width:415,
+                height:325
+            },{
+                url:'images/others/31.png',
+                width:275,
+                height:327
+            },{
+                url:'images/others/32.png',
+                width:275,
+                height:327
+            },{
+                url:'images/others/50.png',
+                width:909,
+                height:129
+            },{
+                url:'images/others/51.png',
+                width:909,
+                height:129
+            }],
+            others2:[{
                 url:'images/others/03.png',
                 width:117,
                 height:306
@@ -906,10 +964,6 @@
                 width:87,
                 height:103
             },{
-                url:'images/others/09.png',
-                width:454,
-                height:516
-            },{
                 url:'images/others/10.png',
                 width:55,
                 height:122
@@ -930,10 +984,6 @@
                 width:227,
                 height:168
             },{
-                url:'images/others/15.png',
-                width:332,
-                height:341
-            },{
                 url:'images/others/16.png',
                 width:194,
                 height:253
@@ -942,33 +992,13 @@
                 width:97,
                 height:175
             },{
-                url:'images/others/18.png',
-                width:418,
-                height:209
-            },{
                 url:'images/others/19.png',
                 width:221,
                 height:178
             },{
-                url:'images/others/20.png',
-                width:85,
-                height:273
-            },{
-                url:'images/others/21.png',
-                width:85,
-                height:273
-            },{
-                url:'images/others/22.png',
-                width:85,
-                height:273
-            },{
                 url:'images/others/23.png',
                 width:187,
                 height:123
-            },{
-                url:'images/others/24.png',
-                width:415,
-                height:325
             },{
                 url:'images/others/25.png',
                 width:242,
@@ -993,14 +1023,6 @@
                 url:'images/others/30.png',
                 width:86,
                 height:142
-            },{
-                url:'images/others/31.png',
-                width:275,
-                height:327
-            },{
-                url:'images/others/32.png',
-                width:275,
-                height:327
             },{
                 url:'images/others/33.png',
                 width:132,
@@ -1069,15 +1091,13 @@
                 url:'images/others/49.png',
                 width:281,
                 height:205
-            },{
-                url:'images/others/50.png',
-                width:909,
-                height:129
-            },{
-                url:'images/others/51.png',
-                width:909,
-                height:129
-            }]
+            }],
+            saying:[
+                "饭在锅里她在床上，却是一个伪命题。",
+                "天亮之前，你就是光",
+                "沉迷工作，日渐消瘦",
+                "我在床上写HTML，隔壁的人在聊How To Make Love"
+            ]
         },
         computed:{
             userInfo:function(){
@@ -1165,13 +1185,14 @@
                 })
                 this.canvas = can
                 content.appendChild(can.view)
+                this.canvasStage = new PIXI.Container()
                 // 使用图片方式创建背景精灵
                 this.backgroundStage = new PIXI.Container()
                 var background = this.setBackground(0)
                 // 将背景精灵放置于舞台之上
                 this.backgroundStage.index = 0
                 this.backgroundStage.addChild(background)
-                can.stage.addChild(this.backgroundStage)
+                this.canvasStage.addChild(this.backgroundStage)
                 // can.stage.scale.set(
                 //     this.width / this.w
                 // )
@@ -1181,37 +1202,64 @@
                 this.stage = new PIXI.Container()
                 this.stage.x = 0
                 this.stage.y = 0
-                can.stage.addChild(this.stage)
+                this.canvasStage.addChild(this.stage)
                 this.stageO = new PIXI.Container()
-                can.stage.addChild(this.stageO)
+                this.canvasStage.addChild(this.stageO)
                 this.stageE = new PIXI.Container()
-                can.stage.addChild(this.stageE)
-                this.canvasStage = can.stage
+                this.canvasStage.addChild(this.stageE)
+
                 this.ercodeStage = new PIXI.Container()
                 this.addErcodeChild()
-                can.stage.addChild(this.ercodeStage)
+                // this.canvasStage.addChild(this.ercodeStage)
+                // 设置默认背景
+                var bg = new PIXI.Sprite.fromImage(this.host+"images/bg.jpg")
+                bg.width = this.w
+                bg.height = 2323
+                can.stage.addChild(bg,this.canvasStage,this.ercodeStage)
             },
             setBackground:function(index){
                 var current = this.room[index],
-                    background = new PIXI.Sprite.fromImage(current.url)
+                    background = new PIXI.Sprite.fromImage(this.host+current.url)
                     background.width = current.width
                     background.height = current.height
                 return background
             },
             addErcodeChild:function(){
-                this.ercodeStage.position.set(0,0)
+                this.ercodeStage.position.set(0,this.h)
                 this.ercodeStage.width = this.w
                 this.ercodeStage.height = this.h
-                var bottomBG = PIXI.Sprite.fromImage("images/bottom.jpg");
-                bottomBG.width = this.w //1014
-                bottomBG.height = 180 / (1014 / this.w)
-                bottomBG.position.set(0, this.h - bottomBG.height);
-                var ercode = PIXI.Sprite.fromImage("images/ercode.png");
-                ercode.width = 127 * (this.w / 1014)  //280
-                ercode.height = 127 * (this.w / 1014)  //280
-                ercode.position.set(this.w - ercode.width - 2, this.h - ercode.height - 14);
+                var bottomBG = PIXI.Sprite.fromImage(this.host+"images/bottom.jpg");
+                bottomBG.width = 1014
+                bottomBG.height = 213
+                bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
+                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode.png");
+                ercode.width = 127// * (this.w / 1014)  //280
+                ercode.height = 127// * (this.w / 1014)  //280
+                ercode.position.set(this.w - ercode.width - 2 - 33, -ercode.height - 14 - 33);
+                var style = new PIXI.TextStyle({
+                        lineHeight:29,
+                        letterSpacing:5,
+                        // fontFamily: 'Arial',
+                        fontSize: 24,
+                        // fontStyle: 'italic',
+                        // fontWeight: 'bold',
+                        fill: ['#ffffff','#ffffff'],//, '#00ff99'], // gradient
+                        // stroke: '#4a1850',
+                        // strokeThickness: 5,
+                        // dropShadow: true,
+                        // dropShadowColor: '#000000',
+                        // dropShadowBlur: 4,
+                        // dropShadowAngle: Math.PI / 6,
+                        // dropShadowDistance: 6,
+                        // wordWrap: true,
+                        // wordWrapWidth: 660
+                    }),
+                    index = Math.floor(Math.random() * this.saying.length),
+                    saying = new PIXI.Text(this.saying[index],style)
+                saying.x = 246
+                saying.y = -87-29
                 this.ercodeStage.visible = false
-                this.ercodeStage.addChild(bottomBG,ercode)
+                this.ercodeStage.addChild(bottomBG,saying,ercode)
             },
             foldEvent:function(event){
                 this.foldStatus = !this.foldStatus
@@ -1243,7 +1291,11 @@
                 this.classifyActive = index
                 this.foldStatus = false
             },
+            beforeSelectRole:function(index){
+                this.currentSexIndex = index
+            },
             selectRole:function(index){
+                this.currentSexIndex = -1
                 var stage = null
                 if(this.stageE.children.length == 0){
                     stage = this.createRole(index)
@@ -1319,6 +1371,7 @@
                     clothes:this.clothes[index][stage.facing][stage.clothes],  // 衣服
                     hair:this.hair[index][stage.hair]  // 表情
                 })
+                this.clothesIndex = stage.facing
                 this.drawSelection(stage)
                 stage.originWidth = stage.width
                 stage.originHeight = stage.height
@@ -1329,7 +1382,7 @@
                 var headStage = new PIXI.Container()
                 var bodyStage = new PIXI.Container()
                 var lineStage = new PIXI.Container()
-                var body = new PIXI.Sprite.fromImage(data.clothes.url),
+                var body = new PIXI.Sprite.fromImage(this.host+data.clothes.url),
                     minx = 0,
                     miny = 0
                     body.width = data.clothes.width
@@ -1341,7 +1394,7 @@
                     data.clothes.position.y-data.emotion.position.y-data.hair.position.y)
                 bodyStage.addChild(body)
 
-                var head = new PIXI.Sprite.fromImage(data.emotion.url)
+                var head = new PIXI.Sprite.fromImage(this.host+data.emotion.url)
                 head.width = data.emotion.width
                 head.height = data.emotion.height
                 if(minx > data.emotion.position.x){
@@ -1356,7 +1409,7 @@
                 headStage.position.set(
                     -data.clothes.position.x,0)
                 headStage.addChild(head)
-                var hair = new PIXI.Sprite.fromImage(data.hair.url)
+                var hair = new PIXI.Sprite.fromImage(this.host+data.hair.url)
                 hair.width = data.hair.width
                 hair.height = data.hair.height
                 if(minx > data.hair.position.x){
@@ -1395,6 +1448,10 @@
                 })
                 lineStage.position.set(minx,miny)
 
+                this.currentPostureIndex = stage.facing
+                this.currentClothesIndex = stage.clothes
+                this.currentEmotionIndex = stage.emotion
+                this.currentHairIndex = stage.hair
                 stage.head = headStage
                 stage.body = bodyStage
                 stage.outline = lineStage
@@ -1508,6 +1565,7 @@
                         clothes:this.clothes[stage.role][stage.facing][stage.clothes],  // 衣服
                         hair:this.hair[stage.role][stage.hair]  // 表情
                     })
+                    this.clothesIndex = stage.facing
                     setTimeout(function() {
                         _this.drawSelection(stage)
                     }, 100)
@@ -1611,8 +1669,13 @@
                     this.backgroundStage.addChild(background)
                 }
             },
-            addOthers:function(index){
-                var _this = this
+            beforeAddOthers:function(index){
+                this.currentOthersIndex = index
+            },
+            addOthers:function(classify,index){
+                this.currentOthersIndex = -1
+                var _this = this,
+                    name = 'others'+(classify == 1 ? '2' : '') 
                 if (this.stageE.children.length == 1) {
                     var current = this.stageE.children[0];
                     current.chosen = false
@@ -1652,13 +1715,13 @@
                 var x = 50 * Math.random() - 50
                 , y = 50 * Math.random() - 50;
                 otherStage.globalPosition = {
-                    x: (1080 - _this.others[index].width) / 2 + x,
-                    y: (1920 - _this.others[index].height - 200) / 2 + y
+                    x: (1080 - _this[name][index].width) / 2 + x,
+                    y: (1920 - _this[name][index].height - 200) / 2 + y
                 },
                 otherStage.position.set(otherStage.globalPosition.x, otherStage.globalPosition.y);
-                var subject = new PIXI.Sprite.fromImage(_this.others[index].url)
-                subject.width = _this.others[index].width
-                subject.height = _this.others[index].height
+                var subject = new PIXI.Sprite.fromImage(this.host+_this[name][index].url)
+                subject.width = _this[name][index].width
+                subject.height = _this[name][index].height
                 subject.interactive = true
                 subject.buttonMode = true
                 var outer = new PIXI.Container();
@@ -1680,7 +1743,7 @@
                     height = stage.height;
                 stage.pivot.set(width / 2, height / 2),
                 stage.position.set(stage.globalPosition.x + width / 2, stage.globalPosition.y + height / 2);
-                var distance = 4;
+                var distance = 8;
                 gra.moveTo(-distance, -distance)
                 _this.drawDashLine(gra, -distance, -distance, width + distance, -distance)
                 _this.drawDashLine(gra, width + distance, -distance, width + distance, height + distance)
@@ -1708,7 +1771,7 @@
                     this.parent.globalPosition.y = this.parent.position.y - this.parent.pivot._y
                 }),
                 stage.outline.addChild(gra);
-                var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
+                var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
                 rotate.width = 42
                 rotate.height = 42
                 rotate.position.set(-distance-42,-distance-42),
@@ -1737,7 +1800,7 @@
                     this.dragging = false
                     _this.currentRotate = null
                 });
-                var scale = new PIXI.Sprite.fromImage("images/scale.png")
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale.png")
                 scale.width = 42
                 scale.height = 42
                 scale.position.set(width, height)
@@ -1772,7 +1835,7 @@
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage("images/close.png")
+                var close = new PIXI.Sprite.fromImage(this.host+"images/close.png")
                 close.width = 42
                 close.height = 42
                 close.position.set(width + distance, -distance - 42)
@@ -1788,19 +1851,20 @@
                 stage.outline.removeChildren();
                 var gra = new PIXI.Graphics();
                 gra.lineStyle(1, 16777215, 1);  // 0xffffff
-                var width = stage.width
-                , height = stage.height;
+                var width = stage.width,
+                    height = stage.height,
+                    space = 8;
                 // 3 != stage.facingTo && 6 == stage.faceIndex && (height -= 130)
-                gra.moveTo(0, 0),
-                _this.drawDashLine(gra, 0, 0, width, 0),
-                _this.drawDashLine(gra, width, 0, width, height),
-                _this.drawDashLine(gra, width, height, 0, height),
-                _this.drawDashLine(gra, 0, height, 0, 0),
+                gra.moveTo(-space, -space),
+                _this.drawDashLine(gra, -space, -space, width+space, -space),
+                _this.drawDashLine(gra, width+space, -space, width+space, height+space),
+                _this.drawDashLine(gra, width+space, height+space, -space, height+space),
+                _this.drawDashLine(gra, -space, height+space, -space, -space),
                 stage.outline.addChild(gra);
-                var rotate = new PIXI.Sprite.fromImage("images/rotate.png")
+                var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
                 rotate.width = 42
                 rotate.height = 42
-                rotate.position.set(-42, -42)
+                rotate.position.set(-42-space, -42-space)
                 rotate.interactive = true
                 rotate.buttonMode = true
                 rotate.on("touchstart", function(event) {
@@ -1834,10 +1898,10 @@
                     this.dragging = false
                     _this.currentRotate = null
                 });
-                var scale = new PIXI.Sprite.fromImage("images/scale.png")
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale.png")
                 scale.width = 42
                 scale.height = 42
-                scale.position.set(width, height)
+                scale.position.set(width+space, height+space)
                 scale.interactive = true
                 scale.buttonMode = true
                 scale.on("touchstart", function(event) {
@@ -1869,10 +1933,10 @@
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage("images/close.png")
+                var close = new PIXI.Sprite.fromImage(this.host+"images/close.png")
                 close.width = 42
                 close.height = 42
-                close.position.set(width, -42)
+                close.position.set(width+space, -42-space)
                 close.interactive = true
                 close.buttonMode = true
                 close.on("tap", function() {
@@ -1938,7 +2002,11 @@
                         this.stageE.removeChild(temp)
                     }
                 }
-                var _this = this
+                var _this = this,
+                    space = (_this.w - 1014) / 2
+                _this.canvasStage.scale.set(1014 / _this.w)
+                _this.canvasStage.position.x = space
+                _this.canvasStage.position.y = space
                 _this.ercodeStage.visible = true
                 setTimeout(function(){
                     setTimeout(function(){
@@ -1946,6 +2014,10 @@
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
+                        _this.resultTipsStatus = true
+                        setTimeout(function(){
+                            _this.resultTipsStatus = false
+                        },2000)
                     },30)
                 },200)
             }

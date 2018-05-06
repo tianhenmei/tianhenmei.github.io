@@ -316,6 +316,14 @@ canvas,
         height:100%;
     }
 }
+.result-tips {
+    width:rem1080(360);
+    height:rem1080(62);
+    background:url("../images/save-tips.png") no-repeat center top;
+    background-size:100% 100%;
+    @include centerb1080(335,318);
+    z-index: 100;
+}
 .select-fold {
     width:rem1080(122);
     height:rem1080(56);
@@ -348,6 +356,11 @@ canvas,
             top: 0;
             background:center bottom no-repeat;
             background-size:contain;
+        }
+        .item__icon--active {
+            background-color:rgba(255,255,255,0.2);
+            border-radius:rem1080(10);
+            overflow:hidden;
         }
         .item__name {
             width: rem1080(134);
@@ -502,33 +515,30 @@ canvas,
         .icon {
             width:rem1080(74);
             height:rem1080(74);
-            background:transparent url('../images/icon/icon1.png') no-repeat center center;
-            background-size:rem(47) rem(47);
+            background:transparent url('../images/first-class/room.png') no-repeat center center;
+            background-size:rem1080(74) rem1080(74);
             transition:all 0.3s linear;
         }
         .icon--1 {
-            background-image:url('../images/icon/icon6.png');
-            background-size:rem(46) rem(40);
+            background-image:url('../images/first-class/sex.png');
         }
         .icon--2 {
-            background-image:url('../images/icon/icon3.png');
-            background-size:rem(44) rem(42);
+            background-image:url('../images/first-class/posture.png');
         }
         .icon--3 {
-            background-image:url('../images/icon/icon4.png');
-            background-size:rem(39) rem(39);
+            background-image:url('../images/first-class/clothes.png');
         }
         .icon--4 {
-            background-image:url('../images/icon/icon5.png');
-            background-size:rem(40) rem(40);
+            background-image:url('../images/first-class/emotion.png');
         }
         .icon--5 {
-            background-image:url('../images/icon/icon2.png');
-            background-size:rem(41) rem(41);
+            background-image:url('../images/first-class/hair.png');
         }
         .icon--6 {
-            background-image:url('../images/icon/icon7.png');
-            background-size:rem(49) rem(39);
+            background-image:url('../images/first-class/object-01.png');
+        }
+        .icon--7 {
+            background-image:url('../images/first-class/object-02.png');
         }
     }
     .li--right {
@@ -556,6 +566,9 @@ canvas,
         .li--right {
             display:block;
         }
+    }
+    .select-bar__li--active.select-bar__li--3 {
+        width:rem1080(188);
     }
     .select-bar__arrow {
         width: rem(186);

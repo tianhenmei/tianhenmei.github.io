@@ -2,6 +2,7 @@
 var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2017-summary/';
 var imgArray = [
+	"images/bg.jpg",
 	"images/room1.jpg",
 	"images/room2.jpg",
 	"images/room3.jpg",

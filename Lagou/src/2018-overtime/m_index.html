@@ -117,7 +117,10 @@
     </div>
     <div class="loading__desk bottomToCenter"></div>
     <div class="loading__object changeObject"></div>
-    <div class="loading__btn hide" id="loading__btn"></div>
+    <div class="loading__btn hide" id="loading__btn"
+        data-lg-tj-id="1bh8" 
+        data-lg-tj-no="0001" 
+        data-lg-tj-cid="null"></div>
 </div>
 <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
 <div id="app">
@@ -129,17 +132,7 @@
         <div class="center-content" :class="fullscreenStatus ? 'center-content--fullscreen' : ''">
             <div class="select-container" :class="foldStatus ? 'hide' : ''">
                 <div class="select-box">
-                    <div class="select_item sex" v-show="classifyActive == 0">
-                        <ul class="item__list sex__list">
-                            <li class="item__li sex__li"
-                                v-for="(one,index) in sex"
-                                @click.stop.prevent="selectRole(index)">
-                                <div class="item__icon sex__icon" :class="'sex__icon--'+index"></div>
-                                <div class="item__name sex__name">{{one.name}}</div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="select_item room" v-show="classifyActive == 1">
+                    <div class="select_item room" v-show="classifyActive == 0">
                         <ul class="item__list room__list">
                             <li class="item__li room__li"
                                 v-for="(one,index) in room"
@@ -148,61 +141,87 @@
                             </li>
                         </ul>
                     </div>
+                    <div class="select_item sex" v-show="classifyActive == 1">
+                        <ul class="item__list sex__list">
+                            <li class="item__li sex__li"
+                                v-for="(one,index) in sex"
+                                @touchstart="beforeSelectRole(index)"
+                                @click.stop.prevent="selectRole(index)">
+                                <div class="item__icon sex__icon" 
+                                    :class="'sex__icon--'+index+(currentSexIndex == index ? ' item__icon--active' : '')"></div>
+                                <div class="item__name sex__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                    </div>
                     <div class="select_item facing" v-show="classifyActive == 2">
                         <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
                             <li class="item__li facing__li" v-for="(one,index) in facing"
                                 @click.stop.prevent="changeFacing(index)">
-                                <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon facing__icon" 
+                                    :class="'facing__icon--'+index+(currentPostureIndex == index ? ' item__icon--active' : '')"></div>
                                 <div class="item__name facing__name">{{one.name}}</div>
                             </li>
                         </ul>
                         <ul class="item__list facing__list facing__woman" v-show="currentRoleType == 1">
                             <li class="item__li facing__li" v-for="(one,index) in facing"
                                 @click.stop.prevent="changeFacing(index)">
-                                <div class="item__icon facing__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon facing__icon" 
+                                    :class="'facing__icon--'+index+(currentPostureIndex == index ? ' item__icon--active' : '')"></div>
                                 <div class="item__name facing__name">{{one.name}}</div>
                             </li>
                         </ul>
                     </div>
                     <div class="select_item clothes" v-show="classifyActive == 3">
                         <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
-                            <li class="item__li clothes__li" v-for="(one,index) in cloth"
+                            <li class="item__li clothes__li" v-for="(one,index) in clothes[0][clothesIndex]"
                                 @click.stop.prevent="changeClothes(index)">
-                                <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon clothes__icon" 
+                                    :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                         <ul class="item__list clothes__woman" v-show="currentRoleType == 1">
-                            <li class="item__li clothes__li" v-for="(one,index) in cloth"
+                            <li class="item__li clothes__li" v-for="(one,index) in clothes[1][clothesIndex]"
                                 @click.stop.prevent="changeClothes(index)">
-                                <div class="item__icon clothes__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon clothes__icon" 
+                                    :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                     </div>
                     <div class="select_item motion" v-show="classifyActive == 4">
                         <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
-                            <li class="item__li motion__li" v-for="(one,index) in emotionList"
+                            <li class="item__li motion__li" v-for="(one,index) in emotion[0]"
                                 @click.stop.prevent="changeMotion(index)">
-                                <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon motion__icon" 
+                                    :class="'facing__icon--'+index+(currentEmotionIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                         <ul class="item__list motion__woman" v-show="currentRoleType == 1">
-                            <li class="item__li motion__li" v-for="(one,index) in emotionList"
+                            <li class="item__li motion__li" v-for="(one,index) in emotion[1]"
                                 @click.stop.prevent="changeMotion(index)">
-                                <div class="item__icon motion__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon motion__icon" 
+                                    :class="'facing__icon--'+index+(currentEmotionIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                     </div>
                     <div class="select_item hair" v-show="classifyActive == 5">
                         <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
-                            <li class="item__li hair__li" v-for="(one,index) in hairList"
+                            <li class="item__li hair__li" v-for="(one,index) in hair[0]"
                                 @click.stop.prevent="changeHair(index)">
-                                <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon hair__icon" 
+                                    :class="'facing__icon--'+index+(currentHairIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                         <ul class="item__list hair__woman" v-show="currentRoleType == 1">
-                            <li class="item__li hair__li" v-for="(one,index) in hairList_woman"
+                            <li class="item__li hair__li" v-for="(one,index) in hair[1]"
                                 @click.stop.prevent="changeHair(index)">
-                                <div class="item__icon hair__icon" :class="'facing__icon--'+index"></div>
+                                <div class="item__icon hair__icon" 
+                                    :class="'facing__icon--'+index+(currentHairIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
                     </div>
@@ -210,8 +229,22 @@
                         <ul class="item__list others__list">
                             <li class="item__li others__li"
                                 v-for="(one,index) in others"
-                                @click.stop.prevent="addOthers(index)">
-                                <div class="item__icon others__icon" :class="'others__icon--'+index"
+                                @touchstart="beforeAddOthers(index)"
+                                @click.stop.prevent="addOthers(0,index)">
+                                <div class="item__icon others__icon" 
+                                    :class="'others__icon--'+index +(currentOthersIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item others" v-show="classifyActive == 7">
+                        <ul class="item__list others__list">
+                            <li class="item__li others__li"
+                                v-for="(one,index) in others2"
+                                @touchstart="beforeAddOthers(index)"
+                                @click.stop.prevent="addOthers(1,index)">
+                                <div class="item__icon others__icon" 
+                                    :class="'others__icon--'+index+(currentOthersIndex == index ? ' item__icon--active' : '')"
                                     :style="{backgroundImage:'url('+one.url+')'}"></div>
                             </li>
                         </ul>
@@ -222,7 +255,7 @@
             <div class="select-bar">
                 <ul class="select-bar__list">
                     <li v-for="(one,index) in classify" 
-                        class="select-bar__li" :class="(classifyActive == index) ? 'select-bar__li--active' : ''"
+                        class="select-bar__li" :class="'select-bar__li--'+(one.name.length)+(classifyActive == index ? ' select-bar__li--active' : '')"
                         @click.stop.prevent="changeClassify(index)">
                         <div class="li--left">
                             <div class="icon" :class="'icon--'+index"></div>
@@ -232,12 +265,17 @@
                 </ul>
                 <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
             </div>
-            <div class="save" :class="foldStatus ? 'save--fold' : ''" @click.stop.prevent="convertCanvasToImage"></div>
+            <div class="save" :class="foldStatus ? 'save--fold' : ''" 
+                @click.stop.prevent="convertCanvasToImage"
+                :data-lg-tj-id="dataCode" 
+                data-lg-tj-no="0002" 
+                data-lg-tj-cid="null"></div>
         </div>
     </div>
     <div class="result-img" v-if="resultStatus">
         <img class="img" :src="result" />
     </div>
+    <div class="result-tips" v-show="resultStatus && resultTipsStatus"></div>
 </div>
 <script type="text/javascript">
     pageStatus = true;
@@ -250,7 +288,7 @@
 <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
 <!-- <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script> -->
 <script type"text/javascript" src="js/vue2.1.10.js"></script>
-<!-- <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
 <script type="text/javascript">
     var datas = {
@@ -258,7 +296,7 @@
         desc: "OPPO、平安、顺丰科技等大厂现场直招，从OFFER选择到职业设计，一次搞定高薪工作！",
         imgUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/images/share.png',
         activityType: '2018WORKOVERTIME',
-        shareUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/m_index.html'
+        shareUrl: 'https://activity.lagou.com/activity/dist/2018-overtime/m_index.html'
     };
     //微信分享
     share(datas);
@@ -276,7 +314,7 @@
 <script type="text/javascript" src="js/Tween.js"></script>
 <script type="text/javascript" src="js/pixi.min.js"></script>
 <script type="text/javascript" src="js/m_index.js?v=222$version$"></script>
-<!-- <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script> -->
-<!-- <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script> -->
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
 </body>
 </html>
