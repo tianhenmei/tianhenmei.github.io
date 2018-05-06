@@ -1738,8 +1738,9 @@
                 stage.outline.removeChildren();
                 var gra = new PIXI.Graphics();
                 gra.lineStyle(1, 16777215, 1);
-                var width = stage.width,
-                    height = stage.height;
+                var s = stage.scale.x,
+                    width = stage.width / s,
+                    height = stage.height / s
                 stage.pivot.set(width / 2, height / 2),
                 stage.position.set(stage.globalPosition.x + width / 2, stage.globalPosition.y + height / 2);
                 var distance = 8;
@@ -1850,8 +1851,9 @@
                 stage.outline.removeChildren();
                 var gra = new PIXI.Graphics();
                 gra.lineStyle(1, 16777215, 1);  // 0xffffff
-                var width = stage.width,
-                    height = stage.height,
+                var s = stage.scale.x,
+                    width = stage.width / s,
+                    height = stage.height / s,
                     space = 8;
                 // 3 != stage.facingTo && 6 == stage.faceIndex && (height -= 130)
                 gra.moveTo(-space, -space),
