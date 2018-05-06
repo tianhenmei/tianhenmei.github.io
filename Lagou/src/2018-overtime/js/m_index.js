@@ -1,5 +1,4 @@
-(function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e})()({1:[function(require,module,exports){
-    "use strict";
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
     function ANGLE(position, global) {
         var dx = global.x - position.x,
             dy = global.y - position.y,
@@ -25,7 +24,7 @@
         }
         return s < mins ? mins : s
     }
-
+    
     var app = new Vue({
         el:"#app",
         data:{
@@ -1152,7 +1151,7 @@
                     window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||    // name has changed in Webkit
                                                 window[vendors[x] + 'CancelRequestAnimationFrame'];
                 }
-
+    
                 if (!window.requestAnimationFrame) {
                     window.requestAnimationFrame = function(callback) {
                         var currTime = new Date().getTime();
@@ -1207,7 +1206,7 @@
                 this.canvasStage.addChild(this.stageO)
                 this.stageE = new PIXI.Container()
                 this.canvasStage.addChild(this.stageE)
-
+    
                 this.ercodeStage = new PIXI.Container()
                 this.addErcodeChild()
                 // this.canvasStage.addChild(this.ercodeStage)
@@ -1328,7 +1327,7 @@
                         this.chosen = true
                         this.outline.visible = true
                         if(_this.stageE.children.length){
-
+    
                         }else{
                             var first = _this.stageE.children[0]
                             first.chosen = false
@@ -1393,7 +1392,7 @@
                 bodyStage.position.set(0,
                     data.clothes.position.y-data.emotion.position.y-data.hair.position.y)
                 bodyStage.addChild(body)
-
+    
                 var head = new PIXI.Sprite.fromImage(this.host+data.emotion.url)
                 head.width = data.emotion.width
                 head.height = data.emotion.height
@@ -1421,7 +1420,7 @@
                 hair.position.set(
                     data.role.hairPosition.x+data.hair.position.x,0)
                 headStage.addChild(hair)
-
+    
                 bodyStage.interactive = true
                 bodyStage.buttonMode = true
                 bodyStage.on('touchstart',function(event){
@@ -1447,7 +1446,7 @@
                     _this.roleTouchEnd(this)
                 })
                 lineStage.position.set(minx,miny)
-
+    
                 this.currentPostureIndex = stage.facing
                 this.currentClothesIndex = stage.clothes
                 this.currentEmotionIndex = stage.emotion
@@ -1574,7 +1573,7 @@
             setOnTop:function(stage){
                 if (stage != this.stageE.children[0]) {
                     if (this.stageE.children.length == 0){
-
+    
                     }else {
                         var t = this.stageE.children[0]
                         t.chosen = false
@@ -2023,4 +2022,5 @@
             }
         }
     })
-},{}]},{},[1]);
+    },{}]},{},[1]);
+    
