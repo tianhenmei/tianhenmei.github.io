@@ -1010,9 +1010,12 @@
                 width:178,
                 height:259
             },{
-                url:'images/others/12.png',
-                width:323,
-                height:186
+                // url:'images/others/12.png',
+                // width:323,
+                // height:186
+                url:'images/others/12-add.png',
+                width:590,
+                height:587
             },{
                 url:'images/others/13-add.png',
                 width:220,
@@ -1252,6 +1255,7 @@
                 this.backgroundStage = new PIXI.Container()
                 var background = this.setBackground(0)
                 // 将背景精灵放置于舞台之上
+                this.backgroundStage.position.set(0,0)
                 this.backgroundStage.index = 0
                 this.backgroundStage.addChild(background)
                 this.canvasStage.addChild(this.backgroundStage)
@@ -1284,6 +1288,7 @@
                     background = new PIXI.Sprite.fromImage(this.host+current.url)
                     background.width = current.width
                     background.height = current.height
+                background.position.set(0,0);
                 return background
             },
             addErcodeChild:function(){
