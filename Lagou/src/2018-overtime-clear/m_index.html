@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>拉勾·加班</title>
+    <link rel="prefetch" href="images/loading_bg.jpg" /> 
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <link rel="stylesheet" href="css/m_index.css?v=224$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            fontSize = 16,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            if(rightSize < currentSize){  //按宽度算
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                htmlStatus = 1;
+                if(app == 'ios' || app == 'android'){
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                }
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }
+            lastSize = lastHTMLSize;
+            fontSize = GC.w / lastHTMLSize
+            html.style.fontSize = fontSize +'px';
+        }
+    
+        setFontSize();
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var btn = document.getElementById('loading__btn')
+                btn.addEventListener('click',function(e){
+                    e.stopPropagation();
+                    e.preventDefault();
+                    var appElement = document.getElementById('yh-center');
+                    appElement.className = appElement.className.replace(' hide','');
+                    document.getElementById('loading').className += ' hide';
+                },false)
+                btn.className = btn.className.replace(' hide','');
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime
+                if(space < 5000){
+                    setTimeout(function(){
+                        loadingComplete()
+                    },5000 - space)
+                }else{
+                    loadingComplete()
+                }
+            }
+    </script>
+</head>
+<body>
+<div class="loading" id="loading">
+    <div class="loading__title opacityChange"></div>
+    <div class="loading__detail opacityChange">
+        <div class="detail__content">
+            <div class="detail__center moveToTop">
+                <div class="detail__title">我的加班时刻</div>
+                <div class="detail__info">我是一只加班狗，<br/>不到半夜不能走<br/>快来记录下你的加班姿势</div>
+            </div>
+        </div>
+    </div>
+    <div class="loading__desk bottomToCenter"></div>
+    <div class="loading__object changeObject"></div>
+    <div class="loading__btn hide" id="loading__btn"
+        data-lg-tj-id="1bh8" 
+        data-lg-tj-no="0001" 
+        data-lg-tj-cid="null"></div>
+</div>
+<script type="text/javascript" src="js/loading.js?v=224$version$"></script> 
+<div id="app">
+    <div class="yh-center hide" id="yh-center">
+        <!-- <div class="user"></div> -->
+        <div class="select-content">
+            <div class="content" id="content" ref="content"></div>
+        </div>
+        <div class="center-content" :class="fullscreenStatus ? 'center-content--fullscreen' : ''">
+            <div class="select-container" :class="foldStatus ? 'hide' : ''">
+                <div class="select-box">
+                    <div class="select_item room" v-show="classifyActive == 0">
+                        <ul class="item__list room__list">
+                            <li class="item__li room__li"
+                                v-for="(one,index) in room"
+                                @click.stop.prevent="changeRoom(index)">
+                                <div class="item__icon room__icon" :class="'room__icon--'+index"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item sex" v-show="classifyActive == 1">
+                        <ul class="item__list sex__list">
+                            <li class="item__li sex__li"
+                                v-for="(one,index) in sex"
+                                @touchstart="beforeSelectRole(index)"
+                                @click.stop.prevent="selectRole(index)">
+                                <div class="item__icon sex__icon" 
+                                    :class="'sex__icon--'+index+(currentSexIndex == index ? ' item__icon--active' : '')"></div>
+                                <div class="item__name sex__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item facing" v-show="classifyActive == 2">
+                        <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
+                            <li class="item__li facing__li" v-for="(one,index) in facing"
+                                @click.stop.prevent="changeFacing(index)">
+                                <div class="item__icon facing__icon" 
+                                    :class="'facing__icon--'+index+(currentPostureIndex == index ? ' item__icon--active' : '')"></div>
+                                <div class="item__name facing__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                        <ul class="item__list facing__list facing__woman" v-show="currentRoleType == 1">
+                            <li class="item__li facing__li" v-for="(one,index) in facing"
+                                @click.stop.prevent="changeFacing(index)">
+                                <div class="item__icon facing__icon" 
+                                    :class="'facing__icon--'+index+(currentPostureIndex == index ? ' item__icon--active' : '')"></div>
+                                <div class="item__name facing__name">{{one.name}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item clothes" v-show="classifyActive == 3">
+                        <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
+                            <li class="item__li clothes__li" v-for="(one,index) in clothes[0][clothesIndex]"
+                                @click.stop.prevent="changeClothes(index)">
+                                <div class="item__icon clothes__icon" 
+                                    :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                        <ul class="item__list clothes__woman" v-show="currentRoleType == 1">
+                            <li class="item__li clothes__li" v-for="(one,index) in clothes[1][clothesIndex]"
+                                @click.stop.prevent="changeClothes(index)">
+                                <div class="item__icon clothes__icon" 
+                                    :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item motion" v-show="classifyActive == 4">
+                        <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
+                            <li class="item__li motion__li" v-for="(one,index) in emotion[0]"
+                                @click.stop.prevent="changeMotion(index)">
+                                <div class="item__icon motion__icon" 
+                                    :class="'facing__icon--'+index+(currentEmotionIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                        <ul class="item__list motion__woman" v-show="currentRoleType == 1">
+                            <li class="item__li motion__li" v-for="(one,index) in emotion[1]"
+                                @click.stop.prevent="changeMotion(index)">
+                                <div class="item__icon motion__icon" 
+                                    :class="'facing__icon--'+index+(currentEmotionIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item hair" v-show="classifyActive == 5">
+                        <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
+                            <li class="item__li hair__li" v-for="(one,index) in hair[0]"
+                                @click.stop.prevent="changeHair(index)">
+                                <div class="item__icon hair__icon" 
+                                    :class="'facing__icon--'+index+(currentHairIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                        <ul class="item__list hair__woman" v-show="currentRoleType == 1">
+                            <li class="item__li hair__li" v-for="(one,index) in hair[1]"
+                                @click.stop.prevent="changeHair(index)">
+                                <div class="item__icon hair__icon" 
+                                    :class="'facing__icon--'+index+(currentHairIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item others" v-show="classifyActive == 6">
+                        <ul class="item__list others__list">
+                            <li class="item__li others__li"
+                                v-for="(one,index) in others"
+                                @touchstart="beforeAddOthers(index)"
+                                @click.stop.prevent="addOthers(0,index)">
+                                <div class="item__icon others__icon" 
+                                    :class="'others__icon--'+index +(currentOthersIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="select_item others" v-show="classifyActive == 7">
+                        <ul class="item__list others__list">
+                            <li class="item__li others__li"
+                                v-for="(one,index) in others2"
+                                @touchstart="beforeAddOthers(index)"
+                                @click.stop.prevent="addOthers(1,index)">
+                                <div class="item__icon others__icon" 
+                                    :class="'others__icon--'+index+(currentOthersIndex == index ? ' item__icon--active' : '')"
+                                    :style="{backgroundImage:'url('+one.url+')'}"></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="select-fold" :class="foldStatus ? 'select-folded' : ''" @click.stop.prevent="foldEvent"></div>
+            <div class="select-bar">
+                <ul class="select-bar__list">
+                    <li v-for="(one,index) in classify" 
+                        class="select-bar__li" :class="'select-bar__li--'+(one.name.length)+(classifyActive == index ? ' select-bar__li--active' : '')"
+                        @click.stop.prevent="changeClassify(index)">
+                        <div class="li--left">
+                            <div class="icon" :class="'icon--'+index"></div>
+                        </div>
+                        <div class="li--right">{{one.name}}</div>
+                    </li>
+                </ul>
+                <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
+            </div>
+            <div class="save" :class="foldStatus ? 'save--fold' : ''" 
+                @click.stop.prevent="convertCanvasToImage"
+                :data-lg-tj-id="dataCode" 
+                data-lg-tj-no="0002" 
+                data-lg-tj-cid="null"></div>
+        </div>
+    </div>
+    <div class="result-img" v-if="resultStatus">
+        <img class="img" :src="result" />
+    </div>
+    <div class="result-tips" v-show="resultStatus && resultTipsStatus"></div>
+</div>
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script> -->
+<script type"text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+<script type="text/javascript">
+    var datas = {
+        title: "拉勾梦想市集|据说八成的深圳互联网人都来这拿OFFER",
+        desc: "OPPO、平安、顺丰科技等大厂现场直招，从OFFER选择到职业设计，一次搞定高薪工作！",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2018-dreamMarket/h5/images/share.png',
+        activityType: '2018WORKOVERTIME',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2018-overtime/m_index.html'
+    };
+    //微信分享
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script> -->
+<script type="text/javascript" src="js/Tween.js"></script>
+<script type="text/javascript" src="js/pixi.min.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=224$version$"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>

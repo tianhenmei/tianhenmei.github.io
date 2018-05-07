@@ -18,11 +18,23 @@
             mins = 0.4,//100 / data.w,
             s = scale
         if(dy < 0){ // 缩小
-            s = s * (1 - absB / data.w)
-        }else if(dy > 0){  // 放大
             s = s * (1 + absB / data.w)
+        }else if(dy > 0){  // 放大
+            s = s * (1 - absB / data.w)
         }
         return s < mins ? mins : s
+        // var dx = global.x - position.x,
+        //     dy = global.y - position.y,
+        //     absA = Math.abs(dx),
+        //     absB = Math.abs(dy),
+        //     mins = 0.4,//100 / data.w,
+        //     s = scale
+        // if(dy < 0){ // 缩小
+        //     s = s * (1 - absB / data.w)
+        // }else if(dy > 0){  // 放大
+        //     s = s * (1 + absB / data.w)
+        // }
+        // return s < mins ? mins : s
     }
     
     var app = new Vue({
@@ -1771,39 +1783,40 @@
                     this.parent.globalPosition.y = this.parent.position.y - this.parent.pivot._y
                 }),
                 stage.outline.addChild(gra);
-                var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
-                rotate.width = 42
-                rotate.height = 42
-                rotate.position.set(-distance-42,-distance-42),
-                rotate.interactive = true
-                rotate.buttonMode = true
-                rotate.on("touchstart", function(o) {
-                    this.dragging = true;
-                    var global = o.data.global;
-                    this.parent.parent.data.rotation = this.parent.parent.rotation;
-                    var angle = ANGLE({
-                        x: this.parent.parent.position.x,
-                        y: this.parent.parent.position.y
-                    }, global);
-                    this.startRotation = angle
-                    _this.currentRotate = this
-                }).on("touchmove", function(o) {
-                    if (this.dragging) {
-                        var global = o.data.global
-                        , angle = ANGLE({
-                            x: this.parent.parent.position.x,
-                            y: this.parent.parent.position.y
-                        }, global);
-                        this.parent.parent.rotation = angle - this.startRotation + this.parent.parent.data.rotation
-                    }
-                }).on("touchend", function() {
-                    this.dragging = false
-                    _this.currentRotate = null
-                });
-                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale.png")
-                scale.width = 42
-                scale.height = 42
-                scale.position.set(width, height)
+                // var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
+                // rotate.width = 42
+                // rotate.height = 42
+                // rotate.position.set(-distance-42,-distance-42),
+                // rotate.interactive = true
+                // rotate.buttonMode = true
+                // rotate.on("touchstart", function(o) {
+                //     this.dragging = true;
+                //     var global = o.data.global;
+                //     this.parent.parent.data.rotation = this.parent.parent.rotation;
+                //     var angle = ANGLE({
+                //         x: this.parent.parent.position.x,
+                //         y: this.parent.parent.position.y
+                //     }, global);
+                //     this.startRotation = angle
+                //     _this.currentRotate = this
+                // }).on("touchmove", function(o) {
+                //     if (this.dragging) {
+                //         var global = o.data.global
+                //         , angle = ANGLE({
+                //             x: this.parent.parent.position.x,
+                //             y: this.parent.parent.position.y
+                //         }, global);
+                //         this.parent.parent.rotation = angle - this.startRotation + this.parent.parent.data.rotation
+                //     }
+                // }).on("touchend", function() {
+                //     this.dragging = false
+                //     _this.currentRotate = null
+                // });
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png")
+                scale.width = 60
+                scale.height = 60
+                scale.position.set(width + distance, -distance - 60)
+                // scale.position.set(width, height)
                 scale.interactive = true
                 scale.buttonMode = true
                 scale.on("touchstart", function(event) {
@@ -1835,16 +1848,17 @@
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage(this.host+"images/close.png")
-                close.width = 42
-                close.height = 42
-                close.position.set(width + distance, -distance - 42)
+                var close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png")
+                close.width = 60
+                close.height = 60
+                close.position.set(-distance-60,-distance-60)
+                // close.position.set(width + distance, -distance - 60)
                 close.interactive = true
                 close.buttonMode = true
                 close.on("tap", function() {
                     this.parent.parent.parent.removeChild(this.parent.parent)
                 }),
-                stage.outline.addChild(rotate, scale, close)
+                stage.outline.addChild(scale, close)  // rotate, 
             },
             drawSelection:function(stage){
                 var _this = this
@@ -1862,47 +1876,48 @@
                 _this.drawDashLine(gra, width+space, height+space, -space, height+space),
                 _this.drawDashLine(gra, -space, height+space, -space, -space),
                 stage.outline.addChild(gra);
-                var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
-                rotate.width = 42
-                rotate.height = 42
-                rotate.position.set(-42-space, -42-space)
-                rotate.interactive = true
-                rotate.buttonMode = true
-                rotate.on("touchstart", function(event) {
-                    event.stopped = true
-                    this.dragging = true;
-                    var global = event.data.global;
-                    this.parent.parent.data.rotation = this.parent.parent.rotation;
-                    var angle = ANGLE({
-                        x: this.parent.parent.position.x,
-                        y: this.parent.parent.position.y
-                    }, global);
-                    this.startRotation = angle
-                    _this.currentRotate = this
-                }).on("touchmove", function(event) {
-                    if (this.dragging) {
-                        var global = event.data.global,
-                            angle = ANGLE({
-                                x: this.parent.parent.position.x,
-                                y: this.parent.parent.position.y
-                            }, global),
-                            scale = SCALE({
-                                x: this.parent.parent.position.x,
-                                y: this.parent.parent.position.y
-                            }, global, {
-                                w:this.parent.parent.width,
-                                h:this.parent.parent.height
-                            },this.parent.parent.scale);
-                        this.parent.parent.rotation = angle - this.startRotation + this.parent.parent.data.rotation
-                    }
-                }).on("touchend", function() {
-                    this.dragging = false
-                    _this.currentRotate = null
-                });
-                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale.png")
-                scale.width = 42
-                scale.height = 42
-                scale.position.set(width+space, height+space)
+                // var rotate = new PIXI.Sprite.fromImage(this.host+"images/rotate.png")
+                // rotate.width = 42
+                // rotate.height = 42
+                // rotate.position.set(-42-space, -42-space)
+                // rotate.interactive = true
+                // rotate.buttonMode = true
+                // rotate.on("touchstart", function(event) {
+                //     event.stopped = true
+                //     this.dragging = true;
+                //     var global = event.data.global;
+                //     this.parent.parent.data.rotation = this.parent.parent.rotation;
+                //     var angle = ANGLE({
+                //         x: this.parent.parent.position.x,
+                //         y: this.parent.parent.position.y
+                //     }, global);
+                //     this.startRotation = angle
+                //     _this.currentRotate = this
+                // }).on("touchmove", function(event) {
+                //     if (this.dragging) {
+                //         var global = event.data.global,
+                //             angle = ANGLE({
+                //                 x: this.parent.parent.position.x,
+                //                 y: this.parent.parent.position.y
+                //             }, global),
+                //             scale = SCALE({
+                //                 x: this.parent.parent.position.x,
+                //                 y: this.parent.parent.position.y
+                //             }, global, {
+                //                 w:this.parent.parent.width,
+                //                 h:this.parent.parent.height
+                //             },this.parent.parent.scale);
+                //         this.parent.parent.rotation = angle - this.startRotation + this.parent.parent.data.rotation
+                //     }
+                // }).on("touchend", function() {
+                //     this.dragging = false
+                //     _this.currentRotate = null
+                // });
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png")
+                scale.width = 60
+                scale.height = 60
+                scale.position.set(width+space, -60-space)
+                // scale.position.set(width+space, height+space)
                 scale.interactive = true
                 scale.buttonMode = true
                 scale.on("touchstart", function(event) {
@@ -1934,10 +1949,11 @@
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage(this.host+"images/close.png")
-                close.width = 42
-                close.height = 42
-                close.position.set(width+space, -42-space)
+                var close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png")
+                close.width = 60
+                close.height = 60
+                close.position.set(-60-space, -60-space)
+                // close.position.set(width+space, -60-space)
                 close.interactive = true
                 close.buttonMode = true
                 close.on("tap", function() {
@@ -1950,7 +1966,7 @@
                     //     e(-100)
                     // }
                 }),
-                stage.outline.addChild(rotate, scale, close)
+                stage.outline.addChild(scale, close)  // rotate, 
             },
             getBeveling:function(dx, dy) {
                 return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
