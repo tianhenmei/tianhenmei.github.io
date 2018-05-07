@@ -45,8 +45,45 @@ html, body {
   height: 100%;
   position: relative;
   background: url("../images/loading_bg.jpg") no-repeat center bottom;
-  background-size: 100%; }
-  .loading .loading__title {
+  background-size: 100%;
+  /*
+    .loading__detail {
+        width:rem1080(471);
+        height:rem1080(471);
+        @include center1080(301,319);
+        background:url('../images/loading-detail-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        .detail__content {
+            width:rem1080(365);
+            height:rem1080(373);
+            position:absolute;
+            left:rem1080(86);
+            top:rem1080(18);
+            overflow:hidden;
+        }
+        .detail__center {
+            width:100%;
+            height:100%;
+        }
+        .detail__title {
+            padding:rem1080(57) 0 0 0;
+            line-height:rem1080(118);
+            font-size:rem1080(37);
+            color:#ffffff;
+            text-align:center;
+        }
+        .detail__info {
+            width:rem1080(365 * 36 / 24);
+            line-height:rem1080(54 * 36 / 24);
+            font-size:rem1080(36);
+            transform-origin:0 0;
+            transform:scale(0.6667,0.6667);
+            color:#ffffff;
+            text-align:center;
+        }
+    }
+    */ }
+  .loading .loading__logo {
     width: 2.23704rem;
     height: 0.84444rem;
     position: absolute;
@@ -55,41 +92,102 @@ html, body {
     margin: 0 0 0 -1.12593rem;
     background: url("../images/loading-logo.png") no-repeat center top;
     background-size: 100% 100%; }
-  .loading .loading__detail {
-    width: 6.97778rem;
-    height: 6.97778rem;
+  .loading .loading__title {
+    width: 11.43704rem;
+    height: 1.40741rem;
+    margin: 0 auto;
+    background: url("../images/loading-title.png") no-repeat center top;
+    background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 4.72593rem;
-    margin: 0 0 0 -3.54074rem;
-    background: url("../images/loading-detail-bg.png") no-repeat center top;
-    background-size: 100% 100%; }
-    .loading .loading__detail .detail__content {
-      width: 5.40741rem;
-      height: 5.52593rem;
-      position: absolute;
-      left: 1.27407rem;
-      top: 0.26667rem;
-      overflow: hidden; }
-    .loading .loading__detail .detail__center {
+    top: 4.9037rem;
+    margin: 0 0 0 -5.71852rem; }
+  .loading .loading__detail {
+    width: 7.3037rem;
+    height: 0.74074rem;
+    position: absolute;
+    left: 50%;
+    top: 7.46667rem;
+    margin: 0 0 0 -3.65185rem; }
+    .loading .loading__detail .detail {
       width: 100%;
-      height: 100%; }
-    .loading .loading__detail .detail__title {
-      padding: 0.84444rem 0 0 0;
-      line-height: 1.74815rem;
-      font-size: 0.54815rem;
-      color: #ffffff;
-      text-align: center; }
-    .loading .loading__detail .detail__info {
-      width: 8.11111rem;
-      line-height: 1.2rem;
-      font-size: 0.53333rem;
-      -webkit-transform-origin: 0 0;
-              transform-origin: 0 0;
-      -webkit-transform: scale(0.6667, 0.6667);
-              transform: scale(0.6667, 0.6667);
-      color: #ffffff;
-      text-align: center; }
+      height: 0.74074rem;
+      background: url("../images/loading-detail.png") no-repeat 0 0;
+      background-size: 7.3037rem 2.54815rem;
+      position: absolute;
+      left: 0;
+      top: 0; }
+    .loading .loading__detail .detail-02 {
+      background-position: 0 -0.97778rem;
+      top: 0.97778rem; }
+    .loading .loading__detail .detail-03 {
+      background-position: 0 -2rem;
+      top: 2rem; }
+  .loading .loading__progress {
+    width: 5.43704rem;
+    height: 0.8rem;
+    position: absolute;
+    left: 50%;
+    bottom: 3.48148rem;
+    margin: 0 0 0 -2.71852rem;
+    background: url("../images/loading-progress-bg.png") no-repeat center top;
+    background-size: 100% 100%;
+    overflow: hidden; }
+    .loading .loading__progress .progress {
+      width: 5.43704rem;
+      height: 0.8rem;
+      background: url("../images/loading-content.png") no-repeat -1.36296rem -0.01481rem;
+      background-size: 12.63704rem 0.8rem;
+      -webkit-animation: loadingAnimation 2s 0s linear both infinite;
+              animation: loadingAnimation 2s 0s linear both infinite; }
+
+@-webkit-keyframes loadingAnimation {
+  0% {
+    background-position: -5.00741rem -0.01481rem; }
+  100% {
+    background-position: -1.36296rem -0.01481rem; } }
+
+@keyframes loadingAnimation {
+  0% {
+    background-position: -5.00741rem -0.01481rem; }
+  100% {
+    background-position: -1.36296rem -0.01481rem; } }
+  .loading .loading__num {
+    width: 1.48148rem;
+    position: absolute;
+    left: 50%;
+    bottom: 3.61481rem;
+    margin: 0 0 0 2.96296rem; }
+    .loading .loading__num .num {
+      width: 0.26667rem;
+      height: 0.44444rem;
+      background: url("../images/loading-num.png") no-repeat 0 0;
+      background-size: 0.65185rem 4.44444rem;
+      float: left; }
+    .loading .loading__num .num1 {
+      background-position: 0 -0.44444rem; }
+    .loading .loading__num .num2 {
+      background-position: 0 -0.88889rem; }
+    .loading .loading__num .num3 {
+      background-position: 0 -1.33333rem; }
+    .loading .loading__num .num4 {
+      background-position: 0 -1.77778rem; }
+    .loading .loading__num .num5 {
+      background-position: 0 -2.22222rem; }
+    .loading .loading__num .num6 {
+      background-position: 0 -2.66667rem; }
+    .loading .loading__num .num7 {
+      background-position: 0 -3.11111rem; }
+    .loading .loading__num .num8 {
+      background-position: 0 -3.55556rem; }
+    .loading .loading__num .num9 {
+      background-position: 0 -4rem; }
+    .loading .loading__num .unit {
+      width: 0.37037rem;
+      height: 0.44444rem;
+      background: url("../images/loading-num.png") no-repeat -0.49067rem 0;
+      background-size: 0.65185rem 4.44444rem;
+      float: left; }
   .loading .loading__desk {
     width: 16.63704rem;
     height: 6.65185rem;
@@ -119,8 +217,8 @@ html, body {
     background-size: 100% 100%; }
 
 .opacityChange {
-  -webkit-animation: 0.5s opacityChange linear 0.5s;
-          animation: 0.5s opacityChange linear 0.5s; }
+  -webkit-animation: 0.5s opacityChange linear 0.5s both;
+          animation: 0.5s opacityChange linear 0.5s both; }
 
 @-webkit-keyframes opacityChange {
   0% {
@@ -134,43 +232,63 @@ html, body {
   100% {
     opacity: 1; } }
 
+@-webkit-keyframes opacityChange0 {
+  0% {
+    opacity: 0; }
+  1%, 100% {
+    opacity: 1; } }
+
+@keyframes opacityChange0 {
+  0% {
+    opacity: 0; }
+  1%, 100% {
+    opacity: 1; } }
+
 .moveToTop {
-  -webkit-animation: 0.5s moveToTop linear 1s;
-          animation: 0.5s moveToTop linear 1s; }
+  -webkit-animation: 0.5s moveToTop linear 1s both;
+          animation: 0.5s moveToTop linear 1s both; }
 
 @-webkit-keyframes moveToTop {
   0% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0); }
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2.96296rem, 0);
+            transform: translate3d(0, 2.96296rem, 0); }
   100% {
+    opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0); } }
 
 @keyframes moveToTop {
   0% {
-    -webkit-transform: translate3d(0, 100%, 0);
-            transform: translate3d(0, 100%, 0); }
+    opacity: 0;
+    -webkit-transform: translate3d(0, 2.96296rem, 0);
+            transform: translate3d(0, 2.96296rem, 0); }
   100% {
+    opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0); } }
 
 .bottomToCenter {
-  -webkit-animation: 0.5s bottomToCenter linear 0.5s;
-          animation: 0.5s bottomToCenter linear 0.5s; }
+  -webkit-animation: 0.5s bottomToCenter linear 0.5s both;
+          animation: 0.5s bottomToCenter linear 0.5s both; }
 
 @-webkit-keyframes bottomToCenter {
   0% {
+    opacity: 0;
     -webkit-transform: translate3d(0, 449px, 0);
             transform: translate3d(0, 449px, 0); }
   100% {
+    opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0); } }
 
 @keyframes bottomToCenter {
   0% {
+    opacity: 0;
     -webkit-transform: translate3d(0, 449px, 0);
             transform: translate3d(0, 449px, 0); }
   100% {
+    opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0); } }
 
@@ -206,6 +324,22 @@ html, body {
   83.3% {
     background-image: url("../images/loading-object-06.png"); } }
 
+.delay1-0 {
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s; }
+
+.delay1-2 {
+  -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s; }
+
+.delay1-4 {
+  -webkit-animation-delay: 1.4s;
+          animation-delay: 1.4s; }
+
+.delay1-6 {
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s; }
+
 #app {
   width: 100%;
   height: 100%;
@@ -223,8 +357,23 @@ html, body {
   left: 0;
   bottom: 0; }
 
-.center-content--fullscreen {
-  bottom: 1.98519rem; }
+.center-content--fullscreen .select-container {
+  bottom: 3.97037rem; }
+
+.center-content--fullscreen .select-bar {
+  padding-bottom: 1.98519rem; }
+
+.center-content--fullscreen .save {
+  bottom: 8.53333rem; }
+
+.center-content--fullscreen .save--fold {
+  bottom: 5.74815rem; }
+
+.center-content--fullscreen .select-fold {
+  bottom: 6.74074rem; }
+
+.center-content--fullscreen .select-folded {
+  bottom: 3.97037rem; }
 
 .select-container {
   width: 15.61481rem;
@@ -345,11 +494,106 @@ canvas,
   .facing .facing__li .facing__icon--2 {
     background-image: url("../images/mknee.png"); }
 
+.facing .facing__woman.facing__list .facing__icon--0 {
+  background-image: url("../images/wsit.png"); }
+
+.facing .facing__woman.facing__list .facing__icon--1 {
+  background-image: url("../images/wstand.png"); }
+
+.facing .facing__woman.facing__list .facing__icon--2 {
+  background-image: url("../images/wknee.png"); }
+
 .clothes .clothes__li {
   width: 1.98519rem;
   position: relative; }
   .clothes .clothes__li .clothes__icon {
     background-image: url("../images/sample.png"); }
+
+.clothes .clothes__li--man0 .clothes__icon {
+  background-size: 1.62963rem;
+  background-position: center center; }
+
+.clothes .clothes__li--man0 .facing__icon--4 {
+  background-size: 1.48148rem; }
+
+.clothes .clothes__li--man1 .clothes__icon {
+  background-size: 0.94815rem;
+  background-position: center top; }
+
+.clothes .clothes__li--man1 .facing__icon--0,
+.clothes .clothes__li--man1 .facing__icon--3 {
+  background-size: 0.74074rem; }
+
+.clothes .clothes__li--man1 .facing__icon--1 {
+  background-size: 0.8rem; }
+
+.clothes .clothes__li--man1 .facing__icon--5 {
+  background-size: 0.8rem; }
+
+.clothes .clothes__li--man2 .clothes__icon {
+  background-size: 1.48148rem;
+  background-position: center center; }
+
+.clothes .clothes__li--man2 .facing__icon--0 {
+  background-size: 1.03704rem; }
+
+.clothes .clothes__li--man2 .facing__icon--1 {
+  background-size: 1.24444rem; }
+
+.clothes .clothes__li--man2 .facing__icon--2 {
+  background-size: 1.77778rem;
+  background-position: center -0.59259rem; }
+
+.clothes .clothes__li--man2 .facing__icon--3 {
+  background-size: 2.22222rem; }
+
+.clothes .clothes__li--man2 .facing__icon--4 {
+  background-size: 1.39259rem; }
+
+.clothes .clothes__li--woman0 .clothes__icon {
+  background-size: 1.62963rem;
+  background-position: center center; }
+
+.clothes .clothes__li--woman0 .facing__icon--2 {
+  background-size: 1.92593rem; }
+
+.clothes .clothes__li--woman0 .facing__icon--3 {
+  background-size: 1.48148rem; }
+
+.clothes .clothes__li--woman0 .facing__icon--4 {
+  background-size: 2.16296rem; }
+
+.clothes .clothes__li--woman1 .clothes__icon {
+  background-size: 1.18519rem;
+  background-position: center top; }
+
+.clothes .clothes__li--woman1 .facing__icon--0,
+.clothes .clothes__li--woman1 .facing__icon--1,
+.clothes .clothes__li--woman1 .facing__icon--3 {
+  background-size: 0.96296rem; }
+
+.clothes .clothes__li--woman1 .facing__icon--2,
+.clothes .clothes__li--woman1 .facing__icon--4 {
+  background-size: 1.40741rem; }
+
+.clothes .clothes__li--woman2 .clothes__icon {
+  background-size: 1.33333rem;
+  background-position: center center; }
+
+.clothes .clothes__li--woman2 .facing__icon--1 {
+  background-size: 1.18519rem; }
+
+.clothes .clothes__li--woman2 .facing__icon--2 {
+  background-size: 1.92593rem; }
+
+.clothes .clothes__li--woman2 .facing__icon--3 {
+  background-size: 1.18519rem; }
+
+.clothes .clothes__li--woman2 .facing__icon--4 {
+  background-size: 2.16296rem; }
+
+.clothes .clothes__li--woman2 .facing__icon--5 {
+  background-size: 1.03704rem; }
 
 .motion .motion__li {
   width: 1.98519rem;

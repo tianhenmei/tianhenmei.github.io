@@ -615,40 +615,8 @@
                 ]
             ],
             emotion:[[{
-                url:'images/man-head-01.png',
+                url:'images/man-head-09.png',
                 width:222,
-                height:266,
-                position:{
-                    x:26,
-                    y:6
-                }
-            },{
-                url:'images/man-head-02.png',
-                width:222,
-                height:266,
-                position:{
-                    x:26,
-                    y:6
-                }
-            },{
-                url:'images/man-head-03.png',
-                width:222,
-                height:266,
-                position:{
-                    x:26,
-                    y:6
-                }
-            },{
-                url:'images/man-head-04.png',
-                width:248,
-                height:269,
-                position:{
-                    x:0,
-                    y:3
-                }
-            },{
-                url:'images/man-head-05.png',
-                width:294,
                 height:266,
                 position:{
                     x:26,
@@ -671,6 +639,38 @@
                     y:6
                 }
             },{
+                url:'images/man-head-03.png',
+                width:222,
+                height:266,
+                position:{
+                    x:26,
+                    y:6
+                }
+            },{
+                url:'images/man-head-05.png',
+                width:294,
+                height:266,
+                position:{
+                    x:26,
+                    y:6
+                }
+            },{
+                url:'images/man-head-01.png',
+                width:222,
+                height:266,
+                position:{
+                    x:26,
+                    y:6
+                }
+            },{
+                url:'images/man-head-04.png',
+                width:248,
+                height:269,
+                position:{
+                    x:0,
+                    y:3
+                }
+            },{
                 url:'images/man-head-08.png',
                 width:222,
                 height:266,
@@ -678,8 +678,56 @@
                     x:26,
                     y:6
                 }
+            },{
+                url:'images/man-head-02.png',
+                width:222,
+                height:266,
+                position:{
+                    x:26,
+                    y:6
+                }
             }],[{
+                url:'images/woman-head-9.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
+                url:'images/woman-head-5.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
+                url:'images/woman-head-7.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
+                url:'images/woman-head-8.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
                 url:'images/woman-head-1.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
+                url:'images/woman-head-6.png',
                 width:177,
                 height:253,
                 position:{
@@ -704,38 +752,6 @@
                 }
             },{
                 url:'images/woman-head-4.png',
-                width:177,
-                height:253,
-                position:{
-                    x:0,
-                    y:0
-                }
-            },{
-                url:'images/woman-head-5.png',
-                width:177,
-                height:253,
-                position:{
-                    x:0,
-                    y:0
-                }
-            },{
-                url:'images/woman-head-6.png',
-                width:177,
-                height:253,
-                position:{
-                    x:0,
-                    y:0
-                }
-            },{
-                url:'images/woman-head-7.png',
-                width:177,
-                height:253,
-                position:{
-                    x:0,
-                    y:0
-                }
-            },{
-                url:'images/woman-head-8.png',
                 width:177,
                 height:253,
                 position:{
@@ -832,7 +848,7 @@
                     y:7+47
                 }
             },{
-                url:'images/woman-hair-03.png',
+                url:'images/woman-hair-03-02.png',
                 width:136,
                 height:131,
                 position:{
@@ -934,9 +950,12 @@
                 width:415,
                 height:325
             },{
-                url:'images/others/31.png',
-                width:275,
-                height:327
+                url:'images/others/31-add.png',
+                width:312,
+                height:263
+                // url:'images/others/31.png',
+                // width:275,
+                // height:327
             },{
                 url:'images/others/32.png',
                 width:275,
@@ -949,6 +968,14 @@
                 url:'images/others/51.png',
                 width:909,
                 height:129
+            },{
+                url:'images/others/52-add.png',
+                width:562,
+                height:111
+            },{
+                url:'images/others/53-add.png',
+                width:562,
+                height:111
             }],
             others2:[{
                 url:'images/others/03.png',
@@ -987,9 +1014,12 @@
                 width:323,
                 height:186
             },{
-                url:'images/others/13.png',
-                width:262,
-                height:177
+                url:'images/others/13-add.png',
+                width:220,
+                height:88
+                // url:'images/others/13.png',
+                // width:262,
+                // height:177
             },{
                 url:'images/others/14.png',
                 width:227,
@@ -999,17 +1029,26 @@
                 width:194,
                 height:253
             },{
-                url:'images/others/17.png',
-                width:97,
-                height:175
+                url:'images/others/17-add.png',
+                width:306,
+                height:195
+                // url:'images/others/17.png',
+                // width:97,
+                // height:175
             },{
-                url:'images/others/19.png',
-                width:221,
-                height:178
+                url:'images/others/19-add.png',
+                width:144,
+                height:159
+                // url:'images/others/19.png',
+                // width:221,
+                // height:178
             },{
-                url:'images/others/23.png',
-                width:187,
-                height:123
+                url:'images/others/23-add.png',
+                width:204,
+                height:234
+                // url:'images/others/23.png',
+                // width:187,
+                // height:123
             },{
                 url:'images/others/25.png',
                 width:242,
@@ -1018,18 +1057,18 @@
                 url:'images/others/26.png',
                 width:133,
                 height:134
-            },{
+            }/*,{
                 url:'images/others/27.png',
                 width:109,
                 height:64
-            },{
+            }*/,{
                 url:'images/others/28.png',
                 width:454,
                 height:365
             },{
-                url:'images/others/29.png',
-                width:48,
-                height:104
+                url:'images/others/29-add.png',
+                width:173,
+                height:205
             },{
                 url:'images/others/30.png',
                 width:86,
@@ -1055,13 +1094,19 @@
                 width:124,
                 height:264
             },{
-                url:'images/others/38.png',
-                width:118,
-                height:121
+                url:'images/others/38-add.png',
+                width:280,
+                height:885
+                // url:'images/others/38.png',
+                // width:118,
+                // height:121
             },{
-                url:'images/others/39.png',
+                url:'images/others/39-add.png',
                 width:907,
                 height:666
+                // url:'images/others/39.png',
+                // width:907,
+                // height:666
             },{
                 url:'images/others/40.png',
                 width:212,
@@ -1074,11 +1119,11 @@
                 url:'images/others/42.png',
                 width:174,
                 height:167
-            },{
+            }/*,{
                 url:'images/others/43.png',
                 width:441,
                 height:729
-            },{
+            }*/,{
                 url:'images/others/44.png',
                 width:99,
                 height:151
@@ -1090,18 +1135,24 @@
                 url:'images/others/46.png',
                 width:250,
                 height:163
-            },{
+            }/*,{
                 url:'images/others/47.png',
                 width:717,
                 height:474
+            }*/,{
+                url:'images/others/48-add.png',
+                width:349,
+                height:276
+                // url:'images/others/48.png',
+                // width:394,
+                // height:329
             },{
-                url:'images/others/48.png',
-                width:394,
-                height:329
-            },{
-                url:'images/others/49.png',
-                width:281,
-                height:205
+                url:'images/others/49-add.png',
+                width:306,
+                height:306
+                // url:'images/others/49.png',
+                // width:281,
+                // height:205
             }],
             saying:[
                 "饭在锅里她在床上，却是一个伪命题。",
@@ -1241,12 +1292,12 @@
                 this.ercodeStage.height = this.h
                 var bottomBG = PIXI.Sprite.fromImage(this.host+"images/bottom.jpg");
                 bottomBG.width = 1014
-                bottomBG.height = 213
+                bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
                 var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode.png");
-                ercode.width = 127// * (this.w / 1014)  //280
-                ercode.height = 127// * (this.w / 1014)  //280
-                ercode.position.set(this.w - ercode.width - 2 - 33, -ercode.height - 14 - 33);
+                ercode.width = 184// * (this.w / 1014)  //280
+                ercode.height = 184// * (this.w / 1014)  //280
+                ercode.position.set(this.w - ercode.width - 11 - 33, -ercode.height - 24 - 33);
                 var style = new PIXI.TextStyle({
                         lineHeight:29,
                         letterSpacing:5,
@@ -1267,8 +1318,8 @@
                     }),
                     index = Math.floor(Math.random() * this.saying.length),
                     saying = new PIXI.Text(this.saying[index],style)
-                saying.x = 246
-                saying.y = -87-29
+                saying.x = 25+33
+                saying.y = -131-29
                 this.ercodeStage.visible = false
                 this.ercodeStage.addChild(bottomBG,saying,ercode)
             },
@@ -1517,6 +1568,11 @@
             },
             roleTouchStart:function(o,self){
                 this.putOnTop(self.parent)
+                this.currentRoleType = self.parent.role
+                this.currentPostureIndex = self.parent.facing
+                this.currentClothesIndex = self.parent.clothes
+                this.currentEmotionIndex = self.parent.emotion
+                this.currentHairIndex = self.parent.hair
                 // _this.setOnTop(stage)
                 self.dragging = true
                 self.startPosition = {

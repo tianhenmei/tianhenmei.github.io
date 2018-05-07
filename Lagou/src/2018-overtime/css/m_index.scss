@@ -134,13 +134,44 @@ html,body {
     position:relative;
     background:url('../images/loading_bg.jpg') no-repeat center bottom;
     background-size:100%;
-    .loading__title {
+    .loading__logo {
         width:rem1080(151);
         height:rem1080(57);
         @include center1080(464,96);
         background:url('../images/loading-logo.png') no-repeat center top;
         background-size:100% 100%;
     }
+    .loading__title {
+        width:rem1080(772);
+        height:rem1080(95);
+        margin:0 auto;
+        background:url("../images/loading-title.png") no-repeat center top;
+        background-size:100% 100%;
+        @include center1080(154,331);
+    }
+    .loading__detail {
+        width:rem1080(493);
+        height:rem1080(50);
+        @include center1080(293.5,504);
+        .detail {
+            width:100%;
+            height:rem1080(50);
+            background:url('../images/loading-detail.png') no-repeat 0 0;
+            background-size:rem1080(493) rem1080(172);
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        .detail-02 {
+            background-position:0 rem1080(-66);
+            top:rem1080(66);
+        }
+        .detail-03 {
+            background-position:0 rem1080(-135);
+            top:rem1080(135);
+        }
+    }
+    /*
     .loading__detail {
         width:rem1080(471);
         height:rem1080(471);
@@ -176,6 +207,75 @@ html,body {
             text-align:center;
         }
     }
+    */
+    .loading__progress {
+        width:rem1080(367);
+        height:rem1080(54);
+        @include centerb1080(356.5,235);
+        background:url('../images/loading-progress-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        overflow:hidden;
+        .progress {
+            width:rem1080(367);
+            height:rem1080(54);
+            background:url('../images/loading-content.png') no-repeat rem1080(-92) rem1080(-1);
+            background-size:rem1080(853) rem1080(54);
+            animation:loadingAnimation 2s 0s linear both infinite;
+        }
+    }
+    @keyframes loadingAnimation {
+        0% {
+            background-position:rem1080(-338) rem1080(-1);
+        }
+        100% {
+            background-position:rem1080(-92) rem1080(-1);
+        }
+    }
+    .loading__num {
+        width:rem1080(100);
+        @include centerb1080(740,244);
+        .num {
+            width:rem1080(18);
+            height:rem1080(30);
+            background:url('../images/loading-num.png') no-repeat 0 0;
+            background-size:rem1080(44) rem1080(300);
+            float:left;
+        }
+        .num1 {
+            background-position:0 rem1080(-30);
+        }
+        .num2 {
+            background-position:0 rem1080(-60);
+        }
+        .num3 {
+            background-position:0 rem1080(-90);
+        }
+        .num4 {
+            background-position:0 rem1080(-120);
+        }
+        .num5 {
+            background-position:0 rem1080(-150);
+        }
+        .num6 {
+            background-position:0 rem1080(-180);
+        }
+        .num7 {
+            background-position:0 rem1080(-210);
+        }
+        .num8 {
+            background-position:0 rem1080(-240);
+        }
+        .num9 {
+            background-position:0 rem1080(-270);
+        }
+        .unit {
+            width:rem1080(25);
+            height:rem1080(30);
+            background:url('../images/loading-num.png') no-repeat rem(-23) 0;
+            background-size:rem1080(44) rem1080(300);
+            float:left;
+        }
+    }
     .loading__desk {
         width:rem1080(1123);
         height:rem1080(449);
@@ -199,7 +299,7 @@ html,body {
     }
 }
 .opacityChange {
-    animation:0.5s opacityChange linear 0.5s;
+    animation:0.5s opacityChange linear 0.5s both;
 }
 @keyframes opacityChange {
     0% {
@@ -209,25 +309,40 @@ html,body {
         opacity:1;
     }
 }
+.opacityChange0{
+    // animation:0.5s opacityChange0 linear 1s both;
+}
+@keyframes opacityChange0 {
+    0% {
+        opacity:0;
+    }
+    1%,100% {
+        opacity:1;
+    }
+}
 .moveToTop {
-    animation:0.5s moveToTop linear 1s;
+    animation:0.5s moveToTop linear 1s both;
 }
 @keyframes moveToTop {
     0% {
-        transform:translate3d(0,100%,0);
+        opacity:0;
+        transform:translate3d(0,rem1080(200),0);
     }
     100% {
+        opacity:1;
         transform:translate3d(0,0,0);
     }
 }
 .bottomToCenter {
-    animation:0.5s bottomToCenter linear 0.5s;
+    animation:0.5s bottomToCenter linear 0.5s both;
 }
 @keyframes bottomToCenter {
     0% {
+        opacity:0;
         transform:translate3d(0,449px,0);
     }
     100% {
+        opacity:1;
         transform:translate3d(0,0,0);
     }
 }
@@ -254,6 +369,18 @@ html,body {
         background-image:url('../images/loading-object-06.png');
     }
 }
+.delay1-0{
+    animation-delay:1.0s;
+}
+.delay1-2{
+    animation-delay:1.2s;
+}
+.delay1-4{
+    animation-delay:1.4s;
+}
+.delay1-6{
+    animation-delay:1.6s;
+}
 #app {
     width:100%;
     // height:auto;
@@ -275,7 +402,25 @@ html,body {
     bottom:0;
 }
 .center-content--fullscreen {
-    bottom:rem1080(134);
+    // bottom:rem1080(134);
+    .select-container {
+        bottom:rem1080(268);
+    }
+    .select-bar {
+        padding-bottom:rem1080(134);
+    }
+    .save {
+        bottom:rem1080(442+134);
+    }
+    .save--fold {
+        bottom:rem1080(254+134);
+    }
+    .select-fold {
+        bottom:rem1080(321+134);
+    }
+    .select-folded {
+        bottom:rem1080(134+134);
+    }
 }
 .select-container {
     width:rem1080(1054);
@@ -409,6 +554,17 @@ canvas,
             background-image:url("../images/mknee.png");
         }
     }
+    .facing__woman.facing__list {
+        .facing__icon--0 {
+            background-image:url("../images/wsit.png");
+        }
+        .facing__icon--1 {
+            background-image:url("../images/wstand.png");
+        }
+        .facing__icon--2 {
+            background-image:url("../images/wknee.png");
+        }
+    }
 }
 .clothes {
     .clothes__list {
@@ -419,6 +575,104 @@ canvas,
         position:relative;
         .clothes__icon {
             background-image: url("../images/sample.png");
+        }
+    }
+    .clothes__li--man0 {
+        .clothes__icon {
+            background-size:rem1080(110);
+            background-position:center center;
+        }
+        .facing__icon--4 {
+            background-size:rem1080(100);
+        }
+    }
+    .clothes__li--man1 {
+        .clothes__icon {
+            background-size:rem1080(64);
+            background-position:center top;
+        }
+        .facing__icon--0,
+        .facing__icon--3 {
+            background-size:rem1080(50);
+        }
+        .facing__icon--1 {
+            background-size:rem1080(54);
+        }
+        .facing__icon--5 {
+            background-size:rem1080(54);
+        }
+    }
+    .clothes__li--man2 {
+        .clothes__icon {
+            background-size:rem1080(100);
+            background-position:center center;
+        }
+        .facing__icon--0 {
+            background-size:rem1080(70);
+        }
+        .facing__icon--1 {
+            background-size:rem1080(84);
+        }
+        .facing__icon--2 {
+            background-size:rem1080(120);
+            background-position:center rem1080(-40);
+        }
+        .facing__icon--3 {
+            background-size:rem1080(150);
+        }
+        .facing__icon--4 {
+            background-size:rem1080(94);
+        }
+    }
+    .clothes__li--woman0 {
+        .clothes__icon {
+            background-size:rem1080(110);
+            background-position:center center;
+        }
+        .facing__icon--2{
+            background-size:rem1080(130);
+        }
+        .facing__icon--3{
+            background-size:rem1080(100);
+        }
+        .facing__icon--4 {
+            background-size:rem1080(146);
+        }
+    }
+    .clothes__li--woman1 {
+        .clothes__icon {
+            background-size:rem1080(80);
+            background-position:center top;
+        }
+        .facing__icon--0,
+        .facing__icon--1,
+        .facing__icon--3 {
+            background-size:rem1080(65);
+        }
+        .facing__icon--2,
+        .facing__icon--4 {
+            background-size:rem1080(95);
+        }
+    }
+    .clothes__li--woman2 {
+        .clothes__icon {
+            background-size:rem1080(90);
+            background-position:center center;
+        }
+        .facing__icon--1{
+            background-size:rem1080(80);
+        }
+        .facing__icon--2{
+            background-size:rem1080(130);
+        }
+        .facing__icon--3{
+            background-size:rem1080(80);
+        }
+        .facing__icon--4 {
+            background-size:rem1080(146);
+        }
+        .facing__icon--5 {
+            background-size:rem1080(70);
         }
     }
 }

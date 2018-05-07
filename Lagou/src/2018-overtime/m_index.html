@@ -93,30 +93,42 @@
             },
             loadingSuccess = function(){
                 var now = Date.now(),
-                    space = now - startTime
-                if(space < 5000){
-                    setTimeout(function(){
-                        loadingComplete()
-                    },5000 - space)
-                }else{
+                    space = now - startTime,
+                    pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num')
+                // if(space < 5000){
+                //     setTimeout(function(){
+                //         pro.style.display = 'none'
+                //         loadingComplete()
+                //     },5000 - space)
+                // }else{
+                    pro.style.display = 'none'
+                    number.style.display = 'none'
                     loadingComplete()
-                }
+                // }
             }
     </script>
 </head>
 <body>
 <div class="loading" id="loading">
-    <div class="loading__title opacityChange"></div>
-    <div class="loading__detail opacityChange">
-        <div class="detail__content">
-            <div class="detail__center moveToTop">
-                <div class="detail__title">我的加班时刻</div>
-                <div class="detail__info">我是一只加班狗，<br/>不到半夜不能走<br/>快来记录下你的加班姿势</div>
-            </div>
-        </div>
+    <div class="loading__logo opacityChange"></div>
+    <div class="loading__title moveToTop"></div>
+    <div class="loading__detail">
+        <div class="detail detail-01 moveToTop delay1-2"></div>
+        <div class="detail detail-02 moveToTop delay1-4"></div>
+        <div class="detail detail-03 moveToTop delay1-6"></div>
     </div>
     <div class="loading__desk bottomToCenter"></div>
     <div class="loading__object changeObject"></div>
+    <div class="loading__progress opacityChange0" id="loading__progress">
+        <div class="progress" id="progress"></div>
+    </div>
+    <div class="loading__num clearfix" id="loading__num">
+        <div class="num hide"></div>
+        <div class="num hide"></div>
+        <div class="num"></div>
+        <div class="unit"></div>
+    </div>
     <div class="loading__btn hide" id="loading__btn"
         data-lg-tj-id="1bh8" 
         data-lg-tj-no="0001" 
@@ -173,7 +185,9 @@
                     </div>
                     <div class="select_item clothes" v-show="classifyActive == 3">
                         <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
-                            <li class="item__li clothes__li" v-for="(one,index) in clothes[0][clothesIndex]"
+                            <li class="item__li clothes__li" 
+                                :class="'clothes__li--man'+clothesIndex"
+                                v-for="(one,index) in clothes[0][clothesIndex]"
                                 @click.stop.prevent="changeClothes(index)">
                                 <div class="item__icon clothes__icon" 
                                     :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
@@ -181,7 +195,9 @@
                             </li>
                         </ul>
                         <ul class="item__list clothes__woman" v-show="currentRoleType == 1">
-                            <li class="item__li clothes__li" v-for="(one,index) in clothes[1][clothesIndex]"
+                            <li class="item__li clothes__li" 
+                                :class="'clothes__li--woman'+clothesIndex"
+                                v-for="(one,index) in clothes[1][clothesIndex]"
                                 @click.stop.prevent="changeClothes(index)">
                                 <div class="item__icon clothes__icon" 
                                     :class="'facing__icon--'+index+(currentClothesIndex == index ? ' item__icon--active' : '')"
@@ -316,5 +332,40 @@
 <script type="text/javascript" src="js/m_index.js?v=224$version$"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+<script type="text/javascript">
+    if( self == top ) {  
+        document.documentElement.style.display = 'block' ;  
+    } else {  
+        top.location = self.location ;  
+    } 
+    // MutationObserver 的不同兼容性写法
+    var MutationObserver = window.MutationObserver || window.WebKitMutationObserver ||
+    window.MozMutationObserver;
+    // 该构造函数用来实例化一个新的 Mutation 观察者对象
+    // Mutation 观察者对象能监听在某个范围内的 DOM 树变化
+    var observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            // 返回被添加的节点,或者为null.
+            var nodes = mutation.addedNodes;
+        
+            for (var i = 0; i < nodes.length; i++) {
+                var node = nodes[i];
+                if (/xss/i.test(node.src)) {
+                    try {
+                    node.parentNode.removeChild(node);
+                    console.log('拦截可疑静态脚本:', node.src);
+                    } catch (e) {}
+                }
+            }
+        })
+    })
+    // 传入目标节点和观察选项
+    // 如果 target 为 document 或者 document.documentElement
+    // 则当前文档中所有的节点添加与删除操作都会被观察到
+    observer.observe(document, {
+        subtree: true,
+        childList: true
+    });
+</script>
 </body>
 </html>
