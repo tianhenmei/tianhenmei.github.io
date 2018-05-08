@@ -1744,6 +1744,9 @@
             beforeAddOthers:function(index){
                 this.currentOthersIndex = index
             },
+            moveAddOthers:function(index){
+                this.currentOthersIndex = -1
+            },
             addOthers:function(classify,index){
                 this.currentOthersIndex = -1
                 var _this = this,

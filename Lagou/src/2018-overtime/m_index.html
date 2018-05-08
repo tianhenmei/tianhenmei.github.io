@@ -242,7 +242,8 @@
                         </ul>
                     </div>
                     <div class="select_item others" v-show="classifyActive == 6">
-                        <ul class="item__list others__list">
+                        <ul class="item__list others__list"
+                            @touchend="moveAddOthers(index)">
                             <li class="item__li others__li"
                                 v-for="(one,index) in others"
                                 @touchstart="beforeAddOthers(index)"
@@ -254,7 +255,8 @@
                         </ul>
                     </div>
                     <div class="select_item others others2" v-show="classifyActive == 7">
-                        <ul class="item__list others__list">
+                        <ul class="item__list others__list"
+                            @touchend="moveAddOthers(index)">
                             <li class="item__li others__li"
                                 v-for="(one,index) in others2"
                                 @touchstart="beforeAddOthers(index)"
