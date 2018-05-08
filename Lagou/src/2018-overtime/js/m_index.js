@@ -57,6 +57,7 @@
             foldStatus:false,
             resultStatus:false,
             resultTipsStatus:false,
+            resultWhiteStatus:false,
             canvas:null,
             canvasStage:null,
             result:'',
@@ -897,19 +898,19 @@
                 }
             }]],
             room:[{
-                url:'images/room1.jpg',
+                url:'images/room1.jpg?v=2',
                 width:1080,
                 height:2178
             },{
-                url:'images/room2.jpg',
+                url:'images/room2.jpg?v=2',
                 width:1080,
                 height:2016
             },{
-                url:'images/room3.jpg',
+                url:'images/room3.jpg?v=2',
                 width:1080,
                 height:2016
             },{
-                url:'images/room4.jpg',
+                url:'images/room4.jpg?v=2',
                 width:1080,
                 height:2016
             }],
@@ -925,14 +926,47 @@
                 url:'images/others/09.png',
                 width:454,
                 height:516
-            },{
+            },{  // 柯基
+                url:'images/others/31-add.png',
+                width:312,
+                height:263
+                // url:'images/others/31.png',
+                // width:275,
+                // height:327
+            },{  // 沙皮
                 url:'images/others/15.png',
                 width:332,
                 height:341
-            },{
+            },{  // 猫
+                url:'images/others/24.png',
+                width:415,
+                height:325
+            },{  // 天道酬勤
                 url:'images/others/18.png',
                 width:418,
                 height:209
+            },{  // 条幅 我爱加班
+                url:'images/others/50.png',
+                width:909,
+                height:129
+            },{ // 条幅 要么交业绩
+                url:'images/others/51.png',
+                width:909,
+                height:129
+            },{  // 马云头像
+                url:'images/others/48-add.png',
+                width:349,
+                height:276
+                // url:'images/others/48.png',
+                // width:394,
+                // height:329
+            },{  // 代码佛
+                url:'images/others/49-add.png',
+                width:306,
+                height:306
+                // url:'images/others/49.png',
+                // width:281,
+                // height:205
             },{
                 url:'images/others/20.png',
                 width:85,
@@ -946,28 +980,9 @@
                 width:85,
                 height:273
             },{
-                url:'images/others/24.png',
-                width:415,
-                height:325
-            },{
-                url:'images/others/31-add.png',
-                width:312,
-                height:263
-                // url:'images/others/31.png',
-                // width:275,
-                // height:327
-            },{
                 url:'images/others/32.png',
                 width:275,
                 height:327
-            },{
-                url:'images/others/50.png',
-                width:909,
-                height:129
-            },{
-                url:'images/others/51.png',
-                width:909,
-                height:129
             },{
                 url:'images/others/52-add.png',
                 width:562,
@@ -978,37 +993,9 @@
                 height:111
             }],
             others2:[{
-                url:'images/others/03.png',
-                width:117,
-                height:306
-            },{
-                url:'images/others/04.png',
-                width:138,
-                height:281
-            },{
-                url:'images/others/05.png',
-                width:108,
-                height:82
-            },{
-                url:'images/others/06.png',
-                width:115,
-                height:98
-            },{
-                url:'images/others/07.png',
-                width:140,
-                height:81
-            },{
-                url:'images/others/08.png',
-                width:87,
-                height:103
-            },{
-                url:'images/others/10.png',
-                width:55,
-                height:122
-            },{
-                url:'images/others/11.png',
-                width:178,
-                height:259
+                url:'images/others/28.png',
+                width:454,
+                height:365
             },{
                 // url:'images/others/12.png',
                 // width:323,
@@ -1024,13 +1011,12 @@
                 // width:262,
                 // height:177
             },{
-                url:'images/others/14.png',
-                width:227,
-                height:168
-            },{
-                url:'images/others/16.png',
-                width:194,
-                height:253
+                url:'images/others/23-add.png',
+                width:204,
+                height:234
+                // url:'images/others/23.png',
+                // width:187,
+                // height:123
             },{
                 url:'images/others/17-add.png',
                 width:306,
@@ -1039,63 +1025,9 @@
                 // width:97,
                 // height:175
             },{
-                url:'images/others/19-add.png',
-                width:144,
-                height:159
-                // url:'images/others/19.png',
-                // width:221,
-                // height:178
-            },{
-                url:'images/others/23-add.png',
-                width:204,
-                height:234
-                // url:'images/others/23.png',
-                // width:187,
-                // height:123
-            },{
-                url:'images/others/25.png',
-                width:242,
-                height:283
-            },{
-                url:'images/others/26.png',
-                width:133,
-                height:134
-            }/*,{
-                url:'images/others/27.png',
-                width:109,
-                height:64
-            }*/,{
-                url:'images/others/28.png',
-                width:454,
-                height:365
-            },{
-                url:'images/others/29-add.png',
-                width:173,
-                height:205
-            },{
-                url:'images/others/30.png',
-                width:86,
-                height:142
-            },{
-                url:'images/others/33.png',
-                width:132,
-                height:104
-            },{
-                url:'images/others/34.png',
-                width:203,
-                height:89
-            },{
-                url:'images/others/35.png',
-                width:80,
-                height:259
-            },{
-                url:'images/others/36.png',
-                width:229,
-                height:174
-            },{
-                url:'images/others/37.png',
-                width:124,
-                height:264
+                url:'images/others/06.png',
+                width:115,
+                height:98
             },{
                 url:'images/others/38-add.png',
                 width:280,
@@ -1104,6 +1036,41 @@
                 // width:118,
                 // height:121
             },{
+                url:'images/others/04.png',
+                width:138,
+                height:281
+            },{
+                url:'images/others/05-add.png',
+                width:146,
+                height:111
+            },{
+                url:'images/others/33.png',
+                width:132,
+                height:104
+            },{
+                url:'images/others/41.png',
+                width:232,
+                height:219
+            },{
+                url:'images/others/29-add.png',
+                width:173,
+                height:205
+            },{
+                url:'images/others/19-add.png',
+                width:144,
+                height:159
+                // url:'images/others/19.png',
+                // width:221,
+                // height:178
+            },{
+                url:'images/others/37.png',
+                width:124,
+                height:264
+            },{
+                url:'images/others/30.png',
+                width:86,
+                height:142
+            },{
                 url:'images/others/39-add.png',
                 width:907,
                 height:666
@@ -1111,25 +1078,49 @@
                 // width:907,
                 // height:666
             },{
-                url:'images/others/40.png',
-                width:212,
-                height:306
+                url:'images/others/26.png',
+                width:133,
+                height:134
             },{
-                url:'images/others/41.png',
-                width:232,
-                height:219
+                url:'images/others/25.png',
+                width:242,
+                height:283
+            },{
+                url:'images/others/14.png',
+                width:227,
+                height:168
             },{
                 url:'images/others/42.png',
                 width:174,
                 height:167
-            }/*,{
-                url:'images/others/43.png',
-                width:441,
-                height:729
-            }*/,{
+            },{
                 url:'images/others/44.png',
                 width:99,
                 height:151
+            },{
+                url:'images/others/16.png',
+                width:194,
+                height:253
+            },{
+                url:'images/others/08.png',
+                width:87,
+                height:103
+            },{
+                url:'images/others/10.png',
+                width:55,
+                height:122
+            },{
+                url:'images/others/11.png',
+                width:178,
+                height:259
+            },{
+                url:'images/others/03.png',
+                width:117,
+                height:306
+            },{
+                url:'images/others/36.png',
+                width:229,
+                height:174
             },{
                 url:'images/others/45.png',
                 width:214,
@@ -1138,30 +1129,50 @@
                 url:'images/others/46.png',
                 width:250,
                 height:163
+            },{
+                url:'images/others/40.png',
+                width:212,
+                height:306
+            },{
+                url:'images/others/35.png',
+                width:80,
+                height:259
+            },{
+                url:'images/others/07.png',
+                width:140,
+                height:81
+            },{
+                url:'images/others/34.png',
+                width:203,
+                height:89
             }/*,{
+                url:'images/others/27.png',
+                width:109,
+                height:64
+            }*//*,{
+                url:'images/others/43.png',
+                width:441,
+                height:729
+            }*//*,{
                 url:'images/others/47.png',
                 width:717,
                 height:474
-            }*/,{
-                url:'images/others/48-add.png',
-                width:349,
-                height:276
-                // url:'images/others/48.png',
-                // width:394,
-                // height:329
-            },{
-                url:'images/others/49-add.png',
-                width:306,
-                height:306
-                // url:'images/others/49.png',
-                // width:281,
-                // height:205
-            }],
+            }*/],
             saying:[
-                "饭在锅里她在床上，却是一个伪命题。",
-                "天亮之前，你就是光",
-                "沉迷工作，日渐消瘦",
-                "我在床上写HTML，隔壁的人在聊How To Make Love"
+                "KPI还未达标，加班就要趁早",
+                "世上最遥远的距离，是你在加班而我在等你",
+                "押一付三是动力，夜不归宿是劳动力",
+                "贫穷，让人无法入睡",
+                "单身不是我的错，都是加班背的锅",
+                "沉迷加班，日渐消瘦",
+                "有个人经常加班，后来，他死了",
+                "每一次夜归，是为了将来的闪耀",
+                "从没有白加的班，每一秒，都算数",
+                "天亮之前，我就是光",
+                "我努力加班，是为了追上曾经被寄予厚望的自己",
+                "拼出个样来，给自己看",
+                "梦想就是别人都觉得像个笑话，而自己却当做宝贝",
+                "总有一些事情，是值得加班做好的"
             ]
         },
         computed:{
@@ -1184,6 +1195,7 @@
             this.fullscreenStatus = /iphone/gi.test(window.navigator.userAgent) && window.screen.width == 375 && window.screen.height == 812 && this.height > 720
             this.initCanvas()
             document.addEventListener('touchend',function(e){
+                // e.preventDefault()
                 if(_this.currentRotate){
                     _this.currentRotate.dragging = false
                     _this.currentRotate = null
@@ -1295,14 +1307,14 @@
                 this.ercodeStage.position.set(0,this.h)
                 this.ercodeStage.width = this.w
                 this.ercodeStage.height = this.h
-                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom.jpg");
+                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom.jpg?v=2");
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
                 var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode.png");
-                ercode.width = 184// * (this.w / 1014)  //280
-                ercode.height = 184// * (this.w / 1014)  //280
-                ercode.position.set(this.w - ercode.width - 11 - 33, -ercode.height - 24 - 33);
+                ercode.width = 121// * (this.w / 1014)  //280
+                ercode.height = 121// * (this.w / 1014)  //280
+                ercode.position.set(this.w - ercode.width - 7 - 33, -ercode.height - 88 - 33);
                 var style = new PIXI.TextStyle({
                         lineHeight:29,
                         letterSpacing:5,
@@ -1744,7 +1756,7 @@
             beforeAddOthers:function(index){
                 this.currentOthersIndex = index
             },
-            moveAddOthers:function(index){
+            moveAddOthers:function(){
                 this.currentOthersIndex = -1
             },
             addOthers:function(classify,index){
@@ -1827,6 +1839,24 @@
                 _this.drawDashLine(gra, -distance, height + distance, -distance, -distance)
                 stage.children[0].on("touchstart", function(o) {
                     this.dragging = true
+                    if (!this.parent.chosen) {
+                        this.parent.chosen = true
+                        this.parent.outline.visible = true
+                        if (_this.stageE.children.length){
+                            var last = _this.stageE.children[0];
+                            last.chosen = false
+                            last.outline.visible = false
+                            if(last.children[0].dragging){
+                                last.children[0].dragging = false
+                                last.globalPosition.x = last.position.x - last.pivot._x
+                                last.globalPosition.y = last.position.y - last.pivot._y
+                            }
+                            _this.stageO.addChild(last),
+                            _this.stageE.removeChildren()
+                        }
+                        _this.stageE.addChild(this.parent)
+                        _this.stageO.removeChild(this.parent)
+                    }
                     this.startPosition = {
                         x: o.data.global.x,
                         y: o.data.global.y
@@ -1843,7 +1873,7 @@
                     }
                 }).on("touchend", function() {
                     this.dragging = false
-                    this.parent.globalPosition.x = this.parent.position.x - this.parent.pivot._x,
+                    this.parent.globalPosition.x = this.parent.position.x - this.parent.pivot._x
                     this.parent.globalPosition.y = this.parent.position.y - this.parent.pivot._y
                 }),
                 stage.outline.addChild(gra);
@@ -2097,20 +2127,22 @@
                 }
                 var _this = this,
                     space = (_this.w - 1014) / 2
+                _this.resultWhiteStatus = true
                 _this.canvasStage.scale.set(1014 / _this.w)
                 _this.canvasStage.position.x = space
                 _this.canvasStage.position.y = space
                 _this.ercodeStage.visible = true
+                _this.resultTipsStatus = true
                 setTimeout(function(){
                     setTimeout(function(){
                         var canvas = document.getElementsByTagName('canvas')[0],
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
-                        _this.resultTipsStatus = true
                         setTimeout(function(){
                             _this.resultTipsStatus = false
-                        },2000)
+                            _this.resultWhiteStatus = false
+                        },2300)
                     },30)
                 },200)
             }

@@ -93,15 +93,15 @@ html, body {
     background: url("../images/loading-logo.png") no-repeat center top;
     background-size: 100% 100%; }
   .loading .loading__title {
-    width: 11.43704rem;
-    height: 1.40741rem;
+    width: 9.86667rem;
+    height: 1.42222rem;
     margin: 0 auto;
-    background: url("../images/loading-title.png") no-repeat center top;
+    background: url("../images/loading-title-02.png") no-repeat center top;
     background-size: 100% 100%;
     position: absolute;
     left: 50%;
     top: 4.9037rem;
-    margin: 0 0 0 -5.71852rem; }
+    margin: 0 0 0 -4.93333rem; }
   .loading .loading__detail {
     width: 7.3037rem;
     height: 0.74074rem;
@@ -134,12 +134,10 @@ html, body {
     background-size: 100% 100%;
     overflow: hidden; }
     .loading .loading__progress .progress {
-      width: 5.43704rem;
+      width: 0;
       height: 0.8rem;
       background: url("../images/loading-content.png") no-repeat -1.36296rem -0.01481rem;
-      background-size: 12.63704rem 0.8rem;
-      -webkit-animation: loadingAnimation 2s 0s linear both infinite;
-              animation: loadingAnimation 2s 0s linear both infinite; }
+      background-size: 12.63704rem 0.8rem; }
 
 @-webkit-keyframes loadingAnimation {
   0% {
@@ -413,15 +411,38 @@ canvas,
     width: 100%;
     height: 100%; }
 
+.result-white {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 101;
+  background: #fff;
+  -webkit-animation: 0.3s opacityOverChange linear both;
+          animation: 0.3s opacityOverChange linear both; }
+
+@-webkit-keyframes opacityOverChange {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
+@keyframes opacityOverChange {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }
+
 .result-tips {
-  width: 5.33333rem;
-  height: 0.91852rem;
-  background: url("../images/save-tips.png") no-repeat center top;
+  width: 7.4963rem;
+  height: 0.6963rem;
+  background: url("../images/save-tips-02.png") no-repeat center top;
   background-size: 100% 100%;
   position: absolute;
   left: 50%;
-  bottom: 4.71111rem;
-  margin: 0 0 0 -3.03704rem;
+  bottom: 4.44444rem;
+  margin: 0 0 0 -3.74815rem;
   z-index: 100; }
 
 .select-fold {
@@ -625,7 +646,7 @@ canvas,
   .others .others__li .others__icon {
     background-image: url("../images/sample.png"); }
 
-.others2 .item__li .others__icon--8 {
+.others2 .item__li .others__icon--1 {
   background-size: 2.66667rem;
   background-position: center center; }
 
