@@ -435,15 +435,33 @@ canvas,
     opacity: 0; } }
 
 .result-tips {
-  width: 7.4963rem;
-  height: 0.6963rem;
-  background: url("../images/save-tips-02.png") no-repeat center top;
+  width: 16rem;
+  height: 4.01481rem;
+  background: url("../images/save-tips-03.png") no-repeat center top;
   background-size: 100% 100%;
   position: absolute;
   left: 50%;
-  bottom: 4.44444rem;
-  margin: 0 0 0 -3.74815rem;
-  z-index: 100; }
+  bottom: 0rem;
+  margin: 0 0 0 -8rem;
+  z-index: 100;
+  -webkit-animation: 10s tipsChange linear both 3s;
+          animation: 10s tipsChange linear both 3s; }
+
+@-webkit-keyframes tipsChange {
+  0%, 43%, 70%, 99%, 100% {
+    -webkit-transform: translate3d(0, 4.01481rem, 0);
+            transform: translate3d(0, 4.01481rem, 0); }
+  3%, 40%, 73%, 96% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+@keyframes tipsChange {
+  0%, 43%, 70%, 99%, 100% {
+    -webkit-transform: translate3d(0, 4.01481rem, 0);
+            transform: translate3d(0, 4.01481rem, 0); }
+  3%, 40%, 73%, 96% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
 
 .select-fold {
   width: 1.80741rem;

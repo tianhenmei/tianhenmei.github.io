@@ -997,12 +997,12 @@
                 width:454,
                 height:365
             },{
-                // url:'images/others/12.png',
-                // width:323,
-                // height:186
-                url:'images/others/12-add.png',
-                width:590,
-                height:587
+                url:'images/others/12.png',
+                width:323,
+                height:186
+                // url:'images/others/12-add.png',
+                // width:590,
+                // height:587
             },{
                 url:'images/others/13-add.png',
                 width:220,
@@ -2142,10 +2142,10 @@
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
-                        setTimeout(function(){
-                            _this.resultTipsStatus = false
-                            _this.resultWhiteStatus = false
-                        },2300)
+                        // setTimeout(function(){
+                        //     _this.resultTipsStatus = false
+                        //     _this.resultWhiteStatus = false
+                        // },2300)
                     },30)
                 },200)
             }
