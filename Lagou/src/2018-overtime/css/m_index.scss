@@ -439,9 +439,9 @@ canvas,
     height:100%;
 }
 .save {
-    width:rem1080(102);
-    height:rem1080(101);
-    background:url("../images/save.png") no-repeat center top;
+    width:rem1080(100);
+    height:rem1080(100);
+    background:url("../images/save-02.png") no-repeat center top;
     background-size:100% 100%;
     position:absolute;
     right:rem1080(25);
@@ -487,15 +487,21 @@ canvas,
     background-size:100% 100%;
     @include centerb1080(0,0);
     z-index: 100;
-    animation:10s tipsChange linear both 3s;
+    animation:3s tipsChange linear both 2s;
 }
 @keyframes tipsChange {
-    0%,43%,70%,99%,100%  {
+    0%,99%,100%  {
         transform:translate3d(0,rem1080(271),0);
     }
-    3%,40%,73%,96% {
+    3%,96% {
         transform:translate3d(0,0,0);
     }
+    // 0%,43%,70%,99%,100%  {
+    //     transform:translate3d(0,rem1080(271),0);
+    // }
+    // 3%,40%,73%,96% {
+    //     transform:translate3d(0,0,0);
+    // }
 }
 .select-fold {
     width:rem1080(122);
