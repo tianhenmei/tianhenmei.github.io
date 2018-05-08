@@ -422,6 +422,12 @@ html,body {
     .select-folded {
         bottom:rem1080(134+134);
     }
+    .selct-toast {
+        bottom:rem1080(340+134);
+    }
+    .toast--fold {
+        bottom:rem1080(152+134);
+    }
 }
 .select-container {
     width:rem1080(1054);
@@ -449,6 +455,19 @@ canvas,
 }
 .save--fold {
     bottom:rem1080(254);
+}
+.selct-toast {
+    width:rem1080(271);
+    height:rem1080(86);
+    background:url("../images/please-select.png") no-repeat center top;
+    background-size:100% 100%;
+    @include centerb1080(404.5,340);
+    transition:all 0.2s;
+    display:none;
+    opacity:0;
+}
+.toast--fold {
+    bottom:rem1080(152);
 }
 .result-img {
     width:100%;

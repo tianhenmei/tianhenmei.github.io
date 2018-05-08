@@ -73,7 +73,7 @@
             classify:[{
                 name:"场景"
             },{
-                name:"性别"
+                name:"选人"
             },{
                 name:"姿势"
             },{
@@ -1369,9 +1369,19 @@
             },
             changeClassify:function(index){
                 var length = this.people.length
-                this.currentRoleType = length > 0 ? this.people[length - 1].role : 0
-                this.classifyActive = index
-                this.foldStatus = false
+                if(length > 0 || (length == 0 && (index < 2 || index > 5))){
+                    this.currentRoleType = length > 0 ? this.people[length - 1].role : 0
+                    this.classifyActive = index
+                    this.foldStatus = false
+                }else{
+                    var toast = this.$refs["selct-toast"]
+                    toast.style.display = 'block'
+                    toast.style.opacity = 1
+                    setTimeout(function(){
+                        toast.style.display = 'none'
+                        toast.style.opacity = 0
+                    }, 1000);
+                }
             },
             beforeSelectRole:function(index){
                 this.currentSexIndex = index
