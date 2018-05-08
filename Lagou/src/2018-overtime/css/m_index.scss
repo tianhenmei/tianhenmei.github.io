@@ -510,11 +510,14 @@ canvas,
     }
 }
 .result-tips {
-    width:rem1080(1080);
+    width:100%;
     height:rem1080(271);
     background:url("../images/save-tips-03.png") no-repeat center top;
-    background-size:100% 100%;
-    @include centerb1080(0,0);
+    background-size:100%;
+    // background-size:100% 100%;
+    position:absolute;
+    left:0;
+    bottom:0;
     z-index: 100;
     animation:3s tipsChange linear both 2s;
 }

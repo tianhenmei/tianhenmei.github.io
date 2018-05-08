@@ -189,7 +189,7 @@ var Loader = function(){
 					self.currProgress = Math.floor(loaded / imgArray.length * 100)
 					progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
 					// number.innerHTML = (self.currProgress).toFixed(1)+"%";
-					let o = Math.floor(self.currProgress / 100),
+					var o = Math.floor(self.currProgress / 100),
 						s = Math.floor(self.currProgress % 100 / 10),
 						t = self.currProgress % 100 % 10
 					number.innerHTML = '<div class="num'+(o > 0 ? '' : ' hide')+' num'+o+'"></div>'+
