@@ -2,12 +2,12 @@
 var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2017-summary/';
 var imgArray = [
-	"images/loading_bg.jpg",
-	"images/loading-progress-bg.png",
-	"images/loading-content.png",
-	"images/loading-detail.png",
-	"images/loading-num.png",
-	"images/loading-percentage.png",
+	// "images/loading_bg.jpg",
+	// "images/loading-progress-bg.png",
+	// "images/loading-content.png",
+	// "images/loading-detail.png",
+	// "images/loading-num.png",
+	// "images/loading-percentage.png",
 	"images/loading-title-02.png",
 	"images/loading-desk.png",
 	"images/loading-logo.png",

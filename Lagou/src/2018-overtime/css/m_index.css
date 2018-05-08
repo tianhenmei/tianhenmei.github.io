@@ -44,8 +44,7 @@ html, body {
   width: 100%;
   height: 100%;
   position: relative;
-  background: url("../images/loading_bg.jpg") no-repeat center bottom;
-  background-size: 100%;
+  background: #6262b1;
   /*
     .loading__detail {
         width:rem1080(471);
@@ -83,6 +82,14 @@ html, body {
         }
     }
     */ }
+  .loading .loading__bgline {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url("../images/loading-bg-line.png") no-repeat center bottom;
+    background-size: 16rem 37.58519rem; }
   .loading .loading__logo {
     width: 2.23704rem;
     height: 0.84444rem;
