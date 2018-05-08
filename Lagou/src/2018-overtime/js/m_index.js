@@ -2156,7 +2156,7 @@
                         setTimeout(function(){
                         //     _this.resultTipsStatus = false
                             _this.resultWhiteStatus = false
-                        },100)
+                        },2000)
                     },30)
                 },200)
             }
