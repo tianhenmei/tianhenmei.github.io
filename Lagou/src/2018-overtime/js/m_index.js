@@ -2142,10 +2142,10 @@
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
-                        // setTimeout(function(){
+                        setTimeout(function(){
                         //     _this.resultTipsStatus = false
-                        //     _this.resultWhiteStatus = false
-                        // },2300)
+                            _this.resultWhiteStatus = false
+                        },2300)
                     },30)
                 },200)
             }
