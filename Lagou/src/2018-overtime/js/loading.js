@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2017-summary/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-overtime/';
 var imgArray = [
 	// "images/loading_bg.jpg",
 	// "images/loading-progress-bg.png",

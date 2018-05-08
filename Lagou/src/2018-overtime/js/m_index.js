@@ -69,7 +69,7 @@
             currentEmotionIndex:0,
             currentClothesIndex:0,
             currentHairIndex:0,
-            host:"",
+            host:"https://www.lgstatic.com/activity-rsrc/dist/2018-overtime/",
             classify:[{
                 name:"场景"
             },{
