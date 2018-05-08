@@ -1295,7 +1295,7 @@
                 this.ercodeStage.position.set(0,this.h)
                 this.ercodeStage.width = this.w
                 this.ercodeStage.height = this.h
-                var bottomBG = PIXI.Sprite.fromImage(this.host+"images/bottom.jpg");
+                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom.jpg");
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
@@ -1873,7 +1873,8 @@
                 //     this.dragging = false
                 //     _this.currentRotate = null
                 // });
-                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png")
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png"),
+                    close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png")
                 scale.width = 60
                 scale.height = 60
                 scale.position.set(width + distance, -distance - 60)
@@ -1904,12 +1905,15 @@
                                 this.startScale.x
                             );
                         this.parent.parent.scale.set(scale)
+                        this.scale.set(1/scale)
+                        this.position.set(width + distance, -distance-60/scale) // -(distance+60)
+                        close.scale.set(1/scale)
+                        close.position.set(-distance-60/scale,-distance-60/scale)
                     }
                 }).on("touchend", function() {
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png")
                 close.width = 60
                 close.height = 60
                 close.position.set(-distance-60,-distance-60)
@@ -1974,10 +1978,14 @@
                 //     this.dragging = false
                 //     _this.currentRotate = null
                 // });
-                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png")
-                scale.width = 60
-                scale.height = 60
-                scale.position.set(width+space, -60-space)
+                var scale = new PIXI.Sprite.fromImage(this.host+"images/scale-3.png"),
+                    close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png"),
+                    rr = stage.scale.x,
+                    ww = 60//60 / rr
+                console.log(ww)
+                scale.width = ww
+                scale.height = ww
+                scale.position.set(width+space, -ww-space)
                 // scale.position.set(width+space, height+space)
                 scale.interactive = true
                 scale.buttonMode = true
@@ -2005,15 +2013,19 @@
                                 this.startScale.x
                             );
                         this.parent.parent.scale.set(scale)
+                        this.scale.set(1/scale)
+                        this.position.set(width + space, -space-ww/scale) // -(distance+60)
+                        close.scale.set(1/scale)
+                        close.position.set(-space-ww/scale,-space-ww/scale)
+                        // this.parent.close.scale.set(1/scale)
                     }
                 }).on("touchend", function() {
                     this.dragging = false
                     _this.currentScale = null
                 });
-                var close = new PIXI.Sprite.fromImage(this.host+"images/close-2.png")
-                close.width = 60
-                close.height = 60
-                close.position.set(-60-space, -60-space)
+                close.width = ww
+                close.height = ww
+                close.position.set(-ww-space, -ww-space)
                 // close.position.set(width+space, -60-space)
                 close.interactive = true
                 close.buttonMode = true
