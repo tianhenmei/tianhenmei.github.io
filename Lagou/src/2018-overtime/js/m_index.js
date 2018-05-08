@@ -84,9 +84,9 @@
             },{
                 name:"发型"
             },{
-                name:"物品一"
+                name:"物品"
             },{
-                name:"物品二"
+                name:"装饰"
             }],
             sex:[{
                 name:"男",
@@ -2141,15 +2141,15 @@
                 }
                 var _this = this,
                     space = (_this.w - 1014) / 2
+                _this.ercodeStage.visible = true
                 _this.resultWhiteStatus = true
                 _this.canvasStage.scale.set(1014 / _this.w)
                 _this.canvasStage.position.x = space
                 _this.canvasStage.position.y = space
-                _this.ercodeStage.visible = true
                 _this.resultTipsStatus = true
                 setTimeout(function(){
                     setTimeout(function(){
-                        var canvas = document.getElementsByTagName('canvas')[0],
+                        var //canvas = document.getElementsByTagName('canvas')[0],
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
