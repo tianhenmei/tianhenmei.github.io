@@ -18,7 +18,7 @@ var imgArray = [
 	"images/loading-object-05.png",
 	"images/loading-object-06.png",
 	"images/bg.jpg",
-	"images/bottom.jpg?v=2",
+	"images/bottom-02.png",
 	"images/room-01.jpg?v=2",
 	"images/room2.jpg?v=2",
 	"images/room3.jpg?v=2",
