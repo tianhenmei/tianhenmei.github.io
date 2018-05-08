@@ -898,7 +898,7 @@
                 }
             }]],
             room:[{
-                url:'images/room1.jpg?v=2',
+                url:'images/room-01.jpg?v=2',
                 width:1080,
                 height:2178
             },{
@@ -1215,6 +1215,9 @@
             },
             getPx:function(value){
                 return value * (750 / 1080) / (750 / 16) * this.fontSize
+            },
+            getCount: function (num) {
+                return '0000'.slice((num + '').length) + num;
             },
             doAnimation:function(){
                 TWEEN.update();
