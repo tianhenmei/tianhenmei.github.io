@@ -58,6 +58,7 @@
             resultStatus:false,
             resultTipsStatus:false,
             resultWhiteStatus:false,
+            startSetResultStatus:false,
             canvas:null,
             canvasStage:null,
             result:'',
@@ -915,7 +916,7 @@
                 width:1080,
                 height:2016
             }],
-            others:[{
+            others2:[{
                 url:'images/others/01.png',
                 width:338,
                 height:1030
@@ -993,7 +994,7 @@
                 width:562,
                 height:111
             }],
-            others2:[{
+            others:[{
                 url:'images/others/28.png',
                 width:454,
                 height:365
@@ -1315,7 +1316,7 @@
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
-                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode.png");
+                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode-02.png");
                 ercode.width = 121// * (this.w / 1014)  //280
                 ercode.height = 121// * (this.w / 1014)  //280
                 ercode.position.set(this.w - ercode.width - 7 - 33, -ercode.height - 88 - 33);
@@ -2147,16 +2148,18 @@
                 _this.canvasStage.position.x = space
                 _this.canvasStage.position.y = space
                 _this.resultTipsStatus = true
+                _this.startSetResultStatus = true
                 setTimeout(function(){
                     setTimeout(function(){
                         var //canvas = document.getElementsByTagName('canvas')[0],
                             data = _this.canvas.renderer.plugins.extract.image().src
                         _this.result = data
                         _this.resultStatus = true
-                        setTimeout(function(){
-                        //     _this.resultTipsStatus = false
-                            _this.resultWhiteStatus = false
-                        },2000)
+                        _this.resultWhiteStatus = false
+                        // setTimeout(function(){
+                        // //     _this.resultTipsStatus = false
+                            
+                        // },100)
                     },30)
                 },200)
             }
