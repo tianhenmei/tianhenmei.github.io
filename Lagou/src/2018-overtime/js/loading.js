@@ -24,7 +24,7 @@ var imgArray = [
 	"images/room3.jpg?v=2",
 	"images/room4.jpg?v=2",
 	"images/close-2.png",
-	"images/ercode-02.png",
+	"images/ercode-03.png",
 	// "images/fold.png",
 	// "images/unfold.png",
 	// "images/wknee.png",

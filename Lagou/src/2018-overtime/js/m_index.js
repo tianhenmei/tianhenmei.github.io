@@ -1316,7 +1316,7 @@
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
-                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode-02.png");
+                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode-03.png");
                 ercode.width = 121// * (this.w / 1014)  //280
                 ercode.height = 121// * (this.w / 1014)  //280
                 ercode.position.set(this.w - ercode.width - 7 - 33, -ercode.height - 88 - 33);
