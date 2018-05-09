@@ -1312,14 +1312,14 @@
                 this.ercodeStage.position.set(0,this.h)
                 this.ercodeStage.width = this.w
                 this.ercodeStage.height = this.h
-                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom-02.png");
+                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom-03.jpg");
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
-                var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode-03.png");
-                ercode.width = 121// * (this.w / 1014)  //280
-                ercode.height = 121// * (this.w / 1014)  //280
-                ercode.position.set(this.w - ercode.width - 7 - 33, -ercode.height - 88 - 33);
+                // var ercode = new PIXI.Sprite.fromImage(this.host+"images/ercode-03.png");
+                // ercode.width = 121// * (this.w / 1014)  //280
+                // ercode.height = 121// * (this.w / 1014)  //280
+                // ercode.position.set(this.w - ercode.width - 7 - 33, -ercode.height - 88 - 33);
                 var style = new PIXI.TextStyle({
                         lineHeight:29,
                         letterSpacing:5,
@@ -1343,7 +1343,7 @@
                 saying.x = 25+33
                 saying.y = -131-29
                 this.ercodeStage.visible = false
-                this.ercodeStage.addChild(bottomBG,saying,ercode)
+                this.ercodeStage.addChild(bottomBG,saying)//,ercode)
             },
             foldEvent:function(event){
                 this.foldStatus = !this.foldStatus
