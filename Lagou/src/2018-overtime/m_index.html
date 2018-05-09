@@ -83,8 +83,8 @@
             loadingComplete = function(){
                 var btn = document.getElementById('loading__btn')
                 btn.addEventListener('touchstart',function(e){
-                    e.stopPropagation();
-                    e.preventDefault();
+                    // e.stopPropagation();
+                    // e.preventDefault();
                     var appElement = document.getElementById('yh-center');
                     appElement.className = appElement.className.replace(' hide','');
                     document.getElementById('loading').className += ' hide';
