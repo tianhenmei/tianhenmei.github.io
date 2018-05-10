@@ -923,7 +923,7 @@
                 }
             }]],
             room:[{
-                url:'images/room-01.jpg?v=2',
+                url:'images/room1-02.jpg',
                 width:1080,
                 height:2178
             },{
@@ -1170,6 +1170,10 @@
                 url:'images/others/34.png',
                 width:203,
                 height:89
+            },{
+                url:'images/others/54.png',
+                width:404,
+                height:381
             }/*,{
                 url:'images/others/27.png',
                 width:109,

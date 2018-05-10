@@ -20,7 +20,7 @@ var imgArray = [
 	"images/bg.jpg",
 	// "images/bottom-02.png",
 	"images/bottom-04.jpg",
-	"images/room-01.jpg?v=2",
+	"images/room1-02.jpg",
 	"images/room2.jpg?v=2",
 	"images/room3.jpg?v=2",
 	"images/room4.jpg?v=2",
