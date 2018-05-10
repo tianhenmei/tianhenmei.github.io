@@ -82,8 +82,8 @@
             startTime = new Date().getTime(),
             loadingComplete = function(){
                 var btn = document.getElementById('loading__btn')
-                btn.addEventListener('touchstart',function(e){
-                    // e.stopPropagation();
+                btn.addEventListener('click',function(e){
+                    e.stopPropagation();
                     // e.preventDefault();
                     var appElement = document.getElementById('yh-center');
                     appElement.className = appElement.className.replace(' hide','');
