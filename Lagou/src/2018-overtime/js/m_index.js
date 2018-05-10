@@ -690,6 +690,14 @@
                     y:6
                 }
             }],[{
+                url:'images/woman-head-10.png',
+                width:177,
+                height:253,
+                position:{
+                    x:0,
+                    y:0
+                }
+            },{
                 url:'images/woman-head-9.png',
                 width:177,
                 height:253,
@@ -730,7 +738,7 @@
                     y:0
                 }
             },{
-                url:'images/woman-head-6.png',
+                url:'images/woman-head-6-02.png',
                 width:177,
                 height:253,
                 position:{
@@ -891,12 +899,27 @@
                     y:0
                 }
             },{
-                url:'images/woman-hair-08.png',
-                width:153,
-                height:133,
+                // url:'images/woman-hair-08.png',
+                // width:153,
+                // height:133,
+                // position:{
+                //     x:24,
+                //     y:2+47
+                // }
+                url:'images/woman-hair-08-02.png',
+                width:167,
+                height:193,
                 position:{
-                    x:24,
-                    y:2+47
+                    x:18,
+                    y:48
+                }
+            },{
+                url:'images/woman-hair-09.png',
+                width:161,
+                height:226,
+                position:{
+                    x:26,
+                    y:52
                 }
             }]],
             room:[{
@@ -1312,7 +1335,7 @@
                 this.ercodeStage.position.set(0,this.h)
                 this.ercodeStage.width = this.w
                 this.ercodeStage.height = this.h
-                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom-03.jpg");
+                var bottomBG = new PIXI.Sprite.fromImage(this.host+"images/bottom-04.jpg");
                 bottomBG.width = 1014
                 bottomBG.height = 271
                 bottomBG.position.set((this.w - 1014) / 2, -bottomBG.height)//this.h - bottomBG.height);
