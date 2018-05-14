@@ -902,7 +902,7 @@
                     x:32,
                     y:0
                 }
-            }/*,{
+            },{
                 // url:'images/woman-hair-08.png',
                 // width:153,
                 // height:133,
@@ -917,7 +917,7 @@
                     x:18,
                     y:48
                 }
-            }*/,{
+            },{
                 url:'images/woman-hair-09.png',
                 width:161,
                 height:226,
@@ -977,6 +977,10 @@
                 url:'images/others/41.png',
                 width:232,
                 height:219
+            },{
+                url:'images/others/54.png',
+                width:404,
+                height:381
             },{
                 url:'images/others/29-add.png',
                 width:173,
