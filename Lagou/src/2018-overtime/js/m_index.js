@@ -50,11 +50,14 @@
             stageO:null,
             ercodeStage:null,
             classifyActive:0,
+            classifyChild:-1,
             currentRoleType:0,
             currentRotate:null,
             backgroundStage:null,
             fullscreenStatus:false,
             foldStatus:false,
+            toastStatus:false,
+            toastTimer:null,
             resultStatus:false,
             resultTipsStatus:false,
             resultWhiteStatus:false,
@@ -75,19 +78,20 @@
             classify:[{
                 name:"场景"
             },{
-                name:"选人"
-            },{
-                name:"姿势"
-            },{
-                name:"衣服"
-            },{
-                name:"表情"
-            },{
-                name:"发型"
-            },{
-                name:"物品"
+                name:"选人",
+                list:[{
+                    name:"姿势"
+                },{
+                    name:"衣服"
+                },{
+                    name:"表情"
+                },{
+                    name:"发型"
+                }]
             },{
                 name:"装饰"
+            },{
+                name:"办公"
             }],
             sex:[{
                 name:"男",
@@ -633,7 +637,7 @@
                     x:26,
                     y:6
                 }
-            },{
+            }/*,{
                 url:'images/man-head-07.png',
                 width:222,
                 height:266,
@@ -641,7 +645,7 @@
                     x:26,
                     y:6
                 }
-            },{
+            }*/,{
                 url:'images/man-head-03.png',
                 width:222,
                 height:266,
@@ -697,7 +701,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }/*,{
                 url:'images/woman-head-9.png',
                 width:177,
                 height:253,
@@ -705,7 +709,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }*/,{
                 url:'images/woman-head-5.png',
                 width:177,
                 height:253,
@@ -729,7 +733,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }/*,{
                 url:'images/woman-head-1.png',
                 width:177,
                 height:253,
@@ -737,7 +741,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }*/,{
                 url:'images/woman-head-6-02.png',
                 width:177,
                 height:253,
@@ -753,7 +757,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }/*,{
                 url:'images/woman-head-3.png',
                 width:177,
                 height:253,
@@ -761,7 +765,7 @@
                     x:0,
                     y:0
                 }
-            },{
+            }*/,{
                 url:'images/woman-head-4.png',
                 width:177,
                 height:253,
@@ -834,7 +838,7 @@
                     x:14,
                     y:40
                 }
-            },{
+            }/*,{
                 url:'images/man-hair-09.png',
                 width:158,
                 height:157,
@@ -842,7 +846,7 @@
                     x:0,
                     y:42
                 }
-            }],[{
+            }*/],[{
                 url:'images/woman-hair-01.png',
                 width:183,
                 height:166,
@@ -850,7 +854,7 @@
                     x:14,
                     y:12+47
                 }
-            },{
+            }/*,{
                 url:'images/woman-hair-02.png',
                 width:161,
                 height:226,
@@ -858,7 +862,7 @@
                     x:26,
                     y:7+47
                 }
-            },{
+            }*/,{
                 url:'images/woman-hair-03-02.png',
                 width:136,
                 height:131,
@@ -898,7 +902,7 @@
                     x:32,
                     y:0
                 }
-            },{
+            }/*,{
                 // url:'images/woman-hair-08.png',
                 // width:153,
                 // height:133,
@@ -913,7 +917,7 @@
                     x:18,
                     y:48
                 }
-            },{
+            }*/,{
                 url:'images/woman-hair-09.png',
                 width:161,
                 height:226,
@@ -940,10 +944,102 @@
                 height:2016
             }],
             others2:[{
+                url:'images/others/17-add.png',
+                width:306,
+                height:195
+                // url:'images/others/17.png',
+                // width:97,
+                // height:175
+            },{
+                url:'images/others/06.png',
+                width:115,
+                height:98
+            },{
+                url:'images/others/38-add.png',
+                width:280,
+                height:885
+                // url:'images/others/38.png',
+                // width:118,
+                // height:121
+            },{
+                url:'images/others/04.png',
+                width:138,
+                height:281
+            },{
+                url:'images/others/05-add.png',
+                width:146,
+                height:111
+            },{
+                url:'images/others/33.png',
+                width:132,
+                height:104
+            },{
+                url:'images/others/41.png',
+                width:232,
+                height:219
+            },{
+                url:'images/others/29-add.png',
+                width:173,
+                height:205
+            },{
+                url:'images/others/19-add.png',
+                width:144,
+                height:159
+                // url:'images/others/19.png',
+                // width:221,
+                // height:178
+            },{
+                url:'images/others/37.png',
+                width:124,
+                height:264
+            },{
+                url:'images/others/30.png',
+                width:86,
+                height:142
+            },{
+                url:'images/others/39-add.png',
+                width:907,
+                height:666
+                // url:'images/others/39.png',
+                // width:907,
+                // height:666
+            },{
+                url:'images/others/26.png',
+                width:133,
+                height:134
+            },{
+                url:'images/others/25.png',
+                width:242,
+                height:283
+            },{
+                url:'images/others/14.png',
+                width:227,
+                height:168
+            },{
+                url:'images/others/42.png',
+                width:174,
+                height:167
+            },{
+                url:'images/others/44-add.png',
+                width:99,
+                height:151
+            },{
+                url:'images/others/36.png',
+                width:229,
+                height:174
+            },{
+                url:'images/others/46.png',
+                width:250,
+                height:163
+            },{
                 url:'images/others/01.png',
                 width:338,
                 height:1030
             },{
+                url:'images/others/34.png',
+                width:203,
+                height:89
+            }/*,{
                 url:'images/others/02.png',
                 width:213,
                 height:276
@@ -962,11 +1058,11 @@
                 url:'images/others/15.png',
                 width:332,
                 height:341
-            },{  // 猫
+            }*//*,{  // 猫
                 url:'images/others/24.png',
                 width:415,
                 height:325
-            },{  // 天道酬勤
+            }*//*,{  // 天道酬勤
                 url:'images/others/18.png',
                 width:418,
                 height:209
@@ -1004,11 +1100,11 @@
                 url:'images/others/22.png',
                 width:85,
                 height:273
-            },{
+            }*//*,{
                 url:'images/others/32.png',
                 width:275,
                 height:327
-            },{
+            }*//*,{
                 url:'images/others/52-add.png',
                 width:562,
                 height:111
@@ -1016,7 +1112,7 @@
                 url:'images/others/53-add.png',
                 width:562,
                 height:111
-            }],
+            }*/],
             others:[{
                 url:'images/others/28.png',
                 width:454,
@@ -1035,14 +1131,79 @@
                 // url:'images/others/13.png',
                 // width:262,
                 // height:177
-            },{
+            },{  // 甲方夺命call
                 url:'images/others/23-add.png',
                 width:204,
                 height:234
                 // url:'images/others/23.png',
                 // width:187,
                 // height:123
+            },{  // 条幅 我爱加班
+                url:'images/others/50.png',
+                width:909,
+                height:129
+            },{ // 条幅 要么交业绩
+                url:'images/others/51.png',
+                width:909,
+                height:129
+            },{  // 马云头像
+                url:'images/others/48-add.png',
+                width:349,
+                height:276
+                // url:'images/others/48.png',
+                // width:394,
+                // height:329
+            },{  // 代码佛
+                url:'images/others/49-add.png',
+                width:306,
+                height:306
+                // url:'images/others/49.png',
+                // width:281,
+                // height:205
             },{
+                url:'images/others/52-add.png',
+                width:562,
+                height:111
+            },{
+                url:'images/others/53-add.png',
+                width:562,
+                height:111
+            },{
+                url:'images/others/09.png',
+                width:454,
+                height:516
+            },{  // 柯基
+                url:'images/others/31-add.png',
+                width:312,
+                height:263
+                // url:'images/others/31.png',
+                // width:275,
+                // height:327
+            },{  // 沙皮
+                url:'images/others/15.png',
+                width:332,
+                height:341
+            },{
+                url:'images/others/20.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/21.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/22.png',
+                width:85,
+                height:273
+            },{
+                url:'images/others/02.png',
+                width:213,
+                height:276
+            },{  // 天道酬勤
+                url:'images/others/18.png',
+                width:418,
+                height:209
+            }/*,{
                 url:'images/others/17-add.png',
                 width:306,
                 height:195
@@ -1174,7 +1335,7 @@
                 url:'images/others/54.png',
                 width:404,
                 height:381
-            }/*,{
+            }*//*,{
                 url:'images/others/27.png',
                 width:109,
                 height:64
@@ -1396,11 +1557,12 @@
                 // set the interaction data to null
                 this.data = null;
             },
-            changeClassify:function(index){
+            changeClassify:function(index,sindex){
                 var length = this.people.length
-                if(length > 0 || (length == 0 && (index < 2 || index > 5))){
+                if(length > 0 || (length == 0 && sindex == -1)){//(index < 2 || index > 5))){
                     this.currentRoleType = length > 0 ? this.people[length - 1].role : 0
                     this.classifyActive = index
+                    this.classifyChild = sindex
                     this.foldStatus = false
                 }else{
                     var toast = this.$refs["selct-toast"]
@@ -1794,6 +1956,19 @@
                     this.backgroundStage.removeChildren()
                     this.backgroundStage.addChild(background)
                 }
+                var arr = ['在办公室加班','在街边摊加班','在家里加班','在夜店加班'],
+                    toast = this.$refs["toast"]
+
+                toast.innerHTML = arr[index]
+                toast.style.display = 'block'
+                toast.style.opacity = 1
+                this.toastStatus = true
+                clearTimeout(this.toastTimer)
+                this.toastTimer = null
+                this.toastTimer = setTimeout(function(){
+                    toast.style.display = 'none'
+                    toast.style.opacity = 0
+                }, 2000);
             },
             beforeAddOthers:function(index){
                 this.currentOthersIndex = index

@@ -14,9 +14,9 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>我的加班时刻</title>
-    <link rel="prefetch" href="images/loading_bg.jpg" /> 
+    <!-- <link rel="prefetch" href="images/loading_bg.jpg" />  -->
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
-    <link rel="stylesheet" href="css/m_index.css?v=250$version$">
+    <link rel="stylesheet" href="css/m_index.css?v=251$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -135,7 +135,7 @@
         data-lg-tj-no="0001" 
         data-lg-tj-cid="null"></div>
 </div>
-<script type="text/javascript" src="js/loading.js?v=250$version$"></script> 
+<script type="text/javascript" src="js/loading.js?v=251$version$"></script> 
 <div id="app">
     <div class="yh-center hide" id="yh-center">
         <div class="select-content">
@@ -158,7 +158,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item sex" v-show="classifyActive == 1">
+                    <div class="select_item sex" v-show="classifyActive == 1 && classifyChild == -1">
                         <ul class="item__list sex__list">
                             <li class="item__li sex__li"
                                 v-for="(one,index) in sex"
@@ -173,7 +173,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item facing" v-show="classifyActive == 2">
+                    <div class="select_item facing" v-show="classifyActive == 1 && classifyChild == 0">
                         <ul class="item__list facing__list facing__man" v-show="currentRoleType == 0">
                             <li class="item__li facing__li" v-for="(one,index) in facing"
                                 @click.stop.prevent="changeFacing(index)"
@@ -197,7 +197,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item clothes" v-show="classifyActive == 3">
+                    <div class="select_item clothes" v-show="classifyActive == 1 && classifyChild == 1">
                         <ul class="item__list clothes__list clothes__man" v-show="currentRoleType == 0">
                             <li class="item__li clothes__li" 
                                 :class="'clothes__li--man'+clothesIndex"
@@ -225,7 +225,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item motion" v-show="classifyActive == 4">
+                    <div class="select_item motion" v-show="classifyActive == 1 && classifyChild == 2">
                         <ul class="item__list motion__list motion__man" v-show="currentRoleType == 0">
                             <li class="item__li motion__li" v-for="(one,index) in emotion[0]"
                                 @click.stop.prevent="changeMotion(index)"
@@ -249,7 +249,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item hair" v-show="classifyActive == 5">
+                    <div class="select_item hair" v-show="classifyActive == 1 && classifyChild == 3">
                         <ul class="item__list hair__list hair__man" v-show="currentRoleType == 0">
                             <li class="item__li hair__li" v-for="(one,index) in hair[0]"
                                 @click.stop.prevent="changeHair(index)"
@@ -273,7 +273,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item others" v-show="classifyActive == 6">
+                    <div class="select_item others" v-show="classifyActive == 2">
                         <ul class="item__list others__list"
                             @touchend="moveAddOthers">
                             <li class="item__li others__li"
@@ -289,7 +289,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="select_item others others2" v-show="classifyActive == 7">
+                    <div class="select_item others others2" v-show="classifyActive == 3">
                         <ul class="item__list others__list"
                             @touchend="moveAddOthers">
                             <li class="item__li others__li"
@@ -311,12 +311,28 @@
             <div class="select-bar">
                 <ul class="select-bar__list">
                     <li v-for="(one,index) in classify" 
-                        class="select-bar__li" :class="'select-bar__li--'+(one.name.length)+(classifyActive == index ? ' select-bar__li--active' : '')"
-                        @click.stop.prevent="changeClassify(index)">
-                        <div class="li--left">
-                            <div class="icon" :class="'icon--'+index"></div>
+                        class="select-bar__li clearfix" 
+                        :class="'select-bar__li--'+(one.name.length)+' select-bar__li--index'+index+(classifyActive == index ? ' select-bar__li--active' : '')"
+                        @click.stop.prevent="changeClassify(index,-1)">
+                        <div class="li__content">
+                            <div class="li--left">
+                                <div class="icon" :class="'icon--'+index"></div>
+                            </div>
+                            <div class="li--right">{{one.name}}</div>
                         </div>
-                        <div class="li--right">{{one.name}}</div>
+                        <div class="li__list"
+                            v-if="one.list && one.list.length > 0">
+                            <div class="li__list--content clearfix">
+                                <div class="li__one" v-for="(item,i) in one.list"
+                                    :class="(classifyChild == i) ? 'li__one--active': ''"
+                                    @click.stop.prevent="changeClassify(index,i)">
+                                    <div class="li--left">
+                                        <div class="icon" :class="'icon--'+index+'--'+i"></div>
+                                    </div>
+                                    <div class="li--right">{{item.name}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 </ul>
                 <!-- <div class="select-bar__arrow" :style="{'left':getRem(103*classifyActive)+'rem'}"></div> -->
@@ -327,6 +343,7 @@
                 data-lg-tj-no="0002" 
                 data-lg-tj-cid="null"></div>
             <div class="selct-toast" ref="selct-toast" :class="foldStatus ? 'toast--fold' : ''"></div>
+            <div class="toast" ref="toast" :class="foldStatus ? 'all-toast--fold' : ''"></div>
         </div>
     </div>
     <div class="result-img" v-if="resultStatus">
@@ -370,7 +387,7 @@
 </script>
 <script type="text/javascript" src="js/Tween.js"></script>
 <script type="text/javascript" src="js/pixi.min.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=250$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=251$version$"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
 <script type="text/javascript">
