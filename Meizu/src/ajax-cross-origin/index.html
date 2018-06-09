@@ -7,19 +7,46 @@
     <body>
         <script type="text/javascript" src="../common/js/jquery.1.10.1.min.js"></script>
         <script>
+            // $.ajax({
+            //     url:'http://0.0.0.0:9000/test/ajaxCross',
+            //     type:'get',
+            //     // data:{
+            //     //     credentials:true
+            //     // },
+            //     success:function(data){
+            //         console.log(data)
+            //     },
+            //     error:function(error){
+            //         console.log(error)
+            //     }
+            // })
+            /*
             $.ajax({
-                url:'http://0.0.0.0:9000/test/ajaxCross',
-                type:'get',
-                // data:{
-                //     credentials:true
-                // },
-                success:function(data){
-                    console.log(data)
+                type:"GET",
+                url:"http://rtb.flyme.cn/dsp/track?action=CLICK&p=RDFFNDhBMDQ3MjhGQUE3NjI4MDRGRUU3MzA2NTJDMzg4RDBEMEY1MjI4NjEyRTEwMDI1NEE3MjE4ODZGNTA3QjcwMDM0MEYzOTRFQTZBNkNERjYwMDQ3NDA0NUUzODMzREY2RUI3QTYxNjc0MTQ0RTI5QjVFNTNGOUU0NTE0QzhBNzk0RUU5NjBDM0FGRjlFMDJDQ0NEMzc5NzdFRUUyRkQ2OTRBMzAwMzNEOEQ0MDFGMEVERDY5QUUyOEIwNzcxQkE3OUU2MkUxMDNERjdCRUZERjc4NUMxNkVERjU0MzIyOUU1QTk2OTNCRjUwOEMwRUI3Nzc0N0NEOENGNkNFMjA4NTlBMjZGMjRGM0QzMDc2QzhCN0I1NjMxODE3RjUzNUIxMEY3RjRGNTlDREU4MjlDNzVFOUY1QUY1OUM4MTA2NTE2QjRCNUUzNUM1RUEyNjQyQUUyQkE5OTZBMjcwQ0QwRjE0NDE0OENENENENkJFMzIxOTc0ODYzNTA1M0M1RDI4MjQzODA1RTZCRThFMDU4MTEzMzBDN0I5NDQ0QjE3ODQ2NjYyNkU3MEYwMjlEQUYyNThERUJEOEU3Q0MwRDM5MDY3QjM1OTdCMjAzRTVBRkZDRDJBMzMwNjQxOEEwRTlCNjFCM0EyMTE1NDlBRjI5NDc0Q0ZCQUFENzkwNTE5MENENjg2QjJFRDQ0NzRBNUZENzA1NTQwMzlGNTBEQkI2MDI5RTNBODA5NDI4Q0RDMjc3ODU5RkIyQ0IwQjgxRkRFQ0MwREY2Mzg2QkVBNkFBNUY4QUVDNEVBRjJCM0Q3ODNFQzVENDE5NkJFNEFFNEQ5MTRCMzg2MjExQjg1RjJFRkQ4MjUxM0U1RDYyM0FDNjdGQTg4NjczRTYwOTBD&price=&lp=",
+                dataType: "jsonp",
+                success:function(data1,data2){
+                    console.log(data1)
                 },
-                error:function(error){
-                    console.log(error)
+                error: function(xhr, exception){
+                    console.log(xhr.status)
+                    if( xhr.status === 0)
+                        alert('Error : ' + xhr.status + 'You are not connected.');
+                    else if( xhr.status == "201")
+                        alert('Error : ' + xhr.status + '\nServer error.');
+                    else if( xhr.status == "404")
+                        alert('Error : ' + xhr.status + '\nPage note found');
+                    else if( xhr.status == "500")
+                        alert('Internal Server Error [500].');
+                    else if (exception === 'parsererror') 
+                        alert('Error : ' + xhr.status + '\nImpossible to parse result.');
+                    else if (exception === 'timeout')
+                        alert('Error : ' + xhr.status + '\nRequest timeout.');
+                    else
+                        alert('Error .\n' + xhr.responseText);
                 }
-            })
+            });
+            */
             function getCompanyData() {
                 $.ajax({
                     async: false,
@@ -36,15 +63,22 @@
             }
             
             function getJsonpData(src){
-                var script = document.createElement('script')
+                var script = document.createElement('script'),
+                    now = Date.now()
+                script.id = now
                 script.setAttribute("type","text/javascript");
+                script.onload = script.onreadstatechange = function(data){
+                    console.log(this)
+                    console.log(data)
+                }
                 script.src = src
                 document.body.appendChild(script)
             }
             function setJSONPData(data){
                 console.log(data)
             }
-            getJsonpData('http://0.0.0.0:9000/test/ajaxJsonp?callback=setJSONPData')
+            // getJsonpData('http://0.0.0.0:9000/test/ajaxJsonp?callback=setJSONPData')
+            getJsonpData('http://rtb.flyme.cn/dsp/track?action=CLICK&p=RDFFNDhBMDQ3MjhGQUE3NjI4MDRGRUU3MzA2NTJDMzg4RDBEMEY1MjI4NjEyRTEwMDI1NEE3MjE4ODZGNTA3QjcwMDM0MEYzOTRFQTZBNkNERjYwMDQ3NDA0NUUzODMzREY2RUI3QTYxNjc0MTQ0RTI5QjVFNTNGOUU0NTE0QzhBNzk0RUU5NjBDM0FGRjlFMDJDQ0NEMzc5NzdFRUUyRkQ2OTRBMzAwMzNEOEQ0MDFGMEVERDY5QUUyOEIwNzcxQkE3OUU2MkUxMDNERjdCRUZERjc4NUMxNkVERjU0MzIyOUU1QTk2OTNCRjUwOEMwRUI3Nzc0N0NEOENGNkNFMjA4NTlBMjZGMjRGM0QzMDc2QzhCN0I1NjMxODE3RjUzNUIxMEY3RjRGNTlDREU4MjlDNzVFOUY1QUY1OUM4MTA2NTE2QjRCNUUzNUM1RUEyNjQyQUUyQkE5OTZBMjcwQ0QwRjE0NDE0OENENENENkJFMzIxOTc0ODYzNTA1M0M1RDI4MjQzODA1RTZCRThFMDU4MTEzMzBDN0I5NDQ0QjE3ODQ2NjYyNkU3MEYwMjlEQUYyNThERUJEOEU3Q0MwRDM5MDY3QjM1OTdCMjAzRTVBRkZDRDJBMzMwNjQxOEEwRTlCNjFCM0EyMTE1NDlBRjI5NDc0Q0ZCQUFENzkwNTE5MENENjg2QjJFRDQ0NzRBNUZENzA1NTQwMzlGNTBEQkI2MDI5RTNBODA5NDI4Q0RDMjc3ODU5RkIyQ0IwQjgxRkRFQ0MwREY2Mzg2QkVBNkFBNUY4QUVDNEVBRjJCM0Q3ODNFQzVENDE5NkJFNEFFNEQ5MTRCMzg2MjExQjg1RjJFRkQ4MjUxM0U1RDYyM0FDNjdGQTg4NjczRTYwOTBD&price=&lp=&callback=setJSONPData')
 
             var xhr = null
             if(window.XMLHttpRequest){
@@ -58,8 +92,21 @@
                     console.log(JSON.parse(xhr.responseText))
                 }
             }
-            xhr.open('GET','http://0.0.0.0:9000/test/ajaxCross',true)
-            xhr.send()
+            // xhr.open('GET','http://rtb.flyme.cn/dsp/track?action=CLICK&p=RDFFNDhBMDQ3MjhGQUE3NjI4MDRGRUU3MzA2NTJDMzg4RDBEMEY1MjI4NjEyRTEwMDI1NEE3MjE4ODZGNTA3QjcwMDM0MEYzOTRFQTZBNkNERjYwMDQ3NDA0NUUzODMzREY2RUI3QTYxNjc0MTQ0RTI5QjVFNTNGOUU0NTE0QzhBNzk0RUU5NjBDM0FGRjlFMDJDQ0NEMzc5NzdFRUUyRkQ2OTRBMzAwMzNEOEQ0MDFGMEVERDY5QUUyOEIwNzcxQkE3OUU2MkUxMDNERjdCRUZERjc4NUMxNkVERjU0MzIyOUU1QTk2OTNCRjUwOEMwRUI3Nzc0N0NEOENGNkNFMjA4NTlBMjZGMjRGM0QzMDc2QzhCN0I1NjMxODE3RjUzNUIxMEY3RjRGNTlDREU4MjlDNzVFOUY1QUY1OUM4MTA2NTE2QjRCNUUzNUM1RUEyNjQyQUUyQkE5OTZBMjcwQ0QwRjE0NDE0OENENENENkJFMzIxOTc0ODYzNTA1M0M1RDI4MjQzODA1RTZCRThFMDU4MTEzMzBDN0I5NDQ0QjE3ODQ2NjYyNkU3MEYwMjlEQUYyNThERUJEOEU3Q0MwRDM5MDY3QjM1OTdCMjAzRTVBRkZDRDJBMzMwNjQxOEEwRTlCNjFCM0EyMTE1NDlBRjI5NDc0Q0ZCQUFENzkwNTE5MENENjg2QjJFRDQ0NzRBNUZENzA1NTQwMzlGNTBEQkI2MDI5RTNBODA5NDI4Q0RDMjc3ODU5RkIyQ0IwQjgxRkRFQ0MwREY2Mzg2QkVBNkFBNUY4QUVDNEVBRjJCM0Q3ODNFQzVENDE5NkJFNEFFNEQ5MTRCMzg2MjExQjg1RjJFRkQ4MjUxM0U1RDYyM0FDNjdGQTg4NjczRTYwOTBD&price=&lp=',true)
+            // xhr.send()
+            // xhr.open('GET','http://0.0.0.0:9000/test/ajaxCross',true)
+            // xhr.send()
+
+
+
+
+
+
+
+
+
+
+
             // console.log('send end')
             /* xhr.open(method,url,isasync)
              * method: 指定发送请求的方式,不区分大小写,但通常使用大写字母

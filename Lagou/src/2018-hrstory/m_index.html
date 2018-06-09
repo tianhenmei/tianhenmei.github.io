@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+  <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+  <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="stylesheet" href="css/m_index.css?v=$version$">
+  <title>HR招人历险记</title>
+  <script>
+    var lastSize = 16,
+      bodyElement = document.documentElement || document.body,
+      html = document.getElementsByTagName("html")[0],
+      RC = {
+        w: 750,
+        h: 1206
+      },
+      GC = {
+        w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+        h: document.documentElement.clientHeight || window.innerHeight || screen.height
+      },
+      app = getQueryString('lagoufrom'),
+      checkStatus = false,
+      initStatus = false;
+
+    function getQueryString(parm) {
+      var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+
+      if (r != null) return unescape(r[2]);
+      return null;
+    }
+    function setFontSize() {
+      var portrait = false,
+        resize = "orientationchange" in window ? window.orientationchange : window.resize,
+        rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+        currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+        lastHTMLSize = 16;
+
+      try {
+        //横屏： "(orientation: landscape)"
+        //竖屏： "(orientation: portrait)"
+        portrait = window.matchMedia("(orientation: portrait)").matches;
+      } catch (e) { }
+
+      // if(portrait){
+      
+      if(rightSize > currentSize){  // 长屏
+          lastHTMLSize = 16;
+      }else if(rightSize < currentSize){  //宽屏
+          lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+          // if(app == 'ios' || app == 'android'){
+          //     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+          // }
+
+      }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+          lastHTMLSize = lastHTMLSize + 2;
+      }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+          if(app == 'ios' || app == 'android'){
+              lastHTMLSize = lastHTMLSize + 2.5;
+          }
+      }
+       
+      lastSize = lastHTMLSize;
+      html.style.fontSize=GC.w/lastHTMLSize+'px';
+
+      // }else{
+      //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+      //     alert(ff);
+      //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+      // }
+    }
+
+    setFontSize();
+
+  </script>
+
+
+</head>
+
+<body>
+    <!--<div class="music-icon">
+		 <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
+	</div>-->
+   	<div class="loading-page hide">
+		<div class="middle">
+			<div class="progress">
+				<div class="loading" data-anim="base wrapper">
+					<div class="circle" data-anim="base left"></div>
+					<div class="circle" data-anim="base right"></div>
+				</div>
+				<span class="arrow abs"></span>
+			</div>
+			<span class="progress-num">0%</span>
+		</div>
+    	<img src="images/lagou.png?v=$version$" class="lagou" />
+ 	</div>
+   	<div class="wrapper pages" id="app">
+		<div class="page page0" :class="activePage == 0 ? 'active' : ''">
+			<div class="bg"></div>
+			<div class="icon subtitle01"></div>
+			<div class="icon subtitle02"></div>
+			<div class="icon title"></div>
+			<div class="icon logo"></div>
+			<div class="icon line"></div>
+			<div class="layer">
+				<div class="input">
+					<input class="name" v-model="name" placeholder="点击输入你的名字" />
+				</div>
+				<div class="sure" @click.prevent="startDraw">点击学习</div>
+			</div>
+		</div>
+		<div class="page page1" :class="activePage == 1 ? 'active' : ''">
+			<div class="bg"></div>
+			<div class="icon subtitle01"></div>
+			<div class="icon logo"></div>
+			<div class="info">长按图片保存</div>
+			<div class="layer">
+				<canvas class="canvas" ref="canvas"></canvas>
+			</div>
+			<div class="bottom"></div>
+			<div class="icon recruit" @click.prevent="recruitEvent"></div>
+			<div class="icon share" @click.prevent="showShare"></div>
+		</div>
+  	</div>
+ 	<div class="float">
+		<div class="form">
+			<span class="float-close"></span>
+			<input type="text" class="float-txt" />
+			<span class="float-error"></span>
+			<img src="images/float-line.png?v=$version$" class="float-line" />            
+			<img src="images/float-btn.png?v=$version$" class="float-btn" data-lg-tj-id="19zj" data-lg-tj-no="0001" data-lg-tj-cid="idnull" />      
+		</div>
+  	</div> 
+  	<div class="share-float"></div> 
+</body>
+<script src="../common/js/jquery.1.10.1.min.js"></script>
+<script type"text/javascript" src="js/vue2.1.10.js"></script>
+<script src="js/m_index.js?v=$version$"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>
+
+<script type="text/javascript">
+    var g = 0;
+    var loadEnterTimer = null;
+    clearInterval(loadEnterTimer);
+    loadEnterTimer = setInterval(function () {
+      if (g >= 100) {
+        clearInterval(loadEnterTimer);
+        return;
+      }
+      g += 1;
+      $('.progress-num').text();
+      $('.progress-num').text(g + '%');
+    }, 40);
+    
+    window.onload=function(){
+      var sources = [
+        'images/page3-bg.jpg',
+        'images/page3-bar.png',
+        'images/page4-btn.png',
+        'images/ercode.jpg'];
+      var src = '';
+      if(window.location.hash == ''){
+        for(var i = 0; i < 60; i++){
+          if(i<10){
+            src = 'images/tinified/bg_0000'+ i +'.jpg';
+          }else{
+            src = 'images/tinified/bg_000'+ i +'.jpg';
+          }
+          sources.push(src);
+        }
+      }
+      for(var i = 1; i < 19; i++){
+        src = 'images/word2/'+ i +'.png';
+        sources.push(src);
+      }
+      console.log(sources.length)
+      loadImages(sources);
+    };
+    function loadImages(sources, callback){
+      var count = 0,  
+        images ={},  
+        i = 0;   
+        for(i; i < sources.length; i++){  
+          images[i] = new Image();
+          images[i].onload = function(){  
+              if(++count >= sources.length){  
+                  // callback && callback(images);  
+              }  
+          }  
+          images[i].src = sources[i]; 
+        } 
+    }
+    //微信分享
+    var datas1 = {
+      title: "HR的1000种可能，全在这里了",
+      desc: "我们收藏了1000个HR的故事，可能也有你的",
+      imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share2.jpg",
+      activityType: 'HR818_STORY_ACTIVITY_H5',
+      shareUrl: 'https://activity.lagou.com/activity/dist/hrday818-2017/story/m_index.html#p3'
+    };
+    var datas2 = {
+      title: "别的公司都在给HR办大会，那我们不办了",
+      desc: "我们来点不一样的",
+      imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share1.jpg",
+      activityType: 'HR818_STORY_ACTIVITY_H5',
+      shareUrl: 'https://activity.lagou.com/activity/dist/hrday818-2017/story/m_index.html'
+    };
+    if(window.location.hash == '#p3' || /(#p3)/g.test(window.location.hash)){
+      var datas = datas1;
+      document.title = '未知展览馆';
+      if(GC.w > 750){
+        window.location.href = 'https://activity.lagou.com/activity/dist/hrday818-2017/main/index.html';
+      }
+    } else {
+      var datas = datas2;
+      document.title = '818HR节·探索不一样';
+    }
+    share(datas);
+    //app 分享
+    function getShareInfo() {
+      var share = {
+        share_title: datas.title,
+        share_desc: datas.desc,
+        share_url: datas.shareUrl,
+        share_imgUrl: datas.imgUrl
+      };
+      return share;
+    }
+
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script> 
+
+</html>
