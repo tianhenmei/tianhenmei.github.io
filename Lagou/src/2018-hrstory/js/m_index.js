@@ -48,7 +48,7 @@ var app = new Vue({
 
             this.ctx.restore()
             this.ctx.save()
-            var func = 23//Math.ceil(Math.random() * 2)
+            var func = 32//Math.ceil(Math.random() * 2)
             this['writeText'+func]()
             this.ctx.restore()
         },
@@ -1362,20 +1362,188 @@ var app = new Vue({
         },
         writeText23:function(){
             var arr = [103,164,226,288,350],
-                fontSize = 44,
+                fontSize = 35,
                 name = this.name
             // HR小明半夜两点给老板打电话:“领导，你睡了吗? ” 领导:“睡了，怎么了？” 小明怒吼:“老子还在筛简历!” 然后果断挂掉。
             var next = this.nameCenterLightAfter(arr,"HR",name,"半夜两点","给老板打电话:“领导，你睡了吗? ” ",fontSize,0)
             next++
             next = this.nameCenterLightAfter(arr,"领导:“","","睡了","，怎么了？”",fontSize,next)
             next++
-            next = this.nameCenterLightAfter(arr,"",name,"怒吼",":“老子还在筛简历!”” ",fontSize,next)
+            next = this.nameCenterLightAfter(arr,"",name,"怒吼",":“老子还在筛简历!”",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"然后果断","","挂掉","。",fontSize,next)
         },
-        // HR+name+light+after (name 不会换行) 最多3行
-        nameCenterLightAfter:function(arr,start,name,light,after,fontSize,startLine){
+        writeText24:function(){
+            var arr = [103,164,226,288,350],
+                fontSize = 42,
+                name = this.name
+            // 心狠手辣的HR小明看见不合适的简历,就坚决淘汰 有一天,小明添了一下自己的手指,结果被辣哭了  拷贝
+            var next = this.nameCenterLightFirst(arr,"心狠手辣","的HR",name,"看见不合适的简历,就坚决淘汰",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"有一天,",name,"舔了一下自己的手指,结果被","辣哭了",fontSize,next)
+        },
+        writeText25:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // HR小明捡到了阿拉丁神灯 许愿死之前能招到100个员工 之后，小明获得了永生 
+            var next = this.nameCenterLightEnd(arr,"HR",name,"捡到了","阿拉丁神灯",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"许愿死之前能招到","","100个员工","",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"之后，",name,"获得了","永生",fontSize,next)
+        },
+        writeText26:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 46
+            // 小明很羡慕那些资历丰富的HR，擅长约面招人留人 不像自己，除了帅，竟一无是处
+            var next = this.nameCenterLightEnd(arr,name,"很羡慕","那些资历丰富的HR，擅长约面招人留人","",fontSize,0)
+            next++
+            next = this.nameCenterLightTwice(arr,"不像自己，除了","帅","，竟","一无是处",fontSize,next)
+        },
+        writeText27:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // 同事和HR小明打招呼: “吃饭了吗”  HR小明和同事打招呼: “在帮你招了，别催我” 
+            var next = this.nameCenterLightEnd(arr,"同事和HR",name,"打招呼: ","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"“","","吃饭了吗","”",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"HR",name,"和同事打招呼: ","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"“在帮你招了，","","别催我","”",fontSize,next)
+        },
+        writeText28:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 45
+            // 应聘者问HR小明: “今天就你一个人面我啊?” 小明生气的回答道: “半个人我怕把你吓走” 
+            var next = this.nameCenterLightEnd(arr,"应聘者问HR",name,": ","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"“今天就你","","一个人","我啊?”",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,name,"生气的回答道: ","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"“","","半个人","我怕把你吓走”",fontSize,next)
+        },
+        writeText29:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 45
+            // 有人找HR小明问路 小明一巴掌扇过去，说: “不找工作还想找我唠嗑,信不信老子揍你！”
+            var next = this.nameCenterLightEnd(arr,"有人找HR",name,"","问路",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,name,"","一巴掌扇过去，说: ","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"“","","不找工作","还想找我唠嗑,信不信老子揍你！”",fontSize,next)
+        },
+        writeText30:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 42
+            // 面试时，候选人问HR小明:“我诚实正直努力，为什么没人要”小明撕了简历，大吼一声:“不会PS还敢应聘设计师，给老子滚” 
+            var next = this.nameCenterLightAfterMore(
+                    arr,
+                    "面试时，候选人问HR",
+                    name+":“我诚实正直努力，为什么",
+                    "没人要",
+                    "”"+name+"撕了简历，大吼一声:“",
+                    "不会PS",
+                    "还敢应聘设计师，给老子滚”",
+                    fontSize,
+                    0
+                )
+        },
+        writeText31:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 42
+            // HR小明梦见明天上午的面试者都不来了，朋友安慰小明,别担心，梦是反的。这意味着你下午的面试者都不来了 
+            this.nameCenterLightAfterMoreTwice(
+                arr,
+                "HR",
+                name,
+                "梦见",
+                "明天上午的面试者都",
+                "不来",
+                "了，朋友安慰小明,别担心，梦是",
+                "反的",
+                "。这意味着你",
+                "下午",
+                "的面试者都不来了",
+                fontSize,
+                0
+            )
+        },
+        writeText32:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 42
+            // 有一天小明遇到了网络诈骗，小明说：“大哥，你别废话了，咱俩是同行。”对方认真的问的：“你干啥的”小明说：“HR....” 
+            this.nameCenterLightAfterMoreTwice(
+                arr,
+                "HR",
+                name,
+                "梦见",
+                "明天上午的面试者都",
+                "不来",
+                "了，朋友安慰小明,别担心，梦是",
+                "反的",
+                "。这意味着你",
+                "下午",
+                "的面试者都不来了",
+                fontSize,
+                0
+            )
+        },
+        nameCenterLightTwice:function(arr,start,name,light,after,fontSize,startLine){
             var dis = fontSize
             this.ctx.font = fontSize+"px bold"
             this.ctx.lineWidth = 3
+            
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(start,62,arr[startLine])
+            this.ctx.fillText(start,62,arr[startLine])
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+            var sp = this.ctx.measureText(start).width
+            this.ctx.strokeText(name,62+sp,arr[startLine])
+            this.ctx.fillText(name,62+sp,arr[startLine])
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+
+            var nw = this.ctx.measureText(name).width,
+                startPosition = sp + nw,
+                left = 528 - startPosition,
+                next = startLine,
+                i = 0
+            
+            var obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        nameCenterLightCenter:function(arr,start,name,light,after,fontSize,startLine){
+            var dis = fontSize
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
             this.ctx.strokeText(start,62,arr[startLine])
@@ -1392,22 +1560,330 @@ var app = new Vue({
             this.ctx.fillText(after,1000,1000)
 
             var nw = this.ctx.measureText(name).width,
-                start = sp + nw
-                left = 528 - start,
+                startPosition = sp + nw,
+                left = 528 - startPosition,
                 next = startLine,
                 i = 0
             
             this.ctx.strokeStyle = "#28b494"
             this.ctx.fillStyle = "#28b494"
-
-            var obj = this.breakText(arr,light,after,next,start,left)
+            var obj = this.breakText(arr,light,after,next,startPosition,left)
             next = obj.next
-            start = obj.start
+            startPosition = obj.start
             left = obj.left
 
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
-            obj = this.breakText(arr,after,"",next,start,left)
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        nameCenterLightFirst:function(arr,start,name,light,after,fontSize,startLine){
+            var dis = fontSize
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+            this.ctx.strokeText(start,62,arr[startLine])
+            this.ctx.fillText(start,62,arr[startLine])
+
+            var sp = this.ctx.measureText(start).width
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(name,62+sp,arr[startLine])
+            this.ctx.fillText(name,62+sp,arr[startLine])
+
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+
+            var nw = this.ctx.measureText(name).width,
+                startPosition = sp + nw,
+                left = 528 - startPosition,
+                next = startLine,
+                i = 0
+            
+            var obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        nameCenterLightEnd:function(arr,start,name,light,after,fontSize,startLine){
+            var dis = fontSize,
+                obj = null,
+                startPosition = 0,
+                left = 0,
+                next = startLine
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(start,62,arr[next])
+            this.ctx.fillText(start,62,arr[next])
+
+            this.ctx.strokeText(name,1000,1000)
+            this.ctx.fillText(name,1000,1000)
+
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+
+            var sp = this.ctx.measureText(start).width
+            // this.ctx.strokeText(name,62+sp,arr[next])
+            // this.ctx.fillText(name,62+sp,arr[next])
+
+            startPosition = sp
+            left = 528 - startPosition
+            obj = this.breakText(arr,name,light,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            // var nw = this.ctx.measureText(name).width,
+            //     startPosition = sp + nw,
+            //     left = 528 - startPosition,
+            //     next = startLine
+            
+            obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        // HR+name+light+after (name 不会换行) 最多3行
+        nameCenterLightAfter:function(arr,start,name,light,after,fontSize,startLine){
+            var dis = fontSize,
+                sp = 0,
+                nw = 0,
+                startPosition = 0
+                left = 528,
+                next = startLine
+
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(start,62,arr[next])
+            this.ctx.fillText(start,62,arr[next])
+
+            this.ctx.strokeText(name,1000,1000)
+            this.ctx.fillText(name,1000,1000)
+
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+            
+            sp = this.ctx.measureText(start).width
+            // this.ctx.strokeText(name,62+sp,arr[next])
+            // this.ctx.fillText(name,62+sp,arr[next])
+
+            startPosition = sp
+            left = 528 - startPosition
+            var obj = this.breakText(arr,name,light,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            // nw = this.ctx.measureText(name).width
+            // start = sp + nw
+            // left = 528 - start
+            // next = startLine
+            
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        nameCenterLightAfterMore:function(arr,start,name,light,after,light2,last,fontSize,startLine){
+            var dis = fontSize,
+                sp = 0,
+                nw = 0,
+                startPosition = 0
+                left = 528,
+                next = startLine
+
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(start,62,arr[next])
+            this.ctx.fillText(start,62,arr[next])
+
+            this.ctx.strokeText(name,1000,1000)
+            this.ctx.fillText(name,1000,1000)
+
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+            
+            sp = this.ctx.measureText(start).width
+            // this.ctx.strokeText(name,62+sp,arr[next])
+            // this.ctx.fillText(name,62+sp,arr[next])
+
+            startPosition = sp
+            left = 528 - startPosition
+            var obj = this.breakText(arr,name,light,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            // nw = this.ctx.measureText(name).width
+            // start = sp + nw
+            // left = 528 - start
+            // next = startLine
+            
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,after,"",next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light2,last,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,last,"",next,startPosition,left)
+            next = obj.next
+            return next
+        },
+        nameCenterLightAfterMoreTwice:function(arr,start,name,light,after,light2,last,light3,last2,light4,last3,fontSize,startLine){
+            var dis = fontSize,
+                sp = 0,
+                nw = 0,
+                startPosition = 0
+                left = 528,
+                next = startLine
+
+            this.ctx.font = fontSize+"px bold"
+            this.ctx.lineWidth = 3
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(start,62,arr[next])
+            this.ctx.fillText(start,62,arr[next])
+
+            this.ctx.strokeText(name,1000,1000)
+            this.ctx.fillText(name,1000,1000)
+
+            this.ctx.strokeText(light,1000,1000)
+            this.ctx.fillText(light,1000,1000)
+
+            this.ctx.strokeText(after,1000,1000)
+            this.ctx.fillText(after,1000,1000)
+            
+            sp = this.ctx.measureText(start).width
+            // this.ctx.strokeText(name,62+sp,arr[next])
+            // this.ctx.fillText(name,62+sp,arr[next])
+
+            startPosition = sp
+            left = 528 - startPosition
+            var obj = this.breakText(arr,name,light,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            // nw = this.ctx.measureText(name).width
+            // start = sp + nw
+            // left = 528 - start
+            // next = startLine
+            
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light,after,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,after,light2,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light2,last,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,last,light2,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+
+            obj = this.breakText(arr,light3,last2,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,last2,light4,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#28b494"
+            this.ctx.fillStyle = "#28b494"
+            obj = this.breakText(arr,light4,last3,next,startPosition,left)
+            next = obj.next
+            startPosition = obj.start
+            left = obj.left
+
+            this.ctx.strokeStyle = "#0068b7"
+            this.ctx.fillStyle = "#0068b7"
+            obj = this.breakText(arr,last3,"",next,startPosition,left)
             next = obj.next
             return next
         },
