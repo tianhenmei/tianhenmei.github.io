@@ -1,11 +1,39 @@
 var app = new Vue({
     el:"#app",
     data:{
-        activePage:1,
-        name:"小明小明",
+        activePage:0,
+        name:"",
         canvas:null,
         ctx:null,
-        img:null
+        imgCanvas:null,
+        imgCtx:null,
+        img:null,
+        tips:"",
+        shakeClass:"",
+        type:"in",
+        url:"",
+        ani:{
+            in:{
+                bg:"rightIn delay0-5",
+                s1:"centerRightOut delay1-0",
+                s2:"toBottomOut delay1-0",
+                logo:"centerOut delay1-0",
+                dot:"opacityChange delay1-3",
+                title:"zoomIn delay1-0",
+                line:"widthChange delay1-5",
+                layer:"leftIn delay0-5"
+            },
+            out:{
+                bg:"rightIn-out",
+                s1:"centerRightOut-out",
+                s2:"toBottomOut-out",
+                logo:"centerOut-out",
+                dot:"opacityChange-out duration0-2",
+                title:"zoomIn-out",
+                line:"widthChange-out duration0-2",
+                layer:"leftIn-out"
+            }
+        }
     },
     mounted:function(){
         var self = this
@@ -16,8 +44,26 @@ var app = new Vue({
         this.img = new Image()
         this.img.onload = function(){
             self.initCanvas()
+            var name = getQueryString("name"),
+                test = getQueryString("test")
+            if(name){
+                self.activePage = 1
+                self.name = name
+                if(!test){
+                    test = Math.ceil(Math.random() * 45)
+                }
+                self.drawWords(test)
+                self.drawImgContent()
+            }
         }
         this.img.src = "images/ercode.png"
+        this.initImgCanvas()
+        document.addEventListener("touchstart",undoDefault,false)
+        document.addEventListener("touchmove",undoDefault,false)
+        // document.addEventListener("touchend",undoDefault,false)
+        function undoDefault(e){
+            e.preventDefault()
+        }
     },
     methods:{
         initCanvas:function(){
@@ -39,1326 +85,285 @@ var app = new Vue({
 
             this.ctx.drawImage(this.img,485,370)
 
-            this.ctx.font = "30px bold"
-            this.ctx.lineWidth = 1;
-            this.ctx.strokeStyle = '#0068b7'
-            this.ctx.strokeText(this.name+"的招人真相",62,463)
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.fillText(this.name+"的招人真相",62,463)
+            this.ctx.restore()
+        },
+        initImgCanvas:function(){
+            var w = 750,
+                h = 836
+            this.imgCanvas = this.$refs["img-canvas"]
+            this.imgCanvas.width = w
+            this.imgCanvas.height = h
 
-            this.ctx.restore()
-            this.ctx.save()
-            var func = 32//Math.ceil(Math.random() * 2)
-            this['writeText'+func]()
-            this.ctx.restore()
+            this.imgCtx = this.imgCanvas.getContext('2d')
+
+            this.imgCtx.fillStyle = '#f3ead5'
+            this.imgCtx.rect(0,0,w,h)
+            this.imgCtx.fill()
+
+            var bg = this.$refs["img-bg"],
+                en = this.$refs["img-en"],
+                logo = this.$refs["img-logo"]
+            this.imgCtx.drawImage(bg,74,86)
+            this.imgCtx.drawImage(en,49,111)
+            this.imgCtx.drawImage(logo,492,39)
         },
         writeText1:function(){
-            this.ctx.font = "48px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("人家去雍和宫求姻缘",62,127)  // 97
-            this.ctx.fillText("人家去雍和宫求姻缘",62,127)
-
-            this.ctx.strokeText(this.name+"去雍和宫求",62,190)  // 160+30
-            this.ctx.fillText(this.name+"去雍和宫求",62,190)  // 160+30
-
-            var txt = '前端工程师',
-                len = this.name.length
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText(txt.slice(0,6 - len),62+240+48*len,190)  // 160+30
-            this.ctx.fillText(txt.slice(0,6 - len),62+240+48*len,190)  // 160+30
-
-            this.ctx.strokeText(txt.slice(6-len),62,252)  // 222+30
-            this.ctx.fillText(txt.slice(6-len),62,252)  // 222+30
+            var arr = [127,190,252],
+                name = this.name,
+                fontSize = 48
+            // 人家去雍和宫求姻缘 小明小明去雍和宫求前端工程师 
+            var next = this.nameCenterLightEnd(arr,"","人家去雍和宫求姻缘","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"",name+"去雍和宫求","前端工程师","",fontSize,next)
         },
         writeText2:function(){
-            this.ctx.font = "48px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(this.name+"，快回家吧",62,90)  // 60+30
-            this.ctx.fillText(this.name+"，快回家吧",62,90)  // 60+30
-
-            this.ctx.strokeText("就算",62,152)  // 122+30
-            this.ctx.fillText("就算",62,152)  // 122+30
-
-            this.ctx.strokeText("再晚",62+48*4,152)  // 122+30
-            this.ctx.fillText("再晚",62+48*4,152)  // 122+30
-
-            this.ctx.strokeText("不来面试的候选人",62,215)  // 185+30
-            this.ctx.fillText("不来面试的候选人",62,215)  // 185+30
-
-            this.ctx.strokeText("还是",62,276)  // 246+30
-            this.ctx.fillText("还是",62,276)  // 246+30
-
-            this.ctx.strokeText("的",62+48*5,276)  // 246+30
-            this.ctx.fillText("的",62+48*5,276)  // 246+30
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("加班",62+48*2,152)  // 122+30
-            this.ctx.fillText("加班",62+48*2,152)  // 122+30
-
-            this.ctx.strokeText("不会来",62+48*2,276)  // 246+30
-            this.ctx.fillText("不会来",62+48*2,276)  // 246+30
+            var arr = [90,152,215,276],
+                name = this.name,
+                fontSize = 48
+            // 小明，快回家吧 就算加班再晚 不来面试的候选人 还是不会来的  
+            var next = this.nameCenterLightEnd(arr,"",name+"，快回家吧","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","就算","加班","再晚",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","不来面试的候选人","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","还是","不会来","的",fontSize,next)
         },
         writeText3:function(){
-            var dis = 40
-            this.ctx.font = "40px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("作为一个月薪",62,90)
-            this.ctx.fillText("作为一个月薪",62,90)
-
-            var k6 = this.ctx.measureText("6k").width+3
-            this.ctx.strokeText("的HR",62+dis*6+k6,90)
-            this.ctx.fillText("的HR",62+dis*6+k6,90)
-
-            this.ctx.strokeText(this.name+"的工作是",62,152)
-            this.ctx.fillText(this.name+"的工作是",62,152)
-
-            this.ctx.strokeText("每天去劝月薪",62,215)
-            this.ctx.fillText("每天去劝月薪",62,215)
-
-            var k15 = this.ctx.measureText("15k").width+3
-            this.ctx.strokeText("的人",62+dis*6+k15,215)
-            this.ctx.fillText("的人",62+dis*6+k15,215)
-
-            this.ctx.strokeText("不要理会外面月薪",62,276)
-            this.ctx.fillText("不要理会外面月薪",62,276)
-
-            var k20 = this.ctx.measureText("20k").width+3
-            this.ctx.strokeText("的工作",62+dis*8+k20,276)
-            this.ctx.fillText("的工作",62+dis*8+k20,276)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("6k",62+dis*6+1,90)
-            this.ctx.fillText("6k",62+dis*6+1,90)
-
-            this.ctx.strokeText("15k",62+dis*6+1,215)
-            this.ctx.fillText("15k",62+dis*6+1,215)
-
-            this.ctx.strokeText("20k",62+dis*8+1,276)
-            this.ctx.fillText("20k",62+dis*8+1,276)
+            var arr = [90,152,215,276],
+                name = this.name,
+                fontSize = 40
+            // 作为一个月薪6k的HR 小明的工作是 每天去劝月薪15k的人 不要理会外面月薪20k的工作
+            var next = this.nameCenterLightAfter(arr,"","作为一个月薪","6k","的HR",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"",name+"的工作是","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","每天去劝月薪","15k","的人",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","不要理会外面月薪","20k","的工作",fontSize,next)
         },
         writeText4:function(){
-            var len = this.name.length,
-                dis = len <=2 ? 46 : 40
-                
-            this.ctx.font = len <=2 ? "46px bold" : "40px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("一两个候选人夸自己",62,90)
-            this.ctx.fillText("一两个候选人夸自己",62,90)
-
-            this.ctx.strokeText(this.name+"不以为意",62,152)
-            this.ctx.fillText(this.name+"不以为意",62,152)
-            //一两个候选人夸自己帅 小明不以为意 当越来越多人夸他帅时 小明才意识到事态的严重来的候选人越来越不靠谱了  
-            this.ctx.strokeText("当越来越多人夸他",62,215)
-            this.ctx.fillText("当越来越多人夸他",62,215)
-
-            this.ctx.strokeText("时",62+dis*9,215)
-            this.ctx.fillText("时",62+dis*9,215)
-
-            this.ctx.strokeText(this.name+"才意识到事态",62,276)
-            this.ctx.fillText(this.name+"才意识到事态",62,276)
-
-            this.ctx.strokeText("来的候选人越来越",62,346)
-            this.ctx.fillText("来的候选人越来越",62,346)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("帅",62+dis*9,90)
-            this.ctx.fillText("帅",62+dis*9,90)
-
-            this.ctx.strokeText("帅",62+dis*8,215)
-            this.ctx.fillText("帅",62+dis*8,215)
-
-            this.ctx.strokeText("的严重",62+dis*(6+len),276)
-            this.ctx.fillText("的严重",62+dis*(6+len),276)
-
-            this.ctx.strokeText("不靠谱",62+dis*8,346)
-            this.ctx.fillText("不靠谱",62+dis*8,346)
+            var arr = [90,152,215,276,346],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len > 2 ? len > 3 ? len > 4 ? 37 : 40 : 44 : 46
+            // 一两个候选人夸自己帅 小明不以为意 当越来越多人夸他帅时 小明才意识到事态的严重来的候选人越来越不靠谱了  
+            var next = this.nameCenterLightAfter(arr,"","一两个候选人夸自己","帅","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"",name+"不以为意","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","当越来越多人夸他","帅","时",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"",name+"才意识到事态的","严重","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","来的候选人越来越","不靠谱","了",fontSize,next)
         },
         writeText5:function(){
-            var len = this.name.length,
-                dis = len <=2 ? 46 : 40
-                
-            this.ctx.font = len <=2 ? "46px bold" : "40px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("朋友都夸HR小明",62,90)
-            this.ctx.fillText("朋友都夸HR小明",62,90)
-            var HR = this.ctx.measureText("HR").width
-
-            this.ctx.strokeText("可是"+this.name+"觉得没用",62,152)
-            this.ctx.fillText("可是"+this.name+"觉得没用",62,152)
-            //朋友都夸HR小明长得好看 可是小明觉得没用 因为候选人不会因为自己长得好看 就不放他鸽子 
-            this.ctx.strokeText("因为候选人不会因为自己",62,215)
-            this.ctx.fillText("因为候选人不会因为自己",62,215)
-
-            this.ctx.strokeText("就不放他鸽子",62,346)
-            this.ctx.fillText("就不放他鸽子",62,346)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("长得好看",62+dis*6+HR,90)
-            this.ctx.fillText("长得好看",62+dis*6+HR,90)
-
-            this.ctx.strokeText("长得好看",62,276)
-            this.ctx.fillText("长得好看",62,276)
+            var arr = [90,152,215,276,346],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len > 2 ? len > 3 ? len > 4 ? 36 : 39 : 42 : 46
+            // 朋友都夸HR小明长得好看 可是小明觉得没用 因为候选人不会因为自己长得好看 就不放他鸽子 
+            var next = this.nameCenterLightAfter(arr,"","朋友都夸HR"+name,"长得好看","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","可是"+name+"觉得没用","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","因为候选人不会因为自己","长得好看","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","就","不","放他鸽子",fontSize,next)
         },
         writeText6:function(){
-            var len = this.name.length,
-                dis = 48
-                
-            this.ctx.font = "48px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("请用两个字形容HR"+this.name.slice(0,2),62,90)
-            this.ctx.fillText("请用两个字形容HR"+this.name.slice(0,2),62,90)
-            
-            //请用两个字形容HR小明的候选人  在哪？ 
-            this.ctx.strokeText(this.name.slice(2)+"的候选人",62,152)
-            this.ctx.fillText(this.name.slice(2)+"的候选人",62,152)
-
-            this.ctx.font = "60px bold"
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("在哪？ ",62,287)
-            this.ctx.fillText("在哪？ ",62,287)
+            var arr = [90,152,287],
+                name = this.name,
+                fontSize = 48
+            // 请用两个字形容HR小明的候选人  在哪？ 
+            var next = this.nameCenterLightAfter(arr,"","请用两个字形容HR"+name+"的候选人","","",fontSize,0)
+            next++
+            fontSize = 60
+            next = this.nameCenterLightAfter(arr,"","","在哪？ ","",fontSize,next)
         },
         writeText7:function(){
-            var len = this.name.length,
-                dis = 46
-                
-            this.ctx.font = "46px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(this.name+"筛简历的时候",62,90)
-            this.ctx.fillText(this.name+"筛简历的时候",62,90)
-
-            this.ctx.strokeText("首先会留下那些",62,152)
-            this.ctx.fillText("首先会留下那些",62,152)
-            //小明筛简历的时候 首先会留下那些好看的面孔 因为同样是被放鸽子 不好看的人更让人上火 
-
-            this.ctx.strokeText("的面孔",62+dis*9,152)
-            this.ctx.fillText("的面孔",62+dis*9,152)
-
-            this.ctx.strokeText("因为同样是被放鸽子",62,215)
-            this.ctx.fillText("因为同样是被放鸽子",62,215)
-
-            this.ctx.strokeText("的人更让人",62+dis*3,276)
-            this.ctx.fillText("的人更让人",62+dis*3,276)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("好看",62+dis*7,152)
-            this.ctx.fillText("好看",62+dis*7,152)
-
-            this.ctx.strokeText("不好看",62,276)
-            this.ctx.fillText("不好看",62,276)
-
-            this.ctx.strokeText("上火",62+dis*8,276)
-            this.ctx.fillText("上火",62+dis*8,276)
+            var arr = [90,152,215,276,346],
+                name = this.name,
+                fontSize = 44
+            // 小明筛简历的时候 首先会留下那些好看的面孔 因为同样是被放鸽子 不好看的人更让人上火 
+            var next = this.nameCenterLightAfter(arr,"",name+"筛简历的时候","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","首先会留下那些","好看","的面孔",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","因为同样是被放鸽子","","",fontSize,next)
+            next++
+            next = this.nameCenterLightTwice(arr,"","不好看","的人更让人","上火",fontSize,next)
         },
         writeText8:function(){
-            var dis = 48
-                
-            this.ctx.font = "48px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR "+this.name,62,90)
-            this.ctx.fillText("HR "+this.name,62,90)
-
-            this.ctx.strokeText("没有说走就走的旅程",62,152)
-            this.ctx.fillText("没有说走就走的旅程",62,152)
-            //HR 小明  没有说走就走的旅程 只有说胖就胖的体型 
-
-            this.ctx.strokeText("只有",62,215)
-            this.ctx.fillText("只有",62,215)
-
-            this.ctx.strokeText("的体型",62+dis*6,215)
-            this.ctx.fillText("的体型",62+dis*6,215)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            this.ctx.strokeText("说胖就胖",62+dis*2,215)
-            this.ctx.fillText("说胖就胖",62+dis*2,215)
+            var arr = [90,152,215,276,346],
+                name = this.name,
+                fontSize = 48
+            // HR 小明  没有说走就走的旅程 只有说胖就胖的体型 
+            var next = this.nameCenterLightAfter(arr,"HR "+name,"","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"没有说走就走的旅程","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"只有说","","说胖就胖","的体型",fontSize,next)
         },
         writeText9:function(){
-            var len = this.name.length,
-                dis = 46
-
-            this.ctx.font = "46px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("别看HR"+this.name,62,90)
-            this.ctx.fillText("别看HR"+this.name,62,90)
-
-            var nl = this.ctx.measureText(this.name).width
-            if(nl > dis * 2+10){
-                this.ctx.lineWidth = 0
-                this.ctx.clearRect(50,50,this.canvas.width - 100,300);
-                this.ctx.beginPath()
-                this.ctx.fillStyle = "#fefef2"
-                this.ctx.rect(50,50,this.canvas.width - 100,300);
-                this.ctx.fill()
-                this.ctx.closePath()
-                dis = 40
-                this.ctx.lineWidth = 3
-                this.ctx.font = "40px bold"
-                this.ctx.fillStyle = "#0068b7"
-                this.ctx.strokeText("别看HR"+this.name,62,90)
-                this.ctx.fillText("别看HR"+this.name,62,90)
-                nl = this.ctx.measureText(this.name).width
-            }
-            
-            this.ctx.strokeText("因为没有合适的简历",62+dis*3,152)
-            this.ctx.fillText("因为没有合适的简历",62+dis*3,152)
-            //别看HR小明 表面上因为没有合适的简历 而愁眉苦脸 小明背地里也愁眉苦脸 
-            this.ctx.strokeText("而愁眉苦脸",62,215)
-            this.ctx.fillText("而愁眉苦脸",62,215)
-
-            this.ctx.strokeText(this.name,62,276)
-            this.ctx.fillText(this.name,62,276)
-
-            this.ctx.strokeText("也愁眉苦脸",62+dis*3+nl,276)
-            this.ctx.fillText("也愁眉苦脸",62+dis*3+nl,276)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("表面上",62,152)
-            this.ctx.fillText("表面上",62,152)
-
-            this.ctx.strokeText("背地里",62+nl,276)
-            this.ctx.fillText("背地里",62+nl,276)
+            var arr = [90,152,215,276,346],
+                name = this.name,
+                fontSize = 46
+            //  别看HR小明 表面上因为没有合适的简历 而愁眉苦脸 小明背地里也愁眉苦脸 
+            var next = this.nameCenterLightAfter(arr,"别看HR"+name,"","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","","表面上","因为没有合适的简历而愁眉苦脸",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,name,"","背地里","也愁眉苦脸",fontSize,next)
         },
         writeText10:function(){
             var arr = [90,152,215,276,346],
-                next = 2,
-                dis = 44
-                
-            this.ctx.font = "44px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(this.name,62,90)
-            this.ctx.fillText(this.name,62,90)
-            
-            var nw = this.ctx.measureText(this.name).width,
-                total = 12,
-                num = Math.floor((total*dis - nw) / dis),
-                after = "已经不是那个打任何电话都轻声细语的小可爱了"
-
-            this.ctx.strokeText(after.slice(0,num),62+nw,90)
-            this.ctx.fillText(after.slice(0,num),62+nw,90)
-
-            if(after.length - num > total){
-                this.ctx.strokeText(after.slice(num,12),62,152)
-                this.ctx.fillText(after.slice(num,12),62,152)
-
-                this.ctx.strokeText(after.slice(16,num+total),62+dis*(16-num),152)
-                this.ctx.fillText(after.slice(16,num+total),62+dis*(16-num),152)
-                this.ctx.strokeText(after.slice(num+total),62,215)
-                this.ctx.fillText(after.slice(num+total),62,215)
-
-                next = 3
-            }else{
-                this.ctx.strokeText(after.slice(num),62,152)
-                this.ctx.fillText(after.slice(num),62,152)
-            }
-            //小明已经不是那个打任何电话都轻声细语的小可爱了 而是打候选人电话会自觉跪下来的HR 
-            this.ctx.strokeText("而是打候选人电话会自觉",62,arr[next])
-            this.ctx.fillText("而是打候选人电话会自觉",62,arr[next])
-
-            this.ctx.strokeText("的HR",62+dis*2,arr[next+1])
-            this.ctx.fillText("的HR",62+dis*2,arr[next+1])
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            this.ctx.strokeText("轻声细语",62+dis*(12-num),152)
-            this.ctx.fillText("轻声细语",62+dis*(12-num),152)
-
-            this.ctx.strokeText("跪",62+dis*11,arr[next])
-            this.ctx.fillText("跪",62+dis*11,arr[next])
-
-            this.ctx.strokeText("下来",62,arr[next+1])
-            this.ctx.fillText("下来",62,arr[next+1])
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len >= 4 ? 40 : 44
+            //  小明已经不是那个打任何电话都轻声细语的小可爱了 而是打候选人电话会自觉跪下来的HR 
+            var next = this.nameCenterLightAfter(arr,"",name+"已经不是那个打任何电话都","轻声细语","的小可爱了",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","而是打候选人电话会自觉","跪下来","的HR",fontSize,next)
         },
         writeText11:function(){
             var arr = [90,152,215,276,346,406],
-                next = 1,
-                dis = 38
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len == 4 ? 35 : len >=5 ? 33 : 38
             // HR 小明和朋友一起去逛超市 看见一口锅便拿起来背在背上 朋友问他为什么 小明说：喔？我背黑锅都背习惯了
-            this.ctx.font = "38px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR "+this.name,62,90)
-            this.ctx.fillText("HR "+this.name,62,90)
-
-            var nw1 = this.ctx.measureText(this.name).width
-            if(nw1 > dis * 2){
-                this.ctx.lineWidth = 0
-                this.ctx.clearRect(50,50,this.canvas.width - 100,300);
-                this.ctx.beginPath()
-                this.ctx.fillStyle = "#fefef2"
-                this.ctx.rect(50,50,this.canvas.width - 100,300);
-                this.ctx.fill()
-                this.ctx.closePath()
-                dis = 35
-                this.ctx.lineWidth = 3
-                this.ctx.font = "35px bold"
-                this.ctx.fillStyle = "#0068b7"
-                this.ctx.strokeText("HR "+this.name,62,90)
-                this.ctx.fillText("HR "+this.name,62,90)
-            }
-
-            var HR = this.ctx.measureText("HR ").width,
-                nw = this.ctx.measureText(this.name).width,
-                num = Math.floor((528 - nw - HR) / dis),
-                after = "和朋友一起去逛超市"
-
-            this.ctx.strokeText(after.slice(0,num),62+nw+HR,90)
-            this.ctx.fillText(after.slice(0,num),62+nw+HR,90)
-
-            if(after.length - num > 0){
-                this.ctx.strokeText(after.slice(num),62,152)
-                this.ctx.fillText(after.slice(num),62,152)
-
-                next = 2
-            }
-            this.ctx.strokeText("看见一口锅便拿起来背在背上",62,arr[next])
-            this.ctx.fillText("看见一口锅便拿起来背在背上",62,arr[next])
-
-            this.ctx.strokeText("朋友问他为什么",62,arr[next+1])
-            this.ctx.fillText("朋友问他为什么",62,arr[next+1])
-
-            this.ctx.strokeText(this.name+"说：喔？我",62,arr[next+2])
-            this.ctx.fillText(this.name+"说：喔？我",62,arr[next+2])
-
-            var nw2 = this.ctx.measureText(this.name+"说：喔？我").width
-            num = Math.floor((534 - nw2 - dis * 3) / dis)
-            after = "都背习惯了"
-
-            this.ctx.strokeText(after.slice(0,num),62+dis*3+nw2,arr[next+2])
-            this.ctx.fillText(after.slice(0,num),62+dis*3+nw2,arr[next+2])
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,arr[next+3])
-                this.ctx.fillText(after.slice(num),62,arr[next+3])
-            }
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            this.ctx.strokeText("背黑锅",62+nw2,arr[next+2])
-            this.ctx.fillText("背黑锅",62+nw2,arr[next+2])
+            var next = this.nameCenterLightAfter(arr,"","HR "+name+"和朋友一起去逛超市","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","看见一口锅便拿起来背在背上","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","朋友问他为什么","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"",name+"说：喔？我","背黑锅","都背习惯了",fontSize,next)
         },
         writeText12:function(){
             var arr = [90,152,215,276,346,406],
-                next = 2,
-                dis = 44
+                name = this.name,
+                fontSize = 44
             // HR小明下定决定明天要约10个候选人来面试 不然用人部门会说，你看小明，除了腿长、腰细、脸好看,简直一无是处
-            this.ctx.font = "44px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR"+this.name,62,90)
-            this.ctx.fillText("HR"+this.name,62,90)
-
-            var sp = this.ctx.measureText("HR").width,
-                nw = this.ctx.measureText(this.name).width,
-                num = Math.floor((528 - nw - sp) / dis),
-                after = "下定决定明天要约10个候选人来面试"
-
-            this.ctx.strokeText(after.slice(0,num),62+nw+sp,90)
-            this.ctx.fillText(after.slice(0,num),62+nw+sp,90)
-
-            this.ctx.strokeText(after.slice(num),62,152)
-            this.ctx.fillText(after.slice(num),62,152)
-            
-            this.ctx.strokeText("不然用人部门会说，你看",62,215)
-            this.ctx.fillText("不然用人部门会说，你看",62,215)
-
-            sp = this.ctx.measureText("不然用人部门会说，你看").width
-            var temp = 0,
-                i = 0
-            for(i = 0; i < this.name.length; i++){
-                temp = this.ctx.measureText(this.name.slice(0,(i+1))).width
-                if(temp > dis){
-                    break
-                }
-            }
-            this.ctx.strokeText(this.name.slice(0,i),62+sp,215)
-            this.ctx.fillText(this.name.slice(0,i),62+sp,215)
-
-            this.ctx.strokeText(this.name.slice(i),62,276)
-            this.ctx.fillText(this.name.slice(i),62,276)
-
-            sp = this.ctx.measureText(this.name.slice(i)).width
-            this.ctx.strokeText("，除了",62+sp,276)
-            this.ctx.fillText("，除了",62+sp,276)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            var gmid = this.ctx.measureText("，除了").width,
-                gleft = 528 - sp - gmid
-            gafter = "腿长、腰细、脸好看"
-
-            this.ctx.strokeText(gafter,1000,1000)
-            this.ctx.fillText(gafter,1000,1000)
-
-            for(i = 0; i < gafter.length; i++){
-                temp = this.ctx.measureText(gafter.slice(0,(i+1))).width
-                if(temp > gleft){
-                    break
-                }
-            }
-            this.ctx.strokeText(gafter.slice(0,i),62+sp+gmid,276)
-            this.ctx.fillText(gafter.slice(0,i),62+sp+gmid,276)
-
-            this.ctx.strokeText(gafter.slice(i),62,346)
-            this.ctx.fillText(gafter.slice(i),62,346)
-
-            sp = this.ctx.measureText(gafter.slice(i)).width
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("，简直",62+sp,346)
-            this.ctx.fillText("，简直",62+sp,346)
-
-            temp = this.ctx.measureText("，简直").width
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("一无是处",62+sp+temp,346)
-            this.ctx.fillText("一无是处",62+sp+temp,346)
+            var next = this.nameCenterLightAfter(arr,"","HR"+name+"下定决定明天要约10个候选人来面试","","",fontSize,0)
+            next++
+            next = this.nameCenterLightTwice(arr,"不然用人部门会说，你看"+name+"，除了","腿长、腰细、脸好看",",简直","一无是处",fontSize,next)
         },
         writeText13:function(){
             var arr = [90,152,215,276,346,406],
-                next = 2,
-                dis = 42
+                name = this.name,
+                fontSize = 42
             // 现在的人都太花心了:开始喜欢吴宣仪,后来喜欢孟美岐,现在喜欢王菊 像HR小明就一直很专一,只喜欢正在找工作的人
-            this.ctx.font = "42px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("现在的人都太",62,90)
-            this.ctx.fillText("现在的人都太",62,90)
-
-            this.ctx.strokeText("了:开始喜",62+dis*8,90)
-            this.ctx.fillText("了:开始喜",62+dis*8,90)
-
-            this.ctx.strokeText("欢吴宣仪,后来喜欢孟美岐,现",62,152)
-            this.ctx.fillText("欢吴宣仪,后来喜欢孟美岐,现",62,152)
-            
-            this.ctx.strokeText("在喜欢王菊",62,215)
-            this.ctx.fillText("在喜欢王菊",62,215)
-
-            this.ctx.strokeText("像HR",62,276)
-            this.ctx.fillText("像HR",62,276)
-
-            var sp = this.ctx.measureText("像HR").width
-            this.ctx.strokeText(this.name,62+sp,276)
-            this.ctx.fillText(this.name,62+sp,276)
-
-            this.ctx.strokeText("就一直很专一,只喜欢正在",1000,1000)
-            this.ctx.fillText("就一直很专一,只喜欢正在",1000,1000)
-            var nw = this.ctx.measureText(this.name).width,
-                left = 528 - sp - nw,
-                after = "就一直很专一,只喜欢正在"
-                temp = 0,
-                i = 0
-
-            for(i = 0; i < after.length; i++){
-                temp = this.ctx.measureText(after.slice(0,(i+1))).width
-                if(temp > left){
-                    break
-                }
-            }
-            this.ctx.strokeText(after.slice(0,i),62+sp+nw,276)
-            this.ctx.fillText(after.slice(0,i),62+sp+nw,276)
-
-            this.ctx.strokeText(after.slice(i),62,346)
-            this.ctx.fillText(after.slice(i),62,346)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            this.ctx.strokeText("花心",62+dis*6,90)
-            this.ctx.fillText("花心",62+dis*6,90)
-
-            sp = this.ctx.measureText(after.slice(i)).width
-            this.ctx.strokeText("找工作",62+sp,346)
-            this.ctx.fillText("找工作",62+sp,346)
-
-            temp = this.ctx.measureText("找工作").width
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("的人",62+sp+temp,346)
-            this.ctx.fillText("的人",62+sp+temp,346)
+            var next = this.nameCenterLightAfter(arr,"现在的人都太","","花心","了:开始喜欢吴宣仪,后来喜欢孟美岐,现在喜欢王菊",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","像HR"+name+"就一直很专一,只喜欢正在","找工作","的人",fontSize,next)
         },
         writeText14:function(){
             var arr = [90,152,215,276,346,406],
-                next = 2,
-                dis = 42
+                name = this.name,
+                fontSize = 42
             // HR小明在公司从来不敢主动搭话 因为只要他开口 别人一定会问他 什么时候能帮我们招到人 
-            this.ctx.font = "42px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR"+this.name,62,90)
-            this.ctx.fillText("HR"+this.name,62,90)
-
-            var sp = this.ctx.measureText("HR").width,
-                nw = this.ctx.measureText(this.name).width,
-                num = Math.floor((528 - nw - sp) / dis),
-                after = "在公司从来不敢",
-                str1 = "主动搭话"
-
-            this.ctx.strokeText(after.slice(0,num),62+nw+sp,90)
-            this.ctx.fillText(after.slice(0,num),62+nw+sp,90)
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,152)
-                this.ctx.fillText(after.slice(num),62,152)
-
-                sp = this.ctx.measureText(after.slice(num)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62+sp,152)
-                this.ctx.fillText(str1,62+sp,152)
-            }else if(after.length == num){
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62,152)
-                this.ctx.fillText(str1,62,152)
-            }else {
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1.slice(0,num-after.length),62+nw+sp+dis*after.length,90)
-                this.ctx.fillText(str1.slice(0,num-after.length),62+nw+sp+dis*after.length,90)
-                this.ctx.strokeText(str1.slice(num-after.length),62,152)
-                this.ctx.fillText(str1.slice(num-after.length),62,152)
-            }
-            
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("因为只要他开口",62,215)
-            this.ctx.fillText("因为只要他开口",62,215)
-
-            this.ctx.strokeText("别人一定会问他",62,276)
-            this.ctx.fillText("别人一定会问他",62,276)
-
-            this.ctx.strokeText("什么时候能帮我们",62,346)
-            this.ctx.fillText("什么时候能帮我们",62,346)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-
-            this.ctx.strokeText("招到人",62+dis*8,346)
-            this.ctx.fillText("招到人",62+dis*8,346)
+            var next = this.nameCenterLightAfter(arr,"","HR"+name+"在公司从来不敢","主动搭话","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"因为只要他开口","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"别人一定会问他","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"什么时候能帮我们","","招到人","",fontSize,next)
         },
         writeText15:function(){
             var arr = [90,152,215,276,346,406],
-                next = 2,
-                dis = 42
+                name = this.name,
+                fontSize = 42
             // HR小明常常觉得自己运气很好,因为每天工作都能遇到优秀的音乐人 来面试的人，一个个退堂鼓打的可溜了 
-            this.ctx.font = "42px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR"+this.name,62,90)
-            this.ctx.fillText("HR"+this.name,62,90)
-
-            var sp = this.ctx.measureText("HR").width,
-                nw = this.ctx.measureText(this.name).width,
-                num = Math.floor((528 - nw - sp) / dis),
-                after = "常常觉得自己",
-                str1 = "运气",
-                str2 = "很好,因为每天工作都能遇到优秀的",
-                str3 = "音乐人",
-                start = 0,
-                left = 0,
-                temp = 0,
-                i = 0,j = 0
-
-            this.ctx.strokeText(after.slice(0,num),62+nw+sp,90)
-            this.ctx.fillText(after.slice(0,num),62+nw+sp,90)
-
-            this.ctx.strokeText(str2,1000,1000)
-            this.ctx.fillText(str2,1000,1000)
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,152)
-                this.ctx.fillText(after.slice(num),62,152)
-
-                sp = this.ctx.measureText(after.slice(num)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62+sp,152)
-                this.ctx.fillText(str1,62+sp,152)
-                start = this.ctx.measureText(str1).width+sp
-            }else if(after.length == num){
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62,152)
-                this.ctx.fillText(str1,62,152)
-                start = this.ctx.measureText(str1).width
-            }else {
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1.slice(0,num-after.length),62+nw+sp+dis*after.length,90)
-                this.ctx.fillText(str1.slice(0,num-after.length),62+nw+sp+dis*after.length,90)
-
-                if((num-after.length) > str1.length){
-                    this.ctx.strokeStyle = "#0068b7"
-                    this.ctx.fillStyle = "#0068b7"
-
-                    var w1 = this.ctx.measureText(str1).width,
-                        last = (nw+sp+dis*after.length) + w1
-                    left = 528 - last
-                    for(i = 0; i < str2.length; i++){
-                        temp = this.ctx.measureText(str2.slice(0,i+1)).width
-                        if(temp > left){
-                            break
-                        }
-                    }
-                    this.ctx.strokeText(str2.slice(0,i),62+last,90)
-                    this.ctx.fillText(str2.slice(0,i),62+last,90)
-                    start = 0
-                }else{
-                    this.ctx.strokeText(str1.slice(num-after.length),62,152)
-                    this.ctx.fillText(str1.slice(num-after.length),62,152)
-                    start = this.ctx.measureText(str1.slice(num-after.length)).width
-                }
-            }
-            
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            left = 528 - start
-            for(j = i; j < str2.length; j++){
-                temp = this.ctx.measureText(str2.slice(i,j+1)).width
-                if(temp > left){
-                    break
-                }
-            }
-            this.ctx.strokeText(str2.slice(i,j),62+start,152)
-            this.ctx.fillText(str2.slice(i,j),62+start,152)
-            if(str2.length > j){  // 第二行不够，将str2剩下部分写入第三行
-                this.ctx.strokeText(str2.slice(j),62,215)
-                this.ctx.fillText(str2.slice(j),62,215)
-                start = this.ctx.measureText(str2.slice(j)).width
-                i = 0
-            }else if(str2.length == j){
-                start = 0
-                i = 0
-            }else {  // 第二行写不完, 写入str3
-                sp = this.ctx.measureText(str2.slice(i,j)).width
-                left = 528 - start - sp
-                for(i = 0; i < str3.length; i++){
-                    temp = this.ctx.measureText(str3.slice(0,i+1)).width
-                    if(temp > left){
-                        break
-                    }
-                }
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str3.slice(0,i),62,152)
-                this.ctx.fillText(str3.slice(0,i),62,152)
-                start = this.ctx.measureText(str3.slice(0,i)).width
-            }
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText(str3.slice(i),62+start,215)
-            this.ctx.fillText(str3.slice(i),62+start,215)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("来面试的人，一个个",62,276)
-            this.ctx.fillText("来面试的人，一个个",62,276)
-
-            this.ctx.strokeText("打的可溜了",62,346)
-            this.ctx.fillText("打的可溜了",62,346)
-
-            sp = this.ctx.measureText("来面试的人，一个个").width
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("退堂鼓",62+sp,276)
-            this.ctx.fillText("退堂鼓",62+sp,276)
+            var next = this.nameCenterLightTwice(arr,"HR"+name+"常常觉得自己","运气","很好,因为每天工作都能遇到优秀的","音乐人",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"来面试的人，一个个","","退堂鼓","打的可溜了",fontSize,next)
         },
         writeText16:function(){
-            var name = this.name,
-                arr = [90,152,215,276,346,406],
-                next = 2,
-                dis = 42
-            // 面试前，候选人告诉HR小明 自己能力好便宜肯努力 面试后候选人告诉HR小明,不来是因为：离家远工资低干不了 
-            this.ctx.font = "42px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("面试前，候选人告诉HR",62,90)
-            this.ctx.fillText("面试前，候选人告诉HR",62,90)
-
-            this.ctx.strokeText(name,1000,1000)
-            this.ctx.fillText(name,1000,1000)
-
-            var sp = this.ctx.measureText("面试前，候选人告诉HR").width,
-                nw = this.ctx.measureText(name).width,
-                after = "自己",
-                str1 = "能力好便宜肯努力",
-                start = 0,
-                left = 0,
-                temp = 0,
-                i = 0,j = 0
-
-            left = 528 - sp
-            for(i = 0; i < name.length; i++){
-                temp = this.ctx.measureText(name.slice(0,i+1)).width
-                if(temp > left){
-                    break
-                }
-            }
-            this.ctx.strokeText(name.slice(0,i),62+sp,90)
-            this.ctx.fillText(name.slice(0,i),62+sp,90)
-
-            if(name.length > i){  // 名字未完，写入第二行
-                this.ctx.strokeText(name.slice(i),62,152)
-                this.ctx.fillText(name.slice(i),62,152)
-                start = this.ctx.measureText(name.slice(i)).width
-                i = 0
-            }else{  // 第一行不够，加上after
-                left = 528 - sp - nw
-                for(i = 0; i < after.length; i++){
-                    temp = this.ctx.measureText(after.slice(0,i+1)).width
-                    if(temp > left){
-                        break
-                    }
-                }
-                this.ctx.strokeText(after.slice(0,i),62+sp+nw,90)
-                this.ctx.fillText(after.slice(0,i),62+sp+nw,90)
-                start = 0//this.ctx.measureText(after.slice(0,i)).width
-            }
-
-            this.ctx.strokeText(after.slice(i),62+start,152)
-            this.ctx.fillText(after.slice(i),62+start,152)
-
-            sp = this.ctx.measureText(after.slice(i)).width
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText(str1,62+start+sp,152)
-            this.ctx.fillText(str1,62+start+sp,152)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("面试后候选人告诉HR",62,215)
-            this.ctx.fillText("面试后候选人告诉HR",62,215)
-
-            sp = this.ctx.measureText("面试后候选人告诉HR").width
-            after = ",不来是因为：",
-            str1 = "离家远工资低干不了"
-
-            this.ctx.strokeText(after,1000,1000)
-            this.ctx.fillText(after,1000,1000)
-
-            left = 528 - sp
-            for(i = 0; i < name.length; i++){
-                temp = this.ctx.measureText(name.slice(0,i+1)).width
-                if(temp > left){
-                    break
-                }
-            }
-            this.ctx.strokeText(name.slice(0,i),62+sp,215)
-            this.ctx.fillText(name.slice(0,i),62+sp,215)
-
-            if(name.length > i){  // 名字未完，写入第二行
-                this.ctx.strokeText(name.slice(i),62,276)
-                this.ctx.fillText(name.slice(i),62,276)
-                start = this.ctx.measureText(name.slice(i)).width
-                i = 0
-            }else{  // 第一行不够，加上after
-                left = 528 - sp - nw
-                for(i = 0; i < after.length; i++){
-                    temp = this.ctx.measureText(after.slice(0,i+1)).width
-                    if(temp > left){
-                        break
-                    }
-                }
-                this.ctx.strokeText(after.slice(0,i),62+sp+nw,215)
-                this.ctx.fillText(after.slice(0,i),62+sp+nw,215)
-                start = 0
-            }
-
-            this.ctx.strokeText(after.slice(i),62+start,276)
-            this.ctx.fillText(after.slice(i),62+start,276)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            start = start + this.ctx.measureText(after.slice(i)).width
-            left = 528 - start
-            var num = Math.floor(left / dis)
-            this.ctx.strokeText(str1.slice(0,num),62+start,276)
-            this.ctx.fillText(str1.slice(0,num),62+start,276)
-
-            this.ctx.strokeText(str1.slice(num),62,346)
-            this.ctx.fillText(str1.slice(num),62,346)
+            var arr = [90,152,215,276,346,406],
+                name = this.name,
+                fontSize = 42
+            // 面试前，候选人告诉HR小明 自己能力好便宜肯努力 面试后候选人告诉HR小明,不来是因为：离家远工资低 
+            var next = this.nameCenterLightAfter(arr,"","面试前，候选人告诉HR"+name+"自己","能力好便宜肯努力","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","面试后候选人告诉HR"+name+",不来是因为：","离家远工资低干不了","",fontSize,next)
         },
         writeText17:function(){
-            var dis = 48
-            //锄禾日当午，不如招聘苦 对着编制图，一哭一下午 哭了一下午，编制还在补 编制刚补完，项目又重组 
-            this.ctx.font = "48px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("锄禾日当午，不如",62,90)
-            this.ctx.fillText("锄禾日当午，不如",62,90)
-            var sp = this.ctx.measureText("锄禾日当午，不如").width
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("招聘苦",62+sp,90)
-            this.ctx.fillText("招聘苦",62+sp,90)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("对着编制图，一",62,152)
-            this.ctx.fillText("对着编制图，一",62,152)
-            sp = this.ctx.measureText("对着编制图，一").width
-            this.ctx.strokeText("一下午",62+sp+dis,152)
-            this.ctx.fillText("一下午",62+sp+dis,152)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("哭",62+sp,152)
-            this.ctx.fillText("哭",62+sp,152)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("哭了一下午，编制还在",62,215)
-            this.ctx.fillText("哭了一下午，编制还在",62,215)
-            sp = this.ctx.measureText("哭了一下午，编制还在").width
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("补",62+sp,215)
-            this.ctx.fillText("补",62+sp,215)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("编制刚补完，项目又",62,276)
-            this.ctx.fillText("编制刚补完，项目又",62,276)
-            sp = this.ctx.measureText("编制刚补完，项目又").width
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("重组",62+sp,276)
-            this.ctx.fillText("重组",62+sp,276)
+            var arr = [90,152,215,276,346,406],
+                name = this.name,
+                fontSize = 48
+            // 锄禾日当午，不如招聘苦 对着编制图，一哭一下午 哭了一下午，编制还在补 编制刚补完，项目又重组 
+            var next = this.nameCenterLightAfter(arr,"","锄禾日当午，不如","招聘苦","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","对着编制图，一","哭","一下午",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","哭了一下午，编制还在","补","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","编制刚补完，项目又","重组","",fontSize,next)
         },
         writeText18:function(){
-            var name = this.name,
-                dis = 56
-            //春天小明把候选人种到了地里 到了秋天 他就把这茬忘了 
-            this.ctx.font = "56px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("春天",62,90)
-            this.ctx.fillText("春天",62,90)
-
-            this.ctx.strokeText(name,62+dis*2,90)
-            this.ctx.fillText(name,62+dis*2,90)
-
-            var nw = this.ctx.measureText(name).width,
-                start = dis * 2 + nw
-                left = 528 - start,
-                num = Math.floor(left / dis),
-                after = "把候选人",
-                str1 = "种到了"
-
-            this.ctx.strokeText(after.slice(0,num),62+start,90)
-            this.ctx.fillText(after.slice(0,num),62+start,90)
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,173)
-                this.ctx.fillText(after.slice(num),62,173)
-                start = this.ctx.measureText(after.slice(num)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62+start,173)
-                this.ctx.fillText(str1,62+start,173)
-                start = start + this.ctx.measureText(str1).width
-            }else if(after.length == num){
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62,173)
-                this.ctx.fillText(str1,62,173)
-                start = this.ctx.measureText(str1).width
-            }else {
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1.slice(0,after.length - num),62+start+dis*after.length,90)
-                this.ctx.fillText(str1.slice(0,after.length - num),62+start+dis*after.length,90)
-                this.ctx.strokeText(str1.slice(after.length - num),62,173)
-                this.ctx.fillText(str1.slice(after.length - num),62,173)
-                start = this.ctx.measureText(str1.slice(after.length - num)).width
-            }
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("地里",62+start,173)
-            this.ctx.fillText("地里",62+start,173)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("到了秋天",62,247)
-            this.ctx.fillText("到了秋天",62,247)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("他就把这茬",62,319)
-            this.ctx.fillText("他就把这茬",62,319)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("忘了",62+dis*5,319)
-            this.ctx.fillText("忘了",62+dis*5,319)
+            var arr = [90,173,247,319],
+                name = this.name,
+                fontSize = 56
+            // 春天小明把候选人种到了地里 到了秋天 他就把这茬忘了 
+            var next = this.nameCenterLightAfter(arr,"","春天"+name+"把候选人","种到了","地里",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"到了秋天","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"他就把这茬忘了","","","",fontSize,next)
         },
         writeText19:function(){
             var arr = [103,164,226,288,350],
                 name = this.name,
-                dis = 34
-            //HR小明听说有朋友最近想要找工作 赶紧拿了两盒中华前去讨好 结果朋友很生气，将牙膏退还给了他 还把他拉黑了 
-            this.ctx.font = "34px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR",62,103)
-            this.ctx.fillText("HR",62,103)
-
-            var sp = this.ctx.measureText("HR").width
-
-            this.ctx.strokeText(name,62+sp,103)
-            this.ctx.fillText(name,62+sp,103)
-
-            var nw = this.ctx.measureText(name).width,
-                start = sp + nw
-                left = 528 - start,
-                num = Math.floor(left / dis),
-                after = "听说有朋友最近想要",
-                str1 = "找工作",
-                next = 1
-
-            this.ctx.strokeText(after.slice(0,num),62+start,103)
-            this.ctx.fillText(after.slice(0,num),62+start,103)
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,164)
-                this.ctx.fillText(after.slice(num),62,164)
-                start = this.ctx.measureText(after.slice(num)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62+start,164)
-                this.ctx.fillText(str1,62+start,164)
-                start = start + this.ctx.measureText(str1).width
-                next = 2
-            }else if(after.length == num){
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62,164)
-                this.ctx.fillText(str1,62,164)
-                start = this.ctx.measureText(str1).width
-                next = 2
-            }else {
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1.slice(0,num - after.length),62+start+dis*after.length,103)
-                this.ctx.fillText(str1.slice(0,num - after.length),62+start+dis*after.length,103)
-                
-                this.ctx.strokeText(str1.slice(num - after.length),62,164)
-                this.ctx.fillText(str1.slice(num - after.length),62,164)
-                start = this.ctx.measureText(str1.slice(num - after.length)).width
-                next = 2
-            }
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("赶紧拿了两盒中华前去讨好",62,arr[next])
-            this.ctx.fillText("赶紧拿了两盒中华前去讨好",62,arr[next])
-
-            this.ctx.strokeText("前去讨好",62+dis*8,arr[next])
-            this.ctx.fillText("前去讨好",62+dis*8,arr[next])
-
-            this.ctx.strokeText("结果朋友很生气，将牙膏退还给了他",62,arr[next+1])
-            this.ctx.fillText("结果朋友很生气，将牙膏退还给了他",62,arr[next+1])
-
-            this.ctx.strokeText("还把他拉黑了",62,arr[next+2])
-            this.ctx.fillText("还把他拉黑了",62,arr[next+2])
-
-            this.ctx.strokeText("了",62+dis*5,arr[next+2])
-            this.ctx.fillText("了",62+dis*5,arr[next+2])
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("中华",62+dis*6,arr[next])
-            this.ctx.fillText("中华",62+dis*6,arr[next])
-
-            this.ctx.strokeText("拉黑",62+dis*3,arr[next+2])
-            this.ctx.fillText("拉黑",62+dis*3,arr[next+2])
+                fontSize = 34
+            // HR小明听说有朋友最近想要找工作 赶紧拿了两盒中华前去讨好 结果朋友很生气，将牙膏退还给了他 还把他拉黑了 
+            var next = this.nameCenterLightAfter(arr,"","HR"+name+"听说有朋友最近想要","找工作","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"赶紧拿了两盒","","中华","前去讨好",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"结果朋友很生气，将牙膏退还给了他","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"还把他","","拉黑","了",fontSize,next)
         },
         writeText20:function(){
             var arr = [103,164,226,288,350],
                 name = this.name,
-                dis = 43
-            //朋友让HR小明帮忙介绍男朋友 小明二话不说 朝对方扔去了一千份简历
-            this.ctx.font = "43px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("朋友让HR",62,103)
-            this.ctx.fillText("朋友让HR",62,103)
-
-            var sp = this.ctx.measureText("朋友让HR").width
-
-            this.ctx.strokeText(name,62+sp,103)
-            this.ctx.fillText(name,62+sp,103)
-
-            var nw = this.ctx.measureText(name).width,
-                start = sp + nw
-                left = 536 - start,
-                num = Math.floor(left / dis),
-                after = "帮忙介绍",
-                str1 = "男朋友",
-                next = 1
-
-            this.ctx.strokeText(after.slice(0,num),62+start,103)
-            this.ctx.fillText(after.slice(0,num),62+start,103)
-
-            if(after.length > num){
-                this.ctx.strokeText(after.slice(num),62,164)
-                this.ctx.fillText(after.slice(num),62,164)
-                start = this.ctx.measureText(after.slice(num)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62+start,164)
-                this.ctx.fillText(str1,62+start,164)
-                start = start + this.ctx.measureText(str1).width
-                next = 2
-            }else if(after.length == num){
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1,62,164)
-                this.ctx.fillText(str1,62,164)
-                start = this.ctx.measureText(str1).width
-                next = 2
-            }else {
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(str1.slice(0,num - after.length),62+start+dis*after.length,103)
-                this.ctx.fillText(str1.slice(0,num - after.length),62+start+dis*after.length,103)
-                
-                if((num - after.length) < str1.length){
-                    this.ctx.strokeText(str1.slice(num - after.length),62,164)
-                    this.ctx.fillText(str1.slice(num - after.length),62,164)
-                    start = this.ctx.measureText(str1.slice(num - after.length)).width
-                    next = 2
-                }
-            }
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(name+"二话不说",62,arr[next])
-            this.ctx.fillText(name+"二话不说",62,arr[next])
-
-            this.ctx.strokeText("朝对方扔去了",62,arr[next+1])
-            this.ctx.fillText("朝对方扔去了",62,arr[next+1])
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("一千份简历",62+dis*6,arr[next+1])
-            this.ctx.fillText("一千份简历",62+dis*6,arr[next+1])
+                fontSize = 42
+            // 朋友让HR小明帮忙介绍男朋友 小明二话不说 朝对方扔去了一千份简历
+            var next = this.nameCenterLightAfter(arr,"","朋友让HR"+name+"帮忙介绍","男朋友","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,name+"二话不说","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","朝对方扔去了","一千份简历","",fontSize,next)
         },
         writeText21:function(){
             var arr = [103,164,226,288,350],
                 name = this.name,
-                dis = 43
-            //HR小明每天拼命筛简历打电话约面试 就是为了向老板证明 在招人这件事上 自己比星座靠谱 
-            this.ctx.font = "43px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR",62,103)
-            this.ctx.fillText("HR",62,103)
-
-            var sp = this.ctx.measureText("HR").width
-
-            this.ctx.strokeText(name,62+sp,103)
-            this.ctx.fillText(name,62+sp,103)
-
-            var nw = this.ctx.measureText(name).width,
-                start = sp + nw
-                left = 536 - start,
-                num = Math.floor(left / dis),
-                after = "每天",
-                str1 = "拼命",
-                str2 = "筛简历打电话约面试"
-                next = 1
-
-            this.ctx.strokeText(after,62+start,103)
-            this.ctx.fillText(after,62+start,103)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText(str1,62+start+dis*2,103)
-            this.ctx.fillText(str1,62+start+dis*2,103)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            start = start + dis * 4
-            left = 536 - start
-            num = Math.floor(left / dis)
-
-            this.ctx.strokeText(str2.slice(0,num),62+start,103)
-            this.ctx.fillText(str2.slice(0,num),62+start,103)
-            if(str2.length > num){
-                this.ctx.strokeText(str2.slice(num),62,164)
-                this.ctx.fillText(str2.slice(num),62,164)
-                next = 2
-            }else{
-                next = 1
-            }
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("就是为了向老板",62,arr[next])
-            this.ctx.fillText("就是为了向老板",62,arr[next])
-
-            this.ctx.strokeText("在招人这件事上",62,arr[next+1])
-            this.ctx.fillText("在招人这件事上",62,arr[next+1])
-
-            this.ctx.strokeText("自己比星座",62,arr[next+2])
-            this.ctx.fillText("自己比星座",62,arr[next+2])
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("证明",62+dis*7,arr[next])
-            this.ctx.fillText("证明",62+dis*7,arr[next])
-
-            this.ctx.strokeText("靠谱",62+dis*5,arr[next+2])
-            this.ctx.fillText("靠谱",62+dis*5,arr[next+2])
+                fontSize = 42
+            // HR小明每天拼命筛简历打电话约面试 就是为了向老板证明 在招人这件事上 自己比星座靠谱 
+            var next = this.nameCenterLightAfter(arr,"HR"+name+"每天","","拼命","筛简历打电话约面试",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"就是为了向老板证明","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"在招人这件事上","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"自己比星座","","靠谱","",fontSize,next)
         },
         writeText22:function(){
             var arr = [103,164,226,288,350],
                 name = this.name,
-                dis = 44
+                len = this.getNameLength(name),
+                fontSize = len < 4 ? 42 : len == 4 ? 39 : 36
             // 父母从来不催HR小明结婚 他们只会问 给你表侄子介绍个工作呗 要钱多事少离家近的好伐？
-            this.ctx.font = "44px bold"
-            this.ctx.lineWidth = 3
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-
-            this.ctx.strokeText("父母从来不",62,103)
-            this.ctx.fillText("父母从来不",62,103)
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("催",62+dis*5,103)
-            this.ctx.fillText("催",62+dis*5,103)
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText("HR",62+dis*6,103)
-            this.ctx.fillText("HR",62+dis*6,103)
-
-            this.ctx.strokeText(name,1000,1000)
-            this.ctx.fillText(name,1000,1000)
-            var sp = this.ctx.measureText("HR").width
-                nw = this.ctx.measureText(name).width,
-                start = sp + dis * 6,
-                left = 536 - start,
-                next = 1
-                i = 0
-            for(i = 0; i < name.length; i++){
-                temp = this.ctx.measureText(name.slice(0,i+1)).width
-                if(temp > left){
-                    break
-                }
-            }
-
-            this.ctx.strokeText(name.slice(0,i),62+start,103)
-            this.ctx.fillText(name.slice(0,i),62+start,103)
-
-            left = 536 - start - this.ctx.measureText(name.slice(0,i)).width
-            var after = "结婚",
-                str1 = "他们只会问",
-                str2 = "给你表侄子介绍个工作呗"
-
-            if(i < name.length){
-                this.ctx.strokeText(name.slice(i),62,164)
-                this.ctx.fillText(name.slice(i),62,164)
-
-                sp = this.ctx.measureText(name.slice(i)).width
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(after,62+sp,164)
-                this.ctx.fillText(after,62+sp,164)
-                next = 2
-            // }else if(i == name.length){
-            //     this.ctx.strokeStyle = "#28b494"
-            //     this.ctx.fillStyle = "#28b494"
-            //     this.ctx.strokeText(after,62,164)
-            //     this.ctx.fillText(after,62,164)
-            //     next = 2
-            }else{
-                start = start + this.ctx.measureText(name.slice(0,i)).width
-                for(i = 0; i < after.length; i++){
-                    temp = this.ctx.measureText(after.slice(0,i+1)).width
-                    if(temp > left){
-                        break
-                    }
-                }
-                this.ctx.strokeStyle = "#28b494"
-                this.ctx.fillStyle = "#28b494"
-                this.ctx.strokeText(after.slice(0,i),62+start,103)
-                this.ctx.fillText(after.slice(0,i),62+start,103)
-
-                if(i < after.length){
-                    this.ctx.strokeText(after.slice(i),62,164)
-                    this.ctx.fillText(after.slice(i),62,164)
-                    next = 2
-                }
-            }
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(str1,62,arr[next])
-            this.ctx.fillText(str1,62,arr[next])
-
-            this.ctx.strokeText(str2,62,arr[next+1])
-            this.ctx.fillText(str2,62,arr[next+1])
-
-            this.ctx.strokeText("要钱多事少离家近的好伐？",62,arr[next+2])
-            this.ctx.fillText("要钱多事少离家近的好伐？",62,arr[next+2])
-
-            this.ctx.strokeText("的好伐？",62+dis*8,arr[next+2])
-            this.ctx.fillText("的好伐？",62+dis*8,arr[next+2])
-
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            this.ctx.strokeText("钱多事少离家近",62+dis,arr[next+2])
-            this.ctx.fillText("钱多事少离家近",62+dis,arr[next+2])
+            var next = this.nameCenterLightTwice(arr,"父母从来不","催","HR"+name,"结婚",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"他们只会问","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"给你表侄子介绍个工作呗","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"要","","钱多事少离家近","的好伐？",fontSize,next)
         },
         writeText23:function(){
             var arr = [103,164,226,288,350],
@@ -1484,35 +489,223 @@ var app = new Vue({
             // 有一天小明遇到了网络诈骗，小明说：“大哥，你别废话了，咱俩是同行。”对方认真的问的：“你干啥的”小明说：“HR....” 
             this.nameCenterLightAfterMoreTwice(
                 arr,
+                "有一天",
+                name+"遇到了",
+                "网络诈骗",
+                "，"+name+"说：“大哥，你别废话了，咱俩是",
+                "同行",
+                "。”对方认真的问的：“你干啥的”"+name+"说：“",
                 "HR",
-                name,
-                "梦见",
-                "明天上午的面试者都",
-                "不来",
-                "了，朋友安慰小明,别担心，梦是",
-                "反的",
-                "。这意味着你",
-                "下午",
-                "的面试者都不来了",
+                "....”",
+                "",
+                "",
                 fontSize,
                 0
             )
         },
+        writeText33:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 38
+            // 做了HR以后 小明短短一年就出书了 书名叫 《候选人爽约的1000个借口》 
+            var next = this.nameCenterLightEnd(arr,"做了HR以后","","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,name+"短短一年就: ","","出书","了",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"书名叫","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"《候选人爽约的1000个","","借口","》",fontSize,next)
+        },
+        writeText34:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len > 4 ? 42 : 46
+            // 妈： 小明，你一个做HR的 怎么还给自己招不到对象 
+            var next = this.nameCenterLightEnd(arr,"妈：","","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,name,"，你一个做HR的","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"怎么还给自己招不到","","对象","",fontSize,next)
+        },
+        writeText35:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // 小明说 我从大学毕业就做了HR,从一无所有发展到身无分文,再从身无分文发展到负债累累 这就是我,不一样的烟火 
+            var next = this.nameCenterLightEnd(arr,name+"说","","","",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(
+                arr,
+                "我从大学毕业",
+                "就做了HR,从一无所有发展到身无分文,",
+                "再从身无分文发展到负债累累",
+                "",
+                fontSize,
+                next
+            )
+            next++
+            next = this.nameCenterLightEnd(arr,"这就是我,","","","不一样的烟火",fontSize,next)
+        },
+        writeText36:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len <= 2 ? 44 : len <= 3 ? 40 : len <= 4 ? 38 : 36
+            // HR小明每次半夜发朋友圈不是为了骗同情 而是为了让老板看到 在招人这件事上，他真的在努力
+            var next = this.nameCenterLightEnd(
+                arr,
+                "HR",
+                name,
+                "每次半夜发",
+                "朋友圈",
+                fontSize,
+                0
+            )
+            next++
+            next = this.nameCenterLightEnd(arr,"不是为了骗同情","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","而是为了让老板看到","","",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","在招人这件事上，他真的在","","努力",fontSize,next)
+        },
+        writeText37:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 48
+            // 在HR小明眼里 生活不止眼前的苟且 还有对面候选人的狂野 
+            var next = this.nameCenterLightEnd(arr,"在HR",name,"眼里","",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"","生活不止眼前的","","苟且",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","还有对面候选人的","","狂野 ",fontSize,next)
+        },
+        writeText38:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 50
+            // 每封简历小明平均只看1分钟 其中发呆时长 50秒 
+            var next = this.nameCenterLightEnd(arr,"每封简历",name,"平均只看","1分钟",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"","其中发呆时长","","",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","","","50秒",fontSize,next)
+        },
+        writeText39:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // “小明，什么时候才能招到人啊” “你们到底有完没完,他都进精神病院了，你们还不放过他” 小明身后的护士骂道。 
+            var next = this.nameCenterLightEnd(arr,"“"+name,"","，什么时候才能招到人啊”","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"","“你们到底有完没完,他都进","精神病院","了，你们还不放过他”",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"",name,"身后的护士骂道。","",fontSize,next)
+        },
+        writeText40:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // 看着不断下降的入职率 HR小明叹了口气说： 幸好我的体重和发际线 还在不断上升 
+            var next = this.nameCenterLightEnd(arr,"","看着不断下降的","","入职率",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"HR",name,"叹了口气说：","",fontSize,next)
+            next++
+            next = this.nameCenterLightTwice(arr,"幸好我的","体重","和","发际线",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","","还在不断","上升",fontSize,next)
+        },
+        writeText41:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len <= 2 ? 40 : len == 4 ? 34 : len >= 5 ? 32 : 36
+            // 小明:钱多活少离家近是吗？ 你怎么知道？ 小明：来，南墙我都准备好了 你们这些人不撞两下就难受
+            var next = this.nameCenterLightAfter(arr,name+":","","钱多活少离家近","是吗？",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"你怎么知道？","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,name+"：来，","","南墙","我都准备好了",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","","你们这些人不撞两下就难受","",fontSize,next)
+        },
+        writeText42:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // 很多人的愿望一年一变 小明的愿望始终如一 他希望 每天都能收到很多的简历 
+            var next = this.nameCenterLightAfter(arr,"","很多人的愿望","一年一变","",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,name,"的愿望","","始终如一",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"他希望","","","",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","","每天都能收到很多的简历","",fontSize,next)
+        },
+        writeText43:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 42
+            // 小明经常感叹 早知道做HR要经常被放鸽子 我当初做鸽子的时候 就不那么努力修炼了 
+            var next = this.nameCenterLightAfter(arr,name,"经常感叹","","",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"","","早知道做HR要经常被","放鸽子",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","我当初做鸽子的时候","","",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","就不那么努力","修炼","了",fontSize,next)
+        },
+        writeText44:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                len = this.getNameLength(name),
+                fontSize = len <= 2 ? 42 : len >= 5 ? 38 : 40
+            // 每当有项目无法按时上线的时候 HR 小明总会背着一口锅 从公司门口默默走过
+            var next = this.nameCenterLightAfter(arr,"每当有项目","","无法","按时上线的时候",fontSize,0)
+            next++
+            next = this.nameCenterLightEnd(arr,"","HR "+name+"总会背着一口","","锅",fontSize,next)
+            next++
+            next = this.nameCenterLightAfter(arr,"","从公司门口","默默","走过",fontSize,next)
+        },
+        writeText45:function(){
+            var arr = [103,164,226,288,350],
+                name = this.name,
+                fontSize = 40
+            // 小明哭着说： 本人身在异乡被骗，无法回家 求朋友圈的好心人帮我介绍一个靠谱的产品经理 
+            var next = this.nameCenterLightAfter(arr,"",name+"哭着说：","","",fontSize,0)
+            next++
+            next = this.nameCenterLightAfter(arr,"本人身在异乡","","被骗","，无法回家",fontSize,next)
+            next++
+            next = this.nameCenterLightEnd(arr,"","求朋友圈的好心人帮我介绍帮我介绍一个靠谱的","","产品经理",fontSize,next)
+        },
         nameCenterLightTwice:function(arr,start,name,light,after,fontSize,startLine){
-            var dis = fontSize
+            var dis = fontSize,
+                obj = null,
+                nw = 0,
+                startPosition = 0,
+                left = 528,
+                next = startLine
             this.ctx.font = fontSize+"px bold"
             this.ctx.lineWidth = 3
             
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(start,62,arr[startLine])
-            this.ctx.fillText(start,62,arr[startLine])
+
+            if(start){
+                obj = this.breakText(arr,start,name,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
 
             this.ctx.strokeStyle = "#28b494"
             this.ctx.fillStyle = "#28b494"
-            var sp = this.ctx.measureText(start).width
-            this.ctx.strokeText(name,62+sp,arr[startLine])
-            this.ctx.fillText(name,62+sp,arr[startLine])
+            if(name){
+                obj = this.breakText(arr,name,light,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
 
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
@@ -1521,14 +714,8 @@ var app = new Vue({
 
             this.ctx.strokeText(after,1000,1000)
             this.ctx.fillText(after,1000,1000)
-
-            var nw = this.ctx.measureText(name).width,
-                startPosition = sp + nw,
-                left = 528 - startPosition,
-                next = startLine,
-                i = 0
             
-            var obj = this.breakText(arr,light,after,next,startPosition,left)
+            obj = this.breakText(arr,light,after,next,startPosition,left)
             next = obj.next
             startPosition = obj.start
             left = obj.left
@@ -1618,6 +805,7 @@ var app = new Vue({
         nameCenterLightEnd:function(arr,start,name,light,after,fontSize,startLine){
             var dis = fontSize,
                 obj = null,
+                sp = 0,
                 startPosition = 0,
                 left = 0,
                 next = startLine
@@ -1626,9 +814,12 @@ var app = new Vue({
             
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(start,62,arr[next])
-            this.ctx.fillText(start,62,arr[next])
-
+            if(start){
+                this.ctx.strokeText(start,62,arr[next])
+                this.ctx.fillText(start,62,arr[next])
+                sp = this.ctx.measureText(start).width
+            }
+            
             this.ctx.strokeText(name,1000,1000)
             this.ctx.fillText(name,1000,1000)
 
@@ -1638,31 +829,35 @@ var app = new Vue({
             this.ctx.strokeText(after,1000,1000)
             this.ctx.fillText(after,1000,1000)
 
-            var sp = this.ctx.measureText(start).width
             // this.ctx.strokeText(name,62+sp,arr[next])
             // this.ctx.fillText(name,62+sp,arr[next])
 
             startPosition = sp
             left = 528 - startPosition
-            obj = this.breakText(arr,name,light,next,startPosition,left)
-            next = obj.next
-            startPosition = obj.start
-            left = obj.left
+            if(name){
+                obj = this.breakText(arr,name,light,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
 
             // var nw = this.ctx.measureText(name).width,
             //     startPosition = sp + nw,
             //     left = 528 - startPosition,
             //     next = startLine
-            
-            obj = this.breakText(arr,light,after,next,startPosition,left)
-            next = obj.next
-            startPosition = obj.start
-            left = obj.left
+            if(light){
+                obj = this.breakText(arr,light,after,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
 
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
-            obj = this.breakText(arr,after,"",next,startPosition,left)
-            next = obj.next
+            if(after){
+                this.ctx.strokeStyle = "#28b494"
+                this.ctx.fillStyle = "#28b494"
+                obj = this.breakText(arr,after,"",next,startPosition,left)
+                next = obj.next
+            }
             return next
         },
         // HR+name+light+after (name 不会换行) 最多3行
@@ -1678,8 +873,11 @@ var app = new Vue({
             this.ctx.lineWidth = 3
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
-            this.ctx.strokeText(start,62,arr[next])
-            this.ctx.fillText(start,62,arr[next])
+            if(start){
+                this.ctx.strokeText(start,62,arr[next])
+                this.ctx.fillText(start,62,arr[next])
+                sp = this.ctx.measureText(start).width
+            }
 
             this.ctx.strokeText(name,1000,1000)
             this.ctx.fillText(name,1000,1000)
@@ -1690,34 +888,37 @@ var app = new Vue({
             this.ctx.strokeText(after,1000,1000)
             this.ctx.fillText(after,1000,1000)
             
-            sp = this.ctx.measureText(start).width
             // this.ctx.strokeText(name,62+sp,arr[next])
             // this.ctx.fillText(name,62+sp,arr[next])
 
             startPosition = sp
             left = 528 - startPosition
-            var obj = this.breakText(arr,name,light,next,startPosition,left)
-            next = obj.next
-            startPosition = obj.start
-            left = obj.left
+            if(name){
+                var obj = this.breakText(arr,name,light,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
 
             // nw = this.ctx.measureText(name).width
             // start = sp + nw
             // left = 528 - start
             // next = startLine
-            
-            this.ctx.strokeStyle = "#28b494"
-            this.ctx.fillStyle = "#28b494"
+            if(light){
+                this.ctx.strokeStyle = "#28b494"
+                this.ctx.fillStyle = "#28b494"
 
-            obj = this.breakText(arr,light,after,next,startPosition,left)
-            next = obj.next
-            startPosition = obj.start
-            left = obj.left
-
-            this.ctx.strokeStyle = "#0068b7"
-            this.ctx.fillStyle = "#0068b7"
-            obj = this.breakText(arr,after,"",next,startPosition,left)
-            next = obj.next
+                obj = this.breakText(arr,light,after,next,startPosition,left)
+                next = obj.next
+                startPosition = obj.start
+                left = obj.left
+            }
+            if(after){
+                this.ctx.strokeStyle = "#0068b7"
+                this.ctx.fillStyle = "#0068b7"
+                obj = this.breakText(arr,after,"",next,startPosition,left)
+                next = obj.next
+            }
             return next
         },
         nameCenterLightAfterMore:function(arr,start,name,light,after,light2,last,fontSize,startLine){
@@ -1945,8 +1146,73 @@ var app = new Vue({
                 left:left
             }
         },
+        getNameLength:function(name){
+            this.ctx.font = "40px bold"
+            this.ctx.lineWidth = 3
+            this.ctx.strokeText(name,1000,1000)
+            this.ctx.fillText(name,1000,1000)
+            var sp = this.ctx.measureText(name).width,
+                num = Math.ceil(sp / 40)
+            return num
+        },
+        drawWords:function(func){
+            this.ctx.save()
+            this['writeText'+func]()
+            this.ctx.restore()
+            this.ctx.font = "30px bold"
+            this.ctx.lineWidth = 1;
+            this.ctx.strokeStyle = '#0068b7'
+            this.ctx.fillStyle = "#0068b7"
+            this.ctx.strokeText(this.name+"的招人真相",62,463)
+            this.ctx.fillText(this.name+"的招人真相",62,463)
+        },
         startDraw:function(){
+            var self = this
+            if(this.name){
+                this.tips = ""
+                this.shakeClass = ""
+                var func = Math.ceil(Math.random() * 45)
+                this.drawWords(func)
 
+                this.type = "out"
+                setTimeout(function(){
+                    self.activePage = 1
+                },500)
+                this.drawImgContent()
+            }else{
+                this.tips = "* 请输入你的名字"
+                this.shakeClass = "shake"
+                setTimeout(function(){
+                    self.shakeClass = ""
+                },500)
+            }
+        },
+        nameChange:function(){
+            if(this.name){
+                this.tips = ""
+                var re=/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
+                    str = this.name.replace(re,"çç"),
+                    len = 0
+                if(str.length > 10){
+                    len = str.slice(0,10).replace(/(çç)/g,"ç").length;
+                    this.name = this.name.slice(0,len)
+                }
+            }else{
+                // this.tips = "* 请输入你的名字"
+            }
+        },
+        drawImgContent:function(){
+            var self = this,
+                words = this.canvas.toDataURL("image/png"),
+                img = new Image()
+            
+            img.onload = function(){
+                self.imgCtx.drawImage(img,45,189,643,532)
+            }
+            img.src = words
+            setTimeout(function(){
+                self.url = self.imgCanvas.toDataURL("image/png")
+            },500)
         },
         recruitEvent:function(){
 
@@ -1956,6 +1222,7 @@ var app = new Vue({
         }
     }
 })
+/*
 $(function () {
     var height = $(window).height();
     var pageNum = 1;
@@ -1969,89 +1236,6 @@ $(function () {
     
     $('.wrapper').height(height);
     $('.page').height(height);
-    setChildHtml($('.childrenWrap ul'));
-    childrenWrap($('.childrenWrap ul'));
-
-    clearInterval(drawVideoTimer);
-    // $('.music-icon').addClass('show');
-    // musicPlay(pageNum);
-    $('.wrapper').bind('swipeUp', function () {
-        console.log(pageNum)
-        if (pageNum < 2){
-            pageNum++;
-        } 
-        if (pageNum > pageLength) {
-            pageNum = pageLength;
-            return
-        }
-        toPage(pageNum - 1, pageNum);
-    }).bind('swipeDown', function () {
-        console.log(pageNum)
-        if (pageNum <= 2){
-            pageNum--;
-        }
-        if (pageNum <= 0) {
-            pageNum = 1;
-            return
-        }
-        toPage(pageNum + 1, pageNum);
-    });
-    $('.page2-go1').click(function(){
-        window.location.hash ='p3';
-        datas = datas1;
-        document.title = '未知展览馆';
-        share(datas);
-        $('.video-box').removeClass('show');
-        clearInterval(drawVideoTimer);
-        $('.music-icon').addClass('show');
-        // videoBg.pause();
-        // $(videoBg).css({
-        //     'width': '1px',
-        //     'height': '1px',
-        //     'z-index':'-11'
-        // });
-        // $('video#bgvid').remove();
-        music.pause();
-        music.play();
-        
-        pageNum = 3;
-        directTo(pageNum);
-        setTimeout(function () {
-            var loadNum = 0;
-            var loadingTimer = null;
-            clearInterval(loadingTimer);
-            loadingTimer = setInterval(function () {
-                if (loadNum >= 100) {
-                    pageNum = 4;
-                    $('.page' + 3).addClass('fallOut');
-                    $('.page').removeClass('active');
-                    $('.page' + pageNum).removeClass('fallOut').delay(5000).addClass('active');
-                    clearInterval(loadingTimer);
-                    swipeFlag = false;
-                } else {
-                    loadNum += 5;
-                    $('.page3-point').css('width', scale(550) / 100 * loadNum);
-                    $('.page3-num').text();
-                    $('.page3-num').text(loadNum + '%');
-                }
-            }, 100);
-        },200);
-    });
-    $('.page2-go2').click(function(){
-        window.location.href = 'https://activity.lagou.com/topic/blackbox.html';
-    });
-    $('.page2-go3').click(function(){
-        window.location.href = 'https://activity.lagou.com/activity/dist/hrday818-2017/gold/m_index.html';
-    });
-    $('.page2-share').click(function(){
-        $('.share-float').addClass('show');
-    });
-    $('.share-float').click(function(){
-        $(this).removeClass('show');
-    });
-    $('.page4-btn').click(function(){
-        $('.float').addClass('show');
-    });
     $('.float-btn').click(function(){
         var input = $('.float-txt').val();
         $('.float-txt').data("data-val", input);
@@ -2062,126 +1246,10 @@ $(function () {
     }).blur(function(){
         $('.float-line').removeClass('hide');        
     });
-    $('.float-close').click(function(){
-        $('.float').removeClass('show');
-    });
-    $('.page5-btn1').click(function(){
-        pageNum = 4;
-        directTo(pageNum);
-        $('.float').addClass('show');
-    });
     $('.page5-btn2').click(function(){
         var input = $('.float-txt').data("data-val");
-        var cardText = setCardText(input);
-        if(!cardText) return;
          drawCard(input, cardText, drawCardCallback);
     });
-    $('.page5-back').click(function(){
-        window.location.hash = '';
-        datas = datas2;
-        document.title = '818HR节·探索不一样';
-        share(datas);
-        window.location.reload();
-    });
-    function toPage(currentNum, nextNum) {
-        console.log(swipeFlag,currentNum,nextNum);
-        if(currentNum > 2){
-            $('.video-box').removeClass('show');
-            clearInterval(drawVideoTimer);
-            $('.music-icon').addClass('show');
-            // videoBg.pause();
-            // $(videoBg).css({
-            //     'width': '1px',
-            //     'height': '1px',
-            //     'z-index':'-11'
-            // });
-            // $('video#bgvid').remove();
-            return;
-        } else {
-            $('.video-box').addClass('show');
-            drawVideo();
-            $('.music-icon').removeClass('show');
-            // videoBg.play();
-            // $(videoBg).css({
-            //     'width': '100%',
-            //     'height': '100%',
-            //     'left': '0'
-            // });
-        }
-        if (swipeFlag) {
-            return
-        }
-        swipeFlag = true;
-        $('.page' + currentNum).addClass('fallOut');
-
-        setTimeout(function () {
-            $('.page').removeClass('active');
-            $('.page' + nextNum).removeClass('fallOut').addClass('active');
-            
-            swipeFlag = false;
-            
-        }, 1000);
-    }
-
-    function scale(n) {
-        // return n * GC.w / 750;
-        return n / (750 / 16) * parseFloat(html.style.fontSize);
-    }
-    function scale2(n) {
-        return n * GC.w / 750 / 2;
-    }
-    function childrenWrap(element) {
-        var num = 1;
-        var width = $('.childrenWrap').width();
-        var childFlag = false;
-        var childrenLength = $('.childrenWrap li').length;
-    
-        element.on('swipeLeft swipeDown', next).on('swipeRight swipeUp', pre);
-        $('.page4-arrowL').on('click', pre);
-        $('.page4-arrowR').on('click', next);
-        function next() {
-            num++;
-            if (num > childrenLength) {
-                num = 1;
-            }
-            toGo(num - 1);
-        }
-        function pre() {
-            num--;
-            if (num < 1) {
-                num = childrenLength;
-            }
-            toGo(num - 1);
-        }
-        function toGo (currentNum) {
-            
-            if (childFlag) {
-                return
-            }
-            childFlag = true;
-            setTimeout(function () {
-                console.log(currentNum)
-                element[0].style.webkitTransform = 'translate3d(-' + width * currentNum + 'px' + ',0,0)';
-                element.children().eq(currentNum).addClass('curr').siblings().removeClass('curr')
-                element[0].style.transition = '-webkit-transform 40ms ease-out';
-                childFlag = false;
-            }, 300);
-        }
-    }
-    function directTo(pageNum) {
-        $('.page' + pageNum-1).addClass('fallOut');
-        $('.page').removeClass('active');
-        $('.page' + pageNum).removeClass('fallOut').addClass('active');
-    }
-    function setChildHtml(element) {
-        var result = [];
-        for (var i = 1; i <= 25; i++) {
-            var str = '<li class="item item'+ i +'"><img src="images/words/'+ i +'.png?v=$version$" alt=""  class="item'+ i +'"></li>';
-            result.push(str);
-        }
-        element.html(result.join(''));
-    }
-
     var drawImgFlag = false;
     function summitForm (input) {
         var bytesNum = bytesCount(input);
@@ -2190,8 +1258,6 @@ $(function () {
         } else if (bytesNum > 10) {
             $('.float-error').text('呃...你的名字太长了');
         } else {
-            var cardText = setCardText(input);
-            if(!cardText) return;
             drawCard(input, cardText, drawCardCallback);
         }
     }
@@ -2305,105 +1371,6 @@ $(function () {
             };
             
         };
-    }  
-    function setCardText(input){
-        var allCard = [];
-        allCard = [{
-            w: 366,
-            h: 278,
-            ty:  scale(441),
-            imgy: scale(270)
-        },{
-            w: 379,
-            h: 359,
-            ty:  scale(336),
-            imgy: scale(232)
-        },{
-            w: 315,
-            h: 376,
-            ty:  scale(340),
-            imgy: scale(218)
-        },{
-            w: 406,
-            h: 360,
-            ty:  scale(343),
-            imgy: scale(239)
-        },{
-            w: 385,
-            h: 279,
-            ty:  scale(267),
-            imgy: scale(267)
-        },{
-            w: 315,
-            h: 225,
-            ty:  scale(415),
-            imgy: scale(290)
-        },{
-            w: 362,
-            h: 372,
-            ty:  scale(431),
-            imgy: scale(223)
-        },{
-            w: 430,
-            h: 361,
-            ty:  scale(285),
-            imgy: scale(235)
-        },{
-            w: 315,
-            h: 284,
-            ty:  scale(333),
-            imgy: scale(273)
-        },{
-            w: 433,
-            h: 287,
-            ty:  scale(266),
-            imgy: scale(266)
-        },{
-            w: 316,
-            h: 287,
-            ty:  scale(266),
-            imgy: scale(266)
-        },{
-            w: 324,
-            h: 328,
-            ty:  scale(400),
-            imgy: scale(225)
-        },{
-            w: 451,
-            h: 335,
-            ty:  scale(285),
-            imgy: scale(225)
-        },{
-            w: 389,
-            h: 319,
-            ty:  scale(293),
-            imgy: scale(235)
-        },{
-            w: 315,
-            h: 307,
-            ty:  scale(320),
-            imgy: scale(250)
-        },{
-            w: 315,
-            h: 252,
-            ty:  scale(423),
-            imgy: scale(269)
-        },{
-            w: 406,
-            h: 381,
-            ty:  scale(293),
-            imgy: scale(213)
-        },{
-            w: 620,
-            h: 718,
-            ty:  scale(323),
-            imgy: scale(233)
-        }];
-        var currNum = Math.floor(Math.random() * 17);
-            console.log(currNum)
-        var currCard = allCard[currNum];
-        currCard.img = 'images/word2/'+ (currNum+1) +'.png';
-        return currCard; 
     }
     function ajaxCardImg(src,callback){
         let data = {
@@ -2434,53 +1401,6 @@ $(function () {
         //         // alert('提交失败,请稍后重试！');
         //     }
         // });
-    }
-
-    function drawVideo(){
-        // var canvas = document.getElementById('vidCanvas');  
-        // var ctx = canvas.getContext('2d'); 
-        // var i = 0; 
-        // drawVideoTimer = setInterval(function() {
-        //     if(i>=60){
-        //         i=0;
-        //         clearInterval(drawVideoTimer);
-        //     }
-        //     var img = new Image();
-        //     if(i<10){
-        //         img.src = 'images/tinified/bg_0000'+ i +'.jpg';
-        //     }else{
-        //         img.src = 'images/tinified/bg_000'+ i +'.jpg';
-        //     }
-            
-        //     var imgWidth = GC.w;
-        //     var imgHeight= GC.h;
-        //     canvas.width = imgWidth;
-        //     canvas.height = imgHeight;
-
-        //     // ctx.save();
-        //     ctx.clearRect(0, 0, imgWidth, imgHeight);  
-        //     img.onload = function(){
-        //         ctx.drawImage(img,0,0,750,1206,0,0,GC.w,GC.h);
-        //     };
-        //     // ctx.restore();
-        //     i++;
-        // },60);
-        var i = 0;
-        var src = '';
-        clearInterval(drawVideoTimer);
-        drawVideoTimer = setInterval(function() {
-            i++;
-            if(i<10){
-                src = 'images/tinified/bg_0000'+ i +'.jpg';
-            }else{
-                src = 'images/tinified/bg_000'+ i +'.jpg';
-            }
-            if(i>=60){
-                i=0;
-                // clearInterval(drawVideoTimer);
-            }
-            $('.video-bg').attr('src',src);
-        },100);
     }
     function musicPlay(pageNum) {
         var music = document.getElementById('music');
@@ -2534,114 +1454,5 @@ $(function () {
             }
         });
     }
-    // function videoPlay(pageNum) {
-    //     var videoBg = document.getElementById('bgvid');
-    //     var music = document.getElementById('music');
-    //     console.log(pageNum)
-    //     // 自动播放音乐效果，解决微信自动播放问题
-    //     function musicInBrowserHandler() {
-    //         if(pageNum == 1 || pageNum == 2){
-    //             music.pause();
-    //             videoBg.pause();
-    //             videoBg.play();
-    //         } else {
-    //             videoBg.pause();
-    //             $(videoBg).css({
-    //                 'width': '1px',
-    //                 'height': '1px',
-    //                 'z-index':'-11'
-    //             });
-    //             $('video#bgvid').remove();
-    //             music.play();
-    //         }
-    //         document.body.removeEventListener('touchstart', musicInBrowserHandler);
-    //     }
-    //     document.body.addEventListener('touchstart', musicInBrowserHandler);
-        
-    //     function musicInWeixinHandler() {
-    //         if(pageNum == 1 || pageNum == 2){
-    //             music.pause();
-    //             videoBg.pause();
-    //             videoBg.play();
-    //         } else {
-    //             videoBg.pause();
-    //             $(videoBg).css({
-    //                 'width': '1px',
-    //                 'height': '1px',
-    //                 'z-index':'-11'
-    //             });
-    //             $('video#bgvid').remove();
-    //             music.pause();
-    //             music.play();
-    //         }
-            
-    //         document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-    //     }
-    //     document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-    //     document.addEventListener("WeixinJSBridgeReady", function () {
-    //         if(pageNum == 1 || pageNum == 2){
-    //             music.pause();
-    //             videoBg.pause();
-    //             videoBg.play();
-    //         } else {
-    //             videoBg.pause();
-    //             $(videoBg).css({
-    //                 'width': '1px',
-    //                 'height': '1px',
-    //                 'z-index':'-11'
-    //             });
-    //             $('video#bgvid').remove();
-    //             music.pause();
-    //             music.play();
-    //         }
-    //     }, false);
-    //     videoBg && videoBg.addEventListener('timeupdate',function (){
-    //         //当视频的currentTime大于0.1时表示黑屏时间已过，已有视频画面，可以移除浮层（.pagestart的div元素）
-    //         if ( !videoBg.isPlayed && this.currentTime>0.1 ){
-    //             $('.bgvidstart').addClass('hide');
-    //             videoBg.isPlayed = !0;
-    //         }
-    //         // if(pageNum == 1 || pageNum == 2){
-    //         //     music.pause();
-    //         //     videoBg.play();
-    //         // } else {
-    //         //     $('.video-box').removeClass('show');
-    //         //     videoBg.pause();
-    //         //     $(videoBg).css({
-    //         //         'width': '1px',
-    //         //         'height': '1px',
-    //         //         'z-index':'-11'
-    //         //     });
-    //         //     $('.video-box').remove();
-    //         // }
-    //     });
-    //     //进入全屏
-    //     videoBg && videoBg.addEventListener("x5videoenterfullscreen", function(){
-        
-    //       window.onresize = function(){
-    //         videoBg.style.width = "100%";
-    //         videoBg.style.height = "100%";
-    //       }
-    //     })
-    //     //退出全屏
-    //     videoBg && videoBg.addEventListener("x5videoexitfullscreen", function(){
-    //     //   window.onresize = function(){
-    //     //     $(videoBg).css({
-    //     //         'width': '1px',
-    //     //         'height': '1px',
-    //     //         'z-index': '-11'
-    //     //     });
-    //     //   };
-    //     });
-    //     $('.music-icon').click(function(){
-    //         if(music.paused){
-    //             music.play();
-    //             $(this).addClass('open').removeClass('close');
-    //         }else {
-    //             music.pause();
-    //             $(this).addClass('close').removeClass('open');
-    //         }
-    //     });
-    // }
-    
 });
+*/

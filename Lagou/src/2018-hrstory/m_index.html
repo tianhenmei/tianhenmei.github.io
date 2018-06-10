@@ -87,6 +87,7 @@
     <!--<div class="music-icon">
 		 <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
 	</div>-->
+	<!--
    	<div class="loading-page hide">
 		<div class="middle">
 			<div class="progress">
@@ -99,35 +100,46 @@
 			<span class="progress-num">0%</span>
 		</div>
     	<img src="images/lagou.png?v=$version$" class="lagou" />
- 	</div>
+ 	</div>-->
    	<div class="wrapper pages" id="app">
+		<div class="page page-transparent">
+			<img class="bg" ref="img-bg" src="images/page1-bg.png?v=$version$" />
+			<img class="subtitle01" ref="img-en" src="images/page1-en.png?v=$version$" />
+			<img class="icon logo" ref="img-logo" src="images/page1-logo.png?v=$version$" />
+		</div>
 		<div class="page page0" :class="activePage == 0 ? 'active' : ''">
-			<div class="bg"></div>
-			<div class="icon subtitle01"></div>
-			<div class="icon subtitle02"></div>
-			<div class="icon title"></div>
-			<div class="icon logo"></div>
-			<div class="icon line"></div>
-			<div class="layer">
-				<div class="input">
-					<input class="name" v-model="name" placeholder="点击输入你的名字" />
+			<div class="bg" :class="ani[type].bg"></div>
+			<div class="icon subtitle01" :class="ani[type].s1"></div>
+			<div class="icon subtitle02" :class="ani[type].s2"></div>
+			<div class="icon logo" :class="ani[type].logo"></div>
+			<div class="dot" :class="ani[type].dot"></div>
+			<div class="icon title" :class="ani[type].title"></div>
+			<div class="icon line" :class="ani[type].line"></div>
+			<div class="layer" :class="ani[type].layer">
+				<div class="input opacityChange delay1-5">
+					<input class="name" v-model="name" placeholder="点击输入你的名字" @input.prevent.stop="nameChange" />
+					<div class="tips">{{tips}}</div>
 				</div>
-				<div class="sure" @click.prevent="startDraw">点击学习</div>
+				<div class="sure-parent opacityChange delay1-5">
+					<div class="sure" :class="shakeClass" @click.prevent="startDraw">点击学习</div>
+				</div>
 			</div>
 		</div>
 		<div class="page page1" :class="activePage == 1 ? 'active' : ''">
-			<div class="bg"></div>
-			<div class="icon subtitle01"></div>
-			<div class="icon logo"></div>
-			<div class="info">长按图片保存</div>
 			<div class="layer">
 				<canvas class="canvas" ref="canvas"></canvas>
 			</div>
-			<div class="bottom"></div>
-			<div class="icon recruit" @click.prevent="recruitEvent"></div>
-			<div class="icon share" @click.prevent="showShare"></div>
+			<div class="img-layer zoomIn delay0-5">
+				<canvas class="img-canvas" ref="img-canvas"></canvas>
+				<img class="img-content" :src="url" v-show="url"/>
+			</div>
+			<div class="info opacityChange delay0-5">长按图片保存</div>
+			<div class="bottom bottomIn delay0-5"></div>
+			<div class="icon recruit leftIn delay0-5" @click.prevent="recruitEvent"></div>
+			<div class="icon share rightIn delay0-5" @click.prevent="showShare"></div>
 		</div>
-  	</div>
+	</div>
+	<!--
  	<div class="float">
 		<div class="form">
 			<span class="float-close"></span>
@@ -137,7 +149,8 @@
 			<img src="images/float-btn.png?v=$version$" class="float-btn" data-lg-tj-id="19zj" data-lg-tj-no="0001" data-lg-tj-cid="idnull" />      
 		</div>
   	</div> 
-  	<div class="share-float"></div> 
+	<div class="share-float"></div> 
+	-->
 </body>
 <script src="../common/js/jquery.1.10.1.min.js"></script>
 <script type"text/javascript" src="js/vue2.1.10.js"></script>
@@ -146,82 +159,14 @@
 <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>
 
 <script type="text/javascript">
-    var g = 0;
-    var loadEnterTimer = null;
-    clearInterval(loadEnterTimer);
-    loadEnterTimer = setInterval(function () {
-      if (g >= 100) {
-        clearInterval(loadEnterTimer);
-        return;
-      }
-      g += 1;
-      $('.progress-num').text();
-      $('.progress-num').text(g + '%');
-    }, 40);
-    
-    window.onload=function(){
-      var sources = [
-        'images/page3-bg.jpg',
-        'images/page3-bar.png',
-        'images/page4-btn.png',
-        'images/ercode.jpg'];
-      var src = '';
-      if(window.location.hash == ''){
-        for(var i = 0; i < 60; i++){
-          if(i<10){
-            src = 'images/tinified/bg_0000'+ i +'.jpg';
-          }else{
-            src = 'images/tinified/bg_000'+ i +'.jpg';
-          }
-          sources.push(src);
-        }
-      }
-      for(var i = 1; i < 19; i++){
-        src = 'images/word2/'+ i +'.png';
-        sources.push(src);
-      }
-      console.log(sources.length)
-      loadImages(sources);
-    };
-    function loadImages(sources, callback){
-      var count = 0,  
-        images ={},  
-        i = 0;   
-        for(i; i < sources.length; i++){  
-          images[i] = new Image();
-          images[i].onload = function(){  
-              if(++count >= sources.length){  
-                  // callback && callback(images);  
-              }  
-          }  
-          images[i].src = sources[i]; 
-        } 
-    }
     //微信分享
-    var datas1 = {
+    var datas = {
       title: "HR的1000种可能，全在这里了",
       desc: "我们收藏了1000个HR的故事，可能也有你的",
       imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share2.jpg",
       activityType: 'HR818_STORY_ACTIVITY_H5',
       shareUrl: 'https://activity.lagou.com/activity/dist/hrday818-2017/story/m_index.html#p3'
     };
-    var datas2 = {
-      title: "别的公司都在给HR办大会，那我们不办了",
-      desc: "我们来点不一样的",
-      imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share1.jpg",
-      activityType: 'HR818_STORY_ACTIVITY_H5',
-      shareUrl: 'https://activity.lagou.com/activity/dist/hrday818-2017/story/m_index.html'
-    };
-    if(window.location.hash == '#p3' || /(#p3)/g.test(window.location.hash)){
-      var datas = datas1;
-      document.title = '未知展览馆';
-      if(GC.w > 750){
-        window.location.href = 'https://activity.lagou.com/activity/dist/hrday818-2017/main/index.html';
-      }
-    } else {
-      var datas = datas2;
-      document.title = '818HR节·探索不一样';
-    }
     share(datas);
     //app 分享
     function getShareInfo() {
