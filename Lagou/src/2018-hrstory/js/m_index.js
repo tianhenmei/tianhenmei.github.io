@@ -68,6 +68,7 @@ var app = new Vue({
     },
     methods:{
         initCanvas:function(){
+            this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
             this.ctx.save()
             this.ctx.fillStyle = '#fefef2'
             this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
@@ -1219,7 +1220,10 @@ var app = new Vue({
 
         },
         showShare:function(){
-            
+            var func = Math.ceil(Math.random() * 45)
+            this.initCanvas()
+            this.drawWords(func)
+            this.drawImgContent()
         }
     }
 })
