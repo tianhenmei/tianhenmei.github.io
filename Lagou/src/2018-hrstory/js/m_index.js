@@ -59,8 +59,8 @@ var app = new Vue({
         }
         this.img.src = "images/ercode.png"
         this.initImgCanvas()
-        document.addEventListener("touchstart",undoDefault,false)
-        document.addEventListener("touchmove",undoDefault,false)
+        // document.addEventListener("touchstart",undoDefault,false)
+        // document.addEventListener("touchmove",undoDefault,false)
         // document.addEventListener("touchend",undoDefault,false)
         function undoDefault(e){
             e.preventDefault()
