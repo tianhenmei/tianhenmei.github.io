@@ -1,3 +1,4 @@
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var app = new Vue({
     el:"#app",
     data:{
@@ -1107,7 +1108,7 @@ var app = new Vue({
             this.ctx.fillText(end,62+sp+cp,arr[next])
         },
         breakText:function(arr,text,after,next,start,left){
-            let temp = 0,
+            var temp = 0,
                 i = 0
             for(i = 0; i < text.length; i++){
                 temp = this.ctx.measureText(text.slice(0,i+1)).width
@@ -1222,6 +1223,7 @@ var app = new Vue({
         }
     }
 })
+},{}]},{},[1]);
 /*
 $(function () {
     var height = $(window).height();
@@ -1373,7 +1375,7 @@ $(function () {
         };
     }
     function ajaxCardImg(src,callback){
-        let data = {
+        var data = {
             url:""
         }
         // $.ajax({
