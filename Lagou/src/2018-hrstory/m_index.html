@@ -117,7 +117,7 @@
 			<div class="icon line" :class="ani[type].line"></div>
 			<div class="layer" :class="ani[type].layer">
 				<div class="input opacityChange delay1-5">
-					<input class="name" v-model="name" placeholder="点击输入你的名字" @input.prevent.stop="nameChange" />
+					<input class="name" :class="{'name-bigger':name}" v-model="name" placeholder="点击输入你的名字" @input.prevent.stop="nameChange" />
 					<div class="tips">{{tips}}</div>
 				</div>
 				<div class="sure-parent opacityChange delay1-5">
@@ -133,7 +133,7 @@
 				<canvas class="img-canvas" ref="img-canvas"></canvas>
 				<img class="img-content" :src="url" v-show="url"/>
 			</div>
-			<div class="info opacityChange delay0-5">长按图片保存</div>
+			<div class="icon info opacityChange delay0-5"></div>
 			<div class="bottom bottomIn delay0-5"></div>
 			<div class="icon recruit leftIn delay0-5" @click.prevent="recruitEvent" data-lg-tj-id="1bin" data-lg-tj-no="0002" data-lg-tj-cid="idnull"></div>
 			<div class="icon share rightIn delay0-5" @click.prevent="showShare" data-lg-tj-id="1bin" data-lg-tj-no="0003" data-lg-tj-cid="idnull"></div>

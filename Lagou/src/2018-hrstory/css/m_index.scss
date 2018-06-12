@@ -318,7 +318,7 @@ body {
     transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;
     .icon {
-        background:url('../images/icon.png?v=2') no-repeat 0 0;
+        background:url('../images/icon.png?v=3') no-repeat 0 0;
         background-size:rem(1024) rem(1024);
     }
 }
@@ -356,9 +356,9 @@ body {
         background-position:rem(-460) rem(-160);
     }
     .logo{
-        width: rem(254);
-        height: rem(125);
-        @include center(488, 37);
+        width: rem(213);
+        height: rem(121);
+        @include center(528, 37);
         background-position:rem(-460) 0;
     }
     .line{
@@ -376,9 +376,10 @@ body {
         .input {
             width:rem(361);
             border-bottom:rem(3) solid #919191;
-            @include leftTop(141,126);
+            @include leftBottom(141,318);  // 126
         }
         .name {
+            width:100%;
             height:rem(52);
             line-height:rem(52);
             display:block;
@@ -387,6 +388,11 @@ body {
             color:#9a9a9a;
             font-size:rem(30);
             background:transparent;
+        }
+        .name-bigger {
+            height:rem(77);
+            line-height:rem(77);
+            font-size:rem(60);
         }
         .tips {
             width:80%;
@@ -458,13 +464,17 @@ body {
         }
     }
     .info {
-        width:100%;
-        height:rem(52);
-        line-height:rem(52);
-        font-size:rem(24);
-        color:#cbba93;
-        text-align:center;
-        @include center(0, 755);
+        // width:100%;
+        // height:rem(52);
+        // line-height:rem(52);
+        // font-size:rem(24);
+        // color:#cbba93;
+        // text-align:center;
+        // @include center(0, 755);
+        width:rem(226);
+        height:rem(40);
+        @include center(264, 772);
+        background-position:0 rem(-300);
     }
     .layer {
         width:rem(643);
@@ -487,9 +497,9 @@ body {
     }
     .bottom {
         width:rem(875);
-        height:rem(257);
+        height:rem(256);
         @include center(-68,980);
-        background:url("../images/page1-bottom.png") no-repeat 0 0;
+        background:url("../images/page1-bottom.png?v=2") no-repeat 0 0;
         background-size:100% 100%;
     }
     .recruit {

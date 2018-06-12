@@ -13,7 +13,8 @@ var app = new Vue({
         shakeClass:"",
         type:"in",
         url:"",
-        lineWidth:0,
+        lineWidth:2,
+        bold:"bold",
         ani:{
             in:{
                 bg:"rightIn delay0-5",
@@ -108,7 +109,7 @@ var app = new Vue({
                 logo = this.$refs["img-logo"]
             this.imgCtx.drawImage(bg,74,86)
             this.imgCtx.drawImage(en,49,111)
-            this.imgCtx.drawImage(logo,492,39)
+            this.imgCtx.drawImage(logo,528,40)
         },
         writeText1:function(){
             var arr = [127,190,252],
@@ -688,7 +689,7 @@ var app = new Vue({
                 startPosition = 0,
                 left = 528,
                 next = startLine
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             
             this.ctx.strokeStyle = "#0068b7"
@@ -731,7 +732,7 @@ var app = new Vue({
         },
         nameCenterLightCenter:function(arr,start,name,light,after,fontSize,startLine){
             var dis = fontSize
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             
             this.ctx.strokeStyle = "#0068b7"
@@ -770,7 +771,7 @@ var app = new Vue({
         },
         nameCenterLightFirst:function(arr,start,name,light,after,fontSize,startLine){
             var dis = fontSize
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             
             this.ctx.strokeStyle = "#28b494"
@@ -812,7 +813,7 @@ var app = new Vue({
                 startPosition = 0,
                 left = 0,
                 next = startLine
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             
             this.ctx.strokeStyle = "#0068b7"
@@ -872,7 +873,7 @@ var app = new Vue({
                 left = 528,
                 next = startLine
 
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
@@ -932,7 +933,7 @@ var app = new Vue({
                 left = 528,
                 next = startLine
 
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
@@ -1001,7 +1002,7 @@ var app = new Vue({
                 left = 528,
                 next = startLine
 
-            this.ctx.font = fontSize+"px bold"
+            this.ctx.font = fontSize+"px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             this.ctx.strokeStyle = "#0068b7"
             this.ctx.fillStyle = "#0068b7"
@@ -1150,7 +1151,7 @@ var app = new Vue({
             }
         },
         getNameLength:function(name){
-            this.ctx.font = "40px bold"
+            this.ctx.font = "40px "+this.bold
             this.ctx.lineWidth = this.lineWidth
             this.ctx.strokeText(name,1000,1000)
             this.ctx.fillText(name,1000,1000)
@@ -1162,7 +1163,7 @@ var app = new Vue({
             this.ctx.save()
             this['writeText'+func]()
             this.ctx.restore()
-            this.ctx.font = "30px bold"
+            this.ctx.font = "30px "+this.bold
             this.ctx.lineWidth = 1;
             this.ctx.strokeStyle = '#0068b7'
             this.ctx.fillStyle = "#0068b7"
