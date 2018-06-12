@@ -59,7 +59,7 @@ var app = new Vue({
                 self.drawImgContent()
             }
         }
-        this.img.src = "images/ercode-02.png"
+        this.img.src = "images/ercode-03.png"
         this.initImgCanvas()
         // document.addEventListener("touchstart",undoDefault,false)
         // document.addEventListener("touchmove",undoDefault,false)
