@@ -59,7 +59,7 @@ var app = new Vue({
                 self.drawImgContent()
             }
         }
-        this.img.src = "images/ercode.png"
+        this.img.src = "images/ercode-02.png"
         this.initImgCanvas()
         // document.addEventListener("touchstart",undoDefault,false)
         // document.addEventListener("touchmove",undoDefault,false)
@@ -72,7 +72,7 @@ var app = new Vue({
         initCanvas:function(){
             this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height)
             this.ctx.save()
-            this.ctx.fillStyle = '#fefef2'
+            this.ctx.fillStyle = '#ffffff'//'#fefef2'
             this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
             this.ctx.fill()
 
@@ -87,7 +87,7 @@ var app = new Vue({
             this.ctx.stroke()
             this.ctx.closePath()
 
-            this.ctx.drawImage(this.img,485,370)
+            this.ctx.drawImage(this.img,452,343)//,485,370)
 
             this.ctx.restore()
         },
@@ -514,9 +514,9 @@ var app = new Vue({
             // 做了HR以后 小明短短一年就出书了 书名叫 《候选人爽约的1000个借口》 
             var next = this.nameCenterLightEnd(arr,"做了HR以后","","","",fontSize,0)
             next++
-            next = this.nameCenterLightAfter(arr,name+"短短一年就: ","","出书","了",fontSize,next)
+            next = this.nameCenterLightAfter(arr,name+"短短一年就","","出书","了",fontSize,next)
             next++
-            next = this.nameCenterLightAfter(arr,"书名叫","","","",fontSize,next)
+            next = this.nameCenterLightAfter(arr,"书名叫: ","","","",fontSize,next)
             next++
             next = this.nameCenterLightAfter(arr,"《候选人爽约的1000个","","借口","》",fontSize,next)
         },
@@ -680,7 +680,7 @@ var app = new Vue({
             next++
             next = this.nameCenterLightAfter(arr,"本人身在异乡","","被骗","，无法回家",fontSize,next)
             next++
-            next = this.nameCenterLightEnd(arr,"","求朋友圈的好心人帮我介绍帮我介绍一个靠谱的","","产品经理",fontSize,next)
+            next = this.nameCenterLightEnd(arr,"","求朋友圈的好心人帮我介绍一个靠谱的","","产品经理",fontSize,next)
         },
         nameCenterLightTwice:function(arr,start,name,light,after,fontSize,startLine){
             var dis = fontSize,
