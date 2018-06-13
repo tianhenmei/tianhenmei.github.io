@@ -15,6 +15,7 @@ var app = new Vue({
         url:"",
         lineWidth:2,
         bold:"bold",
+        miniprogram:false,
         ani:{
             in:{
                 bg:"rightIn delay0-5",
@@ -66,6 +67,14 @@ var app = new Vue({
         // document.addEventListener("touchend",undoDefault,false)
         function undoDefault(e){
             e.preventDefault()
+        }
+        function ready() {
+            self.miniprogram == window.__wxjs_environment === 'miniprogram' // true
+        }
+        if (!window.WeixinJSBridge || !WeixinJSBridge.invoke) {
+            document.addEventListener('WeixinJSBridgeReady', ready, false)
+        } else {
+            ready()
         }
     },
     methods:{
@@ -1219,7 +1228,11 @@ var app = new Vue({
             },500)
         },
         recruitEvent:function(){
-
+            if(self.miniprogram){
+                wx.miniProgram.navigateBack()
+            }else{
+                window.location.href = "https://www.lagou.com"
+            }
         },
         showShare:function(){
             var func = Math.ceil(Math.random() * 45)
@@ -1230,237 +1243,3 @@ var app = new Vue({
     }
 })
 },{}]},{},[1]);
-/*
-$(function () {
-    var height = $(window).height();
-    var pageNum = 1;
-    var swipeFlag = false;
-    var pageLength = $('.page').length;
-    var drawVideoTimer = null;
-    var u = navigator.userAgent;
-    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
-    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
-    // var videoBg = document.getElementById('bgvid');
-    
-    $('.wrapper').height(height);
-    $('.page').height(height);
-    $('.float-btn').click(function(){
-        var input = $('.float-txt').val();
-        $('.float-txt').data("data-val", input);
-        summitForm(input);
-    });
-    $('.float-txt').focus(function(){
-        $('.float-line').addClass('hide');
-    }).blur(function(){
-        $('.float-line').removeClass('hide');        
-    });
-    $('.page5-btn2').click(function(){
-        var input = $('.float-txt').data("data-val");
-         drawCard(input, cardText, drawCardCallback);
-    });
-    var drawImgFlag = false;
-    function summitForm (input) {
-        var bytesNum = bytesCount(input);
-        if (bytesNum == 0) {
-            $('.float-error').text('名字不能为空哦');
-        } else if (bytesNum > 10) {
-            $('.float-error').text('呃...你的名字太长了');
-        } else {
-            drawCard(input, cardText, drawCardCallback);
-        }
-    }
-    function drawCardCallback(canvas) {
-        var src = canvas.toDataURL('image/png');
-
-        // $('.float').removeClass('show');//test
-        // directTo(5); //test
-        // $('.float-txt').val(''); //test
-
-        if (drawImgFlag) {
-            $('.float-error').text('正在生成图片...');
-            return;
-        }
-        drawImgFlag = true;
-        ajaxCardImg(src, function(data) {
-            var imgSrc = data.content && data.content.path;
-            var img = $('.canvas-bg');
-            img.attr('src','https://www.lgstatic.com/'+ imgSrc);
-            $('.float-error').text('');
-            $('.float').removeClass('show');
-            directTo(5);
-            $('.float-txt').val('');
-            drawImgFlag = false;
-        });
-    }
-    function bytesCount(str){
-        var bytesCount = 0;
-        for (var i = 0; i < str.length; i++){
-            var c = str.charAt(i);
-            if (/^[\u4e00-\u9fa5]+$/.test(c)){
-                bytesCount += 2;
-            }else{
-                bytesCount += 1;
-            }
-        }
-        return bytesCount;
-    }
-
-    function drawCard(input, cardText, callback){  
-        var canvas = document.getElementById('canvas');  
-        var ctx = canvas.getContext('2d');  
-        //背景图
-        var imgObj = {
-            w: 729,
-            h: 908,
-            src : 'images/canvas-bg.png'
-        };
-        var bgWidth = scale(imgObj.w);
-        var bgHeight= bgWidth * imgObj.h / imgObj.w;
-        canvas.width = bgWidth;  
-        canvas.height = bgHeight;  
-
-
-        var  devicePixelRatio = window.devicePixelRatio || 1,   
-        backingStoreRatio = ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1, 
-        ratio = devicePixelRatio / backingStoreRatio;
-
-        var oldWidth = canvas.width; 
-        var oldHeight = canvas.height; 
-        canvas.width = oldWidth * ratio; 
-        canvas.height = oldHeight * ratio; 
-        canvas.style.width = oldWidth + 'px'; 
-        canvas.style.height = oldHeight + 'px'; 
-        ctx.scale(ratio, ratio);
-
-
-        ctx.clearRect(0, 0, bgWidth, bgHeight);  
-
-        // drawImg
-        var imgBg = new Image(); 
-        imgBg.src = imgObj.src;
-        
-        imgBg.onload = function(){
-            ctx.drawImage(imgBg,0,0,imgObj.w,imgObj.h,0,0,bgWidth,bgHeight);
-            //文字
-            ctx.textAlign="center";
-            ctx.textBaseline="hanging";
-            ctx.fillStyle = "#000";
-            ctx.font = scale(107) + 'px PingFang SC';
-            
-            if(isiOS){
-                ctx.fillText(input, scale(361), cardText.ty - 10);
-            }else{
-                ctx.fillText(input, scale(361), cardText.ty);
-            }
-            //文字图
-            var imgTxt = new Image(); 
-            imgTxt.src = cardText.img;
-            var imgTxtWidth = scale(cardText.w);
-            var imgTxtHeight= imgTxtWidth * cardText.h / cardText.w;
-            imgTxt.onload = function(){
-                ctx.drawImage(imgTxt,0,0,cardText.w,cardText.h,-(imgTxtWidth-bgWidth)/2,cardText.imgy,imgTxtWidth,imgTxtHeight);
-                
-                //二维码
-                var imgErObj = {
-                    w: 115,
-                    h: 115,
-                    src : 'images/ercode.jpg?v=2'
-                };
-                var imgEr = new Image(); 
-                
-                var ErWidth = scale(imgErObj.w);
-                var ErHeight= ErWidth * imgErObj.h / imgErObj.w;
-
-                imgEr.onload = function(){
-                    ctx.drawImage(imgEr,0,0,imgErObj.w,imgErObj.h,scale(590),scale(767),ErWidth,ErHeight);
-                    callback && callback(canvas)
-                }
-                imgEr.src = imgErObj.src;
-            };
-            
-        };
-    }
-    function ajaxCardImg(src,callback){
-        var data = {
-            url:""
-        }
-        // $.ajax({
-        //     type:'post',
-        //     dataType: 'json',
-        //     // jsonp: 'jsoncallback',
-        //     // url: 'https://activity.lagou.com/activityapi/fileUpload/base64save',
-        //     url: 'https://activity.lagou.com/activityapi/fileUpload/base64save2phone',
-        //     data: {
-        //         imgStr: src.substring(22),
-        //         type: 'canvasImg'
-        //     },
-        //     success: function (data) {
-        //         if (data.success) {
-        //             if (data.state == 200) {
-                        callback && callback(data);
-        //             } else {
-        //                 alert(data.message);
-        //             }
-        //         } else {
-        //             alert(data.message);
-        //         }
-        //     },
-        //     error: function (xhr, type) {
-        //         // alert('提交失败,请稍后重试！');
-        //     }
-        // });
-    }
-    function musicPlay(pageNum) {
-        var music = document.getElementById('music');
-        console.log(pageNum)
-        function musicInBrowserHandler() {
-            if(pageNum == 1 || pageNum == 2){
-                music.pause();
-                // $('.video-box').addClass('show');
-                // drawVideo();
-            } else {
-                music.play();
-                // $('.video-box').removeClass('show');
-                // clearInterval(drawVideoTimer);
-            }
-            document.body.removeEventListener('touchstart', musicInBrowserHandler);
-        }
-        document.body.addEventListener('touchstart', musicInBrowserHandler);
-        
-        function musicInWeixinHandler() {
-            if(pageNum == 1 || pageNum == 2){
-                music.pause();
-                // $('.video-box').addClass('show');
-                // drawVideo();
-            } else {
-                music.play();
-                // $('.video-box').removeClass('show');
-                // clearInterval(drawVideoTimer);
-            }
-            
-            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-        }
-        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-        document.addEventListener("WeixinJSBridgeReady", function () {
-            if(pageNum == 1 || pageNum == 2){
-                music.pause();
-                // $('.video-box').addClass('show');
-                // drawVideo();
-            } else {
-                music.play();
-                // $('.video-box').removeClass('show');
-                // clearInterval(drawVideoTimer);
-            }
-        }, false);
-        $('.music-icon').click(function(){
-            if(music.paused){
-                music.play();
-                $(this).addClass('open').removeClass('close');
-            }else {
-                music.pause();
-                $(this).addClass('close').removeClass('open');
-            }
-        });
-    }
-});
-*/

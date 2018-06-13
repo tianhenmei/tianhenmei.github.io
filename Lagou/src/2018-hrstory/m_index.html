@@ -47,17 +47,10 @@
         //竖屏： "(orientation: portrait)"
         portrait = window.matchMedia("(orientation: portrait)").matches;
       } catch (e) { }
-
-      // if(portrait){
-      
       if(rightSize > currentSize){  // 长屏
           lastHTMLSize = 16;
       }else if(rightSize < currentSize){  //宽屏
           lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
-          // if(app == 'ios' || app == 'android'){
-          //     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
-          // }
-
       }else if(/(Mi-4c)/g.test(navigator.userAgent)){
           lastHTMLSize = lastHTMLSize + 2;
       }else if(/(MI 5s)/gi.test(navigator.userAgent)){
@@ -68,12 +61,6 @@
        
       lastSize = lastHTMLSize;
       html.style.fontSize=GC.w/lastHTMLSize+'px';
-
-      // }else{
-      //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
-      //     alert(ff);
-      //     html.style.fontSize = window.innerWidth / ff * 16+'px';
-      // }
     }
 
     setFontSize();
@@ -84,23 +71,6 @@
 </head>
 
 <body>
-    <!--<div class="music-icon">
-		 <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
-	</div>-->
-	<!--
-   	<div class="loading-page hide">
-		<div class="middle">
-			<div class="progress">
-				<div class="loading" data-anim="base wrapper">
-					<div class="circle" data-anim="base left"></div>
-					<div class="circle" data-anim="base right"></div>
-				</div>
-				<span class="arrow abs"></span>
-			</div>
-			<span class="progress-num">0%</span>
-		</div>
-    	<img src="images/lagou.png?v=$version$" class="lagou" />
- 	</div>-->
    	<div class="wrapper pages" id="app">
 		<div class="page page-transparent">
 			<img class="bg" ref="img-bg" src="images/page1-bg.png?v=$version$" />
@@ -139,23 +109,11 @@
 			<div class="icon share rightIn delay0-5" @click.prevent="showShare" data-lg-tj-id="1bin" data-lg-tj-no="0003" data-lg-tj-cid="idnull"></div>
 		</div>
 	</div>
-	<!--
- 	<div class="float">
-		<div class="form">
-			<span class="float-close"></span>
-			<input type="text" class="float-txt" />
-			<span class="float-error"></span>
-			<img src="images/float-line.png?v=$version$" class="float-line" />            
-			<img src="images/float-btn.png?v=$version$" class="float-btn" data-lg-tj-id="19zj" data-lg-tj-no="0001" data-lg-tj-cid="idnull" />      
-		</div>
-  	</div> 
-	<div class="share-float"></div> 
-	-->
 </body>
 <script src="../common/js/jquery.1.10.1.min.js"></script>
 <script type"text/javascript" src="js/vue2.1.10.js"></script>
 <script src="js/m_index.js?v=$version$"></script>
-<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>
 
 <script type="text/javascript">
