@@ -16,6 +16,13 @@ var app = new Vue({
         lineWidth:2,
         bold:"bold",
         miniprogram:false,
+        load:0,
+        drawStatus:false,
+        imgs:[
+            "images/page1-bg.png",
+            "images/page1-en.png",
+            "images/page1-logo.png"
+        ],
         ani:{
             in:{
                 bg:"rightIn delay0-5",
@@ -63,7 +70,7 @@ var app = new Vue({
         this.img.src = "images/ercode-03.png"
         this.initImgCanvas()
         function ready() {
-            self.miniprogram == window.__wxjs_environment === 'miniprogram' // true
+            self.miniprogram = window.__wxjs_environment === 'miniprogram' // true
         }
         if (!window.WeixinJSBridge || !WeixinJSBridge.invoke) {
             document.addEventListener('WeixinJSBridgeReady', ready, false)
@@ -96,7 +103,8 @@ var app = new Vue({
         },
         initImgCanvas:function(){
             var w = 750,
-                h = 836
+                h = 836,
+                self = this
             this.imgCanvas = this.$refs["img-canvas"]
             this.imgCanvas.width = w
             this.imgCanvas.height = h
@@ -107,12 +115,23 @@ var app = new Vue({
             this.imgCtx.rect(0,0,w,h)
             this.imgCtx.fill()
 
-            var bg = this.$refs["img-bg"],
-                en = this.$refs["img-en"],
-                logo = this.$refs["img-logo"]
-            this.imgCtx.drawImage(bg,74,86)
-            this.imgCtx.drawImage(en,49,111)
-            this.imgCtx.drawImage(logo,528,40)
+            var loadedImgs = []
+            this.imgs.forEach(function(url){
+                var img = new Image()
+                img.onload = function(){
+                    self.load++
+                    if(self.load == self.imgs.length){
+                        self.imgCtx.drawImage(loadedImgs[0],74,86)
+                        self.imgCtx.drawImage(loadedImgs[1],49,111)
+                        self.imgCtx.drawImage(loadedImgs[2],528,40)
+                        if(self.drawStatus){
+                            self.drawImgContent()
+                        }
+                    }
+                }
+                img.src = url,
+                loadedImgs.push(img)
+            })
         },
         writeText1:function(){
             var arr = [127,190,252],
@@ -1029,7 +1048,7 @@ var app = new Vue({
             next = obj.next
             startPosition = obj.start
             left = obj.left
-            
+
             this.ctx.strokeStyle = "#28b494"
             this.ctx.fillStyle = "#28b494"
 
@@ -1178,7 +1197,10 @@ var app = new Vue({
                 setTimeout(function(){
                     self.activePage = 1
                 },500)
-                this.drawImgContent()
+                this.drawStatus = true
+                if(this.load == this.imgs.length){
+                    this.drawImgContent()
+                }
             }else{
                 this.tips = "* 请输入你的名字"
                 this.shakeClass = "shake"
@@ -1206,6 +1228,7 @@ var app = new Vue({
                 words = this.canvas.toDataURL("image/png"),
                 img = new Image()
             
+            this.drawStatus = false
             img.onload = function(){
                 self.imgCtx.drawImage(img,45,189,643,532)
             }
@@ -1215,7 +1238,7 @@ var app = new Vue({
             },500)
         },
         recruitEvent:function(){
-            if(self.miniprogram){
+            if(this.miniprogram){
                 wx.miniProgram.navigateBack()
             }else{
                 window.location.href = "https://www.lagou.com"
