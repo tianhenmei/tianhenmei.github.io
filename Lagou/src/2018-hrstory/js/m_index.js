@@ -62,12 +62,6 @@ var app = new Vue({
         }
         this.img.src = "images/ercode-03.png"
         this.initImgCanvas()
-        // document.addEventListener("touchstart",undoDefault,false)
-        // document.addEventListener("touchmove",undoDefault,false)
-        // document.addEventListener("touchend",undoDefault,false)
-        function undoDefault(e){
-            e.preventDefault()
-        }
         function ready() {
             self.miniprogram == window.__wxjs_environment === 'miniprogram' // true
         }
@@ -1028,8 +1022,6 @@ var app = new Vue({
             this.ctx.fillText(after,1000,1000)
             
             sp = this.ctx.measureText(start).width
-            // this.ctx.strokeText(name,62+sp,arr[next])
-            // this.ctx.fillText(name,62+sp,arr[next])
 
             startPosition = sp
             left = 528 - startPosition
@@ -1037,11 +1029,6 @@ var app = new Vue({
             next = obj.next
             startPosition = obj.start
             left = obj.left
-
-            // nw = this.ctx.measureText(name).width
-            // start = sp + nw
-            // left = 528 - start
-            // next = startLine
             
             this.ctx.strokeStyle = "#28b494"
             this.ctx.fillStyle = "#28b494"
