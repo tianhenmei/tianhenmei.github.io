@@ -1239,7 +1239,13 @@ var app = new Vue({
         },
         recruitEvent:function(){
             if(this.miniprogram){
-                wx.miniProgram.navigateBack()
+                // wx.miniProgram.navigateBack()
+                wx.miniProgram.switchTab({
+                    url:"/pages/index/index"
+                })
+                // wx.miniProgram.redirectTo({
+                //     url:"/pages/index/index"
+                // })
             }else{
                 window.location.href = "https://www.lagou.com"
             }
