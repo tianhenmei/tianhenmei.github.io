@@ -239,7 +239,7 @@ var app = new Vue({
             next++
             next = this.nameCenterLightAfter(arr,"没有说走就走的旅程","","","",fontSize,next)
             next++
-            next = this.nameCenterLightAfter(arr,"只有说","","说胖就胖","的体型",fontSize,next)
+            next = this.nameCenterLightAfter(arr,"只有","","说胖就胖","的体型",fontSize,next)
         },
         writeText9:function(){
             var arr = [90,152,215,276,346],
@@ -508,7 +508,7 @@ var app = new Vue({
                 "梦见",
                 "明天上午的面试者都",
                 "不来",
-                "了，朋友安慰小明,别担心，梦是",
+                "了，朋友安慰"+name+",别担心，梦是",
                 "反的",
                 "。这意味着你",
                 "下午",
