@@ -18,6 +18,13 @@ var app = new Vue({
         miniprogram:false,
         load:0,
         drawStatus:false,
+        textArray:[
+            1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28,29,30,
+            31,33,34,35,36,37,38,39,40,
+            41,42,43,44,45
+        ],
         imgs:[
             "images/page1-bg.png",
             "images/page1-en.png",
@@ -61,9 +68,11 @@ var app = new Vue({
                 self.activePage = 1
                 self.name = name
                 if(!test){
-                    test = Math.ceil(Math.random() * 45)
+                    test = Math.floor(Math.random() * 44)
+                }else if(test > 43){
+                    test = 43
                 }
-                self.drawWords(test)
+                self.drawWords(self.textArray[test])
                 self.drawImgContent()
             }
         }
@@ -271,8 +280,8 @@ var app = new Vue({
             var arr = [90,152,215,276,346,406],
                 name = this.name,
                 fontSize = 44
-            // HR小明下定决定明天要约10个候选人来面试 不然用人部门会说，你看小明，除了腿长、腰细、脸好看,简直一无是处
-            var next = this.nameCenterLightAfter(arr,"","HR"+name+"下定决定明天要约10个候选人来面试","","",fontSize,0)
+            // HR小明下定决心明天要约10个候选人来面试 不然用人部门会说，你看小明，除了腿长、腰细、脸好看,简直一无是处
+            var next = this.nameCenterLightAfter(arr,"","HR"+name+"下定决心明天要约10个候选人来面试","","",fontSize,0)
             next++
             next = this.nameCenterLightTwice(arr,"不然用人部门会说，你看"+name+"，除了","腿长、腰细、脸好看",",简直","一无是处",fontSize,next)
         },
@@ -453,7 +462,7 @@ var app = new Vue({
             // 应聘者问HR小明: “今天就你一个人面我啊?” 小明生气的回答道: “半个人我怕把你吓走” 
             var next = this.nameCenterLightEnd(arr,"应聘者问HR",name,": ","",fontSize,0)
             next++
-            next = this.nameCenterLightAfter(arr,"“今天就你","","一个人","我啊?”",fontSize,next)
+            next = this.nameCenterLightAfter(arr,"“今天就你","","一个人","面我啊?”",fontSize,next)
             next++
             next = this.nameCenterLightEnd(arr,name,"生气的回答道: ","","",fontSize,next)
             next++
@@ -1190,8 +1199,8 @@ var app = new Vue({
             if(this.name){
                 this.tips = ""
                 this.shakeClass = ""
-                var func = Math.ceil(Math.random() * 45)
-                this.drawWords(func)
+                var func = Math.floor(Math.random() * 44)
+                this.drawWords(this.textArray[func])
 
                 this.type = "out"
                 setTimeout(function(){
@@ -1251,9 +1260,9 @@ var app = new Vue({
             }
         },
         showShare:function(){
-            var func = Math.ceil(Math.random() * 45)
+            var func = Math.floor(Math.random() * 44)
             this.initCanvas()
-            this.drawWords(func)
+            this.drawWords(this.textArray[func])
             this.drawImgContent()
         }
     }
