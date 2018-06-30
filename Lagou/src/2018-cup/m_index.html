@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+  <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+  <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <link rel="stylesheet" href="css/swiper.min.css">
+  <link rel="stylesheet" href="css/m_index.css?v=$version$">
+  <title>拉勾世界杯</title>
+  <script>
+    var lastSize = 16,
+      bodyElement = document.documentElement || document.body,
+      html = document.getElementsByTagName("html")[0],
+      RC = {
+        w: 750,
+        h: 1206
+      },
+      GC = {
+        w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+        h: document.documentElement.clientHeight || window.innerHeight || screen.height
+      },
+      app = getQueryString('lagoufrom'),
+      checkStatus = false,
+      initStatus = false;
+
+    function getQueryString(parm) {
+      var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+      var r = window.location.search.substr(1).match(reg);
+
+      if (r != null) return unescape(r[2]);
+      return null;
+    }
+    function setFontSize() {
+      var portrait = false,
+        resize = "orientationchange" in window ? window.orientationchange : window.resize,
+        rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+        currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+        lastHTMLSize = 16;
+
+      try {
+        //横屏： "(orientation: landscape)"
+        //竖屏： "(orientation: portrait)"
+        portrait = window.matchMedia("(orientation: portrait)").matches;
+      } catch (e) { }
+      if(rightSize > currentSize){  // 长屏
+          lastHTMLSize = 16;
+      }else if(rightSize < currentSize){  //宽屏
+          lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+      }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+          lastHTMLSize = lastHTMLSize + 2;
+      }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+          if(app == 'ios' || app == 'android'){
+              lastHTMLSize = lastHTMLSize + 2.5;
+          }
+      }
+       
+      lastSize = lastHTMLSize;
+      html.style.fontSize=GC.w/lastHTMLSize+'px';
+    }
+
+    setFontSize();
+
+  </script>
+
+
+</head>
+
+<body>
+   	<div class="wrapper pages" id="app">
+		<div class="page page-transparent">
+			<img class="bg" ref="img-bg" src="images/page1-bg.png" />
+			<img class="subtitle01" ref="img-en" src="images/page1-en.png" />
+			<img class="icon logo" ref="img-logo" src="images/page1-logo.png" />
+		</div>
+		<div class="page page0" :class="activePage == 0 ? 'active' : ''">
+			<div class="bg"></div>
+			<div class="bg-pattern" ></div>
+			<div class="bg-content"></div>
+			<div class="icon subtitle01" :class="ani[type].s1"></div>
+			<div class="icon subtitle02" :class="ani[type].s2"></div>
+			<div class="icon subtitle03" :class="ani[type].s1"></div>
+			<div class="icon subtitle04" :class="ani[type].s2"></div>
+			<div class="icon money" :class="ani[type].s2"></div>
+			<div class="icon person"></div>
+			<div class="icon ball"></div>
+			<div class="cicle cicle-01"></div>
+			<div class="cicle cicle-02"></div>
+			<div class="cicle cicle-03"></div>
+			<div class="icon start" @click="showAllStar"></div>
+			<div class="info">本次数据由拉勾大数据中心和虎扑联合呈现</div>
+			<div class="icon logo" :class="ani[type].logo"></div>
+		</div>
+		<div class="page page1" :class="activePage == 1 ? 'active' : ''">
+      		<div class="bg"></div>
+			<div class="bg-pattern" ></div>
+			<div class="bg-content"></div>
+			<div class="container star-list" ref="star-list">
+				<div class="list">
+					<div class="one"
+						v-for="(one,index) in star"
+						:class="index == starActive ? currentClass : index == prevIndex ? prevClass : index == nextIndex ? nextClass : index == bprevIndex ? bprevClass : index == bnextIndex ? bnextClass : ''">
+						<div class="light"></div>
+						<div class="inside" :style="{backgroundImage:'url(images/star/'+one.name+'.png)'}"></div>
+						<div class="border"></div>
+						<div class="outside" :style="{backgroundImage:'url(images/star/'+one.name+'-outer.png)'}"></div>
+						<div class="name" :style="{backgroundImage:'url(images/star/'+one.name+'-name.png)'}"></div>
+						<!-- <div class="bg"></div> -->
+					</div>
+				</div>
+			</div>
+			<div class="btn">
+				<div class="btn-center" @click="selectedStar"></div>
+			</div>
+		</div>
+		<div class="page page2" :class="activePage == 2 ? 'active' : ''">
+			<div class="bg"></div>
+			<div class="bg-pattern" ></div>
+			<div class="bg-content"></div>
+			<div class="pk-title">{{star[starActive].cn}}的收入突破你的想象力</div>
+			<div class="scroll-text" v-show="scrollStatus">
+				<div class="cover cover-top"></div>
+				<div class="text-content">
+					<div class="text-center" :class="{'content-scroll':scrollStatus}">
+						<div class="text text-01">正在匹配拉勾互联网薪资数据...</div>
+						<div class="text text-02">正在调取虎扑球员薪资数据库...</div>
+						<div class="text text-03">{{star[starActive].cn+star[starActive].contact}}</div>
+						<div class="text text-04">{{star[starActive].cn}}每次合同签约薪资涨幅{{star[starActive].up}}</div>
+					</div>
+				</div>
+				<div class="cover cover-bottom"></div>
+			</div>
+			<div class="icon pk"></div>
+			<div class="icon pk-name">
+				<input class="pk-input" v-model="pk.name" type="text" placeholder="请输入你的昵称" @input="nameChange" />
+				<div class="tips name-tips" v-show="pk.nstatus">* 请输入你的昵称</div>
+			</div>
+			<div class="icon pk-salary">
+				<input class="pk-input" v-model="pk.salary" type="number" placeholder="你的月薪是多少？" @input="salaryChange" />
+				<div class="tips salary-tips" v-show="pk.sstatus">* 请输入你的月薪</div>
+			</div>
+			<div class="icon makesure" @click="startPK" v-show="!scrollStatus"></div>
+		</div>
+		<div class="page page3" :class="activePage == 3 ? 'active' : ''">
+			<div class="pro-layer title-layer">
+				<div class="title-mesh"></div>
+				<div class="title">
+					<div class="icon title-name"></div>
+					<div class="title-content"><span class="inline username">{{pk.name}}</span><span class="inline nothing"> VS </span><span class="inline starname">{{star[starActive].cn}}</span></div>
+					<div class="icon title-money-01"></div>
+					<div class="icon title-money-02"></div>
+				</div>
+				<div class="title-dark"></div>
+				<div class="title-light"></div>
+			</div>
+			<div class="pro-layer star-detail-layer">
+				<div class="star-detail clearfix">
+					<img class="star-photo" :src="'images/star/'+star[starActive].name+'-portrait.png'" />
+					<div class="star-right">
+						<div class="star-name">{{star[starActive].cn}}年薪为</div>
+						<div class="star-salary">¥ <span class="salary-num" v-for="one in star[starActive]._salary">{{one}}<i class="icon split-delimiter"></i></span> 元</div>
+					</div>
+				</div>
+			</div>
+			<div class="pro-layer pkdetail-layer-01">
+				<div class="pkdetail-01">
+					<div class="icon light"></div>
+					<div class="icon time"></div>
+					<div class="icon num"></div>
+					<div class="info-01">挣到 {{star[starActive].cn}} 一年的工资 </div>
+					<div class="info-02">你需要从现在开始</div>
+					<div class="info-03">工作到 <span class="work-years">{{getSelfMoney}}</span> 年</div>
+				</div>
+			</div>
+			<div class="pro-layer pkdetail-layer-02">
+				<div class="pkdetail-02">
+					<div class="icon time"></div>
+					<div class="icon num"></div>
+					<div class="text text-01">你的收入相当于</div>
+					<div class="text text-02">互联网人平均薪资的 <span class="text-num">{{getSalaryTimes}}</span> 倍</div>
+					<div class="text text-03">西二旗程序员平均薪资的 <span class="text-num">{{getXSalaryTimes}}</span> 倍</div>
+					<div class="icon line"></div>
+					<div class="icon progress progress-01">
+						<div class="icon progress-center-01"></div>
+					</div>
+					<div class="icon progress progress-02">
+						<div class="icon progress-center-02"></div>
+					</div>
+					<div class="icon progress progress-03">
+						<div class="icon progress-center-03"></div>
+					</div>
+					<div class="detail detail-01">你目前的薪资水平</div>
+					<div class="detail detail-02">互联网人平均薪资水平</div>
+					<div class="detail detail-03">西二旗程序员平均薪资水平</div>
+				</div>
+			</div>
+			<div class="pro-layer pkdetail-layer-03">
+				<div class="pkdetail-03">
+					<div class="car"></div>
+					<div class="icon num"></div>
+					<div class="info info-01">特斯拉顶配Model S轿车</div>
+					<div class="info info-02">{{star[this.starActive].cn}}工作<span class="star-num"><span class="star-hour"> {{getStarCar}}</span> 小时</span> 可以买1辆</div>
+					<div class="info info-03">你需要工作<span class="star-num"><span class="star-hour"> {{getSelfCar}} </span>天</span>才能买同款</div>
+				</div>
+			</div>
+			<div class="pro-layer pkdetail-layer-04">
+				<div class="pkdetail-04">
+					<div class="icon num"></div>
+					<div class="icon line-01"></div>
+					<div class="icon line-02"></div>
+					<div class="icon money-01"></div>
+					<div class="icon money-02"></div>
+					<div class="stay-times">你在此刻停留了<span class="times-color"><span class="times-num"> {{getTotalTime}} </span>秒</span>中 </div>
+					<div class="icon left-icon"></div>
+					<div class="left-text">你赚了</div>
+					<div class="left-money">¥<span class="times-color times-num bigger-num"> {{getSelfSecMoney}} </span>元</div>
+					<div class="icon right-icon"></div>
+					<div class="right-text">互联网人平均赚了</div>
+					<div class="right-money">¥<span class="times-color times-num bigger-num"> {{getOtherSecMoney}} </span>元</div>
+					<div class="icon bottom-icon"></div>
+					<div class="bottom-text">{{star[starActive].cn}}已经赚了</div>
+					<div class="bottom-money">¥<span class="times-color times-num bigger-num"> {{getStarSecMoney}} </span>元</div>
+				</div>
+			</div>
+			<div class="pro-layer end-layer">
+				<div class="end">
+					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num">  </span>万</span></div>
+					<div class="text text-02">{{pk.name}} 和 {{star[starActive].cn}}一样，   </div>
+					<div class="text text-03">无论顺境还是逆境，     </div>
+					<div class="text text-04">胸怀坚定的信仰，露出灿烂的微笑。</div>
+				</div>
+				<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
+				<div class="btn">
+					<div class="save"></div>
+					<div class="restart"></div>
+					<div class="change"></div>
+				</div>
+			</div>
+			<div class="layer">
+				<canvas class="canvas" ref="canvas"></canvas>
+			</div>
+			<div class="img-layer zoomIn delay0-5">
+				<canvas class="img-canvas" ref="img-canvas"></canvas>
+				<img class="img-content" :src="url" v-show="url"/>
+			</div>
+		</div>
+		<div class="bg-music">
+			<div class="open"></div>
+		</div>
+	</div>
+</body>
+<script src="../common/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="js/swiper.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="test/javascript" src="js/vue-awesome-swiper.js"></script>
+<script type="test/javascript">
+	Vue.use(VueAwesomeSwiper);
+</script>
+<script src="js/m_index.js?v=$version$"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+<script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>
+
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+      title: "那些辣眼睛的HR毒故事",
+      desc: "我们收藏了1000个HR的故事，可能也有你的",
+      imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share2.jpg",
+      activityType: '2018_STORY_ACTIVITY_H5',
+      shareUrl: 'https://activity.lagou.com/activity/dist/2018-hrstory/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo() {
+      var share = {
+        share_title: datas.title,
+        share_desc: datas.desc,
+        share_url: datas.shareUrl,
+        share_imgUrl: datas.imgUrl
+      };
+      return share;
+    }
+
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script> 
+
+</html>
