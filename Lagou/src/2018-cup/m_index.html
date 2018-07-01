@@ -10,9 +10,10 @@
   <meta name="format-detection" content="telphone=no, email=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  <link rel="stylesheet" href="css/swiper.min.css">
+  <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
   <link rel="stylesheet" href="css/m_index.css?v=$version$">
   <title>拉勾世界杯</title>
+  <script src="../common/js/jquery.1.10.1.min.js"></script>
   <script>
     var lastSize = 16,
       bodyElement = document.documentElement || document.body,
@@ -64,7 +65,15 @@
       html.style.fontSize=GC.w/lastHTMLSize+'px';
     }
 
-    setFontSize();
+	setFontSize();
+	var loadingStatus = false,
+		pageStatus = false,
+		startTime = new Date().getTime(),
+		loadingSuccess = function(){
+			var cover = document.getElementById('app');
+			cover.className = cover.className.replace(' hide','');
+			document.getElementById('loading').className += ' hide';
+		}
 
   </script>
 
@@ -72,7 +81,11 @@
 </head>
 
 <body>
-   	<div class="wrapper pages" id="app">
+	<div class="loading" id="loading">
+		<img class="loading-img" src="images/GIF.gif"/>
+	</div>
+	<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+   	<div class="wrapper pages hide" id="app">
 		<div class="page page-transparent">
 			<img class="bg" ref="img-bg" src="images/draw-bg.png" />
 			<img class="subtitle01" ref="img-en" src="images/draw-ercode.png" />
@@ -115,7 +128,7 @@
 						<div class="light"></div>
 						<div class="inside" :style="{backgroundImage:'url(images/star/'+one.name+'.png)'}"></div>
 						<div class="border"></div>
-						<div class="outside" :style="{backgroundImage:'url(images/star/'+one.name+'-outer.png)'}"></div>
+						<div class="outside" :style="setStarOuter(one)"></div>
 						<div class="name" :style="{backgroundImage:'url(images/star/'+one.name+'-name.png)'}"></div>
 						<div class="bg"></div>
 					</div>
@@ -236,7 +249,7 @@
 					<div class="icon right-icon"></div>
 					<div class="right-text">互联网人平均赚了</div>
 					<div class="right-money">¥<span class="times-color times-num bigger-num"> {{getOtherSecMoney}} </span>元</div>
-					<div class="icon bottom-icon"></div>
+					<div class="icon bottom-icon" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-portrait.png)', backgroundPosition:'0 0', backgroundSize:'100% 100%'}"></div>
 					<div class="bottom-text">{{star[starActive].cn}}已经赚了</div>
 					<div class="bottom-money">¥<span class="times-color times-num bigger-num"> {{getStarSecMoney}} </span>元</div>
 				</div>
@@ -245,8 +258,9 @@
 				<div class="end">
 					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
 					<div class="text text-02">{{pk.name}} 和 {{star[starActive].cn}}一样，   </div>
-					<div class="text text-03">无论顺境还是逆境，     </div>
-					<div class="text text-04">胸怀坚定的信仰，露出灿烂的微笑。</div>
+					<div class="text text-03">{{star[starActive].words1}}</div>
+					<div class="text text-04">{{star[starActive].words2}}</div>
+					<div class="text text-05" v-if="star[starActive].words3">{{star[starActive].words3}}</div>
 				</div>
 				<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 				<div class="btn">
@@ -269,18 +283,27 @@
 				</div>
 			</div>
 		</div>
-		<div class="bg-music">
-			<div class="open"></div>
+		<div class="bg-music" ref="bg-music" @click.stop.prevent="musicEvent" v-show="activePage != 3">
+			<audio id="music" ref="music" autoplay="autoplay" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+			<div class="open" v-show="musicStatus"></div>
 		</div>
 	</div>
 </body>
-<script src="../common/js/jquery.1.10.1.min.js"></script>
-<script type="text/javascript" src="js/swiper.min.js"></script>
+<!-- <script src="../common/js/jquery.1.10.1.min.js"></script> -->
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<!-- <script type="text/javascript" src="js/swiper.min.js"></script> -->
 <script type="text/javascript" src="js/vue.js"></script>
-<script type="test/javascript" src="js/vue-awesome-swiper.js"></script>
+<!-- <script type="test/javascript" src="js/vue-awesome-swiper.js"></script>
 <script type="test/javascript">
 	Vue.use(VueAwesomeSwiper);
-</script>
+</script> -->
 <script src="js/m_index.js?v=$version$"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>

@@ -3,7 +3,7 @@
   font-family: "DINCond-Black";
   src: url("../images/DINCond-Black.otf"); }
 
-[id]:not(#app),
+[id]:not(#app, #loading, #music),
 iframe {
   width: 0 !important;
   height: 0 !important;
@@ -95,7 +95,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #f3ead5; }
+  background: #210c6d; }
 
 .music-icon {
   display: none;
@@ -198,6 +198,16 @@ body {
     bottom: 1.06667rem;
     margin: 0 0 0 -3.34933rem; }
 
+.loading {
+  width: 100%;
+  height: 100%;
+  background-color: #210c6d;
+  position: absolute;
+  left: 0rem;
+  top: 0rem; }
+  .loading .loading-img {
+    width: 100%; }
+
 .bg-music {
   width: 1.024rem;
   height: 0.98133rem;
@@ -215,6 +225,13 @@ body {
     position: absolute;
     left: 0rem;
     top: 0rem; }
+  .bg-music .audio {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    opacity: 0; }
 
 .pages {
   width: 100%;
@@ -1435,6 +1452,11 @@ body {
       top: 8.34133rem;
       -webkit-transition-delay: 1.6s;
               transition-delay: 1.6s; }
+    .page3 .end .text-05 {
+      line-height: 1.30133rem;
+      top: 9.64267rem;
+      -webkit-transition-delay: 1.8s;
+              transition-delay: 1.8s; }
   .page3 .card {
     width: 16rem;
     height: 31.85067rem;
@@ -1442,7 +1464,7 @@ body {
     background-size: 100%;
     position: absolute;
     left: 0rem;
-    top: 1.06667rem;
+    top: 2.368rem;
     opacity: 0;
     -webkit-transition: all 0.5s 2.1s ease-in-out;
     transition: all 0.5s 2.1s ease-in-out; }
@@ -1485,7 +1507,8 @@ body {
     height: 100%;
     position: fixed;
     left: 0;
-    top: 0; }
+    top: 0;
+    z-index: 2; }
     .page3 .layer .page {
       display: block; }
     .page3 .layer .save-bg {

@@ -1,4 +1,149 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+function rem($n) {
+    return $n / (750 / 16) +'rem';
+}
+var bgmusic_button = null,
+    audio = null;
+function bgMusicPlay(){
+    var bgmusic_button = $(".bgmusic");
+    var audio = document.getElementById("music");
+    audio.preload = 'auto';
+    audio.loop = 'true'
+    audio.play();
+
+    //webPlayAudio();
+
+    function webPlayAudio(){
+        var context,
+            dogBarkingBuffer;
+        init();
+        function init() {
+            try {
+                // Fix up for prefixing
+                window.AudioContext = window.AudioContext||window.webkitAudioContext;
+                context = new AudioContext();
+            }
+            catch(e) {
+                alert('Web Audio API is not supported in this browser');
+            }
+        }
+
+        var source = null;
+        var audioBuffer = null;
+        function stopSound() {
+            if (source) {
+                source.noteOff(0); //立即停止
+            }
+        }
+        function playSound() {
+            var absn = context.createBufferSource();
+            var analyser = context.createAnalyser();
+            absn.connect(analyser);
+            absn.connect(context.destination);
+            absn.buffer = audioBuffer;
+            absn.loop = true;
+            absn.start(0);
+
+            /*source = context.createBufferSource();
+            var analyser = context.createAnalyser();
+            source.connect(analyser);
+            source.connect(context.destination);
+            source.buffer = audioBuffer;
+            source.loop = true;
+            //source.noteOn(0); //立即播放
+            //(source.start || source.noteOn)(0);
+            if(source.start){
+                source.start(0);
+            }else if(source.noteOn){
+                source.noteOn(0);
+            }*/
+        }
+        function initSound(arrayBuffer) {
+            context.decodeAudioData(arrayBuffer, function(buffer) { //解码成功时的回调函数
+                audioBuffer = buffer;
+                playSound();
+            }, function(e) { //解码出错时的回调函数
+                console.log('Error decoding file', e);
+            });
+        }
+        function loadAudioFile(url) {
+            var xhr = new XMLHttpRequest(); //通过XHR下载音频文件
+            xhr.open('GET', url, true);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function(e) { //下载完成
+                initSound(this.response);
+            };
+            xhr.send();
+        }
+        loadAudioFile('images/bg.mp3');
+    }
+
+    // bgmusic_button.click(function(e){
+    //     //e.stopPropagation();
+    //     if($(this).hasClass('open')){
+    //         audio.pause();
+
+    //         bgmusic_button.removeClass("open").addClass("close");
+    //     }else{
+    //         audio.play();
+
+    //         bgmusic_button.removeClass("close").addClass("open");
+    //     }
+    // });
+
+    autoPlayMusic(audio);
+    // 音乐播放
+    function autoPlayMusic(audio) {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(audio,true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(audio,true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(audio,true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    function musicPlay(audio,isPlay) {
+        if (isPlay && audio.paused) {
+            audio.play();
+        }
+        if (!isPlay && !audio.paused) {
+            audio.pause();
+        }
+    }
+
+    //autoPlayMusic(audio);
+
+    // 音乐播放
+    /*function autoPlayMusic(audio) {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            audio.play();
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }*/
+
+
+}
 var app = new Vue({
     el:"#app",
     data:{
@@ -18,16 +163,26 @@ var app = new Vue({
         bold:"bold",
         drawStatus:false,
 
+        musicStatus:false,
+
         load:0,
         loadedImgs:[],
         imgs:[
             "images/draw-bg.png",
             "images/draw-ercode.png",
+            "images/star/Messi-draw.png",
+            "images/star/CRonaldo-draw.png",
+            "images/star/Neymar-draw.png",
+            "images/star/OZ-draw.png",
+            "images/star/Suarez-draw.png",
+            "images/star/Iniesta-draw.png",
+            "images/star/Mbappe-draw.png",
+            "images/star/Beckham-draw.png",
+            "images/star/Zidane-draw.png",
+            "images/star/Kaka-draw.png",
             "images/star/Ronaldo-draw.png",
-            "images/star/Ronaldo-draw.png",
-            "images/star/Ronaldo-draw.png",
-            "images/star/Ronaldo-draw.png",
-            "images/star/Ronaldo-draw.png"
+            "images/star/Liyi-draw.png",
+            "images/star/Maradona-draw.png"
         ],
         type:"in",
         ani:{
@@ -77,40 +232,191 @@ var app = new Vue({
         bnextClass:'',
         nextClass:'next',
         star:[{
-            name:"Ronaldo",
+            name:"Messi",
             cn:"梅西",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:209772000,
-            _salary:["209","772","000"]
+            _salary:["209","772","000"],
+            words1:"面对再多的困难也不能倒下，",
+            words2:"不是因为背后空无一人，",
+            words3:"而是他们选择成为传奇。",
+            outer:{
+                height:rem(993),
+                left:0,
+                top:0
+            }
         },{
-            name:"Ronaldo",
+            name:"CRonaldo",
             cn:"C罗",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:153133560,
-            _salary:["153","133","560"]
+            _salary:["153","133","560"],
+            words1:"有以一己之力逆天改命的能力，",
+            words2:"敌人越强，他们越强大。",
+            outer:{
+                left:0,
+                top:rem(-128),
+                status:true
+            }
         },{
-            name:"Ronaldo",
+            name:"Neymar",
             cn:"内马尔",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:218512500,
-            _salary:["218","512","500"]
+            _salary:["218","512","500"],
+            words1:"难能可贵的不是天赋异禀，",
+            words2:"而是在关键时刻堪当大任，他做到了！",
+            outer:{
+                height:rem(1334),
+                left:0,
+                top:rem(-128)
+            }
         },{
-            name:"Ronaldo",
+            name:"OZ",
             cn:"厄齐尔",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:146840400,
-            _salary:["146","840","400"]
+            _salary:["146","840","400"],
+            words1:"不是谁都有四两拨千斤的能力，",
+            words2:"它源于对事物的充分理解。",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
         },{
-            name:"Ronaldo",
+            name:"Suarez",
             cn:"苏亚雷斯",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:123808000,
-            _salary:["123","808","000"]
+            _salary:["123","808","000"],
+            words1:"认为成绩才是自己的证明",
+            words2:"既然这个世界总有人要赢，",
+            words3:"为什么不能是自己？",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
+        },{
+            name:"Iniesta",
+            cn:"伊涅斯塔",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:123808000,
+            _salary:["123","808","000"],
+            words1:"无论局势瞬息万变，",
+            words2:"心中总有自己的节奏，",
+            words3:"关键时刻的决断来自于不断推演和复盘。",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
+        },{
+            name:"Mbappe",
+            cn:"姆巴佩",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:139284000,
+            _salary:["139","284","000"],
+            words1:"初出江湖的时候就沉稳的像个老手",
+            words2:"对未来无需多言，",
+            words3:"因为世界在他们的脚下。",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
+        },{
+            name:"Beckham",
+            cn:"贝克汉姆",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:29368080,
+            _salary:["29","368","080"],
+            words1:"虽然有着国民老公的脸，",
+            words2:"却依然保持谦逊和专业。",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
+        },{
+            name:"Zidane",
+            cn:"齐达内",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:61904000,
+            _salary:["61","904","000"],
+            words1:"相信没有人可以永远站在顶峰，",
+            words2:"但向上攀爬的感觉却永远让人澎湃。",
+            outer:{
+                height:rem(950),
+                left:rem(-8),
+                top:0
+            }
+        },{
+            name:"Kaka",
+            cn:"卡卡",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:69642000,
+            _salary:["69","642","000"],
+            words1:"拥有一切干净、利落、简单的技巧，",
+            words2:"背后都离不开专注和努力的日常。",
+            outer:{
+                height:rem(947),
+                left:0,
+                top:0
+            }
+        },{
+            name:"Ronaldo",
+            cn:"罗纳尔多",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:49523200,
+            _salary:["49","523","200"],
+            words1:"无论顺境还是逆境， ",
+            words2:"胸怀坚定的信仰，露出灿烂的微笑。",
+            outer:{
+                left:0,
+                top:rem(-128)
+            }
+        },{
+            name:"Liyi",
+            cn:"李毅",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:123808000,
+            _salary:["123","808","000"],
+            words1:"相信榜样的力量，",
+            words2:"你正是因为他的存在而更强。",
+            outer:{
+                width:rem(1128),
+                height:rem(947),
+                left:rem(-478),
+                top:0
+            }
+        },{
+            name:"Maradona",
+            cn:"马拉多纳",
+            contact:"2018年与巴塞罗那续约",
+            up:"100%",
+            salary:33085500,
+            _salary:["33","085","500"],
+            words1:"知道人无法打败时间，",
+            words2:"只希望留下能站在时间之上的作品。",
+            outer:{
+                left:0,
+                top:0,
+                status:true
+            }
         }],
         pk:{
             name:'哈哈',
@@ -237,17 +543,7 @@ var app = new Vue({
     mounted:function(){
         var self = this;
         dragRulesDetailList();
-        //音乐
-        $('.music-box').on('click',function(){
-            if($('#music')[0].paused){
-                $('#music')[0].play();
-                $(".music-icon").removeClass('close').addClass('open');
-
-            }else{
-                $('#music')[0].pause();
-                $(".music-icon").removeClass('open').addClass('close');
-            }
-        });
+        bgMusicPlay();
         function dragRulesDetailList() {
             var startX = 0,
                 moveX = 0,
@@ -294,7 +590,11 @@ var app = new Vue({
             return $n / (750 / 16) +'rem';
         },
         showAllStar:function(){
-            var self = this
+            var self = this,
+                audio = document.getElementById("music");
+            if(audio.paused){
+                audio.play();
+            }
             this.type = "out"
             setTimeout(function(){
                 self.type = "in"
@@ -358,8 +658,13 @@ var app = new Vue({
                 self.startTime = Date.now()
                 self.setSecMoney()
                 // 绘制文案与图片
+                self.clearCanvas()
                 if(self.load == self.imgs.length){
-                    self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0)
+                    // if(self.star[self.starActive].words3){
+                        self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,44)
+                    // }else{
+                        // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0)
+                    // }
                     self.drawContent()
                 }else{
                     self.drawStatus = true
@@ -500,6 +805,23 @@ var app = new Vue({
             }
             return ''
         },
+        setStarOuter:function(one){
+            var style = {
+                left:one.outer.left,
+                top:one.outer.top,
+                backgroundImage:'url(images/star/'+one.name+'-outer.png)'
+            }
+            if(one.outer.status){
+                style.backgroundImage = 'none'
+            }
+            if(one.outer.height){
+                style.height = one.outer.height
+            }
+            if(one.outer.width){
+                style.width = one.outer.width
+            }
+            return style
+        },
         showShare:function(){
             var func = Math.floor(Math.random() * 44)
             this.initCanvas()
@@ -619,7 +941,11 @@ var app = new Vue({
                         self.ctx.drawImage(self.loadedImgs[0],0,0)
                         self.ctx.drawImage(self.loadedImgs[1],487,849)
                         if(self.drawStatus){
-                            self.ctx.drawImage(self.loadedImgs[2],0,0)
+                            // if(self.star[self.starActive].words3){
+                                self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,44)
+                            // }else{
+                                // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0)
+                            // }
                             self.drawContent()
                             self.drawStatus = false
                         }
@@ -628,6 +954,18 @@ var app = new Vue({
                 img.src = url,
                 self.loadedImgs.push(img)
             })
+        },
+        clearCanvas:function(){
+            this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+
+            this.ctx.fillStyle = "#321f8f"
+            this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
+            this.ctx.fill()
+
+            if(this.load == this.imgs.length){
+                this.ctx.drawImage(this.loadedImgs[0],0,0)
+                this.ctx.drawImage(this.loadedImgs[1],487,849)
+            }
         },
         drawContent:function(){
             var self = this,
@@ -659,8 +997,12 @@ var app = new Vue({
 
             this.ctx.font = "26px normal"
             this.ctx.fillText(this.pk.name+"和"+starName+"一样，",38,132+26)
-            this.ctx.fillText("从不在乎别人的眼光，",38,176+26)
-            this.ctx.fillText("但薪水上确实还差一些。 ",38,220+26)
+            this.ctx.fillText(star.words1,38,176+26)
+            this.ctx.fillText(star.words2,38,220+26)
+
+            if(star.words3){
+                this.ctx.fillText(star.words3,38,264+26)
+            }
 
 
             // 绘制完毕，导出图片地址
@@ -779,6 +1121,16 @@ var app = new Vue({
                 initial = count;
                 callback(initial)
             }, 30);
+        },
+        musicEvent:function(e){
+            var audio = document.getElementById("music");
+            if(this.musicStatus){
+                audio.pause();
+                this.musicStatus = false;
+            }else{
+                audio.play();
+                this.musicStatus = true
+            }
         }
     }
 })
