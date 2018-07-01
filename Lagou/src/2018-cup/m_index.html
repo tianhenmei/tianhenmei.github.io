@@ -74,33 +74,40 @@
 <body>
    	<div class="wrapper pages" id="app">
 		<div class="page page-transparent">
-			<img class="bg" ref="img-bg" src="images/page1-bg.png" />
-			<img class="subtitle01" ref="img-en" src="images/page1-en.png" />
-			<img class="icon logo" ref="img-logo" src="images/page1-logo.png" />
+			<img class="bg" ref="img-bg" src="images/draw-bg.png" />
+			<img class="subtitle01" ref="img-en" src="images/draw-ercode.png" />
+			<img class="icon logo" ref="img-logo" src="images/star/Ronaldo-draw.png" />
 		</div>
 		<div class="page page0" :class="activePage == 0 ? 'active' : ''">
 			<div class="bg"></div>
 			<div class="bg-pattern" ></div>
-			<div class="bg-content"></div>
+			<div class="bg-content" :class="ani[type].bg"></div>
+			<div class="icon subtitle-shadow subtitle01" :class="ani[type].text_bg"></div>
+			<div class="icon subtitle-shadow subtitle02" :class="ani[type].text_bg"></div>
+			<div class="icon subtitle-shadow subtitle03" :class="ani[type].text_bg"></div>
+			<div class="icon subtitle-shadow subtitle04" :class="ani[type].text_bg"></div>
+
 			<div class="icon subtitle01" :class="ani[type].s1"></div>
 			<div class="icon subtitle02" :class="ani[type].s2"></div>
-			<div class="icon subtitle03" :class="ani[type].s1"></div>
-			<div class="icon subtitle04" :class="ani[type].s2"></div>
-			<div class="icon money" :class="ani[type].s2"></div>
-			<div class="icon person"></div>
-			<div class="icon ball"></div>
-			<div class="cicle cicle-01"></div>
-			<div class="cicle cicle-02"></div>
-			<div class="cicle cicle-03"></div>
-			<div class="icon start" @click="showAllStar"></div>
-			<div class="info">本次数据由拉勾大数据中心和虎扑联合呈现</div>
-			<div class="icon logo" :class="ani[type].logo"></div>
+			<div class="icon subtitle03" :class="ani[type].s3"></div>
+			<div class="icon subtitle04" :class="ani[type].s4"></div>
+			<div class="icon money" :class="ani[type].fly"></div>
+			<div class="icon person" :class="ani[type].showImmediate"></div>
+			<div class="icon ball" :class="ani[type].ballIn"></div>
+			<div class="cicle-layer" :class="ani[type].startIn">
+				<div class="cicle cicle-01 zoomInfinite"></div>
+				<div class="cicle cicle-02 zoomInfinite delay0-1"></div>
+				<div class="cicle cicle-03 zoomInfinite-03 delay0-2"></div>
+			</div>
+			<div class="icon start" :class="ani[type].startIn" @click="showAllStar"></div>
+			<div class="info" :class="ani[type].text_bg">本次数据由拉勾大数据中心和虎扑联合呈现</div>
+			<div class="icon logo" :class="ani[type].text_bg"></div>
 		</div>
 		<div class="page page1" :class="activePage == 1 ? 'active' : ''">
       		<div class="bg"></div>
-			<div class="bg-pattern" ></div>
-			<div class="bg-content"></div>
-			<div class="container star-list" ref="star-list">
+			<div class="bg-pattern"></div>
+			<div class="bg-content" :class="ani[type].bg_zoom"></div>
+			<div class="container star-list" :class="ani[type].text_bg" ref="star-list">
 				<div class="list">
 					<div class="one"
 						v-for="(one,index) in star"
@@ -110,11 +117,16 @@
 						<div class="border"></div>
 						<div class="outside" :style="{backgroundImage:'url(images/star/'+one.name+'-outer.png)'}"></div>
 						<div class="name" :style="{backgroundImage:'url(images/star/'+one.name+'-name.png)'}"></div>
-						<!-- <div class="bg"></div> -->
+						<div class="bg"></div>
+					</div>
+				</div>
+				<div class="dot-parent clearfix" :style="{width:rem((star.length - 1) * 38+35+24 + star.length)}">
+					<div class="dot" v-for="(one,index) in star" :class="index == starActive ? 'dot-active': ''">
+						<div class="dot-center"></div>
 					</div>
 				</div>
 			</div>
-			<div class="btn">
+			<div class="btn" :class="ani[type].bottomIn">
 				<div class="btn-center" @click="selectedStar"></div>
 			</div>
 		</div>
@@ -122,7 +134,7 @@
 			<div class="bg"></div>
 			<div class="bg-pattern" ></div>
 			<div class="bg-content"></div>
-			<div class="pk-title">{{star[starActive].cn}}的收入突破你的想象力</div>
+			<div class="pk-title" :class="ani[type].littleBottomIn+' delay0-5'">{{star[starActive].cn}}的收入突破你的想象力</div>
 			<div class="scroll-text" v-show="scrollStatus">
 				<div class="cover cover-top"></div>
 				<div class="text-content">
@@ -135,19 +147,21 @@
 				</div>
 				<div class="cover cover-bottom"></div>
 			</div>
-			<div class="icon pk"></div>
-			<div class="icon pk-name">
+			<div class="icon pk" :class="ani[type].littleBottomIn+' delay0-8'"></div>
+			<div class="icon pk-name" :class="ani[type].littleBottomIn+' delay1-1'">
 				<input class="pk-input" v-model="pk.name" type="text" placeholder="请输入你的昵称" @input="nameChange" />
 				<div class="tips name-tips" v-show="pk.nstatus">* 请输入你的昵称</div>
 			</div>
-			<div class="icon pk-salary">
+			<div class="icon pk-salary" :class="ani[type].littleBottomIn+' delay1-4'">
 				<input class="pk-input" v-model="pk.salary" type="number" placeholder="你的月薪是多少？" @input="salaryChange" />
 				<div class="tips salary-tips" v-show="pk.sstatus">* 请输入你的月薪</div>
 			</div>
-			<div class="icon makesure" @click="startPK" v-show="!scrollStatus"></div>
+			<div class="icon makesure" :class="ani[type].littleBottomIn+' delay1-7'" @click="startPK" v-show="!scrollStatus"></div>
 		</div>
-		<div class="page page3" :class="activePage == 3 ? 'active' : ''">
-			<div class="pro-layer title-layer">
+		<div class="page page3" :class="(activePage == 3 ? 'active' : ''+ani[type].pageOut)" ref="long-page">
+			<div class="bg"></div>
+			<div class="bg-pattern"></div>
+			<div class="pro-layer title-layer" :class="{'active-layer':active_index.indexOf(0) != -1}" ref="title-layer">
 				<div class="title-mesh"></div>
 				<div class="title">
 					<div class="icon title-name"></div>
@@ -158,57 +172,57 @@
 				<div class="title-dark"></div>
 				<div class="title-light"></div>
 			</div>
-			<div class="pro-layer star-detail-layer">
+			<div class="pro-layer star-detail-layer" :class="{'active-layer':active_index.indexOf(1) != -1}" ref="star-detail-layer">
 				<div class="star-detail clearfix">
 					<img class="star-photo" :src="'images/star/'+star[starActive].name+'-portrait.png'" />
 					<div class="star-right">
 						<div class="star-name">{{star[starActive].cn}}年薪为</div>
-						<div class="star-salary">¥ <span class="salary-num" v-for="one in star[starActive]._salary">{{one}}<i class="icon split-delimiter"></i></span> 元</div>
+						<div class="star-salary">¥ <span class="salary-num" v-for="one in animateNumber._starSalary">{{one}}<i class="icon split-delimiter"></i></span> 元</div>
 					</div>
 				</div>
 			</div>
-			<div class="pro-layer pkdetail-layer-01">
+			<div class="pro-layer pkdetail-layer-01" :class="{'active-layer':active_index.indexOf(2) != -1}" ref="pkdetail-layer-01">
 				<div class="pkdetail-01">
 					<div class="icon light"></div>
 					<div class="icon time"></div>
 					<div class="icon num"></div>
 					<div class="info-01">挣到 {{star[starActive].cn}} 一年的工资 </div>
 					<div class="info-02">你需要从现在开始</div>
-					<div class="info-03">工作到 <span class="work-years">{{getSelfMoney}}</span> 年</div>
+					<div class="info-03">工作到 <span class="work-years">{{animateNumber.selfMoney}}</span> 年</div>
 				</div>
 			</div>
-			<div class="pro-layer pkdetail-layer-02">
+			<div class="pro-layer pkdetail-layer-02" :class="{'active-layer':active_index.indexOf(3) != -1}" ref="pkdetail-layer-02">
 				<div class="pkdetail-02">
 					<div class="icon time"></div>
 					<div class="icon num"></div>
 					<div class="text text-01">你的收入相当于</div>
-					<div class="text text-02">互联网人平均薪资的 <span class="text-num">{{getSalaryTimes}}</span> 倍</div>
-					<div class="text text-03">西二旗程序员平均薪资的 <span class="text-num">{{getXSalaryTimes}}</span> 倍</div>
+					<div class="text text-02">互联网人平均薪资的 <span class="text-num">{{animateNumber.salaryTimes}}</span> 倍</div>
+					<div class="text text-03">西二旗程序员平均薪资的 <span class="text-num">{{animateNumber.xsalaryTimes}}</span> 倍</div>
 					<div class="icon line"></div>
 					<div class="icon progress progress-01">
-						<div class="icon progress-center-01"></div>
+						<div class="progress-center progress-center-01" :style="getProgressWidth(0)"></div>
 					</div>
 					<div class="icon progress progress-02">
-						<div class="icon progress-center-02"></div>
+						<div class="progress-center progress-center-02" :style="getProgressWidth(1)"></div>
 					</div>
 					<div class="icon progress progress-03">
-						<div class="icon progress-center-03"></div>
+						<div class="progress-center progress-center-03" :style="getProgressWidth(2)"></div>
 					</div>
 					<div class="detail detail-01">你目前的薪资水平</div>
 					<div class="detail detail-02">互联网人平均薪资水平</div>
 					<div class="detail detail-03">西二旗程序员平均薪资水平</div>
 				</div>
 			</div>
-			<div class="pro-layer pkdetail-layer-03">
+			<div class="pro-layer pkdetail-layer-03" :class="{'active-layer':active_index.indexOf(4) != -1}" ref="pkdetail-layer-03">
 				<div class="pkdetail-03">
 					<div class="car"></div>
 					<div class="icon num"></div>
 					<div class="info info-01">特斯拉顶配Model S轿车</div>
-					<div class="info info-02">{{star[this.starActive].cn}}工作<span class="star-num"><span class="star-hour"> {{getStarCar}}</span> 小时</span> 可以买1辆</div>
-					<div class="info info-03">你需要工作<span class="star-num"><span class="star-hour"> {{getSelfCar}} </span>天</span>才能买同款</div>
+					<div class="info info-02">{{star[this.starActive].cn}}工作<span class="star-num"><span class="star-hour"> {{animateNumber.starCar}}</span> 小时</span> 可以买1辆</div>
+					<div class="info info-03">你需要工作<span class="star-num"><span class="star-hour"> {{animateNumber.selfCar}} </span>天</span>才能买同款</div>
 				</div>
 			</div>
-			<div class="pro-layer pkdetail-layer-04">
+			<div class="pro-layer pkdetail-layer-04" :class="{'active-layer':active_index.indexOf(5) != -1}" ref="pkdetail-layer-04">
 				<div class="pkdetail-04">
 					<div class="icon num"></div>
 					<div class="icon line-01"></div>
@@ -227,26 +241,32 @@
 					<div class="bottom-money">¥<span class="times-color times-num bigger-num"> {{getStarSecMoney}} </span>元</div>
 				</div>
 			</div>
-			<div class="pro-layer end-layer">
+			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(6) != -1}" ref="end-layer">
 				<div class="end">
-					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num">  </span>万</span></div>
+					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
 					<div class="text text-02">{{pk.name}} 和 {{star[starActive].cn}}一样，   </div>
 					<div class="text text-03">无论顺境还是逆境，     </div>
 					<div class="text text-04">胸怀坚定的信仰，露出灿烂的微笑。</div>
 				</div>
 				<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 				<div class="btn">
-					<div class="save"></div>
-					<div class="restart"></div>
-					<div class="change"></div>
+					<div class="save" @click="saveImage"></div>
+					<div class="restart" @click="reSetMoney"></div>
+					<div class="change" @click="changeStar"></div>
 				</div>
 			</div>
-			<div class="layer">
-				<canvas class="canvas" ref="canvas"></canvas>
-			</div>
-			<div class="img-layer zoomIn delay0-5">
-				<canvas class="img-canvas" ref="img-canvas"></canvas>
-				<img class="img-content" :src="url" v-show="url"/>
+			<div class="layer" v-show="saveStatus">
+				<div class="page">
+					<div class="bg"></div>
+					<div class="bg-pattern"></div>
+					<div class="save-bg"></div>
+					<div class="save-img">
+						<canvas class="canvas" ref="canvas"></canvas>
+						<img class="img-content" :src="url" />
+					</div>
+					<div class="icon close" @click="closeSave"></div>
+					<div class="icon save-tips"></div>
+				</div>
 			</div>
 		</div>
 		<div class="bg-music">
