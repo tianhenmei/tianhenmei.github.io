@@ -112,7 +112,8 @@
 				<div class="cicle cicle-02 zoomInfinite delay0-1"></div>
 				<div class="cicle cicle-03 zoomInfinite-03 delay0-2"></div>
 			</div>
-			<div class="icon start" :class="ani[type].startIn" @click="showAllStar"></div>
+			<div class="icon start" :class="ani[type].startIn" @click="showAllStar"
+				data-lg-tj-id="1bip" data-lg-tj-no="0001" data-lg-tj-cid="idnull"></div>
 			<div class="info" :class="ani[type].text_bg">本次数据由拉勾大数据中心和虎扑联合呈现</div>
 			<div class="icon logo" :class="ani[type].text_bg"></div>
 		</div>
@@ -140,7 +141,8 @@
 				</div>
 			</div>
 			<div class="btn" :class="ani[type].bottomIn">
-				<div class="btn-center" @click="selectedStar"></div>
+				<div class="btn-center" @click="selectedStar"
+					data-lg-tj-id="1bip" data-lg-tj-no="0002" data-lg-tj-cid="idnull"></div>
 			</div>
 		</div>
 		<div class="page page2" :class="activePage == 2 ? 'active' : ''">
@@ -169,7 +171,8 @@
 				<input class="pk-input" v-model="pk.salary" type="number" placeholder="你的月薪是多少？" @input="salaryChange" />
 				<div class="tips salary-tips" v-show="pk.sstatus">* 请输入你的月薪</div>
 			</div>
-			<div class="icon makesure" :class="ani[type].littleBottomIn+' delay1-7'" @click="startPK" v-show="!scrollStatus"></div>
+			<div class="icon makesure" :class="ani[type].littleBottomIn+' delay1-7'" @click="startPK" v-show="!scrollStatus"
+				data-lg-tj-id="1bip" data-lg-tj-no="0003" data-lg-tj-cid="idnull"></div>
 		</div>
 		<div class="page page3" :class="(activePage == 3 ? 'active' : ''+ani[type].pageOut)" ref="long-page">
 			<div class="bg"></div>
@@ -264,9 +267,9 @@
 				</div>
 				<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 				<div class="btn">
-					<div class="save" @click="saveImage"></div>
-					<div class="restart" @click="reSetMoney"></div>
-					<div class="change" @click="changeStar"></div>
+					<div class="save" @click="saveImage" data-lg-tj-id="1bip" data-lg-tj-no="0004" data-lg-tj-cid="idnull"></div>
+					<div class="restart" @click="reSetMoney" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></div>
+					<div class="change" @click="changeStar" data-lg-tj-id="1bip" data-lg-tj-no="0006" data-lg-tj-cid="idnull"></div>
 				</div>
 			</div>
 			<div class="layer" v-show="saveStatus">
@@ -278,7 +281,7 @@
 						<canvas class="canvas" ref="canvas"></canvas>
 						<img class="img-content" :src="url" />
 					</div>
-					<div class="icon close" @click="closeSave"></div>
+					<div class="icon close" @click="closeSave" data-lg-tj-id="1bip" data-lg-tj-no="0007" data-lg-tj-cid="idnull"></div>
 					<div class="icon save-tips"></div>
 				</div>
 			</div>
@@ -314,7 +317,7 @@
       title: "那些辣眼睛的HR毒故事",
       desc: "我们收藏了1000个HR的故事，可能也有你的",
       imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share2.jpg",
-      activityType: '2018_STORY_ACTIVITY_H5',
+      activityType: '2018_CUP_ACTIVITY_H5',
       shareUrl: 'https://activity.lagou.com/activity/dist/2018-hrstory/m_index.html'
     };
     share(datas);
