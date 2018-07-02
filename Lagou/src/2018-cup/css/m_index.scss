@@ -79,7 +79,7 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#music),
+[id]:not(#app,#loading,#music,#loading-num),
 iframe {
     width:0!important;
     height:0!important;
@@ -314,6 +314,14 @@ body {
     @include leftTop(0,0);
     .loading-img {
         width:100%;
+    }
+    .loading-num {
+        width:100%;
+        line-height:rem(54);
+        font-size:rem(32);
+        color:#fff;
+        text-align:center;
+        @include center(10,578);
     }
 }
 
@@ -634,6 +642,22 @@ body {
         opacity:1;// clear // opacity:0.5;
         transform:scale(0.9) translate3d(rem(375),0,0);
     }
+    .arrow {
+        width:rem(50);
+        height:rem(69);
+        background:url('../images/page1-arrow.png') no-repeat 0 0;
+        background-size:rem(120) rem(69);
+        position:absolute;
+        top:rem(522);
+        z-index:3;
+    }
+    .left-arrow {
+        left:rem(26);
+    }
+    .right-arrow {
+        right:rem(19);
+        background-position:rem(-60) 0;
+    }
     .dot-parent {
         width:rem(281);
         margin:0 auto;
@@ -772,7 +796,8 @@ body {
     .pk-salary {
         width:rem(395);
         height:rem(101);
-        @include center(177,573);
+        // @include center(177,573);
+        @include center(177,448);
         background-position:0 rem(-215);
         z-index:2;
     }
@@ -785,7 +810,7 @@ body {
         border:none;
         background:transparent;
         color:#fff;
-        font-size:rem(30);
+        font-size:rem(28);
     }
     .tips {
         width:100%;
@@ -806,7 +831,8 @@ body {
     }
     .scroll-text {
         width:100%;
-        @include center(0,700);
+        // @include center(0,700);
+        @include center(0,680);
         .cover {
             width:rem(750);
             // background:url("../images/page2-text-cover.png") no-repeat 0 0;
@@ -1247,9 +1273,83 @@ body {
             font-family: "DINCond-Black";
         }
     }
+    .insert-layer-01 {
+        height:rem(718);
+        padding:rem(76) 0 0 0;
+        position:relative;
+    }
+    .insert-01 {
+        width:rem(771);
+        height:rem(718);
+        background:url("../images/insert-layer-01.png") no-repeat 0 0;
+        background-size:100% 100%;
+        opacity:0;
+        transition:all 0.5s 0.5s ease-in-out;
+        position:relative;
+        .num {
+            width:rem(114);
+            height:rem(46);
+            background-position:0 rem(-590);
+            @include leftTop(535,85);
+            opacity:0;
+            transition:all 0.5s 1s ease-in-out;
+        }
+        .info {
+            line-height:rem(69);
+            text-align:left;
+            font-size:rem(38);
+            color:#000fd8;
+            @include leftTop(88,109);
+            opacity:0;
+            transform:translateY(20px);
+            transition:all 0.5s 1.5s ease-in-out;
+        }
+        .info-01 {
+            font-weight:bold;
+        }
+        .info-02 {
+            top:rem(178);
+            transition-delay: 2.0s;
+        }
+        .info-03 {
+            top:rem(247);
+            transition-delay: 2.5s;
+        }
+        .info-04 {
+            top:rem(316);
+            transition-delay: 3.0s;
+        }
+        .star-num {
+            color:#9600ff;
+        }
+        .star-hour {
+            font-size:rem(56);
+            font-family: "DINCond-Black";
+        }
+        .house {
+            width:rem(599);
+            height:rem(399);
+            background:url('../images/page3-instert-house.png') no-repeat 0 0;
+            background-size:100% 100%;
+            @include leftTop(80,271);
+            opacity:0;
+            transition:all 0.5s 1s ease-in-out;
+        }
+        .bubble {
+            width:rem(62);
+            height:rem(59);
+            background:url('../images/page3-instert-bubble.png') no-repeat 0 0;
+            background-size:100% 100%;
+            transform-origin:100% 100%;
+            @include leftTop(449,362);
+            opacity:0;
+            transform:scale(0,0);
+            transition:all 0.5s 1.5s ease-in-out;
+        }
+    }
     .pkdetail-layer-04 {
         height:rem(988);
-        padding:rem(50) 0 0 0;
+        padding:rem(38) 0 0 0;
         position:relative;
     }
     .pkdetail-04 {
@@ -1262,7 +1362,7 @@ body {
         .num {
             width:rem(114);
             height:rem(46);
-            background-position:0 rem(-590);
+            background-position:rem(-50) rem(-780);
             @include leftTop(84,96);
             opacity:0;
             transition:all 0.5s 1s ease-in-out;
@@ -1597,6 +1697,21 @@ body {
             opacity:1;
         }
         .car {
+            transform:none;
+        }
+    }
+    .insert-layer-01.active-layer {
+        .insert-01,
+        .num,
+        .house {
+            opacity:1;
+        }
+        .car {
+            transform:none;
+        }
+        .info,
+        .bubble {
+            opacity:1;
             transform:none;
         }
     }

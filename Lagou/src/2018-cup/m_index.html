@@ -83,6 +83,7 @@
 <body>
 	<div class="loading" id="loading">
 		<img class="loading-img" src="images/GIF.gif"/>
+		<div class="loading-num" id="loading-num">0%</div>
 	</div>
 	<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
    	<div class="wrapper pages hide" id="app">
@@ -134,6 +135,8 @@
 						<div class="bg"></div>
 					</div>
 				</div>
+				<div class="arrow left-arrow" v-show="starActive > 0" @touchstart.stop="showPreEvent"></div>
+				<div class="arrow right-arrow" v-show="starActive < star.length - 1" @touchstart.stop="showNextEvent"></div>
 				<div class="dot-parent clearfix" :style="{width:rem((star.length - 1) * 38+35+24 + star.length)}">
 					<div class="dot" v-for="(one,index) in star" :class="index == starActive ? 'dot-active': ''">
 						<div class="dot-center"></div>
@@ -163,15 +166,15 @@
 				<div class="cover cover-bottom"></div>
 			</div>
 			<div class="icon pk" :class="ani[type].littleBottomIn+' delay0-8'"></div>
-			<div class="icon pk-name" :class="ani[type].littleBottomIn+' delay1-1'">
+			<!--<div class="icon pk-name" :class="ani[type].littleBottomIn+' delay1-1'">
 				<input class="pk-input" v-model="pk.name" type="text" placeholder="请输入你的昵称" @input="nameChange" />
 				<div class="tips name-tips" v-show="pk.nstatus">* 请输入你的昵称</div>
-			</div>
-			<div class="icon pk-salary" :class="ani[type].littleBottomIn+' delay1-4'">
-				<input class="pk-input" v-model="pk.salary" type="number" placeholder="你的月薪是多少？" @input="salaryChange" />
+			</div>-->
+			<div class="icon pk-salary" :class="ani[type].littleBottomIn+' delay1-1'">
+				<input class="pk-input" v-model="pk.salary" type="number" placeholder="输入你的月薪（数字）" @input="salaryChange" />
 				<div class="tips salary-tips" v-show="pk.sstatus">* 请输入你的月薪</div>
 			</div>
-			<div class="icon makesure" :class="ani[type].littleBottomIn+' delay1-7'" @click="startPK" v-show="!scrollStatus"
+			<div class="icon makesure" :class="ani[type].littleBottomIn+' delay1-4'" @click="startPK" v-show="!scrollStatus"
 				data-lg-tj-id="1bip" data-lg-tj-no="0003" data-lg-tj-cid="idnull"></div>
 		</div>
 		<div class="page page3" :class="(activePage == 3 ? 'active' : ''+ani[type].pageOut)" ref="long-page">
@@ -212,8 +215,8 @@
 					<div class="icon time"></div>
 					<div class="icon num"></div>
 					<div class="text text-01">你的收入相当于</div>
-					<div class="text text-02">互联网人平均薪资的 <span class="text-num">{{animateNumber.salaryTimes}}</span> 倍</div>
-					<div class="text text-03">西二旗程序员平均薪资的 <span class="text-num">{{animateNumber.xsalaryTimes}}</span> 倍</div>
+					<div class="text text-02">互联网人平均薪资的 <span class="text-num">{{getSalaryTimes}}</span> 倍</div>
+					<div class="text text-03">西二旗程序员平均薪资的 <span class="text-num">{{getXSalaryTimes}}</span> 倍</div>
 					<div class="icon line"></div>
 					<div class="icon progress progress-01">
 						<div class="progress-center progress-center-01" :style="getProgressWidth(0)"></div>
@@ -238,7 +241,19 @@
 					<div class="info info-03">你需要工作<span class="star-num"><span class="star-hour"> {{animateNumber.selfCar}} </span>天</span>才能买同款</div>
 				</div>
 			</div>
-			<div class="pro-layer pkdetail-layer-04" :class="{'active-layer':active_index.indexOf(5) != -1}" ref="pkdetail-layer-04">
+			<div class="pro-layer insert-layer-01" :class="{'active-layer':active_index.indexOf(5) != -1}" ref="insert-layer-01">
+				<div class="insert-01">
+					<div class="car"></div>
+					<div class="icon num"></div>
+					<div class="info info-01">上地100平两居室</div>
+					<div class="info info-02">{{star[this.starActive].cn}} 买需要工作<span class="star-num"><span class="star-hour"> {{animateNumber.starHouse}}</span> 天</span></div>
+					<div class="info info-03">你需要工作<span class="star-num"><span class="star-hour"> {{animateNumber.selfHouse}} </span>年</span></div>
+					<div class="info info-04">才能买同样的一套</div>
+					<div class="house"></div>
+					<div class="bubble"></div>
+				</div>
+			</div>
+			<div class="pro-layer pkdetail-layer-04" :class="{'active-layer':active_index.indexOf(6) != -1}" ref="pkdetail-layer-04">
 				<div class="pkdetail-04">
 					<div class="icon num"></div>
 					<div class="icon line-01"></div>
@@ -257,7 +272,7 @@
 					<div class="bottom-money">¥<span class="times-color times-num bigger-num"> {{getStarSecMoney}} </span>元</div>
 				</div>
 			</div>
-			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(6) != -1}" ref="end-layer">
+			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(7) != -1}" ref="end-layer">
 				<div class="end">
 					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
 					<div class="text text-02">{{pk.name}} 和 {{star[starActive].cn}}一样，   </div>
@@ -307,19 +322,21 @@
 <script type="test/javascript">
 	Vue.use(VueAwesomeSwiper);
 </script> -->
+<script type="text/javascript">
+	//微信分享
+    var datas = {
+		title: "那些辣眼睛的HR毒故事",
+		desc: "我们收藏了1000个HR的故事，可能也有你的",
+		imgUrl: "https://activity.lagou.com/activity/dist/images/share/share.jpg",
+		activityType: '2018_CUP_ACTIVITY_H5',
+		shareUrl: 'https://activity.lagou.com/activity/dist/2018-hrstory/m_index.html'
+    };
+</script>
 <script src="js/m_index.js?v=$version$"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script>
 
 <script type="text/javascript">
-    //微信分享
-    var datas = {
-      title: "那些辣眼睛的HR毒故事",
-      desc: "我们收藏了1000个HR的故事，可能也有你的",
-      imgUrl: "https://activity.lagou.com/activity/dist/hrday818-2017/story/images/share2.jpg",
-      activityType: '2018_CUP_ACTIVITY_H5',
-      shareUrl: 'https://activity.lagou.com/activity/dist/2018-hrstory/m_index.html'
-    };
     share(datas);
     //app 分享
     function getShareInfo() {

@@ -150,6 +150,7 @@ function bgMusicPlay(){
 app = new Vue({
     el:"#app",
     data:{
+        host:"https://activity.lagou.com/activity/dist/2018-cup/",
         activePage:0,
         name:"",
         canvas:null,
@@ -224,11 +225,11 @@ app = new Vue({
         },
         // 滑动
         isMoving:false,
-        prevIndex:0,
-        bprevIndex:-1,
-        starActive:1,
-        nextIndex:2,
-        bnextIndex:3,
+        bprevIndex:-2,
+        prevIndex:-1,
+        starActive:0,
+        nextIndex:1,
+        bnextIndex:2,
         prevClass:'prev',
         bprevClass:'',
         currentClass:'active',
@@ -422,7 +423,7 @@ app = new Vue({
             }
         }],
         pk:{
-            name:'',
+            name:'我',
             salary:'',
             nstatus:false,
             sstatus:false
@@ -458,6 +459,10 @@ app = new Vue({
             top:0,
             height:0
         },{
+            elem:'insert-layer-01',
+            top:0,
+            height:0
+        },{
             elem:'pkdetail-layer-04',
             top:0,
             height:0
@@ -474,7 +479,10 @@ app = new Vue({
             xsalaryTimes:0,
             doCarStatus:false,
             starCar:0,
-            selfCar:0
+            selfCar:0,
+            starHouse:0,
+            selfHouse:0,
+            doHouseStatus:false
         },
         // swiperOptionA: {
         //     pagination: {
@@ -542,9 +550,18 @@ app = new Vue({
             var money = (this.star[this.starActive].salary / 5760000 * this.nowTime).toFixed(2)
             return this.getFixedMoney(money)
         },
+        getStarHouse:function(){
+            var salary = this.star[this.starActive].salary / 12 / 200
+            return Math.ceil(1000 * 10000 / salary)
+        },
+        getSelfHouse:function(){
+            var salary = this.pk.salary * 12
+            return Math.ceil(1000 * 10000 / salary)
+        }
     },
     mounted:function(){
         var self = this;
+        // this.weixinAuth()
         dragRulesDetailList();
         bgMusicPlay();
         function dragRulesDetailList() {
@@ -553,15 +570,26 @@ app = new Vue({
                 startY = 0,
                 moveY = 0;
             $(".star-list").on("touchstart",function (e) {
+                e.preventDefault()
+                e.stopPropagation()
                 startX = e.originalEvent.changedTouches[0].pageX;
                 startY = e.originalEvent.changedTouches[0].pageY;
             }).on('touchmove',function (e) {
+                e.preventDefault()
+                e.stopPropagation()
                 moveX = e.originalEvent.changedTouches[0].pageX;
                 moveY = e.originalEvent.changedTouches[0].pageY;
             }).on('touchend',function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                if(self.isMoving){
+                    return
+                }
+                self.isMoving = true
                 if(Math.abs(moveY-startY)>Math.abs(moveX-startX)){
                     // e.stopImmediatePropagation();
                     // return false;
+                    self.isMoving = false
                 }else{
                     if(moveX<startX){
                         //向左滑动了
@@ -571,6 +599,7 @@ app = new Vue({
                             self.showNext()
                         }else {
                             self.starActive = self.star.length - 1
+                            self.isMoving = false
                         }
                     }else if(moveX>startX){
                         //向右滑动了
@@ -579,6 +608,7 @@ app = new Vue({
                             self.showPrev()
                         }else{
                             self.starActive = 0
+                            self.isMoving = false
                         }
                     }
                 }
@@ -616,6 +646,10 @@ app = new Vue({
                     self.activePage = 2
                 }
             },500)
+            datas.imgUrl = this.host + "images/share/"+this.star[this.starActive].name+'.jpg'
+            if(share){
+                share(datas);
+            }
         },
         startPK:function(){
             var value = parseFloat(this.pk.salary)
@@ -648,11 +682,14 @@ app = new Vue({
                     self.nowTime = 0
                     self.animateNumber._starSalary = [0]
                     self.animateNumber.selfMoney = 2018
-                    self.animateNumber.salaryTimes = 0
-                    self.animateNumber.xsalaryTimes = 0
+                    // self.animateNumber.salaryTimes = 0
+                    // self.animateNumber.xsalaryTimes = 0
                     self.animateNumber.doCarStatus = false
                     self.animateNumber.starCar = 0
                     self.animateNumber.selfCar = 0
+                    self.animateNumber.starHouse = 0
+                    self.animateNumber.selfHouse = 0
+                    self.animateNumber.doHouseStatus = false
                     self.calcuteNumAnimation()
                 },500)
                 $('html,body').css({
@@ -711,7 +748,7 @@ app = new Vue({
                 self.activePage = 1
             },500)
         },
-        getLongHeight: function () {
+        getLongHeight:function(){
             var list = this.long_list,
                 elem = null,
                 parent = [],
@@ -774,21 +811,44 @@ app = new Vue({
                     self.animateNumber.doCarStatus = true
                     setTimeout(function(){
                         self.numAutoPlusAnimation({
-                            time: 2500,
+                            time: 1000,
                             num: self.getStarCar,
-                            regulator: 50,
+                            regulator: 20,
                             callback:function(value){
                                 self.animateNumber.starCar = value
+                            }
+                        })
+                    },2000)
+                    setTimeout(function(){
+                        self.numAutoPlusAnimation({
+                            time: 1000,
+                            num: self.getSelfCar,
+                            regulator: 20,
+                            callback:function(value){
+                                self.animateNumber.selfCar = value
+                            }
+                        })
+                    },2500)
+                }
+                if(self.active_index.indexOf(5) != -1 && !self.animateNumber.doHouseStatus){
+                    self.animateNumber.doHouseStatus = true
+                    setTimeout(function(){
+                        self.numAutoPlusAnimation({
+                            time: 1000,
+                            num: self.getStarHouse,
+                            regulator: 20,
+                            callback:function(value){
+                                self.animateNumber.starHouse = value
                             }
                         })
                     },2200)
                     setTimeout(function(){
                         self.numAutoPlusAnimation({
-                            time: 2500,
-                            num: self.getSelfCar,
-                            regulator: 50,
+                            time: 1000,
+                            num: self.getSelfHouse,
+                            regulator: 20,
                             callback:function(value){
-                                self.animateNumber.selfCar = value
+                                self.animateNumber.selfHouse = value
                             }
                         })
                     },2700)
@@ -836,10 +896,6 @@ app = new Vue({
         showNext:function(){
             var index = this.starActive,
                 self = this;
-            if(this.isMoving){
-                return
-            }
-            this.isMoving = true
             self.prevIndex = self.starActive - 1;
             self.bprevIndex = self.prevIndex - 1;
             self.starActive = index;
@@ -864,10 +920,6 @@ app = new Vue({
             // console.log('prev')
             var index = this.starActive,
                 self = this;
-            if(this.isMoving){
-                return
-            }
-            this.isMoving = true
             this.prevIndex = this.starActive - 1;
             this.bprevIndex = this.prevIndex - 1;
             this.starActive = index;
@@ -887,6 +939,33 @@ app = new Vue({
                 // self.setScrollDataRank();
                 self.isMoving = false;
             },500)
+        },
+        showPreEvent:function(){
+            if(this.isMoving){
+                return
+            }
+            this.isMoving = true
+            this.starActive--;
+            if(this.starActive > -1){
+                this.showPrev()
+            }else{
+                this.starActive = 0
+                this.isMoving = false
+            }
+        },
+        showNextEvent:function(){
+            if(this.isMoving){
+                return
+            }
+            this.isMoving = true
+            this.starActive++;
+            // alert(this.starActive+" , "+ this.star.length)
+            if(this.starActive < this.star.length){
+                this.showNext()
+            }else {
+                this.starActive = this.star.length - 1
+                this.isMoving = false
+            }
         },
         nameChange:function(){
             if(!this.pk.name){
@@ -1050,38 +1129,38 @@ app = new Vue({
                     }
                 })
             },4800)
-            setTimeout(function(){
-                self.numAutoPlusAnimation({
-                    time: 2500,
-                    num: self.getSalaryTimes,
-                    regulator: 50,
-                    callback:function(value){
-                        value = new Number(value).toFixed(1)
-                        var arr = value ? value.split('.') : ['0']
-                        if(arr[1] == '0'){
-                            self.animateNumber.salaryTimes = arr[0]
-                        }else {
-                            self.animateNumber.salaryTimes = value
-                        }
-                    }
-                })
-            },4700)
-            setTimeout(function(){
-                self.numAutoPlusAnimation({
-                    time: 2500,
-                    num: self.getXSalaryTimes,
-                    regulator: 50,
-                    callback:function(value){
-                        value = new Number(value).toFixed(1)
-                        var arr = value ? value.split('.') : ['0']
-                        if(arr[1] == '0'){
-                            self.animateNumber.xsalaryTimes = arr[0]
-                        }else {
-                            self.animateNumber.xsalaryTimes = value
-                        }
-                    }
-                })
-            },4900)
+            // setTimeout(function(){
+            //     self.numAutoPlusAnimation({
+            //         time: 2500,
+            //         num: self.getSalaryTimes,
+            //         regulator: 50,
+            //         callback:function(value){
+            //             value = new Number(value).toFixed(1)
+            //             var arr = value ? value.split('.') : ['0']
+            //             if(arr[1] == '0'){
+            //                 self.animateNumber.salaryTimes = arr[0]
+            //             }else {
+            //                 self.animateNumber.salaryTimes = value
+            //             }
+            //         }
+            //     })
+            // },4700)
+            // setTimeout(function(){
+            //     self.numAutoPlusAnimation({
+            //         time: 2500,
+            //         num: self.getXSalaryTimes,
+            //         regulator: 50,
+            //         callback:function(value){
+            //             value = new Number(value).toFixed(1)
+            //             var arr = value ? value.split('.') : ['0']
+            //             if(arr[1] == '0'){
+            //                 self.animateNumber.xsalaryTimes = arr[0]
+            //             }else {
+            //                 self.animateNumber.xsalaryTimes = value
+            //             }
+            //         }
+            //     })
+            // },4900)
         },
         //数字自增到某一值动画参数（目标元素,自定义配置）
 	    numAutoPlusAnimation:function(options) {
@@ -1143,6 +1222,29 @@ app = new Vue({
             //     audio.play();
             //     this.musicStatus = true
             // }
+        },
+        weixinAuth:function(){
+            $.ajax({
+                type: 'get',
+                url: 'https://activity.lagou.com/activityapi/weixin/hasOpenId',
+                success: function(data) {
+                    alert(JSON.stringify(data))
+                    if (data.state == 200) { // 已登录
+                        initTotal();
+                    } else if (data.state == 201) { // 未登录
+                        var weixinlogin = window.sessionStorage.getItem('weixinlogin');
+                        if (weixinlogin == 1) {
+                            
+                        } else if (!weixinlogin) {
+                            window.sessionStorage.setItem('weixinlogin', 1);
+                            window.location.href = 'https://activity.lagou.com/activityapi/weixin/auth.html?url=' + window.location.href;
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.log(error.message);
+                }
+            });
         }
     }
 })

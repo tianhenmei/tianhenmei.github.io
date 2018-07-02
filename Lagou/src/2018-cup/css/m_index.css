@@ -3,7 +3,7 @@
   font-family: "DINCond-Black";
   src: url("../images/DINCond-Black.otf"); }
 
-[id]:not(#app, #loading, #music),
+[id]:not(#app, #loading, #music, #loading-num),
 iframe {
   width: 0 !important;
   height: 0 !important;
@@ -207,6 +207,16 @@ body {
   top: 0rem; }
   .loading .loading-img {
     width: 100%; }
+  .loading .loading-num {
+    width: 100%;
+    line-height: 1.152rem;
+    font-size: 0.68267rem;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 12.33067rem;
+    margin: 0 0 0 -7.78667rem; }
 
 .bg-music {
   width: 1.024rem;
@@ -572,6 +582,22 @@ body {
   -webkit-transform: scale(0.9) translate3d(8rem, 0, 0);
           transform: scale(0.9) translate3d(8rem, 0, 0); }
 
+.page1 .arrow {
+  width: 1.06667rem;
+  height: 1.472rem;
+  background: url("../images/page1-arrow.png") no-repeat 0 0;
+  background-size: 2.56rem 1.472rem;
+  position: absolute;
+  top: 11.136rem;
+  z-index: 3; }
+
+.page1 .left-arrow {
+  left: 0.55467rem; }
+
+.page1 .right-arrow {
+  right: 0.40533rem;
+  background-position: -1.28rem 0; }
+
 .page1 .dot-parent {
   width: 5.99467rem;
   margin: 0 auto;
@@ -721,7 +747,7 @@ body {
   height: 2.15467rem;
   position: absolute;
   left: 50%;
-  top: 12.224rem;
+  top: 9.55733rem;
   margin: 0 0 0 -4.224rem;
   background-position: 0 -4.58667rem;
   z-index: 2; }
@@ -737,7 +763,7 @@ body {
   border: none;
   background: transparent;
   color: #fff;
-  font-size: 0.64rem; }
+  font-size: 0.59733rem; }
 
 .page2 .tips {
   width: 100%;
@@ -763,7 +789,7 @@ body {
   width: 100%;
   position: absolute;
   left: 50%;
-  top: 14.93333rem;
+  top: 14.50667rem;
   margin: 0 0 0 -8rem; }
   .page2 .scroll-text .cover {
     width: 16rem;
@@ -1232,9 +1258,90 @@ body {
     .page3 .pkdetail-03 .star-hour {
       font-size: 1.19467rem;
       font-family: "DINCond-Black"; }
+  .page3 .insert-layer-01 {
+    height: 15.31733rem;
+    padding: 1.62133rem 0 0 0;
+    position: relative; }
+  .page3 .insert-01 {
+    width: 16.448rem;
+    height: 15.31733rem;
+    background: url("../images/insert-layer-01.png") no-repeat 0 0;
+    background-size: 100% 100%;
+    opacity: 0;
+    -webkit-transition: all 0.5s 0.5s ease-in-out;
+    transition: all 0.5s 0.5s ease-in-out;
+    position: relative; }
+    .page3 .insert-01 .num {
+      width: 2.432rem;
+      height: 0.98133rem;
+      background-position: 0 -12.58667rem;
+      position: absolute;
+      left: 11.41333rem;
+      top: 1.81333rem;
+      opacity: 0;
+      -webkit-transition: all 0.5s 1s ease-in-out;
+      transition: all 0.5s 1s ease-in-out; }
+    .page3 .insert-01 .info {
+      line-height: 1.472rem;
+      text-align: left;
+      font-size: 0.81067rem;
+      color: #000fd8;
+      position: absolute;
+      left: 1.87733rem;
+      top: 2.32533rem;
+      opacity: 0;
+      -webkit-transform: translateY(20px);
+              transform: translateY(20px);
+      -webkit-transition: all 0.5s 1.5s ease-in-out;
+      transition: all 0.5s 1.5s ease-in-out; }
+    .page3 .insert-01 .info-01 {
+      font-weight: bold; }
+    .page3 .insert-01 .info-02 {
+      top: 3.79733rem;
+      -webkit-transition-delay: 2.0s;
+              transition-delay: 2.0s; }
+    .page3 .insert-01 .info-03 {
+      top: 5.26933rem;
+      -webkit-transition-delay: 2.5s;
+              transition-delay: 2.5s; }
+    .page3 .insert-01 .info-04 {
+      top: 6.74133rem;
+      -webkit-transition-delay: 3.0s;
+              transition-delay: 3.0s; }
+    .page3 .insert-01 .star-num {
+      color: #9600ff; }
+    .page3 .insert-01 .star-hour {
+      font-size: 1.19467rem;
+      font-family: "DINCond-Black"; }
+    .page3 .insert-01 .house {
+      width: 12.77867rem;
+      height: 8.512rem;
+      background: url("../images/page3-instert-house.png") no-repeat 0 0;
+      background-size: 100% 100%;
+      position: absolute;
+      left: 1.70667rem;
+      top: 5.78133rem;
+      opacity: 0;
+      -webkit-transition: all 0.5s 1s ease-in-out;
+      transition: all 0.5s 1s ease-in-out; }
+    .page3 .insert-01 .bubble {
+      width: 1.32267rem;
+      height: 1.25867rem;
+      background: url("../images/page3-instert-bubble.png") no-repeat 0 0;
+      background-size: 100% 100%;
+      -webkit-transform-origin: 100% 100%;
+              transform-origin: 100% 100%;
+      position: absolute;
+      left: 9.57867rem;
+      top: 7.72267rem;
+      opacity: 0;
+      -webkit-transform: scale(0, 0);
+              transform: scale(0, 0);
+      -webkit-transition: all 0.5s 1.5s ease-in-out;
+      transition: all 0.5s 1.5s ease-in-out; }
   .page3 .pkdetail-layer-04 {
     height: 21.07733rem;
-    padding: 1.06667rem 0 0 0;
+    padding: 0.81067rem 0 0 0;
     position: relative; }
   .page3 .pkdetail-04 {
     width: 16.448rem;
@@ -1247,7 +1354,7 @@ body {
     .page3 .pkdetail-04 .num {
       width: 2.432rem;
       height: 0.98133rem;
-      background-position: 0 -12.58667rem;
+      background-position: -1.06667rem -16.64rem;
       position: absolute;
       left: 1.792rem;
       top: 2.048rem;
@@ -1614,6 +1721,21 @@ body {
   opacity: 1; }
 
 .page3.active .pkdetail-layer-03.active-layer .car {
+  -webkit-transform: none;
+          transform: none; }
+
+.page3.active .insert-layer-01.active-layer .insert-01,
+.page3.active .insert-layer-01.active-layer .num,
+.page3.active .insert-layer-01.active-layer .house {
+  opacity: 1; }
+
+.page3.active .insert-layer-01.active-layer .car {
+  -webkit-transform: none;
+          transform: none; }
+
+.page3.active .insert-layer-01.active-layer .info,
+.page3.active .insert-layer-01.active-layer .bubble {
+  opacity: 1;
   -webkit-transform: none;
           transform: none; }
 
