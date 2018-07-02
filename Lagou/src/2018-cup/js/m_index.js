@@ -3,7 +3,8 @@ function rem($n) {
     return $n / (750 / 16) +'rem';
 }
 var bgmusic_button = null,
-    audio = null;
+    audio = null,
+    app = null;
 function bgMusicPlay(){
     var bgmusic_button = $(".bgmusic");
     var audio = document.getElementById("music");
@@ -114,9 +115,11 @@ function bgMusicPlay(){
     function musicPlay(audio,isPlay) {
         if (isPlay && audio.paused) {
             audio.play();
+            app.musicStatus = false
         }
         if (!isPlay && !audio.paused) {
             audio.pause();
+            app.musicStatus = true
         }
     }
 
@@ -144,7 +147,7 @@ function bgMusicPlay(){
 
 
 }
-var app = new Vue({
+app = new Vue({
     el:"#app",
     data:{
         activePage:0,
@@ -419,8 +422,8 @@ var app = new Vue({
             }
         }],
         pk:{
-            name:'哈哈',
-            salary:3000,
+            name:'',
+            salary:'',
             nstatus:false,
             sstatus:false
         },
@@ -466,7 +469,7 @@ var app = new Vue({
         secTimer:null,
         animateNumber:{
             _starSalary:[0],
-            selfMoney:0,
+            selfMoney:2018,
             salaryTimes:0,
             xsalaryTimes:0,
             doCarStatus:false,
@@ -615,7 +618,8 @@ var app = new Vue({
             },500)
         },
         startPK:function(){
-            if(this.pk.name && this.pk.salary){
+            var value = parseFloat(this.pk.salary)
+            if(this.pk.name && value){
                 var self = this
                 // 限制文字，开始滚动
                 this.scrollStatus = true
@@ -627,8 +631,9 @@ var app = new Vue({
             }else{
                 if(!this.pk.name){
                     this.pk.nstatus = true
-                }
-                if(!this.pk.salary){
+                }else if(this.pk.salary && !value){
+                    this.pk.sstatus = true
+                }if(!this.pk.salary){
                     this.pk.sstatus = true
                 }
             }
@@ -642,7 +647,7 @@ var app = new Vue({
                     self.active_index = [0,1,2,3]
                     self.nowTime = 0
                     self.animateNumber._starSalary = [0]
-                    self.animateNumber.selfMoney = 0
+                    self.animateNumber.selfMoney = 2018
                     self.animateNumber.salaryTimes = 0
                     self.animateNumber.xsalaryTimes = 0
                     self.animateNumber.doCarStatus = false
@@ -1124,13 +1129,20 @@ var app = new Vue({
         },
         musicEvent:function(e){
             var audio = document.getElementById("music");
-            if(this.musicStatus){
-                audio.pause();
-                this.musicStatus = false;
-            }else{
+            if(audio.paused){
                 audio.play();
-                this.musicStatus = true
+                this.musicStatus = false
+            }else{
+                audio.pause();
+                this.musicStatus = true;
             }
+            // if(this.musicStatus){
+            //     audio.pause();
+            //     this.musicStatus = false;
+            // }else{
+            //     audio.play();
+            //     this.musicStatus = true
+            // }
         }
     }
 })
