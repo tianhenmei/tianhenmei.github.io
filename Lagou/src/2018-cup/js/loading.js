@@ -3,7 +3,7 @@ var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2017-summary/';
 var imgArray = [
 	"images/draw-bg.png",
-	"images/draw-ercode.png",
+	"images/draw-ercode-02.jpg",
 	"images/icon.png",
 	"images/page0-bg-content.png",
 	"images/page0-bg.png",

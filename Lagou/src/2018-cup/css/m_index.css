@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @font-face {
-  font-family: "DINCond-Black";
+  font-family: "DINCondBlack";
   src: url("../images/DINCond-Black.otf"); }
 
 [id]:not(#app, #loading, #music, #loading-num),
@@ -205,6 +205,8 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem; }
+  .loading .special-text {
+    font-family: "DINCondBlack"; }
   .loading .loading-img {
     width: 16rem;
     position: absolute;
@@ -792,9 +794,10 @@ body {
 
 .page2 .scroll-text {
   width: 100%;
+  height: 5.90933rem;
   position: absolute;
   left: 50%;
-  top: 16.04267rem;
+  top: 12.608rem;
   margin: 0 0 0 -8rem; }
   .page2 .scroll-text .cover {
     width: 16rem;
@@ -803,28 +806,26 @@ body {
     top: 0rem;
     z-index: 2; }
   .page2 .scroll-text .cover-top {
-    height: 7.04rem;
-    background: url("../images/page2-cover.png") no-repeat 0 0;
+    height: 1.81333rem;
+    background: url("../images/page2-cover-top.png") no-repeat 0 0;
     background-size: 100%;
     top: 0; }
   .page2 .scroll-text .cover-bottom {
-    height: 6.528rem;
-    top: 0.64rem;
-    background: url("../images/page2-cover.png") no-repeat 0 0;
-    -webkit-transform: scaleY(-1);
-            transform: scaleY(-1); }
+    height: 1.792rem;
+    top: 4.11733rem;
+    background: url("../images/page2-cover-bottom.png") no-repeat 0 0;
+    background-size: 100%; }
   .page2 .scroll-text .text-content {
     width: 100%;
-    height: 4.608rem;
+    height: 5.90933rem;
     position: absolute;
     left: 0rem;
-    top: 1.28rem;
+    top: 0rem;
     overflow: hidden; }
   .page2 .scroll-text .text-center {
     width: 100%;
     height: 4.608rem;
-    opacity: 0;
-    overflow: hidden; }
+    opacity: 0; }
   .page2 .scroll-text .text {
     width: 100%;
     line-height: 1.152rem;
@@ -984,7 +985,7 @@ body {
       transition: all 0.5s 2.6s ease-in-out; }
     .page3 .star-detail .salary-num {
       padding: 0 0.576rem 0 0;
-      font-family: "DINCond-Black";
+      font-family: "DINCondBlack";
       font-size: 1.38027rem;
       color: #fee53e;
       position: relative; }
@@ -1078,7 +1079,7 @@ body {
       -webkit-transition: all 0.5s 4.3s ease-in-out;
       transition: all 0.5s 4.3s ease-in-out; }
     .page3 .pkdetail-01 .work-years {
-      font-family: "DINCond-Black";
+      font-family: "DINCondBlack";
       font-size: 1.19467rem;
       color: #9600ff; }
   .page3 .pkdetail-layer-02 {
@@ -1142,7 +1143,7 @@ body {
     .page3 .pkdetail-02 .text-num {
       color: #9600ff;
       font-size: 1.19467rem;
-      font-family: "DINCond-Black"; }
+      font-family: "DINCondBlack"; }
     .page3 .pkdetail-02 .line {
       width: 12.58667rem;
       height: 0.256rem;
@@ -1265,7 +1266,7 @@ body {
       color: #9600ff; }
     .page3 .pkdetail-03 .star-hour {
       font-size: 1.19467rem;
-      font-family: "DINCond-Black"; }
+      font-family: "DINCondBlack"; }
   .page3 .insert-layer-01 {
     height: 15.31733rem;
     padding: 1.62133rem 0 0 0;
@@ -1320,7 +1321,7 @@ body {
       color: #9600ff; }
     .page3 .insert-01 .star-hour {
       font-size: 1.19467rem;
-      font-family: "DINCond-Black"; }
+      font-family: "DINCondBlack"; }
     .page3 .insert-01 .house {
       width: 12.77867rem;
       height: 8.512rem;
@@ -1422,7 +1423,7 @@ body {
       color: #9600ff; }
     .page3 .pkdetail-04 .times-num {
       font-size: 1.46667rem;
-      font-family: "DINCond-Black"; }
+      font-family: "DINCondBlack"; }
     .page3 .pkdetail-04 .left-icon {
       width: 2.51733rem;
       height: 2.432rem;
@@ -1549,7 +1550,8 @@ body {
     .page3 .end .end-color {
       color: #fee53e; }
     .page3 .end .end-num {
-      font-size: 1.29877rem; }
+      font-size: 1.29877rem;
+      font-family: "DINCondBlack"; }
     .page3 .end .text-01 {
       line-height: 3.05067rem;
       font-size: 0.78933rem; }
@@ -2013,24 +2015,24 @@ body {
     opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
             transform: translate3d(0, 100%, 0); }
-  10% {
+  1% {
     opacity: 1; }
   100% {
     opacity: 1;
-    -webkit-transform: translate3d(0, -50%, 0);
-            transform: translate3d(0, -50%, 0); } }
+    -webkit-transform: translate3d(0, -40%, 0);
+            transform: translate3d(0, -40%, 0); } }
 
 @keyframes scrollContent {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
             transform: translate3d(0, 100%, 0); }
-  10% {
+  1% {
     opacity: 1; }
   100% {
     opacity: 1;
-    -webkit-transform: translate3d(0, -50%, 0);
-            transform: translate3d(0, -50%, 0); } }
+    -webkit-transform: translate3d(0, -40%, 0);
+            transform: translate3d(0, -40%, 0); } }
 
 .leftZoomIn {
   -webkit-animation: leftZoomIn 0.5s both ease-in-out;

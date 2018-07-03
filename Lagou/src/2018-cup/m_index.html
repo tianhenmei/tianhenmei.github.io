@@ -84,6 +84,7 @@
 	<div class="loading" id="loading">
 		<img class="loading-img" src="images/GIF.gif"/>
 		<div class="loading-num" id="loading-num">0%</div>
+		<span class="special-text" style="display:none;">123456</span>
 	</div>
 	<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
    	<div class="wrapper pages hide" id="app">
@@ -153,9 +154,10 @@
 			<div class="bg-pattern" ></div>
 			<div class="bg-content"></div>
 			<div class="pk-title" :class="ani[type].littleBottomIn+' delay0-5'">{{star[starActive].cn}}的收入突破你的想象力</div>
-			<div class="scroll-text" v-show="scrollStatus">
+			<div class="scroll-text">
 				<div class="cover cover-top"></div>
-				<div class="text-content">
+				<div class="cover cover-bottom"></div>
+				<div class="text-content" v-show="scrollStatus">
 					<div class="text-center" :class="{'content-scroll':scrollStatus}">
 						<div class="text text-01">11k是互联网薪资的平均线</div>
 						<div class="text text-02">{{randomText[randomArr[0]]}}</div>
@@ -163,7 +165,6 @@
 						<div class="text text-04">{{randomText[randomArr[2]]}}</div>
 					</div>
 				</div>
-				<div class="cover cover-bottom"></div>
 			</div>
 			<div class="icon pk" :class="ani[type].littleBottomIn+' delay0-8'"></div>
 			<!--<div class="icon pk-name" :class="ani[type].littleBottomIn+' delay1-1'">
@@ -275,7 +276,7 @@
 			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(7) != -1}" ref="end-layer">
 				<div class="end">
 					<div class="end-center end-01" v-show="endIndex == 0">
-						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>{{getStarSalaryUnit}}</span></div>
 						<div class="text text-02">{{star[starActive].nickname}}工作<span class="end-color"><span class="end-num"> {{getStarCar}} </span>小时</span></div>
 						<div class="text text-03">可以买<span class="end-color end-num"> 1 </span>辆特斯拉</div>
 						<div class="text text-04"><span class="end-color">{{pk.name}}</span>需要工作<span class="end-color"><span class="end-num"> {{getSelfCar}} </span>天</span></div>
@@ -284,7 +285,7 @@
 						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 					</div>
 					<div class="end-center end-02" v-show="endIndex == 1">
-						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>{{getStarSalaryUnit}}</span></div>
 						<div class="text text-02">买一套<span class="end-color">100平</span>上地学区房</div>
 						<div class="text text-03">{{star[starActive].nickname}}需要工作<span class="end-color"><span class="end-num"> {{getStarHouse}} </span>天</span></div>
 						<div class="text text-04"><span class="end-color">{{pk.name}}</span>需要奋斗<span class="end-color"><span class="end-num"> {{getSelfHouse}} </span>年</span></div>
@@ -293,7 +294,7 @@
 						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 					</div>
 					<div class="end-center end-02" v-show="endIndex == 2">
-						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>{{getStarSalaryUnit}}</span></div>
 						<div class="text text-02">要挣到{{star[starActive].nickname}}<span class="end-color">一年</span>的工资</div>
 						<div class="text text-03"><span class="end-color">{{pk.name}}</span>需要</div>
 						<div class="text text-04">从现在开始再工作<span class="end-color"><span class="end-num"> {{getSelfStarMoney}} </span>年</span></div>

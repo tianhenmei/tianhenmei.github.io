@@ -174,7 +174,7 @@ app = new Vue({
         loadedImgs:[],
         imgs:[
             "images/draw-bg.png",
-            "images/draw-ercode.png",
+            "images/draw-ercode-02.jpg",
             "images/star/Messi-card.png",
             "images/star/CRonaldo-card.png",
             "images/star/Neymar-card.png",
@@ -236,7 +236,7 @@ app = new Vue({
         isMoving:false,
         bprevIndex:-2,
         prevIndex:-1,
-        starActive:2,
+        starActive:0,
         nextIndex:1,
         bnextIndex:2,
         prevClass:'prev',
@@ -429,8 +429,8 @@ app = new Vue({
             nickname:"大帝",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
-            salary:123808000,
-            _salary:["123","808","000"],
+            salary:1000000,
+            _salary:["1","000","000"],
             words1:"相信榜样的力量，<br/>"+
                 "你正是因为他的存在而更强。",
             outer:{
@@ -535,8 +535,22 @@ app = new Vue({
             return years+2018
         },
         getStarSalary:function(){
-            var salary = this.star[this.starActive].salary
-            return Math.floor(salary / 10000)
+            var salary = this.star[this.starActive].salary,
+                num = salary / 100000000
+            if(num < 1) {
+                return Math.floor(salary / 10000)
+            }else{
+                return (salary / 100000000).toFixed(1)
+            }
+        },
+        getStarSalaryUnit:function(){
+            var salary = this.star[this.starActive].salary,
+            num = salary / 100000000
+            if(num < 1) {
+                return '万'
+            }else{
+                return '亿'
+            }
         },
         getSalaryTimes:function(){
             var times = (this.pk.salary / 11000).toFixed(1),
@@ -1116,7 +1130,7 @@ app = new Vue({
             var self = this,
                 star = this.star[this.starActive],
                 starName = star.cn,
-                salary = Math.floor(star.salary / 10000)
+                salary = this.getStarSalary
             this.ctx.strokeStyle = '#ffffff'
             this.ctx.lineWidth = 3
             this.ctx.beginPath()
@@ -1138,11 +1152,11 @@ app = new Vue({
             var nx = this.ctx.measureText(" 年薪 ").width
 
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillText(salary,63+sw+nx,71+40)
             var sa = this.ctx.measureText(salary).width
             this.ctx.font = "32px normal"
-            this.ctx.fillText(" 万",63+sw+nx+sa,71+38)
+            this.ctx.fillText(" "+this.getStarSalaryUnit,63+sw+nx+sa,71+38)
 
             this.ctx.fillStyle = "#ffffff"
             this.ctx.beginPath()
@@ -1168,9 +1182,9 @@ app = new Vue({
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText(star.nickname+"工作 ",63,203+26)
             sw = this.ctx.measureText(star.nickname+"工作 ").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getStarCar,63+sw,203+26)
+            this.ctx.fillText(this.getStarCar,63+sw,203+28)
             nx = this.ctx.measureText(this.getStarCar).width
             this.ctx.font = "38px normal"
             this.ctx.fillText("小时",63+sw+nx,203+26)
@@ -1190,12 +1204,12 @@ app = new Vue({
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText("需要工作 ",63+sw,360+26)
             nx = this.ctx.measureText("需要工作 ").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getSelfCar,63+sw+nx,360+26)
+            this.ctx.fillText(this.getSelfCar,63+sw+nx,360+28)
             lw = this.ctx.measureText(this.getSelfCar).width
             this.ctx.font = "38px normal"
-            this.ctx.fillText(" 年",63+sw+nx+lw,360+26)
+            this.ctx.fillText(" 天",63+sw+nx+lw,360+26)
 
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText("才能买同款",63,420+26)
@@ -1236,9 +1250,9 @@ app = new Vue({
 
             this.ctx.fillText(star.nickname+"需要工作",63,268+26)
             sw = this.ctx.measureText(star.nickname+"需要工作").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getStarHouse,63+sw,268+26)
+            this.ctx.fillText(this.getStarHouse,63+sw,268+28)
             nx = this.ctx.measureText(this.getStarHouse).width
             this.ctx.font = "38px normal"
             this.ctx.fillText("天",63+sw+nx,268+26)
@@ -1248,9 +1262,9 @@ app = new Vue({
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText("需要奋斗",63+sw,360+26)
             nx = this.ctx.measureText("需要奋斗").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getSelfHouse,63+sw+nx,360+26)
+            this.ctx.fillText(this.getSelfHouse,63+sw+nx,360+28)
             lw = this.ctx.measureText(this.getSelfHouse).width
             this.ctx.font = "38px normal"
             this.ctx.fillText("年",63+sw+nx+lw,360+26)
@@ -1294,24 +1308,24 @@ app = new Vue({
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText("需要",63+sw,268+26)
             
-            this.ctx.fillText("从现在开始再工作",63,337+26)
-            sw = this.ctx.measureText("从现在开始再工作").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillText("从现在开始再工作 ",63,337+26)
+            sw = this.ctx.measureText("从现在开始再工作 ").width
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getSelfStarMoney,63+sw,337+26)
+            this.ctx.fillText(this.getSelfStarMoney,63+sw,337+28)
             nx = this.ctx.measureText(this.getSelfStarMoney).width
             this.ctx.font = "38px normal"
-            this.ctx.fillText("年",63+sw+nx,337+26)
+            this.ctx.fillText(" 年",63+sw+nx,337+26)
 
             this.ctx.fillStyle = "#ffffff"
-            this.ctx.fillText("一直到",63,404+26)
-            sw = this.ctx.measureText("一直到").width
-            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillText("一直到 ",63,404+26)
+            sw = this.ctx.measureText("一直到 ").width
+            this.ctx.font = "53px bold DINCondBlack"
             this.ctx.fillStyle = "#fee53e"
-            this.ctx.fillText(this.getSSFrom,63+sw,404+26)
+            this.ctx.fillText(this.getSSFrom,63+sw,404+28)
             nx = this.ctx.measureText(this.getSSFrom).width
             this.ctx.font = "38px normal"
-            this.ctx.fillText("年",63+sw+nx,404+26)
+            this.ctx.fillText(" 年",63+sw+nx,404+26)
 
             this.ctx.fillStyle = "#ffffff"
             this.ctx.beginPath()

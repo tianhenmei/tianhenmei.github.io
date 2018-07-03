@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @font-face {
-    font-family: "DINCond-Black";
+    font-family: "DINCondBlack";
     src:url("../images/DINCond-Black.otf");
 }
 @function rem($n) {
@@ -312,6 +312,9 @@ body {
     height:100%;
     background-color:#210c6d;
     @include leftTop(0,0);
+    .special-text {
+        font-family: "DINCondBlack";
+    }
     .loading-img {
         width:rem(750);
         @include center(0,0);
@@ -835,9 +838,10 @@ body {
     }
     .scroll-text {
         width:100%;
+        height:rem(277);
         // @include center(0,700);
         // @include center(0,680);
-        @include center(0,752);
+        @include center(0,591);
         .cover {
             width:rem(750);
             // background:url("../images/page2-text-cover.png") no-repeat 0 0;
@@ -845,29 +849,28 @@ body {
             z-index: 2;
         }
         .cover-top {
-            height:rem(330);
-            background:url("../images/page2-cover.png") no-repeat 0 0;
+            height:rem(85);
+            background:url("../images/page2-cover-top.png") no-repeat 0 0;
             background-size:100%;
             top:0;
         }
         .cover-bottom {
-            height:rem(306);
-            top:rem(30);
+            height:rem(84);
+            top:rem(193);
             // background-position:0 rem(-200);
-            background:url("../images/page2-cover.png") no-repeat 0 0;
-            transform:scaleY(-1);
+            background:url("../images/page2-cover-bottom.png") no-repeat 0 0;
+            background-size:100%;
         }
         .text-content {
             width:100%;
-            height:rem(216);
-            @include leftTop(0,60);
+            height:rem(277);
+            @include leftTop(0,0);//60
             overflow:hidden;
         }
         .text-center {
             width:100%;
             height:rem(216);
             opacity:0;
-            overflow:hidden;
         }
         .text {
             width:100%;
@@ -1019,7 +1022,7 @@ body {
         }
         .salary-num {
             padding:0 rem(27) 0 0;
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
             font-size:rem(64.7);
             color:#fee53e;
             position:relative;
@@ -1104,7 +1107,7 @@ body {
             transition: all 0.5s 4.3s ease-in-out;
         }
         .work-years {
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
             font-size:rem(56);
             color:#9600ff;
         }
@@ -1161,7 +1164,7 @@ body {
         .text-num {
             color:#9600ff;
             font-size:rem(56);
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
         }
         .line {
             width:rem(590);
@@ -1278,7 +1281,7 @@ body {
         }
         .star-hour {
             font-size:rem(56);
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
         }
     }
     .insert-layer-01 {
@@ -1332,7 +1335,7 @@ body {
         }
         .star-hour {
             font-size:rem(56);
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
         }
         .house {
             width:rem(599);
@@ -1419,7 +1422,7 @@ body {
         }
         .times-num {
             font-size:rem(68.75);
-            font-family: "DINCond-Black";
+            font-family: "DINCondBlack";
         }
         .left-icon {
             width:rem(118);
@@ -1534,6 +1537,7 @@ body {
         }
         .end-num {
             font-size:rem(60.88);
+            font-family: "DINCondBlack";
         }
         .text-01 {
             line-height:rem(143);
@@ -1942,12 +1946,12 @@ body {
         opacity:0;
         transform:translate3d(0,100%,0);
     }
-    10% {
+    1% {
         opacity:1;
     }
     100% {
         opacity:1;
-        transform:translate3d(0,-50%,0);
+        transform:translate3d(0,-40%,0);
     }
 }
 
