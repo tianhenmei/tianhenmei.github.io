@@ -12,7 +12,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
   <link rel="stylesheet" href="css/m_index.css?v=$version$">
-  <title>拉勾世界杯</title>
+  <title>拉勾世界杯球星榜</title>
   <script src="../common/js/jquery.1.10.1.min.js"></script>
   <script>
     var lastSize = 16,
@@ -304,7 +304,8 @@
 				</div>
 				<div class="btn">
 					<div class="save" @click="saveImage" data-lg-tj-id="1bip" data-lg-tj-no="0004" data-lg-tj-cid="idnull"></div>
-					<div class="restart" @click="reSetMoney" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></div>
+					<a class="restart" href="https://activity.lagou.com/topic/lietou.html" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></a>
+					<!-- <div class="restart" @click="reSetMoney" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></div> -->
 					<div class="change" @click="changeStar" data-lg-tj-id="1bip" data-lg-tj-no="0006" data-lg-tj-cid="idnull"></div>
 				</div>
 			</div>
@@ -323,7 +324,7 @@
 			</div>
 		</div>
 		<div class="bg-music" ref="bg-music" @click.stop.prevent="musicEvent" v-show="activePage != 3">
-			<audio id="music" ref="music" autoplay="autoplay" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+			<audio id="music" ref="music" autoplay="autoplay" loop="loop" preload="auto" src="images/bg.MP3"></audio>
 			<div class="open" v-show="musicStatus"></div>
 		</div>
 	</div>
@@ -346,11 +347,11 @@
 <script type="text/javascript">
 	//微信分享
     var datas = {
-		title: "那些辣眼睛的HR毒故事",
-		desc: "我们收藏了1000个HR的故事，可能也有你的",
-		imgUrl: "https://activity.lagou.com/activity/dist/images/share/share.jpg",
+		title: "你喜欢的球星，到底有多富",
+		desc: "快来测测你和球星的距离有多远？",
+		imgUrl: "https://activity.lagou.com/activity/dist/2018-cup/images/share/share.jpg",
 		activityType: '2018_CUP_ACTIVITY_H5',
-		shareUrl: 'https://activity.lagou.com/activity/dist/2018-hrstory/m_index.html'
+		shareUrl: 'https://activity.lagou.com/activity/dist/2018-cup/m_index.html'
     };
 </script>
 <script src="js/m_index.js?v=$version$"></script>
