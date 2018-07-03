@@ -458,7 +458,7 @@ app = new Vue({
         }],
         pk:{
             name:'我',
-            salary:3000,
+            salary:'',
             nstatus:false,
             sstatus:false
         },
@@ -699,7 +699,7 @@ app = new Vue({
         },
         startPK:function(){
             var value = parseFloat(this.pk.salary)
-            if(this.pk.name && value){
+            if(value){
                 var self = this
                 // 限制文字，开始滚动
                 this.scrollStatus = true
@@ -710,9 +710,9 @@ app = new Vue({
                     self.showResult()
                 },3000)
             }else{
-                if(!this.pk.name){
-                    this.pk.nstatus = true
-                }else if(this.pk.salary && !value){
+                // if(!this.pk.name){
+                    // this.pk.nstatus = true
+                /*}else */if(this.pk.salary && !value){
                     this.pk.sstatus = true
                 }if(!this.pk.salary){
                     this.pk.sstatus = true
