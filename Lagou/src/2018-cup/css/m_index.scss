@@ -493,7 +493,8 @@ body {
         width: rem(177);
         height: rem(40);
         @include centerb(286, 62);
-        background-position:rem(-900) rem(-460);
+        background:url("../images/page0-logo.png") no-repeat center bottom;
+        background-size:100% 100%;
     }
 }
 .page-transparent {
@@ -769,8 +770,10 @@ body {
 }
 .page2{
     .bg-content {
-        background:#000;
-        opacity:0.5;
+        background:#181043 url('../images/page2-bg-content.jpg') no-repeat right top;
+        background-size:rem(750) rem(1334);
+        // background:#000;
+        // opacity:0.5;
     }
     .pk-title {
         width:100%;
@@ -832,7 +835,8 @@ body {
     .scroll-text {
         width:100%;
         // @include center(0,700);
-        @include center(0,680);
+        // @include center(0,680);
+        @include center(0,752);
         .cover {
             width:rem(750);
             // background:url("../images/page2-text-cover.png") no-repeat 0 0;
@@ -841,7 +845,7 @@ body {
         }
         .cover-top {
             height:rem(330);
-            background:url("../images/page2-cover-top.png") no-repeat 0 0;
+            background:url("../images/page2-cover.png") no-repeat 0 0;
             background-size:100%;
             top:0;
         }
@@ -849,7 +853,7 @@ body {
             height:rem(306);
             top:rem(30);
             // background-position:0 rem(-200);
-            background:url("../images/page2-cover-top.png") no-repeat 0 0;
+            background:url("../images/page2-cover.png") no-repeat 0 0;
             transform:scaleY(-1);
         }
         .text-content {
@@ -860,6 +864,8 @@ body {
         }
         .text-center {
             width:100%;
+            opacity:0;
+            overflow:hidden;
         }
         .text {
             width:100%;
@@ -1509,55 +1515,92 @@ body {
         transform:translate3d(0,300px,0);
         transition:all 0.5s 0.5s ease-in-out;
         .text {
-            font-size:rem(32.18);
+            font-size:rem(44.58);
             color:#fff;
             text-align:left;
-            @include leftTop(106,121);
+            @include leftTop(102,144);
             opacity:0;
             transform:translate3d(0,50px,0);
             transition:all 0.5s 1s ease-in-out;
+        }
+        .star-name {
+            padding:0 rem(26) 0 0;
+            font-size:rem(56);
         }
         .end-color {
             color:#fee53e;
         }
         .end-num {
-            font-size:rem(57.37);
+            font-size:rem(60.88);
         }
         .text-01 {
-            line-height:rem(107);
-            border-bottom:1px solid #fff;
-            font-size:rem(43.68);
+            line-height:rem(143);
+            font-size:rem(37);
+        }
+        .text-01:after {
+            content:"";
+            width:rem(26);
+            height:1px;
+            position:absolute;
+            left:rem(8);
+            top:100%;
+            background:#fff;
         }
         .text-02 {
-            line-height:rem(66);
-            font-size:rem(39.08);
-            top:rem(250);
+            line-height:rem(70);
+            top:rem(326);
             transition-delay: 1.2s;
         }
         .text-03 {
-            line-height:rem(61);
-            top:rem(330);
+            line-height:rem(70);
+            top:rem(396);
             transition-delay: 1.4s;
         }
         .text-04 {
-            line-height:rem(61);
-            top:rem(391);
+            line-height:rem(70);
+            top:rem(497);
             transition-delay: 1.6s;
         }
         .text-05 {
-            line-height:rem(61);
-            top:rem(452);
+            line-height:rem(70);
+            top:rem(567);
             transition-delay: 1.8s;
         }
     }
     .card {
         width:rem(750);
-        height:rem(1493);
+        height:rem(1253);
         background:url("../images/star/Ronaldo-card.png") no-repeat center top;
         background-size:100%;
-        @include leftTop(0,50+61);
+        @include leftTop(0,50);
         opacity:0;
         transition:all 0.5s 2.1s ease-in-out;
+    }
+    .words {
+        width:rem(650);
+        height:rem(500);
+        line-height:rem(37);
+        padding:rem(41) 0 0 0;
+        text-align:left;
+        color:#fff;
+        font-size:rem(18.53);
+        @include leftTop(111,801);
+        opacity:0;
+        transform:translate(0,50px);
+        transition:all 0.5s 2.1s ease-in-out;
+    }
+    .words:before {
+        content:"";
+        width:rem(24);
+        height:1px;
+        @include leftTop(0,0);
+        background-color:#fff;
+    }
+    .end-02 {
+        .words,
+        .card {
+            transition-delay: 1.8s;
+        }
     }
     .btn {
         width:rem(745);
@@ -1741,6 +1784,7 @@ body {
     .end-layer.active-layer {
         .end,
         .btn,
+        .words,
         .text{
             opacity:1;
             transform: none;
@@ -1891,7 +1935,11 @@ body {
 }
 @keyframes scrollContent{
     0% {
+        opacity:0;
         transform:translate3d(0,100%,0);
+    }
+    1% {
+        opacity:1;
     }
     100% {
         transform:translate3d(0,-50%,0);

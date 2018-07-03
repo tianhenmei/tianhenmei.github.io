@@ -115,8 +115,8 @@
 			</div>
 			<div class="icon start" :class="ani[type].startIn" @click="showAllStar"
 				data-lg-tj-id="1bip" data-lg-tj-no="0001" data-lg-tj-cid="idnull"></div>
-			<div class="info" :class="ani[type].text_bg">本次数据由拉勾大数据中心和虎扑联合呈现</div>
-			<div class="icon logo" :class="ani[type].text_bg"></div>
+			<div class="info" :class="ani[type].text_bg">本次数据由拉勾大数据呈现</div>
+			<div class="logo" :class="ani[type].text_bg"></div>
 		</div>
 		<div class="page page1" :class="activePage == 1 ? 'active' : ''">
       		<div class="bg"></div>
@@ -157,10 +157,10 @@
 				<div class="cover cover-top"></div>
 				<div class="text-content">
 					<div class="text-center" :class="{'content-scroll':scrollStatus}">
-						<div class="text text-01">正在匹配拉勾互联网薪资数据...</div>
-						<div class="text text-02">正在调取虎扑球员薪资数据库...</div>
-						<div class="text text-03">{{star[starActive].cn+star[starActive].contact}}</div>
-						<div class="text text-04">{{star[starActive].cn}}每次合同签约薪资涨幅{{star[starActive].up}}</div>
+						<div class="text text-01">11k是互联网薪资的平均线</div>
+						<div class="text text-02">{{randomText[randomArr[0]]}}</div>
+						<div class="text text-03">{{randomText[randomArr[1]]}}</div>
+						<div class="text text-04">{{randomText[randomArr[2]]}}</div>
 					</div>
 				</div>
 				<div class="cover cover-bottom"></div>
@@ -274,13 +274,34 @@
 			</div>
 			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(7) != -1}" ref="end-layer">
 				<div class="end">
-					<div class="text text-01">{{star[starActive].cn}}年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
-					<div class="text text-02">{{pk.name}} 和 {{star[starActive].cn}}一样，   </div>
-					<div class="text text-03">{{star[starActive].words1}}</div>
-					<div class="text text-04">{{star[starActive].words2}}</div>
-					<div class="text text-05" v-if="star[starActive].words3">{{star[starActive].words3}}</div>
+					<div class="end-center end-01" v-show="endIndex == 0">
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-02">{{star[starActive].nickname}}工作<span class="end-color"><span class="end-num"> {{getStarCar}} </span>小时</span></div>
+						<div class="text text-03">可以买<span class="end-color end-num"> 1 </span>辆特斯拉</div>
+						<div class="text text-04"><span class="end-color">{{pk.name}}</span>需要工作<span class="end-color"><span class="end-num"> {{getSelfCar}} </span>天</span></div>
+						<div class="text text-05">才能买同款</div>
+						<div class="words" v-html="star[starActive].words1"></div>
+						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
+					</div>
+					<div class="end-center end-02" v-show="endIndex == 1">
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-02">买一套<span class="end-color">100平</span>上地学区房</div>
+						<div class="text text-03">{{star[starActive].nickname}}需要工作<span class="end-color"><span class="end-num"> {{getStarHouse}} </span>天</span></div>
+						<div class="text text-04"><span class="end-color">{{pk.name}}</span>需要奋斗<span class="end-color"><span class="end-num"> {{getSelfHouse}} </span>年</span></div>
+						<!-- <div class="text text-05">才能买同款</div> -->
+						<div class="words" v-html="star[starActive].words1"></div>
+						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
+					</div>
+					<div class="end-center end-02" v-show="endIndex == 2">
+						<div class="text text-01"><span class="star-name">{{star[starActive].cn}}</span>年薪<span class="end-color"><span class="end-num"> {{getStarSalary}} </span>万</span></div>
+						<div class="text text-02">要挣到{{star[starActive].nickname}}<span class="end-color">一年</span>的工资</div>
+						<div class="text text-03"><span class="end-color">{{pk.name}}</span>需要</div>
+						<div class="text text-04">从现在开始再工作<span class="end-color"><span class="end-num"> {{getSelfStarMoney}} </span>年</span></div>
+						<div class="text text-05">一直到<span class="end-color"><span class="end-num"> {{getSSFrom}} </span>年</span></div>
+						<div class="words" v-html="star[starActive].words1"></div>
+						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
+					</div>
 				</div>
-				<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 				<div class="btn">
 					<div class="save" @click="saveImage" data-lg-tj-id="1bip" data-lg-tj-no="0004" data-lg-tj-cid="idnull"></div>
 					<div class="restart" @click="reSetMoney" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></div>

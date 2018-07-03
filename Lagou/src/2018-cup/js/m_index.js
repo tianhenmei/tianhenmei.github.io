@@ -168,25 +168,26 @@ app = new Vue({
         drawStatus:false,
 
         musicStatus:false,
+        endIndex:0,
 
         load:0,
         loadedImgs:[],
         imgs:[
             "images/draw-bg.png",
             "images/draw-ercode.png",
-            "images/star/Messi-draw.png",
-            "images/star/CRonaldo-draw.png",
-            "images/star/Neymar-draw.png",
-            "images/star/OZ-draw.png",
-            "images/star/Suarez-draw.png",
-            "images/star/Iniesta-draw.png",
-            "images/star/Mbappe-draw.png",
-            "images/star/Beckham-draw.png",
-            "images/star/Zidane-draw.png",
-            "images/star/Kaka-draw.png",
-            "images/star/Ronaldo-draw.png",
-            "images/star/Liyi-draw.png",
-            "images/star/Maradona-draw.png"
+            "images/star/Messi-card.png",
+            "images/star/CRonaldo-card.png",
+            "images/star/Neymar-card.png",
+            "images/star/OZ-card.png",
+            "images/star/Suarez-card.png",
+            "images/star/Iniesta-card.png",
+            "images/star/Mbappe-card.png",
+            "images/star/Beckham-card.png",
+            "images/star/Zidane-card.png",
+            "images/star/Kaka-card.png",
+            "images/star/Ronaldo-card.png",
+            "images/star/Liyi-card.png",
+            "images/star/Maradona-card.png"
         ],
         type:"in",
         ani:{
@@ -223,11 +224,19 @@ app = new Vue({
                 pageOut:"opacityChange-out"
             }
         },
+        randomText:[
+            "在世界杯表现优异的球员，身价大概率会涨10倍",
+            "北京和上海并列互联网薪资最高的城市",
+            "世界薪资最高的不是C罗梅西，而是中超的特维斯",
+            "北京邮电大学培养了最多的技术和产品人",
+            "俄罗斯莫斯科的平均薪水是7200元"
+        ],
+        randomArr:[0,1,2],
         // 滑动
         isMoving:false,
         bprevIndex:-2,
         prevIndex:-1,
-        starActive:0,
+        starActive:2,
         nextIndex:1,
         bnextIndex:2,
         prevClass:'prev',
@@ -238,13 +247,15 @@ app = new Vue({
         star:[{
             name:"Messi",
             cn:"梅西",
+            nickname:"梅西",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:209772000,
             _salary:["209","772","000"],
-            words1:"面对再多的困难也不能倒下，",
-            words2:"不是因为背后空无一人，",
-            words3:"而是他们选择成为传奇。",
+            words1:"面对再多的困难<br/>"+
+                "也不能倒下<br/>"+
+                "因为他选择<br/>"+
+                "成为传奇",
             outer:{
                 height:rem(993),
                 left:0,
@@ -252,13 +263,16 @@ app = new Vue({
             }
         },{
             name:"CRonaldo",
-            cn:"C罗",
+            cn:"C.罗纳尔多",
+            nickname:"C罗",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:153133560,
             _salary:["153","133","560"],
-            words1:"有以一己之力逆天改命的能力，",
-            words2:"敌人越强，他们越强大。",
+            words1:"用一己之力<br/>"+
+                "即可逆天改命<br/>"+
+                "敌人越强<br/>"+
+                "你越强大",
             outer:{
                 left:0,
                 top:rem(-128),
@@ -267,12 +281,12 @@ app = new Vue({
         },{
             name:"Neymar",
             cn:"内马尔",
+            nickname:"内少",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:218512500,
             _salary:["218","512","500"],
-            words1:"难能可贵的不是天赋异禀，",
-            words2:"而是在关键时刻堪当大任，他做到了！",
+            words1:"难能可贵的<br/>不是天赋异禀<br/>而是在关键时刻<br/>堪当大任",
             outer:{
                 height:rem(1334),
                 left:0,
@@ -281,12 +295,15 @@ app = new Vue({
         },{
             name:"OZ",
             cn:"厄齐尔",
+            nickname:"272",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:146840400,
             _salary:["146","840","400"],
-            words1:"不是谁都有四两拨千斤的能力，",
-            words2:"它源于对事物的充分理解。",
+            words1:"关键时刻的<br/>"+
+                "灵光一现<br/>"+
+                "来自于不断<br/>"+
+                "复盘训练",
             outer:{
                 left:0,
                 top:0,
@@ -295,13 +312,13 @@ app = new Vue({
         },{
             name:"Suarez",
             cn:"苏亚雷斯",
+            nickname:"苏牙",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:123808000,
             _salary:["123","808","000"],
-            words1:"认为成绩才是自己的证明",
-            words2:"既然这个世界总有人要赢，",
-            words3:"为什么不能是自己？",
+            words1:"既然总有人要赢，<br/>"+
+                "为什么不能是自己？",
             outer:{
                 left:0,
                 top:0,
@@ -310,13 +327,15 @@ app = new Vue({
         },{
             name:"Iniesta",
             cn:"伊涅斯塔",
+            nickname:"小白",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:123808000,
             _salary:["123","808","000"],
-            words1:"无论局势瞬息万变，",
-            words2:"心中总有自己的节奏，",
-            words3:"关键时刻的决断来自于不断推演和复盘。",
+            words1:"无论局势<br/>"+
+                "瞬息万变<br/>"+
+                "心中总有<br/>"+
+                "自己的节奏",
             outer:{
                 left:0,
                 top:0,
@@ -325,13 +344,13 @@ app = new Vue({
         },{
             name:"Mbappe",
             cn:"姆巴佩",
+            nickname:"姆巴佩",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:139284000,
             _salary:["139","284","000"],
-            words1:"初出江湖的时候就沉稳的像个老手",
-            words2:"对未来无需多言，",
-            words3:"因为世界在他们的脚下。",
+            words1:"无需多言<br/>"+
+            "世界在你的脚下",
             outer:{
                 left:0,
                 top:0,
@@ -340,12 +359,16 @@ app = new Vue({
         },{
             name:"Beckham",
             cn:"贝克汉姆",
+            nickname:"小贝",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:29368080,
             _salary:["29","368","080"],
-            words1:"虽然有着国民老公的脸，",
-            words2:"却依然保持谦逊和专业。",
+            words1:"虽然有着<br/>"+
+                "国民老公的脸<br/>"+
+                "却依然保持<br/>"+
+                "谦逊和专业"+
+                "",
             outer:{
                 left:0,
                 top:0,
@@ -354,12 +377,16 @@ app = new Vue({
         },{
             name:"Zidane",
             cn:"齐达内",
+            nickname:"齐祖",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:61904000,
             _salary:["61","904","000"],
-            words1:"相信没有人可以永远站在顶峰，",
-            words2:"但向上攀爬的感觉却永远让人澎湃。",
+            words1:"没有人可以<br/>"+
+                "永远站在顶峰<br/>"+
+                "但向上攀爬的感觉<br/>"+
+                "却永远让人澎湃"+
+                "",
             outer:{
                 height:rem(950),
                 left:rem(-8),
@@ -368,12 +395,14 @@ app = new Vue({
         },{
             name:"Kaka",
             cn:"卡卡",
+            nickname:"卡卡",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:69642000,
             _salary:["69","642","000"],
-            words1:"拥有一切干净、利落、简单的技巧，",
-            words2:"背后都离不开专注和努力的日常。",
+            words1:"一切干净、利落、简单的技巧<br/>"+
+                "背后都离不开<br/>"+
+                "专注和努力的日常",
             outer:{
                 height:rem(947),
                 left:0,
@@ -382,12 +411,14 @@ app = new Vue({
         },{
             name:"Ronaldo",
             cn:"罗纳尔多",
+            nickname:"大罗",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:49523200,
             _salary:["49","523","200"],
-            words1:"无论顺境还是逆境， ",
-            words2:"胸怀坚定的信仰，露出灿烂的微笑。",
+            words1:"无论外界如何质疑<br/>"+
+                "胸怀坚定的信仰<br/>"+
+                "露出灿烂的微笑",
             outer:{
                 left:0,
                 top:rem(-128)
@@ -395,12 +426,13 @@ app = new Vue({
         },{
             name:"Liyi",
             cn:"李毅",
+            nickname:"大帝",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:123808000,
             _salary:["123","808","000"],
-            words1:"相信榜样的力量，",
-            words2:"你正是因为他的存在而更强。",
+            words1:"相信榜样的力量，<br/>"+
+                "你正是因为他的存在而更强。",
             outer:{
                 width:rem(1128),
                 height:rem(947),
@@ -410,12 +442,14 @@ app = new Vue({
         },{
             name:"Maradona",
             cn:"马拉多纳",
+            nickname:"老马",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
             salary:33085500,
             _salary:["33","085","500"],
-            words1:"知道人无法打败时间，",
-            words2:"只希望留下能站在时间之上的作品。",
+            words1:"人无法打败时间<br/>"+
+                "但能留下站在<br/>"+
+                "时间之上的作品",
             outer:{
                 left:0,
                 top:0,
@@ -424,7 +458,7 @@ app = new Vue({
         }],
         pk:{
             name:'我',
-            salary:'',
+            salary:3000,
             nstatus:false,
             sstatus:false
         },
@@ -557,10 +591,19 @@ app = new Vue({
         getSelfHouse:function(){
             var salary = this.pk.salary * 12
             return Math.ceil(1000 * 10000 / salary)
-        }
+        },
+        getSelfStarMoney:function(){
+            var star = this.star[this.starActive].salary,
+                self = this.pk.salary
+            return Math.ceil(star / (self * 12))
+        },
+        getSSFrom:function(){
+            return this.getSelfStarMoney + 2018
+        },
     },
     mounted:function(){
         var self = this;
+        this.getUserWeixinData()
         // this.weixinAuth()
         dragRulesDetailList();
         bgMusicPlay();
@@ -617,6 +660,8 @@ app = new Vue({
 
         this.initCanvas()
         this.initLongAnimate()
+        // 本地测试
+        // this.showResult()
     },
     methods:{
         rem:function($n) {
@@ -643,6 +688,7 @@ app = new Vue({
                     self.changeStatus = false
                     self.showResult()
                 }else{
+                    self.setRandomArr()
                     self.activePage = 2
                 }
             },500)
@@ -660,6 +706,7 @@ app = new Vue({
                 this.active_index = []
                 setTimeout(function(){
                     self.type = "out"
+                    self.endIndex = Math.floor(Math.random() * 3)
                     self.showResult()
                 },3000)
             }else{
@@ -703,15 +750,29 @@ app = new Vue({
                 self.clearCanvas()
                 if(self.load == self.imgs.length){
                     // if(self.star[self.starActive].words3){
-                        self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,44)
+                        self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0,750,1493,-48,-110,662,1317)
                     // }else{
                         // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0)
                     // }
+                    self.ctx.drawImage(self.loadedImgs[1],1,838)
                     self.drawContent()
                 }else{
                     self.drawStatus = true
                 }
             },500)
+        },
+        setRandomArr:function(){
+            var arr = [],
+                brr = [0,1,2,3,4],
+                i = 0,
+                len = 3,
+                temp = -1
+            for(i = 0; i < len; i++){
+                temp = Math.floor(Math.random() * brr.length)
+                arr.push(brr[temp])
+                brr.splice(temp,1)
+            }
+            this.randomArr = arr
         },
         saveImage:function(){
             this.saveStatus = true
@@ -730,6 +791,7 @@ app = new Vue({
                 });
                 self.scrollStatus = false
                 self.type = "in"
+                self.setRandomArr()
                 self.activePage = 2
             },500)
         },
@@ -1023,13 +1085,13 @@ app = new Vue({
                     self.load++
                     if(self.load == self.imgs.length){
                         self.ctx.drawImage(self.loadedImgs[0],0,0)
-                        self.ctx.drawImage(self.loadedImgs[1],487,849)
                         if(self.drawStatus){
                             // if(self.star[self.starActive].words3){
-                                self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,44)
+                                self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0,750,1493,-48,-110,662,1317)
                             // }else{
                                 // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0)
                             // }
+                            self.ctx.drawImage(self.loadedImgs[1],1,838)
                             self.drawContent()
                             self.drawStatus = false
                         }
@@ -1048,7 +1110,6 @@ app = new Vue({
 
             if(this.load == this.imgs.length){
                 this.ctx.drawImage(this.loadedImgs[0],0,0)
-                this.ctx.drawImage(this.loadedImgs[1],487,849)
             }
         },
         drawContent:function(){
@@ -1067,32 +1128,209 @@ app = new Vue({
             this.ctx.stroke()
             this.ctx.closePath()
 
-            this.ctx.font = "36px normal"
             this.ctx.fillStyle = "#ffffff"
-            this.ctx.fillText(starName+"年薪"+salary+"万",38,46+36)
+            this.ctx.font = "48px normal"
+            this.ctx.fillText(starName,63,71+36)
+            var sw = this.ctx.measureText(starName).width
+            
+            this.ctx.font = "32px normal"
+            this.ctx.fillText(" 年薪 ",63+sw,71+38)
+            var nx = this.ctx.measureText(" 年薪 ").width
 
-            var twidth = this.ctx.measureText(starName+"年薪"+salary+"万").width
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillText(salary,63+sw+nx,71+40)
+            var sa = this.ctx.measureText(salary).width
+            this.ctx.font = "32px normal"
+            this.ctx.fillText(" 万",63+sw+nx+sa,71+38)
+
+            this.ctx.fillStyle = "#ffffff"
             this.ctx.beginPath()
             this.ctx.lineWidth = 1
-            this.ctx.moveTo(38,105)
-            this.ctx.lineTo(38+twidth,105)
+            this.ctx.moveTo(63,155)
+            this.ctx.lineTo(63+23,155)
             this.ctx.stroke()
             this.ctx.closePath()
 
-            this.ctx.font = "26px normal"
-            this.ctx.fillText(this.pk.name+"和"+starName+"一样，",38,132+26)
-            this.ctx.fillText(star.words1,38,176+26)
-            this.ctx.fillText(star.words2,38,220+26)
-
-            if(star.words3){
-                this.ctx.fillText(star.words3,38,264+26)
-            }
-
+            this['getStarOneSalry'+this.endIndex](starName,star)
 
             // 绘制完毕，导出图片地址
             setTimeout(function(){
                 self.url = self.canvas.toDataURL("image/png")
             },500)
+        },
+        getStarOneSalry0:function(starName,star){
+            var sw = 0,
+                nx = 0,
+                lw = 0
+
+            this.ctx.font = "38px normal"
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText(star.nickname+"工作 ",63,203+26)
+            sw = this.ctx.measureText(star.nickname+"工作 ").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getStarCar,63+sw,203+26)
+            nx = this.ctx.measureText(this.getStarCar).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText("小时",63+sw+nx,203+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("可以买",63,268+26)
+            sw = this.ctx.measureText("可以买").width
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(" 1 辆",63+sw,268+26)
+            nx = this.ctx.measureText(" 1 辆").width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("特斯拉",63+sw+nx,268+26)
+              
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.pk.name,63,360+26)
+            sw = this.ctx.measureText(this.pk.name).width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("需要工作 ",63+sw,360+26)
+            nx = this.ctx.measureText("需要工作 ").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getSelfCar,63+sw+nx,360+26)
+            lw = this.ctx.measureText(this.getSelfCar).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText(" 年",63+sw+nx+lw,360+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("才能买同款",63,420+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.beginPath()
+            this.ctx.moveTo(63+3,599)
+            this.ctx.lineTo(63+3+22,599)
+            this.ctx.stroke()
+            this.ctx.closePath()
+
+            this.ctx.font = "16px normal"
+            var arr = star.words1.split('<br/>'),
+                start = 640,
+                curr = 0,
+                i = 0
+            for(i = 0; i < arr.length; i++){
+                if(arr[i]){
+                    this.ctx.fillText(arr[i],63,start+16+32*curr)
+                    curr++
+                }
+            }
+        },
+        getStarOneSalry1:function(starName,star){
+            var sw = 0,
+                nx = 0,
+                lw = 0
+
+            this.ctx.font = "38px normal"
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("买一套",63,203+26)
+            sw = this.ctx.measureText("买一套").width
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText("100平",63+sw,203+26)
+            nx = this.ctx.measureText("100平").width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("上地学区房",63+sw+nx,203+26)
+
+            this.ctx.fillText(star.nickname+"需要工作",63,268+26)
+            sw = this.ctx.measureText(star.nickname+"需要工作").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getStarHouse,63+sw,268+26)
+            nx = this.ctx.measureText(this.getStarHouse).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText("天",63+sw+nx,268+26)
+            
+            this.ctx.fillText(this.pk.name,63,360+26)
+            sw = this.ctx.measureText(this.pk.name).width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("需要奋斗",63+sw,360+26)
+            nx = this.ctx.measureText("需要奋斗").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getSelfHouse,63+sw+nx,360+26)
+            lw = this.ctx.measureText(this.getSelfHouse).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText("年",63+sw+nx+lw,360+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.beginPath()
+            this.ctx.moveTo(63+3,599)
+            this.ctx.lineTo(63+3+22,599)
+            this.ctx.stroke()
+            this.ctx.closePath()
+
+            this.ctx.font = "16px normal"
+            var arr = star.words1.split('<br/>'),
+                start = 640,
+                curr = 0,
+                i = 0
+            for(i = 0; i < arr.length; i++){
+                if(arr[i]){
+                    this.ctx.fillText(arr[i],63,start+16+32*curr)
+                    curr++
+                }
+            }
+        },
+        getStarOneSalry2:function(starName,star){
+            var sw = 0,
+                nx = 0
+
+            this.ctx.font = "38px normal"
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("要挣到"+star.nickname,63,203+26)
+            sw = this.ctx.measureText("要挣到"+star.nickname).width
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText("一年",63+sw,203+26)
+            nx = this.ctx.measureText("一年").width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("的工资",63+sw+nx,203+26)
+
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.pk.name,63,268+26)
+            sw = this.ctx.measureText(this.pk.name).width
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("需要",63+sw,268+26)
+            
+            this.ctx.fillText("从现在开始再工作",63,337+26)
+            sw = this.ctx.measureText("从现在开始再工作").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getSelfStarMoney,63+sw,337+26)
+            nx = this.ctx.measureText(this.getSelfStarMoney).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText("年",63+sw+nx,337+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.fillText("一直到",63,404+26)
+            sw = this.ctx.measureText("一直到").width
+            this.ctx.font = "53px bold DINCond-Black"
+            this.ctx.fillStyle = "#fee53e"
+            this.ctx.fillText(this.getSSFrom,63+sw,404+26)
+            nx = this.ctx.measureText(this.getSSFrom).width
+            this.ctx.font = "38px normal"
+            this.ctx.fillText("年",63+sw+nx,404+26)
+
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.beginPath()
+            this.ctx.moveTo(63+3,599)
+            this.ctx.lineTo(63+3+22,599)
+            this.ctx.stroke()
+            this.ctx.closePath()
+
+            this.ctx.font = "16px normal"
+            var arr = star.words1.split('<br/>'),
+                start = 640,
+                curr = 0,
+                i = 0
+            for(i = 0; i < arr.length; i++){
+                if(arr[i]){
+                    this.ctx.fillText(arr[i],63,start+16+32*curr)
+                    curr++
+                }
+            }
         },
         calcuteNumAnimation:function(){
             var self = this
@@ -1223,12 +1461,38 @@ app = new Vue({
             //     this.musicStatus = true
             // }
         },
+        getUserWeixinData:function(){
+            var self = this
+            $.ajax({
+                type: 'get',
+                url: 'https://activity.lagou.com/activityapi/weixin/authUserDetail',
+                success: function(data) {
+                    if (data.state == 200 && data.content) { // 已登录
+                        self.pk.name = data.content.nickname
+                    } else{ // 未登录
+                        var href = window.location.href
+                            arr = href.split('?'),
+                            param = getQueryString('times')
+                        if(arr.length > 1){
+                            href += '&times=1'
+                        }else{
+                            href += '?times=1'
+                        }
+                        if(!param){
+                            window.location.href = 'https://activity.lagou.com/activityapi/weixin/userInfoAuth.html?returnUrl=' + encodeURIComponent(href); 
+                        }
+                    }
+                },
+                error: function(error) {
+                    console.log(error.message);
+                }
+            });
+        },
         weixinAuth:function(){
             $.ajax({
                 type: 'get',
                 url: 'https://activity.lagou.com/activityapi/weixin/hasOpenId',
                 success: function(data) {
-                    alert(JSON.stringify(data))
                     if (data.state == 200) { // 已登录
                         initTotal();
                     } else if (data.state == 201) { // 未登录

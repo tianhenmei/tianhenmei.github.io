@@ -418,7 +418,8 @@ body {
   left: 50%;
   bottom: 1.32267rem;
   margin: 0 0 0 -1.89867rem;
-  background-position: -19.2rem -9.81333rem; }
+  background: url("../images/page0-logo.png") no-repeat center bottom;
+  background-size: 100% 100%; }
 
 .page-transparent {
   opacity: 0;
@@ -710,8 +711,8 @@ body {
   background-position: 0 -3.84rem; }
 
 .page2 .bg-content {
-  background: #000;
-  opacity: 0.5; }
+  background: #181043 url("../images/page2-bg-content.jpg") no-repeat right top;
+  background-size: 16rem 28.45867rem; }
 
 .page2 .pk-title {
   width: 100%;
@@ -789,7 +790,7 @@ body {
   width: 100%;
   position: absolute;
   left: 50%;
-  top: 14.50667rem;
+  top: 16.04267rem;
   margin: 0 0 0 -8rem; }
   .page2 .scroll-text .cover {
     width: 16rem;
@@ -799,13 +800,13 @@ body {
     z-index: 2; }
   .page2 .scroll-text .cover-top {
     height: 7.04rem;
-    background: url("../images/page2-cover-top.png") no-repeat 0 0;
+    background: url("../images/page2-cover.png") no-repeat 0 0;
     background-size: 100%;
     top: 0; }
   .page2 .scroll-text .cover-bottom {
     height: 6.528rem;
     top: 0.64rem;
-    background: url("../images/page2-cover-top.png") no-repeat 0 0;
+    background: url("../images/page2-cover.png") no-repeat 0 0;
     -webkit-transform: scaleY(-1);
             transform: scaleY(-1); }
   .page2 .scroll-text .text-content {
@@ -816,7 +817,9 @@ body {
     top: 1.28rem;
     overflow: hidden; }
   .page2 .scroll-text .text-center {
-    width: 100%; }
+    width: 100%;
+    opacity: 0;
+    overflow: hidden; }
   .page2 .scroll-text .text {
     width: 100%;
     line-height: 1.152rem;
@@ -1524,57 +1527,94 @@ body {
     -webkit-transition: all 0.5s 0.5s ease-in-out;
     transition: all 0.5s 0.5s ease-in-out; }
     .page3 .end .text {
-      font-size: 0.68651rem;
+      font-size: 0.95104rem;
       color: #fff;
       text-align: left;
       position: absolute;
-      left: 2.26133rem;
-      top: 2.58133rem;
+      left: 2.176rem;
+      top: 3.072rem;
       opacity: 0;
       -webkit-transform: translate3d(0, 50px, 0);
               transform: translate3d(0, 50px, 0);
       -webkit-transition: all 0.5s 1s ease-in-out;
       transition: all 0.5s 1s ease-in-out; }
+    .page3 .end .star-name {
+      padding: 0 0.55467rem 0 0;
+      font-size: 1.19467rem; }
     .page3 .end .end-color {
       color: #fee53e; }
     .page3 .end .end-num {
-      font-size: 1.22389rem; }
+      font-size: 1.29877rem; }
     .page3 .end .text-01 {
-      line-height: 2.28267rem;
-      border-bottom: 1px solid #fff;
-      font-size: 0.93184rem; }
+      line-height: 3.05067rem;
+      font-size: 0.78933rem; }
+    .page3 .end .text-01:after {
+      content: "";
+      width: 0.55467rem;
+      height: 1px;
+      position: absolute;
+      left: 0.17067rem;
+      top: 100%;
+      background: #fff; }
     .page3 .end .text-02 {
-      line-height: 1.408rem;
-      font-size: 0.83371rem;
-      top: 5.33333rem;
+      line-height: 1.49333rem;
+      top: 6.95467rem;
       -webkit-transition-delay: 1.2s;
               transition-delay: 1.2s; }
     .page3 .end .text-03 {
-      line-height: 1.30133rem;
-      top: 7.04rem;
+      line-height: 1.49333rem;
+      top: 8.448rem;
       -webkit-transition-delay: 1.4s;
               transition-delay: 1.4s; }
     .page3 .end .text-04 {
-      line-height: 1.30133rem;
-      top: 8.34133rem;
+      line-height: 1.49333rem;
+      top: 10.60267rem;
       -webkit-transition-delay: 1.6s;
               transition-delay: 1.6s; }
     .page3 .end .text-05 {
-      line-height: 1.30133rem;
-      top: 9.64267rem;
+      line-height: 1.49333rem;
+      top: 12.096rem;
       -webkit-transition-delay: 1.8s;
               transition-delay: 1.8s; }
   .page3 .card {
     width: 16rem;
-    height: 31.85067rem;
+    height: 26.73067rem;
     background: url("../images/star/Ronaldo-card.png") no-repeat center top;
     background-size: 100%;
     position: absolute;
     left: 0rem;
-    top: 2.368rem;
+    top: 1.06667rem;
     opacity: 0;
     -webkit-transition: all 0.5s 2.1s ease-in-out;
     transition: all 0.5s 2.1s ease-in-out; }
+  .page3 .words {
+    width: 13.86667rem;
+    height: 10.66667rem;
+    line-height: 0.78933rem;
+    padding: 0.87467rem 0 0 0;
+    text-align: left;
+    color: #fff;
+    font-size: 0.39531rem;
+    position: absolute;
+    left: 2.368rem;
+    top: 17.088rem;
+    opacity: 0;
+    -webkit-transform: translate(0, 50px);
+            transform: translate(0, 50px);
+    -webkit-transition: all 0.5s 2.1s ease-in-out;
+    transition: all 0.5s 2.1s ease-in-out; }
+  .page3 .words:before {
+    content: "";
+    width: 0.512rem;
+    height: 1px;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    background-color: #fff; }
+  .page3 .end-02 .words,
+  .page3 .end-02 .card {
+    -webkit-transition-delay: 1.8s;
+            transition-delay: 1.8s; }
   .page3 .btn {
     width: 15.89333rem;
     height: 4.07467rem;
@@ -1764,6 +1804,7 @@ body {
 
 .page3.active .end-layer.active-layer .end,
 .page3.active .end-layer.active-layer .btn,
+.page3.active .end-layer.active-layer .words,
 .page3.active .end-layer.active-layer .text {
   opacity: 1;
   -webkit-transform: none;
@@ -1962,16 +2003,22 @@ body {
 
 @-webkit-keyframes scrollContent {
   0% {
+    opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
             transform: translate3d(0, 100%, 0); }
+  1% {
+    opacity: 1; }
   100% {
     -webkit-transform: translate3d(0, -50%, 0);
             transform: translate3d(0, -50%, 0); } }
 
 @keyframes scrollContent {
   0% {
+    opacity: 0;
     -webkit-transform: translate3d(0, 100%, 0);
             transform: translate3d(0, 100%, 0); }
+  1% {
+    opacity: 1; }
   100% {
     -webkit-transform: translate3d(0, -50%, 0);
             transform: translate3d(0, -50%, 0); } }
