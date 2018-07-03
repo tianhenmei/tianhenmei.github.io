@@ -225,6 +225,7 @@ app = new Vue({
             }
         },
         randomText:[
+            "11k是互联网薪资的平均线",
             "在世界杯表现优异的球员，身价大概率会涨10倍",
             "北京和上海并列互联网薪资最高的城市",
             "世界薪资最高的不是C罗梅西，而是中超的特维斯",
@@ -572,12 +573,12 @@ app = new Vue({
         },
         getStarCar:function(){
             var salary = this.star[this.starActive].salary,
-                hours = Math.ceil(1232600 / ( salary / 12 / 30 / 24 ))
+                hours = Math.ceil(1232600 / ( salary / 200 / 24 ))
             return hours
         },
         getSelfCar:function(){
             var salary = this.pk.salary,
-                days = Math.ceil(1232600 / ( salary / 30 ))
+                days = Math.ceil(1232600 / ( salary * 12 / 200 ))
             return days
         },
         getTotalTime:function(){
@@ -599,7 +600,7 @@ app = new Vue({
             return this.getFixedMoney(money)
         },
         getStarHouse:function(){
-            var salary = this.star[this.starActive].salary / 12 / 200
+            var salary = this.star[this.starActive].salary / 200
             return Math.ceil(1000 * 10000 / salary)
         },
         getSelfHouse:function(){
@@ -707,6 +708,7 @@ app = new Vue({
                 }
             },500)
             datas.imgUrl = this.host + "images/share/"+this.star[this.starActive].name+'.jpg'
+            datas.title = "世界杯球星年薪揭秘，我和"+this.star[this.starActive].cn+"比还差点..."
             if(share){
                 share(datas);
             }
