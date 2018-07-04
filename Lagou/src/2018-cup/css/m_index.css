@@ -1349,7 +1349,7 @@ body {
       -webkit-transition: all 0.5s 1.5s ease-in-out;
       transition: all 0.5s 1.5s ease-in-out; }
   .page3 .pkdetail-layer-04 {
-    height: 21.07733rem;
+    height: 30.50667rem;
     padding: 0.81067rem 0 0 0;
     position: relative; }
   .page3 .pkdetail-04 {
@@ -1518,10 +1518,104 @@ body {
       top: 15.89333rem; }
     .page3 .pkdetail-04 .bottom-money {
       top: 16.896rem; }
+    .page3 .pkdetail-04 .last-person {
+      width: 14.25067rem;
+      height: 3.136rem;
+      background: url("../images/last-person.png") no-repeat center top;
+      background-size: 100%;
+      position: absolute;
+      left: 0.896rem;
+      top: 20.45867rem;
+      opacity: 0;
+      -webkit-transform: translate3d(0, 300px, 0);
+              transform: translate3d(0, 300px, 0);
+      -webkit-transition: all 0.5s 2s ease-in-out;
+      transition: all 0.5s 2s ease-in-out; }
+    .page3 .pkdetail-04 .btn {
+      width: 15.89333rem;
+      height: 4.43733rem;
+      background: url("../images/page3-btn-02.png") no-repeat center top;
+      background-size: 100%;
+      position: absolute;
+      left: 0.08533rem;
+      top: 24.32rem;
+      opacity: 0;
+      -webkit-transform: translate3d(0, 300px, 0);
+              transform: translate3d(0, 300px, 0);
+      -webkit-transition: all 0.5s 2.2s ease-in-out;
+      transition: all 0.5s 2.2s ease-in-out; }
+      .page3 .pkdetail-04 .btn .save {
+        width: 6.528rem;
+        height: 2.34667rem;
+        position: absolute;
+        left: 0.72533rem;
+        top: 0rem; }
+      .page3 .pkdetail-04 .btn .restart {
+        width: 6.528rem;
+        height: 2.34667rem;
+        position: absolute;
+        left: 8.64rem;
+        top: 0rem;
+        display: block;
+        text-decoration: none; }
+      .page3 .pkdetail-04 .btn .change {
+        width: 4.50133rem;
+        height: 0.91733rem;
+        position: absolute;
+        left: 5.67467rem;
+        top: 3.49867rem;
+        opacity: 0;
+        -webkit-transition: all 0.5s 1.5s ease-in-out;
+        transition: all 0.5s 1.5s ease-in-out; }
+    .page3 .pkdetail-04 .share-layer {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 3;
+      background-color: #0a081e;
+      filter: Alpha(opacity=85);
+      background: rgba(10, 8, 30, 0.85);
+      *zoom: 1; }
+      .page3 .pkdetail-04 .share-layer .share-center {
+        width: 5.93067rem;
+        height: 5.48267rem;
+        position: absolute;
+        right: 0.81067rem;
+        top: 0.61867rem; }
+      .page3 .pkdetail-04 .share-layer .share-img {
+        background: url("../images/share-ball.png") no-repeat 0 0;
+        background-size: 5.93067rem 5.48267rem; }
+      .page3 .pkdetail-04 .share-layer .share-person {
+        width: 2.048rem;
+        height: 2.496rem;
+        position: absolute;
+        left: 0rem;
+        top: 2.98667rem;
+        background-position: 0 -2.98667rem;
+        opacity: 0;
+        -webkit-transition: all 0.5s 0.5s ease-in-out;
+        transition: all 0.5s 0.5s ease-in-out; }
+      .page3 .pkdetail-04 .share-layer .share-ball {
+        width: 3.88267rem;
+        height: 4.928rem;
+        position: absolute;
+        left: 2.048rem;
+        bottom: 0.55467rem;
+        background-position: -2.048rem 0;
+        opacity: 0;
+        -webkit-transform-origin: 0 100%;
+                transform-origin: 0 100%;
+        -webkit-transform: scale3d(0, 0, 0);
+                transform: scale3d(0, 0, 0);
+        -webkit-transition: all 0.5s 0.8s ease-out;
+        transition: all 0.5s 0.8s ease-out; }
   .page3 .end-layer {
     height: 31.06133rem;
     padding: 1.06667rem 0 0 0;
-    position: relative; }
+    position: relative;
+    display: none; }
   .page3 .end {
     width: 16rem;
     height: 31.06133rem;
@@ -1622,19 +1716,32 @@ body {
   .page3 .end-02 .card {
     -webkit-transition-delay: 1.8s;
             transition-delay: 1.8s; }
-  .page3 .btn {
-    width: 15.89333rem;
-    height: 4.07467rem;
-    background: url("../images/page3-btn.png") no-repeat center top;
+  .page3 .last-person {
+    width: 14.25067rem;
+    height: 3.136rem;
+    background: url("../images/last-person.png") no-repeat center top;
     background-size: 100%;
     position: absolute;
-    left: 0.08533rem;
-    top: 27.17867rem;
+    left: 0.896rem;
+    top: 20.45867rem;
     opacity: 0;
     -webkit-transform: translate3d(0, 300px, 0);
             transform: translate3d(0, 300px, 0);
     -webkit-transition: all 0.5s 1s ease-in-out;
     transition: all 0.5s 1s ease-in-out; }
+  .page3 .btn {
+    width: 15.89333rem;
+    height: 4.43733rem;
+    background: url("../images/page3-btn-02.png") no-repeat center top;
+    background-size: 100%;
+    position: absolute;
+    left: 0.08533rem;
+    top: 24.32rem;
+    opacity: 0;
+    -webkit-transform: translate3d(0, 300px, 0);
+            transform: translate3d(0, 300px, 0);
+    -webkit-transition: all 0.5s 1.2s ease-in-out;
+    transition: all 0.5s 1.2s ease-in-out; }
     .page3 .btn .save {
       width: 6.528rem;
       height: 2.34667rem;
@@ -1651,10 +1758,10 @@ body {
       text-decoration: none; }
     .page3 .btn .change {
       width: 4.50133rem;
-      height: 0.93867rem;
+      height: 0.91733rem;
       position: absolute;
-      left: 5.65333rem;
-      top: 3.09333rem;
+      left: 5.67467rem;
+      top: 3.49867rem;
       opacity: 0;
       -webkit-transition: all 0.5s 1.5s ease-in-out;
       transition: all 0.5s 1.5s ease-in-out; }
@@ -1793,6 +1900,8 @@ body {
 .page3.active .pkdetail-layer-04.active-layer .stay-times {
   opacity: 1; }
 
+.page3.active .pkdetail-layer-04.active-layer .btn,
+.page3.active .pkdetail-layer-04.active-layer .last-person,
 .page3.active .pkdetail-layer-04.active-layer .bottom-money,
 .page3.active .pkdetail-layer-04.active-layer .right-money,
 .page3.active .pkdetail-layer-04.active-layer .left-money,
@@ -1811,9 +1920,18 @@ body {
   -webkit-transform: none;
           transform: none; }
 
+.page3.active .pkdetail-layer-04.active-layer .share-active .share-ball {
+  opacity: 1;
+  -webkit-transform: none;
+          transform: none; }
+
+.page3.active .pkdetail-layer-04.active-layer .share-active .share-person {
+  opacity: 1; }
+
 .page3.active .end-layer.active-layer .end,
 .page3.active .end-layer.active-layer .btn,
 .page3.active .end-layer.active-layer .words,
+.page3.active .end-layer.active-layer .last-person,
 .page3.active .end-layer.active-layer .text {
   opacity: 1;
   -webkit-transform: none;

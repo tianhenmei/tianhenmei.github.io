@@ -163,6 +163,7 @@ app = new Vue({
         
         url:"",
         saveStatus:false,
+        shareStatus:false,
         lineWidth:2,
         bold:"bold",
         drawStatus:false,
@@ -501,11 +502,11 @@ app = new Vue({
             elem:'pkdetail-layer-04',
             top:0,
             height:0
-        },{
+        }/*,{
             elem:'end-layer',
             top:0,
             height:0
-        }],
+        }*/],
         secTimer:null,
         animateNumber:{
             _starSalary:[0],
@@ -708,7 +709,7 @@ app = new Vue({
                 }
             },500)
             datas.imgUrl = this.host + "images/share/"+this.star[this.starActive].name+'.jpg'
-            datas.title = "世界杯球星年薪揭秘，我和"+this.star[this.starActive].cn+"比还差点..."
+            datas.title = "世界杯球星年薪揭秘，"+this.pk.name+"和"+this.star[this.starActive].cn+"比还差点..."
             if(share){
                 share(datas);
             }
@@ -795,6 +796,12 @@ app = new Vue({
         },
         closeSave:function(){
             this.saveStatus = false
+        },
+        shareLink:function(){
+            this.shareStatus = true
+        },
+        closeShare:function(){
+            this.shareStatus = false
         },
         reSetMoney:function(){
             var self = this

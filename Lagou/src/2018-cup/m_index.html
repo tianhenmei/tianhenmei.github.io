@@ -91,7 +91,7 @@
 		<div class="page page-transparent">
 			<img class="bg" ref="img-bg" src="images/draw-bg.png" />
 			<img class="subtitle01" ref="img-en" src="images/draw-ercode.png" />
-			<img class="icon logo" ref="img-logo" src="images/star/Ronaldo-draw.png" />
+			<img class="icon logo" ref="img-logo" src="images/star/Ronaldo-card.png" />
 		</div>
 		<div class="page page0" :class="activePage == 0 ? 'active' : ''">
 			<div class="bg"></div>
@@ -271,6 +271,20 @@
 					<div class="icon bottom-icon" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-portrait.png)', backgroundPosition:'0 0', backgroundSize:'100% 100%'}"></div>
 					<div class="bottom-text">{{star[starActive].cn}}已经赚了</div>
 					<div class="bottom-money">¥<span class="times-color times-num bigger-num"> {{getStarSecMoney}} </span>元</div>
+					
+					<div class="last-person"></div>
+					<div class="btn">
+						<div class="save" @click="shareLink" data-lg-tj-id="1bip" data-lg-tj-no="0014" data-lg-tj-cid="idnull"></div>
+						<a class="restart" href="https://activity.lagou.com/topic/lietou.html" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></a>
+						<!-- <div class="restart" @click="reSetMoney" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></div> -->
+						<div class="change" @click="changeStar" data-lg-tj-id="1bip" data-lg-tj-no="0006" data-lg-tj-cid="idnull"></div>
+					</div>
+					<div class="share-layer" :class="{'share-active':shareStatus}" v-show="shareStatus" @click.stop.prevent="closeShare">
+						<div class="share-center">
+							<div class="share-img share-person"></div>
+							<div class="share-img share-ball"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="pro-layer end-layer" :class="{'active-layer':active_index.indexOf(7) != -1}" ref="end-layer">
@@ -303,6 +317,7 @@
 						<div class="card" :style="{backgroundImage:'url(images/star/'+star[starActive].name+'-card.png)'}"></div>
 					</div>
 				</div>
+				<div class="last-person"></div>
 				<div class="btn">
 					<div class="save" @click="saveImage" data-lg-tj-id="1bip" data-lg-tj-no="0004" data-lg-tj-cid="idnull"></div>
 					<a class="restart" href="https://activity.lagou.com/topic/lietou.html" data-lg-tj-id="1bip" data-lg-tj-no="0005" data-lg-tj-cid="idnull"></a>

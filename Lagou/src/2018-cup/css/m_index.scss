@@ -1359,7 +1359,8 @@ body {
         }
     }
     .pkdetail-layer-04 {
-        height:rem(988);
+        // height:rem(988);
+        height:rem(1430);
         padding:rem(38) 0 0 0;
         position:relative;
     }
@@ -1505,11 +1506,92 @@ body {
         .bottom-money {
             top:rem(792);
         }
+
+        .last-person {
+            width:rem(668);
+            height:rem(147);
+            background:url("../images/last-person.png") no-repeat center top;
+            background-size:100%;
+            @include leftTop(42,959);
+            opacity:0;
+            transform:translate3d(0,300px,0);
+            transition:all 0.5s 2s ease-in-out;
+        }
+        .btn {
+            width:rem(745);
+            height:rem(208);
+            background:url("../images/page3-btn-02.png") no-repeat center top;
+            background-size:100%;
+            // @include leftTop(4,1224+50);
+            @include leftTop(4,1140);
+            opacity:0;
+            transform:translate3d(0,300px,0);
+            transition:all 0.5s 2.2s ease-in-out;
+            .save {
+                width:rem(306);
+                height:rem(110);
+                @include leftTop(34,0);
+            }
+            .restart {
+                width:rem(306);
+                height:rem(110);
+                @include leftTop(405,0);
+                display:block;
+                text-decoration:none;
+            }
+            .change {
+                width:rem(211);
+                height:rem(43);
+                @include leftTop(266,164);
+                opacity:0;
+                transition:all 0.5s 1.5s ease-in-out;
+            }
+        }
+        .share-layer {
+            width:100%;
+            height:100%;
+            position:fixed;
+            left:0;
+            top:0;
+            z-index:3;
+            background-color:#0a081e;
+            filter:Alpha(opacity=85);
+            background:rgba(10,8,30,0.85);
+            *zoom:1;
+            .share-center {
+                width:rem(278);
+                height:rem(257);
+                @include rightTop(38,29);
+            }
+            .share-img  {
+                background:url("../images/share-ball.png") no-repeat 0 0;
+                background-size:rem(278) rem(257);
+            }
+            .share-person {
+                width:rem(96);
+                height:rem(117);
+                @include leftTop(0,140);
+                background-position:0 rem(-140);
+                opacity:0;
+                transition:all 0.5s 0.5s ease-in-out;
+            }
+            .share-ball {
+                width:rem(182);
+                height:rem(231);
+                @include leftBottom(96,26);
+                background-position:rem(-96) 0;
+                opacity:0;
+                transform-origin:0 100%;
+                transform:scale3d(0,0,0);
+                transition:all 0.5s 0.8s ease-out;
+            }
+        }
     }
     .end-layer {
         height:rem(1456);
         padding:rem(50) 0 0 0;
         position:relative;
+        display:none;
     }
     .end {
         width:rem(750);
@@ -1608,15 +1690,26 @@ body {
             transition-delay: 1.8s;
         }
     }
-    .btn {
-        width:rem(745);
-        height:rem(191);
-        background:url("../images/page3-btn.png") no-repeat center top;
+    .last-person {
+        width:rem(668);
+        height:rem(147);
+        background:url("../images/last-person.png") no-repeat center top;
         background-size:100%;
-        @include leftTop(4,1224+50);
+        @include leftTop(42,959);
         opacity:0;
         transform:translate3d(0,300px,0);
         transition:all 0.5s 1s ease-in-out;
+    }
+    .btn {
+        width:rem(745);
+        height:rem(208);
+        background:url("../images/page3-btn-02.png") no-repeat center top;
+        background-size:100%;
+        // @include leftTop(4,1224+50);
+        @include leftTop(4,1140);
+        opacity:0;
+        transform:translate3d(0,300px,0);
+        transition:all 0.5s 1.2s ease-in-out;
         .save {
             width:rem(306);
             height:rem(110);
@@ -1631,8 +1724,8 @@ body {
         }
         .change {
             width:rem(211);
-            height:rem(44);
-            @include leftTop(265,145);
+            height:rem(43);
+            @include leftTop(266,164);
             opacity:0;
             transition:all 0.5s 1.5s ease-in-out;
         }
@@ -1772,6 +1865,8 @@ body {
         .stay-times {
             opacity:1;
         }
+        .btn,
+        .last-person,
         .bottom-money,
         .right-money,
         .left-money,
@@ -1780,7 +1875,7 @@ body {
         .left-text,
         .left-icon,
         .right-icon,
-        .bottom-icon {
+        .bottom-icon{
             opacity:1;
             transform:none;
         }
@@ -1788,11 +1883,21 @@ body {
         .money-02 {
             transform:none;
         }
+        .share-active {
+            .share-ball {
+                opacity:1;
+                transform:none;
+            }
+            .share-person {
+                opacity:1;
+            }
+        }
     }
     .end-layer.active-layer {
         .end,
         .btn,
         .words,
+        .last-person,
         .text{
             opacity:1;
             transform: none;
