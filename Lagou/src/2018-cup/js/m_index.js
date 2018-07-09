@@ -619,8 +619,10 @@ app = new Vue({
     },
     mounted:function(){
         var self = this;
-        this.getUserWeixinData()
-        // this.weixinAuth()
+        if(this.isWeiXin()){
+            this.getUserWeixinData()
+            // this.weixinAuth()
+        }
         dragRulesDetailList();
         bgMusicPlay();
         function dragRulesDetailList() {
@@ -680,6 +682,14 @@ app = new Vue({
         // this.showResult()
     },
     methods:{
+        isWeiXin:function() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        },
         rem:function($n) {
             return $n / (750 / 16) +'rem';
         },
@@ -709,7 +719,7 @@ app = new Vue({
                 }
             },500)
             datas.imgUrl = this.host + "images/share/"+this.star[this.starActive].name+'.jpg'
-            datas.title = "世界杯球星年薪揭秘，"+this.pk.name+"和"+this.star[this.starActive].cn+"比还差点..."
+            datas.title = "世界杯球星擂台，"+this.pk.name+"选择和"+this.star[this.starActive].cn+"硬杠"
             if(share){
                 share(datas);
             }

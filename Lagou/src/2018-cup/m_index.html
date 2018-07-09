@@ -280,6 +280,7 @@
 						<div class="change" @click="changeStar" data-lg-tj-id="1bip" data-lg-tj-no="0006" data-lg-tj-cid="idnull"></div>
 					</div>
 					<div class="share-layer" :class="{'share-active':shareStatus}" v-show="shareStatus" @click.stop.prevent="closeShare">
+						<div class="share-words"></div>
 						<div class="share-center">
 							<div class="share-img share-person"></div>
 							<div class="share-img share-ball"></div>
@@ -363,7 +364,7 @@
 <script type="text/javascript">
 	//微信分享
     var datas = {
-		title: "你喜欢的球星，到底有多富",
+		title: "你敢和世界杯球星比工资吗？",
 		desc: "快来测测你和球星的距离有多远？",
 		imgUrl: "https://activity.lagou.com/activity/dist/2018-cup/images/share/share.jpg",
 		activityType: '2018_CUP_ACTIVITY_H5',

@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2017-summary/';
+// var loadingHost = '';
+var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2018-cup/';
 var imgArray = [
 	"images/draw-bg.png",
 	"images/draw-ercode-02.jpg",

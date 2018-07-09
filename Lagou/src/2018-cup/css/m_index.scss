@@ -1555,13 +1555,22 @@ body {
             top:0;
             z-index:3;
             background-color:#0a081e;
-            filter:Alpha(opacity=85);
-            background:rgba(10,8,30,0.85);
+            filter:Alpha(opacity=60);
+            background:rgba(10,8,30,0.6);
             *zoom:1;
+            .share-words {
+                width:rem(229);
+                height:rem(93);
+                @include rightTop(72,58);
+                opacity:0;
+                transition:all 0.5s ease-in-out;
+                background:url("../images/share-words.png") no-repeat 0 0;
+                background-size:100%;
+            }
             .share-center {
                 width:rem(278);
                 height:rem(257);
-                @include rightTop(38,29);
+                @include rightTop(67,209);
             }
             .share-img  {
                 background:url("../images/share-ball.png") no-repeat 0 0;
@@ -1888,6 +1897,7 @@ body {
                 opacity:1;
                 transform:none;
             }
+            .share-words,
             .share-person {
                 opacity:1;
             }

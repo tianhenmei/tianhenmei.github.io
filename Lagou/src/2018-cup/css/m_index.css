@@ -1575,15 +1575,26 @@ body {
       top: 0;
       z-index: 3;
       background-color: #0a081e;
-      filter: Alpha(opacity=85);
-      background: rgba(10, 8, 30, 0.85);
+      filter: Alpha(opacity=60);
+      background: rgba(10, 8, 30, 0.6);
       *zoom: 1; }
+      .page3 .pkdetail-04 .share-layer .share-words {
+        width: 4.88533rem;
+        height: 1.984rem;
+        position: absolute;
+        right: 1.536rem;
+        top: 1.23733rem;
+        opacity: 0;
+        -webkit-transition: all 0.5s ease-in-out;
+        transition: all 0.5s ease-in-out;
+        background: url("../images/share-words.png") no-repeat 0 0;
+        background-size: 100%; }
       .page3 .pkdetail-04 .share-layer .share-center {
         width: 5.93067rem;
         height: 5.48267rem;
         position: absolute;
-        right: 0.81067rem;
-        top: 0.61867rem; }
+        right: 1.42933rem;
+        top: 4.45867rem; }
       .page3 .pkdetail-04 .share-layer .share-img {
         background: url("../images/share-ball.png") no-repeat 0 0;
         background-size: 5.93067rem 5.48267rem; }
@@ -1925,6 +1936,7 @@ body {
   -webkit-transform: none;
           transform: none; }
 
+.page3.active .pkdetail-layer-04.active-layer .share-active .share-words,
 .page3.active .pkdetail-layer-04.active-layer .share-active .share-person {
   opacity: 1; }
 
