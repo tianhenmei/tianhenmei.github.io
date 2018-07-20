@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+		<meta charset="utf-8">
+		<link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="https://www.lgstatic.com/activity/css/swiper.min.css">
+		<link rel="stylesheet" href="https://www.lgstatic.com/activity/css/base.css">
+		<link rel="stylesheet" href="css/m_style.css?v=$version$">
+		<!---上线之后加-->
+		<title>拉勾2016年度雇主评选</title>
+		<script>
+			var currentLoginStatus = false;
+			var docEl = document.documentElement,
+			    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			    recalc = function() {
+					var RC = {
+						w:750,
+						h:1206
+					};
+					var bodyElement = document.documentElement || document.body;
+					var GC = {
+						w:bodyElement.clientWidth,
+						h:bodyElement.clientHeight
+					};
+					var rightSize = RC.w / RC.h;
+					var currentSize = GC.w / GC.h;
+					var lastHTMLSize = 10;
+					if(rightSize > currentSize){  // 长屏
+						lastHTMLSize = 10;//(RC.w / GC.w * GC.h) / RC.h * 10;//( (GC.w * 2) / RC.w ) * 10;
+					}else if(rightSize < currentSize){  //宽屏
+						lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 10;//( GC.h * 2 / RC.h ) * 10;
+						console.log('宽');
+					}
+					bodyElement.style.fontSize = GC.w / lastHTMLSize+'px';
+			        //设置根字体大小
+					// var scale = 1206 / 750,
+					// 	currentScale = docEl.clientHeight / docEl.clientWidth;
+			        // docEl.style.fontSize = docEl.clientWidth / (10 / currentScale * scale) + 'px';
+			    };
+
+			//绑定浏览器缩放与加载时间
+			// window.addEventListener(resizeEvt, recalc, false);
+			document.addEventListener('DOMContentLoaded', recalc, false);
+		</script>
+	</head>
+	<body>
+		<div class="search_create_loading loadingcover">  <!--search_hide-->
+			<div class="search_loading_words">loading...</div>
+			<div class="search_loading"></div>
+		</div>
+		<div class="swiper-container parent">
+		    <div class="swiper-wrapper">
+		        <div class="swiper-slide section1"><!--生成首页-->
+					<div class="card">
+						<div class="inner">
+							<img class="logo" src="images/yw_logobig.png">
+							<div class="com-name">loading</div>
+						</div>
+					</div>
+					<div class="word"></div>
+					<div class="updown"></div>
+		        </div><!-- /.section1 -->
+		        <div class="swiper-slide section2">
+					<div class="search_image search_leftTop_bg search_image_size ani" swiper-animate-effect="downCenterBack" swiper-animate-duration="1s" swiper-animate-delay="1s"></div>
+					<div class="search_image search_leftTop search_image_size ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="2s"></div>
+					<div class="search_image search_logo search_image_size ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="2s"></div>
+					<div class="search_image search_subtitle search_image_size ani" swiper-animate-effect="downCenter" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+					<div class="search_image search_title search_image_size ani" swiper-animate-effect="downCenter" swiper-animate-duration="1s" swiper-animate-delay="0s"></div>
+					<div class="ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="3s">
+						<div class="search_image search_ball_small search_image_size ani" swiper-animate-effect="rotateSmallChange" swiper-animate-duration="10s" swiper-animate-delay="3s"></div>
+					</div>
+					<div class="search_ballLeft_parent ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="2s">
+						<div class="search_image search_ballLeft search_image_size ani" swiper-animate-effect="moveChange0" swiper-animate-duration="10s" swiper-animate-delay="2s"></div>
+					</div>
+					<div class="search_ballCenter_parent ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="3s">
+						<div class="search_image search_ballCenter search_image_size ani" swiper-animate-effect="moveChange1" swiper-animate-duration="10s" swiper-animate-delay="3s"></div>
+					</div>
+					<div class="search_ballRight_parent ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="4s">
+						<div class="search_image search_ballRight search_image_size ani" swiper-animate-effect="moveChange2" swiper-animate-duration="10s" swiper-animate-delay="4s"></div>
+					</div>
+					<div class="search_center clearfix ani" swiper-animate-effect="opacityChange" swiper-animate-duration="1s" swiper-animate-delay="3s">
+						<input class="search_input" type="text" placeholder="输入公司名称查看排名" />
+						<div class="search_button">
+							<div class="search_image search_icon search_image_size"></div>
+						</div>
+						<div class="search_list search_hide">
+							<div class="search_list_bar_bg">
+								<div class="search_list_bar"></div>
+							</div>
+							<ul class="">
+								<li class="">百度 ></li>
+								<li class="">百度东分 ></li>
+								<li class="">百度钱包 ></li>
+								<li class="">北京拉勾科技有限公司 ></li>
+								<li class="">百度 ></li>
+								<li class="">百度东分 ></li>
+								<li class="">百度钱包 ></li>
+								<li class="">北京拉勾科技有限公司 ></li>
+								<li class="">百度 ></li>
+								<li class="">百度东分 ></li>
+								<li class="">百度钱包 ></li>
+								<li class="">北京拉勾科技有限公司 ></li>
+							</ul>
+						</div>
+						<p class="search_tips search_hide">*您输入的公司名称不存在</p>
+					</div>
+					<div class="search_content search_hide">
+						<div class="search_company_logo">
+							<img src="images/search_company_logo.png?v=$version$" />
+						</div>
+						<h3 class="search_company_name">北京拉勾科技有限公司</h3>
+						<div class="search_award clearfix">
+							<div class="search_award_line"></div>
+							<div class="search_award_word">可评奖项</div>
+							<div class="search_award_line"></div>
+						</div>
+						<ul class="search_award_options">
+							<li class="search_6 clearfix">
+								<span class="search_image search_option_icon search_image_size"></span>
+								<span class="search_option_type">综合类</span>
+								<span class="search_option_se"></span>
+								<span class="search_option_name search_green">年度最佳雇主</span>
+							</li>
+							<li class="search_6 clearfix">
+								<span class="search_image search_option_icon search_option_icon_2 search_image_size"></span>
+								<span class="search_option_type">综合类</span>
+								<span class="search_option_se"></span>
+								<span class="search_option_name search_green">年度最佳雇主</span>
+							</li>
+							<li class="search_10 clearfix">
+								<span class="search_image search_option_icon search_option_icon_3 search_image_size"></span>
+								<span class="search_option_type">综合类</span>
+								<span class="search_option_se"></span>
+								<span class="search_option_name search_green">华北地区年度最佳雇主</span>
+							</li>
+						</ul>
+					</div>
+					<div class="ani" swiper-animate-effect="opacityChange" swiper-animate-duration="0.5s" swiper-animate-delay="4s">
+						<div class="search_image search_init search_image_size ani" swiper-animate-effect="opacityChange" swiper-animate-duration="1s" swiper-animate-delay="4s">
+					</div>
+						<!--<p class="search_init_line"></p>
+						<p class="search_init_word">
+							<span class="search_init_se_right">和</span><span class="search_init_se">明</span><span class="search_init_se">星</span><span class="search_init_se">同</span><span class="">台</span>
+						</p>
+						<p class="search_init_word">
+							<span class="search_init_se_1">与</span><span class="search_init_se_1_2">优</span><span class="search_init_se_1_2">秀</span><span class="search_init_se_1_2">企</span><span class="search_init_se_1_2">业</span><span class="search_init_se_1_2">一</span><span class="search_init_se_1_2">起</span>
+						</p>
+						<p class="search_init_word">
+							<span class="">做</span><span class="search_init_se_2">“有情绪”</span><span class="">的</span>
+						</p>
+						<p class="search_init_word">
+							<span class="search_init_se_3">年</span><span class="search_init_se_3">度</span><span class="search_init_se_3">最</span><span class="search_init_se_3">佳</span><span class="search_init_se_3">雇</span><span class="search_init_se_3">主</span>
+						</p>
+						<p class="search_init_line"></p>-->
+					</div>
+					<div class="search_create ani" data-lg-tj-id="1Yq0" data-lg-tj-no="0001" data-lg-tj-cid="idnull" swiper-animate-effect="moveUp" swiper-animate-duration="1s" swiper-animate-delay="4s">查看公司排名</div>
+					<div class="search_info ani" swiper-animate-effect="moveUp" swiper-animate-duration="1s" swiper-animate-delay="4.5s">
+						<span class="search_image search_info_icon search_image_size"></span>
+						<a class="search_info_href" data-lg-tj-id="1Yq0" data-lg-tj-no="0002" data-lg-tj-cid="idnull" href="https://activity.lagou.com/topic/bestEmployer.html" target="_blank">什么是最佳年度雇主</a>
+					</div>
+					<div class="search_create_loading search_hide">
+						<!--<img src="images/search_loading.gif" />-->
+						<div class="search_loading_words">页面生成中……</div>
+						<div class="search_loading"></div>
+						<!--<div class="search_loading">
+							<div class="search_loading_words">生成中……</div>
+							<div class="clearfix">
+								<div class="search_loading_circle">
+									<div class="search_loading_circle_small ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="0s"></div>
+									<div class="search_loading_circle_big ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="1s"></div>
+								</div>
+								<div class="search_loading_circle">
+									<div class="search_loading_circle_small ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="0s"></div>
+									<div class="search_loading_circle_big ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="1s"></div>
+								</div>
+								<div class="search_loading_circle">
+									<div class="search_loading_circle_small ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="0s"></div>
+									<div class="search_loading_circle_big ani" swiper-animate-effect="scaleChange" swiper-animate-duration="2s" swiper-animate-delay="1s"></div>
+								</div>
+							</div>
+						</div>-->
+					</div>
+				</div><!-- /.section2 -->
+		        <div class="swiper-slide section3">
+					<div class="logo"></div>
+					<img class="com-logo" src="images/yw_logobig.png">
+					<div class="com-name">拉勾网</div>
+					<div class="word w1">这是我在<span class="com-short-name">拉勾</span>和你度过的第<span class="day">1314</span>天</div>
+					<div class="word w2">又见到你，好开心</div>
+					<div class="card search_hide">
+						<div class="swiper-container chlidren">  
+							<div class="swiper-wrapper">  
+								
+								<div class="swiper-slide page swing">
+									<div class="hasinfo">
+										<img class="com-ceo">
+										<div class="quote"></div>
+										<div class="thank-word">嗨，我是<span class="com-person"></span>，感谢你的拥抱！</div>
+									</div>
+									<div class="hasnoinfo" style="display:none">
+										<p>每个互联网人都有一个愿望</p>
+										<p>每一个愿望，都会实现</p>
+									</div>
+									<div class="clearfix"></div>
+									<div class="linearea">
+										<div class="line"></div>
+										<p>说说你的愿望</p>
+										<div class="line"></div>
+									</div>
+									<div class="tagarea">
+										<div class="tagarea-inner"></div>
+									</div><!-- /.tagarea -->
+									<div class="change" data-lg-tj-id="1Yq0" data-lg-tj-no="0007" data-lg-tj-cid="idnull"></div>  
+								</div><!-- /.page2 -->
+							</div>
+							<div class="swiper-pagination"></div>
+						</div><!-- /.children -->
+					</div>
+					<div class="btn sharebtn" data-lg-tj-id="1Yq0" data-lg-tj-no="0003" data-lg-tj-cid="idnull"></div>
+					<a class="join" data-lg-tj-id="1Yq0" data-lg-tj-no="0004" data-lg-tj-cid="idnull" href="https://activity.lagou.com/activity/dist/emAwardCreate/m_index2.html"></a>
+					<div class="rank-layer">
+						<div class="rank-layer-center">
+							<div class="rank-top">
+								<div class="rank-subtitle">-<span class="rank-subtitle-content"><span class="search_image rank-subtitle-icon rank-subtitle-icon-2 search_image_size"></span><span class="rank-subtitle-word">综合类</span></span>-</div>
+								<div class="rank-title">华北地区年度最佳雇主</div>
+							</div>
+							<div class="rank-list-title">
+								<div class="rank-list-title-center clearfix">
+									<div class="rank-company-rank">当前名次</div>
+									<div class="rank-company-name">公司</div>
+									<div class="rank-company-support">已获拥抱数</div>
+								</div>
+							</div>
+							<div class="rank-content">
+								<div class="rank-content_bar"></div>
+								<ul class="rank-list">
+									<li class="clearfix">
+										<div class="rank-company-rank">1</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">2</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">3</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="rank-active clearfix">
+										<div class="rank-company-rank">4</div>
+										<div class="rank-company-name">百度</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">5</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">6</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">7</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">8</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">9</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">10</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">11</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">12</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">13</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">14</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">15</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+									<li class="clearfix">
+										<div class="rank-company-rank">16</div>
+										<div class="rank-company-name">拉勾网</div>
+										<div class="rank-company-support">873648</div>
+									</li>
+								</ul>
+							</div><!--rank-content-->
+							<div class="rank-close">
+								<div class="rank-close-line"></div>
+								<div class="search_image rank-close-icon search_image_size"></div>
+							</div>
+						</div><!-- rank-layer-center -->
+					</div>
+				</div><!-- /.section3 -->
+		    </div>
+		    <!-- 如果需要分页器 -->
+		    <!-- <div class="swiper-pagination"></div> -->
+		    
+		    <!-- 如果需要滚动条 -->
+		    <!-- <div class="swiper-scrollbar"></div> -->
+		</div>
+		<div class="sharepop">
+			<div class="share"></div>
+		</div>
+		<script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+		<script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
+		<script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
+		<script src="js/m_style2.js?v=$version$"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+		<script>
+			function share(datas){
+				function encode(url) {
+					return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+				}
+				        //统计分享次数
+				function countShare(datas) {
+					var parameter =  datas.parameter;
+					var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+					$.ajax({
+						type: 'get',
+						contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+						url: countUrl,
+						dataType:'jsonp',
+						jsonp:'jsoncallback',
+						success: function(data){
+							if(data.success){
+								var a = $('.shareCount').eq(1).html();
+								a++;
+								$('.shareCount').eq(1).html(a);
+							}else{
+
+							}
+						},
+						error: function(xhr, type){
+
+						}
+					})
+					return
+				}
+				surl = window.location.href;
+				var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(location.href.split('#')[0]);
+				var callback = function (json) {
+					var data = json.message;
+					data = eval("(" + data + ")");
+					wx.config({
+						debug: false,
+						appId: data.appId,
+						timestamp: data.timestamp,
+						nonceStr: data.nonceStr,
+						signature: data.signature,
+						jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+					});
+					wx.ready(function () {
+						var shareData = {
+							title: datas.title,
+							desc: datas.desc,
+							link: datas.shareUrl, // 分享链接
+							imgUrl: datas.imgUrl,
+							success: function () {
+								//alert('已分享');         
+								// 用户确认分享后执行的回调函数
+								if(datas.goToUrl){
+									window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+								}
+								if(datas.activityType){
+                            		countShare(datas);
+                        		}
+								
+							}
+						};
+						wx.onMenuShareAppMessage(shareData);
+						wx.onMenuShareTimeline(shareData);
+						wx.onMenuShareQQ(shareData);
+						wx.onMenuShareWeibo(shareData);
+						console.log('weixin support set success.');
+					});
+					wx.error(function (res) {
+						//alert(res.errMsg);
+					});
+				};
+				$.ajax({
+					url: url,
+					dataType: "jsonp",
+					jsonp: "jsoncallback",
+					success: function (response) {
+						callback && callback(response);
+					},
+					error: function (xhr, type) {
+						console.log('xhr:' + xhr + "type:" + type);
+						alert("网络错误请重试")
+					}
+				})
+			}
+		</script>
+		<!--<script type="text/javascript" src="js/analytics.js?v=$version$"></script>-->
+		<!--<script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>-->
+    	<!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+		<script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+		<script type="text/javascript">
+			var baseUrl = 'https://activity.lagou.com/activity/dist/emAwardCreate/m_index2.html';
+			//微信分享
+			var datas = {
+				title: "拉勾雇主评选|你的公司上榜了吗？",
+				desc: "你喜欢的公司，才是好公司",
+				imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/emAwardCreate/images/thumb.jpg?v=1",
+				activityType: 'ACTIVITY_H5_GZPXSC_B',
+				shareUrl:baseUrl
+			};
+			share(datas);
+			//app 分享
+			function getShareInfo(){
+				var share={
+					share_title:datas.title,
+					share_desc:datas.desc,
+					share_url:datas.shareUrl,
+					share_imgUrl:datas.imgUrl
+				};
+				return share;
+			}
+
+		</script>		
+	</body>
+</html>

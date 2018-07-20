@@ -3,8 +3,46 @@
     <head>
         <meta charset="UTF-8">
         <title>JS 继承</title>
+        <style type="text/css">
+            .parent {
+                width:500px;
+                height:500px;
+                border:1px solid #ff0;
+            }
+            .float,
+            .outer {
+                width:200px;
+                height:200px;
+                margin:0 auto;
+                position:relative;
+            }
+            .outer {
+                left:50%;
+            }
+            .float {
+                background-color:#f00;
+                float:left;
+                position:relative;
+                right:50%;
+                /* position:absolute;
+                left:50%;
+                top:50%;
+                margin:-100px 0 0 -100px; */
+            }
+            .inline {
+                position:absolute;
+                right:0;
+                top:0;
+            }
+        </style>
     </head>
     <body>
+        <div class="parent">
+            <div class="outer">
+                <div class="float"></div>
+                <span class="inline">定位</span>
+            </div>
+        </div>
         <script type="text/javascript" src="./js/index.js"></script>
     </body>
 </html>

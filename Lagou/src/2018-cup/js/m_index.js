@@ -269,8 +269,8 @@ app = new Vue({
             nickname:"C罗",
             contact:"2018年与巴塞罗那续约",
             up:"100%",
-            salary:153133560,
-            _salary:["153","133","560"],
+            salary:233268000,
+            _salary:["233","268","000"],
             words1:"用一己之力<br/>"+
                 "即可逆天改命<br/>"+
                 "敌人越强<br/>"+
@@ -719,7 +719,7 @@ app = new Vue({
                 }
             },500)
             datas.imgUrl = this.host + "images/share/"+this.star[this.starActive].name+'.jpg'
-            datas.title = "世界杯球星擂台，"+this.pk.name+"选择和"+this.star[this.starActive].cn+"硬杠"
+            datas.title = "世界杯球星擂台，"+this.pk.name+"选择和"+this.star[this.starActive].cn+"正面对决"
             if(share){
                 share(datas);
             }

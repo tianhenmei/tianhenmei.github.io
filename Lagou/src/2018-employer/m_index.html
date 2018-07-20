@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+		<meta charset="utf-8">
+		<link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>拉勾2016年度雇主评选</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 750,
+                    h: 1206
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                lagoufrom = getQueryString('lagoufrom'),
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                        lastHTMLSize = lastHTMLSize + 2.5;
+                    }
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+
+            setFontSize();
+		</script>
+	</head>
+	<body>
+        <div class="wrapper pages" id="app">
+            <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+                <div class="bg-top opacityChange delay0-5"></div>
+                <div class="bg-bottom opacityChange delay0-5"></div>
+                <div class="pp-01 centerToLeft delay1-2">
+                    <div class="icon piece-01 moveLittle delay0-2"></div>
+                </div>
+                <div class="pp-02 centerToTop delay1-2">
+                    <div class="icon piece-02 moveLittle"></div>
+                </div>
+                <div class="pp-03 leftBottomIn delay1-2">
+                    <div class="icon piece-03 moveLittle delay0-4"></div>
+                </div>
+                <div class="pp-04 centerToRightT delay1-2">
+                    <div class="icon piece-04 moveLittle"></div>
+                </div>
+                <div class="pp-05 centerToRightT delay1-2">
+                    <div class="icon piece-05-01 zoomInfinite"></div>
+                    <div class="icon piece-05-02 zoomDispear"></div>
+                    <!-- <div class="icon piece-05"></div> -->
+                </div>
+                <div class="pp-06 centerToBottom delay1-2">
+                    <div class="icon piece-06 moveLittle delay0-6"></div>
+                </div>
+                <div class="icon logo topIn delay1-0"></div>
+                <div class="icon title zoomIn delay1-0"></div>
+                <div class="container littleTopIn delay1-0">
+                    <div class="list company-list" ref="company-list">
+                        <div class="one"
+                            v-for="(one,index) in companyList"
+                            :class="index == currentIndex ? currentClass : index == prevIndex ? prevClass : index == nextIndex ? nextClass : index == bprevIndex ? bprevClass : index == bnextIndex ? bnextClass : ''">
+                            <div class="one-center">
+                                <a class="icon logo-bg" target="_blank"
+                                    href="javascript:void(0);" :onclick="'self.location=\'https://www.lagou.com/center/company_'+one.id+'.html\';'" class="logo" target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="" :data-lg-tj-cid="one.id">
+                                    <img :src="'http://www.lgstatic.com/thumbnail_200x200/'+one.logo" class="logo-img" />
+                                </a>
+                                <div class="company-name">{{one.companyshortname}}</div>
+                                <div class="company-infos clearfix">
+                                    <div class="info city"><span class="icon info-icon"></span><span class="info-text">{{one.city}}</span></div>
+                                    <div class="info classify"><span class="icon info-icon"></span><span class="info-text">{{one.industryfield}}</span></div>
+                                    <div class="info financestage"><span class="icon info-icon"></span><span class="info-text" :class="one.financestage.length <= 3 ? 'info-text-03' : ''">{{one.financestage}}</span></div>
+                                    <div class="info size"><span class="icon info-icon"></span><span class="info-text">{{one.companysize}}</span></div>
+                                </div>
+                                <div class="company-labels clearfix">
+                                    <div class="label" 
+                                        v-for="(label,lindex) in labelList(one.otherlabel)">{{label}}</div>
+                                </div>
+                                <div class="bg"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vote-list">
+                        <div class="one-vote"
+                            v-for="(one,index) in companyList"
+                            :class="index == currentIndex ? 'active' : 'other-delay'">
+                            <div class="vote-left-out opacityChange delay1-3">
+                                <div class="vote-left" 
+                                    :class="{
+                                        'active-icon':votedCompanyIds.indexOf(one.id) != -1,
+                                        'opacityChange1':index == currentIndex
+                                    }"
+                                    @click.prevent="voteCompanyEvent(one,index)" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0001" :data-lg-tj-cid="one.id">
+                                    <div class="vote-award" :class="{
+                                        'vote-active':voteActive == index
+                                    }">
+                                        <div class="icon award-01"></div>
+                                    </div>
+                                    <div class="icon vote-star" :class="{
+                                        'star-show':voteActive == index || votedCompanyIds.indexOf(one.id) != -1
+                                    }"></div>
+                                    <div class="vote-tips" :class="{
+                                        'opacityChange-out duration0-2':voteActive == index
+                                    }" v-show="votedCompanyIds.indexOf(one.id) == -1">
+                                        <div class="icon vote-hand zoomLeft"></div>
+                                        <div class="vote-text">点我投票</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vote-right opacityChange delay1-3">
+                            <div class="vote-current">今日投票次数：<span class="highlight">{{userUsed}}/{{userTotal}}</span></div>
+                            <div class="vote-info">每多分享一次<br/>即可多获得一次投票机会</div>
+                            <div class="rank-btn" @click.prevent="getRankList" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0003" data-lg-tj-cid="null">实时排行榜<span class="icon rank-go"></span></div>
+                        </div>
+                    </div>
+                    <div class="icon arrow left-arrow" @touchstart.stop="showPreEvent"></div>
+                    <div class="icon arrow right-arrow" @touchstart.stop="showNextEvent"></div>
+                </div>
+                <div class="icon input littleBottomIn delay1-0">
+                    <input class="input-text" type="text" placeholder="搜索关注企业名称或企业ID"  v-model.trim="search_name" />
+                    <div class="input-btn" @click.prevent="searchCompanyEvent" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0002" data-lg-tj-cid="null"></div>
+                </div>
+                <div class="search_list" v-show="searchStatus">
+                    <div class="search_list_bar_bg">
+                        <div class="search_list_bar"></div>
+                    </div>
+                    <ul class="">
+                        <li class="result" v-for="(one,index) in search_list"
+                            @click.stop.prevent="selectCompanyEvent(one)" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0004" :data-lg-tj-cid="one.id">{{one.companyname}}</li>
+                    </ul>
+                </div>
+                <p class="search_tips" v-show="search_tips">{{search_tips}}</p>
+                <div class="rank-layer" v-show="rankStatus">
+                    <div class="rank-top">
+                        <div class="icon top-line"></div>
+                        <div class="icon top-bg"></div>
+                        <div class="icon top-sprinkle"></div>
+                        <div class="icon top-title"></div>
+                        <div class="icon rank-close" @click.prevent="closeRank"></div>
+                    </div>
+                    <div class="rank-content">
+                        <div class="rank-title clearfix">
+                            <div class="title-text title-01">排名</div>
+                            <div class="title-text title-02">公司名称</div>
+                            <div class="title-text title-03">获得票数</div>
+                        </div>
+                        <div class="rank-center">
+                            <div class="rank-center_bar_bg">
+                                <div class="rank-center_bar"></div>
+                            </div>
+                            <ul class="rank-list">
+                                <li class="clearfix" v-for="(one,index) in rankList">
+                                    <div class="rank-company-rank" :class="'rank'+index">No.{{index+1}}</div>
+                                    <div class="rank-company-logo" :class="{'award-logo':index < 3}">
+                                        <div class="icon company-crown" :class="'company-crown-'+index"></div>
+                                        <img class="logo-img" :src="'http://www.lgstatic.com/thumbnail_200x200/'+one.logo" />
+                                    </div>
+                                    <div class="rank-company-name">{{one.companyShortName}}</div>
+                                    <div class="rank-company-support">{{one.voteNum+((one.voteNum+'').length >= 6 ? '' : '支持')}}</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="vote-success" v-show="successStatus">
+                    <div class="tipbox">
+                        <div class="success-title"></div>
+                        <div class="success-content"></div>
+                        <a class="go-gift" 
+                            href="javascript:void(0);" :onclick="'self.location=\''+giftHref+'\';'"
+                            target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
+                        <div class="create-img"
+                            @click.prevent="createPictures" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
+                        <div class="icon success-close" @click.prevent="closeSuccess"></div>
+                    </div>
+                </div>
+                <div class="create-layer" v-show="createStatus">
+                    <div class="create-center">
+                        <div class="create-bottom opacityChange delay0-5"></div>
+                        <div class="create-top opacityChange delay0-5"></div>
+                        <div class="create-logo opacityChange delay1-0"></div>
+                        <div class="create-light opacityChange delay1-0"></div>
+                        <div class="create-card-02 opacityChange delay2-0"></div>
+                        <div class="create-title zoomIn delay1-0"></div>
+                        <div class="create-tips leftIn delay2-5"></div>
+                        <img class="user-logo rotateIn delay1-5" :src="user.headimgurl" />
+                        <div class="user-info littleBottomIn delay1-5">
+                            {{user.nickname}}<br/>
+                            是<span class="highlight">{{selected.companyshortname}}</span><br/>
+                            第<span class="highlight">{{userRank}}</span>位支持者<br/>
+                            并获得了神秘秋招大礼
+                        </div>
+                        <img class="company-logo opacityChange delay2-0" :src="'http://www.lgstatic.com/thumbnail_400x400/'+selected.logo" />
+                        <div class="company-name opacityChange delay2-0">{{selected.companyshortname}}</div>
+                        <div class="company-info cinfo-01 opacityChange delay2-0">{{selected.city}}</div>
+                        <div class="company-info cinfo-02 opacityChange delay2-0">{{selected.industryfield}}</div>
+                        <div class="company-info cinfo-03 opacityChange delay2-0">{{selected.financestage}}</div>
+                        <div class="company-info cinfo-04-icon opacityChange delay2-0" :class="selected.financestage.length <= 3 ? 'cinfo-04-icon-03' : ''"></div>
+                        <div class="company-info cinfo-04 opacityChange delay2-0" :class="selected.financestage.length <= 3 ? 'cinfo-04-03' : ''">{{selected.companysize}}</div>
+                        <div class="company-labels clearfix opacityChange delay2-0">
+                            <div class="clabel" 
+                                v-for="(one,index) in labelList(selected.otherlabel)"
+                                v-if="index < 3">{{one}}</div>
+                        </div>
+                        <div class="qrcode rightIn delay2-5">
+                            <img class="qrcode-img" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
+                        </div>
+                    </div>
+                    <div id="code"></div>
+                    <canvas class="canvas" ref="canvas"></canvas>
+                    <canvas class="temp-canvas" ref="temp-canvas"></canvas>
+                    <canvas id="canvas" width="200" height="200" style="width:200px; height:200px; position:fixed; left:200px; top:200px; "></canvas>
+                    <img class="final-img" :src="url" v-show="url" />
+                    <!--<img class="user-logo" :src="testUserLogo" />-->
+                    <div class="long-tap leftIn delay2-5">
+                        <div class="lt lt-icon zoomInfiniteB"></div>
+                        <div class="lt lt-text"></div>
+                    </div>
+                </div>
+                <!--<svg id="svg" width="100%" height="100%" viewbox="0 0 200 200" style="width:200px; height:200px; position:fixed; left:200px; top:200px; z-index:1000;">
+                    <image ref="svg-img" x="0" y="0" height="200" width="200" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.lgstatic.com/thumbnail_200x200/i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png"/>
+                </svg>-->
+            </div>
+        </div>
+		<script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+		<script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
+        <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
+        <script src="js/vue.js?v=$version$"></script> 
+        <script src="js/jquery.qrcode.min.js?v=$version$"></script>
+		<script src="js/m_index.js?v=$version$"></script>
+		<script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+		<script>
+			function share(datas){
+				function encode(url) {
+					return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+				}
+				        //统计分享次数
+				function countShare(datas) {
+					var parameter =  datas.parameter;
+					var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+					$.ajax({
+						type: 'get',
+						contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+						url: countUrl,
+						dataType:'jsonp',
+						jsonp:'jsoncallback',
+						success: function(data){
+							if(data.success){
+								var a = $('.shareCount').eq(1).html();
+								a++;
+								$('.shareCount').eq(1).html(a);
+							}else{
+
+							}
+						},
+						error: function(xhr, type){
+
+						}
+					})
+					return
+				}
+				surl = window.location.href;
+				var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+				var callback = function (json) {
+					var data = json.message;
+					data = eval("(" + data + ")");
+					wx.config({
+						debug: false,
+						appId: data.appId,
+						timestamp: data.timestamp,
+						nonceStr: data.nonceStr,
+						signature: data.signature,
+						jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+					});
+					wx.ready(function () {
+						var shareData = {
+							title: datas.title,
+							desc: datas.desc,
+							link: datas.shareUrl, // 分享链接
+							imgUrl: datas.imgUrl,
+							success: function () {
+								//alert('已分享');         
+                                // 用户确认分享后执行的回调函数
+                                shareSuccess()
+								if(datas.goToUrl){
+									window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+								}
+								if(datas.activityType){
+                            		countShare(datas);
+                        		}
+								
+							}
+						};
+						wx.onMenuShareAppMessage(shareData);
+						wx.onMenuShareTimeline(shareData);
+						wx.onMenuShareQQ(shareData);
+						wx.onMenuShareWeibo(shareData);
+						console.log('weixin support set success.');
+					});
+					wx.error(function (res) {
+						//alert(res.errMsg);
+					});
+				};
+				$.ajax({
+					url: url,
+					dataType: "jsonp",
+					jsonp: "jsoncallback",
+					success: function (response) {
+						callback && callback(response);
+					},
+					error: function (xhr, type) {
+						console.log('xhr:' + xhr + "type:" + type);
+						// alert("网络错误请重试")
+					}
+				})
+			}
+		</script>
+		<script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    	<!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+		<script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+		<script type="text/javascript">
+			var baseUrl = 'https://activity.lagou.com/activity/dist/emAwardCreate/m_index.html';
+			//微信分享
+			var datas = {
+				title: "拉勾雇主评选|你的公司上榜了吗？",
+				desc: "你喜欢的公司，才是好公司",
+				imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/emAwardCreate/images/thumb.jpg?v=1",
+				activityType: 'ACTIVITY_H5_EMPLOYER_2018',
+				shareUrl:baseUrl
+			};
+			share(datas);
+			//app 分享
+			function getShareInfo(){
+				var share={
+					share_title:datas.title,
+					share_desc:datas.desc,
+					share_url:datas.shareUrl,
+					share_imgUrl:datas.imgUrl
+				};
+				return share;
+			}
+
+		</script>		
+	</body>
+</html>

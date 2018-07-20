@@ -39,7 +39,7 @@ Animal.prototype.detail = {
 
     }
     Kitty.prototype = new Cat()
-    Kitty.name = 'kitty'
+    Kitty.prototype.name = 'kitty'
     var kitty = new Kitty()
     console.log('this is kitty methods or attributes')
     console.log(kitty.sleep())  // cat is sleeping
@@ -135,6 +135,36 @@ Animal.prototype.detail = {
     console.log(kitty.eat('fish'))
 */
 
+/**4、拷贝继承 */
+/*
+    function Cat(name){
+        var animal = new Animal()
+        for(var p in animal){
+            Cat.prototype[p] = animal[p]
+        }
+        Cat.prototype.name = name
+    }
+    var cat = new Cat('choulaogong')
+    console.log(cat.name);
+    console.log(cat.sleep());
+    console.log(cat instanceof Animal); // false
+    console.log(cat instanceof Cat); // true
+
+    function Dog(name){
+        var animal = new Animal()
+        for(var p in animal){
+            Dog.prototype[p] = animal[p]
+        }
+        Dog.prototype.name = name
+    }
+    var dog = new Dog('dagou')
+    dog.detail.age = 2
+    console.log(dog.detail.age)
+    console.log(cat.detail.age)
+    dog.info.sex = 1
+    console.log(dog.info.sex)  // 1
+    console.log(cat.info.sex)  // 0
+*/
 /**5、组合继承 */
 /*
     function Cat(name){
