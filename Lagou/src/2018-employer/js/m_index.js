@@ -170,7 +170,7 @@ var scrollClass = function(options) {
 app = new Vue({
     el:"#app",
     data:{
-        mode:"development",
+        mode:"",//"development",
         lg:"1biq",
         activePage:0,
         search_name:'',
@@ -783,7 +783,7 @@ app = new Vue({
         drawUserPicture:function(){
             var height = RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0
-            this.drawCirclePicture(this.user.headimgurl,97,385+offset,98,98,-1,true)
+            this.drawCirclePicture("https://activity.lagou.com/activityapi/votelike/userHeadImg",97,385+offset,98,98,-1,true)
         },
         drawCirclePicture:function(portrait,x,y,w,h,r,crossStatus){
             var self = this,
