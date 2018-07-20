@@ -379,6 +379,7 @@ body {
             height:rem(180);
             border-radius:rem(180);
             overflow: hidden;
+            // background-color:#fff;
         }
         .company-name {
             width:rem(320);
@@ -1033,8 +1034,11 @@ body {
         .canvas {
             width:100%;
             height:100%;
+            // test
             opacity:0;
             @include center(0,0);
+            // test
+            // z-index:99999;
         }
         // .user-logo {
         //     position:fixed;
@@ -1086,6 +1090,8 @@ body {
         width:100%;
         height:100%;
         background: #dce8ff;
+        // test
+        // display:none;
         .create-top {
             width:rem(750);
             height:100%;
@@ -1159,11 +1165,16 @@ body {
             @include centerb(135,536-179);
         }
         .company-name {
+            width:rem(290);
             line-height:rem(50);
             font-size:rem(34);
             color:#fff;
             font-weight:bold;
-            @include centerb(340,536-50)
+            @include centerb(340,536-50);
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            position:absolute;
         }
         .company-info {
             height:rem(36*24/22);

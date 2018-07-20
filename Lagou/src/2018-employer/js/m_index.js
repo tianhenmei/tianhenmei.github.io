@@ -170,6 +170,7 @@ var scrollClass = function(options) {
 app = new Vue({
     el:"#app",
     data:{
+        // test
         mode:"",//"development",
         lg:"1biq",
         activePage:0,
@@ -187,7 +188,7 @@ app = new Vue({
         },
         testUserLogo:'',
         successStatus:false,
-        giftHref:"https://www.lagou.com",
+        giftHref:"https://activity.lagou.com/topic/jplq.html",
         rankStatus:false,
         createStatus:false,
         canvas:null,
@@ -206,6 +207,7 @@ app = new Vue({
             "images/create-size-icon.png"
         ],
         loadedImgs:[],
+        loadedImgs2:[],
         loaded:0,
         drawStatus:false,
         selectedId:'',
@@ -522,8 +524,9 @@ app = new Vue({
     },
     computed:{
         qrcodeUrl:function(){
-            var loca = window.location
-            return loca.protocol+'//'+loca.host+'/src/2018-employer/m_index.html?selected='+this.selected.id
+            // var loca = window.location
+            // return loca.protocol+'//'+loca.host+'/src/2018-employer/m_index.html?selected='+this.selected.id
+            return 'https://activity.lagou.com/activity/dist/2018-employer/m_index.html?selected='+this.selected.id
         },
         createCode:function(){
             return encodeURIComponent(this.qrcodeUrl)
@@ -646,11 +649,13 @@ app = new Vue({
         },
         voteCompanyEvent:function(one,index){
             var self = this
-            if(this.votedCompanyIds.indexOf(one.id) != -1){
-                return
-            }
+            // if(this.votedCompanyIds.indexOf(one.id) != -1){
+            //     return
+            // }
             if(this.mode == "development"){
+                this.votedCompanyIds.push(one.id)
                 this.voteCompanySuccess(one,index)
+                this.userUsed--
                 return
             }
             $.ajax({
@@ -665,7 +670,11 @@ app = new Vue({
                     if (result.success) {
                         var data = result.content;
                         if(data){
-                            this.voteCompanySuccess(one.index)
+                            self.userTotal = data.allVoteNum || 3
+                            self.userUsed = data.votedNum || 0
+                            self.userRank = parseInt(data.userVoteOrderNum)
+                            self.votedCompanyIds = data.voteCompanyIds || []
+                            self.voteCompanySuccess(one,index)
                         }
                     }
                 },
@@ -677,11 +686,12 @@ app = new Vue({
         voteCompanySuccess:function(one,index){
             var self = this
             this.voteActive = index
+            this.selected = one
             setTimeout(function(){
                 self.voteActive = -1
                 self.successStatus = true
-                self.votedCompanyIds.push(one.id)
-                self.userUsed--
+                // self.votedCompanyIds.push(one.id)
+                // self.userUsed--
             },500)
         },
         initCanvas:function(){
@@ -712,58 +722,112 @@ app = new Vue({
             this.loadingArray.forEach(function(url){
                 var img = new Image()
                 img.onload = function(){
-                    self.loaded++
-                    if(self.loaded == self.loadingArray.length){
-                        var top = height - RC.h
-                        self.loadedImgs = loadedImgs
-                        self.ctx.drawImage(loadedImgs[0],0,0)
-                        self.ctx.drawImage(loadedImgs[1],0,top)
-                        self.ctx.drawImage(loadedImgs[2],462,34)
-                        self.ctx.drawImage(loadedImgs[3],0,44)
-                        // self.ctx.drawImage(loadedImgs[4],103,height-224)
-                        self.ctx.drawImage(loadedImgs[4],103,height-224+24)
-                        self.ctx.drawImage(loadedImgs[5],-28,height-651)
-                        self.ctx.drawImage(loadedImgs[6],20,-12)
-                        if(self.drawStatus){
-                            self.startDraw()
-                        }
-                    }
+                    self.initImageLoading()
+                }
+                img.onerror = function(){
+                    self.initImageLoading()
                 }
                 img.src = url,
-                loadedImgs.push(img)
+                self.loadedImgs.push(img)
             })
+        },
+        initImageLoading:function(){
+            this.loaded++
+            if(this.loaded == this.loadingArray.length){
+                var height = RC.w / GC.w * GC.h
+                var top = height - RC.h
+                // this.loadedImgs = loadedImgs
+                this.ctx.drawImage(this.loadedImgs[0],0,0)
+                this.ctx.drawImage(this.loadedImgs[1],0,top)
+                this.ctx.drawImage(this.loadedImgs[2],462,34)
+                this.ctx.drawImage(this.loadedImgs[3],0,44)
+                // this.ctx.drawImage(this.loadedImgs[4],103,height-224)
+                this.ctx.drawImage(this.loadedImgs[4],103,height-224+24)
+                this.ctx.drawImage(this.loadedImgs[5],-28,height-651)
+                this.ctx.drawImage(this.loadedImgs[6],20,-12)
+                if(this.drawStatus){
+                    this.startDraw()
+                }
+            }
         },
         startDraw:function(){
             var sp = 0,
                 sw = 0
             this.down = 0
-            this.drawUserPicture()
+            var qrcode = $(this.$refs['code']).qrcode({
+                    render: "canvas", //也可以替换为table
+                    width: 220,
+                    height: 220,
+                    text: this.qrcodeUrl/*可以通过ajax请求动态设置*/
+                }),
+                canvas = qrcode.find('canvas').get(0),
+                ercode = canvas.toDataURL('image/jpg'),
+                imgs = [
+                    "https://activity.lagou.com/activityapi/votelike/userHeadImg",
+                    "https://activity.lagou.com/activityapi/votelike/image/"+this.selected.id+"/logo",
+                    ercode
+                ],
+                loadedImgs = [],
+                loaded = 0,
+                self = this;
+            if(this.mode == "development"){
+                imgs = [
+                    "images/create-logo.png",
+                    "images/create-logo.png",
+                    ercode
+                ]
+            }
+            imgs.forEach(function(url){
+                var img = new Image()
+                img.onload = function(){
+                    loaded++
+                    if(loaded == imgs.length){
+                        self.drawAllInformation()
+                    }
+                }
+                img.onerror = function(){
+                    // alert("error: "+url)
+                    loaded++
+                    if(loaded == imgs.length){
+                        self.drawAllInformation()
+                    }
+                }
+                img.src = url
+                self.loadedImgs2.push(img)
+            })
+        },
+        drawAllInformation:function(){
+            this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
-            this.drawCompanyLogo()
+            this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
-            this.drawErcode()
+            this.drawErcode(this.loadedImgs2[2])
+            // this.ctx.drawImage(this.loadedImgs2[0],0,0)
+
+            this.canvasToImage()
         },
         canvasToImage:function(){
+            this.shareSuccessCallback()
             // console.log(this.down)
-            if(this.down >= 5){  //  || this.down >= 4
+            // if(this.down >= 5){  //  || this.down >= 4
                 var self = this
-                this.$nextTick(function(){
+                setTimeout(function(){
                     self.url = self.canvas.toDataURL('image/png')
-                })
-            }
+                },1000)
+            // }
         },
-        drawErcode:function(){
-            var qrcode = $('#code').qrcode({
-                render: "canvas", //也可以替换为table
-                width: 220,
-                height: 220,
-                text: this.qrcodeUrl/*可以通过ajax请求动态设置*/
-            });
+        drawErcode:function(img){
+            // var qrcode = $('#code').qrcode({
+            //     render: "canvas", //也可以替换为table
+            //     width: 220,
+            //     height: 220,
+            //     text: this.qrcodeUrl/*可以通过ajax请求动态设置*/
+            // });
             //将生成的二维码转换成图片格式
-            var canvas = qrcode.find('canvas').get(0),
-                src = canvas.toDataURL('image/jpg'),
+            var // canvas = qrcode.find('canvas').get(0),
+                // src = canvas.toDataURL('image/jpg'),
                 height = RC.w / GC.w * GC.h,
-                img = new Image(),
+                // img = new Image(),
                 self = this
             this.ctx.strokeStyle = "#7741c3"
             this.ctx.fillStyle = '#ffffff'
@@ -773,19 +837,24 @@ app = new Vue({
             this.ctx.fill()
             this.ctx.stroke()
             this.ctx.closePath()
-            img.onload = function(){
-                self.ctx.drawImage(img,0,0,this.width,this.height,536+6,height-113-113+6,101,101)
-                self.down++ 
-                self.canvasToImage()
-            }
-            img.src = src
+            // img.onload = function(){
+                console.log(img.src)
+                self.ctx.drawImage(img,0,0,img.width,img.height,536+6,height-113-113+6,101,101)
+                // self.down++ 
+                // self.canvasToImage()
+            // }
+            // img.src = src
         },
-        drawUserPicture:function(){
+        drawUserPicture:function(img){
             var height = RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0
-            this.drawCirclePicture("https://activity.lagou.com/activityapi/votelike/userHeadImg",97,385+offset,98,98,-1,true)
+            // "https://activity.lagou.com/activityapi/votelike/userHeadImg"
+            if(this.mode != "development"){
+                img.setAttribute('crossorigin', 'anonymous');
+            }
+            this.drawCirclePicture(img,97,385+offset,98,98,-1,true)
         },
-        drawCirclePicture:function(portrait,x,y,w,h,r,crossStatus){
+        drawCirclePicture:function(img,x,y,w,h,r,crossStatus){
             var self = this,
                 temp = this.$refs['temp-canvas'],
                 ctx = temp.getContext('2d'),
@@ -803,18 +872,18 @@ app = new Vue({
                     // 填充绘制的圆
                     ctx.fillStyle = pattern;
                     ctx.fill();
-                },
-                img = new Image();
+                };//,
+                // img = new Image();
             temp.width = 750
             temp.height = 750
-            if(crossStatus){
-                img.setAttribute('crossorigin', 'anonymous');
-            }else{
-                // img.setAttribute('crossorigin', '');
-            }
-            img.onload = function() {
-                obj = this
-                draw(this);
+            // if(crossStatus){
+            //     img.setAttribute('crossorigin', 'anonymous');
+            // }else{
+            //     // img.setAttribute('crossorigin', '');
+            // }
+            // img.onload = function() {
+                // obj = this
+                draw(img);
                 var src = temp.toDataURL("image/png"),
                     image = new Image()
                 if(crossStatus){
@@ -822,13 +891,14 @@ app = new Vue({
                 }
                 ctx.clearRect(0,0,750,750)
                 image.onload = function(){
-                    self.ctx.drawImage(image,0,0,obj.width,obj.height,x,y,w,h)
-                    self.down++
-                    self.canvasToImage()
+                    // alert("drawing: "+img.src)
+                    self.ctx.drawImage(image,0,0,img.width,img.height,x,y,w,h)
+                    // self.down++
+                    // self.canvasToImage()
                 }
                 image.src = src
-            };
-            img.src = portrait
+            // };
+            // img.src = portrait
         },
         drawUserInfo:function(){
             var height = RC.w / GC.w * GC.h - RC.h,
@@ -855,68 +925,30 @@ app = new Vue({
             this.ctx.fillText("位支持者",234+sp+sw,487+30+offset)
 
             this.ctx.fillText("并获得了神秘秋招大礼",234,537+30+offset)
-            this.down++
-            this.canvasToImage()
+            // this.down++
+            // this.canvasToImage()
         },
-        drawCompanyLogo:function(){
+        drawCompanyLogo:function(img){
             var height = RC.w / GC.w * GC.h,
                 can = document.getElementById('canvas'),
                 ctx = can.getContext("2d"),
-                url = 'https://activity.lagou.com/activityapi/votelike/image/'+this.selected.id+'/logo',//'http://www.lgstatic.com/thumbnail_400x400/'+this.selected.logo,
-                img = new Image(),
+                // url = 'https://activity.lagou.com/activityapi/votelike/image/'+this.selected.id+'/logo',//'http://www.lgstatic.com/thumbnail_400x400/'+this.selected.logo,
                 self = this
-            // img.onload = function(){
-            //     ctx.drawImage(img,0,0)
-            //     var src = can.toDataURL("image/png")
-            //     console.log(src)
-            // }
-            // img.src = url
-            // img.onload = function(){
-                // var svg = new XMLSerializer().serializeToString(document.getElementById( 'svg' ));
-                // var base64 = window.btoa(svg)
-                //     simg = new Image();
-                // simg.onload = function(){
-                //     console.log(simg)
-                //     self.ctx.drawImage(simg,0,0)
-                // }
-                // simg.src = 'data:image/svg+xml;base64,'+base64
-                self.drawCirclePicture(
-                    // 'data:image/svg+xml;base64,'+base64,
-                    url,// base64,
-                    135,height - 536,
-                    182,179,
-                    4,
-                    true
-                    // false
-                )
-                // console.log('data:image/svg+xml;base64,'+base64)
-            // }
-            // img.setAttribute('xlink:href',url)
-            // this.getBase64(url,function(base64){
-                // console.log(base64)
-                // self.drawCirclePicture(
-                //     'data:image/svg+xml;base64,'+base64,
-                //     // url,// base64,
-                //     135,height - 536,
-                //     182,179,
-                //     4,
-                //     false
-                // )
-            // })
-            // var img = new Image(),
-            //     height = RC.w / GC.w * GC.h,
-            //     self = this;
-            // // img.setAttribute('crossorigin', 'anonymous');
-            // img.onload = function(){
-            //     self.ctx.drawImage(img,0,0,this.width,this.height,135,height - 536,182,179)
-            // },
-            // img.src = 'http://www.lgstatic.com/thumbnail_200x200/'+this.selected.logo
+
+            img.setAttribute('crossorigin', 'anonymous');
+            self.drawCirclePicture(
+                img, // url,// base64,
+                135,height - 536,
+                182,179,
+                4,
+                true
+            )
         },
         drawCompanyInfo:function(){
             var height = RC.w / GC.w * GC.h
             this.ctx.font = "34px bold"
             this.ctx.fillStyle = "#ffffff"
-            this.ctx.fillText(this.selected.companyshortname,340,height-536+34)
+            this.ctx.fillText(this.setTextLimit(this.selected.companyshortname,16),340,height-536+34)
             // this.ctx.fillText("是",234,437+30+offset)
 
             this.ctx.font = "22px normal"
@@ -932,21 +964,29 @@ app = new Vue({
                 this.ctx.fillText(this.setTextLimit(this.selected.companysize,10),510,height-433+22)
             }
 
-            var label = this.selected.otherlabel.split(/[,.。，|]/g),
+            var label = (this.selected.otherlabel ? this.selected.otherlabel : '').split(/[,.。，|]/g),
+                re = /[\u4E00-\u9FA5]/g,
+                one = '',
                 tw = 0,
                 th = 0,
                 sp = 0
                 sw = 0,
-                i = 0;
+                i = 0,
+                llen = 0;
             this.ctx.font = "16px normal"
             this.ctx.lineWidth = 1
             this.ctx.strokeStyle = '#ffffff'
             for(i < 0; i < label.length; i++){
-                if(i < 3){
+                one = label[i].trim()
+                if(i < 3 && one){
                     tw = 340+sw+11
                     th = height-391+20
-                    this.ctx.fillText(label[i],tw,th)
-                    sp = this.ctx.measureText(label[i]).width
+                    llen += (one.replace(re,"çç")).length
+                    if(llen > 24){
+                        break
+                    }
+                    this.ctx.fillText(one,tw,th)
+                    sp = this.ctx.measureText(one).width
                     this.ctx.beginPath()
                     this.ctx.moveTo(tw,th-20)
                     this.ctx.lineTo(tw+sp,th-20)
@@ -960,8 +1000,8 @@ app = new Vue({
                     break
                 }
             } 
-            this.down++ 
-            this.canvasToImage()
+            // this.down++ 
+            // this.canvasToImage()
         },
         // getBase64("https://z649319834.github.io/Learn_Example/video_track/webvtt.jpg")
         getBase64:function(imgUrl,callback) {
@@ -1001,6 +1041,22 @@ app = new Vue({
                 return str.slice(0,len)+'...'
             }
             return str
+        },
+        companyLabelLimit:function(labels,one,index){
+            if(index < 3){
+                var arr = this.labelList(this.selected.otherlabel),
+                    re = /[\u4E00-\u9FA5]/g,
+                    len = 0,
+                    i = 0
+                for(i = 0; i <= index; i++){
+                    len += (arr[i].replace(re,"çç")).length
+                    if(len > 24){
+                        return false
+                    }
+                }
+                return true
+            }
+            return false
         },
         createPictures:function(){
             if(this.loaded == this.loadingArray.length){
@@ -1243,6 +1299,15 @@ app = new Vue({
                 }
             }
             return brr
+        },
+        getVotedStatus:function(id){
+            if(this.votedCompanyIds.indexOf(id+"") != -1){
+                return true
+            }
+            if(this.votedCompanyIds.indexOf(id) != -1){
+                return true
+            }
+            return false
         },
         showNext:function(){
             var index = this.currentIndex,
