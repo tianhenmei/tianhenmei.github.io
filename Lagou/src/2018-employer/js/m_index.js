@@ -980,7 +980,7 @@ app = new Vue({
             )
         },
         drawCompanyInfo:function(){
-            var height = this.getHeight(),//RC.w / GC.w * GC.h
+            var height = this.getHeight()//RC.w / GC.w * GC.h
             this.ctx.font = "34px bold"
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText(this.setTextLimit(this.selected.companyshortname,16),340,height-536+34)
