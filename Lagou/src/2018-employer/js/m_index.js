@@ -930,8 +930,8 @@ app = new Vue({
                     }
                 };//,
                 // img = new Image();
-            temp.width = 3000
-            temp.height = 3000
+            temp.width = 750
+            temp.height = 750
             // if(crossStatus){
             //     img.setAttribute('crossorigin', 'anonymous');
             // }else{
@@ -945,7 +945,7 @@ app = new Vue({
                 if(crossStatus){
                     image.setAttribute('crossorigin', 'anonymous');
                 }
-                ctx.clearRect(0,0,3000,3000)
+                ctx.clearRect(0,0,750,750)
                 image.onload = function(){
                     // alert("drawing: "+img.src)
                     self.ctx.drawImage(image,0,0,img.width,img.height,x,y,w,h)
