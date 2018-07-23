@@ -814,7 +814,7 @@ app = new Vue({
             if(this.mode == "development"){
                 imgs = [
                     "images/create-logo.png",
-                    "images/create-logo.png",
+                    "https://activity.lagou.com/activityapi/votelike/image/"+this.selected.id+"/logo",
                     ercode
                 ]
             }
