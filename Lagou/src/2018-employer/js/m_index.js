@@ -171,13 +171,13 @@ app = new Vue({
     el:"#app",
     data:{
         // test
-        mode:"",//"development",
+        mode:"development",
         lg:"1biq",
         activePage:0,
         search_name:'',
         search_tips:'',
         userTotal:3,
-        userUsed:1,
+        userUsed:0,
         userRank:0,
         votedCompanyIds:[],
         voteActive:-1,
@@ -234,6 +234,9 @@ app = new Vue({
             "companylat": "40.04873954",
             "companyaddress": "百度大厦",
             "displayContactNum": 20
+        },
+        createUserStyle:{
+
         },
         // 滑动
         isMoving:false,
@@ -534,6 +537,7 @@ app = new Vue({
     },
     mounted:function(){
         this.selectedId = getQueryString('selected') || ''
+        this.initCreateUserStyle()
         if(this.isWeiXin()){
             this.getUserWeixinData()
         }
@@ -551,6 +555,17 @@ app = new Vue({
         // this.createPictures()
     },
     methods:{
+        initCreateUserStyle:function(){
+            // this.createUserStyle
+            var height = RC.w / GC.w * GC.h - RC.h,
+                offset = height > 0 ? height / 3 : 0
+            this.createUserStyle = {
+                top:this.setRem(385+offset)
+            }
+        },
+        setRem:function(value){
+            return value / (750 / 16)+'rem';
+        },
         initCompanyList:function(){
             var self = this
             $.ajax({
@@ -595,8 +610,13 @@ app = new Vue({
             });
         },
         setSearchScroll:function(){
+            var classname = 'search_list',
+                elem = $('.search_list'),
+                bar = elem.find('.' + classname + '_bar')
+            elem.children('ul').css('top','0');
+            bar.css('top','0');
             this.scrollData['search_list'] = new scrollClass({
-                classname: 'search_list',
+                classname: classname,
                 height: 252,
                 space: 12,
                 number: 4.19,
@@ -635,6 +655,11 @@ app = new Vue({
             });
         },
         showRankList:function(){
+            var classname = 'rank-center',
+                elem = $('.rank-center'),
+                bar = elem.find('.' + classname + '_bar')
+            elem.children('ul').css('top','0');
+            bar.css('top','0');
             this.scrollData['rank-center'] = new scrollClass({
                 classname: 'rank-center',
                 height: 656,
@@ -676,6 +701,8 @@ app = new Vue({
                             self.votedCompanyIds = data.voteCompanyIds || []
                             self.voteCompanySuccess(one,index)
                         }
+                    }else{
+                        self.getUserInfo()
                     }
                 },
                 error: function(xhr, type) {
@@ -711,7 +738,7 @@ app = new Vue({
             }
             this.canvas = this.$refs['canvas']
             this.ctx = this.canvas.getContext('2d')
-            var height = RC.w / GC.w * GC.h
+            var height = this.getHeight()//RC.w / GC.w * GC.h
             this.canvas.width = RC.w
             this.canvas.height = height
             var loadedImgs = [],
@@ -734,7 +761,7 @@ app = new Vue({
         initImageLoading:function(){
             this.loaded++
             if(this.loaded == this.loadingArray.length){
-                var height = RC.w / GC.w * GC.h
+                var height = this.getHeight()//RC.w / GC.w * GC.h
                 var top = height - RC.h
                 // this.loadedImgs = loadedImgs
                 this.ctx.drawImage(this.loadedImgs[0],0,0)
@@ -749,6 +776,14 @@ app = new Vue({
                     this.startDraw()
                 }
             }
+        },
+        getHeight:function(){
+            var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1))
+            if(rightSize < currentSize){  //宽屏
+                return RC.w / ((RC.h / GC.h) * GC.w) * GC.h
+            }
+            return RC.w / GC.w * GC.h
         },
         startDraw:function(){
             var sp = 0,
@@ -826,7 +861,7 @@ app = new Vue({
             //将生成的二维码转换成图片格式
             var // canvas = qrcode.find('canvas').get(0),
                 // src = canvas.toDataURL('image/jpg'),
-                height = RC.w / GC.w * GC.h,
+                height = this.getHeight(),//RC.w / GC.w * GC.h,
                 // img = new Image(),
                 self = this
             this.ctx.strokeStyle = "#7741c3"
@@ -846,7 +881,7 @@ app = new Vue({
             // img.src = src
         },
         drawUserPicture:function(img){
-            var height = RC.w / GC.w * GC.h - RC.h,
+            var height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0
             // "https://activity.lagou.com/activityapi/votelike/userHeadImg"
             if(this.mode != "development"){
@@ -859,7 +894,7 @@ app = new Vue({
                 temp = this.$refs['temp-canvas'],
                 ctx = temp.getContext('2d'),
                 obj = null,
-                height = RC.w / GC.w * GC.h - RC.h,
+                height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0,
                 draw = function(obj) {
                     // 创建图片纹理
@@ -874,8 +909,8 @@ app = new Vue({
                     ctx.fill();
                 };//,
                 // img = new Image();
-            temp.width = 750
-            temp.height = 750
+            temp.width = 3000
+            temp.height = 3000
             // if(crossStatus){
             //     img.setAttribute('crossorigin', 'anonymous');
             // }else{
@@ -889,7 +924,7 @@ app = new Vue({
                 if(crossStatus){
                     image.setAttribute('crossorigin', 'anonymous');
                 }
-                ctx.clearRect(0,0,750,750)
+                ctx.clearRect(0,0,3000,3000)
                 image.onload = function(){
                     // alert("drawing: "+img.src)
                     self.ctx.drawImage(image,0,0,img.width,img.height,x,y,w,h)
@@ -901,7 +936,7 @@ app = new Vue({
             // img.src = portrait
         },
         drawUserInfo:function(){
-            var height = RC.w / GC.w * GC.h - RC.h,
+            var height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0
             this.ctx.font = "32px normal"
             this.ctx.fillStyle = "#3c05c2"
@@ -929,7 +964,7 @@ app = new Vue({
             // this.canvasToImage()
         },
         drawCompanyLogo:function(img){
-            var height = RC.w / GC.w * GC.h,
+            var height = this.getHeight(),//RC.w / GC.w * GC.h,
                 can = document.getElementById('canvas'),
                 ctx = can.getContext("2d"),
                 // url = 'https://activity.lagou.com/activityapi/votelike/image/'+this.selected.id+'/logo',//'http://www.lgstatic.com/thumbnail_400x400/'+this.selected.logo,
@@ -945,7 +980,7 @@ app = new Vue({
             )
         },
         drawCompanyInfo:function(){
-            var height = RC.w / GC.w * GC.h
+            var height = this.getHeight(),//RC.w / GC.w * GC.h
             this.ctx.font = "34px bold"
             this.ctx.fillStyle = "#ffffff"
             this.ctx.fillText(this.setTextLimit(this.selected.companyshortname,16),340,height-536+34)
@@ -1117,7 +1152,7 @@ app = new Vue({
                             self.search_tips = '* 您输入的企业不存在'
                         }
                     } else{ // 查找失败
-                        self.search_tips = '查找失败, 请刷新重试！'
+                        self.search_tips = '* 您输入的企业不存在'
                         console.log(result.msg);
                     }
                 },

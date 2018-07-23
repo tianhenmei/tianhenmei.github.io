@@ -157,7 +157,7 @@
                             </div>
                         </div>
                         <div class="vote-right opacityChange delay1-3">
-                            <div class="vote-current">今日投票次数：<span class="highlight">{{userUsed}}/{{userTotal}}</span></div>
+                            <div class="vote-current">今日投票次数：<span class="highlight">{{userTotal-userUsed}}/{{userTotal}}</span></div>
                             <div class="vote-info">每多分享一次<br/>即可多获得一次投票机会</div>
                             <div class="rank-btn" @click.prevent="getRankList" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0003" data-lg-tj-cid="null"><span class="icon rank-go"></span></div>
                         </div>
@@ -170,7 +170,7 @@
                     <div class="input-btn" @click.prevent="searchCompanyEvent" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0002" data-lg-tj-cid="null"></div>
                 </div>
                 <div class="search_list" v-show="searchStatus">
-                    <div class="search_list_bar_bg">
+                    <div class="search_list_bar_bg" v-show="search_list.length > 4">
                         <div class="search_list_bar"></div>
                     </div>
                     <ul class="">
@@ -194,7 +194,7 @@
                             <div class="title-text title-03">获得票数</div>
                         </div>
                         <div class="rank-center">
-                            <div class="rank-center_bar_bg">
+                            <div class="rank-center_bar_bg" v-show="rankList.length > 8">
                                 <div class="rank-center_bar"></div>
                             </div>
                             <ul class="rank-list">
@@ -232,8 +232,8 @@
                         <div class="create-card-02 opacityChange delay2-0"></div>
                         <div class="create-title zoomIn delay1-0"></div>
                         <div class="create-tips leftIn delay2-5"></div>
-                        <img class="user-logo rotateIn delay1-5" :src="user.headimgurl" />
-                        <div class="user-info littleBottomIn delay1-5">
+                        <img class="user-logo rotateIn delay1-5" :src="user.headimgurl" :style="createUserStyle" />
+                        <div class="user-info littleBottomIn delay1-5" :style="createUserStyle">
                             {{user.nickname}}<br/>
                             是<span class="highlight">{{selected.companyshortname}}</span><br/>
                             第<span class="highlight">{{userRank}}</span>位支持者<br/>
