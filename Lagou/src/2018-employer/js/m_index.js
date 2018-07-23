@@ -854,7 +854,7 @@ app = new Vue({
                 var self = this
                 setTimeout(function(){
                     self.url = self.canvas.toDataURL('image/png')
-                    alert(self.url)
+                    // alert(self.url)
                 },1000)
             // }
         },
