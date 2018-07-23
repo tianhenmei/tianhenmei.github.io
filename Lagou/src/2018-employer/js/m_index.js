@@ -838,7 +838,6 @@ app = new Vue({
             })
         },
         drawAllInformation:function(){
-            alert("drawAllInformation")
             this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
             this.drawCompanyLogo(this.loadedImgs2[1])
@@ -849,14 +848,13 @@ app = new Vue({
             this.canvasToImage()
         },
         canvasToImage:function(){
-            alert("canvasToImage")
             this.shareSuccessCallback()
             // console.log(this.down)
             // if(this.down >= 5){  //  || this.down >= 4
                 var self = this
                 setTimeout(function(){
-                    alert("start canvasToImage")
                     self.url = self.canvas.toDataURL('image/png')
+                    alert(self.url)
                 },1000)
             // }
         },
@@ -914,7 +912,6 @@ app = new Vue({
                 offset = height > 0 ? height / 3 : 0,
                 draw = function(obj) {
                     if(ctx.createPattern){
-                        alert("createPattern")
                         // 创建图片纹理
                         var pattern = ctx.createPattern(obj, "no-repeat");
                         // 如果要绘制一个圆，使用下面代码
@@ -926,7 +923,6 @@ app = new Vue({
                         ctx.fillStyle = pattern;
                         ctx.fill();
                     }else{
-                        alert("createPattern undefined")
                         ctx.drawImage(img,0,0)
                     }
                 };//,
