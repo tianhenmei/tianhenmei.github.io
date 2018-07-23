@@ -841,7 +841,7 @@ app = new Vue({
             alert("drawAllInformation")
             this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
-            // this.drawCompanyLogo(this.loadedImgs2[1])
+            this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
             this.drawErcode(this.loadedImgs2[2])
             // this.ctx.drawImage(this.loadedImgs2[0],0,0)
@@ -914,6 +914,7 @@ app = new Vue({
                 offset = height > 0 ? height / 3 : 0,
                 draw = function(obj) {
                     if(ctx.createPattern){
+                        alert("createPattern")
                         // 创建图片纹理
                         var pattern = ctx.createPattern(obj, "no-repeat");
                         // 如果要绘制一个圆，使用下面代码
