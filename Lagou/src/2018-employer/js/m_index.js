@@ -762,15 +762,21 @@ app = new Vue({
             this.loaded++
             if(this.loaded == this.loadingArray.length){
                 var height = this.getHeight()//RC.w / GC.w * GC.h
-                var top = height - RC.h
+                var top = height - RC.h,
+                    temp = height,
+                    temp2 = height
                 // this.loadedImgs = loadedImgs
                 this.ctx.drawImage(this.loadedImgs[0],0,0)
                 this.ctx.drawImage(this.loadedImgs[1],0,top)
                 this.ctx.drawImage(this.loadedImgs[2],462,34)
                 this.ctx.drawImage(this.loadedImgs[3],0,44)
                 // this.ctx.drawImage(this.loadedImgs[4],103,height-224)
-                this.ctx.drawImage(this.loadedImgs[4],103,height-224+24)
-                this.ctx.drawImage(this.loadedImgs[5],-28,height-651)
+                if(height < RC.h){
+                    temp += Math.floor(Math.abs(RC.h - height) / 4 * 3)
+                    temp2 += Math.floor(Math.abs(RC.h - height) / 2)
+                }
+                this.ctx.drawImage(this.loadedImgs[4],103,temp2-224+24)  // tips
+                this.ctx.drawImage(this.loadedImgs[5],-28,temp-651)  // card-03
                 this.ctx.drawImage(this.loadedImgs[6],20,-12)
                 if(this.drawStatus){
                     this.startDraw()
@@ -778,11 +784,11 @@ app = new Vue({
             }
         },
         getHeight:function(){
-            var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
-                currentSize = parseFloat((GC.w / GC.h).toFixed(1))
-            if(rightSize < currentSize){  //宽屏
-                return RC.w / ((RC.h / GC.h) * GC.w) * GC.h
-            }
+            // var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+            //     currentSize = parseFloat((GC.w / GC.h).toFixed(1))
+            // if(rightSize < currentSize){  //宽屏
+            //     return RC.w / ((RC.h / GC.h) * GC.w) * GC.h
+            // }
             return RC.w / GC.w * GC.h
         },
         startDraw:function(){
@@ -862,19 +868,23 @@ app = new Vue({
             var // canvas = qrcode.find('canvas').get(0),
                 // src = canvas.toDataURL('image/jpg'),
                 height = this.getHeight(),//RC.w / GC.w * GC.h,
+                temp = height,
                 // img = new Image(),
                 self = this
+            if(height < RC.h){
+                temp += Math.floor(Math.abs(RC.h - height) / 2)
+            }
             this.ctx.strokeStyle = "#7741c3"
             this.ctx.fillStyle = '#ffffff'
             this.ctx.lineWidth = 1
             this.ctx.beginPath()
-            this.ctx.rect(536,height-113-113,113,113)
+            this.ctx.rect(536,temp-113-113,113,113)
             this.ctx.fill()
             this.ctx.stroke()
             this.ctx.closePath()
             // img.onload = function(){
                 console.log(img.src)
-                self.ctx.drawImage(img,0,0,img.width,img.height,536+6,height-113-113+6,101,101)
+                self.ctx.drawImage(img,0,0,img.width,img.height,536+6,temp-113-113+6,101,101)
                 // self.down++ 
                 // self.canvasToImage()
             // }
@@ -884,6 +894,9 @@ app = new Vue({
             var height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0
             // "https://activity.lagou.com/activityapi/votelike/userHeadImg"
+            if(height < 0){
+                offset = height / 8
+            }
             if(this.mode != "development"){
                 img.setAttribute('crossorigin', 'anonymous');
             }
@@ -937,7 +950,7 @@ app = new Vue({
         },
         drawUserInfo:function(){
             var height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
-                offset = height > 0 ? height / 3 : 0
+                offset = height > 0 ? height / 3 : height < 0 ? height / 8 : 0
             this.ctx.font = "32px normal"
             this.ctx.fillStyle = "#3c05c2"
             this.ctx.fillText(this.user.nickname,234,387+30+offset)
@@ -965,38 +978,47 @@ app = new Vue({
         },
         drawCompanyLogo:function(img){
             var height = this.getHeight(),//RC.w / GC.w * GC.h,
+                temp = height,
                 can = document.getElementById('canvas'),
                 ctx = can.getContext("2d"),
                 // url = 'https://activity.lagou.com/activityapi/votelike/image/'+this.selected.id+'/logo',//'http://www.lgstatic.com/thumbnail_400x400/'+this.selected.logo,
                 self = this
 
             img.setAttribute('crossorigin', 'anonymous');
+            if(height < RC.h){
+                temp += Math.floor(Math.abs(RC.h - height) / 4 * 3)
+            }
             self.drawCirclePicture(
                 img, // url,// base64,
-                135,height - 536,
+                135,temp - 536,
                 182,179,
                 4,
                 true
             )
         },
         drawCompanyInfo:function(){
-            var height = this.getHeight()//RC.w / GC.w * GC.h
+            var height = this.getHeight(),//RC.w / GC.w * GC.h
+                temp = height
+            
+            if(height < RC.h){
+                temp += Math.floor(Math.abs(RC.h - height) / 4 * 3)
+            }
             this.ctx.font = "34px bold"
             this.ctx.fillStyle = "#ffffff"
-            this.ctx.fillText(this.setTextLimit(this.selected.companyshortname,16),340,height-536+34)
+            this.ctx.fillText(this.setTextLimit(this.selected.companyshortname,16),340,temp-536+34)
             // this.ctx.fillText("是",234,437+30+offset)
 
             this.ctx.font = "22px normal"
-            this.ctx.fillText(this.setTextLimit(this.selected.city,6),380,height-474+22)
-            this.ctx.fillText(this.setTextLimit(this.selected.industryfield,13),485,height-474+22)
+            this.ctx.fillText(this.setTextLimit(this.selected.city,6),380,temp-474+22)
+            this.ctx.fillText(this.setTextLimit(this.selected.industryfield,13),485,temp-474+22)
 
-            this.ctx.fillText(this.setTextLimit(this.selected.financestage,8),380,height-433+22)
+            this.ctx.fillText(this.setTextLimit(this.selected.financestage,8),380,temp-433+22)
             if(this.selected.financestage.length <= 3){
-                this.ctx.drawImage(this.loadedImgs[7],460,height-430)
-                this.ctx.fillText(this.setTextLimit(this.selected.companysize,10), 485,height-433+22)
+                this.ctx.drawImage(this.loadedImgs[7],460,temp-430)
+                this.ctx.fillText(this.setTextLimit(this.selected.companysize,10), 485,temp-433+22)
             }else {
-                this.ctx.drawImage(this.loadedImgs[7],485,height-430)
-                this.ctx.fillText(this.setTextLimit(this.selected.companysize,10),510,height-433+22)
+                this.ctx.drawImage(this.loadedImgs[7],485,temp-430)
+                this.ctx.fillText(this.setTextLimit(this.selected.companysize,10),510,temp-433+22)
             }
 
             var label = (this.selected.otherlabel ? this.selected.otherlabel : '').split(/[,.。，|]/g),
@@ -1015,7 +1037,7 @@ app = new Vue({
                 one = label[i].trim()
                 if(i < 3 && one){
                     tw = 340+sw+11
-                    th = height-391+20
+                    th = temp-391+20
                     llen += (one.replace(re,"çç")).length
                     if(llen > 24){
                         break
