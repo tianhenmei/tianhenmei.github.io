@@ -838,9 +838,10 @@ app = new Vue({
             })
         },
         drawAllInformation:function(){
-            this.drawUserPicture(this.loadedImgs2[0])
+            alert("drawAllInformation")
+            // this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
-            this.drawCompanyLogo(this.loadedImgs2[1])
+            // this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
             this.drawErcode(this.loadedImgs2[2])
             // this.ctx.drawImage(this.loadedImgs2[0],0,0)
@@ -848,11 +849,13 @@ app = new Vue({
             this.canvasToImage()
         },
         canvasToImage:function(){
+            alert("canvasToImage")
             this.shareSuccessCallback()
             // console.log(this.down)
             // if(this.down >= 5){  //  || this.down >= 4
                 var self = this
                 setTimeout(function(){
+                    alert("start canvasToImage")
                     self.url = self.canvas.toDataURL('image/png')
                 },1000)
             // }
