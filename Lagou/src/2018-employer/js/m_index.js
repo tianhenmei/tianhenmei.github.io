@@ -838,21 +838,27 @@ app = new Vue({
             })
         },
         drawAllInformation:function(){
+            alert("drawAllInformation")
+            // test
             // this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
+            // test
             // this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
+            alert("before drawErcode")
             this.drawErcode(this.loadedImgs2[2])
             // this.ctx.drawImage(this.loadedImgs2[0],0,0)
 
             this.canvasToImage()
         },
         canvasToImage:function(){
+            alert("start canvasToImage")
             this.shareSuccessCallback()
             // console.log(this.down)
             // if(this.down >= 5){  //  || this.down >= 4
                 var self = this
                 setTimeout(function(){
+                    alert("canvasToImage")
                     self.url = self.canvas.toDataURL('image/png')
                 },1000)
             // }
@@ -1078,9 +1084,9 @@ app = new Vue({
             //         //得到一个blob对象
             //         var blob = this.response;
             //         // 至关重要
-            //         let oFileReader = new FileReader();
+            //         var oFileReader = new FileReader();
             //         oFileReader.onloadend = function (e) {
-            //             let base64 = e.target.result;
+            //             var base64 = e.target.result;
             //             callback(base64)
             //             // console.log("方式一》》》》》》》》》", base64)
             //         };
