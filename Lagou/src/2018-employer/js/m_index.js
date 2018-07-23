@@ -911,7 +911,7 @@ app = new Vue({
                 height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0,
                 draw = function(obj) {
-                    if(ctx.createPattern){
+                    if(ctx.createPattern && ctx.roundRect){
                         // 创建图片纹理
                         var pattern = ctx.createPattern(obj, "no-repeat");
                         // 如果要绘制一个圆，使用下面代码
@@ -923,6 +923,7 @@ app = new Vue({
                         ctx.fillStyle = pattern;
                         ctx.fill();
                     }else{
+                        alert("roundRect undefined")
                         ctx.drawImage(img,0,0)
                     }
                 };//,
