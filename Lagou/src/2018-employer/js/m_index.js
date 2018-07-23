@@ -839,7 +839,7 @@ app = new Vue({
         },
         drawAllInformation:function(){
             alert("drawAllInformation")
-            // this.drawUserPicture(this.loadedImgs2[0])
+            this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
             // this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
@@ -925,6 +925,7 @@ app = new Vue({
                         ctx.fillStyle = pattern;
                         ctx.fill();
                     }else{
+                        alert("createPattern undefined")
                         ctx.drawImage(img,0,0)
                     }
                 };//,
