@@ -853,7 +853,6 @@ app = new Vue({
             // if(this.down >= 5){  //  || this.down >= 4
                 var self = this
                 setTimeout(function(){
-                    alert("canvasToImage")
                     self.url = self.canvas.toDataURL('image/png')
                 },1000)
             // }
@@ -923,7 +922,6 @@ app = new Vue({
                         ctx.fillStyle = pattern;
                         ctx.fill();
                     }else{
-                        alert("ctx.createPattern undefined")
                         ctx.drawImage(img,0,0)
                     }
                 };//,
