@@ -838,8 +838,7 @@ app = new Vue({
             })
         },
         drawAllInformation:function(){
-            // test
-            // this.drawUserPicture(this.loadedImgs2[0])
+            this.drawUserPicture(this.loadedImgs2[0])
             this.drawUserInfo()
             this.drawCompanyLogo(this.loadedImgs2[1])
             this.drawCompanyInfo()
@@ -912,16 +911,21 @@ app = new Vue({
                 height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
                 offset = height > 0 ? height / 3 : 0,
                 draw = function(obj) {
-                    // 创建图片纹理
-                    var pattern = ctx.createPattern(obj, "no-repeat");
-                    // 如果要绘制一个圆，使用下面代码
-                    // ctx.arc(obj.width / 2, obj.height / 2, Math.max(obj.width, obj.height) / 2, 0, 2 * Math.PI);
-                    // 这里使用圆角矩形
-                    ctx.roundRect(0, 0, obj.width, obj.height, r ==-1 ? obj.width : r);
-                    
-                    // 填充绘制的圆
-                    ctx.fillStyle = pattern;
-                    ctx.fill();
+                    if(ctx.createPattern){
+                        // 创建图片纹理
+                        var pattern = ctx.createPattern(obj, "no-repeat");
+                        // 如果要绘制一个圆，使用下面代码
+                        // ctx.arc(obj.width / 2, obj.height / 2, Math.max(obj.width, obj.height) / 2, 0, 2 * Math.PI);
+                        // 这里使用圆角矩形
+                        ctx.roundRect(0, 0, obj.width, obj.height, r ==-1 ? obj.width : r);
+                        
+                        // 填充绘制的圆
+                        ctx.fillStyle = pattern;
+                        ctx.fill();
+                    }else{
+                        alert("ctx.createPattern undefined")
+                        ctx.drawImage(img,0,0)
+                    }
                 };//,
                 // img = new Image();
             temp.width = 3000
