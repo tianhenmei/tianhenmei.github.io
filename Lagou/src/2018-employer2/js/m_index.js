@@ -171,7 +171,7 @@ app = new Vue({
     el:"#app",
     data:{
         // test
-        mode:"", // "development",
+        mode:"development",
         lg:"1biq",
         activePage:0,
         search_name:'',
