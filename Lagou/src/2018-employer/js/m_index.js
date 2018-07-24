@@ -171,7 +171,7 @@ app = new Vue({
     el:"#app",
     data:{
         // test
-        mode:"development",
+        mode:"",//"development",
         lg:"1biq",
         activePage:0,
         search_name:'',
@@ -604,8 +604,8 @@ app = new Vue({
                     }
                 },
                 error: function(xhr, type) {
-                    alert(xhr)
-                    // alert('网络原因请重新尝试!');
+                    // alert(xhr)
+                    alert('网络原因请重新尝试!');
                 }
             });
         },
@@ -795,18 +795,19 @@ app = new Vue({
             var sp = 0,
                 sw = 0
             this.down = 0
-            var qrcode = $(this.$refs['code']).qrcode({
+            var /*qrcode = $(this.$refs['code']).qrcode({
                     render: "canvas", //也可以替换为table
                     width: 220,
                     height: 220,
                     text: this.qrcodeUrl/*可以通过ajax请求动态设置*/
-                }),
-                canvas = qrcode.find('canvas').get(0),
-                ercode = canvas.toDataURL('image/jpg'),
+                // }),*/
+                // canvas = qrcode.find('canvas').get(0),
+                // ercode = canvas.toDataURL('image/jpg'),
                 imgs = [
                     "https://activity.lagou.com/activityapi/votelike/userHeadImg",
                     "https://activity.lagou.com/activityapi/votelike/image/"+this.selected.id+"/logo",
-                    ercode
+                    "https://activity.lagou.com/activityapi/votelike/qrcode/"+this.selected.id
+                    // ercode
                 ],
                 loadedImgs = [],
                 loaded = 0,
@@ -814,8 +815,8 @@ app = new Vue({
             if(this.mode == "development"){
                 imgs = [
                     "images/create-logo.png",
-                    "https://activity.lagou.com/activityapi/votelike/image/"+this.selected.id+"/logo",
-                    ercode
+                    "images/create-logo.png",
+                    "images/create-logo.png",
                 ]
             }
             imgs.forEach(function(url){
