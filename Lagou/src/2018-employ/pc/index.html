@@ -36,11 +36,13 @@
             <div class="banner__lagou"></div>
             <div class="banner__onlyone">
                 <div class="banner__one"></div>
-                <a class="banner__btn" href="javascript:void(0);" :onclick="companyHref.one+oppo.id+companyHref.two" 
+                <a class="banner__btn"
+                    :href="'https://www.lagou.com/gongsi/'+onlyone.companyId+'.html'"
                     target="_blank" 
+                    data-link="1"
                     :data-lg-tj-id="countId" 
-                    data-lg-tj-no="0001" 
-                    :data-lg-tj-cid="oppo.id"></a>
+                    data-lg-tj-no="getCount(onlyone.count)" 
+                    :data-lg-tj-cid="onlyone.companyId"></a>
             </div>
             <div class="onlyone">
                 <div class="onlyone-title"></div>
@@ -50,7 +52,7 @@
                     </div> -->
                     <div class="onlyone-content clearfix">
                         <div class="img-outer">
-                            <swiper :options="onlyoneOptions" class="img-list clearfix">
+                            <swiper :options="onlyoneOptions" class="img-list clearfix" ref="onlyoneSwiper">
                                 <swiper-slide v-for="one in onlyone.imgs" class="img-slide">
                                     <img class="img-one" :src="one" />
                                 </swiper-slide>
@@ -65,9 +67,12 @@
                         <div class="onlyone-info">
                             <div class="o-logo">
                                 <a class="o-href"
-                                    :href="'https://www.lagou.com/gongsi/'+onlyone.companyId+'.html'" data-link="1" 
-                                    :data-lg-tj-id="countId" :data-lg-tj-no="getCount(onlyone.count+index)" 
-                                    :data-lg-tj-cid="onlyone.companyId" target="_blank"></a>
+                                    :href="'https://www.lagou.com/gongsi/'+onlyone.companyId+'.html'" 
+                                    target="_blank"
+                                    data-link="1" 
+                                    :data-lg-tj-id="countId" 
+                                    :data-lg-tj-no="getCount(onlyone.count+1)" 
+                                    :data-lg-tj-cid="onlyone.companyId"></a>
                             </div>
                             <div class="o-baseinfo">{{onlyone.city}} / {{onlyone.financestage}} / {{onlyone.companysize}}</div>
                             <div class="o-labels clearfix">
@@ -77,11 +82,11 @@
                             </div>
                             <div class="o-positions clearfix">
                                 <a class="o-pone clearfix"
-                                    target="_blank" 
                                     v-for="(one,index) in onlyone.positionVo"
                                     :href="'https://www.lagou.com/jobs/'+one.positionId+'.html?source=pl&i=pl-0'"
+                                    target="_blank" 
                                     data-link="1" :data-lg-tj-id="countId" 
-                                    :data-lg-tj-no="getCount(onlyone.count+index+1)" 
+                                    :data-lg-tj-no="getCount(onlyone.count+index+2)" 
                                     :data-lg-tj-cid="one.positionId">
                                     <span class="o-positionname">{{one.positionName}}</span>
                                     <span class="o-salary">{{one.salary}}</span>
@@ -111,7 +116,7 @@
                                 </div>
                             </div>
                         </div>
-                        <swiper :options="employerOptions" class="employer__list clearfix"> 
+                        <swiper :options="employerOptions" class="employer__list clearfix" ref="employerSwiper"> 
                             <swiper-slide v-for="(one,oindex) in employerList"
                                 class="employer__one clearfix">
                                 <div class="employer__mark"></div>
@@ -128,18 +133,21 @@
                                 <div class="employer__right">
                                     <div class="employer__top clearfix">
                                         <a class="logo" 
-                                            href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
+                                            :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
+                                            target="_blank"
+                                            data-link="1"
                                             :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(employer.count+10+oindex*20)" 
+                                            :data-lg-tj-no="getCount(employerCount+oindex*20)" 
                                             :data-lg-tj-cid="one.companyId">
                                             <img :src="setLogoHref(one.logo)" />
                                         </a>
                                         <div class="info">
                                             <a class="info__name"
+                                                :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                 target="_blank"
-                                                href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two"
+                                                data-link="1"
                                                 :data-lg-tj-id="countId" 
-                                                :data-lg-tj-no="getCount(employer.count+11+oindex*20)" 
+                                                :data-lg-tj-no="getCount(employerCount+oindex*20+1)" 
                                                 :data-lg-tj-cid="one.companyId">{{one.companyshortname}}</a>
                                             <div class="info__detail">{{one.industryfield}} / {{one.financestage}} / {{one.city}}</div>
                                         </div>
@@ -150,18 +158,22 @@
                                     <div class="employer__position clearfix">
                                         <a class="one clearfix" 
                                             v-for="(one,index) in one.positionVo"
-                                            href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                            :href="'https://www.lagou.com/jobs/'+one.positionId+'.html?source=pl&i=pl-0'"
+                                            target="_blank"
+                                            data-link="1"
                                             :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
+                                            :data-lg-tj-no="getCount(employerCount+oindex*20+3+index)" 
                                             :data-lg-tj-cid="one.positionId">
                                             <span class="position__name">{{one.positionName}}</span>
                                             <span class="position__salary">{{one.salary}}</span>
                                         </a>
                                         <a class="one__more" 
-                                            href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                            :href="'https://www.lagou.com/gongsi/j'+one.companyId+'.html'"
+                                            target="_blank"
+                                            data-link="1"
                                             :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(employer.count+12+oindex*20+index)" 
-                                            :data-lg-tj-cid="one.positionId">
+                                            :data-lg-tj-no="getCount(employerCount+oindex*20+2)" 
+                                            :data-lg-tj-cid="one.companyId">
                                             查看更多职位
                                         </a>
                                     </div>
@@ -212,10 +224,6 @@
                     </div>-->
                     <div class="employer__arrow employer__arrow--left" id="employer__animation-arrow-left"></div>
                     <div class="employer__arrow employer__arrow--right" id="employer__animation-arrow-right"></div>
-                    <a class="employer__more" :href="employer.href"
-                        :data-lg-tj-id="countId" 
-                        :data-lg-tj-no="getCount(employer.count)" 
-                        :data-lg-tj-cid="null">查看更多</a>
                 </div>
             </div>
         </div>
@@ -257,10 +265,10 @@
                             <div class="local_position">
                                 <a class="one clearfix" 
                                     v-for="(one,index) in list.positionVo"
-                                    href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                    :href="'https://www.lagou.com/jobs/'+one.positionId+'.html?source=pl&i=pl-0'"
                                     target="_blank"
                                     :data-lg-tj-id="countId" 
-                                    :data-lg-tj-no="getCount(localCount+lindex*10+index+2)" 
+                                    :data-lg-tj-no="getCount(localCount+lindex*10+2+index)" 
                                     :data-lg-tj-cid="one.positionId">
                                     <span class="position__name">{{one.positionName}}</span>
                                     <span class="position__salary">{{one.salary}}</span>
@@ -342,10 +350,24 @@
                 <div class="others">
                     <div class="others__title"></div>
                     <div class="others__content">
+                        <a v-for="(one,index) in others"
+                            class="others__one"
+                            :class="'others__one--'+index+(index % 2 == 0 ? '' : ' others__one--even')"
+                            target="_blank"
+                            :href="one"></a>
                     </div>
                 </div>
-                
-                
+                <div class="corperate">
+                    <div class="corperate__title"></div>
+                    <div class="corperate__content">
+                        <a v-for="(one,index) in corperate"
+                            class="corperate__one"
+                            :class="'corperate__one--'+getCorperateRow(index)+' others__one--c'+(index%6)"
+                            target="_blank"
+                            :href="one"></a>
+                    </div>
+                </div>
+                <div class="bottom__logo"></div>
             </div>
         </div>
 
@@ -426,24 +448,6 @@
                 </div> -->
             </div>
         </div>
-        
-        <div class="yh-center__partner" v-show="partnerStatus == 'elm'"></div>
-        <div class="yh-center__floating" v-show="floating.status">
-            <a class="push_bottom_download" 
-                href="http://a.app.qq.com/o/simple.jsp?pkgname=com.alpha.lagouapk&amp;ckey=CK1337790743204" 
-                target="_blank" 
-                :data-lg-tj-id="countId" 
-                :data-lg-tj-no="floating.count" 
-                data-lg-tj-cid="idnull">
-                <div class="floating__bg"></div>
-                <div class="floating__info"></div>
-                <div class="floating__one"></div>
-                <div class="floating__close" @click.stop.prevent="floatingCloseEvent"></div>
-                <div class="floating__button"></div>
-            </a>
-        </div>
-        <div class="yh-center__logo icon-02"></div>
-        <div class="yh-center__mask" :class="{'hide':!tab.unfoldStatus}"></div>
     </div>
 </div>
 <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
