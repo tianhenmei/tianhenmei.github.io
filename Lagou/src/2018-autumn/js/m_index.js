@@ -26,7 +26,7 @@ app = new Vue({
                 num:"bottomIn delay1-7",
                 layer:"zoomIn",
                 content:"zoomIn delay0-7",
-                next:"littleBottomIn delay1-2",
+                next:"zoomIn delay1-2",
                 close:"opacityChange delay1-5"
             },
             out:{
