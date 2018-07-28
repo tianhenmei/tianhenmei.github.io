@@ -5,7 +5,7 @@ app = new Vue({
         // test
         mode:"development",
         lg:"1bir",
-        activePage:4,
+        activePage:0,
         sex:'',
         total:5,
         options:['a','b','c','d'],
@@ -209,7 +209,7 @@ app = new Vue({
         }
 
         // test 注释
-        // this.initCanvas()
+        this.initCanvas()
     },
     methods:{
         setDelayTime:function(start,now,index){
@@ -224,11 +224,11 @@ app = new Vue({
         setSex:function(sex){
             this.sex = sex
             // test  打开
-            var self = this
-            this.resultScore = Math.floor(Math.random() * 150)
-            this.drawStatus = true
-            this.setResultData()
-            this.initCanvas()
+            // var self = this
+            // this.resultScore = Math.floor(Math.random() * 150)
+            // this.drawStatus = true
+            // this.setResultData()
+            // this.initCanvas()
         },
         chooseAnswer:function(pindex,index){
             var self = this
