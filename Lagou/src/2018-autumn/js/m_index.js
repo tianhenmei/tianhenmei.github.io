@@ -11,6 +11,7 @@ app = new Vue({
         options:['a','b','c','d'],
         result:[],
         choseOptionIndex:-1,
+        clickStatus:false,
         page0:{
             status:'in',
             chose:false,
@@ -191,7 +192,8 @@ app = new Vue({
         },
         resultPerson:4,
         resultIndex:0,
-        resultWords:[]
+        resultWords:[],
+        showStatus:true
     },
     computed:{
         qrcodeUrl:function(){
@@ -240,9 +242,14 @@ app = new Vue({
             },1000)
         },
         toNext:function(pindex){
+            if(this.clickStatus){
+                return
+            }
+            this.clickStatus = true
             var self = this
             this['page'+pindex].status = 'out'
             setTimeout(function(){
+                self.clickStatus = false
                 self['page'+pindex].status = 'in'
                 self['page'+pindex].chose = false
                 self.activePage = ++pindex
@@ -283,6 +290,10 @@ app = new Vue({
         },
 
         showResult:function(pindex){
+            if(this.clickStatus){
+                return
+            }
+            this.clickStatus = true
             var self = this,
                 score = 0,
                 i = 0
@@ -298,9 +309,14 @@ app = new Vue({
                 this.drawStatus = true
             }
             setTimeout(function(){
+                self.clickStatus = false
                 self['page'+pindex].status = 'in'
                 self['page'+pindex].chose = false
                 self.activePage = ++pindex
+                var tt = 2*1000+((6+self.resultWords.length*2) % 10 + 2 + 7) * 100
+                setTimeout(function(){
+                    self.showStatus = false
+                },tt)
             },700)
         },
         startDraw:function(){
@@ -342,15 +358,15 @@ app = new Vue({
             text = this.resultText[index][one]
             if(this.sex == 'boy'){
                 if(this.result[0] < 20){
-                    this.person = 4
+                    this.resultPerson = 4
                 }else{
-                    this.person = 5
+                    this.resultPerson = 5
                 }
             }else{
                 if(this.result[0] < 20){
-                    this.person = 6
+                    this.resultPerson = 6
                 }else{
-                    this.person = 7
+                    this.resultPerson = 7
                 }
             }
             this.resultIndex = start+one
@@ -479,6 +495,7 @@ app = new Vue({
         },
         retryEvent:function(){
             this.activePage = 0
+            this.showStatus = true
         },
     }
 })

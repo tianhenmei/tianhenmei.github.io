@@ -359,8 +359,8 @@
                 <div class="icon box-close" :class="page0[page4.status].close" @click.prevent="closeEvent(4)"></div>
             </div>
         </div>
-        <div class="page page5" :class="activePage == 5 ? 'active' : 'hide'">
-            <div class="show-outer opacityChange delay0-7">
+        <div class="page page5 opacityChange delay0-7" :class="activePage == 5 ? 'active' : 'hide'">
+            <div class="show-outer" v-show="showStatus">
                 <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
                     <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
                     <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
