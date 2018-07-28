@@ -140,11 +140,11 @@
                     var now = Date.now(),
                         space = now - startTime,
                         layer = document.getElementById('loading__layer')
-                    if(space < 5000){
+                    if(space < 3000){
                         setTimeout(function(){
                             layer.className = layer.className.replace(' hide','');
                             loadingComplete()
-                        },5000 - space)
+                        },3000 - space)
                     }else{
                         layer.className = layer.className.replace(' hide','');
                         loadingComplete()

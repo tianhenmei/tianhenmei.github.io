@@ -2,7 +2,34 @@
 var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
 var imgArray = [
-	"images/icon.png"
+	// "images/DIN-BlackItalic.otf",
+	"images/icon.png",
+	"images/page-bg.png",
+	"images/page0-box.png",
+	"images/page2-icon.png",
+	"images/page4-icon.png",
+	"images/page5-bg.png",
+	"images/result-add.png",
+	"images/result-ercode.png",
+	"images/result-lagou.png",
+	"images/result-person-01.png",
+	"images/result-person-02.png",
+	"images/result-person-03.png",
+	"images/result-person-04.png",
+	"images/result-text-a-01.png",
+	"images/result-text-a-02.png",
+	"images/result-text-a-03.png",
+	"images/result-text-a-04.png",
+	"images/result-text-b-01.png",
+	"images/result-text-b-02.png",
+	"images/result-text-b-03.png",
+	"images/result-text-c-01.png",
+	"images/result-text-c-02.png",
+	"images/result-text-c-03.png",
+	"images/result-text-d-01.png",
+	"images/result-text-d-02.png",
+	"images/result-tips.png",
+	"images/result-title.png"
 ];
 var now = 0;
 // jQuery.ajax({
