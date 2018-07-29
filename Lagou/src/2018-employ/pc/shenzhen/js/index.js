@@ -22,48 +22,114 @@ var app = new Vue({
                 'images/onlyone-img-01.jpg',
                 'images/onlyone-img-01.jpg'
             ],
-            companyId:147,
-            city:"北京",
-            financestage: "D轮及以上",
-            companysize: "2000人以上",
-            otherlabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            positionVo:[{
-                "positionId":1,
-                "positionName":"算法工程师",
-                "salary":"15-40K"
-            },{
-                "positionId":1,
-                "positionName":"算法工程师",
-                "salary":"15-40K"
-            },{
-                "positionId":1,
-                "positionName":"算法工程师",
-                "salary":"15-40K"
-            },{
-                "positionId":1,
-                "positionName":"算法工程师",
-                "salary":"15-40K"
-            }],
+            company:{
+                companyId:147,
+                city:"北京",
+                financestage: "D轮及以上",
+                companysize: "2000人以上",
+                otherlabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                positionVo:[{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                }],
+            }
         },
         onlyoneOptions:{
-            autoplay:3000,
+            // autoplay:true,//等同于以下设置
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,
+            },
             speed:500,
-            loop:false,
-            pagination:'.img-pagination',
-            bulletClass : 'img-p',
-            bulletActiveClass : 'active'
+            loop:true,
+            pagination: {
+                el: '.img-pagination',
+                bulletClass : 'img-p',
+                bulletActiveClass: 'active'
+            }
+            // pagination:'.img-pagination',
+            // bulletClass : 'img-p',
+            // bulletActiveClass : 'active'
+        },
+        // tab 切换
+        tab:{
+            count:10,
+            active_index:-1,
+            click_status:false,
+            list:[{
+                name:'超凡雇主',
+                elem:'yh-center__onlyone',
+                offsetTop:0,
+                height:0,
+                index:0,
+                top:0
+            },{
+                name:'STAR雇主',
+                elem:'yh-center__employer',
+                offsetTop:0,
+                height:0,
+                index:1,
+                top:0
+            },{
+                name:'本地实力首选',
+                elem:'yh-center__local',
+                offsetTop:0,
+                height:0,
+                index:2,
+                top:0
+            },{
+                name:'潜力公司top榜',
+                elem:'yh-center__top',
+                offsetTop:0,
+                height:0,
+                index:3,
+                top:0
+            },{
+                name:'其它城市专场',
+                elem:'yh-center__others',
+                offsetTop:0,
+                height:0,
+                index:4,
+                top:0
+            }]
         },
         employerActiveIndex:0,
         employerOptions:{
+            // autoplay:true,//等同于以下设置
+            autoplay: {
+                delay: 3000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,
+            },
+            speed:500,
+            loop:true,
+            initialSlide:0,
             // pagination:'.employer-pagination',
             // paginationType:'custom',
             // paginationElement:'div',
             // paginationClickable:true,
             // bulletClass : 'employer-p',
             // bulletActiveClass : 'active'
-            onSlideChangeStart:function(swiper){
-                app.changeEmployerActiveIndex(swiper.activeIndex)
-            },
+            on:{
+                slideChangeTransitionStart:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.changeEmployerActiveIndex(this.activeIndex)
+                },
+            }
             // autoplay:3000,
             // speed:500,
             // loop:true,
@@ -593,6 +659,7 @@ var app = new Vue({
         }],
         topCount:3000,
         topActiveIndex:[0,0,0,0],
+        topTime:Date.now(),
         topList:[
             [{
                 "id": 312260,
@@ -1379,12 +1446,14 @@ var app = new Vue({
                 ],
             }]
         ],
+        othersCount:5000,
         others:[
             "beijing","shanghai",
             "hangzhou","guangzhou",
             "nanjing","chengdu",
             "suzhou","wuhan"
         ],
+        corperateCount:6000,
         corperate:[
             147,147,147,147,147,147,
             147,147,147,147,147,147,
@@ -1405,122 +1474,6 @@ var app = new Vue({
                 prevEl: '.employer__arrow--right'
             }
         },
-        // tab 切换
-        tab:{
-            offsetTop:0,
-            height:0,
-            fixed:false,
-            active_index:0,
-            count:2,
-            status:false,
-            click_status:false,
-            transition:true,
-            list:[{
-                name:'超级雇主',
-                elem:'yh-center__employer',
-                offsetTop:0,
-                height:0,
-                index:0
-            },{
-                name:'名企首发',
-                elem:'yh-center__first',
-                offsetTop:0,
-                height:0,
-                index:1
-            },{
-                name:'AI专场',
-                elem:'yh-center__ai',
-                offsetTop:0,
-                // initHeight:105+35+252+18+15-15,
-                height:0,
-                index:2
-            },{
-                name:'24Hour排行榜',
-                elem:'yh-center__popular',
-                offsetTop:0,
-                height:0,
-                index:3
-            },{
-                name:'千万豪门',
-                elem:'yh-center__rich',
-                offsetTop:0,
-                height:0,
-                index:4
-            },{
-                name:'高薪必投',
-                elem:'yh-center__will',
-                offsetTop:0,
-                height:0,
-                index:5
-            },{
-                name:'热招风暴',
-                elem:'yh-center__storm',
-                offsetTop:0,
-                height:0,
-                index:6
-            },{
-                name:'工程师专场',
-                elem:'yh-center__special',
-                parent:[2],
-                top:105+35+252+18+15,
-                offsetTop:0,
-                height:0,
-                index:7
-            },{
-                name:'产品专场',
-                parent:[2],
-                top:105+35+252+18+15,
-                elem:'yh-center__special',
-                offsetTop:0,
-                height:0,
-                index:8
-            },{
-                name:'市场商业运营',
-                parent:[2],
-                elem:'yh-center__other',
-                top:105+35+252+18+15+102+16,
-                offsetTop:0,
-                height:0,
-                index:9
-            },{
-                name:'人气精选',
-                elem:'yh-center__choice',
-                offsetTop:0,
-                height:0,
-                index:10
-            }],
-            unfoldStatus:false,
-            unfold:[{
-                href:'https://www.lagou.com',
-                name:'热招风暴'
-            },{
-                href:'https://www.lagou.com',
-                name:'人气精选'
-            },{
-                href:'https://www.lagou.com',
-                name:'工程师专场'
-            },{
-                href:'https://www.lagou.com',
-                name:'产品专场',
-                last:true
-            },{
-                href:'https://www.lagou.com',
-                name:'市场  \  商业化  \  运营专场'
-            },{
-                href:'https://www.lagou.com',
-                name:'高薪来袭',
-                last:true
-            }],
-            shadow_status:true,
-            initWidth:710,//573,//589-26,
-            showWidth:710,//573,//589-26,
-            width:9999,
-            left:0,
-            start:{
-                x:0,
-                y:0
-            }
-        },
         floating:{
             count:'f000',
             status:false,
@@ -1530,13 +1483,8 @@ var app = new Vue({
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         this.browserType = this.getBrowserType()
 
-        this.fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size'));
-        this.tab.showWidth = this.getRemValue(this.tab.initWidth) * this.fontSize;
-        this.setTabWidth();
-
         // // this.addJSCSS();
         // // this.loadedJSCSS();
-        // this.initWindowScrollEvent();
 
         // // 热招快报
         // this.getBulletData()
@@ -1596,15 +1544,32 @@ var app = new Vue({
             return '0000'.slice((num+'').length)+num
         },
         changeEmployerActiveIndex:function(index){
-            this.employerActiveIndex = index
+            if(index == 0){
+                this.employerActiveIndex = this.employerList.length - 1
+            }else{
+                this.employerActiveIndex = (index-1) % this.employerList.length
+            }
+        },
+        employerSlideTo:function(index){
+            this.$refs['employerSwiper'].swiper.slideTo(index+1)
+        },
+        employerSlidePrev:function(){
+            this.$refs['employerSwiper'].swiper.slidePrev()
+        },
+        employerSlideNext:function(){
+            this.$refs['employerSwiper'].swiper.slideNext()
         },
         showCurrentCompany:function(pindex,index){
-            console.log(pindex,index)
             this.topActiveIndex[pindex] = index
+            this.topTime = Date.now()
         },
         getCorperateRow:function(index){
             return Math.floor(index / 6)
         },
+        topCurrent:function(pindex){
+            return this.topList[pindex][this.topActiveIndex[pindex]]
+        },
+        
 
 
 
@@ -1767,49 +1732,8 @@ var app = new Vue({
         /***********************************
          **  功能函数
          */
-        setTabWidth:function(){
-            var list = this.$refs['tab'].children,
-                i = 0,
-                total = 0,
-                one = 0;
-            for(i = 0; i < list.length; i++){
-                one = this.getPointOuterWidth(list[i]);
-                total += Math.ceil(one);
-            }
-            this.tab.width = total
-        },
-        tabStartEvent:function(e){
-            var touch = e.touches[0];
-            this.tab.start.x = touch.clientX;
-            this.tab.start.y = touch.clientY;
-            this.tab.transition = false;
-        },
-        tabMoveEvent:function(e){
-            var touch = e.touches[0],
-                x = touch.clientX,
-                y = touch.clientY;
-            
-            this.tab.left += x - this.tab.start.x;
-            if(this.tab.left > 0){
-                this.tab.left = 0;
-            }
-            // alert(this.tab.width +' , '+ this.tab.showWidth)
-            if(Math.abs(this.tab.left) >= (this.tab.width - this.tab.showWidth)){
-                this.tab.left = -1 * (this.tab.width - this.tab.showWidth);
-                this.tab.shadow_status = false;
-            }else {
-                this.tab.shadow_status = true;
-            }
-            this.tab.start.x = x;
-            this.tab.start.y = y;    
-        },
-        tabEndEvent:function(e){
-            this.tab.start.x = 0;
-            this.tab.start.y = 0;
-            this.tab.transition = true;
-        },
-        unfoldEvent:function(e){
-            this.tab.unfoldStatus = !this.tab.unfoldStatus; 
+        toTopEvent:function(){
+            $('html,body').animate({'scrollTop': 0},500);
         },
         tabClickEvent:function(index,e){
             var self = this;
@@ -1820,8 +1744,7 @@ var app = new Vue({
                     this.getTabHeight();
                     this.tab.offsetTop = this.$refs['yh-center__tab'].offsetTop;
                 // }
-                this.tab.height = this.$refs['yh-center__tab'].offsetHeight; // this.$refs['yh-center__tab-center'].offsetHeight;
-                $('html,body').animate({'scrollTop': (this.tab.list[index].offsetTop - this.tab.height)+ "px"},500,function(){
+                $('html,body').animate({'scrollTop': this.tab.list[index].offsetTop+ "px"},500,function(){
                     self.tab.click_status = false;
                 });
             }else{  // 跳页面
@@ -2155,52 +2078,6 @@ var app = new Vue({
             if(!status) {
                 this.tab.status = true;
             }
-        },
-        initWindowScrollEvent:function(){
-            var self = this,
-                min = this.getPX(58);
-            self.getTabHeight();
-            self.tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
-            self.tab.height = self.$refs['yh-center__tab-center'].offsetHeight;
-            $(window).scroll(function() {
-                if(self.tab.click_status){
-                    return
-                }
-                var tab = self.$refs['yh-center__tab'],
-                    scrollTop = $(window).scrollTop(),
-                    one = null,
-                    // halfWidow = tab.offsetHeight,//self.$refs['yh-center__tab-center'].offsetHeight,//$(window).height() / 8,
-                    halfWidow = $(window).height() / 4,
-                    left = 0,
-                    i = 0;
-                // if(!self.tab.status){
-                    self.getTabHeight();
-                    self.tab.offsetTop = tab.offsetTop;
-                    self.tab.height = tab.offsetHeight;//self.$refs['yh-center__tab-center'].offsetHeight;
-                // }
-                if(self.tab.offsetTop <= scrollTop){
-                    self.tab.fixed = true;
-                }else{
-                    self.tab.fixed = false;
-                }
-                for (i = 0; i < self.tab.list.length; i++) {
-                    one = self.tab.list[i];
-                    // if (one.elem && (one.offsetTop - halfWidow + min) < scrollTop && (one.offsetTop + one.height - halfWidow - min) > scrollTop) {
-                    if (one.elem && (one.offsetTop - halfWidow) < scrollTop && (one.offsetTop + one.height - halfWidow) > scrollTop) {
-                        self.tab.active_index = i;
-                        left = self.$refs['tab__li--'+i][0].offsetLeft;
-                        if(left >= (self.tab.width - self.tab.showWidth)){
-                            self.tab.left = -1 * (self.tab.width - self.tab.showWidth);
-                            self.tab.shadow_status = false;
-                        }else {
-                            self.tab.left = -1 * left;
-                            self.tab.shadow_status = true;
-                        }
-                        // 
-                        break;
-                    }
-                }
-            });
         },
         getBulletData:function(){
             var self = this;
