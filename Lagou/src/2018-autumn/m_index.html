@@ -31,7 +31,7 @@
                 initStatus = false,
                 app = null,
                 currentCount = 0;
-            
+                
             function shareSuccess(){
                 currentCount++
                 if(app){
@@ -155,10 +155,10 @@
 <body>
     <div class="loading" id="loading">
         <div class="loading__bg" :class="pload[pload.status].bg"></div>
+        <img class="loading__gif" src="images/loading.gif" />
         <div class="icon loading__logo" :class="pload[pload.status].logo"></div>
         <div class="loading__title" :class="pload[pload.status].title"></div>
         <div class="icon loading__detail" :class="pload[pload.status].detail"></div>
-        <!--<img class="loading__gif" src="images/loading.gif" />-->
         <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
         <div class="loading__layer hide" :class="pload[pload.status].layer" id="loading__layer">
             <div class="icon loading__choose" :class="pload[pload.status].choose"></div>
@@ -179,10 +179,10 @@
                 html = ''+
                 '<div class="loading '+data.outer+'" id="loading">'+
                     '<div class="loading__bg '+data.bg+'"></div>'+
+                    '<img class="loading__gif" src="images/loading.gif" />'+
                     '<div class="icon loading__logo '+data.logo+'"></div>'+
                     '<div class="loading__title '+data.title+'"></div>'+
                     '<div class="icon loading__detail '+data.detail+'"></div>'+
-                    '<!--<img class="loading__gif" src="images/loading.gif" />-->'+
                     '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
                     '<div class="loading__layer hide '+data.layer+'" id="loading__layer">'+
                     '    <div class="icon loading__choose '+data.choose+'"></div>'+
@@ -224,7 +224,7 @@
             </div>
             <div class="box-layer" v-show="page0.chose" :class="page0[page0.status].layer">
                 <div class="box-content" :class="page0[page0.status].content">
-                    衣着搭配力求<span class="box-highlight">简单清爽</span>， <br/>不要太浮夸，但也不能完全的<br/>不修边幅，毕竟你应聘的岗位<br/>既不是走秀model， <br/>也不是犀利哥的扮演者。
+                    <div class="box-text" :class="page0[page0.status].btext">衣着搭配力求<span class="box-highlight">简单清爽</span>， <br/>不要太浮夸，但也不能完全的<br/>不修边幅，毕竟你应聘的岗位<br/>既不是走秀model， <br/>也不是犀利哥的扮演者。</div>
                 </div>
                 <div class="box-next" @click.prevent="toNext(0)"  :class="page0[page0.status].next">
                     <div class="next-shaow"></div>
@@ -256,7 +256,7 @@
             </div>
             <div class="box-layer" v-show="page1.chose" :class="page0[page1.status].layer">
                 <div class="box-content" :class="page0[page1.status].content">
-                    自我介绍考察被面试者基本的<br/>逻辑思维、语言表达能力，总<br/>结提炼概括能力，语速适中，<br/>不要背简历，把自己的真实项<br/>目经历有<span class="box-highlight">条理的阐述</span>即可
+                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达能力，总<br/>结提炼概括能力，语速适中，<br/>不要背简历，把自己的真实项<br/>目经历有<span class="box-highlight">条理的阐述</span>即可</div>
                 </div>
                 <div class="box-next" :class="page0[page1.status].next" @click.prevent="toNext(1)">
                     <div class="next-shaow"></div>
@@ -288,7 +288,7 @@
             </div>
             <div class="box-layer" v-show="page2.chose" :class="page0[page2.status].layer">
                 <div class="box-content" :class="page0[page2.status].content">
-                    请开始你的表演，把重点的项<br/>目按STAR法则叙述一遍<br/><span class="box-highlight box-delete">忌假大空</span><br/><span class="box-highlight box-delete">忌流水账</span><br/><span class="box-highlight box-delete">忌忆童年</span>
+                    <div class="box-text" :class="page0[page2.status].btext">请开始你的表演，把重点的项<br/>目按STAR法则叙述一遍<br/><span class="box-highlight box-delete">忌假大空</span><br/><span class="box-highlight box-delete">忌流水账</span><br/><span class="box-highlight box-delete">忌忆童年</span></div>
                 </div>
                 <div class="box-next" :class="page0[page2.status].next" @click.prevent="toNext(2)">
                     <div class="next-shaow"></div>
@@ -319,7 +319,7 @@
             </div>
             <div class="box-layer" v-show="page3.chose" :class="page0[page3.status].layer">
                 <div class="box-content" :class="page0[page3.status].content">
-                        你又不是个演员，<br/>别设计那些情节。<br/>提前了解<span class="box-highlight">投递岗位的成长路径</span><br/>并清晰阐述，<br/>能够为你的面试加分不少。
+                    <div class="box-text" :class="page0[page3.status].btext">你又不是个演员，<br/>别设计那些情节。<br/>提前了解<span class="box-highlight">投递岗位的成长路径</span><br/>并清晰阐述，<br/>能够为你的面试加分不少。</div>
                 </div>
                 <div class="box-next" :class="page0[page3.status].next" @click.prevent="toNext(3)">
                     <div class="next-shaow"></div>
@@ -350,7 +350,7 @@
             </div>
             <div class="box-layer" v-show="page4.chose" :class="page0[page4.status].layer">
                 <div class="box-content" :class="page0[page4.status].content">
-                        “没啥想问的”抬走下一位，<br/>本题考察选人对公司的渴求度<br/>以及入职诉求。不要问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。
+                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”抬走下一位，<br/>本题考察选人对公司的渴求度<br/>以及入职诉求。不要问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
                 </div>
                 <div class="box-next" :class="page0[page4.status].next" @click.prevent="showResult(4)">
                     <div class="next-shaow"></div>
@@ -386,6 +386,7 @@
             </div>
             <img class="save-img zoomBigShake"
                 :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                :style="setSaveStyle"
                 :src="url" />
             <div class="p5-tips littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">长按图片保存到本地相册</div>
             <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"

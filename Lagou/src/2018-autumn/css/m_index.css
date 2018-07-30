@@ -108,7 +108,7 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  background: #ebd86c; }
+  background: #fbdd44; }
   .loading .icon {
     background: url("../images/loading-icon.png") no-repeat 0 0;
     background-size: 21.84533rem 21.84533rem; }
@@ -148,12 +148,11 @@ body {
     top: 10.176rem;
     margin: 0 0 0 -4.288rem; }
   .loading .loading__gif {
-    width: 16rem;
-    height: 6.69867rem;
+    width: 100%;
     position: absolute;
-    left: 50%;
-    top: 15.744rem;
-    margin: 0 0 0 -8rem; }
+    left: 0;
+    top: 50%;
+    margin: -15.59467rem 0 0 0; }
   .loading .loading__num {
     width: 4.26667rem;
     line-height: 0.768rem;
@@ -506,15 +505,6 @@ body {
 .page3 .option__text--d {
   background-position: 0 -10.66667rem; }
 
-.page4 .page-option {
-  height: 2.60267rem; }
-
-.page4 .option-content {
-  height: 2.60267rem; }
-
-.page4 .option-center {
-  height: 2.432rem; }
-
 .page4 .page4-icon {
   background: url("../images/page4-icon.png") no-repeat 0 0;
   background-size: 21.84533rem 21.84533rem; }
@@ -529,7 +519,7 @@ body {
   margin: 0 0 0 -6.69867rem; }
 
 .page4 .option__text {
-  width: 12.05333rem;
+  width: 12.672rem;
   height: 1.664rem;
   position: absolute;
   left: 1.81333rem;
@@ -539,6 +529,7 @@ body {
   background-position: 0 0; }
 
 .page4 .option__text--b {
+  left: 1.70667rem;
   background-position: 0 -1.70667rem; }
 
 .page4 .option__text--c {
@@ -546,9 +537,6 @@ body {
 
 .page4 .option__text--d {
   background-position: 0 -5.12rem; }
-
-.page4 .option__text--e {
-  background-position: 0 -6.82667rem; }
 
 .page4 .next-shaow {
   background: #b59bb9;
@@ -701,7 +689,8 @@ body {
     margin: 0 0 0 -8rem;
     font-size: 0.46933rem;
     color: #9a9487;
-    text-align: center; }
+    text-align: center;
+    z-index: 5; }
   .page5 .p5-btn {
     width: 5.84533rem;
     height: 1.664rem;
@@ -709,7 +698,7 @@ body {
     left: 50%;
     bottom: 1.00267rem;
     margin: 0 0 0 -6.10133rem;
-    z-index: 3; }
+    z-index: 5; }
   .page5 .btn-shadow {
     width: 5.84533rem;
     height: 1.49333rem;
@@ -1224,27 +1213,23 @@ body {
 
 @-webkit-keyframes zoomBigShake {
   0% {
+    opacity: 0;
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); }
   20% {
     -webkit-transform: scale3d(1.063, 1.063, 1.063);
             transform: scale3d(1.063, 1.063, 1.063); }
-  100% {
-    -webkit-transform: scale3d(0.748, 0.748, 0.748) translateY(-3.584rem);
-            transform: scale3d(0.748, 0.748, 0.748) translateY(-3.584rem);
-    opacity: 1; } }
+  100% { } }
 
 @keyframes zoomBigShake {
   0% {
+    opacity: 0;
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); }
   20% {
     -webkit-transform: scale3d(1.063, 1.063, 1.063);
             transform: scale3d(1.063, 1.063, 1.063); }
-  100% {
-    -webkit-transform: scale3d(0.748, 0.748, 0.748) translateY(-3.584rem);
-            transform: scale3d(0.748, 0.748, 0.748) translateY(-3.584rem);
-    opacity: 1; } }
+  100% { } }
 
 .zoomBig-outtop {
   -webkit-animation: zoomBig-outtop 0.5s both ease-in-out;

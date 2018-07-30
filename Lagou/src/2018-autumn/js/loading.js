@@ -3,12 +3,16 @@ var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
-	"images/icon.png",
-	"images/page-bg.png",
-	"images/page0-box.png",
-	"images/page2-icon.png",
-	"images/page4-icon.png",
-	"images/page5-bg.png",
+	loadingHost+"images/icon.png",
+	loadingHost+"images/loading.gif",
+	loadingHost+"images/loading-bg.png",
+	loadingHost+"images/loading-icon.png",
+	loadingHost+"images/loading-title.png",
+	loadingHost+"images/page-bg.png",
+	loadingHost+"images/page0-box.png",
+	loadingHost+"images/page2-icon.png",
+	loadingHost+"images/page4-icon.png",
+	loadingHost+"images/page5-bg.png",
 	"images/result-add.png",
 	"images/result-ercode.png",
 	"images/result-lagou.png",
@@ -81,9 +85,9 @@ var Loader = function(){
 					}
 				};
 				// img.src = ctx + "/template/1024/" + imgArray[i];
-                img.src = loadingHost + imgArray[i];
+                img.src = imgArray[i]; // loadingHost + imgArray[i];
 			}else{
-				this.loadMusic(loadingHost + imgArray[i]);
+				this.loadMusic(imgArray[i]);  // loadingHost + imgArray[i]
 			}
 		}
 	};

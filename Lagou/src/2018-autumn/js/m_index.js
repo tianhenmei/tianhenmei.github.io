@@ -5,6 +5,7 @@ app = new Vue({
         // test
         mode:"development",
         lg:"1bir",
+        // test
         activePage:0,
         sex:'',
         total:5,
@@ -25,7 +26,8 @@ app = new Vue({
                 option3:"rightIn delay1-5",
                 num:"bottomIn delay1-7",
                 layer:"zoomIn",
-                content:"zoomIn delay0-7",
+                content:"opacityChange delay0-7",
+                btext:"rotateIn2 delay1-2",
                 next:"zoomIn delay1-2",
                 close:"opacityChange delay1-5"
             },
@@ -39,6 +41,7 @@ app = new Vue({
                 num:"bottomIn-out delay0-2",
                 layer:"zoomIn-out duration0-2",
                 content:"",
+                btext:"",
                 next:"",
                 close:""
             },
@@ -137,7 +140,7 @@ app = new Vue({
                 num:"opacityChange-out delay0-2"
             },
         },
-        page4Options:['a','b','c','d','e'],
+        page4Options:['a','b','c','d'],
         canvas:null,
         ctx:null,
         url:'',
@@ -202,10 +205,52 @@ app = new Vue({
         createCode:function(){
             return encodeURIComponent(this.qrcodeUrl)
         },
+        setSaveStyle:function(){
+            var height = RC.w / GC.w * GC.h - RC.h,
+                width = RC.h / GC.h * GC.w - RC.w,
+                temp = 0,
+                scale = 0.748,
+                gap = -168
+            if(height < 0){
+                temp = height / RC.h / 12,//Math.abs(height / RC.h / 12)
+                scale += temp
+                gap = gap * (1 - scale) - RC.h * (1 - scale) / 2// gap * (1 + temp * 10)
+            }else if(height > 0){
+                temp = height / RC.h
+                scale += temp
+                gap = gap * (1 - scale) - RC.h * (1 - scale) / 2
+                if(scale > 1) {
+                    scale = 1
+                    gap = 0
+                }
+                if(gap > 0){
+                    gap = 0
+                }
+            }
+            return {
+                transform:"scale3d("+scale+","+scale+","+scale+") translateY("+this.setRem(gap)+")",
+                opacity:1
+            }
+        },
+        // setTitleStyleP0:function(){
+        //     var height = RC.w / GC.w * GC.h - RC.h,
+        //         offset = height > 0 ? height / 3 : 0
+        //     return {
+        //         top:this.setRem(241+offset)
+        //     }
+        // },
+        // setListStyle:function(){
+        //     var height = RC.w / GC.w * GC.h - RC.h,
+        //         offset = height > 0 ? height / 3 : 0
+        //     return {
+        //         top:this.setRem(413+offset)
+        //     }
+        // },
     },
     mounted:function(){
         pageStatus = true
         this.initCreateUserStyle()
+        // test 注释
         if(this.isWeiXin()){
             this.getUserWeixinData()
         }
@@ -320,11 +365,8 @@ app = new Vue({
             },700)
         },
         startDraw:function(){
-            var ercode = "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
+            var ercode = "images/result-ercode.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
                 self = this;
-            if(this.mode == "development"){
-                ercode = "images/result-ercode.png"
-            }
             var img = new Image()
             img.onload = function(){
                 self.drawAllInformation(img)
