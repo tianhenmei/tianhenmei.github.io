@@ -13,6 +13,7 @@ app = new Vue({
         result:[],
         choseOptionIndex:-1,
         clickStatus:false,
+        saveTips:'长按图片保存到本地相册',
         page0:{
             status:'in',
             chose:false,
@@ -248,6 +249,9 @@ app = new Vue({
         // },
     },
     mounted:function(){
+        if(lagoufrom == 'ios' || lagoufrom == 'android'){
+            this.saveTips = '截图保存'
+        }
         pageStatus = true
         this.initCreateUserStyle()
         // test 注释

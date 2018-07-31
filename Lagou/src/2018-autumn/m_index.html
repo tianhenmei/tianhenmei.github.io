@@ -31,7 +31,7 @@
                 initStatus = false,
                 app = null,
                 currentCount = 0;
-                
+            alert(GC.w+", "+GC.h)  
             function shareSuccess(){
                 currentCount++
                 if(app){
@@ -72,7 +72,6 @@
                 lastSize = lastHTMLSize;
                 html.style.fontSize=GC.w/lastHTMLSize+'px';
             }
-
             setFontSize();
             var loadingStatus = false,
                 pageStatus = false,
@@ -256,7 +255,7 @@
             </div>
             <div class="box-layer" v-show="page1.chose" :class="page0[page1.status].layer">
                 <div class="box-content" :class="page0[page1.status].content">
-                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达能力，总<br/>结提炼概括能力，语速适中，<br/>不要背简历，把自己的真实项<br/>目经历有<span class="box-highlight">条理的阐述</span>即可</div>
+                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达能力，总<br/>结提炼概括能力，语速适中，<br/>不要背简历，把自己的真实项<br/>目经历<span class="box-highlight">有条理的阐述 </span>即可</div>
                 </div>
                 <div class="box-next" :class="page0[page1.status].next" @click.prevent="toNext(1)">
                     <div class="next-shaow"></div>
@@ -350,7 +349,7 @@
             </div>
             <div class="box-layer" v-show="page4.chose" :class="page0[page4.status].layer">
                 <div class="box-content" :class="page0[page4.status].content">
-                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”抬走下一位，<br/>本题考察选人对公司的渴求度<br/>以及入职诉求。不要问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
+                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”抬走下一位，<br/>本题候选人对公司的渴求度<br/>以及入职诉求。不要问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
                 </div>
                 <div class="box-next" :class="page0[page4.status].next" @click.prevent="showResult(4)">
                     <div class="next-shaow"></div>
@@ -388,7 +387,8 @@
                 :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
                 :style="setSaveStyle"
                 :src="url" />
-            <div class="p5-tips littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">长按图片保存到本地相册</div>
+            <div class="p5-tips littleBottomIn" 
+                :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
             <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
                 @click.stop="retryEvent"
                 :data-lg-tj-id="lg" 
@@ -414,9 +414,6 @@
     <script src="js/m_index.js?v=$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
-    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
-    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
-    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
     <script type="text/javascript">
         var baseUrl = 'https://activity.lagou.com/activity/dist/2018-autumn/m_index.html';
         //微信分享
@@ -439,6 +436,9 @@
             return share;
         }
 
-    </script>		
+    </script>	
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
 </body>
 </html>
