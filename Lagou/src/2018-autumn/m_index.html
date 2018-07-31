@@ -216,7 +216,7 @@
                     <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
                         <div class="option-center">
                             <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
-                            <div class="icon option__text" :class="'option__text--'+one"></div>
+                            <div class="icon option__text" :class="'option__text--'+one+(index == 0 && sex == 'girl' ? ' option__text--girl0' : '')"></div>
                         </div>
                     </div>
                 </div>
