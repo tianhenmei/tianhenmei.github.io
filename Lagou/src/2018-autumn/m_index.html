@@ -216,14 +216,14 @@
                     <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
                         <div class="option-center">
                             <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
-                            <div class="icon option__text" :class="'option__text--'+one+(index == 0 && sex == 'girl' ? ' option__text--girl0' : '')"></div>
+                            <div class="icon option__text" :class="'option__text--'+one+(sex == 'girl' ? ' option__text--girl'+one : '')"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="box-layer" v-show="page0.chose" :class="page0[page0.status].layer">
                 <div class="box-content" :class="page0[page0.status].content">
-                    <div class="box-text" :class="page0[page0.status].btext">衣着搭配力求<span class="box-highlight">简单清爽</span>， <br/>不要太浮夸，但也不能完全的<br/>不修边幅，毕竟你应聘的岗位<br/>既不是走秀model， <br/>也不是犀利哥的扮演者。</div>
+                    <div class="box-text" :class="page0[page0.status].btext">衣着搭配力求<span class="box-highlight">简单清爽</span>， <br/>不要太浮夸，但也不能完全的<br/>不修边。毕竟你应聘的岗位<br/>既不是走秀model， <br/>也不是{{sex == 'girl' ? 'Hold住姐' : '犀利哥'}}的扮演者。</div>
                 </div>
                 <div class="box-next" @click.prevent="toNext(0)"  :class="page0[page0.status].next">
                     <div class="next-shaow"></div>
@@ -255,7 +255,7 @@
             </div>
             <div class="box-layer" v-show="page1.chose" :class="page0[page1.status].layer">
                 <div class="box-content" :class="page0[page1.status].content">
-                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达能力，总<br/>结提炼概括能力，语速适中，<br/>不要背简历，把自己的真实项<br/>目经历<span class="box-highlight">有条理的阐述 </span>即可</div>
+                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达、总<br/>结提炼能力，应语速适中，<br/>不要背简历，把自己的真实项<br/>目经历<span class="box-highlight">有条理的阐述 </span>即可</div>
                 </div>
                 <div class="box-next" :class="page0[page1.status].next" @click.prevent="toNext(1)">
                     <div class="next-shaow"></div>
@@ -349,7 +349,7 @@
             </div>
             <div class="box-layer" v-show="page4.chose" :class="page0[page4.status].layer">
                 <div class="box-content" :class="page0[page4.status].content">
-                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”抬走下一位，<br/>本题候选人对公司的渴求度<br/>以及入职诉求。不要问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
+                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”，抬走下一位。<br/>本题考察候选人对公司的渴求度<br/>和入职诉求。切记问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
                 </div>
                 <div class="box-next" :class="page0[page4.status].next" @click.prevent="showResult(4)">
                     <div class="next-shaow"></div>

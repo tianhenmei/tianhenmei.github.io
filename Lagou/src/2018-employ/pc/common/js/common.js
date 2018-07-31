@@ -317,6 +317,10 @@ var commonMixin = {
                     "positionId":1,
                     "positionName":"产品经理",
                     "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
+                    "salary":"15-40K"
                 }
             ],
         },{
@@ -355,6 +359,10 @@ var commonMixin = {
                 },{
                     "positionId":1,
                     "positionName":"设计",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
                     "salary":"15-40K"
                 },{
                     "positionId":1,
@@ -403,6 +411,10 @@ var commonMixin = {
                     "positionId":1,
                     "positionName":"产品经理",
                     "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
+                    "salary":"15-40K"
                 }
             ],
         },{
@@ -441,6 +453,10 @@ var commonMixin = {
                 },{
                     "positionId":1,
                     "positionName":"设计",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
                     "salary":"15-40K"
                 },{
                     "positionId":1,
@@ -489,6 +505,10 @@ var commonMixin = {
                     "positionId":1,
                     "positionName":"产品经理",
                     "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
+                    "salary":"15-40K"
                 }
             ],
         },{
@@ -527,6 +547,10 @@ var commonMixin = {
                 },{
                     "positionId":1,
                     "positionName":"设计",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
                     "salary":"15-40K"
                 },{
                     "positionId":1,
@@ -575,6 +599,10 @@ var commonMixin = {
                     "positionId":1,
                     "positionName":"产品经理",
                     "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
+                    "salary":"15-40K"
                 }
             ],
         },{
@@ -613,6 +641,10 @@ var commonMixin = {
                 },{
                     "positionId":1,
                     "positionName":"设计",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"产品经理",
                     "salary":"15-40K"
                 },{
                     "positionId":1,
