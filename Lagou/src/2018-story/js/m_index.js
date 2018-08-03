@@ -19,11 +19,11 @@ var app = new Vue({
         load:0,
         drawStatus:false,
         textArray:[
-            1,2,3,4,5,6,7,8,9,10,
-            11,12,13,14,15,16,17,18,19,20,
-            21,22,23,24,25,26,27,28,29,30,
-            31,33,34,35,36,37,38,39,40,
-            41,42,43,44,45
+            1,2,/*3,4,5,*/6,/*7,8,*/9,10,
+            /*11,12,*/13,14,15,16,17,/*18,*/19,/*20,*/
+            21,22,/*23,24,*/25,/*26,*/27,/*28,29,*/30,
+            31,33,34,35,/*36,*/37,/*38,*/39,40,
+            /*41,*/42,/*43,*/44,45
         ],
         imgs:[
             "images/page1-bg.png",
@@ -165,23 +165,23 @@ var app = new Vue({
             next = this.nameCenterLightAfter(arr,"","还是","不会来","的",fontSize,next)
         },
         writeText3:function(){
-            var arr = [90,152,215,276],
+            var arr = [90,152,215,276,346],
                 name = this.name,
                 fontSize = 40
-            // 作为一个月薪6k的HR 小明的工作是 每天去劝月薪15k的人 不要理会外面月薪20k的工作
+            // 作为一个月薪6k的HR 小明的工作是 每天去劝月薪15k的人 不要理会外面那个月薪20k的工作
             var next = this.nameCenterLightAfter(arr,"","作为一个月薪","6k","的HR",fontSize,0)
             next++
             next = this.nameCenterLightAfter(arr,"",name+"的工作是","","",fontSize,next)
             next++
             next = this.nameCenterLightAfter(arr,"","每天去劝月薪","15k","的人",fontSize,next)
             next++
-            next = this.nameCenterLightAfter(arr,"","不要理会外面月薪","20k","的工作",fontSize,next)
+            next = this.nameCenterLightAfter(arr,"","不要理会外面那个月薪","20k","的工作",fontSize,next)
         },
         writeText4:function(){
-            var arr = [90,152,215,276,346],
+            var arr = [90,152,215,276,346,416],
                 name = this.name,
                 len = this.getNameLength(name),
-                fontSize = len > 2 ? len > 3 ? len > 4 ? 37 : 40 : 44 : 46
+                fontSize = len > 2 ? len > 3 ? len > 4 ? 37 : 40 : 44 : 44
             // 一两个候选人夸自己帅 小明不以为意 当越来越多人夸他帅时 小明才意识到事态的严重来的候选人越来越不靠谱了  
             var next = this.nameCenterLightAfter(arr,"","一两个候选人夸自己","帅","",fontSize,0)
             next++
@@ -194,12 +194,12 @@ var app = new Vue({
             next = this.nameCenterLightAfter(arr,"","来的候选人越来越","不靠谱","了",fontSize,next)
         },
         writeText5:function(){
-            var arr = [90,152,215,276,346],
+            var arr = [90,152,215,276,346,416],
                 name = this.name,
                 len = this.getNameLength(name),
-                fontSize = len > 2 ? len > 3 ? len > 4 ? 36 : 39 : 42 : 46
+                fontSize = len > 2 ? len > 3 ? len > 4 ? 35 : 38 : 41 : 44
             // 朋友都夸HR小明长得好看 可是小明觉得没用 因为候选人不会因为自己长得好看 就不放他鸽子 
-            var next = this.nameCenterLightAfter(arr,"","朋友都夸HR"+name,"长得好看","",fontSize,0)
+            var next = this.nameCenterLightAfter(arr,"","朋友都夸HR "+name,"长得好看","",fontSize,0)
             next++
             next = this.nameCenterLightAfter(arr,"","可是"+name+"觉得没用","","",fontSize,next)
             next++

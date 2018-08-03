@@ -14,10 +14,13 @@ var app = new Vue({
             ],
             company:{
                 companyId:147,
+                companyShortName:"人人车",
+                companyName:"人人车",
+                logo:"",
                 city:"北京",
-                financestage: "D轮及以上",
-                companysize: "2000人以上",
-                otherlabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                financeStage: "D轮及以上",
+                companySize: "2000人以上",
+                companyLabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
                 positionVo:[{
                     "positionId":1,
                     "positionName":"算法工程师",
@@ -56,32 +59,12 @@ var app = new Vue({
         // // this.addJSCSS();
         // // this.loadedJSCSS();
 
-        // // 热招快报
-        // this.getBulletData()
-        // // 24小时热力排行榜 - 最In
-        // this.getPopularInData()
-        // // 24小时热力排行榜 - 极速响应
-        // this.getPopularQuickestData()
-        // // 24小时热力排行榜 - 最受欢迎
-        // this.getPopularMostData()
-        // // 领先雇主
-        // this.getLeaderData()
-        // // 超级雇主
-        // this.getEmployerData()
-        // // 名企首发 - 公司列表
-        // this.getFirstData()
-        // // 名企首发 - 大咖
-        // this.getFirstRecommendData()
-        // // 千万豪门
-        // this.getRichData()
-        // // 高薪必投
-        // this.getWillData()
-        // // 热招风暴
-        // this.getStormData()
-        // // AI狂热季
-        // this.getAiData()
-        // // 人气精选
-        // this.getChoiceData()
+        // // 超凡雇主
+        // this.getOnlyoneData(147)
+        // // Star雇主
+        // this.getEmployerData(147)
+        // // 本地实力首选
+        // this.getLocalData(147,'shenzhen')
     },
     methods:{
     
@@ -414,75 +397,6 @@ var app = new Vue({
                 }
             })
         },
-        getBulletData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-express.json',function(data){
-                var i = 0,
-                    u = '';
-                for(i = 0; i < data.length; i++){
-                    u = data[i].userName;
-                    data[i].userName = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/.test(u[0]) ? u[0]+'**' : u.slice(0,2)+'***';//('***************'.slice(0,u.length - 1))
-                }
-                self.hot.list = data.concat(data);
-                self.hot.duration = self.hot.list.length * 1.5
-                self.$nextTick(function(){
-                    self.hot.status = true;
-                })
-            })
-        },
-        getPopularInData:function(){
-            var self = this,
-                url = 'activityapi/smallActivity/most-delivery.json';
-            if(this.isAPP){
-                url = 'activityapi/smallActivity/app-most-delivery.json'
-            }
-            this.getAjaxData(url,function(data){
-                self.popular.in.list = data;
-            },{
-                count:3
-            })
-        },
-        getPopularQuickestData:function(){
-            var self = this,
-                url = '';
-            if(this.from == 'ios' || this.from == 'android'){
-                url = 'activityapi/smallActivity/app-deal-fast.json'
-            }else {
-                url = 'activityapi/smallActivity/pc-deal-fast.json'
-            }
-            this.getAjaxData(url,function(data){
-                if(self.isObject(data)){
-                    self.popular.quickest.list = data;
-                }
-            },{
-                count:3
-            })
-        },
-        getPopularMostData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.popular.most.list = data;
-            },{
-                templateId:'2018MustVoteGoodCompany',
-                count:3,
-                positionCount:0
-            })
-        },
-        getLeaderData:function(){
-            var self = this,
-                count = self.leader.list[0].count;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                var i = 0;
-                for(i = 0; i < data.length; i++){
-                    data[i].count = count
-                }
-                self.leader.list = data;
-            },{
-                templateId:'2018LeadEmployer',
-                count:1,
-                positionCount:3
-            })
-        },
         cutString:function(str,num){
             str = str ? str : ''
             var str2 = str.replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,"çç"),
@@ -494,145 +408,6 @@ var app = new Vue({
                 result = str;
             }
             return result;
-        },
-        getEmployerData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                var i = 0;
-                for(i = 0; i < data.length; i++){
-                    data[i].oneWord = self.cutString(data[i].oneWord,34);
-                }
-                self.employer.list = data;
-                self.$nextTick(function(){
-                    self.addEmployerAnimation();
-                })
-            },{
-                templateId:'2018SuperEmployer',
-                positionCount:3
-            })
-        },
-        getFirstData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                if(self.isObject(data)){
-                    var i = 0;
-                    for(i = 0; i < data.length; i++){
-                        data[i].oneWord = self.cutString(data[i].oneWord,80);
-                    }
-                    self.first.company.list = data;
-                    self.$nextTick(function(){
-                        self.addFirstAnimation();
-                    })
-                }
-            },{
-                templateId:'2018FamousFirst',
-                positionCount:1
-            })
-        },
-        getFirstRecommendData:function(){
-            var self = this;
-            self.addFirstGuestAnimation();
-            // this.getAjaxData('activityapi/smallActivity/query-bigCoffee.json',function(data){
-            //     // self.first.recommend.list = data;
-            //     console.log(data)
-            //     self.$nextTick(function(){
-            //         self.addFirstGuestAnimation();
-            //     })
-            // },{
-            //     // templateId:arr[0],
-            //     positionCount:0
-            // })
-        },
-        getRichData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                var length = data.length,
-                    num = 4,
-                    l = Math.ceil(length / num),
-                    list = [],
-                    i = 0;
-                for(i = 0; i < l; i++){
-                    list.push(data.slice(i*num,(i+1)*num))
-                }
-                self.rich.list = list;
-                self.$nextTick(function(){
-                    self.addRichAnimation();
-                })
-            },{
-                templateId:'2018ThousandsWealthy',
-                positionCount:3
-            })
-        },
-        getWillData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.will.list[0].company = data.slice(0,3);
-                self.will.list[1].company = data.slice(3,6);
-            },{
-                templateId:'2018HighPayMustVote',
-                positionCount:1
-            })
-        },
-        getStormData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.storm.list[0].company = data.slice(0,8);
-                self.storm.list[1].company = data.slice(8,16);
-            },{
-                templateId:'2018HotTrickstorm',
-                positionCount:0
-            })
-        },
-        getAiData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                if(self.isObject(data)){
-                    self.ai.list = data;   
-                }
-            },{
-                templateId:'2018AIPosition',
-                count:4,
-                positionCount:1
-            })
-            // var self = this,
-            //     arr = ['深度学习','机器学习','图像处理','图像识别','语音识别','机器视觉','算法工程师','自然语言处理'],
-            //     length = arr.length;
-            // this.getAjaxData('activityapi/smallActivity/ai-position.json',function(data){
-            //     if(self.isObject(data)){
-            //         var col = 4,
-            //             i = 0,
-            //             num = [],
-            //             list = [],
-            //             l = data.length,
-            //             o = -1;
-            //         for(i = 0; i < l; i++){
-            //             num.push(i)
-            //         }
-            //         for(i = 0; i < col; i++){
-            //             o = Math.floor(Math.random() * num.length);
-            //             list.push(data[num[o]])
-            //             num.splice(o,1)
-            //         }
-            //         self.ai.list = list;   
-            //     }
-            // },{
-            //     position:arr[Math.floor(Math.random()*length)],
-            //     count:1
-            // })
-        },
-        getChoiceData:function(){
-            var self = this;
-            this.getAjaxData('activityapi/smallActivity/query-config-position.json',function(data){
-                self.choice.list[0] = data[0];
-                self.choice.list[1] = data[1];
-                self.choice.companys[0].list = data.slice(2,5);
-                self.choice.companys[1].list = data.slice(5,8);
-                self.choice.companys[2].list = data.slice(8,11);
-                self.choice.companys[3].list = data.slice(11,14);
-            },{
-                templateId:'2018PopularSelection',
-                positionCount:3
-            })
         },
         appDownload:function(){
 

@@ -76,10 +76,10 @@
                                     :data-lg-tj-no="getCount(onlyone.count+1)" 
                                     :data-lg-tj-cid="onlyone.company.companyId"></a>
                             </div>
-                            <div class="o-baseinfo">{{onlyone.company.city}} / {{onlyone.company.financestage}} / {{onlyone.company.companysize}}</div>
+                            <div class="o-baseinfo">{{onlyone.company.city}} / {{onlyone.company.financeStage}} / {{onlyone.company.companySize}}</div>
                             <div class="o-labels clearfix">
                                 <div class="label" 
-                                    v-for="(label,lindex) in labelList(onlyone.company.otherlabel)"
+                                    v-for="(label,lindex) in labelList(onlyone.company.companyLabel)"
                                     v-if="lindex < 4">{{label}}</div>
                             </div>
                             <div class="o-positions clearfix">
@@ -113,7 +113,7 @@
                                 :class="{'active':employerActiveIndex == index}"
                                 @click.stop.prevent="employerSlideTo(index)">
                                 <div class="employer-p__bg"></div>
-                                <div class="employer-p__name">{{one.companyshortname}}</div>
+                                <div class="employer-p__name">{{one.companyShortName}}</div>
                                 <div class="employer-p__logo">
                                     <img class="p__logo" :src="setLogoHref(one.logo)" />
                                 </div>
@@ -126,37 +126,37 @@
                                 <div class="employer__left clearfix">
                                     <img class="employer__leader" :src="'images/employer-'+(oindex+1)+'.png'" />
                                     <div class="leader-info">
-                                        <div class="leader-name">{{one.leader.name}}</div>
-                                        <div class="leader-company">{{one.companyshortname}}</div>
-                                        <div class="leader-position">{{one.leader.position}}</div>
+                                        <div class="leader-name">{{one.leaderName}}</div>
+                                        <div class="leader-company">{{one.companyShortName}}</div>
+                                        <div class="leader-position">{{one.leaderRemarkn}}</div>
                                         <div class="leader-quato"></div>
-                                        <div class="leader-words" v-html="one.leader.words"></div>
+                                        <div class="leader-words" v-html="one.oneWord"></div>
                                     </div>
                                 </div>
                                 <div class="employer__right">
                                     <div class="employer__top clearfix">
                                         <a class="logo" 
-                                            :href="'https://www.lagou.com/gongsi/'+one.id+'.html'"
+                                            :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                             target="_blank"
                                             data-link="1"
                                             :data-lg-tj-id="countId" 
                                             :data-lg-tj-no="getCount(employerCount+oindex*10)" 
-                                            :data-lg-tj-cid="one.id">
+                                            :data-lg-tj-cid="one.companyId">
                                             <img :src="setLogoHref(one.logo)" />
                                         </a>
                                         <div class="info">
                                             <a class="info__name"
-                                                :href="'https://www.lagou.com/gongsi/'+one.id+'.html'"
+                                                :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                 target="_blank"
                                                 data-link="1"
                                                 :data-lg-tj-id="countId" 
                                                 :data-lg-tj-no="getCount(employerCount+oindex*10+1)" 
-                                                :data-lg-tj-cid="one.companyId">{{one.companyshortname}}</a>
-                                            <div class="info__detail">{{one.industryfield}} / {{one.financestage}} / {{one.city}}</div>
+                                                :data-lg-tj-cid="one.companyId">{{one.companyShortName}}</a>
+                                            <div class="info__detail">{{one.industryfield}} / {{one.financeStage}} / {{one.city}}</div>
                                         </div>
                                     </div>
                                     <div class="employer__label clearfix">
-                                        <span v-for="(one,iindex) in labelList(one.otherlabel)" v-if="iindex < 4">{{one}}</span>
+                                        <span v-for="(one,iindex) in labelList(one.companyLabel)" v-if="iindex < 4">{{one}}</span>
                                     </div>
                                     <div class="employer__position clearfix">
                                         <a class="one clearfix" 

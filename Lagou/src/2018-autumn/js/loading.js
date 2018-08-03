@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
 	loadingHost+"images/icon.png",

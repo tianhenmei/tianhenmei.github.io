@@ -257,8 +257,7 @@ app = new Vue({
         // test 注释
         if(this.isWeiXin()){
             this.getUserWeixinData()
-        }
-
+        }     
         // test 注释
         this.initCanvas()
     },
