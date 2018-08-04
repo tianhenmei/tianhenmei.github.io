@@ -71,6 +71,41 @@ var commonMixin = {
             // bulletClass : 'img-p',
             // bulletActiveClass : 'active'
         },
+        onlyone:{
+            count:1,
+            imgs:[
+                'images/onlyone-img-01.jpg',
+                'images/onlyone-img-01.jpg',
+                'images/onlyone-img-01.jpg'
+            ],
+            company:{
+                companyId:147,
+                companyShortName:"人人车",
+                companyName:"人人车",
+                logo:"",
+                city:"北京",
+                financeStage: "D轮及以上",
+                companySize: "2000人以上",
+                companyLabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                positionVo:[{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                }],
+            }
+        },
         employerActiveIndex:0,
         employerOptions:{
             // autoplay:true,//等同于以下设置

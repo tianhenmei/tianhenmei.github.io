@@ -4,12 +4,61 @@ var app = new Vue({
     el:"#app",
     mixins:[commonMixin],
     data:{
-        countId:'1c4u',
+        countId:'1c4v',
+        tab:{
+            offsetTop:0,
+            height:0,
+            active_index:0,
+            count:10,
+            status:false,
+            click_status:false,
+            list:[{
+                name:'超凡雇主',
+                elem:'yh-center__onlyone',
+                offsetTop:0,
+                height:0,
+                index:0,
+                top:0
+            },{
+                name:'STAR雇主',
+                elem:'yh-center__employer',
+                offsetTop:0,
+                height:0,
+                index:1,
+                top:0
+            },{
+                name:'其它城市专场',
+                elem:'yh-center__others',
+                offsetTop:0,
+                height:0,
+                index:2,
+                top:0
+            },{
+                name:'合作伙伴',
+                elem:'yh-center__corperate',
+                offsetTop:0,
+                height:0,
+                index:3,
+                top:0
+            }],
+            fixed:false,
+            shadow_status:false,
+            initWidth:750,
+            showWidth:750,
+            width:9999,
+            left:0,
+            transition:true,
+            start:{
+                x:0,
+                y:0
+            }
+        },
         others:[
             "shanghai","beijing",
             "nanjing","guangzhou",
-            "suzhou","chengdu",
-            "wuhan","hangzhou"
+            "shenzhen","chengdu",
+            "wuhan","hangzhou",
+            "suzhou"
         ],
         corperate:[
             147,147,147,147,

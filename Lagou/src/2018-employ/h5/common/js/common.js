@@ -1,6 +1,9 @@
 var commonMixin = {
     data:{
         fontSize:16,
+        from:'',
+        isAPP:false,
+        isiPhone:false,
         logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
         logoHrefO:'https://www.lgstatic.com/',
         companyHref:{
@@ -13,8 +16,11 @@ var commonMixin = {
         },
         // tab 切换
         tab:{
+            offsetTop:0,
+            height:0,
+            active_index:0,
             count:10,
-            active_index:-1,
+            status:false,
             click_status:false,
             list:[{
                 name:'超凡雇主',
@@ -31,45 +37,73 @@ var commonMixin = {
                 index:1,
                 top:0
             },{
-                name:'本地实力首选',
+                name:'实力首选',
                 elem:'yh-center__local',
                 offsetTop:0,
                 height:0,
                 index:2,
                 top:0
             },{
-                name:'潜力公司top榜',
+                name:'潜力TOP榜',
                 elem:'yh-center__top',
                 offsetTop:0,
                 height:0,
                 index:3,
                 top:0
             },{
-                name:'其它城市专场',
+                name:'其他城市',
                 elem:'yh-center__others',
                 offsetTop:0,
                 height:0,
                 index:4,
                 top:0
-            }]
-        },
-        onlyoneOptions:{
-            // autoplay:true,//等同于以下设置
-            autoplay: {
-                delay: 3000,
-                stopOnLastSlide: false,
-                disableOnInteraction: false,
-            },
-            speed:500,
-            loop:true,
-            pagination: {
-                el: '.img-pagination',
-                bulletClass : 'img-p',
-                bulletActiveClass: 'active'
+            }],
+            fixed:false,
+            shadow_status:false,
+            initWidth:750,
+            showWidth:750,
+            width:9999,
+            left:0,
+            transition:true,
+            start:{
+                x:0,
+                y:0
             }
-            // pagination:'.img-pagination',
-            // bulletClass : 'img-p',
-            // bulletActiveClass : 'active'
+        },
+        onlyone:{
+            count:1,
+            imgs:[
+                'images/onlyone-img-01.jpg',
+                'images/onlyone-img-01.jpg',
+                'images/onlyone-img-01.jpg'
+            ],
+            company:{
+                companyId:147,
+                companyShortName:"人人车",
+                companyName:"人人车",
+                logo:"",
+                city:"北京",
+                financeStage: "D轮及以上",
+                companySize: "2000人以上",
+                companyLabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                positionVo:[{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                },{
+                    "positionId":1,
+                    "positionName":"算法工程师",
+                    "salary":"15-40K"
+                }],
+            }
         },
         employerActiveIndex:0,
         employerOptions:{
@@ -1438,10 +1472,47 @@ var commonMixin = {
                 ],
             }]
         ],
+        topOptions:{
+            // slideClass : 'top__one',
+            slideActiveClass : 'active',
+            slidePrevClass : 'prev',
+            slideNextClass : 'next',
+            initialSlide:1,
+            autoplay:false,//等同于以下设置
+            speed:500,
+            loop:false,
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            // 设置slider容器能够同时显示的slides数量(carousel模式)。
+            slidesPerView:1,
+            coverflowEffect: {
+                rotate: 0,  // rotate：slide做3d旋转时Y轴的旋转角度。默认50。
+                stretch: 300,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
+                depth: 170,  // depth：slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
+                // modifier：depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
+                modifier: 1,  
+                // slideShadows：开启slide阴影。默认 true。
+                slideShadows:false
+            },
+            pagination:{
+                el: '.top__pagination--0',
+                bulletClass : 'bullet',
+                bulletActiveClass: 'active'
+            },
+            // on:{
+            //     slidePrevTransitionStart:function(){
+            //         var sapp = app || this.$el[0].__vue__.$root
+            //         sapp.topSlidePrevTransition(this.$el[0].__vue__.$children,this.previousIndex)
+            //     },
+            //     slideNextTransitionStart:function(){
+            //         var sapp = app || this.$el[0].__vue__.$root
+            //         sapp.topSlideNextTransition(this.$el[0].__vue__.$children,this.activeIndex)
+            //     }
+            // }
+        },
         othersCount:5000,
         corperateCount:6000,
-        isAPP:false,
-        isiPhone:false,
         testStatus:false,
         partnerStatus:false,
         browserType:0,  // 浏览器类型
@@ -1479,16 +1550,6 @@ var commonMixin = {
             }
             return brr
         },
-        getCount:function(num){
-            return '0000'.slice((num+'').length)+num
-        },
-        changeEmployerActiveIndex:function(index){
-            if(index == 0){
-                this.employerActiveIndex = this.employerList.length - 1
-            }else{
-                this.employerActiveIndex = (index-1) % this.employerList.length
-            }
-        },
         employerSlideTo:function(index){
             this.$refs['employerSwiper'].swiper.slideTo(index+1)
         },
@@ -1498,18 +1559,166 @@ var commonMixin = {
         employerSlideNext:function(){
             this.$refs['employerSwiper'].swiper.slideNext()
         },
-        showCurrentCompany:function(pindex,index){
-            this.topActiveIndex[pindex] = index
-            this.topTime = Date.now()
+        topSlidePrev:function(index){
+            this.$refs['topSwiper'+index][0].swiper.slidePrev()
         },
-        getCorperateRow:function(index){
-            return Math.floor(index / 6)
+        topSlideNext:function(index){
+            this.$refs['topSwiper'+index][0].swiper.slideNext()
+        },
+        changeEmployerActiveIndex:function(index){
+            if(index == 0){
+                this.employerActiveIndex = this.employerList.length - 1
+            }else{
+                this.employerActiveIndex = (index-1) % this.employerList.length
+            }
         },
         topCurrent:function(pindex){
             return this.topList[pindex][this.topActiveIndex[pindex]]
         },
-        floatingCloseEvent:function(){
-            this.floating.status = false;
+        topSlidePrevTransition:function(children,previousIndex){
+
+        },
+        topSlideNextTransition:function(children,previousIndex){
+            if(previousIndex > 0){
+                var elem = children[previousIndex-1].$el
+                elem.style.opacity = 0
+            }
+        },
+        getCorperateRow:function(index){
+            return Math.floor(index / 4)
+        },
+        getTopOptions:function(index){
+            var options = JSON.parse(JSON.stringify(this.topOptions))
+            options.pagination = {
+                el: '.top__pagination--'+index,
+                bulletClass : 'bullet',
+                bulletActiveClass: 'active'
+            }
+            return options
+        },
+        setLogoHref:function(logo){
+            if(logo){
+                if(logo.indexOf('i/image') == 0 || 
+                    logo.indexOf('image1') == 0 || 
+                    logo.indexOf('image2') == 0){
+                    return this.logoHref + logo
+                }else if(logo.indexOf('http') == 0){
+                    return logo
+                }else {
+                    return this.logoHrefO + logo
+                }
+            }else{
+                return '';
+            }
+        },
+        getCount:function(num){
+            return '0000'.slice((num+'').length)+num
+        },
+        getAjaxData:function(url,callback,params){
+            $.ajax({
+                url:'https://activity.lagou.com/'+url,
+                type:'get',
+                data:params ? params : {},
+                // dataType:'jsonp',
+                // jsonp:'jsoncallback',
+                success:function(data){
+                    var content = data.content;
+                    if(data.success){
+                        callback(content)
+                    }else {
+                        console.log('出错啦～刷新重试～')
+                    }
+                },
+                error:function(error){
+                    console.log(error)
+                },
+            })
+        },
+        getOnlyoneData:function(templateId){
+            var self = this
+            this.getAjaxData('activityapi/star101/superEmployer',function(content){
+                self.onlyone.company = content
+            },{
+                templateId:templateId
+            })
+        },
+        getEmployerData:function(templateId){
+            var self = this
+            this.getAjaxData('activityapi/star101/startEmployer',function(content){
+                self.employerList = content
+            },{
+                templateId:templateId
+            })
+        },
+        getLocalData:function(templateId,city){
+            var self = this
+            this.getAjaxData('activityapi/star101/companyList',function(content){
+                self.localList = content
+            },{
+                templateId:templateId,
+                city:city
+            })
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /***********************************
+         **  tab导航栏函数
+         */
+        setTabWidth:function(){
+            var list = this.$refs['tab'].children,
+                i = 0,
+                total = 0,
+                one = 0;
+            for(i = 0; i < list.length; i++){
+                one = this.getPointOuterWidth(list[i]);
+                total += Math.ceil(one);
+            }
+            this.tab.width = total
+        },
+        tabStartEvent:function(e){
+            var touch = e.touches[0];
+            this.tab.start.x = touch.clientX;
+            this.tab.start.y = touch.clientY;
+            this.tab.transition = false;
+        },
+        tabMoveEvent:function(e){
+            var touch = e.touches[0],
+                x = touch.clientX,
+                y = touch.clientY;
+            
+            this.tab.left += x - this.tab.start.x;
+            if(this.tab.left > 0){
+                this.tab.left = 0;
+            }
+            // alert(this.tab.width +' , '+ this.tab.showWidth)
+            if(Math.abs(this.tab.left) >= (this.tab.width - this.tab.showWidth)){
+                this.tab.left = -1 * (this.tab.width - this.tab.showWidth);
+                this.tab.shadow_status = false;
+            }else {
+                this.tab.shadow_status = true;
+            }
+            this.tab.start.x = x;
+            this.tab.start.y = y;    
+        },
+        tabEndEvent:function(e){
+            this.tab.start.x = 0;
+            this.tab.start.y = 0;
+            this.tab.transition = true;
         },
         getTabHeight:function(){
             var list = this.tab.list,
@@ -1551,8 +1760,57 @@ var commonMixin = {
                 this.tab.status = true;
             }
         },
+        initWindowScrollEvent:function(){
+            var self = this,
+                min = this.getPX(58);
+            self.getTabHeight();
+            self.tab.offsetTop = self.$refs['yh-center__tab'].offsetTop;
+            self.tab.height = self.$refs['yh-center__tab-center'].offsetHeight;
+            $(window).scroll(function() {
+                if(self.tab.click_status){
+                    return
+                }
+                var tab = self.$refs['yh-center__tab'],
+                    scrollTop = $(window).scrollTop(),
+                    one = null,
+                    // halfWidow = tab.offsetHeight,//self.$refs['yh-center__tab-center'].offsetHeight,//$(window).height() / 8,
+                    halfWidow = $(window).height() / 4,
+                    left = 0,
+                    i = 0;
+                // if(!self.tab.status){
+                    self.getTabHeight();
+                    self.tab.offsetTop = tab.offsetTop;
+                    self.tab.height = tab.offsetHeight;//self.$refs['yh-center__tab-center'].offsetHeight;
+                // }
+                if(self.tab.offsetTop <= scrollTop){
+                    self.tab.fixed = true;
+                }else{
+                    self.tab.fixed = false;
+                }
+                for (i = 0; i < self.tab.list.length; i++) {
+                    one = self.tab.list[i];
+                    // if (one.elem && (one.offsetTop - halfWidow + min) < scrollTop && (one.offsetTop + one.height - halfWidow - min) > scrollTop) {
+                    if (one.elem && (one.offsetTop - halfWidow) < scrollTop && (one.offsetTop + one.height - halfWidow) > scrollTop) {
+                        self.tab.active_index = i;
+                        left = self.$refs['tab__li--'+i][0].offsetLeft;
+                        if(left >= (self.tab.width - self.tab.showWidth)){
+                            self.tab.left = -1 * (self.tab.width - self.tab.showWidth);
+                            self.tab.shadow_status = false;
+                        }else {
+                            self.tab.left = -1 * left;
+                            self.tab.shadow_status = true;
+                        }
+                        // 
+                        break;
+                    }
+                }
+            });
+        },
         toTopEvent:function(){
             $('html,body').animate({'scrollTop': 0},500);
+        },
+        unfoldEvent:function(e){
+            this.tab.unfoldStatus = !this.tab.unfoldStatus; 
         },
         tabClickEvent:function(index,e){
             var self = this;
@@ -1563,37 +1821,60 @@ var commonMixin = {
                     this.getTabHeight();
                     this.tab.offsetTop = this.$refs['yh-center__tab'].offsetTop;
                 // }
-                $('html,body').animate({'scrollTop': this.tab.list[index].offsetTop+ "px"},500,function(){
+                this.tab.height = this.$refs['yh-center__tab'].offsetHeight; // this.$refs['yh-center__tab-center'].offsetHeight;
+                $('html,body').animate({'scrollTop': (this.tab.list[index].offsetTop - this.tab.height)+ "px"},500,function(){
                     self.tab.click_status = false;
                 });
             }else{  // 跳页面
                 window.location.href = this.tab.list[index].href
             }
         },
-        isObject:function(e){
-            return e instanceof Object
-        },
-        getComputedValue:function(elem,attribute){
-            var value = window.getComputedStyle(elem,null).getPropertyValue(attribute);
-            return value;
-        },
-        getPointValue:function(elem,attribute){
-            if(!elem || elem.length == 0){
-                return 0
+
+
+
+
+
+
+
+        /***********************************
+         **  基础函数
+         */
+        addJSCSS:function(){
+            switch (this.browserType) {
+                case 0:  // Opera浏览器
+                case 1:  // Firefox浏览器
+                case 2:  // Chrome浏览器
+                case 3:  // Safari浏览器
+                    this.addCssByLink('https://www.lgstatic.com/topic/css/swiper.min.css', this.loadedJSCSS);
+                    this.addScript('https://www.lgstatic.com/topic/js/swiper.min.js', this.loadedJSCSS);
+                    break;
+                case 6:  // IE浏览器
+                    animationStatus = true;
+                    // lunAnimation(browserType);
+                    break;
+                case 4:  // IE9.0及以上浏览器
+                case 5:
+                default:
+                    this.addCssByLink('https://www.lgstatic.com/topic/css/idangerous.swiper.css', this.loadedJSCSS);
+                    this.addScript('https://www.lgstatic.com/topic/js/idangerous.swiper.min.js', this.loadedJSCSS);
+                    break;
             }
-            var value = window.getComputedStyle(elem,null).getPropertyValue(attribute);
-            return parseFloat(parseFloat(value).toFixed(2));
         },
-        getPointWidth:function(elem){
-            var value = this.getPointValue(elem,"width"); //window.getComputedStyle(elem[0],null).getPropertyValue("width");
-            return value;
-        },
-        getPointOuterWidth:function(elem){
-            var width =  this.getPointValue(elem,"width"), //window.getComputedStyle(elem[0],null).getPropertyValue("width");
-                left = this.getPointValue(elem,"padding-left"),
-                right = this.getPointValue(elem,"padding-right"),
-                value = width + left + right;
-            return value;
+        loadedJSCSS:function(){
+            this.loadedCount++;
+
+            if (this.loadedCount == 2) {
+                // animationStatus = true;
+                this.addEmployerAnimation();
+                this.addRichAnimation();
+                this.addFirstAnimation();
+                this.addFirstGuestAnimation();
+                //if (movieElem.length > 0 && movieElem.attr('movie_type') == 'local') {
+                //    getMovie();
+                //}
+                //添加轮播动画
+                //lunAnimation(browserType);
+            }
         },
         addCssByLink:function(url, callback) {
             var doc = document;
@@ -1654,6 +1935,40 @@ var commonMixin = {
             }
             return browserType;
         },
+        isObject:function(e){
+            return e instanceof Object
+        },
+        getRemValue:function(value){
+            return value / (750 / 16)
+        },
+        getPX:function(value){
+            return value / (750 / 16) * this.fontSize
+        },
+        getRem:function(n){
+            return n/(750/16) +'rem'
+        },
+        getComputedValue:function(elem,attribute){
+            var value = window.getComputedStyle(elem,null).getPropertyValue(attribute);
+            return value;
+        },
+        getPointValue:function(elem,attribute){
+            if(!elem || elem.length == 0){
+                return 0
+            }
+            var value = window.getComputedStyle(elem,null).getPropertyValue(attribute);
+            return parseFloat(parseFloat(value).toFixed(2));
+        },
+        getPointWidth:function(elem){
+            var value = this.getPointValue(elem,"width"); //window.getComputedStyle(elem[0],null).getPropertyValue("width");
+            return value;
+        },
+        getPointOuterWidth:function(elem){
+            var width =  this.getPointValue(elem,"width"), //window.getComputedStyle(elem[0],null).getPropertyValue("width");
+                left = this.getPointValue(elem,"padding-left"),
+                right = this.getPointValue(elem,"padding-right"),
+                value = width + left + right;
+            return value;
+        },
         ismobile:function(){
             var u = navigator.userAgent, app = navigator.appVersion;
             if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
@@ -1672,49 +1987,324 @@ var commonMixin = {
                 return 'android';
             }
         },
-        getAjaxData:function(url,callback,params){
-            $.ajax({
-                url:'https://activity.lagou.com/'+url,
-                type:'get',
-                data:params ? params : {},
-                // dataType:'jsonp',
-                // jsonp:'jsoncallback',
-                success:function(data){
-                    var content = data.content;
-                    if(data.success){
-                        callback(content)
-                    }else {
-                        console.log('出错啦～刷新重试～')
+        cutString:function(str,num){
+            str = str ? str : ''
+            var str2 = str.replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,"çç"),
+                result = '';
+            if (str2.length > num){
+                var length = str2.slice(0,num).replace(/çç/g,'ç').length;
+                result = str.slice(0,length)+'...';
+            }else {
+                result = str;
+            }
+            return result;
+        },
+        floatingCloseEvent:function(){
+            this.floating.status = false;
+        },
+        appDownload:function(){
+
+        },
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        addEmployerAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['employer__animation'])
+            id = elem.attr('id');
+            // autoplay = elem.attr('autoplay');
+            // autoplay = autoplay ? true : false;
+            // animation = elem.attr('animation');
+            // animation = animation ? animation : 'move';
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                swiper:null,
+                pagination:false
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'employer__list','employer__one')
+                    break
+            }
+        },
+        addRichAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['rich__animation'])
+            id = elem.attr('id');
+            // autoplay = elem.attr('autoplay');
+            // autoplay = autoplay ? true : false;
+            // animation = elem.attr('animation');
+            // animation = animation ? animation : 'move';
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                swiper:null,
+                pagination:true
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'rich__container','rich__list')
+                    break
+            }
+        },
+        addFirstAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['first__company'])
+            id = elem.attr('id');
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                direction:'vertical',
+                swiper:null,
+                pagination:false
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'company__ul','company__li')
+                    break
+            }
+        },
+        addFirstGuestAnimation:function(){
+            var i = 0,
+                autoplay = true, //false,
+                animation = 'move',
+                id = '',
+                content = null,
+                childs = null,
+                first = null,
+                length = 3,
+                elem = $(this.$refs['first__recommend'])
+            id = elem.attr('id');
+
+            content = elem.find('#'+id+'-content')
+            childs = content.children()
+            length = childs.length
+            first = childs.eq(0)
+            content.css('left',0)
+            this.employerAnimation[id] = {
+                width:first.children().eq(0).width(),
+                currentIndex:0,
+                length:length,
+                autoplay:autoplay,
+                animation:animation,
+                swiper:null,
+                pagination:false
+                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
+            }
+            switch(animation){
+                case 'zoomIn':
+                    this.initZoomInAnimation(id)
+                    break
+                default:
+                    this.initMoveAnimation(id,'recommend__ul','recommend__li')
+                    break
+            }
+        },
+        initMoveAnimation:function(id,wrapperClass,slideClass){
+            var self = this,
+                pagination = null,
+                length = 0,
+                totalLength = 3,
+                data = this.employerAnimation[id],
+                pstatus = data.pagination;
+            if(pstatus){
+                pagination = $('#'+id+'-pagination').children();
+                length = data.length;//pagination.length
+            }else {
+                length = data.length
+            }
+            
+            data.swiper = new Swiper('#'+id, {
+                wrapperClass : wrapperClass,
+                slideClass : slideClass,
+                autoplay: data.autoplay ? 3000 : 0,//可选选项，自动滑动
+                loop : true,
+                autoplayDisableOnInteraction:false,
+                direction:data.direction ? data.direction : 'horizontal',
+                // loopedSlides:1,
+                pagination : '#'+id+'-pagination',
+                paginationClickable:true,
+                bulletClass:'dot',
+                bulletActiveClass:'dot--active',
+                prevButton:'#'+id+'-arrow-left',
+                nextButton:'#'+id+'-arrow-right',
+                // paginationElement:'span',
+                // paginationBulletRender: function (swiper, index, className) {
+                //     return '<span class="' + className + '" style="background-color:'+sliderStyle1Swiper[id].pagination_color+';"></span>';
+                // },
+                onInit:function(swiper){
+                    if(pstatus){
+                        // totalLength = $('#'+id+'-pagination').children().length
+                        // $('#'+id+'-pagination').children().css('background-color',data.pagination_color)
                     }
                 },
-                error:function(error){
-                    console.log(error)
+                onSlideChangeEnd: function(swiper) {
+                    // var ul = $(elemClass).children(),
+                        // li = ul.children('li'),
+                        // activeLi = ul.children('.' + this.slideActiveClass).length > 0 ? ul.children('.' + this.slideActiveClass) : ul.children('.active'),
+                        // index = activeLi.index(),
+                    var index = swiper.activeIndex,
+                        // id = ul.attr('id'),
+                        // logo = $('.' + id + 'Button').children('img'),
+                        endIndex = index - 1;
+                    if (endIndex == -1) {
+                        endIndex = length - 1;
+                    } else if (endIndex == totalLength) {
+                        endIndex = 0;
+                    }
+                    // pagination.removeClass('active').eq(endIndex).addClass('active');
+                    // li.eq(index).removeClass('active').end().eq(index).addClass('active');
+                }
+            })
+        },
+        initZoomInAnimation:function(id){
+            var pagination = $('#'+id+'-pagination').children(),
+                length = pagination.length,
+                totalLength = 3
+            this.employerAnimation[id].swiper = new Swiper('#'+id+'-container', {
+                wrapperClass : 'yh-slider-content',
+                slideClass : 'yh-slider-slide',
+                autoplay: sliderStyle1Swiper[id].autoplay ? 3000 : 0,//可选选项，自动滑动
+                // loop : true,
+                // loopedSlides:1,
+                // pagination : '#'+id+'-pagination',
+                // paginationClickable:true,
+                bulletClass:'one',
+                bulletActiveClass:'active',
+                prevButton:'#'+id+'-arrow-left',
+                nextButton:'#'+id+'-arrow-right',
+                // paginationElement:'span',
+                // paginationBulletRender: function (swiper, index, className) {
+                //     return '<span class="' + className + '" style="background-color:'+sliderStyle1Swiper[id].pagination_color+';"></span>';
+                // },
+                mode: 'horizontal',
+                // paginationClickable: true,
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 1.1,
+                // slidesPerView: 1.56,
+                initialSlide: 1,
+                autoplayDisableOnInteraction: false,
+                // prevButton: '.' + id + 'Pre',
+                // nextButton: '.' + id + 'Next',
+                coverflow: {
+                    rotate: 0,
+                    stretch: 230,
+                    depth: 300,
+                    modifier: 1,
+                    slideShadows: true
                 },
-            })
-        },
-        getOnlyoneData:function(templateId){
-            var self = this
-            this.getAjaxData('activityapi/star101/superEmployer',function(content){
-                self.onlyone.company = content
-            },{
-                templateId:templateId
-            })
-        },
-        getEmployerData:function(templateId){
-            var self = this
-            this.getAjaxData('activityapi/star101/startEmployer',function(content){
-                self.employerList = content
-            },{
-                templateId:templateId
-            })
-        },
-        getLocalData:function(templateId,city){
-            var self = this
-            this.getAjaxData('activityapi/star101/companyList',function(content){
-                self.localList = content
-            },{
-                templateId:templateId,
-                city:city
+                onInit:function(swiper){
+                    totalLength = $('#'+id+'-pagination').children().length
+                    pagination.removeClass('active').eq(1).addClass('active')
+                    // $('#'+id+'-pagination').children().css('background-color',sliderStyle1Swiper[id].pagination_color)
+                },
+                onSlideChangeEnd: function(swiper) {
+                    // var ul = $(elemClass).children(),
+                        // li = ul.children('li'),
+                        // activeLi = ul.children('.' + this.slideActiveClass).length > 0 ? ul.children('.' + this.slideActiveClass) : ul.children('.active'),
+                        // index = activeLi.index(),
+                    var index = swiper.activeIndex,
+                        // id = ul.attr('id'),
+                        // logo = $('.' + id + 'Button').children('img'),
+                        endIndex = index //index - 1;
+                    if (endIndex == -1) {
+                        endIndex = length - 1;
+                    } else if (endIndex == totalLength) {
+                        endIndex = 0;
+                    }
+                    pagination.removeClass('active').eq(endIndex).addClass('active');
+                    // li.eq(index).removeClass('active').end().eq(index).addClass('active');
+                }
             })
         },
     },
