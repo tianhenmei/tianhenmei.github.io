@@ -67,7 +67,7 @@ var app = new Vue({
         // this.getLocalData(147,'shenzhen')
     },
     methods:{
-    
+
         
 
 
