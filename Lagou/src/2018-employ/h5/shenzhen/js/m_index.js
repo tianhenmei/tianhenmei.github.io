@@ -21,23 +21,6 @@ var app = new Vue({
         ],
     },
     mounted:function(){
-        this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
-        var frompartner = getQueryString('frompartner');
-        this.partnerStatus = frompartner// ? true : false;
-        this.isAPP = this.from == 'ios' || this.from == 'android'
-        if(!this.isAPP){
-            this.floating.status = true;
-        }
-        this.browserType = this.getBrowserType()
-
-        this.fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size'));
-        this.tab.showWidth = this.getRemValue(this.tab.initWidth) * this.fontSize;
-        this.setTabWidth();
-
-        // this.addJSCSS();
-        // this.loadedJSCSS();
-        this.initWindowScrollEvent();
-
         // // 超凡雇主
         // this.getOnlyoneData(147)
         // // Star雇主

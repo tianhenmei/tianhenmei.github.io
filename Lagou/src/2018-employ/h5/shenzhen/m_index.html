@@ -96,13 +96,25 @@
         <div class="yh-center__tab" ref="yh-center__tab">
             <div class="tab__layer" :class="{'tab__layer--fixed':tab.fixed}">
                 <div class="tab__center" ref="yh-center__tab-center">
+                    <!--<swiper :options="tabOptions" class="tab__list clearfix" ref="tab__list"> 
+                        <swiper-slide v-for="(one,index) in tab.list"
+                            class="tab__li clearfix"
+                            :ref="'tab__li--'+index"
+                            @click="tabClickEvent(index,$event)"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(tab.count+index)" 
+                            :data-lg-tj-cid="null">
+                            <div class="bg"></div>
+                            <div class="name">{{one.name}}</div>
+                        </swiper-slide>
+                    </swiper>-->
                     <div class="tab__list clearfix"
                         ref="tab__list">
                         <ul class="tab__ul clearfix"
                             ref="tab"
                             :style="{
                                 'width':tab.width+'px',
-                                'left':tab.left+'px'
+                                'transform':'translate3d('+tab.left+'px,0,0)'
                             }"
                             :class="{'tab__ul--transition':tab.transition}"
                             @touchstart="tabStartEvent"
@@ -118,7 +130,6 @@
                                 :data-lg-tj-cid="null">
                                 <div class="bg"></div>
                                 <div class="name">{{one.name}}</div>
-                                <!-- <div class="icon"></div> -->
                             </li>
                         </ul>
                     </div>
@@ -307,10 +318,11 @@
                         <div class="top__list clearfix">
                             <div class="top__leaf" :class="'top__leaf--'+oindex"></div>
                             <swiper :options="getTopOptions(oindex)" class="top__list--swiper clearfix" :ref="'topSwiper'+oindex"> 
+                                <!--:class="{'active':topActiveIndex[oindex] == lindex}"-->
                                 <swiper-slide v-for="(list,lindex) in listOut"
                                     v-if="lindex < 5"
                                     class="top__one"
-                                    :class="{'active':topActiveIndex[oindex] == lindex}">
+                                    :style="setTopSlideStyle(oindex,lindex)">
                                     <div class="top__one__center">
                                         <div class="top_onet clearfix">
                                             <a class="logo"
@@ -416,11 +428,13 @@
         <div class="yh-center__mask" :class="{'hide':!tab.unfoldStatus}"></div>-->
     </div>
 </div>
-<script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
+<!-- <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script> -->
+<script type="text/javascript" src="../common/js/jquery.1.10.1.min.js?v=$version$"></script>
 <!-- <script type="text/javascript">
     var jQuery = jQuery.noConflict();
 </script> -->
-<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script>
+<!-- <script type="text/javascript" src="https://cdn.bootcss.com/vue/2.1.10/vue.js"></script> -->
+<script type="text/javascript" src="../common/js/vue2.1.10.js?v=$version$"></script>
 <script type="text/javascript" src="../common/js/swiper.min.js?v=$version$"></script>
 <script type="text/javascript" src="../common/js/vue-awesome-swiper.js?v=$version$"></script>
 <script type="text/javascript" src="../common/js/common.js?v=$version$"></script>

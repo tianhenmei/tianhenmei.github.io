@@ -1,693 +1,156 @@
 var commonMixin = {
-    data:{
-        fontSize:16,
-        from:'',
-        isAPP:false,
-        isiPhone:false,
-        logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
-        logoHrefO:'https://www.lgstatic.com/',
-        companyHref:{
-            one:"self.location=\'https://www.lagou.com/center/company_",
-            two:".html\';"
-        },
-        positionHref:{
-            one:"self.location=\'https://www.lagou.com/center/job_",
-            two:".html\';"
-        },
-        // tab 切换
-        tab:{
-            offsetTop:0,
-            height:0,
-            active_index:0,
-            count:10,
-            status:false,
-            click_status:false,
-            list:[{
-                name:'超凡雇主',
-                elem:'yh-center__onlyone',
+    data:function(){
+        return {
+            fontSize:16,
+            from:'',
+            isAPP:false,
+            isiPhone:false,
+            logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
+            logoHrefO:'https://www.lgstatic.com/',
+            companyHref:{
+                one:"self.location=\'https://www.lagou.com/center/company_",
+                two:".html\';"
+            },
+            positionHref:{
+                one:"self.location=\'https://www.lagou.com/center/job_",
+                two:".html\';"
+            },
+            // tab 切换
+            tab:{
                 offsetTop:0,
                 height:0,
-                index:0,
-                top:0
-            },{
-                name:'STAR雇主',
-                elem:'yh-center__employer',
-                offsetTop:0,
-                height:0,
-                index:1,
-                top:0
-            },{
-                name:'实力首选',
-                elem:'yh-center__local',
-                offsetTop:0,
-                height:0,
-                index:2,
-                top:0
-            },{
-                name:'潜力TOP榜',
-                elem:'yh-center__top',
-                offsetTop:0,
-                height:0,
-                index:3,
-                top:0
-            },{
-                name:'其他城市',
-                elem:'yh-center__others',
-                offsetTop:0,
-                height:0,
-                index:4,
-                top:0
-            }],
-            fixed:false,
-            shadow_status:false,
-            initWidth:750,
-            showWidth:750,
-            width:9999,
-            left:0,
-            transition:true,
-            start:{
-                x:0,
-                y:0
-            }
-        },
-        onlyone:{
-            count:1,
-            imgs:[
-                'images/onlyone-img-01.jpg',
-                'images/onlyone-img-01.jpg',
-                'images/onlyone-img-01.jpg'
-            ],
-            company:{
-                companyId:147,
-                companyShortName:"人人车",
-                companyName:"人人车",
-                logo:"",
-                city:"北京",
-                financeStage: "D轮及以上",
-                companySize: "2000人以上",
-                companyLabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                positionVo:[{
-                    "positionId":1,
-                    "positionName":"算法工程师",
-                    "salary":"15-40K"
+                active_index:0,
+                count:10,
+                status:false,
+                click_status:false,
+                list:[{
+                    name:'超凡雇主',
+                    elem:'yh-center__onlyone',
+                    offsetTop:0,
+                    height:0,
+                    index:0,
+                    top:0
                 },{
-                    "positionId":1,
-                    "positionName":"算法工程师",
-                    "salary":"15-40K"
+                    name:'STAR雇主',
+                    elem:'yh-center__employer',
+                    offsetTop:0,
+                    height:0,
+                    index:1,
+                    top:0
                 },{
-                    "positionId":1,
-                    "positionName":"算法工程师",
-                    "salary":"15-40K"
+                    name:'实力首选',
+                    elem:'yh-center__local',
+                    offsetTop:0,
+                    height:0,
+                    index:2,
+                    top:0
                 },{
-                    "positionId":1,
-                    "positionName":"算法工程师",
-                    "salary":"15-40K"
+                    name:'潜力TOP榜',
+                    elem:'yh-center__top',
+                    offsetTop:0,
+                    height:0,
+                    index:3,
+                    top:0
+                },{
+                    name:'其他城市',
+                    elem:'yh-center__others',
+                    offsetTop:0,
+                    height:0,
+                    index:4,
+                    top:0
                 }],
-            }
-        },
-        employerActiveIndex:0,
-        employerOptions:{
-            // autoplay:true,//等同于以下设置
-            autoplay: {
-                delay: 3000,
-                stopOnLastSlide: false,
-                disableOnInteraction: false,
+                fixed:false,
+                shadow_status:false,
+                initWidth:750,
+                showWidth:750,
+                width:9999,
+                left:0,
+                transition:true,
+                start:{
+                    x:0,
+                    y:0
+                }
             },
-            speed:500,
-            loop:true,
-            initialSlide:0,
-            // pagination:'.employer-pagination',
-            // paginationType:'custom',
-            // paginationElement:'div',
-            // paginationClickable:true,
-            // bulletClass : 'employer-p',
-            // bulletActiveClass : 'active'
-            on:{
-                slideChangeTransitionStart:function(){
-                    var sapp = app || this.$el[0].__vue__.$root
-                    sapp.changeEmployerActiveIndex(this.activeIndex)
+            tabOptions:{
+                wrapperClass:"tab__ul",
+                slideClass:"tab__li",
+                // slideActiveClass:"tab__li--active",
+                slidesPerView: 'auto',
+                freeMode: true,
+                freeModeMomentum:true,
+                // direction: 'vertical',
+                setWrapperSize: true,
+                resistance:true,
+                resistanceRatio:0,
+                width:this.getTabWidth()
+            },
+            onlyone:{
+                count:1,
+                imgs:[
+                    'images/onlyone-img-01.jpg',
+                    'images/onlyone-img-01.jpg',
+                    'images/onlyone-img-01.jpg'
+                ],
+                company:{
+                    companyId:147,
+                    companyShortName:"人人车",
+                    companyName:"人人车",
+                    logo:"",
+                    city:"北京",
+                    financeStage: "D轮及以上",
+                    companySize: "2000人以上",
+                    companyLabel: "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    positionVo:[{
+                        "positionId":1,
+                        "positionName":"算法工程师",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"算法工程师",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"算法工程师",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"算法工程师",
+                        "salary":"15-40K"
+                    }],
+                }
+            },
+            employerActiveIndex:0,
+            employerOptions:{
+                // autoplay:true,//等同于以下设置
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
                 },
-            }
-            // autoplay:3000,
-            // speed:500,
-            // loop:true,
-            // pagination:'.img-pagination',
-            // bulletClass : 'img-p',
-            // bulletActiveClass : 'active'
-        },
-        employerCount:50,
-        employerList:[{
-            "companyId": 312260,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "拉勾网",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leaderName":"陈琪",
-            "leaderRemark":"CEO",
-            "leaderPhoto":"",
-            "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
+                speed:500,
+                loop:true,
+                initialSlide:0,
+                // pagination:'.employer-pagination',
+                // paginationType:'custom',
+                // paginationElement:'div',
+                // paginationClickable:true,
+                // bulletClass : 'employer-p',
+                // bulletActiveClass : 'active'
+                on:{
+                    slideChangeTransitionStart:function(){
+                        var sapp = app || this.$el[0].__vue__.$root
+                        sapp.changeEmployerActiveIndex(this.activeIndex)
+                    },
                 }
-            ],
-        },{
-            "companyId": 312260,
-            "financeStage": "天使轮",
-            "logo": "i/image2/M01/57/D4/CgotOVsgz3mALUvHAACcv0aZqbQ708.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "通天王",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "深圳",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "150-500人",
-            "industryfield": "医疗健康、移动互联网",
-            "companyLabel": "",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leaderName":"陈琪",
-            "leaderRemark":"CEO",
-            "leaderPhoto":"",
-            "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 312260,
-            "financeStage": "C轮",
-            "logo": "i/image/M00/18/16/CgpEMlj4TmSAdFACAAHQKMB7LuA209.jpg",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "随手科技",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "深圳",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,金融",
-            "companyLabel": "带薪年假,弹性工作时间,年度旅游,岗位晋升,工作稳定,定期体检,六险一金,牛人团队,理念前沿",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leaderName":"谷风",
-            "leaderRemark":"CEO",
-            "leaderPhoto":"",
-            "oneWord":"科技金融行业领头羊，<br/>携3亿用户寻找敲钟小伙伴”",
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 312260,
-            "financeStage": "D轮及以上",
-            "logo": "i/image2/M00/26/EF/CgoB5lof5AuADFWJAAAK3VU74GU045.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "快手",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "500-2000人",
-            "industryfield": "移动互联网",
-            "companyLabel": "股票期权,弹性工作,定期体检,岗位晋升,领导好,扁平管理,六险一金,免费午餐晚餐,免费健身房",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leaderName":"华仔",
-            "leaderRemark":"CEO",
-            "leaderPhoto":"",
-            "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        }],
-        localCount:1000,
-        localList:[{
-            "companyId": 312260,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "拉勾网",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                // autoplay:3000,
+                // speed:500,
+                // loop:true,
+                // pagination:'.img-pagination',
+                // bulletClass : 'img-p',
+                // bulletActiveClass : 'active'
             },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 15265,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "我来贷WeLab",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 1575,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "百度",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 38079,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "GYENNO",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 312260,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "拉勾网",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 15265,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "我来贷WeLab",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 1575,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "百度",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        },{
-            "companyId": 38079,
-            "financeStage": "不需要融资",
-            "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
-            "companyName": "百度在线网络技术（北京）有限公司",
-            "companyShortName": "GYENNO",
-            "companyfeatures": "用科技让复杂的世界更简单",
-            "city": "北京",
-            "createtime": "Oct 13, 2013 3:49:33 PM",
-            "isenable": 1,
-            "approve": 2,
-            "companySize": "2000人以上",
-            "industryfield": "移动互联网,数据服务",
-            "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-            "customerlabel": "2787",
-            "approvemanid": 3634,
-            "approvemanemail": "yelin@baidu.com",
-            "createmanid": 10747,
-            "createmanemail": "zhubaining@baidu.com",
-            "companylng": "116.2956171",
-            "companylat": "40.04873954",
-            "companyaddress": "百度大厦",
-            "displayContactNum": 20,
-            "leader":{
-                "name":"陈琪",
-                "position":"CEO",
-                "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
-            },
-            "positionVo":[
-                {
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"设计",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                },{
-                    "positionId":1,
-                    "positionName":"产品经理",
-                    "salary":"15-40K"
-                }
-            ],
-        }],
-        topCount:3000,
-        topActiveIndex:[0,0,0,0],
-        topTime:Date.now(),
-        topList:[
-            [{
+            employerCount:50,
+            employerList:[{
                 "companyId": 312260,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
@@ -710,7 +173,10 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leaderName":"陈琪",
+                "leaderRemark":"CEO",
+                "leaderPhoto":"",
+                "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
                 "positionVo":[
                     {
                         "positionId":1,
@@ -719,6 +185,181 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+            },{
+                "companyId": 312260,
+                "financeStage": "天使轮",
+                "logo": "i/image2/M01/57/D4/CgotOVsgz3mALUvHAACcv0aZqbQ708.png",
+                "companyName": "百度在线网络技术（北京）有限公司",
+                "companyShortName": "通天王",
+                "companyfeatures": "用科技让复杂的世界更简单",
+                "city": "深圳",
+                "createtime": "Oct 13, 2013 3:49:33 PM",
+                "isenable": 1,
+                "approve": 2,
+                "companySize": "150-500人",
+                "industryfield": "医疗健康、移动互联网",
+                "companyLabel": "",
+                "customerlabel": "2787",
+                "approvemanid": 3634,
+                "approvemanemail": "yelin@baidu.com",
+                "createmanid": 10747,
+                "createmanemail": "zhubaining@baidu.com",
+                "companylng": "116.2956171",
+                "companylat": "40.04873954",
+                "companyaddress": "百度大厦",
+                "displayContactNum": 20,
+                "leaderName":"陈琪",
+                "leaderRemark":"CEO",
+                "leaderPhoto":"",
+                "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+            },{
+                "companyId": 312260,
+                "financeStage": "C轮",
+                "logo": "i/image/M00/18/16/CgpEMlj4TmSAdFACAAHQKMB7LuA209.jpg",
+                "companyName": "百度在线网络技术（北京）有限公司",
+                "companyShortName": "随手科技",
+                "companyfeatures": "用科技让复杂的世界更简单",
+                "city": "深圳",
+                "createtime": "Oct 13, 2013 3:49:33 PM",
+                "isenable": 1,
+                "approve": 2,
+                "companySize": "2000人以上",
+                "industryfield": "移动互联网,金融",
+                "companyLabel": "带薪年假,弹性工作时间,年度旅游,岗位晋升,工作稳定,定期体检,六险一金,牛人团队,理念前沿",
+                "customerlabel": "2787",
+                "approvemanid": 3634,
+                "approvemanemail": "yelin@baidu.com",
+                "createmanid": 10747,
+                "createmanemail": "zhubaining@baidu.com",
+                "companylng": "116.2956171",
+                "companylat": "40.04873954",
+                "companyaddress": "百度大厦",
+                "displayContactNum": 20,
+                "leaderName":"谷风",
+                "leaderRemark":"CEO",
+                "leaderPhoto":"",
+                "oneWord":"科技金融行业领头羊，<br/>携3亿用户寻找敲钟小伙伴”",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+            },{
+                "companyId": 312260,
+                "financeStage": "D轮及以上",
+                "logo": "i/image2/M00/26/EF/CgoB5lof5AuADFWJAAAK3VU74GU045.png",
+                "companyName": "百度在线网络技术（北京）有限公司",
+                "companyShortName": "快手",
+                "companyfeatures": "用科技让复杂的世界更简单",
+                "city": "北京",
+                "createtime": "Oct 13, 2013 3:49:33 PM",
+                "isenable": 1,
+                "approve": 2,
+                "companySize": "500-2000人",
+                "industryfield": "移动互联网",
+                "companyLabel": "股票期权,弹性工作,定期体检,岗位晋升,领导好,扁平管理,六险一金,免费午餐晚餐,免费健身房",
+                "customerlabel": "2787",
+                "approvemanid": 3634,
+                "approvemanemail": "yelin@baidu.com",
+                "createmanid": 10747,
+                "createmanemail": "zhubaining@baidu.com",
+                "companylng": "116.2956171",
+                "companylat": "40.04873954",
+                "companyaddress": "百度大厦",
+                "displayContactNum": 20,
+                "leaderName":"华仔",
+                "leaderRemark":"CEO",
+                "leaderPhoto":"",
+                "oneWord":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”",
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
+                        "salary":"15-40K"
+                    }
+                ],
+            }],
+            localCount:1000,
+            localList:[{
+                "companyId": 312260,
+                "financeStage": "不需要融资",
+                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                "companyName": "百度在线网络技术（北京）有限公司",
+                "companyShortName": "拉勾网",
+                "companyfeatures": "用科技让复杂的世界更简单",
+                "city": "北京",
+                "createtime": "Oct 13, 2013 3:49:33 PM",
+                "isenable": 1,
+                "approve": 2,
+                "companySize": "2000人以上",
+                "industryfield": "移动互联网,数据服务",
+                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                "customerlabel": "2787",
+                "approvemanid": 3634,
+                "approvemanemail": "yelin@baidu.com",
+                "createmanid": 10747,
+                "createmanemail": "zhubaining@baidu.com",
+                "companylng": "116.2956171",
+                "companylat": "40.04873954",
+                "companyaddress": "百度大厦",
+                "displayContactNum": 20,
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
+                "positionVo":[
+                    {
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -749,7 +390,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -758,6 +403,10 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -788,7 +437,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -797,6 +450,10 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -827,7 +484,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -836,6 +497,10 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -866,7 +531,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -879,42 +548,6 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            }],
-            [{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -945,7 +578,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -954,6 +591,10 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"设计",
+                        "salary":"15-40K"
+                    },{
+                        "positionId":1,
+                        "positionName":"产品经理",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -984,7 +625,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -997,198 +642,6 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 38079,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyName": "GYENNO",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            }],
-            [{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 15265,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "我来贷WeLab",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 1575,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "百度",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -1219,7 +672,11 @@ var commonMixin = {
                 "companylat": "40.04873954",
                 "companyaddress": "百度大厦",
                 "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                "leader":{
+                    "name":"陈琪",
+                    "position":"CEO",
+                    "words":"公司高速发展中，<br/>欢迎有趣的小伙伴<br/>们加入！”"
+                },
                 "positionVo":[
                     {
                         "positionId":1,
@@ -1232,41 +689,6 @@ var commonMixin = {
                     },{
                         "positionId":1,
                         "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
                         "salary":"15-40K"
                     },{
                         "positionId":1,
@@ -1275,253 +697,871 @@ var commonMixin = {
                     }
                 ],
             }],
-            [{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 15265,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "我来贷WeLab",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 1575,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "百度",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 38079,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "GYENNO",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            },{
-                "companyId": 312260,
-                "financeStage": "不需要融资",
-                "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
-                "companyName": "百度在线网络技术（北京）有限公司",
-                "companyShortName": "拉勾网",
-                "companyfeatures": "用科技让复杂的世界更简单",
-                "city": "北京",
-                "createtime": "Oct 13, 2013 3:49:33 PM",
-                "isenable": 1,
-                "approve": 2,
-                "companySize": "2000人以上",
-                "industryfield": "移动互联网,数据服务",
-                "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
-                "customerlabel": "2787",
-                "approvemanid": 3634,
-                "approvemanemail": "yelin@baidu.com",
-                "createmanid": 10747,
-                "createmanemail": "zhubaining@baidu.com",
-                "companylng": "116.2956171",
-                "companylat": "40.04873954",
-                "companyaddress": "百度大厦",
-                "displayContactNum": 20,
-                "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
-                "positionVo":[
-                    {
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"设计",
-                        "salary":"15-40K"
-                    },{
-                        "positionId":1,
-                        "positionName":"产品经理",
-                        "salary":"15-40K"
-                    }
-                ],
-            }]
-        ],
-        topOptions:{
-            // slideClass : 'top__one',
-            slideActiveClass : 'active',
-            slidePrevClass : 'prev',
-            slideNextClass : 'next',
-            initialSlide:1,
-            autoplay:false,//等同于以下设置
-            speed:500,
-            loop:false,
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true,
-            // 设置slider容器能够同时显示的slides数量(carousel模式)。
-            slidesPerView:1,
-            coverflowEffect: {
-                rotate: 0,  // rotate：slide做3d旋转时Y轴的旋转角度。默认50。
-                stretch: 300,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
-                depth: 170,  // depth：slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
-                // modifier：depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
-                modifier: 1,  
-                // slideShadows：开启slide阴影。默认 true。
-                slideShadows:false
+            topCount:3000,
+            topActiveIndex:[1,1,1,1],
+            topTime:Date.now(),
+            topList:[
+                [{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 15265,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "我来贷WeLab",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 1575,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "百度",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 38079,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "GYENNO",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                }],
+                [{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 15265,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "我来贷WeLab",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 1575,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "百度",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 38079,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyName": "GYENNO",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                }],
+                [{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 15265,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "我来贷WeLab",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 1575,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "百度",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 38079,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "GYENNO",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "companyLabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                }],
+                [{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 15265,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/5B/5A/Cgp3O1fg3uWAEuuhAABBDg7PalQ660.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "我来贷WeLab",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 1575,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "百度",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 38079,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/03/BD/CgqKkVbC5DyAYlIvAAAMhxAJc1Y825.jpg",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "GYENNO",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                },{
+                    "companyId": 312260,
+                    "financeStage": "不需要融资",
+                    "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
+                    "companyName": "百度在线网络技术（北京）有限公司",
+                    "companyShortName": "拉勾网",
+                    "companyfeatures": "用科技让复杂的世界更简单",
+                    "city": "北京",
+                    "createtime": "Oct 13, 2013 3:49:33 PM",
+                    "isenable": 1,
+                    "approve": 2,
+                    "companySize": "2000人以上",
+                    "industryfield": "移动互联网,数据服务",
+                    "otherlabel": "股票期权,弹性工作,五险一金,免费班车,岗位晋升,节日礼物,大数据,广告,工程师文化",
+                    "customerlabel": "2787",
+                    "approvemanid": 3634,
+                    "approvemanemail": "yelin@baidu.com",
+                    "createmanid": 10747,
+                    "createmanemail": "zhubaining@baidu.com",
+                    "companylng": "116.2956171",
+                    "companylat": "40.04873954",
+                    "companyaddress": "百度大厦",
+                    "displayContactNum": 20,
+                    "words":'“公司高速发展中， 欢迎有趣的小伙伴们加入！” ',
+                    "positionVo":[
+                        {
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"设计",
+                            "salary":"15-40K"
+                        },{
+                            "positionId":1,
+                            "positionName":"产品经理",
+                            "salary":"15-40K"
+                        }
+                    ],
+                }]
+            ],
+            topOptions:{
+                // slideClass : 'top__one',
+                slideActiveClass : 'active',
+                slidePrevClass : 'prev',
+                slideNextClass : 'next',
+                autoplay:false,//等同于以下设置
+                speed:500,
+                loop:false,
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                // 设置slider容器能够同时显示的slides数量(carousel模式)。
+                slidesPerView: 1,
+                initialSlide:1,
+                autoplayDisableOnInteraction: false,
+                coverflowEffect: {
+                    rotate: 0,  // rotate：slide做3d旋转时Y轴的旋转角度。默认50。
+                    stretch: 300,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
+                    depth: 170,  // depth：slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
+                    // modifier：depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
+                    modifier: 1,  
+                    // slideShadows：开启slide阴影。默认 true。
+                    slideShadows:false
+                },
+                pagination:{
+                    el: '.top__pagination--0',
+                    bulletClass : 'bullet',
+                    bulletActiveClass: 'active'
+                },
+                // on:{
+                //     slidePrevTransitionStart:function(){
+                //         var sapp = app || this.$el[0].__vue__.$root
+                //         sapp.topSlidePrevTransition(this.$el[0].__vue__.$children,this.previousIndex)
+                //     },
+                //     slideNextTransitionStart:function(){
+                //         var sapp = app || this.$el[0].__vue__.$root
+                //         sapp.topSlideNextTransition(this.$el[0].__vue__.$children,this.activeIndex)
+                //     }
+                // }
             },
-            pagination:{
-                el: '.top__pagination--0',
-                bulletClass : 'bullet',
-                bulletActiveClass: 'active'
+            othersCount:5000,
+            corperateCount:6000,
+            testStatus:false,
+            partnerStatus:false,
+            browserType:0,  // 浏览器类型
+            loadedCount:0,  // js、css加载数量
+            employerAnimation:{},
+            floating:{
+                count:'f000',
+                status:false,
             },
-            // on:{
-            //     slidePrevTransitionStart:function(){
-            //         var sapp = app || this.$el[0].__vue__.$root
-            //         sapp.topSlidePrevTransition(this.$el[0].__vue__.$children,this.previousIndex)
-            //     },
-            //     slideNextTransitionStart:function(){
-            //         var sapp = app || this.$el[0].__vue__.$root
-            //         sapp.topSlideNextTransition(this.$el[0].__vue__.$children,this.activeIndex)
-            //     }
-            // }
-        },
-        othersCount:5000,
-        corperateCount:6000,
-        testStatus:false,
-        partnerStatus:false,
-        browserType:0,  // 浏览器类型
-        loadedCount:0,  // js、css加载数量
-        employerAnimation:{},
-        floating:{
-            count:'f000',
-            status:false,
-        },
+        }
+    },
+    mounted:function(){
+        this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
+        var frompartner = getQueryString('frompartner');
+        this.partnerStatus = frompartner// ? true : false;
+        this.isAPP = this.from == 'ios' || this.from == 'android'
+        if(!this.isAPP){
+            this.floating.status = true;
+        }
+        this.browserType = this.getBrowserType()
+
+        this.fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size'));
+        this.tab.showWidth = this.getRemValue(this.tab.initWidth) * this.fontSize;
+
+        this.setTabWidth();
+        // var self = this
+        // this.$nextTick(function(){
+        //     $('.tab__ul')[0].style.width = self.getTabWidth()+'px'
+        // })
+        
+
+        // this.addJSCSS();
+        // this.loadedJSCSS();
+        this.initWindowScrollEvent();
     },
     methods:{
         setLogoHref:function(logo){
@@ -1572,16 +1612,48 @@ var commonMixin = {
                 this.employerActiveIndex = (index-1) % this.employerList.length
             }
         },
+        changeTopActiveIndex:function(index,activeIndex){
+            this.topActiveIndex = this.topActiveIndex.map(function(value,key){
+                if(index == key){
+                    return activeIndex
+                }
+                return value
+            })
+        },
+        setTopSlideStyle:function(pindex,oindex){
+            // var currentIndex = this.topActiveIndex[pindex]
+            // return {
+            //     'opacity':currentIndex == oindex ? 1 : (currentIndex-1 == oindex || currentIndex+1 == oindex) ? 0.8 : 0
+            // }
+        },
         topCurrent:function(pindex){
             return this.topList[pindex][this.topActiveIndex[pindex]]
         },
         topSlidePrevTransition:function(children,previousIndex){
 
         },
-        topSlideNextTransition:function(children,previousIndex){
-            if(previousIndex > 0){
+        topSlideNextTransitionStart:function(children,pindex,previousIndex){
+            if(previousIndex > 0 && previousIndex < children.length - 2){
                 var elem = children[previousIndex-1].$el
-                elem.style.opacity = 0
+                elem.className += ' prevToNormal'
+            }
+        },
+        topSlideNextTransitionEnd:function(children,pindex,previousIndex){
+            if(previousIndex > 0 && previousIndex < children.length - 2){
+                var elem = children[previousIndex-1].$el
+                elem.className = elem.className.replace(' prevToNormal','')
+            }
+        },
+        topSlidePrevTransitionStart:function(children,pindex,previousIndex){
+            if(previousIndex < children.length - 1 && previousIndex > 1){
+                var elem = children[previousIndex+1].$el
+                elem.className += ' prevToNormal'
+            }
+        },
+        topSlidePrevTransitionEnd:function(children,pindex,previousIndex){
+            if(previousIndex < children.length - 1 && previousIndex > 1){
+                var elem = children[previousIndex+1].$el
+                elem.className = elem.className.replace(' prevToNormal','')
             }
         },
         getCorperateRow:function(index){
@@ -1593,6 +1665,28 @@ var commonMixin = {
                 el: '.top__pagination--'+index,
                 bulletClass : 'bullet',
                 bulletActiveClass: 'active'
+            }
+            options.on = {
+                slideChangeTransitionStart:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.changeTopActiveIndex(index,this.activeIndex)
+                },
+                slideNextTransitionStart:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.topSlideNextTransitionStart(this.$el[0].__vue__.$children,index,this.previousIndex)
+                },
+                slideNextTransitionEnd:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.topSlideNextTransitionEnd(this.$el[0].__vue__.$children,index,this.previousIndex)
+                },
+                slidePrevTransitionStart:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.topSlidePrevTransitionStart(this.$el[0].__vue__.$children,index,this.previousIndex)
+                },
+                slidePrevTransitionEnd:function(){
+                    var sapp = app || this.$el[0].__vue__.$root
+                    sapp.topSlidePrevTransitionEnd(this.$el[0].__vue__.$children,index,this.previousIndex)
+                },
             }
             return options
         },
@@ -1679,13 +1773,20 @@ var commonMixin = {
         /***********************************
          **  tab导航栏函数
          */
+        getTabWidth:function(){
+            // 211
+            var fontSize = parseFloat(this.getComputedValue(document.documentElement,'font-size')),
+                length = 5,
+                width = 211 * length
+            return Math.ceil(width / (750 / 16) * fontSize)
+        },
         setTabWidth:function(){
-            var list = this.$refs['tab'].children,
+            var list = this.$refs['tab'].children,//list = this.tab.list,//list = this.$refs['tab'].children,
                 i = 0,
                 total = 0,
                 one = 0;
             for(i = 0; i < list.length; i++){
-                one = this.getPointOuterWidth(list[i]);
+                one = this.getPointOuterWidth(list[i]);//(this.$refs['tab__li--'+i][0].$el)//(list[i]);
                 total += Math.ceil(one);
             }
             this.tab.width = total

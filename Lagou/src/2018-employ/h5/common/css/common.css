@@ -932,6 +932,21 @@ html, body {
   .yh-center__top .top__one.next,
   .yh-center__top .top__one.prev {
     opacity: 0.8; }
+  .yh-center__top .top__one.prevToNormal {
+    -webkit-animation: prevToNormal 0.5s both linear;
+            animation: prevToNormal 0.5s both linear; }
+
+@-webkit-keyframes prevToNormal {
+  0% {
+    opacity: 0.8; }
+  100% {
+    opacity: 0; } }
+
+@keyframes prevToNormal {
+  0% {
+    opacity: 0.8; }
+  100% {
+    opacity: 0; } }
   .yh-center__top .top__one__center {
     width: 10.19733rem;
     margin: 0 auto; }

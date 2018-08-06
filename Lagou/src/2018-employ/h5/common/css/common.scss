@@ -1094,7 +1094,7 @@ html,body {
         position:relative;
         background:url("../images/top-one-bg.png") no-repeat center top;
         background-size:rem(525) rem(851);
-        opacity:0
+        opacity:0;
     }
     .top__one.active {
         opacity:1;
@@ -1102,6 +1102,17 @@ html,body {
     .top__one.next,
     .top__one.prev {
         opacity:0.8;
+    }
+    .top__one.prevToNormal {
+        animation:prevToNormal 0.5s both linear;
+    }
+    @keyframes prevToNormal {
+        0% {
+            opacity:0.8;
+        }
+        100% {
+            opacity:0;
+        }
     }
     .top__one__center {
         width:rem(478);
