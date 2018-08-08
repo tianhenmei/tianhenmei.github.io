@@ -1012,11 +1012,22 @@ html,body {
 .yh-center__bottom {
     width:100%;
     height:auto;
-    background:url('../images/bottom-bg.png') no-repeat center bottom;
+    background:url('../images/bottom-bg.png') no-repeat center top;
+    position:relative;
+    .bottom__leaf {
+        width:100%;
+        height:1177px;
+        background:url('../images/bottom-leaf.png') no-repeat center bottom;
+        position:absolute;
+        left:0;
+        bottom:0;
+    }
     .bottom__center {
         width:1066px;
         margin:0 auto;
         padding:58px 0 73px 0;
+        position:relative;
+        z-index:2;
     }
     .others {
 
@@ -1051,7 +1062,7 @@ html,body {
     }
     .others__one--4,
     .others__one--5 {
-        top:274px;
+        top:270px;
     }
     .others__one--6,
     .others__one--7 {

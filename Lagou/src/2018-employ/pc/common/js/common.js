@@ -11,6 +11,9 @@ var commonMixin = {
             one:"self.location=\'https://www.lagou.com/center/job_",
             two:".html\';"
         },
+        othersHref:"http://0.0.0.0:8181/src/2018-employ/pc/",
+        // othersHref:"http://tianhenmei.github.io/Lagou/src/2018-employ/pc/",
+        // othersHref:"https://activity.lagou.com/activity/dist/2018-employ/pc/",
         // tab 切换
         tab:{
             count:10,
@@ -1481,7 +1484,10 @@ var commonMixin = {
         partnerStatus:false,
         browserType:0,  // 浏览器类型
         loadedCount:0,  // js、css加载数量
-        employerAnimation:{},
+        employerAnimation:{
+            onlyone:null,
+            employer:null
+        },
         floating:{
             count:'f000',
             status:false,
@@ -1504,6 +1510,9 @@ var commonMixin = {
             }
         },
         labelList:function(labels){
+            if(Object.prototype.toString.call(labels) === "[object Array]") {
+                return labels
+            }
             var arr = (labels ? labels : '').split(/[,.、。|·]/g),
                 brr = [],
                 i = 0
@@ -1562,11 +1571,11 @@ var commonMixin = {
                     if(list[i].parent){
                         parent = list[i].parent;
                         for(j = 0; j < parent.length; j++){
-                            top += this.tab.list[parent[j]].offsetTop;
+                            top += this.$refs[parent[j]].offsetTop//this.tab.list[parent[j]].offsetTop;
                             // height += this.tab.list[parent[j]].height;
                         }
-                        // top += elem.offsetTop;
-                        top += this.getPX(list[i].top)
+                        // top += this.getPX(list[i].top)
+                        top += elem.offsetTop;
                     }else{
                         top += elem.offsetTop;
                     }
@@ -1630,6 +1639,15 @@ var commonMixin = {
                 value = width + left + right;
             return value;
         },
+        getRemValue:function(value){
+            return value / (750 / 16)
+        },
+        getPX:function(value){
+            return value / (750 / 16) * this.fontSize
+        },
+        getRem:function(n){
+            return n/(750/16) +'rem'
+        },
         addCssByLink:function(url, callback) {
             var doc = document;
             var link = doc.createElement("link");
@@ -1689,6 +1707,188 @@ var commonMixin = {
             }
             return browserType;
         },
+        addJSCSS:function(){
+            switch (this.browserType) {
+                case 0:  // Opera浏览器
+                case 1:  // Firefox浏览器
+                case 2:  // Chrome浏览器
+                case 3:  // Safari浏览器
+                    this.addCssByLink('https://www.lgstatic.com/topic/css/swiper.min.css', this.loadedJSCSS);
+                    this.addScript('https://www.lgstatic.com/topic/js/swiper.min.js', this.loadedJSCSS);
+                    break;
+                case 6:  // IE浏览器
+                    animationStatus = true;
+                    // lunAnimation(browserType);
+                    break;
+                case 4:  // IE9.0及以上浏览器
+                case 5:
+                default:
+                    this.addCssByLink('https://www.lgstatic.com/topic/css/idangerous.swiper.css', this.loadedJSCSS);
+                    this.addScript('https://www.lgstatic.com/topic/js/idangerous.swiper.min.js', this.loadedJSCSS);
+                    break;
+            }
+        },
+        loadedJSCSS:function(){
+            this.loadedCount++;
+
+            if (this.loadedCount == 2) {
+                this.addEmployerAnimation();
+                this.addRichAnimation();
+                this.addFirstAnimation();
+                this.addFirstGuestAnimation();
+            }
+        },
+        addEmployerAnimation:function(){
+            this.employerAnimation.employer = new Swiper('#employerSwiper', {
+                // wrapperClass:"swiper-wrapper",
+                // slideClass:"swiper-slide",
+                // autoplay:true,//等同于以下设置
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                speed:500,
+                loop:true,
+                initialSlide:0,
+                // pagination:'.employer-pagination',
+                // paginationType:'custom',
+                // paginationElement:'div',
+                // paginationClickable:true,
+                // bulletClass : 'employer-p',
+                // bulletActiveClass : 'active'
+                on:{
+                    slideChangeTransitionStart:function(){
+                        var sapp = app || this.$el[0].__vue__.$root
+                        sapp.changeEmployerActiveIndex(this.activeIndex)
+                    },
+                }
+                // autoplay:3000,
+                // speed:500,
+                // loop:true,
+                // pagination:'.img-pagination',
+                // bulletClass : 'img-p',
+                // bulletActiveClass : 'active'
+            })
+        },
+        addOnlyoneAnimation:function(){
+            this.employerAnimation.onlyone = new Swiper('#img-list', {
+                // autoplay:true,//等同于以下设置
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                speed:500,
+                loop:true,
+                pagination: {
+                    el: '.img-pagination',
+                    bulletClass : 'img-p',
+                    bulletActiveClass: 'active'
+                }
+                // pagination:'.img-pagination',
+                // bulletClass : 'img-p',
+                // bulletActiveClass : 'active'
+            })
+        },
+        initMoveAnimation:function(id,wrapperClass,slideClass){
+            var self = this,
+                pagination = null,
+                length = 0,
+                totalLength = 3,
+                data = this.employerAnimation[id],
+                pstatus = data.pagination;
+            if(pstatus){
+                pagination = $('#'+id+'-pagination').children();
+                length = data.length;//pagination.length
+            }else {
+                length = data.length
+            }
+            
+            data.swiper = new Swiper('#'+id, {
+                wrapperClass : wrapperClass,
+                slideClass : slideClass,
+                autoplay: data.autoplay ? 3000 : 0,//可选选项，自动滑动
+                loop : true,
+                autoplayDisableOnInteraction:false,
+                direction:data.direction ? data.direction : 'horizontal',
+                // loopedSlides:1,
+                pagination : '#'+id+'-pagination',
+                paginationClickable:true,
+                bulletClass:'dot',
+                bulletActiveClass:'dot--active',
+                prevButton:'#'+id+'-arrow-left',
+                nextButton:'#'+id+'-arrow-right',
+                onInit:function(swiper){
+                    if(pstatus){
+                       
+                    }
+                },
+                onSlideChangeEnd: function(swiper) {
+                    var index = swiper.activeIndex,
+                        endIndex = index - 1;
+                    if (endIndex == -1) {
+                        endIndex = length - 1;
+                    } else if (endIndex == totalLength) {
+                        endIndex = 0;
+                    }
+                }
+            })
+        },
+        initZoomInAnimation:function(id){
+            var pagination = $('#'+id+'-pagination').children(),
+                length = pagination.length,
+                totalLength = 3
+            this.employerAnimation[id].swiper = new Swiper('#'+id+'-container', {
+                wrapperClass : 'yh-slider-content',
+                slideClass : 'yh-slider-slide',
+                autoplay: sliderStyle1Swiper[id].autoplay ? 3000 : 0,//可选选项，自动滑动
+                bulletClass:'one',
+                bulletActiveClass:'active',
+                prevButton:'#'+id+'-arrow-left',
+                nextButton:'#'+id+'-arrow-right',
+                mode: 'horizontal',
+                // paginationClickable: true,
+                effect: 'coverflow',
+                grabCursor: true,
+                centeredSlides: true,
+                slidesPerView: 1.1,
+                // slidesPerView: 1.56,
+                initialSlide: 1,
+                autoplayDisableOnInteraction: false,
+                // prevButton: '.' + id + 'Pre',
+                // nextButton: '.' + id + 'Next',
+                coverflow: {
+                    rotate: 0,
+                    stretch: 230,
+                    depth: 300,
+                    modifier: 1,
+                    slideShadows: true
+                },
+                onInit:function(swiper){
+                    totalLength = $('#'+id+'-pagination').children().length
+                    pagination.removeClass('active').eq(1).addClass('active')
+                    // $('#'+id+'-pagination').children().css('background-color',sliderStyle1Swiper[id].pagination_color)
+                },
+                onSlideChangeEnd: function(swiper) {
+                    // var ul = $(elemClass).children(),
+                        // li = ul.children('li'),
+                        // activeLi = ul.children('.' + this.slideActiveClass).length > 0 ? ul.children('.' + this.slideActiveClass) : ul.children('.active'),
+                        // index = activeLi.index(),
+                    var index = swiper.activeIndex,
+                        // id = ul.attr('id'),
+                        // logo = $('.' + id + 'Button').children('img'),
+                        endIndex = index //index - 1;
+                    if (endIndex == -1) {
+                        endIndex = length - 1;
+                    } else if (endIndex == totalLength) {
+                        endIndex = 0;
+                    }
+                    pagination.removeClass('active').eq(endIndex).addClass('active');
+                    // li.eq(index).removeClass('active').end().eq(index).addClass('active');
+                }
+            })
+        },
         ismobile:function(){
             var u = navigator.userAgent, app = navigator.appVersion;
             if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
@@ -1706,6 +1906,11 @@ var commonMixin = {
             }else{
                 return 'android';
             }
+        },
+        setEmployerOneWords:function(words){
+            if(!/'"”’/g.test(words)){
+                return words + ' ”'
+            }            
         },
         getAjaxData:function(url,callback,params){
             $.ajax({
@@ -1731,14 +1936,20 @@ var commonMixin = {
             var self = this
             this.getAjaxData('activityapi/star101/superEmployer',function(content){
                 self.onlyone.company = content
+                self.$nextTick(function(){
+                    self.addOnlyoneAnimation()
+                })
             },{
                 templateId:templateId
             })
         },
         getEmployerData:function(templateId){
             var self = this
-            this.getAjaxData('activityapi/star101/startEmployer',function(content){
+            this.getAjaxData('activityapi/star101/starEmployer',function(content){
                 self.employerList = content
+                self.$nextTick(function(){
+                    self.addEmployerAnimation()
+                })
             },{
                 templateId:templateId
             })
@@ -1747,6 +1958,21 @@ var commonMixin = {
             var self = this
             this.getAjaxData('activityapi/star101/companyList',function(content){
                 self.localList = content
+            },{
+                templateId:templateId,
+                city:city
+            })
+        },
+        getTopData:function(templateId,city){
+            var self = this
+            this.getAjaxData('activityapi/star101/companyList',function(content){
+                var arr = [],
+                    i = 0
+                    length = Math.ceil(content.length / 5)
+                for(i = 0; i < length; i++){
+                    arr.push(content.slice(i*5,(i+1)*5))
+                }
+                self.topList = arr
             },{
                 templateId:templateId,
                 city:city

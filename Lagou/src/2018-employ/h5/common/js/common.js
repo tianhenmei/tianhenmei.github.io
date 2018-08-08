@@ -15,6 +15,12 @@ var commonMixin = {
                 one:"self.location=\'https://www.lagou.com/center/job_",
                 two:".html\';"
             },
+            othersHref:{
+                one:"self.location=\'http://0.0.0.0:8181/src/2018-employ/h5/",
+                // one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
+                // one:"self.location=\'https://activity.lagou.com/activity/dist/2018-employ/h5/",
+                two:"/m_index.html\';"
+            },
             // tab 切换
             tab:{
                 offsetTop:0,
@@ -1532,7 +1538,10 @@ var commonMixin = {
             partnerStatus:false,
             browserType:0,  // 浏览器类型
             loadedCount:0,  // js、css加载数量
-            employerAnimation:{},
+            employerAnimation:{
+                onlyone:null,
+                employer:null
+            },
             floating:{
                 count:'f000',
                 status:false,
@@ -1580,6 +1589,9 @@ var commonMixin = {
             }
         },
         labelList:function(labels){
+            if(Object.prototype.toString.call(labels) === "[object Array]") {
+                return labels
+            }
             var arr = (labels ? labels : '').split(/[,.、。|·]/g),
                 brr = [],
                 i = 0
@@ -1738,8 +1750,11 @@ var commonMixin = {
         },
         getEmployerData:function(templateId){
             var self = this
-            this.getAjaxData('activityapi/star101/startEmployer',function(content){
+            this.getAjaxData('activityapi/star101/starEmployer',function(content){
                 self.employerList = content
+                self.$nextTick(function(){
+                    self.addEmployerAnimation()
+                })
             },{
                 templateId:templateId
             })
@@ -1748,6 +1763,21 @@ var commonMixin = {
             var self = this
             this.getAjaxData('activityapi/star101/companyList',function(content){
                 self.localList = content
+            },{
+                templateId:templateId,
+                city:city
+            })
+        },
+        getTopData:function(templateId,city){
+            var self = this
+            this.getAjaxData('activityapi/star101/companyList',function(content){
+                var arr = [],
+                    i = 0
+                    length = Math.ceil(content.length / 5)
+                for(i = 0; i < length; i++){
+                    arr.push(content.slice(i*5,(i+1)*5))
+                }
+                self.topList = arr
             },{
                 templateId:templateId,
                 city:city
@@ -1977,6 +2007,39 @@ var commonMixin = {
                 //lunAnimation(browserType);
             }
         },
+        addEmployerAnimation:function(){
+            this.employerAnimation.employer = new Swiper('#employerSwiper', {
+                // wrapperClass:"swiper-wrapper",
+                // slideClass:"swiper-slide",
+                // autoplay:true,//等同于以下设置
+                autoplay: {
+                    delay: 3000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                speed:500,
+                loop:true,
+                initialSlide:0,
+                // pagination:'.employer-pagination',
+                // paginationType:'custom',
+                // paginationElement:'div',
+                // paginationClickable:true,
+                // bulletClass : 'employer-p',
+                // bulletActiveClass : 'active'
+                on:{
+                    slideChangeTransitionStart:function(){
+                        var sapp = app || this.$el[0].__vue__.$root
+                        sapp.changeEmployerActiveIndex(this.activeIndex)
+                    },
+                }
+                // autoplay:3000,
+                // speed:500,
+                // loop:true,
+                // pagination:'.img-pagination',
+                // bulletClass : 'img-p',
+                // bulletActiveClass : 'active'
+            })
+        },
         addCssByLink:function(url, callback) {
             var doc = document;
             var link = doc.createElement("link");
@@ -2136,159 +2199,6 @@ var commonMixin = {
 
 
 
-        addEmployerAnimation:function(){
-            var i = 0,
-                autoplay = true, //false,
-                animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['employer__animation'])
-            id = elem.attr('id');
-            // autoplay = elem.attr('autoplay');
-            // autoplay = autoplay ? true : false;
-            // animation = elem.attr('animation');
-            // animation = animation ? animation : 'move';
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
-                currentIndex:0,
-                length:length,
-                autoplay:autoplay,
-                animation:animation,
-                swiper:null,
-                pagination:false
-                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
-            }
-            switch(animation){
-                case 'zoomIn':
-                    this.initZoomInAnimation(id)
-                    break
-                default:
-                    this.initMoveAnimation(id,'employer__list','employer__one')
-                    break
-            }
-        },
-        addRichAnimation:function(){
-            var i = 0,
-                autoplay = true, //false,
-                animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['rich__animation'])
-            id = elem.attr('id');
-            // autoplay = elem.attr('autoplay');
-            // autoplay = autoplay ? true : false;
-            // animation = elem.attr('animation');
-            // animation = animation ? animation : 'move';
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
-                currentIndex:0,
-                length:length,
-                autoplay:autoplay,
-                animation:animation,
-                swiper:null,
-                pagination:true
-                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
-            }
-            switch(animation){
-                case 'zoomIn':
-                    this.initZoomInAnimation(id)
-                    break
-                default:
-                    this.initMoveAnimation(id,'rich__container','rich__list')
-                    break
-            }
-        },
-        addFirstAnimation:function(){
-            var i = 0,
-                autoplay = true, //false,
-                animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['first__company'])
-            id = elem.attr('id');
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
-                currentIndex:0,
-                length:length,
-                autoplay:autoplay,
-                animation:animation,
-                direction:'vertical',
-                swiper:null,
-                pagination:false
-                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
-            }
-            switch(animation){
-                case 'zoomIn':
-                    this.initZoomInAnimation(id)
-                    break
-                default:
-                    this.initMoveAnimation(id,'company__ul','company__li')
-                    break
-            }
-        },
-        addFirstGuestAnimation:function(){
-            var i = 0,
-                autoplay = true, //false,
-                animation = 'move',
-                id = '',
-                content = null,
-                childs = null,
-                first = null,
-                length = 3,
-                elem = $(this.$refs['first__recommend'])
-            id = elem.attr('id');
-
-            content = elem.find('#'+id+'-content')
-            childs = content.children()
-            length = childs.length
-            first = childs.eq(0)
-            content.css('left',0)
-            this.employerAnimation[id] = {
-                width:first.children().eq(0).width(),
-                currentIndex:0,
-                length:length,
-                autoplay:autoplay,
-                animation:animation,
-                swiper:null,
-                pagination:false
-                // pagination_color:$('#'+id+'-pagination > div').eq(0).css('background-color')
-            }
-            switch(animation){
-                case 'zoomIn':
-                    this.initZoomInAnimation(id)
-                    break
-                default:
-                    this.initMoveAnimation(id,'recommend__ul','recommend__li')
-                    break
-            }
-        },
         initMoveAnimation:function(id,wrapperClass,slideClass){
             var self = this,
                 pagination = null,

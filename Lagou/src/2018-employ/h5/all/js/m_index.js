@@ -87,12 +87,10 @@ var app = new Vue({
         // this.loadedJSCSS();
         this.initWindowScrollEvent();
 
-        // // 超凡雇主
-        // this.getOnlyoneData(147)
-        // // Star雇主
-        // this.getEmployerData(147)
-        // // 本地实力首选
-        // this.getLocalData(147,'shenzhen')
+        // 超凡雇主
+        this.getOnlyoneData('TEST_2018STAR101_SUPER_EMPLOYER_SHENZHEN')
+        // Star雇主
+        this.getEmployerData('TEST_2018STAR101_STAR_EMPLOYER_SHENZHEN')
     },
     methods:{
         

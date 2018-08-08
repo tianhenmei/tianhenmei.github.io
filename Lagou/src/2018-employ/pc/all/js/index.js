@@ -34,6 +34,7 @@ var app = new Vue({
             },{
                 name:'合作伙伴',
                 elem:'yh-center__corperate',
+                parent:['yh-center__others'],
                 offsetTop:0,
                 height:0,
                 index:3,
@@ -43,7 +44,7 @@ var app = new Vue({
         others:[
             "beijing","shanghai","shenzhen",
             "guangzhou","hangzhou","chengdu",
-            "nanjing","wuhan","suzhou"
+            "wuhan"//,"nanjing","suzhou"
         ],
         corperate:[
             147,147,147,147,147,147,
@@ -58,10 +59,14 @@ var app = new Vue({
         // // this.addJSCSS();
         // // this.loadedJSCSS();
 
-        // // 超凡雇主
-        // this.getOnlyoneData(147)
-        // // Star雇主
-        // this.getEmployerData(147)
+        // 超凡雇主
+        this.getOnlyoneData('TEST_2018STAR101_SUPER_EMPLOYER_SHENZHEN')
+        // Star雇主
+        this.getEmployerData('TEST_2018STAR101_STAR_EMPLOYER_SHENZHEN')
+        // 本地实力首选
+        // this.getLocalData('TEST_2018STAR101_LOCAL_EMPLOYER_SHENZHEN','')
+        // 潜力公司TOP榜
+        // this.getTopData('TEST_2018STAR101_TOP_EMPLOYER_SHENZHEN','')
     },
     methods:{
     

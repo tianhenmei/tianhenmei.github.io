@@ -124,7 +124,8 @@ html,body {
         width:rem(454);
         height:rem(512);
         background:no-repeat 0 0;
-        background-size:rem(454) rem(512);
+        // background-size:rem(454) rem(512);
+        background-size:100% 100%;
         @include center(165,163);
     }
     .banner__onlyone-bg {
@@ -622,6 +623,7 @@ html,body {
             white-space:nowrap;
             font-size:rem(34);
             color:#fff;
+            display: block;
         }
         .info__detail {
             width:100%;
@@ -940,7 +942,7 @@ html,body {
         }
     }
     .position__name {
-        width:rem(180);
+        width:rem(160);
         padding:0 0 0 rem(19);
         margin:0 rem(10) 0 0;
         float:left;
@@ -950,7 +952,7 @@ html,body {
         text-align:left;
     }
     .position__salary {
-        width:rem(104);
+        width:rem(124);
         float:left;
         text-align:left;
         font-weight:bold;
@@ -1149,6 +1151,7 @@ html,body {
                 color:#fff;
                 text-align:left;
                 font-weight:bold;
+                display: block;
             }
             .info__detail {
                 width:rem(240 * 24 / 20);
@@ -1221,7 +1224,7 @@ html,body {
         }
     }
     .position__name {
-        width:rem(225);
+        width:rem(215);
         padding:0 rem(17) 0 rem(26);
         float:left;
         overflow:hidden;
@@ -1230,7 +1233,7 @@ html,body {
         text-align:left;
     }
     .position__salary {
-        width:rem(94);
+        width:rem(104);
         float:left;
     }
     .top__more {

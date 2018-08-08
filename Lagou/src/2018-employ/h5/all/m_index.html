@@ -177,13 +177,14 @@
                                 class="employer__one clearfix">
                                 <div class="employer__mark"></div>
                                 <div class="employer__top clearfix">
-                                    <img class="employer__leader" :src="'../common/images/employer-'+(oindex+1)+'.png'" />
+                                    <!-- <img class="employer__leader" :src="'../common/images/employer-'+(oindex+1)+'.png'" /> -->
+                                    <img class="employer__leader" :src="one.leaderPhoto" />
                                     <div class="leader-info">
                                         <div class="leader-name">{{one.leaderName}}</div>
                                         <div class="leader-company">{{one.companyShortName}}</div>
                                         <div class="leader-position">{{one.leaderRemark}}</div>
                                         <div class="leader-quato"></div>
-                                        <div class="leader-words" v-html="one.oneWord"></div>
+                                        <div class="leader-words" v-html="one.oneWord+' ”'"></div>
                                     </div>
                                 </div>
                                 <div class="employer__bottom">
@@ -253,7 +254,7 @@
                             class="others__one"
                             :class="'others__one--'+index+(index % 2 == 0 ? '' : ' others__one--even')"
                             target="_blank"
-                            :href="one"
+                            href="javascript:void(0);" :onclick="othersHref.one+one+othersHref.two"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(othersCount+index)" 
                             :data-lg-tj-cid="null"></a>
@@ -267,7 +268,7 @@
                             class="corperate__one"
                             :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%4)"
                             target="_blank"
-                            :href="'https://www.lagou.com/gongsi/'+one+'.html'"
+                            href="javascript:void(0);" :onclick="companyHref.one+one+companyHref.two"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(corperateCount+index)" 
                             :data-lg-tj-cid="one"></a>

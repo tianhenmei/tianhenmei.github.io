@@ -1,0 +1,149 @@
+@function rem($n){
+    @return $n / (750 / 16) + rem;
+}
+@function rem1080($n){
+    @return $n * (750 / 1080) / (750 / 16) + rem;
+}
+@function v1080($n){
+    @return $n * (750 / 1080);
+}
+@function getTop($n) {
+	@return ($n - 1206 / 2) / (750 / 16) + rem;
+}
+@function getLeft($n) {
+	@return ($n - 750 / 2) / (750 / 16) + rem;
+}
+@function getRight($n) {
+	@return (($n - 750) / 2) / (750 / 16) + rem;
+}
+@mixin center($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: rem($top);
+	margin:0 0 0 getLeft($left);
+}
+@mixin centerlt($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: 50%;
+	margin:getTop($top) 0 0 getLeft($left);
+}
+@mixin centerr($right,$top) {	
+	position:absolute;
+	right:50%;
+	top: rem($top);
+	margin:0 getRight($right) 0 0;
+}
+@mixin centerb($left,$bottom) {	
+	position:absolute;
+	left:50%;
+	bottom: rem($bottom);
+	margin:0 0 0 getLeft($left);
+}
+@mixin centerrb($right,$bottom) {	
+	position:absolute;
+	right:50%;
+	bottom: rem($bottom);
+	margin:0 getRight($right) 0 0;
+}
+@mixin leftTop($left,$top) {	
+	position:absolute;
+    left:rem($left);
+	top: rem($top);
+}
+@mixin rightTop($right,$top) {	
+	position:absolute;
+    right:rem($right);
+	top: rem($top);
+}
+@mixin leftBottom($left,$bottom) {	
+	position:absolute;
+    left:rem($left);
+	bottom: rem($bottom);
+}
+
+
+/***page-banner start***************************************************/
+.yh-center__banner {
+    background-image:url('../images/banner.png');
+    .banner__title {
+        width:rem(448);
+        height:rem(503);
+        background-image:url('../images/banner-title.png');
+        @include center(159,145);
+    }
+}
+/***page-banner start***************************************************/
+/***page-bottom start***************************************************/
+.yh-center__bottom {
+    width:100%;
+    height:auto;
+    background:url('../images/bottom-bg.png') no-repeat center bottom;
+    background-size:rem(750) rem(2046);
+    .others__content {
+        width:rem(749);
+        height: rem(765);
+        background-image:url('../images/others-content.png');
+        background-size:rem(749) rem(765);
+        top:rem(-31);
+    }
+    .others__one {
+        left:rem(18);
+        top:rem(94);
+    }
+    .others__one--even {
+        left:rem(384);
+    }
+    .others__one--2,
+    .others__one--3 {
+        top:rem(270);
+    }
+    .others__one--4,
+    .others__one--5 {
+        top:rem(445);
+    }
+    .others__one--6,
+    .others__one--7 {
+        top:rem(622);
+    }
+    .corperate__content {
+        height: rem(621);
+        background-image:url('../images/corperate-content.png');
+        background-size:rem(717) rem(621);
+    }
+    .corperate__one {
+        left:0;
+    }
+    .corperate__one--0 {
+        top:0;
+    }
+    .corperate__one--1 {
+        top:rem(109);
+    }
+    .corperate__one--2 {
+        top:rem(218);
+    }
+    .corperate__one--3 {
+        top:rem(328);
+    }
+    .corperate__one--4 {
+        top:rem(438);
+    }
+    .corperate__one--5 {
+        top:rem(546);
+    }
+    .corperate__one--c0 {
+        left:0;
+    }
+    .corperate__one--c1 {
+        left:rem(184);
+    }
+    .corperate__one--c2 {
+        left:rem(366);
+    }
+    .corperate__one--c3 {
+        left:rem(548);
+    }
+}
+/***page-bottom start***************************************************/
+
