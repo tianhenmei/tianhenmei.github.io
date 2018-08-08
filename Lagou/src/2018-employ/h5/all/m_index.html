@@ -62,15 +62,15 @@
                 portrait = window.matchMedia("(orientation: portrait)").matches;
             } catch(e){}
 
-            if(rightSize < currentSize){  //按宽度算
-                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
-                htmlStatus = 1;
-                if(app == 'ios' || app == 'android'){
-                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
-                }
-            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
-                lastHTMLSize = lastHTMLSize + 2;
-            }
+            // if(rightSize < currentSize){  //按宽度算
+            //     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            //     htmlStatus = 1;
+            //     if(app == 'ios' || app == 'android'){
+            //         lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+            //     }
+            // }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+            //     lastHTMLSize = lastHTMLSize + 2;
+            // }
             lastSize = lastHTMLSize;
             html.style.fontSize=GC.w/lastHTMLSize+'px';
         }

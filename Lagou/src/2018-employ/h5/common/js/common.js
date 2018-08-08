@@ -1509,7 +1509,7 @@ var commonMixin = {
                 autoplayDisableOnInteraction: false,
                 coverflowEffect: {
                     rotate: 0,  // rotate：slide做3d旋转时Y轴的旋转角度。默认50。
-                    stretch: 300,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
+                    stretch: 600 / 750 * GC.w,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
                     depth: 170,  // depth：slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
                     // modifier：depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
                     modifier: 1,  
@@ -1549,6 +1549,7 @@ var commonMixin = {
         }
     },
     mounted:function(){
+        alert("mounted")
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         var frompartner = getQueryString('frompartner');
         this.partnerStatus = frompartner// ? true : false;

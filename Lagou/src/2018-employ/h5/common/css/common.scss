@@ -444,7 +444,7 @@ html,body {
                 float:left;
             }
             .o-icon {
-                width:rem(24);
+                width:rem(26);
                 height:rem(86);
                 background:url("../images/arrow-yellow-24.png") no-repeat left center;
                 background-size:rem(24) rem(24);
@@ -654,7 +654,7 @@ html,body {
             width:rem(16 / 20 * 24);
             height:rem(16 / 20 * 24);
             background:url("../images/arrow-white-16.png") no-repeat center top;
-            background-size:rem(16 / 20 * 24) rem(16 / 20 * 24);
+            background-size:100% 100%;
             @include rightTop(11 / 20 * 24,10 / 20 * 24);
         }
     }
@@ -694,8 +694,8 @@ html,body {
         }
         .one:before {
             content:"";
-            width:rem(24);
-            height:rem(24);
+            width:rem(26);
+            height:rem(26);
             background:url("../images/arrow-yellow-24.png") no-repeat left center;
             background-size:rem(24) rem(24);
             @include rightTop(24,25);
@@ -890,8 +890,8 @@ html,body {
                 width:rem(14 * 24 / 20);
                 height:rem(18 * 24 / 20);
                 background:url("../images/local-city-icon.png") no-repeat center top;
-                background-size:rem(14 * 24 / 20) rem(18 * 24 / 20);
-                @include leftTop(0,7 * 24 / 20);
+                background-size:100% 100%;
+                @include leftTop(0,6 * 24 / 20);
             }
             .l-line {
                 width:rem(180);
@@ -911,7 +911,7 @@ html,body {
             height:rem(29 * 24 / 20);
             line-height:rem(29 * 24 / 20);
             padding:0 rem(20 * 24 / 20);
-            border:rem(2) solid rgba(255,255,255,0.5);
+            border:1px solid rgba(255,255,255,0.5);
             border-radius:rem(29 * 24 / 20);
             margin:0 0 rem(20 * 24 / 20) 0;
             float:left;
@@ -944,7 +944,7 @@ html,body {
     .position__name {
         width:rem(160);
         padding:0 0 0 rem(19);
-        margin:0 rem(10) 0 0;
+        // margin:0 rem(10) 0 0;
         float:left;
         overflow:hidden;
         text-overflow:ellipsis;
@@ -953,8 +953,9 @@ html,body {
     }
     .position__salary {
         width:rem(124);
-        float:left;
-        text-align:left;
+        padding:0 rem(20) 0 0;
+        float:right;
+        text-align:right;
         font-weight:bold;
         color:#fffd60;
     }
@@ -1249,8 +1250,8 @@ html,body {
         display:block;
     }
     .more__icon {
-        width:rem(21);
-        height:rem(21);
+        width:rem(24);
+        height:rem(24);
         background:url("../images/arrow-white-21.png") no-repeat center top;
         background-size:rem(21) rem(21);
         @include rightTop(41,9+92);
@@ -1266,6 +1267,7 @@ html,body {
         cursor:pointer;
     }
     .top__arrow--left {
+        width:rem(122);
         left:rem(-63);
     }
     .top__arrow--right {
