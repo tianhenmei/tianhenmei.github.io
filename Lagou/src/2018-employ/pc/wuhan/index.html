@@ -384,7 +384,7 @@
                     <div class="corperate__content">
                         <a v-for="(one,index) in corperate"
                             class="corperate__one"
-                            :class="'corperate__one--'+getCorperateRow(index)+' others__one--c'+(index%6)"
+                            :class="'corperate__one--'+getCorperateRow(index)+' others__one--c'+(index%corperateCol)"
                             target="_blank"
                             :href="'https://www.lagou.com/gongsi/'+one+'.html'"
                             :data-lg-tj-id="countId" 

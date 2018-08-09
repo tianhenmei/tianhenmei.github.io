@@ -12,8 +12,8 @@ var commonMixin = {
             two:".html\';"
         },
         // othersHref:"http://0.0.0.0:8181/src/2018-employ/pc/",
-        othersHref:"http://tianhenmei.github.io/Lagou/src/2018-employ/pc/",
-        // othersHref:"https://activity.lagou.com/activity/dist/2018-employ/pc/",
+        // othersHref:"http://tianhenmei.github.io/Lagou/src/2018-employ/pc/",
+        othersHref:"https://activity.lagou.com/activity/dist/2018-employ/pc/",
         // tab 切换
         tab:{
             count:10,
@@ -1492,6 +1492,10 @@ var commonMixin = {
             count:'f000',
             status:false,
         },
+        corperate:[
+            147,147,147,147,147
+        ],
+        corperateCol:5
     },
     methods:{
         setLogoHref:function(logo){
@@ -1547,7 +1551,11 @@ var commonMixin = {
             this.topTime = Date.now()
         },
         getCorperateRow:function(index){
-            return Math.floor(index / 6)
+            return Math.floor(index / this.corperateCol)
+        },
+        getEmployerLeader:function(one){
+            // return one.leaderPhoto
+            return '../common/images/employer-'+(one.companyId)+'.png'
         },
         topCurrent:function(pindex){
             return this.topList[pindex][this.topActiveIndex[pindex]]

@@ -17,8 +17,8 @@ var commonMixin = {
             },
             othersHref:{
                 // one:"self.location=\'http://172.18.12.105:8181/src/2018-employ/h5/",
-                one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
-                // one:"self.location=\'https://activity.lagou.com/activity/dist/2018-employ/h5/",
+                // one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
+                one:"self.location=\'https://activity.lagou.com/activity/dist/2018-employ/h5/",
                 two:"/m_index.html\';"
             },
             // tab 切换
@@ -1547,6 +1547,9 @@ var commonMixin = {
                 count:'f000',
                 status:false,
             },
+            corperate:[
+                147,147,147,147,147
+            ],
         }
     },
     mounted:function(){
@@ -1670,7 +1673,11 @@ var commonMixin = {
             }
         },
         getCorperateRow:function(index){
-            return Math.floor(index / 4)
+            return Math.floor(index / 5)
+        },
+        getEmployerLeader:function(one){
+            // return one.leaderPhoto
+            return '../common/images/employer-'+(one.companyId)+'.png'
         },
         getTopOptions:function(index){
             var options = JSON.parse(JSON.stringify(this.topOptions))

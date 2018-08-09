@@ -192,8 +192,7 @@
                                     class="swiper-slide employer__one clearfix">
                                 <div class="employer__mark"></div>
                                 <div class="employer__top clearfix">
-                                    <!-- <img class="employer__leader" :src="'../common/images/employer-'+(oindex+1)+'.png'" /> -->
-                                    <img class="employer__leader" :src="one.leaderPhoto" />
+                                    <img class="employer__leader" :src="getEmployerLeader(one)" />
                                     <div class="leader-info">
                                         <div class="leader-name">{{one.leaderName}}</div>
                                         <div class="leader-company">{{one.companyShortName}}</div>
@@ -415,7 +414,7 @@
                     <div class="corperate__content">
                         <a v-for="(one,index) in corperate"
                             class="corperate__one"
-                            :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%4)"
+                            :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%5)"
                             target="_blank"
                             href="javascript:void(0);" :onclick="companyHref.one+one+companyHref.two"
                             :data-lg-tj-id="countId" 
@@ -464,7 +463,7 @@
     var datas = {
         title: "10个互联网人跳一跳，9个用拉勾！",
         desc: "平均年薪15W起，实现今年小目标！腾讯/京东/美团等大厂职位首发，全民升职季给你百万个Offer的选择！",
-        imgUrl: 'https://activity.lagou.com/activity/dist/2018-employ/h5/common/images/share.png',
+        imgUrl: 'https://activity.lagou.com/activity/dist/2018-employ/h5/common/images/share.jpg',
         activityType: '2018_EMPLOY_H5_CHENGDU',
         shareUrl: 'https://activity.lagou.com/activity/dist/2018-employ/h5/chengdu/m_index.html'
     };

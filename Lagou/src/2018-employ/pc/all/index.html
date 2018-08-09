@@ -145,8 +145,7 @@
                                     class="swiper-slide employer__one clearfix">
                                     <div class="employer__mark"></div>
                                     <div class="employer__left clearfix">
-                                        <!-- <img class="employer__leader" :src="'images/employer-'+(oindex+1)+'.png'" /> -->
-                                        <img class="employer__leader" :src="one.leaderPhoto" />
+                                        <img class="employer__leader" :src="getEmployerLeader(one)" />
                                         <div class="leader-info">
                                             <div class="leader-name">{{one.leaderName}}</div>
                                             <div class="leader-company">{{one.companyShortName}}</div>
@@ -277,7 +276,7 @@
                     <div class="corperate__content">
                         <a v-for="(one,index) in corperate"
                             class="corperate__one"
-                            :class="'corperate__one--'+getCorperateRow(index)+' others__one--c'+(index%6)"
+                            :class="'corperate__one--'+getCorperateRow(index)+' others__one--c'+(index%corperateCol)"
                             target="_blank"
                             :href="'https://www.lagou.com/gongsi/'+one+'.html'"
                             :data-lg-tj-id="countId" 

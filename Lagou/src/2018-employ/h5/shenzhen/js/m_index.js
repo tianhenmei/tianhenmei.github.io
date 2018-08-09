@@ -10,15 +10,7 @@ var app = new Vue({
             "nanjing","guangzhou",
             "suzhou","chengdu",
             "wuhan","hangzhou"
-        ],
-        corperate:[
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147
-        ],
+        ]
     },
     mounted:function(){
         // 超凡雇主

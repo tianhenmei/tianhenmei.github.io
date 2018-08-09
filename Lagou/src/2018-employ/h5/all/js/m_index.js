@@ -59,15 +59,7 @@ var app = new Vue({
             "shenzhen","chengdu",
             "wuhan","hangzhou",
             "suzhou"
-        ],
-        corperate:[
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147,
-            147,147,147,147
-        ],
+        ]
     },
     mounted:function(){
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
