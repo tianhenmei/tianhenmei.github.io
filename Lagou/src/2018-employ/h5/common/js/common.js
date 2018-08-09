@@ -16,8 +16,8 @@ var commonMixin = {
                 two:".html\';"
             },
             othersHref:{
-                one:"self.location=\'http://172.18.12.105:8181/src/2018-employ/h5/",
-                // one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
+                // one:"self.location=\'http://172.18.12.105:8181/src/2018-employ/h5/",
+                one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
                 // one:"self.location=\'https://activity.lagou.com/activity/dist/2018-employ/h5/",
                 two:"/m_index.html\';"
             },

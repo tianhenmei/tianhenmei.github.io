@@ -11,8 +11,8 @@ var commonMixin = {
             one:"self.location=\'https://www.lagou.com/center/job_",
             two:".html\';"
         },
-        othersHref:"http://0.0.0.0:8181/src/2018-employ/pc/",
-        // othersHref:"http://tianhenmei.github.io/Lagou/src/2018-employ/pc/",
+        // othersHref:"http://0.0.0.0:8181/src/2018-employ/pc/",
+        othersHref:"http://tianhenmei.github.io/Lagou/src/2018-employ/pc/",
         // othersHref:"https://activity.lagou.com/activity/dist/2018-employ/pc/",
         // tab 切换
         tab:{
