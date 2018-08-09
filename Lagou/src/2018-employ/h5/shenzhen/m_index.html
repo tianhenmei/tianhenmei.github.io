@@ -325,57 +325,68 @@
                         <div class="top__one__title" :class="'top__one__title--'+oindex"></div>
                         <div class="top__list clearfix">
                             <div class="top__leaf" :class="'top__leaf--'+oindex"></div>
-                            <swiper :options="getTopOptions(oindex)" class="top__list--swiper clearfix" :ref="'topSwiper'+oindex"> 
-                                <!--:class="{'active':topActiveIndex[oindex] == lindex}"-->
+
+
+                            <!-- <swiper :options="getTopOptions(oindex)" class="top__list--swiper clearfix" :ref="'topSwiper'+oindex"> 
                                 <swiper-slide v-for="(list,lindex) in listOut"
                                     v-if="lindex < 5"
                                     class="top__one"
-                                    :style="setTopSlideStyle(oindex,lindex)">
-                                    <div class="top__one__center">
-                                        <div class="top_onet clearfix">
-                                            <a class="logo"
-                                                href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
-                                                target="_blank"
-                                                data-link="1"
-                                                :data-lg-tj-id="countId" 
-                                                :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10)" 
-                                                :data-lg-tj-cid="list.companyId">
-                                                <img class="logo-img" :src="setLogoHref(list.logo)" />
-                                            </a>
-                                            <div class="info">
-                                                <a class="info__name"
+                                    :style="setTopSlideStyle(oindex,lindex)"> -->
+                            <div class="swiper-container top__list--swiper clearfix" :ref="'topSwiper'+oindex"  :id="'topSwiper'+oindex"> 
+                                <div class="swiper-wrapper top__list--wrapper">
+                                    <div v-for="(list,lindex) in listOut"
+                                        v-if="lindex < 5"
+                                        class="swiper-slide top__one"
+                                        :style="setTopSlideStyle(oindex,lindex)">
+                                        <div class="top__one__center">
+                                            <div class="top_onet clearfix">
+                                                <a class="logo"
                                                     href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
                                                     target="_blank"
                                                     data-link="1"
                                                     :data-lg-tj-id="countId" 
-                                                    :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+1)" 
-                                                    :data-lg-tj-cid="list.companyId">{{list.companyShortName}}</a>
-                                                <div class="info__detail">{{list.city}} / {{list.financeStage}}</div>
+                                                    :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10)" 
+                                                    :data-lg-tj-cid="list.companyId">
+                                                    <img class="logo-img" :src="setLogoHref(list.logo)" />
+                                                </a>
+                                                <div class="info">
+                                                    <a class="info__name"
+                                                        href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
+                                                        target="_blank"
+                                                        data-link="1"
+                                                        :data-lg-tj-id="countId" 
+                                                        :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+1)" 
+                                                        :data-lg-tj-cid="list.companyId">{{list.companyShortName}}</a>
+                                                    <div class="info__detail">{{list.city}} / {{list.financeStage}}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="top__detail">{{list.oneWord+' ”'}}</div>
-                                        <div class="top__position clearfix">
-                                            <a class="t-list clearfix" 
-                                                v-for="(one,index) in list.positionVo"
-                                                href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                            <div class="top__detail">{{list.oneWord+' ”'}}</div>
+                                            <div class="top__position clearfix">
+                                                <a class="t-list clearfix" 
+                                                    v-for="(one,index) in list.positionVo"
+                                                    href="javascript:void(0);" :onclick="positionHref.one+one.positionId+positionHref.two"
+                                                    target="_blank"
+                                                    data-link="1"
+                                                    :data-lg-tj-id="countId" 
+                                                    :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+3+index)" 
+                                                    :data-lg-tj-cid="one.positionId">
+                                                    <span class="position__name">{{one.positionName}}</span>
+                                                    <span class="position__salary">{{one.salary}}</span>
+                                                </a>
+                                            </div>
+                                            <a class="top__more"
+                                                href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
                                                 target="_blank"
-                                                data-link="1"
                                                 :data-lg-tj-id="countId" 
-                                                :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+3+index)" 
-                                                :data-lg-tj-cid="one.positionId">
-                                                <span class="position__name">{{one.positionName}}</span>
-                                                <span class="position__salary">{{one.salary}}</span>
-                                            </a>
+                                                :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+2)" 
+                                                :data-lg-tj-cid="list.companyId">查看更多<span class="more__icon"></span></a>
                                         </div>
-                                        <a class="top__more"
-                                            href="javascript:void(0);" :onclick="companyHref.one+list.companyId+companyHref.two"
-                                            target="_blank"
-                                            :data-lg-tj-id="countId" 
-                                            :data-lg-tj-no="getCount(topCount+oindex*50+lindex*10+2)" 
-                                            :data-lg-tj-cid="list.companyId">查看更多<span class="more__icon"></span></a>
                                     </div>
-                                </swiper-slide>
-                            </swiper>
+                                </div>
+                            </div>
+                                <!-- </swiper-slide>
+                            </swiper> -->
+
                             <div class="top__pagination clearfix" 
                                 :class="'top__pagination--'+oindex"
                                 :style="{margin:'0 0 0 '+getRem(-36 * listOut.length / 2)}">
@@ -472,8 +483,8 @@
         return share;
     }
 </script>
-<script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+<!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script> -->
 <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
-<script type="text/javascript" src="../common//js/plat_tj_mobile.js?v=$version$"></script>	
+<!-- <script type="text/javascript" src="../common//js/plat_tj_mobile.js?v=$version$"></script>	 -->
 </body>
 </html>

@@ -16,7 +16,7 @@ var commonMixin = {
                 two:".html\';"
             },
             othersHref:{
-                one:"self.location=\'http://0.0.0.0:8181/src/2018-employ/h5/",
+                one:"self.location=\'http://172.18.12.105:8181/src/2018-employ/h5/",
                 // one:"self.location=\'http://tianhenmei.github.io/Lagou/src/2018-employ/h5/",
                 // one:"self.location=\'https://activity.lagou.com/activity/dist/2018-employ/h5/",
                 two:"/m_index.html\';"
@@ -1540,7 +1540,8 @@ var commonMixin = {
             loadedCount:0,  // js、css加载数量
             employerAnimation:{
                 onlyone:null,
-                employer:null
+                employer:null,
+                top:[null,null,null,null]
             },
             floating:{
                 count:'f000',
@@ -1549,7 +1550,6 @@ var commonMixin = {
         }
     },
     mounted:function(){
-        alert("mounted")
         this.from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
         var frompartner = getQueryString('frompartner');
         this.partnerStatus = frompartner// ? true : false;
@@ -1647,25 +1647,25 @@ var commonMixin = {
         },
         topSlideNextTransitionStart:function(children,pindex,previousIndex){
             if(previousIndex > 0 && previousIndex < children.length - 2){
-                var elem = children[previousIndex-1].$el
+                var elem = children[previousIndex-1]//.$el
                 elem.className += ' prevToNormal'
             }
         },
         topSlideNextTransitionEnd:function(children,pindex,previousIndex){
             if(previousIndex > 0 && previousIndex < children.length - 2){
-                var elem = children[previousIndex-1].$el
+                var elem = children[previousIndex-1]//.$el
                 elem.className = elem.className.replace(' prevToNormal','')
             }
         },
         topSlidePrevTransitionStart:function(children,pindex,previousIndex){
             if(previousIndex < children.length - 1 && previousIndex > 1){
-                var elem = children[previousIndex+1].$el
+                var elem = children[previousIndex+1]//.$el
                 elem.className += ' prevToNormal'
             }
         },
         topSlidePrevTransitionEnd:function(children,pindex,previousIndex){
             if(previousIndex < children.length - 1 && previousIndex > 1){
-                var elem = children[previousIndex+1].$el
+                var elem = children[previousIndex+1]//.$el
                 elem.className = elem.className.replace(' prevToNormal','')
             }
         },
@@ -1779,6 +1779,9 @@ var commonMixin = {
                     arr.push(content.slice(i*5,(i+1)*5))
                 }
                 self.topList = arr
+                self.$nextTick(function(){
+                    self.addTopAnimation()
+                })
             },{
                 templateId:templateId,
                 city:city
@@ -2040,6 +2043,61 @@ var commonMixin = {
                 // bulletClass : 'img-p',
                 // bulletActiveClass : 'active'
             })
+        },
+        addTopAnimation:function(){
+            var self = this,
+                i = 0
+            for(i = 0; i < this.topList.length; i++){
+                (function(index){
+                    self.employerAnimation.top[index] = new Swiper('#topSwiper'+index, {
+                        // slideClass : 'top__one',
+                        slideActiveClass : 'active',
+                        slidePrevClass : 'prev',
+                        slideNextClass : 'next',
+                        autoplay:false,//等同于以下设置
+                        speed:500,
+                        loop:false,
+                        effect: 'coverflow',
+                        grabCursor: true,
+                        centeredSlides: true,
+                        // 设置slider容器能够同时显示的slides数量(carousel模式)。
+                        slidesPerView: 1,
+                        initialSlide:1,
+                        autoplayDisableOnInteraction: false,
+                        coverflowEffect: {
+                            rotate: 0,  // rotate：slide做3d旋转时Y轴的旋转角度。默认50。
+                            stretch: 600 / 750 * GC.w,   // stretch：每个slide之间的拉伸值，越大slide靠得越紧。 默认0。
+                            depth: 170,  // depth：slide的位置深度。值越大z轴距离越远，看起来越小。 默认100。
+                            // modifier：depth和rotate和stretch的倍率，相当于depth*modifier、rotate*modifier、stretch*modifier，值越大这三个参数的效果越明显。默认1。
+                            modifier: 1,  
+                            // slideShadows：开启slide阴影。默认 true。
+                            slideShadows:false
+                        },
+                        pagination:{
+                            el: '.top__pagination--'+index,
+                            bulletClass : 'bullet',
+                            bulletActiveClass: 'active'
+                        },
+                        on:{
+                            slideChangeTransitionStart:function(){
+                                self.changeTopActiveIndex(index,this.activeIndex)
+                            },
+                            slideNextTransitionStart:function(){
+                                self.topSlideNextTransitionStart(this.$wrapperEl[0].children,index,this.previousIndex)
+                            },
+                            slideNextTransitionEnd:function(){
+                                self.topSlideNextTransitionEnd(this.$wrapperEl[0].children,index,this.previousIndex)
+                            },
+                            slidePrevTransitionStart:function(){
+                                self.topSlidePrevTransitionStart(this.$wrapperEl[0].children,index,this.previousIndex)
+                            },
+                            slidePrevTransitionEnd:function(){
+                                self.topSlidePrevTransitionEnd(this.$wrapperEl[0].children,index,this.previousIndex)
+                            },
+                        }
+                    })
+                })(i)
+            }
         },
         addCssByLink:function(url, callback) {
             var doc = document;
