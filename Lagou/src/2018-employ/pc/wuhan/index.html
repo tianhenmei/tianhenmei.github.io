@@ -134,7 +134,7 @@
                                     <div class="employer__mark"></div>
                                     <div class="employer__left clearfix">
                                         <!-- <img class="employer__leader" :src="'images/employer-'+(oindex+1)+'.png'" /> -->
-                                        <img class="employer__leader" :src="one.leaderPhoto" />
+                                        <img class="employer__leader" :src="getEmployerLeader(one)" />
                                         <div class="leader-info">
                                             <div class="leader-name">{{one.leaderName}}</div>
                                             <div class="leader-company">{{one.companyShortName}}</div>
