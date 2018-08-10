@@ -77,9 +77,10 @@ var commonMixin = {
         onlyone:{
             count:1,
             imgs:[
-                'images/onlyone-img-01.jpg',
-                'images/onlyone-img-01.jpg',
-                'images/onlyone-img-01.jpg'
+                '../common/images/onlyone-img-01.png'
+                // 'images/onlyone-img-01.jpg',
+                // 'images/onlyone-img-01.jpg',
+                // 'images/onlyone-img-01.jpg'
             ],
             company:{
                 companyId:147,
@@ -141,7 +142,7 @@ var commonMixin = {
         },
         employerCount:50,
         employerList:[{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "不需要融资",
             "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -183,7 +184,7 @@ var commonMixin = {
                 }
             ],
         },{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "天使轮",
             "logo": "i/image2/M01/57/D4/CgotOVsgz3mALUvHAACcv0aZqbQ708.png",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -225,7 +226,7 @@ var commonMixin = {
                 }
             ],
         },{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "C轮",
             "logo": "i/image/M00/18/16/CgpEMlj4TmSAdFACAAHQKMB7LuA209.jpg",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -267,7 +268,7 @@ var commonMixin = {
                 }
             ],
         },{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "D轮及以上",
             "logo": "i/image2/M00/26/EF/CgoB5lof5AuADFWJAAAK3VU74GU045.png",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -311,7 +312,7 @@ var commonMixin = {
         }],
         localCount:1000,
         localList:[{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "不需要融资",
             "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -499,7 +500,7 @@ var commonMixin = {
                 }
             ],
         },{
-            "companyId": 312260,
+            "companyId": 18139,
             "financeStage": "不需要融资",
             "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
             "companyName": "百度在线网络技术（北京）有限公司",
@@ -692,7 +693,7 @@ var commonMixin = {
         topTime:Date.now(),
         topList:[
             [{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -848,7 +849,7 @@ var commonMixin = {
                     }
                 ],
             },{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -888,7 +889,7 @@ var commonMixin = {
                 ],
             }],
             [{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1044,7 +1045,7 @@ var commonMixin = {
                     }
                 ],
             },{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1084,7 +1085,7 @@ var commonMixin = {
                 ],
             }],
             [{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1240,7 +1241,7 @@ var commonMixin = {
                     }
                 ],
             },{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1280,7 +1281,7 @@ var commonMixin = {
                 ],
             }],
             [{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1436,7 +1437,7 @@ var commonMixin = {
                     }
                 ],
             },{
-                "companyId": 312260,
+                "companyId": 18139,
                 "financeStage": "不需要融资",
                 "logo": "i/image/M00/7F/B5/CgpFT1pV0aKAF4u8AABVMWtorEo579.png",
                 "companyName": "百度在线网络技术（北京）有限公司",
@@ -1944,9 +1945,9 @@ var commonMixin = {
             var self = this
             this.getAjaxData('activityapi/star101/superEmployer',function(content){
                 self.onlyone.company = content
-                self.$nextTick(function(){
-                    self.addOnlyoneAnimation()
-                })
+                // self.$nextTick(function(){
+                //     self.addOnlyoneAnimation()
+                // })
             },{
                 templateId:templateId
             })

@@ -80,9 +80,9 @@ var app = new Vue({
         this.initWindowScrollEvent();
 
         // 超凡雇主
-        this.getOnlyoneData('TEST_2018STAR101_SUPER_EMPLOYER_SHENZHEN')
+        this.getOnlyoneData('2018STAR101_SUPER_EMPLOYER')
         // Star雇主
-        this.getEmployerData('TEST_2018STAR101_STAR_EMPLOYER_SHENZHEN')
+        this.getEmployerData('2018STAR101_STAR_EMPLOYER')
     },
     methods:{
         
