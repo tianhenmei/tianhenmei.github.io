@@ -1494,7 +1494,7 @@ var commonMixin = {
             status:false,
         },
         corperate:[
-            147,147,147,147,147
+            29946,36272,175199,43775,14491
         ],
         corperateCol:5
     },
@@ -1920,6 +1920,35 @@ var commonMixin = {
             if(!/'"”’/g.test(words)){
                 return words + ' ”'
             }            
+        },
+        cutString:function(str,num){
+            str = str ? str : ''
+            var str2 = str.replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,"çç"),
+                result = '';
+            if (str2.length > num){
+                var length = str2.slice(0,num).replace(/çç/g,'ç').length;
+                result = str.slice(0,length)+'...';
+            }else {
+                result = str;
+            }
+            return result;
+        },
+        getWordsLine:function(wrods){
+            var one = 15 * 2,
+                // line = 2,
+                // total = one * line,
+                str = wrods ? wrods : '',
+                str2 = str.replace(/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,"çç"),
+                // result = '',
+                row = Math.ceil(str2.length / one);
+                // if (str2.length > total){
+                //     var length = str2.slice(0,total).replace(/çç/g,'ç').length;
+                //     result = str.slice(0,length)+'...';
+                // }else {
+                //     result = str;
+                // }
+                // return result;
+            return row
         },
         getAjaxData:function(url,callback,params){
             $.ajax({

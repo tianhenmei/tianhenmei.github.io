@@ -142,6 +142,7 @@ html,body {
             left:50%;
             bottom:9px;
             z-index: 2;
+            display:none;
         }
         .img-p {
             width:9px;
@@ -946,14 +947,34 @@ html,body {
     }
     .show__words {
         width:220px;
-        height:66px;
+        // height:44px;
+        max-height:44px;
+        // max-height:66px;
         line-height:22px;
         margin:0 auto;
-        padding:26px 0 5px 0;
+        padding:26px 0 0 0; // 26px 0 5px 0;
         overflow:hidden;
         font-size:14px;
         text-align:left;
         color:#fff;
+    }
+    .show__labels {
+        width:220px;
+        height:22px;
+        padding:11px 0 0 0;
+        margin:0 auto 11px;
+        overflow:hidden;
+        .label {
+            line-height:20px;
+            padding:0 15px;
+            margin:0 19px 0 0;
+            border:1px solid rgba(255,255,255,0.5);
+            border-radius:30px;
+            font-size:14px;
+            color:#ffffff;
+            text-align:center;
+            float:left;
+        }
     }
     .show_position {
         width:225px;
@@ -985,6 +1006,9 @@ html,body {
     .position__salary {
         width:67px;
         float:left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     .show__more {
         width:198px;
