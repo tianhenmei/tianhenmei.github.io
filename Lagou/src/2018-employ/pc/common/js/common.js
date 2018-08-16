@@ -77,7 +77,7 @@ var commonMixin = {
         onlyone:{
             count:1,
             imgs:[
-                '../common/images/onlyone-img-01.png'
+                '../common/images/onlyone-img-02.png'
                 // 'images/onlyone-img-01.jpg',
                 // 'images/onlyone-img-01.jpg',
                 // 'images/onlyone-img-01.jpg'
