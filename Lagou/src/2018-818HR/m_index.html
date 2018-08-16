@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+		<meta charset="utf-8">
+		<link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>818HR节</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 750,
+                    h: 1206
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                lagoufrom = getQueryString('lagoufrom'),
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            // test
+            // alert(GC.w+", "+GC.h)
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                        lastHTMLSize = lastHTMLSize + 2.5;
+                    }
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+            setFontSize();
+            var loadingStatus = false,
+                pageStatus = false,
+                startTime = Date.now(),
+                app = null,
+                pload = {
+                    status:'in',
+                    in:{
+                        outer:"",
+                        bg:"opacityChange delay1-5",
+                        logo:"opacityChange delay0-5",
+                        title:"downToCenter delay0-7",
+                        detail:"opacityChange delay1-2",
+                        num:"opacityChange delay2-0",
+                        layer:"zoomIn",
+                        choose:"opacityChange delay0-5",
+                        boy:"bounceInLeft delay1-0",
+                        girl:"bounceInRight delay1-0"
+                    },
+                    out:{
+                        outer:"opacityChange-out delay0-2 duration0-3",
+                        bg:"",
+                        logo:"",
+                        title:"",
+                        detail:"",
+                        num:"",
+                        layer:"zoomIn-out duration0-2",
+                        choose:"",
+                        boy:"",
+                        girl:""
+                    },
+                },
+                loadingComplete = function(){
+                    var boy = document.getElementById('loading__boy'),
+                        girl = document.getElementById('loading__girl'),
+                        loading = document.getElementById('loading')
+                    boy.addEventListener('click',function(e){
+                        e.stopPropagation();
+                        // e.preventDefault();
+                        var appElement = document.getElementById('app');
+                        appElement.className = appElement.className.replace(' hide','');
+                        app.setSex('boy')
+
+                        pload.status = 'out'
+                        setLoadingHTML(100)
+                        setTimeout(() => {
+                            document.getElementById('loading').className += ' hide';
+                        }, 500);
+                    },false)
+                    girl.addEventListener('click',function(e){
+                        e.stopPropagation();
+                        // e.preventDefault();
+                        var appElement = document.getElementById('app');
+                        appElement.className = appElement.className.replace(' hide','');
+                        app.setSex('girl')
+
+                        pload.status = 'out'
+                        setLoadingHTML(100)
+                        setTimeout(() => {
+                            document.getElementById('loading').className += ' hide';
+                        }, 500);
+                    },false)
+                },
+                loadingSuccess = function(){
+                    var now = Date.now(),
+                        space = now - startTime,
+                        layer = document.getElementById('loading__layer')
+                    var appElement = document.getElementById('app');
+                    appElement.className = appElement.className.replace(' hide','');
+                    document.getElementById('loading').className += ' hide';
+                    // if(space < 3000){
+                    //     setTimeout(function(){
+                    //         layer.className = layer.className.replace(' hide','');
+                    //         loadingComplete()
+                    //     },3000 - space)
+                    // }else{
+                    //     layer.className = layer.className.replace(' hide','');
+                    //     loadingComplete()
+                    // }
+                }
+		</script>
+	</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading__bg" :class="pload[pload.status].bg"></div>
+        <img class="loading__gif" src="images/loading.gif" />
+        <div class="icon loading__logo" :class="pload[pload.status].logo"></div>
+        <div class="loading__title" :class="pload[pload.status].title"></div>
+        <div class="icon loading__detail" :class="pload[pload.status].detail"></div>
+        <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
+        <div class="loading__layer hide" :class="pload[pload.status].layer" id="loading__layer">
+            <div class="icon loading__choose" :class="pload[pload.status].choose"></div>
+            <div class="icon loading__boy" :class="pload[pload.status].boy" id="loading__boy"
+                data-lg-tj-id="1bir" 
+                data-lg-tj-no="0001" 
+                data-lg-tj-cid="null"></div>
+            <div class="icon loading__girl" :class="pload[pload.status].boy" id="loading__girl"
+                data-lg-tj-id="1bir" 
+                data-lg-tj-no="0002" 
+                data-lg-tj-cid="null"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function setLoadingHTML(progress){
+            var loading = document.getElementById('loading'),
+                data = pload[pload.status],
+                html = ''+
+                '<div class="loading '+data.outer+'" id="loading">'+
+                    '<div class="loading__bg '+data.bg+'"></div>'+
+                    '<img class="loading__gif" src="images/loading.gif" />'+
+                    '<div class="icon loading__logo '+data.logo+'"></div>'+
+                    '<div class="loading__title '+data.title+'"></div>'+
+                    '<div class="icon loading__detail '+data.detail+'"></div>'+
+                    '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
+                    '<div class="loading__layer hide '+data.layer+'" id="loading__layer">'+
+                    '    <div class="icon loading__choose '+data.choose+'"></div>'+
+                    '    <div class="icon loading__boy '+data.boy+'" id="loading__boy"'+
+                    '        data-lg-tj-id="1bir" '+
+                    '        data-lg-tj-no="0001" '+
+                    '        data-lg-tj-cid="null"></div>'+
+                    '    <div class="icon loading__girl '+data.girl+'" id="loading__girl"'+
+                    '        data-lg-tj-id="1bir" '+
+                    '        data-lg-tj-no="0002" '+
+                    '        data-lg-tj-cid="null"></div>'+
+                    '</div>'+
+                '</div>'
+            loading.outerHTML = html
+        }
+        setLoadingHTML(0)
+    </script>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
+            <div class="icon title-bg leftTopIn delay0-5"></div>
+            <div class="icon bottom-title littleBottomIn delay2-7"></div>
+            <div class="icon bottom-logo littleBottomIn delay2-9"></div>
+            <div class="page-orbit rightBottomZoomIn delay0-5">
+                <!-- <div class="icon star-01"></div> -->
+                <!-- <div class="icon star-02"></div> -->
+                <!-- <div class="icon star-03"></div> -->
+            </div>
+            <!-- 
+                L599 265 
+            -->
+            <div class="svg-div opacityChange delay1-0">
+                <svg class="map1-svg" id="lineSVG" width="100%" height="100%" viewBox="0 0 750 1206" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path class="mapSvgDraw" id="road-01" d="M750 220
+                        Q380 314 226 424
+                        C170 479 175 514 231 545
+                        Q285 574 465 580
+                        Q613 579 750 554
+                        L1000 564
+                        L1000 220
+                        L750 220 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <path class="mapSvgDraw" id="road-02" d="M750 245
+                        Q560 321 520 346
+                        C489 376 496 397 550 404
+                        Q550 404 640 401
+                        Q695 396 750 387
+                        L900 387
+                        L900 245
+                        L750 245 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <path class="mapSvgDraw" id="road-03" d="M750 270
+                        Q666 300 625 320
+                        C586 350 590 372 642 375
+                        Q680 376 750 368
+                        L800 368
+                        L800 270
+                        L750 270 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <defs>
+                        <g id="star-01">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star01.png" x="0" y="0" 
+                                width="15" 
+                                height="15"></image>
+                        </g>
+                    </defs>
+                    <defs>
+                        <g id="star-02">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star02.png" x="0" y="0" 
+                                width="13" 
+                                height="14"></image>
+                        </g>
+                    </defs>
+                    <defs>
+                        <g id="star-03">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star03.png" x="0" y="0" 
+                                width="10" 
+                                height="10"></image>
+                        </g>
+                    </defs>
+                    <use xlink:href="#star-01" x="0" y="0">
+                        <animateMotion dur="10s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#road-01"/> 
+                        </animateMotion>
+                    </use>
+                    <use xlink:href="#star-02" x="0" y="0">
+                        <animateMotion dur="8s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#road-02"/> 
+                        </animateMotion>
+                    </use>
+                    <use xlink:href="#star-03" x="0" y="0">
+                        <animateMotion dur="5s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#road-03"/> 
+                        </animateMotion>
+                    </use>
+                </svg>
+            </div>
+            <div class="icon big-star swing-top-up-down"></div>
+
+            <div class="question-list" :class="'question-list--'+activeQuestion+' '+questionList[activeQuestion][queAni].total">
+                <div class="icon title-en" :class="questionList[activeQuestion][queAni].en"></div>
+                <div class="icon title-cn" :class="questionList[activeQuestion][queAni].cn"></div>
+                <div class="question-icon question-title" 
+                    :class="'question-title--'+activeQuestion+' '+questionList[activeQuestion][queAni].title"></div>
+                <div class="answer-list">
+                    <div v-for="(one,index) in questionList[activeQuestion].list"
+                        class="answer-option" 
+                        :class="questionList[activeQuestion][queAni]['option'+index]"
+                        @click.prevent="chooseAnswer(activeQuestion,index)">
+                        <div class="icon option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                            <div class="option-center"
+                                :class="one.scaleStatus ? 'option-center--scale' : ''">
+                                <div class="option__text"><span class="icon options__icon" :class="'options__icon--'+index"></span>{{one.content}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress" :class="hideProgress">
+                <div class="progress-center" :style="{width:(doneNum / questionList.length * 100)+'%'}"></div>
+                <div class="progress-num zoomIn"
+                    :style="{left:setRem(578 * (doneNum / questionList.length)-8)}">{{(doneNum / questionList.length * 100).toFixed(0)}}%</div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+            <div class="page-top" :class="page1[page1.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page1[page1.status].num">2 / {{total}}</div>
+            <div class="icon p1-title":class="page1[page1.status].title"></div>
+            <div class="page-list">
+                <div v-for="(one,index) in options" 
+                    class="page-option"
+                    :class="page1[page1.status]['option'+index]"
+                    @click.prevent="chooseAnswer(1,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page1.chose" :class="page0[page1.status].layer">
+                <div class="box-content" :class="page0[page1.status].content">
+                    <div class="box-text" :class="page0[page1.status].btext">自我介绍考察被面试者基本的<br/>逻辑思维、语言表达、总<br/>结提炼能力，应语速适中，<br/>不要背简历，把自己的真实项<br/>目经历<span class="box-highlight">有条理的阐述 </span>即可</div>
+                </div>
+                <div class="box-next" :class="page0[page1.status].next" @click.prevent="toNext(1)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">下一题</div>
+                </div>
+                <div class="icon box-close" :class="page0[page1.status].close" @click.prevent="closeEvent(1)"></div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+            <div class="page-top" :class="page2[page2.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page2[page2.status].num">3 / {{total}}</div>
+            <div class="icon p2-title" :class="page2[page2.status].title"></div>
+            <div class="page-list">
+                <div  v-for="(one,index) in options" 
+                    class="page-option"
+                    :class="page2[page2.status]['option'+index]"
+                    @click.prevent="chooseAnswer(2,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page2-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page2.chose" :class="page0[page2.status].layer">
+                <div class="box-content" :class="page0[page2.status].content">
+                    <div class="box-text" :class="page0[page2.status].btext">请开始你的表演，把重点的项<br/>目按STAR法则叙述一遍<br/><span class="box-highlight box-delete">忌假大空</span><br/><span class="box-highlight box-delete">忌流水账</span><br/><span class="box-highlight box-delete">忌忆童年</span></div>
+                </div>
+                <div class="box-next" :class="page0[page2.status].next" @click.prevent="toNext(2)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">下一题</div>
+                </div>
+                <div class="icon box-close" :class="page0[page2.status].close" @click.prevent="closeEvent(2)"></div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
+            <div class="page-top" :class="page3[page3.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page3[page3.status].num">4 / {{total}}</div>
+            <div class="icon p3-title" :class="page3[page3.status].title"></div>
+            <div class="page-list">
+                <div class="page-option" v-for="(one,index) in options"
+                    :class="page3[page3.status]['option'+index]"
+                    @click.prevent="chooseAnswer(3,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page2-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page3.chose" :class="page0[page3.status].layer">
+                <div class="box-content" :class="page0[page3.status].content">
+                    <div class="box-text" :class="page0[page3.status].btext">你又不是个演员，<br/>别设计那些情节。<br/>提前了解<span class="box-highlight">投递岗位的成长路径</span><br/>并清晰阐述，<br/>能够为你的面试加分不少。</div>
+                </div>
+                <div class="box-next" :class="page0[page3.status].next" @click.prevent="toNext(3)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">下一题</div>
+                </div>
+                <div class="icon box-close" :class="page0[page3.status].close" @click.prevent="closeEvent(3)"></div>
+            </div>
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
+            <div class="page-top" :class="page4[page4.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page4[page4.status].num">5 / {{total}}</div>
+            <div class="page4-icon p4-title" :class="page4[page4.status].title"></div>
+            <div class="page-list">
+                <div class="page-option" v-for="(one,index) in page4Options"
+                    :class="page4[page4.status]['option'+index]"
+                    @click.prevent="chooseAnswer(4,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page4-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page4.chose" :class="page0[page4.status].layer">
+                <div class="box-content" :class="page0[page4.status].content">
+                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”，抬走下一位。<br/>本题考察候选人对公司的渴求度<br/>和入职诉求。切忌问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
+                </div>
+                <div class="box-next" :class="page0[page4.status].next" @click.prevent="showResult(4)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">查看报告</div>
+                </div>
+                <div class="icon box-close" :class="page0[page4.status].close" @click.prevent="closeEvent(4)"></div>
+            </div>
+        </div>
+        <div class="page page5 opacityChange delay0-7" :class="activePage == 5 ? 'active' : 'hide'">
+            <div class="show-outer" v-show="showStatus">
+                <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
+                    <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
+                    <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
+                    <div class="show-me littleBottomIn delay1-0">{{user.nickname}}</div>
+                    <div class="show-text littleBottomIn delay1-2">的面试力：</div>
+                    <img class="show-light littleBottomIn delay1-4" :src="loadingArray[resultIndex]" />
+                    <img class="show-add littleBottomIn delay1-6" :src="loadingArray[2]" />
+                    <div class="show-words">
+                        <div class="word-one" 
+                            v-for="(one,index) in resultWords"
+                            :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
+                    </div>
+                    <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
+                    <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
+                    <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
+                </div>
+            </div>
+            <div class="draw-layer">
+                <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+            </div>
+            <div class="canvas-layer">
+                <!--<img class="save-img" :src="url" v-show="url" />-->
+            </div>
+            <img class="save-img zoomBigShake"
+                :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                :style="setSaveStyle"
+                :src="url" />
+            <div class="p5-tips littleBottomIn" 
+                :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
+            <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                @click.stop="retryEvent"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0010" 
+                data-lg-tj-cid="null">
+                <div class="btn-shadow"></div>
+                <div class="btn-text">重新测一次</div>
+            </div>
+            <div class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0011" 
+                data-lg-tj-cid="null">
+                <div class="btn-shadow"></div>
+                <div class="btn-text">进场拿Offer</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-autumn/m_index.html';
+        //微信分享
+        var datas = {
+            title: "我用这5个问题，淘汰了90%的应届生！",
+            desc: "大厂面试过不过，快来偷偷测一测",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/images/share.png",
+            activityType: 'ACTIVITY_H5_AUTUMN_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>	
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
+</body>
+</html>
