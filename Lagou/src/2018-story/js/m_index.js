@@ -60,10 +60,10 @@ var app = new Vue({
         this.canvas.height = 532
         this.ctx = this.canvas.getContext('2d')
         this.img = new Image()
+        var name = getQueryString("name"),
+            test = getQueryString("test")
         this.img.onload = function(){
             self.initCanvas()
-            var name = getQueryString("name"),
-                test = getQueryString("test")
             if(name){
                 self.activePage = 1
                 self.name = name
