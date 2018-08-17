@@ -76,7 +76,7 @@ var app = new Vue({
                 self.drawImgContent()
             }
         }
-        this.img.src = "images/ercode-04.png"
+        this.img.src = test ? "images/ercode-06.png" : "images/ercode-05.png"
         this.initImgCanvas()
         function ready() {
             self.miniprogram = window.__wxjs_environment === 'miniprogram' // true

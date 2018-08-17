@@ -82,15 +82,11 @@
                     status:'in',
                     in:{
                         outer:"",
-                        bg:"opacityChange delay1-5",
-                        logo:"opacityChange delay0-5",
-                        title:"downToCenter delay0-7",
-                        detail:"opacityChange delay1-2",
-                        num:"opacityChange delay2-0",
-                        layer:"zoomIn",
-                        choose:"opacityChange delay0-5",
-                        boy:"bounceInLeft delay1-0",
-                        girl:"bounceInRight delay1-0"
+                        title_bg:'leftTopIn delay0-5',
+                        big_star:'swing-top-up-down delay0-5',
+                        orbit:'rightBottomZoomIn delay0-5',
+                        svg:'opacityChange delay1-0',
+                        num:"opacityChange delay0-5"
                     },
                     out:{
                         outer:"opacityChange-out delay0-2 duration0-3",
@@ -98,11 +94,7 @@
                         logo:"",
                         title:"",
                         detail:"",
-                        num:"",
-                        layer:"zoomIn-out duration0-2",
-                        choose:"",
-                        boy:"",
-                        girl:""
+                        num:""
                     },
                 },
                 loadingSuccess = function(){
@@ -110,39 +102,106 @@
                         space = now - startTime,
                         layer = document.getElementById('loading__layer')
                     var appElement = document.getElementById('app');
-                    appElement.className = appElement.className.replace(' hide','');
-                    document.getElementById('loading').className += ' hide';
-                    // if(space < 3000){
-                    //     setTimeout(function(){
-                    //         layer.className = layer.className.replace(' hide','');
-                    //         loadingComplete()
-                    //     },3000 - space)
-                    // }else{
-                    //     layer.className = layer.className.replace(' hide','');
-                    //     loadingComplete()
-                    // }
+                    if(space < 3000){
+                        setTimeout(function(){
+                            pload.status = 'out'
+                            document.getElementById('loading').className += ' opacityChange-out delay0-2 duration0-3';
+                            setTimeout(function(){
+                                appElement.className = appElement.className.replace(' hide','');
+                                document.getElementById('loading').className += ' hide';
+                                app.loadSuccess()
+                            },500)
+                        },3000 - space)
+                    }else{
+                        pload.status = 'out'
+                        document.getElementById('loading').className += ' opacityChange-out delay0-2 duration0-3';
+                        setTimeout(function(){
+                            appElement.className = appElement.className.replace(' hide','');
+                            document.getElementById('loading').className += ' hide';
+                            app.loadSuccess()
+                        },500)
+                    }
                 }
 		</script>
 	</head>
 <body>
     <div class="loading" id="loading">
-        <div class="loading__bg" :class="pload[pload.status].bg"></div>
         <img class="loading__gif" src="images/loading.gif" />
-        <div class="icon loading__logo" :class="pload[pload.status].logo"></div>
-        <div class="loading__title" :class="pload[pload.status].title"></div>
-        <div class="icon loading__detail" :class="pload[pload.status].detail"></div>
-        <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
-        <div class="loading__layer hide" :class="pload[pload.status].layer" id="loading__layer">
-            <div class="icon loading__choose" :class="pload[pload.status].choose"></div>
-            <div class="icon loading__boy" :class="pload[pload.status].boy" id="loading__boy"
-                data-lg-tj-id="1bir" 
-                data-lg-tj-no="0001" 
-                data-lg-tj-cid="null"></div>
-            <div class="icon loading__girl" :class="pload[pload.status].boy" id="loading__girl"
-                data-lg-tj-id="1bir" 
-                data-lg-tj-no="0002" 
-                data-lg-tj-cid="null"></div>
-        </div>
+        <!--<div class="icon title-bg leftTopIn delay0-5"></div>
+        <div class="icon big-star swing-top-up-down"></div>
+        <div class="page-orbit rightBottomZoomIn delay0-5"></div>
+        <div class="svg-parent opacityChange delay1-0">
+            <div class="svg-div swing-move-left delay0-5">
+                <svg class="map1-svg" id="loading-lineSVG" width="100%" height="100%" viewBox="0 0 750 1206" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path class="mapSvgDraw" id="loading-road-01" d="M750 220
+                        Q380 314 226 424
+                        C170 479 175 514 231 545
+                        Q285 574 465 580
+                        Q613 579 750 554
+                        L1000 564
+                        L1000 220
+                        L750 220 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <path class="mapSvgDraw" id="loading-road-02" d="M750 245
+                        Q560 321 520 346
+                        C489 376 496 397 550 404
+                        Q550 404 640 401
+                        Q695 396 750 387
+                        L900 387
+                        L900 245
+                        L750 245 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <path class="mapSvgDraw" id="loading-road-03" d="M750 270
+                        Q666 300 625 320
+                        C586 350 590 372 642 375
+                        Q680 376 750 368
+                        L800 368
+                        L800 270
+                        L750 270 Z" 
+                        style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>
+                    <defs>
+                        <g id="loading-star-01">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star01.png" x="0" y="0" 
+                                width="15" 
+                                height="15"></image>
+                        </g>
+                    </defs>
+                    <defs>
+                        <g id="loading-star-02">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star02.png" x="0" y="0" 
+                                width="13" 
+                                height="14"></image>
+                        </g>
+                    </defs>
+                    <defs>
+                        <g id="loading-star-03">
+                            <image class="img-transform" 
+                                xlink:href="images/page1-star03.png" x="0" y="0" 
+                                width="10" 
+                                height="10"></image>
+                        </g>
+                    </defs>
+                    <use xlink:href="#loading-star-01" x="0" y="0">
+                        <animateMotion dur="10s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#loading-road-01"/> 
+                        </animateMotion>
+                    </use>
+                    <use xlink:href="#loading-star-02" x="0" y="0">
+                        <animateMotion dur="8s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#loading-road-02"/> 
+                        </animateMotion>
+                    </use>
+                    <use xlink:href="#loading-star-03" x="0" y="0">
+                        <animateMotion dur="5s" rotate="auto" repeatCount="indefinite">
+                            <mpath xlink:href="#loading-road-03"/> 
+                        </animateMotion>
+                    </use>
+                </svg>
+            </div>
+        </div>-->
+        <div class="loading__num opacityChange delay0-5" id="loading__num">0%</div>
     </div>
     <script type="text/javascript">
         function setLoadingHTML(progress){
@@ -150,23 +209,82 @@
                 data = pload[pload.status],
                 html = ''+
                 '<div class="loading '+data.outer+'" id="loading">'+
-                    '<div class="loading__bg '+data.bg+'"></div>'+
                     '<img class="loading__gif" src="images/loading.gif" />'+
-                    '<div class="icon loading__logo '+data.logo+'"></div>'+
-                    '<div class="loading__title '+data.title+'"></div>'+
-                    '<div class="icon loading__detail '+data.detail+'"></div>'+
+                    /*'<div class="icon title-bg '+data.title_bg+'"></div>'+
+                    '<div class="icon big-star '+data.big_star+'"></div>'+
+                    '<div class="page-orbit '+data.orbit+'"></div>'+
+                    '<div class="svg-parent '+data.svg+'">'+
+                        '<div class="svg-div swing-move-left delay0-5">'+
+                            '<svg class="map1-svg" id="loading-lineSVG" width="100%" height="100%" viewBox="0 0 750 1206" version="1.1" xmlns="http://www.w3.org/2000/svg">'+
+                                '<path class="mapSvgDraw" id="loading-road-01" d="M750 220'+
+                                    'Q380 314 226 424'+
+                                    'C170 479 175 514 231 545'+
+                                    'Q285 574 465 580'+
+                                    'Q613 579 750 554'+
+                                    'L1000 564'+
+                                    'L1000 220'+
+                                    'L750 220 Z" '+
+                                    'style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>'+
+                                '<path class="mapSvgDraw" id="loading-road-02" d="M750 245'+
+                                    'Q560 321 520 346'+
+                                    'C489 376 496 397 550 404'+
+                                    'Q550 404 640 401'+
+                                    'Q695 396 750 387'+
+                                    'L900 387'+
+                                    'L900 245'+
+                                    'L750 245 Z" '+
+                                    'style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>'+
+                                '<path class="mapSvgDraw" id="loading-road-03" d="M750 270'+
+                                    'Q666 300 625 320'+
+                                    'C586 350 590 372 642 375'+
+                                    'Q680 376 750 368'+
+                                    'L800 368'+
+                                    'L800 270'+
+                                    'L750 270 Z" '+
+                                    'style="fill:transparent;stroke:rgba(255,255,255,0.3);stroke-width:3"></path>'+
+                                '<defs>'+
+                                    '<g id="loading-star-01">'+
+                                        '<image class="img-transform" '+
+                                            ' xlink:href="images/page1-star01.png" x="0" y="0" '+
+                                            'width="15" '+
+                                            'height="15"></image>'+
+                                    '</g>'+
+                                '</defs>'+
+                                '<defs>'+
+                                    '<g id="loading-star-02">'+
+                                        '<image class="img-transform" '+
+                                            'xlink:href="images/page1-star02.png" x="0" y="0" '+
+                                            'width="13" '+
+                                            'height="14"></image>'+
+                                    '</g>'+
+                                '</defs>'+
+                                '<defs>'+
+                                    '<g id="loading-star-03">'+
+                                        '<image class="img-transform" '+
+                                            'xlink:href="images/page1-star03.png" x="0" y="0" '+
+                                            'width="10" '+
+                                            'height="10"></image>'+
+                                    '</g>'+
+                                '</defs>'+
+                                '<use xlink:href="#loading-star-01" x="0" y="0">'+
+                                    '<animateMotion dur="10s" rotate="auto" repeatCount="indefinite">'+
+                                        '<mpath xlink:href="#loading-road-01"/> '+
+                                    '</animateMotion>'+
+                                '</use>'+
+                                '<use xlink:href="#loading-star-02" x="0" y="0">'+
+                                    '<animateMotion dur="8s" rotate="auto" repeatCount="indefinite">'+
+                                        '<mpath xlink:href="#loading-road-02"/> '+
+                                    '</animateMotion>'+
+                                '</use>'+
+                                '<use xlink:href="#loading-star-03" x="0" y="0">'+
+                                    '<animateMotion dur="5s" rotate="auto" repeatCount="indefinite">'+
+                                        '<mpath xlink:href="#loading-road-03"/> '+
+                                    '</animateMotion>'+
+                                '</use>'+
+                            '</svg>'+
+                        '</div>'+
+                    '</div>'+*/
                     '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
-                    '<div class="loading__layer hide '+data.layer+'" id="loading__layer">'+
-                    '    <div class="icon loading__choose '+data.choose+'"></div>'+
-                    '    <div class="icon loading__boy '+data.boy+'" id="loading__boy"'+
-                    '        data-lg-tj-id="1bir" '+
-                    '        data-lg-tj-no="0001" '+
-                    '        data-lg-tj-cid="null"></div>'+
-                    '    <div class="icon loading__girl '+data.girl+'" id="loading__girl"'+
-                    '        data-lg-tj-id="1bir" '+
-                    '        data-lg-tj-no="0002" '+
-                    '        data-lg-tj-cid="null"></div>'+
-                    '</div>'+
                 '</div>'
             loading.outerHTML = html
         }
@@ -176,7 +294,9 @@
     <div class="wrapper pages" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'" @touchmove.prevent="noop">
             <div class="icon title-bg" :class="page0[type].title_bg"></div>
-            <div class="icon big-star" :class="page0[type].big_star"></div>
+            <div class="bs-parent" :class="page0[type].big_star">
+                <div class="icon big-star swing-top-up-down"></div>
+            </div>
             <div class="bt-parent" :class="page0[type].bottom_title">
                 <div class="icon bottom-title swing-move-up delay0-5"></div>
             </div>
@@ -275,7 +395,7 @@
                 <div class="sure-parent scaleXYL delay0-5">
                     <div class="icon sure" 
                         :class="shakeClass" 
-                        @click.prevent="startDraw" 
+                        @click.prevent="startAnswer" 
                         data-lg-tj-id="1bin" 
                         data-lg-tj-no="0001" 
                         data-lg-tj-cid="idnull"></div>
@@ -284,7 +404,9 @@
         </div>
         <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
             <div class="icon title-bg leftTopIn delay0-5"></div>
-            <div class="icon bottom-title littleBottomIn delay2-7"></div>
+            <div class="bt-parent" :class="btAni">
+                <div class="icon bottom-title littleBottomIn delay2-7"></div>
+            </div>
             <div class="icon bottom-logo littleBottomIn delay2-9"></div>
             <div class="page-orbit rightBottomZoomIn delay0-5">
                 <!-- <div class="icon star-01"></div> -->
@@ -385,6 +507,10 @@
                 </div>
             </div>
 
+            <div class="seting" v-show="btAni">
+                结果正在生成中<br/>
+                ...
+            </div>
             <div class="progress" :class="hideProgress">
                 <div class="progress-center" :style="{width:(doneNum / questionList.length * 100)+'%'}"></div>
                 <div class="progress-num zoomIn"

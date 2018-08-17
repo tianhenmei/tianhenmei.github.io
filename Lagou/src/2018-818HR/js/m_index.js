@@ -6,7 +6,7 @@ app = new Vue({
         mode:"development",
         lg:"1bir",
         // test
-        activePage:0,
+        activePage:-1,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
 
@@ -18,7 +18,7 @@ app = new Vue({
         page0:{
             in:{
                 title_bg:'leftTopIn delay0-5',
-                big_star:'swing-top-up-down',
+                big_star:'rightIn delay0-5',
                 bottom_title:'littleBottomIn delay2-7',
                 bottom_logo:'littleBottomIn delay2-9',
                 orbit:'rightBottomZoomIn delay0-5',
@@ -47,18 +47,25 @@ app = new Vue({
         activeQuestion:0,
         doneNum:0,
         hideProgress:'opacityChange delay2-0',
+        btAni:'',
         queAni:'in',
         questionList:[{
             in:{
                 total:'',
                 en:'opacityChange delay0-7',
-                cn:'rotateXIn delay0-5',
-                title:'leftIn delay1-0',
-                option0:'rotateXIn delay1-5',
-                option1:'rotateXIn delay1-5'
+                cn:'opacityChange delay0-5',
+                title:'opacityChange delay1-0',
+                option0:'opacityChange delay1-5',
+                option1:'opacityChange delay1-5'
+                // en:'opacityChange delay0-7',
+                // cn:'rotateXIn delay0-5',
+                // title:'leftIn delay1-0',
+                // option0:'rotateXIn delay1-1',
+                // option1:'rotateXIn delay1-3'
             },
             out:{
-                total:'leftIn-out',
+                total:'opacityChange-out',
+                // total:'leftIn-out',
                 en:'',
                 cn:'',
                 title:'',
@@ -69,20 +76,25 @@ app = new Vue({
                 content:"同事向你倾诉工作",
                 
             },{
-                content:"候选人告知明天面试不来了",
-                scaleStatus:true
+                content:"候选人告知面试取消"
             }]
         },{
             in:{
                 total:'',
-                en:'rightIn delay0-5',
-                cn:'rightIn delay0-7',
-                title:'rightIn delay0-9',
-                option0:'rightIn delay1-1',
-                option1:'rightIn delay1-3'
+                en:'opacityChange delay0-7',
+                cn:'opacityChange delay0-5',
+                title:'opacityChange delay1-0',
+                option0:'opacityChange delay1-1',
+                option1:'opacityChange delay1-3'
+                // en:'rightIn delay0-5',
+                // cn:'rightIn delay0-7',
+                // title:'rightIn delay0-9',
+                // option0:'rightIn delay1-1',
+                // option1:'rightIn delay1-3'
             },
             out:{
-                total:'topInMove-out',
+                total:'opacityChange-out',
+                // total:'topInMove-out',
                 en:'',
                 cn:'',
                 title:'',
@@ -93,21 +105,28 @@ app = new Vue({
                 content:"去雍和宫烧香",
                 
             },{
-                content:"放弃休息，把床搬到公司",
+                content:"把床搬到公司干活",
                 scaleStatus:true
             }]
         },{
             in:{
                 total:'',
-                en:'littleBottomIn delay0-5',
-                cn:'littleBottomIn delay0-7',
-                title:'littleBottomIn delay0-9',
-                option0:'littleBottomIn delay1-1',
-                option1:'littleBottomIn delay1-3',
-                option2:'littleBottomIn delay1-5'
+                en:'opacityChange delay0-7',
+                cn:'opacityChange delay0-5',
+                title:'opacityChange delay1-0',
+                option0:'opacityChange delay1-1',
+                option1:'opacityChange delay1-3',
+                option2:'opacityChange delay1-5'
+                // en:'littleBottomIn delay0-5',
+                // cn:'littleBottomIn delay0-7',
+                // title:'littleBottomIn delay0-9',
+                // option0:'littleBottomIn delay1-1',
+                // option1:'littleBottomIn delay1-3',
+                // option2:'littleBottomIn delay1-5'
             },
             out:{
-                total:'rotate-out',
+                total:'opacityChange-out',
+                // total:'rotate-out',
                 en:'',
                 cn:'',
                 title:'',
@@ -117,26 +136,33 @@ app = new Vue({
             },
             list:[{
                 content:"另约时间，陪另一半约会",
-                scaleStatus:true
+                // scaleStatus:true
                 
             },{
                 content:"推掉约会，去完成面试",
-                scaleStatus:true
+                // scaleStatus:true
             },{
                 content:"把候选人带到餐厅聊聊",
-                scaleStatus:true
+                // scaleStatus:true
             }]
         },{
             in:{
-                total:'rotateIn2 delay0-5',
-                en:'',
-                cn:'',
-                title:'',
-                option0:'',
-                option1:''
+                total:'',
+                en:'opacityChange delay0-7',
+                cn:'opacityChange delay0-5',
+                title:'opacityChange delay1-0',
+                option0:'opacityChange delay1-1',
+                option1:'opacityChange delay1-3'
+                // total:'rotateIn2 delay0-5',
+                // en:'',
+                // cn:'',
+                // title:'',
+                // option0:'',
+                // option1:''
             },
             out:{
-                total:'zoomIn-out',
+                total:'opacityChange-out',
+                // total:'zoomIn-out',
                 en:'',
                 cn:'',
                 title:'',
@@ -151,12 +177,18 @@ app = new Vue({
         },{
             in:{
                 total:'',
-                en:'centerToTop delay0-5',
-                cn:'centerToTop delay0-7',
-                title:'centerToTop delay0-9',
-                option0:'centerToBottom delay1-1',
-                option1:'centerToBottom delay1-3',
-                option2:'centerToBottom delay1-5'
+                en:'opacityChange delay0-7',
+                cn:'opacityChange delay0-5',
+                title:'opacityChange delay1-0',
+                option0:'opacityChange delay1-1',
+                option1:'opacityChange delay1-3',
+                option2:'opacityChange delay1-5'
+                // en:'centerToTop delay0-5',
+                // cn:'centerToTop delay0-7',
+                // title:'centerToTop delay0-9',
+                // option0:'centerToBottom delay1-1',
+                // option1:'centerToBottom delay1-3',
+                // option2:'centerToBottom delay1-5'
             },
             out:{
                 total:'opacityChange-out',
@@ -178,31 +210,19 @@ app = new Vue({
         canvas:null,
         ctx:null,
         url:'',
+        loaded:0,
         loadingArray:[
-            "images/result-title.png",
-            "images/result-lagou.png",
-            "images/result-add.png",
-            "images/result-tips.png",
-            "images/result-person-01.png",  // 4
-            "images/result-person-02.png",
-            "images/result-person-03.png",
-            "images/result-person-04.png",
-            "images/result-text-a-01.png",  // 8
-            "images/result-text-a-02.png",
-            "images/result-text-a-03.png",
-            "images/result-text-a-04.png",
-            "images/result-text-b-01.png",  // 12
-            "images/result-text-b-02.png",
-            "images/result-text-b-03.png",
-            "images/result-text-c-01.png",  // 15
-            "images/result-text-c-02.png",
-            "images/result-text-c-03.png",
-            "images/result-text-d-01.png",  // 18
-            "images/result-text-d-02.png"
+            "images/page1-bg.png",
+            "images/result-border.png",
+            "images/result-bottom.png",
+            "images/result-ercode.png",
+            "images/result-title-01.png",  // 4
+            "images/result-title-02.png",
+            "images/result-title-03.png",
+            "images/page1-orbit.png"
         ],
         loadedImgs:[],
         drawStatus:false,
-        loaded:0,
         resultText:[
             [
                 ["面试HR如沐春风","分分钟Offer一箩筐。"],
@@ -369,7 +389,8 @@ app = new Vue({
                     self.activeQuestion++
                     self.queAni = 'in'
                 }else{
-                    self.hideProgress = 'littleBottomOut delay0-5'
+                    self.hideProgress = 'opacityChange-out delay0-5'//'littleBottomOut delay0-5'
+                    self.btAni = 'littleBottomOut delay0-5'
                 }
             },300)
         },
@@ -415,6 +436,13 @@ app = new Vue({
         initImageLoading:function(){
             this.loaded++
             if(this.loaded == this.loadingArray.length){
+                this.ctx.drawImage(this.loadedImgs[0],0,0)
+                this.ctx.drawImage(this.loadedImgs[1],31,-8)
+                this.ctx.drawImage(this.loadedImgs[2],114,1036)
+                this.ctx.drawImage(this.loadedImgs[3],487,1074)
+                this.ctx.drawImage(this.loadedImgs[4],78,69)
+                this.ctx.drawImage(this.loadedImgs[5],78,498)
+                this.ctx.drawImage(this.loadedImgs[6],78,719)
                 if(this.drawStatus){
                     this.startDraw()
                 }
@@ -622,7 +650,10 @@ app = new Vue({
                 }
             });
         },
-        startDraw:function(){
+        loadSuccess:function(){
+            this.activePage = 0
+        },
+        startAnswer:function(){
             var self = this
             if(this.name){
                 this.tips = ""
