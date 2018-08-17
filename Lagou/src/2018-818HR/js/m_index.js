@@ -6,7 +6,7 @@ app = new Vue({
         mode:"development",
         lg:"1bir",
         // test
-        activePage:-1,
+        activePage:0,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
 
@@ -44,6 +44,7 @@ app = new Vue({
         // page1
         choseOptionIndex:-1,
         result:[],
+        resultIndex:-1,
         activeQuestion:0,
         doneNum:0,
         hideProgress:'opacityChange delay2-0',
@@ -106,7 +107,7 @@ app = new Vue({
                 
             },{
                 content:"把床搬到公司干活",
-                scaleStatus:true
+                // scaleStatus:true
             }]
         },{
             in:{
@@ -136,14 +137,14 @@ app = new Vue({
             },
             list:[{
                 content:"另约时间，陪另一半约会",
-                // scaleStatus:true
+                scaleStatus:true
                 
             },{
                 content:"推掉约会，去完成面试",
-                // scaleStatus:true
+                scaleStatus:true
             },{
                 content:"把候选人带到餐厅聊聊",
-                // scaleStatus:true
+                scaleStatus:true
             }]
         },{
             in:{
@@ -212,44 +213,76 @@ app = new Vue({
         url:'',
         loaded:0,
         loadingArray:[
-            "images/page1-bg.png",
+            "images/result-bg.png",
             "images/result-border.png",
             "images/result-bottom.png",
             "images/result-ercode.png",
             "images/result-title-01.png",  // 4
             "images/result-title-02.png",
             "images/result-title-03.png",
-            "images/page1-orbit.png"
+            "images/page1-orbit.png", // 7
+            "images/result-star-01.png",
+            "images/result-star-02.png",
+            "images/result-line.png"  // 10
         ],
         loadedImgs:[],
         drawStatus:false,
-        resultText:[
-            [
-                ["面试HR如沐春风","分分钟Offer一箩筐。"],
-                ["能直接发Offer","解决的问题，","就不要用面试解决。"],
-                ["戴上我的面霸手套","让HR不得不","发Offer给我。"],
-                ["只要我想","就没有拿不到的Offer。"]
-            ],[
-                ["纵然面试中","再多的突发问题，","也能微微一笑，","绝对不慌。"],
-                ["纵有万千套路，","我自巍然不动。"],
-                ["只要给我一个支点，","就能撬动HR的心。"]
-            ],[
-                ["虽然面试过程坎坷不断，","但是只要发挥自己的脑洞，","总能争取到Offer的机会。"],
-                ["面试就像一场戏，","Offer拿到不容易，","为了面试发脾气，","面完想想又何必。"],
-                ["只要参与足够多的面试","Offer自然会来到身边。"]
-            ],[
-                ["我在面试现场，","比梅西还慌的一比。","我不是天生要强，","我可能面试要凉。"],
-                ["看见面试官双腿忍不","住以75THz的频率抖","动，瞬间失忆，还需","票圈高人提点。"]
-            ]
-        ],
+        drawStartTime:0,
+        resultText:[{  // 0
+            name:"戏精本精HR",
+            intro:["善于在琐碎的工作中找寻乐趣","同事们都为你欢呼鼓掌。"],
+            rule:"不加戏怎么红",
+            gift:"已在拉勾为你找到最契合神秘武器",
+            gift_name:"【拉勾直call大咖】",
+            gift_intro:["主动出击，电话邀约心仪大咖","随时随地享受加戏乐趣"]
+        },{  // 1
+            name:"24小时待机HR",
+            intro:["作为HR中的战斗机，精力充沛，随叫随到","招不到人？不存在的"],
+            rule:"生命不息，折腾不止",
+            gift:"已在拉勾找到与你最为契合的神秘武器",
+            gift_name:"【拉勾全库简历】",
+            gift_intro:["1954万简历开放给你","大咖多到停不下来"]
+        },{  // 2
+            name:"主角光环HR",
+            intro:["别人只看到你表面上春风得意，","不知道你背后也风生水起"],
+            rule:"哪有一路开挂，不过是厚积薄发",
+            gift:"已在拉勾找到与你最为契合的神秘武器",
+            gift_name:"【拉勾特权职位】",
+            gift_intro:["发布职位不受限制，","职位排名一路开挂"]
+        },{  // 3
+            name:"锦鲤依赖HR",
+            intro:["在招人的道路上不抛弃，不放弃，","坚持…转发锦鲤，可以说是非常有毅力。"],
+            rule:"得锦鲤者得候选人",
+            gift:"已在拉勾为你找到最契合神秘武器",
+            gift_name:"【拉勾大咖到面】",
+            gift_intro:["高端人才主动上门","快速招揽技术大牛"]
+        },{  // 4
+            name:"候选人磁铁HR",
+            intro:["作为HR中的人气王，候选人总是不由自主被你吸引，","有了你再也不担心被放鸽子"],
+            rule:"我要变成万人迷",
+            gift:"已在拉勾为你找到最契合神秘武器",
+            gift_name:"【拉勾在线沟通】",
+            gift_intro:["在线“撩人”不限次","想跟谁聊跟谁聊"]
+        },{  // 5
+            name:"小太阳HR",
+            intro:["善于沟通，协作能力一流，","和你一起工作总是事倍功半。"],
+            rule:"代表太阳温暖你",
+            gift:"已在拉勾为你找到最契合神秘武器",
+            gift_name:"【拉勾超级协同】",
+            gift_intro:["付费权益多人共享","和同事一起提高招聘效率"]
+        },{  // 6
+            name:"颜值赛高HR",
+            intro:["同事都夸你特别有毅力","因为光好看这事你就坚持了好几十年"],
+            rule:"永远做最耀眼的存在",
+            gift:"与你最为契合的神秘武器",
+            gift_name:"【拉勾职位置顶卡】",
+            gift_intro:["24小时精准置顶，专属标识，","海量曝光，让所有求职者一眼看到你"]
+        }],
         resultScore:0,
         user:{
             "nickname":"我",
             "headimgurl":"images/create-logo.png"
         },
-        resultPerson:4,
-        resultIndex:0,
-        resultWords:[],
         showStatus:true
     },
     computed:{
@@ -315,31 +348,18 @@ app = new Vue({
         this.initCanvas()
     },
     methods:{
-        setDelayTime:function(start,now,index){
-            var current = Math.floor(now / 10)
-            return start + current
-        },
         setLaterDelay:function(start,now){
             var current = Math.floor(now / 10),
                 sec = now % 10
             return 'delay'+(start+current)+'-'+sec
         },
-        setSex:function(sex){
-            this.sex = sex
-            // test  打开
-            // var self = this
-            // this.resultScore = Math.floor(Math.random() * 150)
-            // this.drawStatus = true
-            // this.setResultData()
-            // this.initCanvas()
-        },
         chooseAnswer:function(pindex,index){
             var self = this,
-                str = ''
+                type = -1
             if(pindex == 0){
                 switch(index){
                     case 0:
-                        str = '便利贴HR'
+                        type = 5
                         break
                     default:
                         break
@@ -347,7 +367,7 @@ app = new Vue({
             }else if(pindex == 1){
                 switch(index){
                     case 0:
-                        str = '锦鲤依赖HR'
+                        type = 3
                         break
                     default:
                         break
@@ -355,7 +375,7 @@ app = new Vue({
             }else if(pindex == 2){
                 switch(index){
                     case 0:
-                        str = '候选人磁铁HR'
+                        type = 4
                         break
                     default:
                         break
@@ -363,7 +383,7 @@ app = new Vue({
             }else if(pindex == 3){
                 switch(index){
                     case 0:
-                        str = '颜值赛高HR'
+                        type = 6
                         break
                     default:
                         break
@@ -371,17 +391,20 @@ app = new Vue({
             }else if(pindex == 4){
                 switch(index){
                     case 0:
-                        str = '主角光环HR'
+                        type = 2
                         break
                     case 1:
-                        str = '24小时待机HR'
+                        type = 1
                         break
                     case 2:
-                        str = '戏精本精HR'
+                        type = 0
                         break
                 }
             }
-            this.result[pindex] = str
+            if(this.resultIndex == -1 && type != -1){
+                this.resultIndex = type
+            }
+            // this.result[pindex] = str
             this.queAni = 'out'
             setTimeout(function(){
                 self.doneNum++
@@ -391,25 +414,10 @@ app = new Vue({
                 }else{
                     self.hideProgress = 'opacityChange-out delay0-5'//'littleBottomOut delay0-5'
                     self.btAni = 'littleBottomOut delay0-5'
+                    // 开始绘制
+                    self.showResult()
                 }
             },300)
-        },
-        toNext:function(pindex){
-            if(this.clickStatus){
-                return
-            }
-            this.clickStatus = true
-            var self = this
-            this['page'+pindex].status = 'out'
-            setTimeout(function(){
-                self.clickStatus = false
-                self['page'+pindex].status = 'in'
-                self['page'+pindex].chose = false
-                self.activePage = ++pindex
-            },700)
-        },
-        closeEvent:function(pindex){
-            this['page'+pindex].chose = false
         },
         initCanvas:function(){
             this.canvas = this.$refs['canvas']
@@ -437,15 +445,28 @@ app = new Vue({
             this.loaded++
             if(this.loaded == this.loadingArray.length){
                 this.ctx.drawImage(this.loadedImgs[0],0,0)
+                this.ctx.drawImage(this.loadedImgs[7],181,143)
+                this.ctx.drawImage(this.loadedImgs[8],55,117)
+                this.ctx.drawImage(this.loadedImgs[9],502,651)
                 this.ctx.drawImage(this.loadedImgs[1],31,-8)
                 this.ctx.drawImage(this.loadedImgs[2],114,1036)
                 this.ctx.drawImage(this.loadedImgs[3],487,1074)
                 this.ctx.drawImage(this.loadedImgs[4],78,69)
                 this.ctx.drawImage(this.loadedImgs[5],78,498)
                 this.ctx.drawImage(this.loadedImgs[6],78,719)
+                this.ctx.drawImage(this.loadedImgs[10],125,448)
+                this.ctx.drawImage(this.loadedImgs[10],125,671)
+                // test 注释
                 if(this.drawStatus){
                     this.startDraw()
                 }
+                // test 打开
+                // $('html,body').css({
+                //     height:'auto'
+                // })
+                // this.name = '测试'
+                // this.resultIndex = 6
+                // this.startDraw()
             }
         },
 
@@ -453,31 +474,16 @@ app = new Vue({
             if(this.clickStatus){
                 return
             }
+            this.drawStartTime = Date.now()
             this.clickStatus = true
             var self = this,
                 score = 0,
                 i = 0
-            this['page'+pindex].status = 'out'
-            for(i = 0; i < this.result.length; i++){
-                score += this.result[i]
-            }
-            this.resultScore = score
-            this.setResultData()
             if(this.loaded == this.loadingArray.length){
                 this.startDraw()
             }else{
                 this.drawStatus = true
             }
-            setTimeout(function(){
-                self.clickStatus = false
-                self['page'+pindex].status = 'in'
-                self['page'+pindex].chose = false
-                self.activePage = ++pindex
-                var tt = 2*1000+((6+self.resultWords.length*2) % 10 + 2 + 7) * 100
-                setTimeout(function(){
-                    self.showStatus = false
-                },tt)
-            },700)
         },
         startDraw:function(){
             var ercode = "images/result-ercode.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
@@ -491,88 +497,54 @@ app = new Vue({
             }
             img.src = ercode
         },
-        setResultData:function(){
-            var text = [],
-                title = null,
-                one = 0,
-                index = 0,
-                start = 8,
-                person = 0
-            if(this.resultScore < 50){
-                index = 3
-                start = 18
-            }else if(this.resultScore < 100){
-                index = 2
-                start = 15
-            }else if(this.resultScore < 150){
-                index = 1
-                start = 12
-            }else{
-                index = 0
-                start = 8
-            }
-            one = Math.floor(Math.random() * this.resultText[index].length)
-            text = this.resultText[index][one]
-            if(this.sex == 'boy'){
-                if(this.result[0] < 20){
-                    this.resultPerson = 4
-                }else{
-                    this.resultPerson = 5
-                }
-            }else{
-                if(this.result[0] < 20){
-                    this.resultPerson = 6
-                }else{
-                    this.resultPerson = 7
-                }
-            }
-            this.resultIndex = start+one
-            this.resultWords = text
-        },
         drawAllInformation:function(ercode){
-            this.ctx.drawImage(this.loadedImgs[this.resultPerson],0,0)
-            this.ctx.drawImage(this.loadedImgs[0],474,113)
-            this.ctx.drawImage(this.loadedImgs[1],649,1275)
-            this.ctx.drawImage(this.loadedImgs[2],101,867)
-            this.ctx.drawImage(this.loadedImgs[3],177,1243)
-            this.ctx.drawImage(this.loadedImgs[this.resultIndex],0,0)
-
-            this.drawUserInfo(this.resultWords)
-            this.drawErcode(ercode)
+            this.drawUserInfo()
+            // this.drawErcode(ercode)
 
             this.canvasToImage()
         },
         drawErcode:function(drawErcode){
             this.ctx.drawImage(drawErcode,0,0,drawErcode.width,drawErcode.height,45,1188,104,104)
         },
-        drawUserInfo:function(text){
-            var sp = 0
+        drawUserInfo:function(){
+            var sp = 0,
+                data = this.resultText[this.resultIndex]
             this.ctx.fillStyle = '#ffffff'
-            this.ctx.font = "46px italic"
-            this.ctx.fillText(this.user.nickname,101,254+46)
-            sp = this.ctx.measureText(this.user.nickname).width
-            this.ctx.save()
-            this.ctx.beginPath();
-            this.ctx.globalAlpha = 0.3
-            this.ctx.rect(97,293,sp,4)
-            this.ctx.closePath()
-            this.ctx.restore()
+            this.ctx.font = "48px normal"
+            this.ctx.fillText(this.name,120,180+48)
 
-            this.ctx.font = "70px bold"
-            this.ctx.fillText("的面试力：",101,320+70)
+            this.ctx.fillStyle = '#08dfa5'
+            this.ctx.font = "36px normal"
+            this.ctx.fillText("你是",120,267+36)
+            sp = this.ctx.measureText("你是").width
+            this.ctx.font = "48px normal"
+            this.ctx.fillText(data.name,120+sp,257+48)
 
-            var i = 0,
-                start = 936
-            this.ctx.font = "29px normal"
-            for(i = 0; i < text.length; i++){
-                this.ctx.fillText(text[i],100,start+44*i+29)
-            }
+            this.ctx.fillStyle = '#9f9f9f'
+            this.ctx.font = "30px normal"
+            this.ctx.fillText(data.intro[0],120,332+30)
+            this.ctx.fillText(data.intro[1],120,380+30)
+
+            this.ctx.fillStyle = '#08dfa5'
+            this.ctx.font = "40px normal"
+            this.ctx.fillText(data.rule,120,597+40)
+
+            this.ctx.fillText(data.gift_name,100,832+40)
+
+            this.ctx.fillStyle = '#9f9f9f'
+            this.ctx.font = "30px normal"
+            this.ctx.fillText(data.gift_intro[0],120,920+30)
+            this.ctx.fillText(data.gift_intro[1],120,968+30)
             
         },
         canvasToImage:function(){
             var self = this
             setTimeout(function(){
                 self.url = self.canvas.toDataURL('image/png')
+                $('html,body').css({
+                    height:'auto'
+                })
+                self.activePage = 2
             },1000)
         },
 
@@ -651,6 +623,7 @@ app = new Vue({
             });
         },
         loadSuccess:function(){
+            // test
             this.activePage = 0
         },
         startAnswer:function(){
@@ -664,6 +637,7 @@ app = new Vue({
                 this.type = "out"
                 setTimeout(function(){
                     self.activePage = 1
+                    self.$refs['music'].play()
                 },500)
                 // this.drawStatus = true
                 // if(this.load == this.imgs.length){

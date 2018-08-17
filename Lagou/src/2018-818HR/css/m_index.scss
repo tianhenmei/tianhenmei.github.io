@@ -209,7 +209,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background:url('../images/page1-bg.png') no-repeat center top;
+    background:#040507 url('../images/page1-bg.png') no-repeat center top;
     background-size:100% 100%;
 }
 .loading {
@@ -320,22 +320,21 @@ body {
     }
 }
 .music-icon {
-    display: none;
+    // display: none;
     z-index: 1;
-    width: rem(44);
-    height: rem(39);
-    @include rightTop(20, 10);
+    width: rem(48);
+    height: rem(48);
+    @include rightTop(30, 37);
     background: url('../images/music-icon.png') no-repeat;
     background-position: 0 0;
-    background-size: rem(44) rem(80);
+    background-size: rem(48) rem(48);
 }
 .music-icon.open{
     background-position: 0 0;
-    background-size: rem(44) rem(80);
 }
 .music-icon.close{
-    background-position: 0 100%;
-    background-size: rem(44) rem(80);
+    // background-position: 0 100%;
+    background-position: 0 0;
 }
 
 .pages {
@@ -721,10 +720,12 @@ body {
     }
 }
 
-// page5
-.page5 {
-    background:#ede6d6 url('../images/page5-bg.png') no-repeat center top;
-    background-size:100% 100%;
+// page2
+.page2 {
+    // background:#ede6d6 url('../images/page5-bg.png') no-repeat center top;
+    // background-size:100% 100%;
+    height:auto;
+    position:relative;
     .show-outer {
         width:100%;
         height:100%;
@@ -821,21 +822,42 @@ body {
         }
     }
     .canvas-layer {
-        width:rem(561);
-        height:rem(997.832);
-        // background-color:#000;
-        @include center(94,18);
+        width:100%;
         .save-img {
             width:100%;
             height:100%;
         }
     }
     .save-img {
-        width:rem(750);
-        height:rem(1334);
-        @include center(0,0);
-        opacity:0;
-        z-index: 5;
+        // width:rem(750);
+        // height:rem(1334);
+        // @include center(0,0);
+        // opacity:0;
+        // z-index: 5;
+    }
+    .result-layer {
+        width:100%;
+        height:rem(128);
+        background:url('../images/page2-bottom.png') no-repeat center top;
+        background-size:100% 100%;
+    }
+    .btn-bg {
+        width:rem(777);
+        height:rem(169);
+        background:url('../images/page2-btn.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(-11,-34);
+    }
+    .btn {
+        width:rem(326);
+        height:rem(84);
+        @include leftTop(35,5);
+    }
+    .btn-left {
+        
+    }
+    .btn-right {
+        left:rem(395);
     }
     .p5-tips {
         width:rem(750);

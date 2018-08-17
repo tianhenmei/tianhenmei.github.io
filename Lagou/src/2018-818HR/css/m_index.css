@@ -107,7 +107,7 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: url("../images/page1-bg.png") no-repeat center top;
+  background: #040507 url("../images/page1-bg.png") no-repeat center top;
   background-size: 100% 100%; }
 
 .loading {
@@ -243,24 +243,21 @@ body {
     margin: 0 0 0 2.70933rem; }
 
 .music-icon {
-  display: none;
   z-index: 1;
-  width: 0.93867rem;
-  height: 0.832rem;
+  width: 1.024rem;
+  height: 1.024rem;
   position: absolute;
-  right: 0.42667rem;
-  top: 0.21333rem;
+  right: 0.64rem;
+  top: 0.78933rem;
   background: url("../images/music-icon.png") no-repeat;
   background-position: 0 0;
-  background-size: 0.93867rem 1.70667rem; }
+  background-size: 1.024rem 1.024rem; }
 
 .music-icon.open {
-  background-position: 0 0;
-  background-size: 0.93867rem 1.70667rem; }
+  background-position: 0 0; }
 
 .music-icon.close {
-  background-position: 0 100%;
-  background-size: 0.93867rem 1.70667rem; }
+  background-position: 0 0; }
 
 .pages {
   width: 100%;
@@ -677,37 +674,37 @@ body {
   top: 10.79467rem;
   margin: 0 0 0 -8rem; }
 
-.page5 {
-  background: #ede6d6 url("../images/page5-bg.png") no-repeat center top;
-  background-size: 100% 100%; }
-  .page5 .show-outer {
+.page2 {
+  height: auto;
+  position: relative; }
+  .page2 .show-outer {
     width: 100%;
     height: 100%;
     position: fixed;
     left: 0;
     top: 0;
     z-index: 2; }
-  .page5 .show-layer {
+  .page2 .show-layer {
     width: 100%;
     height: 100%;
     position: absolute;
     left: 0rem;
     top: 0rem; }
-    .page5 .show-layer .show-person {
+    .page2 .show-layer .show-person {
       width: 16rem;
       height: 28.45867rem;
       position: absolute;
       left: 50%;
       top: 0rem;
       margin: 0 0 0 -8rem; }
-    .page5 .show-layer .show-title {
+    .page2 .show-layer .show-title {
       width: 4.11733rem;
       height: 1.81333rem;
       position: absolute;
       left: 50%;
       top: 2.41067rem;
       margin: 0 0 0 2.112rem; }
-    .page5 .show-layer .show-me {
+    .page2 .show-layer .show-me {
       line-height: 1.42933rem;
       padding: 0 0 0 0.08533rem;
       position: absolute;
@@ -716,7 +713,7 @@ body {
       margin: 0 0 0 -5.84533rem;
       font-size: 0.98133rem;
       font-style: italic; }
-    .page5 .show-layer .show-me:after {
+    .page2 .show-layer .show-me:after {
       content: "";
       width: 100%;
       height: 0.08533rem;
@@ -725,7 +722,7 @@ body {
       position: absolute;
       left: 0rem;
       bottom: 0.256rem; }
-    .page5 .show-layer .show-text {
+    .page2 .show-layer .show-text {
       line-height: 1.92rem;
       position: absolute;
       left: 50%;
@@ -733,53 +730,53 @@ body {
       margin: 0 0 0 -5.84533rem;
       font-size: 1.49333rem;
       font-weight: bold; }
-    .page5 .show-layer .show-light {
+    .page2 .show-layer .show-light {
       width: 16rem;
       height: 28.45867rem;
       position: absolute;
       left: 50%;
       top: 0rem;
       margin: 0 0 0 -8rem; }
-    .page5 .show-layer .show-add {
+    .page2 .show-layer .show-add {
       width: 0.81067rem;
       height: 0.81067rem;
       position: absolute;
       left: 50%;
       top: 18.496rem;
       margin: 0 0 0 -5.84533rem; }
-    .page5 .show-layer .show-words {
+    .page2 .show-layer .show-words {
       width: 16rem;
       position: absolute;
       left: 50%;
       top: 19.968rem;
       margin: 0 0 0 -5.86667rem; }
-      .page5 .show-layer .show-words .word-one {
+      .page2 .show-layer .show-words .word-one {
         line-height: 0.93867rem;
         font-size: 0.61867rem;
         color: #fff;
         text-align: left; }
-    .page5 .show-layer .qrcode-img {
+    .page2 .show-layer .qrcode-img {
       width: 2.21867rem;
       height: 2.21867rem;
       position: absolute;
       left: 50%;
       top: 25.344rem;
       margin: 0 0 0 -7.04rem; }
-    .page5 .show-layer .show-tips {
+    .page2 .show-layer .show-tips {
       width: 2.77333rem;
       height: 1.06667rem;
       position: absolute;
       left: 50%;
       top: 26.51733rem;
       margin: 0 0 0 -4.224rem; }
-    .page5 .show-layer .show-lagou {
+    .page2 .show-layer .show-lagou {
       width: 1.19467rem;
       height: 0.32rem;
       position: absolute;
       left: 50%;
       top: 27.2rem;
       margin: 0 0 0 5.84533rem; }
-  .page5 .draw-layer {
+  .page2 .draw-layer {
     width: 16rem;
     height: 28.45867rem;
     position: absolute;
@@ -787,29 +784,37 @@ body {
     top: 0rem;
     margin: 0 0 0 -8rem;
     opacity: 0; }
-    .page5 .draw-layer .canvas {
+    .page2 .draw-layer .canvas {
       width: 100%;
       height: 100%; }
-  .page5 .canvas-layer {
-    width: 11.968rem;
-    height: 21.28708rem;
-    position: absolute;
-    left: 50%;
-    top: 0.384rem;
-    margin: 0 0 0 -5.99467rem; }
-    .page5 .canvas-layer .save-img {
+  .page2 .canvas-layer {
+    width: 100%; }
+    .page2 .canvas-layer .save-img {
       width: 100%;
       height: 100%; }
-  .page5 .save-img {
-    width: 16rem;
-    height: 28.45867rem;
+  .page2 .result-layer {
+    width: 100%;
+    height: 2.73067rem;
+    background: url("../images/page2-bottom.png") no-repeat center top;
+    background-size: 100% 100%; }
+  .page2 .btn-bg {
+    width: 16.576rem;
+    height: 3.60533rem;
+    background: url("../images/page2-btn.png") no-repeat center top;
+    background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 0rem;
-    margin: 0 0 0 -8rem;
-    opacity: 0;
-    z-index: 5; }
-  .page5 .p5-tips {
+    top: -0.72533rem;
+    margin: 0 0 0 -8.23467rem; }
+  .page2 .btn {
+    width: 6.95467rem;
+    height: 1.792rem;
+    position: absolute;
+    left: 0.74667rem;
+    top: 0.10667rem; }
+  .page2 .btn-right {
+    left: 8.42667rem; }
+  .page2 .p5-tips {
     width: 16rem;
     height: 0.85333rem;
     line-height: 0.85333rem;
@@ -821,7 +826,7 @@ body {
     color: #9a9487;
     text-align: center;
     z-index: 5; }
-  .page5 .p5-btn {
+  .page2 .p5-btn {
     width: 5.84533rem;
     height: 1.664rem;
     position: absolute;
@@ -829,7 +834,7 @@ body {
     bottom: 1.00267rem;
     margin: 0 0 0 -6.10133rem;
     z-index: 5; }
-  .page5 .btn-shadow {
+  .page2 .btn-shadow {
     width: 5.84533rem;
     height: 1.49333rem;
     border-radius: 1.49333rem;
@@ -837,7 +842,7 @@ body {
     left: 0rem;
     top: 0.17067rem;
     background-color: #b5afa1; }
-  .page5 .btn-text {
+  .page2 .btn-text {
     width: 5.84533rem;
     height: 1.49333rem;
     line-height: 1.49333rem;
@@ -850,7 +855,7 @@ body {
     color: #9a9487;
     text-align: center;
     font-weight: bold; }
-  .page5 .p5-getoffer {
+  .page2 .p5-getoffer {
     position: absolute;
     left: 50%;
     bottom: 1.00267rem;

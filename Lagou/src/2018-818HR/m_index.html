@@ -402,7 +402,7 @@
                 </div>
             </div>
         </div>
-        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'" @touchmove.prevent="noop">
             <div class="icon title-bg leftTopIn delay0-5"></div>
             <div class="bt-parent" :class="btAni">
                 <div class="icon bottom-title littleBottomIn delay2-7"></div>
@@ -516,9 +516,12 @@
                 <div class="progress-num zoomIn"
                     :style="{left:setRem(578 * (doneNum / questionList.length)-8)}">{{(doneNum / questionList.length * 100).toFixed(0)}}%</div>
             </div>
+            <div class="music-icon opacityChange delay0-5">
+                <audio style="display:none;" id="music" ref="music" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+            </div>
         </div>
-        <div class="page page5 opacityChange delay0-7" :class="activePage == 5 ? 'active' : 'hide'">
-            <div class="show-outer" v-show="showStatus">
+        <div class="page page2 opacityChange delay0-7" :class="activePage == 2 ? 'active' : 'hide'">
+            <!--<div class="show-outer" v-show="showStatus">
                 <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
                     <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
                     <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
@@ -531,17 +534,20 @@
                             v-for="(one,index) in resultWords"
                             :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
                     </div>
-                    <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
-                    <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
-                    <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
                 </div>
-            </div>
+            </div>-->
             <div class="draw-layer">
                 <canvas class="canvas" id="canvas" ref="canvas"></canvas>
             </div>
             <div class="canvas-layer">
-                <!--<img class="save-img" :src="url" v-show="url" />-->
+                <img class="save-img" :src="url" v-show="url" />
             </div>
+            <div class="result-layer">
+                <div class="btn-bg"></div>
+                <div class="btn btn-left"></div>
+                <div class="btn btn-right"></div>
+            </div>
+            <!--
             <img class="save-img zoomBigShake"
                 :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
                 :style="setSaveStyle"
@@ -563,6 +569,7 @@
                 <div class="btn-shadow"></div>
                 <div class="btn-text">进场拿Offer</div>
             </div>
+            -->
         </div>
     </div>
     <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
