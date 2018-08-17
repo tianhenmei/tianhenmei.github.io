@@ -87,6 +87,7 @@ app = new Vue({
         btAni:'',
         queAni:'in',
         musicStatus:true,
+        showMusic:false,
         questionList:[{
             in:{
                 total:'',
@@ -257,7 +258,7 @@ app = new Vue({
             "images/result-title-01.png",  // 4
             "images/result-title-02.png",
             "images/result-title-03.png",
-            "images/page1-orbit.png", // 7
+            "images/result-orbit.png", // 7
             "images/result-star-01.png",
             "images/result-star-02.png",
             "images/result-line.png"  // 10
@@ -267,7 +268,7 @@ app = new Vue({
         drawStartTime:0,
         resultText:[{  // 0
             name:"戏精本精HR",
-            intro:["善于在琐碎的工作中找寻乐趣","同事们都为你欢呼鼓掌。"],
+            intro:["善于在琐碎的工作中找寻乐趣","同事们都为你欢呼鼓掌"],
             rule:"不加戏怎么红",
             gift:"已在拉勾为你找到最契合神秘武器",
             gift_name:"【拉勾直call大咖】",
@@ -281,11 +282,11 @@ app = new Vue({
             gift_intro:["1954万简历开放给你","大咖多到停不下来"]
         },{  // 2
             name:"主角光环HR",
-            intro:["别人只看到你表面上春风得意，","不知道你背后也风生水起"],
+            intro:["别人只看到你表面上春风得意，","不知道你背后也风生水起。"],
             rule:"哪有一路开挂，不过是厚积薄发",
             gift:"已在拉勾找到与你最为契合的神秘武器",
             gift_name:"【拉勾特权职位】",
-            gift_intro:["发布职位不受限制，","职位排名一路开挂"]
+            gift_intro:["发布职位不受限制，","职位排名一路开挂。"]
         },{  // 3
             name:"锦鲤依赖HR",
             intro:["在招人的道路上不抛弃，不放弃，","坚持…转发锦鲤，可以说是非常有毅力。"],
@@ -295,7 +296,7 @@ app = new Vue({
             gift_intro:["高端人才主动上门","快速招揽技术大牛"]
         },{  // 4
             name:"候选人磁铁HR",
-            intro:["候选人总是不由自主的被你吸引，","团队有了你再也不担心被放鸽子"],
+            intro:["候选人总是不由自主的被你吸引，","团队有了你再也不担心被放鸽子。"],
             rule:"我要变成万人迷",
             gift:"已在拉勾为你找到最契合神秘武器",
             gift_name:"【拉勾在线沟通】",
@@ -313,7 +314,7 @@ app = new Vue({
             rule:"永远做最耀眼的存在",
             gift:"与你最为契合的神秘武器",
             gift_name:"【拉勾职位置顶卡】",
-            gift_intro:["24小时精准置顶，专属标识，","海量曝光，让所有求职者一眼看到你"]
+            gift_intro:["24小时精准置顶，专属标识，","海量曝光，让所有求职者一眼看到你。"]
         }],
         resultScore:0,
         showSaveTips:false,
@@ -322,6 +323,7 @@ app = new Vue({
             "nickname":"我",
             "headimgurl":"images/create-logo.png"
         },
+        shareTips:'长按上方图片保存',
         showStatus:true
     },
     computed:{
@@ -376,6 +378,7 @@ app = new Vue({
     mounted:function(){
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
+            // this.shareTips = '截图保存'
         }
         // this.initVideo()
         pageStatus = true
@@ -428,19 +431,35 @@ app = new Vue({
                         self.scene0.w0 = 2
                         self.scene0.w1 = 1
                         self.$refs['music-01'].pause()
-                        self.$refs['music-02'].play()
-                        setTimeout(function(){
-                            self.scene0.w1 = 2
-                            self.scene0.w2 = 1
-                            self.$refs['music-02'].pause()
-                            self.$refs['music-03'].play()
+                        // self.$refs['music-02'].play()
+                        self.playAudio(self.$refs['music-02'],function(){
+                            // alert(self.$refs['music-02'].paused)
                             setTimeout(function(){
-                                self.showScene2()
-                            },1700)
-                        },1200)
+                                self.scene0.w1 = 2
+                                self.scene0.w2 = 1
+                                self.$refs['music-02'].pause()
+                                // self.$refs['music-03'].play()
+                                self.playAudio(self.$refs['music-03'],function(){
+                                    setTimeout(function(){
+                                        self.showScene2()
+                                    },1700)
+                                })
+                            },1200)
+                        })
                     },1200)
                 },700)
             },500)
+        },
+        playAudio:function(elem,callback){
+            if (window.WeixinJSBridge) {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    elem.play();
+                    callback()
+                }, false);
+            }else{
+                elem.play();
+                callback()
+            }
         },
         showScene2:function(){
             var self = this
@@ -448,13 +467,15 @@ app = new Vue({
             setTimeout(function(){
                 self.scene1.w0 = 1
                 self.$refs['music-03'].pause()
-                self.$refs['music-04'].play()
-                setTimeout(function(){
-                    self.scene1.w1 = 1
+                // self.$refs['music-04'].play()
+                self.playAudio(self.$refs['music-04'],function(){
                     setTimeout(function(){
-                        self.showScene3()
-                    },1100)
-                },800)
+                        self.scene1.w1 = 1
+                        setTimeout(function(){
+                            self.showScene3()
+                        },1100)
+                    },800)
+                })
             },500)
         },
         showScene3:function(){
@@ -482,51 +503,59 @@ app = new Vue({
             this.scene2.style = style
             this.playingIndex = 2
             this.$refs['music-04'].pause()
-            this.$refs['music-bullet'].play()
-            setTimeout(function(){
-                // self.scene2.bubble = 1
-                self.$refs['music-bullet'].pause()
-                self.$refs['music-05'].play()
+            // this.$refs['music-bullet'].play()
+            this.playAudio(self.$refs['music-bullet'],function(){
                 setTimeout(function(){
-                    self.scene2.bubble = 1
-                    // 原来播放
-                    setTimeout(function(){  // 延迟
-                        self.scene2.bubble_word = 1
+                    // self.scene2.bubble = 1
+                    self.$refs['music-bullet'].pause()
+                    // self.$refs['music-05'].play()
+                    self.playAudio(self.$refs['music-05'],function(){
                         setTimeout(function(){
-                            // 播放完成，开始振动
-                            self.$refs['music-05'].pause()
-                            self.$refs['music-message'].play()
-                            self.scene2.shake = 1
-                            // 添加斜眼
-                            setTimeout(function(){
-                                self.scene2.body = 1
-                                // 最后一屏
+                            self.scene2.bubble = 1
+                            // 原来播放
+                            setTimeout(function(){  // 延迟
+                                self.scene2.bubble_word = 1
                                 setTimeout(function(){
-                                    self.showScene4()
-                                },1200)
-                            },1000)
-                        },1600)
-                    },1500)
-                },500)
-            },3000)
+                                    // 播放完成，开始振动
+                                    self.$refs['music-05'].pause()
+                                    // self.$refs['music-message'].play()
+                                    self.scene2.shake = 1
+                                    self.playAudio(self.$refs['music-message'],function(){
+                                        // 添加斜眼
+                                        setTimeout(function(){
+                                            self.scene2.body = 1
+                                            // 最后一屏
+                                            setTimeout(function(){
+                                                self.showScene4()
+                                            },1200)
+                                        },1000)
+                                    })
+                                },1600)
+                            },1500)
+                        },500)
+                    })
+                },3000)
+            })
         },
         showScene4:function(){
             var self = this
             this.playingIndex = 3
             setTimeout(function(){
                 self.$refs['music-message'].pause()
-                self.$refs['music-06'].play()
-                setTimeout(function(){ // 延迟
-                    self.scene3.w0 = 1
-                    setTimeout(function(){
-                        // 旋转页面
-                        self.scene3.w0 = 2
+                // self.$refs['music-06'].play()
+                self.playAudio(self.$refs['music-06'],function(){
+                    setTimeout(function(){ // 延迟
+                        self.scene3.w0 = 1
                         setTimeout(function(){
-                            self.$refs['music-06'].pause()
-                            self.scene3.end = 1
-                        },700)
-                    },1700)
-                },500)
+                            // 旋转页面
+                            self.scene3.w0 = 2
+                            setTimeout(function(){
+                                self.$refs['music-06'].pause()
+                                self.scene3.end = 1
+                            },700)
+                        },1700)
+                    },500)
+                })
             },1000)
         },
         endVideoEvent:function(){
@@ -534,6 +563,8 @@ app = new Vue({
             this.playingEnd = true
             setTimeout(function(){
                 self.activePage = 1
+                self.showMusic = true
+                self.$refs['music'].play()
             },500)
         },
         setLaterDelay:function(start,now){
@@ -609,6 +640,7 @@ app = new Vue({
                     self.activeQuestion++
                     self.queAni = 'in'
                 }else{
+                    self.showMusic = false
                     self.hideProgress = 'opacityChange-out delay0-5'//'littleBottomOut delay0-5'
                     self.btAni = 'littleBottomOut delay0-5'
                     // 开始绘制
@@ -642,7 +674,7 @@ app = new Vue({
             this.loaded++
             if(this.loaded == this.loadingArray.length){
                 this.ctx.drawImage(this.loadedImgs[0],0,0)
-                this.ctx.drawImage(this.loadedImgs[7],181,143)
+                this.ctx.drawImage(this.loadedImgs[7],175,124)
                 this.ctx.drawImage(this.loadedImgs[8],55,117)
                 this.ctx.drawImage(this.loadedImgs[9],502,651)
                 this.ctx.drawImage(this.loadedImgs[1],31,-8)
@@ -856,7 +888,7 @@ app = new Vue({
                 this.type = "out"
                 setTimeout(function(){
                     self.activePage = 2
-                    self.$refs['music'].play()
+                    // self.$refs['music'].play()
                 },500)
                 // this.drawStatus = true
                 // if(this.load == this.imgs.length){

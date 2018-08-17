@@ -20,6 +20,7 @@ var imgArray = [
 	"images/result-border.png",
 	"images/result-bottom.png",
 	"images/result-ercode.png",
+	"images/result-orbit.png",
 	"images/result-line.png",
 	"images/result-star-01.png",
 	"images/result-star-02.png",
