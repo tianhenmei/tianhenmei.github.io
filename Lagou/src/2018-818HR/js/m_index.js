@@ -9,7 +9,7 @@ app = new Vue({
         activePage:0,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
-
+        videoClass:'hide',
         // page0 
         name:'',
         tips:'',
@@ -338,8 +338,9 @@ app = new Vue({
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
         }
+        this.initVideo()
         pageStatus = true
-        this.initCreateUserStyle()
+        // this.initCreateUserStyle()
         // test 注释
         // if(this.isWeiXin()){
         //     this.getUserWeixinData()
@@ -348,6 +349,33 @@ app = new Vue({
         this.initCanvas()
     },
     methods:{
+        initVideo:function(){
+            var video = document.getElementById('videoALL'),
+                clientWidth = $(window).width(),
+                clientHeight = $(window).height(),
+                self = this;
+            var isend = false, ispass = true;
+
+            video.addEventListener('timeupdate', function(e) {
+                isend = true;
+                if (this.currentTime >= 92.3 && ispass) {
+                    ispass = false;
+                    self.activePage = 1
+                    video.pause();
+                }
+            });
+
+            video.addEventListener('ended', function(e) {
+                // $('.end').fadeIn();
+                self.activePage = 1
+            });
+            // video.play()
+        },
+        videoPlayEvent:function(){
+            var video = document.getElementById('videoALL')
+            this.videoClass = ''
+            video.play()
+        },
         setLaterDelay:function(start,now){
             var current = Math.floor(now / 10),
                 sec = now % 10
