@@ -1,39 +1,17 @@
 // JavaScript Document
-// var loadingHost = '';
-var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
+var loadingHost = '';
+// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
-	loadingHost+"images/icon.png",
-	loadingHost+"images/loading.gif",
-	loadingHost+"images/loading-bg.png",
-	loadingHost+"images/loading-icon.png",
-	loadingHost+"images/loading-title.png",
-	loadingHost+"images/page-bg.png",
-	loadingHost+"images/page0-box.png",
-	loadingHost+"images/page2-icon.png",
-	loadingHost+"images/page4-icon.png",
-	loadingHost+"images/page5-bg.png",
-	"images/result-add.png",
-	"images/result-ercode.png",
-	"images/result-lagou.png",
-	"images/result-person-01.png",
-	"images/result-person-02.png",
-	"images/result-person-03.png",
-	"images/result-person-04.png",
-	"images/result-text-a-01.png",
-	"images/result-text-a-02.png",
-	"images/result-text-a-03.png",
-	"images/result-text-a-04.png",
-	"images/result-text-b-01.png",
-	"images/result-text-b-02.png",
-	"images/result-text-b-03.png",
-	"images/result-text-c-01.png",
-	"images/result-text-c-02.png",
-	"images/result-text-c-03.png",
-	"images/result-text-d-01.png",
-	"images/result-text-d-02.png",
-	"images/result-tips.png",
-	"images/result-title.png"
+	loadingHost+"images/page0-detail.png",
+	loadingHost+"images/page0-title.png",
+	loadingHost+"images/page1-bg.png",
+	loadingHost+"images/page1-icon.png",
+	loadingHost+"images/page1-orbit.png",
+	loadingHost+"images/page1-star01.png",
+	loadingHost+"images/page1-star02.png",
+	loadingHost+"images/page1-star03.png",
+	loadingHost+"images/question-icon.png"
 ];
 var now = 0;
 // jQuery.ajax({
