@@ -4,13 +4,16 @@ app = new Vue({
     data:{
         // test
         mode:"development",
-        lg:"1bir",
+        lg:"1c5b",
+        loadingHost:'',
+        // loadingHost:'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/',
         // test
         activePage:-1,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
         videoClass:'hide',
         playingIndex:-1,
+        playingEnd:false,
         scene0:{
             w0:0,
             w1:0,
@@ -37,6 +40,10 @@ app = new Vue({
             bubble_word:0,
             shake:0,
             body:0
+        },
+        scene3:{
+            w0:0,
+            end:0
         },
         // page0 
         name:'',
@@ -79,6 +86,7 @@ app = new Vue({
         hideProgress:'opacityChange delay2-0',
         btAni:'',
         queAni:'in',
+        musicStatus:true,
         questionList:[{
             in:{
                 total:'',
@@ -287,7 +295,7 @@ app = new Vue({
             gift_intro:["高端人才主动上门","快速招揽技术大牛"]
         },{  // 4
             name:"候选人磁铁HR",
-            intro:["作为HR中的人气王，候选人总是不由自主被你吸引，","有了你再也不担心被放鸽子"],
+            intro:["候选人总是不由自主的被你吸引，","团队有了你再也不担心被放鸽子"],
             rule:"我要变成万人迷",
             gift:"已在拉勾为你找到最契合神秘武器",
             gift_name:"【拉勾在线沟通】",
@@ -308,6 +316,8 @@ app = new Vue({
             gift_intro:["24小时精准置顶，专属标识，","海量曝光，让所有求职者一眼看到你"]
         }],
         resultScore:0,
+        showSaveTips:false,
+        toUrl:'https://mp.weixin.qq.com/s/r_ZQM-95nhWnTFv5GfnMjA',
         user:{
             "nickname":"我",
             "headimgurl":"images/create-logo.png"
@@ -411,21 +421,25 @@ app = new Vue({
 
             // 场景1
             setTimeout(function(){
-                self.scene0.w0 = 1
                 self.$refs['music-01'].play()
-                setTimeout(function(){
-                    self.scene0.w0 = 2
-                    self.scene0.w1 = 1
-                    self.$refs['music-02'].play()
+                setTimeout(function(){  // 第一个音频播放延迟
+                    self.scene0.w0 = 1
                     setTimeout(function(){
-                        self.scene0.w1 = 2
-                        self.scene0.w2 = 1
-                        self.$refs['music-03'].play()
+                        self.scene0.w0 = 2
+                        self.scene0.w1 = 1
+                        self.$refs['music-01'].pause()
+                        self.$refs['music-02'].play()
                         setTimeout(function(){
-                            self.showScene2()
-                        },1700)
+                            self.scene0.w1 = 2
+                            self.scene0.w2 = 1
+                            self.$refs['music-02'].pause()
+                            self.$refs['music-03'].play()
+                            setTimeout(function(){
+                                self.showScene2()
+                            },1700)
+                        },1200)
                     },1200)
-                },1200)
+                },700)
             },500)
         },
         showScene2:function(){
@@ -433,6 +447,7 @@ app = new Vue({
             this.playingIndex = 1
             setTimeout(function(){
                 self.scene1.w0 = 1
+                self.$refs['music-03'].pause()
                 self.$refs['music-04'].play()
                 setTimeout(function(){
                     self.scene1.w1 = 1
@@ -466,28 +481,60 @@ app = new Vue({
             }
             this.scene2.style = style
             this.playingIndex = 2
+            this.$refs['music-04'].pause()
+            this.$refs['music-bullet'].play()
             setTimeout(function(){
-                self.scene2.bubble = 1
+                // self.scene2.bubble = 1
+                self.$refs['music-bullet'].pause()
+                self.$refs['music-05'].play()
                 setTimeout(function(){
-                    self.$refs['music-05'].play()
-                    self.scene2.bubble_word = 1
-                    setTimeout(function(){
-                        // 播放完成，开始振动
-                        self.scene2.shake = 1
-                        // 添加斜眼
+                    self.scene2.bubble = 1
+                    // 原来播放
+                    setTimeout(function(){  // 延迟
+                        self.scene2.bubble_word = 1
                         setTimeout(function(){
-                            self.scene2.body = 1
-                            // 最后一屏
+                            // 播放完成，开始振动
+                            self.$refs['music-05'].pause()
+                            self.$refs['music-message'].play()
+                            self.scene2.shake = 1
+                            // 添加斜眼
                             setTimeout(function(){
-                                self.showScene3()
-                            },1200)
-                        },1000)
-                    },1600)
+                                self.scene2.body = 1
+                                // 最后一屏
+                                setTimeout(function(){
+                                    self.showScene4()
+                                },1200)
+                            },1000)
+                        },1600)
+                    },1500)
                 },500)
             },3000)
         },
-        showScene3:function(){
-            
+        showScene4:function(){
+            var self = this
+            this.playingIndex = 3
+            setTimeout(function(){
+                self.$refs['music-message'].pause()
+                self.$refs['music-06'].play()
+                setTimeout(function(){ // 延迟
+                    self.scene3.w0 = 1
+                    setTimeout(function(){
+                        // 旋转页面
+                        self.scene3.w0 = 2
+                        setTimeout(function(){
+                            self.$refs['music-06'].pause()
+                            self.scene3.end = 1
+                        },700)
+                    },1700)
+                },500)
+            },1000)
+        },
+        endVideoEvent:function(){
+            var self = this
+            this.playingEnd = true
+            setTimeout(function(){
+                self.activePage = 1
+            },500)
         },
         setLaterDelay:function(start,now){
             var current = Math.floor(now / 10),
@@ -648,7 +695,7 @@ app = new Vue({
             img.src = ercode
         },
         drawAllInformation:function(ercode){
-            this.getResult
+            this.getResult()
             this.drawUserInfo()
             // this.drawErcode(ercode)
 
@@ -656,6 +703,23 @@ app = new Vue({
         },
         drawErcode:function(drawErcode){
             this.ctx.drawImage(drawErcode,0,0,drawErcode.width,drawErcode.height,45,1188,104,104)
+        },
+        getResult:function(){
+            if(this.resultTotal <= 6){
+                this.resultIndex = 6
+            }else if(this.resultTotal == 7){
+                this.resultIndex = 0
+            }else if(this.resultTotal == 8){
+                this.resultIndex = 3
+            }else if(this.resultTotal == 9){
+                this.resultIndex = 5
+            }else if(this.resultTotal == 10){
+                this.resultIndex = 4
+            }else if(this.resultTotal == 11){
+                this.resultIndex = 1
+            }else {
+                this.resultIndex = 2
+            }
         },
         drawUserInfo:function(){
             var sp = 0,
@@ -695,8 +759,12 @@ app = new Vue({
                 $('html,body').css({
                     height:'auto'
                 })
-                self.activePage = 2
+                self.activePage = 3
             },1000)
+        },
+        setDataCount:function(count){
+            // console.log(one.count)
+            return '0000'.slice((count+'').length)+count
         },
 
 
@@ -787,7 +855,7 @@ app = new Vue({
 
                 this.type = "out"
                 setTimeout(function(){
-                    self.activePage = 1
+                    self.activePage = 2
                     self.$refs['music'].play()
                 },500)
                 // this.drawStatus = true
@@ -814,6 +882,23 @@ app = new Vue({
                 }
             }else{
                 // this.tips = "* 请输入你的名字"
+            }
+        },
+        showShareLayer:function(){
+            var self = this
+            this.showSaveTips = true
+            setTimeout(function(){
+                self.showSaveTips = false
+            },3000)
+        },
+        togglerMusic:function(){
+            var music = this.$refs['music']
+            if(music.paused){
+                this.musicStatus = true
+                music.play()
+            }else{
+                this.musicStatus = false
+                music.pause()
             }
         },
         retryEvent:function(){

@@ -1,6 +1,6 @@
 // JavaScript Document
 var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/';
+// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
 	loadingHost+"images/page0-detail.png",
@@ -15,6 +15,7 @@ var imgArray = [
 	loadingHost+"images/bg.mp3",
 	loadingHost+"images/page2-bottom.png",
 	loadingHost+"images/page2-btn.png",
+	loadingHost+"images/page2-save.png",
 	"images/result-bg.png",
 	"images/result-border.png",
 	"images/result-bottom.png",
@@ -25,20 +26,27 @@ var imgArray = [
 	"images/result-title-01.png",
 	"images/result-title-02.png",
 	"images/result-title-03.png",
-	"images/scene-01.png",
-	"images/scene-05-body.png",
-	"images/scene-05-word.png",
-	"images/scene-05.png",
-	"images/video-desk.png",
-	"images/video-floor.png",
-	"images/video-icon.png",
-	"images/video-wall.png",
-	"music/scene-01.mp3",
-	"music/scene-02.mp3",
-	"music/scene-03.mp3",
-	"music/scene-04.mp3",
-	"music/scene-05.mp3",
-	"music/scene-06.mp3"
+	loadingHost+"images/scene-01.png",
+	loadingHost+"images/scene-05-body.png",
+	loadingHost+"images/scene-05-word.png",
+	loadingHost+"images/scene-05.png",
+	loadingHost+"images/scene-06-content.png",
+	loadingHost+"images/scene-06-hand.png",
+	loadingHost+"images/scene-06-phone.png",
+	loadingHost+"images/scene-06-tips.png",
+	loadingHost+"images/scene-06-word.png",
+	loadingHost+"images/video-desk.png",
+	loadingHost+"images/video-floor.png",
+	loadingHost+"images/video-icon.png",
+	loadingHost+"images/video-wall.png",
+	loadingHost+"images/music/scene-01.mp3",
+	loadingHost+"images/music/scene-02.mp3",
+	loadingHost+"images/music/scene-03.mp3",
+	loadingHost+"images/music/scene-04.mp3",
+	loadingHost+"images/music/scene-05.mp3",
+	loadingHost+"images/music/scene-06.mp3",
+	loadingHost+"images/music/bullet.mp3",
+	loadingHost+"images/music/message.mp3"
 ];
 var now = 0;
 // jQuery.ajax({

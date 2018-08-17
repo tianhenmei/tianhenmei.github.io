@@ -13,7 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="stylesheet" href="css/m_index.css?v=$version$">
 		<!---上线之后加-->
-        <title>818HR节</title>
+        <title>发现你的闪耀一面</title>
         <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
 		<script>
 			var lastSize = 16,
@@ -293,7 +293,7 @@
     </script>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages" id="app">
-        <div class="page video-box" :class="(activePage == 0 ? 'active' : 'hide')">
+        <div class="page video-box" :class="(activePage == 0 ? 'active' : playingEnd ? 'opacityChange-out' : 'hide')" @touchmove.prevent="noop">
             <div class="room opacityChange delay0-5" :class="playingIndex == 1 ? ' pageMoveTop' : playingIndex == 2 ? ' pageBottomToTop delay0-0' : ''">
                 <div class="room-wall"></div>
                 <div class="room-floor"></div>
@@ -314,13 +314,16 @@
                 <div class="icon room-plant"></div>
                 <div class="icon room-light"></div>
                 <div class="sb-parent zoomIn delay0-7" v-if="playingIndex == -1">
-                    <div class="icon start-bubble zoomInfinite delay1-2" @click.stop.prevent="startVideo"></div>
+                    <div class="icon start-bubble zoomInfinite delay1-2" @click="startVideo"
+                        data-lg-tj-id="1c5b" 
+                        data-lg-tj-no="0001" 
+                        data-lg-tj-cid="idnull"></div>
                 </div>
             </div>
             <div class="scene scene0" :class="playingIndex == 0 ? 'active' : 'hide'">
-                <audio style="display:none;" id="music-01" ref="music-01" preload="auto" src="images/music/scene-01.mp3"></audio>
-                <audio style="display:none;" id="music-02" ref="music-02" preload="auto" src="images/music/scene-02.mp3"></audio>
-                <audio style="display:none;" id="music-03" ref="music-03" preload="auto" src="images/music/scene-03.mp3"></audio>
+                <audio style="display:none;" id="music-01" ref="music-01" preload="auto" :src="loadingHost+'images/music/scene-01.mp3'"></audio>
+                <audio style="display:none;" id="music-02" ref="music-02" preload="auto" :src="loadingHost+'images/music/scene-02.mp3'"></audio>
+                <audio style="display:none;" id="music-03" ref="music-03" preload="auto" :src="loadingHost+'images/music/scene-03.mp3'"></audio>
                 <div class="s0-words opacityChange delay0-5">
                     <div class="w0-parent">
                         <div class="w w0" :class="{
@@ -343,12 +346,14 @@
                 </div>
             </div>
             <div class="scene scene1" :class="(playingIndex == 1 || playingIndex == 2 ? 'active' : 'hide')+(playingIndex == 1 ? ' pageBottomToTop' : playingIndex == 2 ? ' pageMoveTop' : '')">
-                <audio style="display:none;" id="music-04" ref="music-04" preload="auto" src="images/music/scene-04.mp3"></audio>
+                <audio style="display:none;" id="music-04" ref="music-04" preload="auto" :src="loadingHost+'images/music/scene-04.mp3'"></audio>
                 <div class="s1-w s1-w0" :class="scene1.w0 == 1 ? 'littleBottomIn duration1-2' : 'opacity0'">我的日常是这样的</div>
                 <div class="s1-w s1-w1" :class="scene1.w1 == 1 ? 'littleBottomIn' : 'opacity0'">...</div>
             </div>
             <div class="scene scene2" :class="(playingIndex == 2 ? 'active pageBottomToTop' : 'hide')">
-                <audio style="display:none;" id="music-05" ref="music-05" preload="auto" src="images/music/scene-05.mp3"></audio>
+                <audio style="display:none;" id="music-bullet" ref="music-bullet" preload="auto" :src="loadingHost+'images/music/bullet.mp3'"></audio>
+                <audio style="display:none;" id="music-05" ref="music-05" preload="auto" :src="loadingHost+'images/music/scene-05.mp3'"></audio>
+                <audio style="display:none;" id="music-message" ref="music-message" preload="auto" :src="loadingHost+'images/music/message.mp3'"></audio>
                 <div class="s2-w"
                     v-if="playingIndex == 2"
                     v-for="(one,index) in scene2.words" 
@@ -365,8 +370,32 @@
                     <div class="icon b-w" :class="scene2.bubble_word == 1 ? 'splitWordsAni4' : ''"></div>
                 </div>
             </div>
-            <div class="scene scene3" :class="(playingIndex == 3 ? 'active pageBottomToTop' : 'hide')">
-                <audio style="display:none;" id="music-06" ref="music-06" preload="auto" src="images/music/scene-06.mp3"></audio>
+            <div class="scene scene3" :class="(playingIndex == 3 ? 'active zoomIn' : 'hide')">
+                <audio style="display:none;" id="music-06" ref="music-06" preload="auto" :src="loadingHost+'images/music/scene-06.mp3'"></audio>
+                <div class="s3-phone leftBottomIn2 delay0-5">
+                    <div class="s3p-center"></div>
+                </div>
+                <div class="s3-bg leftBottomIn2 delay0-5" :class="scene3.w0 == 2 ? 'scaleZoom delay0-0' : ''">
+                    <div class="s3b-center" :class="scene3.w0 == 2 ? 'scaleRotate delay0-0' : ''"></div>
+                </div>
+                <div class="s3-content leftBottomIn2 delay0-5">
+                    <div class="s3c-center" :class="scene3.w0 == 2 ? 'saveRotate delay0-0' : ''"></div>
+                </div>
+                <div class="s3-hand leftBottomIn2 delay0-5" :class="scene3.w0 == 2 ? 'leftBottomOut2 delay0-0' : ''"></div>
+                <div class="s3-words opacityChange delay0-5" :class="scene3.w0 == 2 ? 'opacityChange-out' : ''">
+                    <div class="w0-parent">
+                        <div class="w w0" :class="{
+                            'splitWordsAni5 delay0-5':scene3.w0 == 1
+                        }" ref="s0-w0"></div>
+                    </div>
+                </div>
+                <div class="s3-tips" :class="scene3.end == 1 ? 'zoomIn' : 'hide'">
+                    <div class="s3t-center zoomInfiniteB"></div>
+                </div>
+                <div class="s3-btn" v-show="scene3.end == 1" @click.stop.prevent="endVideoEvent"
+                    data-lg-tj-id="1c5b" 
+                    data-lg-tj-no="0002" 
+                    data-lg-tj-cid="idnull"></div>
             </div>
             <!--<video id="videoALL" class="video" :class="videoClass" src="https://img.xhangjia.com/h5/2018/08/map/081488.mp4" poster="" preload="auto" 
                 webkit-playsinline="true" 
@@ -483,8 +512,8 @@
                     <div class="icon sure" 
                         :class="shakeClass" 
                         @click.prevent="startAnswer" 
-                        data-lg-tj-id="1bin" 
-                        data-lg-tj-no="0001" 
+                        data-lg-tj-id="1c5b" 
+                        data-lg-tj-no="0003" 
                         data-lg-tj-cid="idnull"></div>
                 </div>
             </div>
@@ -603,8 +632,10 @@
                 <div class="progress-num zoomIn"
                     :style="{left:setRem(578 * (doneNum / questionList.length)-8)}">{{(doneNum / questionList.length * 100).toFixed(0)}}%</div>
             </div>
-            <div class="music-icon opacityChange delay0-5">
-                <audio style="display:none;" id="music" ref="music" loop="loop" preload="auto" src="images/bg.mp3"></audio>
+            <div class="music-icon opacityChange delay0-5" @click.stop.prevent="togglerMusic">
+                <div class="music-center" :class="musicStatus ? 'rotateInfinite' : ''">
+                    <audio style="display:none;" id="music" ref="music" loop="loop" preload="auto" :src="loadingHost+'images/bg.mp3'"></audio>
+                </div>
             </div>
         </div>
         <div class="page page2 opacityChange delay0-7" :class="activePage == 3 ? 'active' : 'hide'">
@@ -631,8 +662,19 @@
             </div>
             <div class="result-layer">
                 <div class="btn-bg"></div>
-                <div class="btn btn-left"></div>
-                <div class="btn btn-right"></div>
+                <div class="btn btn-left" @click.stop.prevent="showShareLayer"
+                    data-lg-tj-id="1c5b" 
+                    data-lg-tj-no="0004" 
+                    data-lg-tj-cid="idnull"></div>
+                <a class="btn btn-right" target="_blank" 
+                    href="javascript:void(0);"
+                    :onclick="'self.location=\''+toUrl+'\''"
+                    data-lg-tj-id="1c5b" 
+                    data-lg-tj-no="0005" 
+                    data-lg-tj-cid="null"></a>
+            </div>
+            <div class="share-layer" :class="showSaveTips ? 'tipsAni' : 'hide'">
+                <div class="share-img"></div>
             </div>
             <!--
             <img class="save-img zoomBigShake"
@@ -667,12 +709,12 @@
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
     <script type="text/javascript">
-        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-autumn/m_index.html';
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-818HR/m_index.html';
         //微信分享
         var datas = {
-            title: "我用这5个问题，淘汰了90%的应届生！",
-            desc: "大厂面试过不过，快来偷偷测一测",
-            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/images/share.png",
+            title: "HeRo是看透人与事的本质后，依然爱人事",
+            desc: "发现你的闪耀一面",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/images/share.png",
             activityType: 'ACTIVITY_H5_818HR_2018',
             shareUrl:baseUrl
         };
