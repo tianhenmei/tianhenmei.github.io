@@ -7,13 +7,42 @@ app = new Vue({
         lg:"1bir",
         // test
         activePage:0,
-        sex:'',
-        total:5,
-        options:['a','b','c','d'],
-        choseOptionIndex:-1,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
 
+        // page0 
+        name:'',
+        tips:'',
+        shakeClass:'',
+        type:'in',
+        page0:{
+            in:{
+                title_bg:'leftTopIn delay0-5',
+                big_star:'swing-top-up-down',
+                bottom_title:'littleBottomIn delay2-7',
+                bottom_logo:'littleBottomIn delay2-9',
+                orbit:'rightBottomZoomIn delay0-5',
+                svg:'opacityChange delay1-0',
+                title:'littleBottomIn delay1-5',
+                detail:'littleBottomIn delay2-0',
+                sure:'littleTopIn delay1-5',
+                input:'littleTopIn delay2-0'
+            },
+            out:{
+                title_bg:'leftTopOut',
+                big_star:'rightIn-out',
+                bottom_title:'littleBottomOut',
+                bottom_logo:'littleBottomOut',
+                orbit:'rightIn-out',
+                svg:'rightIn-out',
+                title:'leftIn-out',
+                detail:'leftIn-out',
+                sure:'leftIn-out',
+                input:'leftIn-out'
+            },
+        },
+        // page1
+        choseOptionIndex:-1,
         result:[],
         activeQuestion:0,
         doneNum:0,
@@ -146,136 +175,6 @@ app = new Vue({
                 content:"魏璎珞"
             }]
         }],
-
-
-        page0:{
-            status:'in',
-            chose:false,
-            score:[0,10,30,20],
-            in:{
-                top:"opacityChange delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"leftIn delay1-5",
-                option2:"leftIn delay1-5",
-                option1:"rightIn delay1-5",
-                option3:"rightIn delay1-5",
-                num:"bottomIn delay1-7",
-                layer:"zoomIn",
-                content:"opacityChange delay0-7",
-                btext:"rotateIn2 delay1-2",
-                next:"zoomIn delay1-2",
-                close:"opacityChange delay1-5"
-            },
-            out:{
-                top:"topIn-out delay0-2",
-                title:"topIn-out delay0-2",
-                option0:"leftIn-out delay0-2",
-                option2:"leftIn-out delay0-2",
-                option1:"rightIn-out delay0-2",
-                option3:"rightIn-out delay0-2",
-                num:"bottomIn-out delay0-2",
-                layer:"zoomIn-out duration0-2",
-                content:"",
-                btext:"",
-                next:"",
-                close:""
-            }
-        },
-        page1:{
-            status:'in',
-            chose:false,
-            score:[0,20,10,30],
-            in:{
-                top:"opacityChange delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"rightIn delay1-5 duration1-0",
-                option1:"rightIn delay1-8 duration1-0",
-                option2:"rightIn delay2-1 duration1-0",
-                option3:"rightIn delay2-4 duration1-0",
-                num:"opacityChange delay2-7"
-            },
-            out:{
-                top:"rotate-out delay0-2",
-                title:"rotate-out delay0-2",
-                option0:"rotate-out delay0-2",
-                option2:"rotate-out delay0-2",
-                option1:"rotate-out delay0-2",
-                option3:"rotate-out delay0-2",
-                num:"bottomIn-out delay0-2"
-            },
-        },
-        page2:{
-            status:'in',
-            chose:false,
-            score:[30,0,10,20],
-            in:{
-                top:"rotateIn2 delay0-5",
-                title:"littleBottomIn delay1-0",
-                option0:"littleBottomIn delay1-5 duration1-0",
-                option1:"littleBottomIn delay1-8 duration1-0",
-                option2:"littleBottomIn delay2-1 duration1-0",
-                option3:"littleBottomIn delay2-4 duration1-0",
-                num:"opacityChange delay2-7"
-            },
-            out:{
-                top:"topIn-out delay0-2",
-                title:"topIn-out delay0-2",
-                option0:"topIn-out delay0-2",
-                option2:"topIn-out delay0-2",
-                option1:"topIn-out delay0-2",
-                option3:"topIn-out delay0-2",
-                num:"topIn-out delay0-2"
-            },
-        },
-        page3:{
-            status:'in',
-            chose:false,
-            score:[0,30,20,10],
-            in:{
-                top:"zoomIn delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"zoomIn delay1-5",
-                option1:"zoomIn delay1-5",
-                option2:"zoomIn delay1-5",
-                option3:"zoomIn delay1-5",
-                num:"opacityChange delay2-0"
-            },
-            out:{
-                top:"zoomBig-outtop delay0-2",
-                title:"zoomBig-outtop delay0-2",
-                option0:"zoomBig-outleft delay0-2",
-                option2:"zoomBig-outleft delay0-2",
-                option1:"zoomBig-outright delay0-2",
-                option3:"zoomBig-outright delay0-2",
-                num:"zoomBig-outbottom delay0-2"
-            },
-        },
-        page4:{
-            status:'in',
-            chose:false,
-            score:[0,10,30,20],
-            in:{
-                top:"opacityChange delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"rotateIn delay1-5",
-                option1:"rotateIn delay1-5",
-                option2:"rotateIn delay1-5",
-                option3:"rotateIn delay1-5",
-                option4:"rotateIn delay1-5",
-                num:"opacityChange delay2-0"
-            },
-            out:{
-                top:"opacityChange-out delay0-2",
-                title:"opacityChange-out delay0-2",
-                option0:"opacityChange-out delay0-2",
-                option2:"opacityChange-out delay0-2",
-                option1:"opacityChange-out delay0-2",
-                option3:"opacityChange-out delay0-2",
-                option4:"opacityChange-out delay0-2",
-                num:"opacityChange-out delay0-2"
-            },
-        },
-        page4Options:['a','b','c','d'],
         canvas:null,
         ctx:null,
         url:'',
@@ -722,6 +621,44 @@ app = new Vue({
                     console.log(error.message);
                 }
             });
+        },
+        startDraw:function(){
+            var self = this
+            if(this.name){
+                this.tips = ""
+                this.shakeClass = ""
+                // var func = Math.floor(Math.random() * 44)
+                // this.drawWords(this.textArray[func])
+
+                this.type = "out"
+                setTimeout(function(){
+                    self.activePage = 1
+                },500)
+                // this.drawStatus = true
+                // if(this.load == this.imgs.length){
+                //     this.drawImgContent()
+                // }
+            }else{
+                this.tips = "* 请输入你的名字"
+                this.shakeClass = "shake"
+                setTimeout(function(){
+                    self.shakeClass = ""
+                },500)
+            }
+        },
+        nameChange:function(){
+            if(this.name){
+                this.tips = ""
+                var re=/([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
+                    str = this.name.replace(re,"çç"),
+                    len = 0
+                if(str.length > 10){
+                    len = str.slice(0,10).replace(/(çç)/g,"ç").length;
+                    this.name = this.name.slice(0,len)
+                }
+            }else{
+                // this.tips = "* 请输入你的名字"
+            }
         },
         retryEvent:function(){
             this.activePage = 0
