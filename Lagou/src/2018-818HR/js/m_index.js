@@ -6,10 +6,38 @@ app = new Vue({
         mode:"development",
         lg:"1bir",
         // test
-        activePage:0,
+        activePage:-1,
         clickStatus:false,
         saveTips:'长按图片保存到本地相册',
         videoClass:'hide',
+        playingIndex:-1,
+        scene0:{
+            w0:0,
+            w1:0,
+            w2:0
+        },
+        scene1:{
+            w0:0,
+            w1:0
+        },
+        scene2:{
+            words:[
+                "都办完入职手续了，告诉我不来？",
+                "别人去求姻缘，我就去求候选人",
+                "哪里去找男朋友，候选人就是男朋友",
+                "工作5年，每天面试20K应届生",
+                "在招人了，不要再催了",
+                "候选人又找不到电梯了？",
+                "今天面试约了吗？",
+                "不会一份简历都筛不出来吧",
+                "最为痛恨放鸽子"
+            ],
+            style:[],
+            bubble:0,
+            bubble_word:0,
+            shake:0,
+            body:0
+        },
         // page0 
         name:'',
         tips:'',
@@ -45,6 +73,7 @@ app = new Vue({
         choseOptionIndex:-1,
         result:[],
         resultIndex:-1,
+        resultTotal:0,
         activeQuestion:0,
         doneNum:0,
         hideProgress:'opacityChange delay2-0',
@@ -338,7 +367,7 @@ app = new Vue({
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
         }
-        this.initVideo()
+        // this.initVideo()
         pageStatus = true
         // this.initCreateUserStyle()
         // test 注释
@@ -376,6 +405,90 @@ app = new Vue({
             this.videoClass = ''
             video.play()
         },
+        startVideo:function(){
+            var self = this
+            this.playingIndex = 0
+
+            // 场景1
+            setTimeout(function(){
+                self.scene0.w0 = 1
+                self.$refs['music-01'].play()
+                setTimeout(function(){
+                    self.scene0.w0 = 2
+                    self.scene0.w1 = 1
+                    self.$refs['music-02'].play()
+                    setTimeout(function(){
+                        self.scene0.w1 = 2
+                        self.scene0.w2 = 1
+                        self.$refs['music-03'].play()
+                        setTimeout(function(){
+                            self.showScene2()
+                        },1700)
+                    },1200)
+                },1200)
+            },500)
+        },
+        showScene2:function(){
+            var self = this
+            this.playingIndex = 1
+            setTimeout(function(){
+                self.scene1.w0 = 1
+                self.$refs['music-04'].play()
+                setTimeout(function(){
+                    self.scene1.w1 = 1
+                    setTimeout(function(){
+                        self.showScene3()
+                    },1100)
+                },800)
+            },500)
+        },
+        showScene3:function(){
+            var self = this,
+                fontSize = [this.setRem(35),this.setRem(48),this.setRem(29),this.setRem(57)],
+                lineHeight = [this.setRem(70),this.setRem(96),this.setRem(59),this.setRem(114)],
+                color = ['#fff','#02ffb1'],
+                ran = -1,
+                style = [],
+                top = [],
+                temp = 0,
+                i = 0
+            for(i = 0; i < this.scene2.words.length; i++){
+                ran = Math.floor(Math.random() * 4)
+                temp = Math.floor(Math.random() * 886 + 160)
+                style.push({
+                    lineHeight:lineHeight[ran],
+                    top:this.setRem(160+i*120),
+                    left:(GC.w+Math.floor(Math.random() * 270 + 50))+'px',
+                    fontSize:fontSize[ran],
+                    color:color[Math.floor(Math.random() * 2)],
+                    animationDelay:(0.5 + Math.floor(Math.random() * 1.8))+'s'
+                })
+            }
+            this.scene2.style = style
+            this.playingIndex = 2
+            setTimeout(function(){
+                self.scene2.bubble = 1
+                setTimeout(function(){
+                    self.$refs['music-05'].play()
+                    self.scene2.bubble_word = 1
+                    setTimeout(function(){
+                        // 播放完成，开始振动
+                        self.scene2.shake = 1
+                        // 添加斜眼
+                        setTimeout(function(){
+                            self.scene2.body = 1
+                            // 最后一屏
+                            setTimeout(function(){
+                                self.showScene3()
+                            },1200)
+                        },1000)
+                    },1600)
+                },500)
+            },3000)
+        },
+        showScene3:function(){
+            
+        },
         setLaterDelay:function(start,now){
             var current = Math.floor(now / 10),
                 sec = now % 10
@@ -384,6 +497,14 @@ app = new Vue({
         chooseAnswer:function(pindex,index){
             var self = this,
                 type = -1
+            if(index == 0){
+                this.resultTotal += 1
+            }else if(index == 1){
+                this.resultTotal += 2
+            }else if(index == 2){
+                this.resultTotal += 3
+            }
+            /*
             if(pindex == 0){
                 switch(index){
                     case 0:
@@ -432,6 +553,7 @@ app = new Vue({
             if(this.resultIndex == -1 && type != -1){
                 this.resultIndex = type
             }
+            */
             // this.result[pindex] = str
             this.queAni = 'out'
             setTimeout(function(){
@@ -526,6 +648,7 @@ app = new Vue({
             img.src = ercode
         },
         drawAllInformation:function(ercode){
+            this.getResult
             this.drawUserInfo()
             // this.drawErcode(ercode)
 

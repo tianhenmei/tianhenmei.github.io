@@ -24,7 +24,21 @@ var imgArray = [
 	"images/result-star-02.png",
 	"images/result-title-01.png",
 	"images/result-title-02.png",
-	"images/result-title-03.png"
+	"images/result-title-03.png",
+	"images/scene-01.png",
+	"images/scene-05-body.png",
+	"images/scene-05-word.png",
+	"images/scene-05.png",
+	"images/video-desk.png",
+	"images/video-floor.png",
+	"images/video-icon.png",
+	"images/video-wall.png",
+	"music/scene-01.mp3",
+	"music/scene-02.mp3",
+	"music/scene-03.mp3",
+	"music/scene-04.mp3",
+	"music/scene-05.mp3",
+	"music/scene-06.mp3"
 ];
 var now = 0;
 // jQuery.ajax({

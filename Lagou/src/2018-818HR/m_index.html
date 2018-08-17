@@ -293,8 +293,82 @@
     </script>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages" id="app">
-        <div class="page video" :class="activePage == 0 ? 'active' : 'hide'">
-            <video id="videoALL" class="video" :class="videoClass" src="https://img.xhangjia.com/h5/2018/08/map/081488.mp4" poster="" preload="auto" 
+        <div class="page video-box" :class="(activePage == 0 ? 'active' : 'hide')">
+            <div class="room opacityChange delay0-5" :class="playingIndex == 1 ? ' pageMoveTop' : playingIndex == 2 ? ' pageBottomToTop delay0-0' : ''">
+                <div class="room-wall"></div>
+                <div class="room-floor"></div>
+                <div class="icon room-window"></div>
+                <div class="icon room-time"></div>
+                <div class="icon room-leg"></div>
+                <div class="room-desk"></div>
+                <div class="icon room-mac"></div>
+                <div class="icon room-body" :class="scene2.body == 1 ? 'scene5-body' : ''"></div>
+                <div class="spp-parent" :class="scene2.shake == 1 ? 'phoneMove' : ''">
+                    <div class="shake-phone-parent" :class="scene2.shake == 1 ? 'phoneShake duration1-0 delay1-0' : ''">
+                        <div class="shake-phone" :class="scene2.shake == 1 ? 'phoneShake duration1-0' : ''">
+                            <div class="icon room-phone"></div>
+                            <div class="icon room-wave" v-show="scene2.shake == 1"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon room-plant"></div>
+                <div class="icon room-light"></div>
+                <div class="sb-parent zoomIn delay0-7" v-if="playingIndex == -1">
+                    <div class="icon start-bubble zoomInfinite delay1-2" @click.stop.prevent="startVideo"></div>
+                </div>
+            </div>
+            <div class="scene scene0" :class="playingIndex == 0 ? 'active' : 'hide'">
+                <audio style="display:none;" id="music-01" ref="music-01" preload="auto" src="images/music/scene-01.mp3"></audio>
+                <audio style="display:none;" id="music-02" ref="music-02" preload="auto" src="images/music/scene-02.mp3"></audio>
+                <audio style="display:none;" id="music-03" ref="music-03" preload="auto" src="images/music/scene-03.mp3"></audio>
+                <div class="s0-words opacityChange delay0-5">
+                    <div class="w0-parent">
+                        <div class="w w0" :class="{
+                            'splitWordsAni':scene0.w0 == 1,
+                            'hide':scene0.w0 == 2
+                        }" ref="s0-w0"></div>
+                    </div>
+                    <div class="w1-parent">
+                        <div class="w w1" :class="{
+                            'splitWordsAni2':scene0.w1 == 1,
+                            'hide':scene0.w1 == 2
+                        }" ref="s0-w1"></div>
+                    </div>
+                    <div class="w2-parent">
+                        <div class="w w2" :class="{
+                            'splitWordsAni3':scene0.w2 == 1,
+                            'hide':scene0.w2 == 2
+                        }" ref="s0-w2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="scene scene1" :class="(playingIndex == 1 || playingIndex == 2 ? 'active' : 'hide')+(playingIndex == 1 ? ' pageBottomToTop' : playingIndex == 2 ? ' pageMoveTop' : '')">
+                <audio style="display:none;" id="music-04" ref="music-04" preload="auto" src="images/music/scene-04.mp3"></audio>
+                <div class="s1-w s1-w0" :class="scene1.w0 == 1 ? 'littleBottomIn duration1-2' : 'opacity0'">我的日常是这样的</div>
+                <div class="s1-w s1-w1" :class="scene1.w1 == 1 ? 'littleBottomIn' : 'opacity0'">...</div>
+            </div>
+            <div class="scene scene2" :class="(playingIndex == 2 ? 'active pageBottomToTop' : 'hide')">
+                <audio style="display:none;" id="music-05" ref="music-05" preload="auto" src="images/music/scene-05.mp3"></audio>
+                <div class="s2-w"
+                    v-if="playingIndex == 2"
+                    v-for="(one,index) in scene2.words" 
+                    :class="'s2-w'+index+' moveToLeft duration5-0'"
+                    :style="{
+                        lineHeight:scene2.style[index].lineHeight,
+                        top:scene2.style[index].top,
+                        left:scene2.style[index].left,
+                        fontSize:scene2.style[index].fontSize,
+                        color:scene2.style[index].color,
+                        animationDelay:scene2.style[index].animationDelay,
+                    }">{{one}}</div>
+                <div class="s2-bubble" :class="scene2.bubble == 1 ? 'zoomIn' : ''">
+                    <div class="icon b-w" :class="scene2.bubble_word == 1 ? 'splitWordsAni4' : ''"></div>
+                </div>
+            </div>
+            <div class="scene scene3" :class="(playingIndex == 3 ? 'active pageBottomToTop' : 'hide')">
+                <audio style="display:none;" id="music-06" ref="music-06" preload="auto" src="images/music/scene-06.mp3"></audio>
+            </div>
+            <!--<video id="videoALL" class="video" :class="videoClass" src="https://img.xhangjia.com/h5/2018/08/map/081488.mp4" poster="" preload="auto" 
                 webkit-playsinline="true" 
                 playsinline="true" 
                 x-webkit-playsinline="true" 
@@ -303,7 +377,7 @@
                 x5-video-player-fullscreen="true" 
                 style="object-fit: fill;object-position: center center;">
             </video>
-            <div class="video-play" @click.stop.prevent="videoPlayEvent">开始播放</div>
+            <div class="video-play" @click.stop.prevent="videoPlayEvent">开始播放</div>-->
         </div>
         <div class="page page0" :class="activePage == 1 ? 'active' : 'hide'" @touchmove.prevent="noop">
             <div class="icon title-bg" :class="page0[type].title_bg"></div>
@@ -521,7 +595,7 @@
             </div>
 
             <div class="seting" v-show="btAni">
-                结果正在生成中<br/>
+                正在鉴定你的闪耀瞬间<br/>
                 ...
             </div>
             <div class="progress" :class="hideProgress">
