@@ -11,7 +11,20 @@ var imgArray = [
 	loadingHost+"images/page1-star01.png",
 	loadingHost+"images/page1-star02.png",
 	loadingHost+"images/page1-star03.png",
-	loadingHost+"images/question-icon.png"
+	loadingHost+"images/question-icon.png",
+	loadingHost+"images/bg.mp3",
+	loadingHost+"images/page2-bottom.png",
+	loadingHost+"images/page2-btn.png",
+	"images/result-bg.png",
+	"images/result-border.png",
+	"images/result-bottom.png",
+	"images/result-ercode.png",
+	"images/result-line.png",
+	"images/result-star-01.png",
+	"images/result-star-02.png",
+	"images/result-title-01.png",
+	"images/result-title-02.png",
+	"images/result-title-03.png"
 ];
 var now = 0;
 // jQuery.ajax({
