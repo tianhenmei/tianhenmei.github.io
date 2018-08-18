@@ -293,14 +293,14 @@
     </script>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages" id="app">
-        <audio style="display:none;" id="music-01" ref="music-01" preload="auto" :src="loadingHost+'images/music/scene-01.mp3'"></audio>
-        <audio style="display:none;" id="music-02" ref="music-02" preload="auto" :src="loadingHost+'images/music/scene-02.mp3'"></audio>
+        <audio style="display:none;" id="music-01" ref="music-01" preload="auto" :src="loadingHost+'images/music/all.mp3'"></audio>
+        <!--<audio style="display:none;" id="music-02" ref="music-02" preload="auto" :src="loadingHost+'images/music/scene-02.mp3'"></audio>
         <audio style="display:none;" id="music-03" ref="music-03" preload="auto" :src="loadingHost+'images/music/scene-03.mp3'"></audio>
         <audio style="display:none;" id="music-04" ref="music-04" preload="auto" :src="loadingHost+'images/music/scene-04.mp3'"></audio>
         <audio style="display:none;" id="music-bullet" ref="music-bullet" preload="auto" :src="loadingHost+'images/music/bullet.mp3'"></audio>
         <audio style="display:none;" id="music-05" ref="music-05" preload="auto" :src="loadingHost+'images/music/scene-05.mp3'"></audio>
         <audio style="display:none;" id="music-message" ref="music-message" preload="auto" :src="loadingHost+'images/music/message.mp3'"></audio>
-        <audio style="display:none;" id="music-06" ref="music-06" preload="auto" :src="loadingHost+'images/music/scene-06.mp3'"></audio>
+        <audio style="display:none;" id="music-06" ref="music-06" preload="auto" :src="loadingHost+'images/music/scene-06.mp3'"></audio>-->
         <div class="page video-box" :class="(activePage == 0 ? 'active' : playingEnd ? 'opacityChange-out' : 'hide')" @touchmove.prevent="noop">
             <div class="room opacityChange delay0-5" :class="playingIndex == 1 ? ' pageMoveTop' : playingIndex == 2 ? ' pageBottomToTop delay0-0' : ''">
                 <div class="room-wall"></div>
@@ -358,7 +358,7 @@
                 <div class="s2-w"
                     v-if="playingIndex == 2"
                     v-for="(one,index) in scene2.words" 
-                    :class="'s2-w'+index+' moveToLeft duration5-0'"
+                    :class="'s2-w'+index+' moveToLeft duration8-0'"
                     :style="{
                         lineHeight:scene2.style[index].lineHeight,
                         top:scene2.style[index].top,
@@ -382,7 +382,7 @@
                     <div class="s3c-center" :class="scene3.w0 == 2 ? 'saveRotate delay0-0' : ''"></div>
                 </div>
                 <div class="s3-hand leftBottomIn2 delay0-5" :class="scene3.w0 == 2 ? 'leftBottomOut2 delay0-0' : ''"></div>
-                <div class="s3-words opacityChange delay0-5" :class="scene3.w0 == 2 ? 'opacityChange-out' : ''">
+                <div class="s3-words opacityChange delay0-5" :class="scene3.w0 == 1 ? '' : scene3.w0 == 2 ? 'opacityChange-out' : 'hide'">
                     <div class="w0-parent">
                         <div class="w w0" :class="{
                             'splitWordsAni5 delay0-5':scene3.w0 == 1

@@ -430,22 +430,22 @@ app = new Vue({
                     setTimeout(function(){
                         self.scene0.w0 = 2
                         self.scene0.w1 = 1
-                        self.$refs['music-01'].pause()
-                        // self.$refs['music-02'].play()
-                        self.playAudio(self.$refs['music-02'],function(){
-                            // alert(self.$refs['music-02'].paused)
+                        // self.$refs['music-01'].pause()
+                        // // self.$refs['music-02'].play()
+                        // self.playAudio(self.$refs['music-02'],function(){
+                        //     // alert(self.$refs['music-02'].paused)
                             setTimeout(function(){
                                 self.scene0.w1 = 2
                                 self.scene0.w2 = 1
-                                self.$refs['music-02'].pause()
-                                // self.$refs['music-03'].play()
-                                self.playAudio(self.$refs['music-03'],function(){
+                                // self.$refs['music-02'].pause()
+                                // // self.$refs['music-03'].play()
+                                // self.playAudio(self.$refs['music-03'],function(){
                                     setTimeout(function(){
                                         self.showScene2()
                                     },1700)
-                                })
+                                // })
                             },1200)
-                        })
+                        // })
                     },1200)
                 },700)
             },500)
@@ -466,16 +466,16 @@ app = new Vue({
             this.playingIndex = 1
             setTimeout(function(){
                 self.scene1.w0 = 1
-                self.$refs['music-03'].pause()
-                // self.$refs['music-04'].play()
-                self.playAudio(self.$refs['music-04'],function(){
+                // self.$refs['music-03'].pause()
+                // // self.$refs['music-04'].play()
+                // self.playAudio(self.$refs['music-04'],function(){
                     setTimeout(function(){
                         self.scene1.w1 = 1
                         setTimeout(function(){
                             self.showScene3()
                         },1100)
                     },800)
-                })
+                // })
             },500)
         },
         showScene3:function(){
@@ -502,14 +502,13 @@ app = new Vue({
             }
             this.scene2.style = style
             this.playingIndex = 2
-            this.$refs['music-04'].pause()
-            // this.$refs['music-bullet'].play()
-            this.playAudio(self.$refs['music-bullet'],function(){
+            // this.$refs['music-04'].pause()
+            // // this.$refs['music-bullet'].play()
+            // this.playAudio(self.$refs['music-bullet'],function(){
                 setTimeout(function(){
-                    // self.scene2.bubble = 1
-                    self.$refs['music-bullet'].pause()
-                    // self.$refs['music-05'].play()
-                    self.playAudio(self.$refs['music-05'],function(){
+                    // self.$refs['music-bullet'].pause()
+                    // // self.$refs['music-05'].play()
+                    // self.playAudio(self.$refs['music-05'],function(){
                         setTimeout(function(){
                             self.scene2.bubble = 1
                             // 原来播放
@@ -517,10 +516,10 @@ app = new Vue({
                                 self.scene2.bubble_word = 1
                                 setTimeout(function(){
                                     // 播放完成，开始振动
-                                    self.$refs['music-05'].pause()
-                                    // self.$refs['music-message'].play()
+                                    // self.$refs['music-05'].pause()
+                                    // // self.$refs['music-message'].play()
                                     self.scene2.shake = 1
-                                    self.playAudio(self.$refs['music-message'],function(){
+                                    // self.playAudio(self.$refs['music-message'],function(){
                                         // 添加斜眼
                                         setTimeout(function(){
                                             self.scene2.body = 1
@@ -529,33 +528,33 @@ app = new Vue({
                                                 self.showScene4()
                                             },1200)
                                         },1000)
-                                    })
+                                    // })
                                 },1600)
                             },1500)
                         },500)
-                    })
+                    // })
                 },3000)
-            })
+            // })
         },
         showScene4:function(){
             var self = this
             this.playingIndex = 3
             setTimeout(function(){
-                self.$refs['music-message'].pause()
-                // self.$refs['music-06'].play()
-                self.playAudio(self.$refs['music-06'],function(){
+                // self.$refs['music-message'].pause()
+                // // self.$refs['music-06'].play()
+                // self.playAudio(self.$refs['music-06'],function(){
                     setTimeout(function(){ // 延迟
                         self.scene3.w0 = 1
                         setTimeout(function(){
                             // 旋转页面
                             self.scene3.w0 = 2
                             setTimeout(function(){
-                                self.$refs['music-06'].pause()
+                                // self.$refs['music-06'].pause()
                                 self.scene3.end = 1
                             },700)
                         },1700)
                     },500)
-                })
+                // })
             },1000)
         },
         endVideoEvent:function(){
