@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
 	loadingHost+"images/page0-detail.png",
@@ -19,7 +19,7 @@ var imgArray = [
 	"images/result-bg.png",
 	"images/result-border.png",
 	"images/result-bottom.png",
-	"images/result-ercode.png",
+	"images/result-ercode-02.png",
 	"images/result-orbit.png",
 	"images/result-line.png",
 	"images/result-star-01.png",

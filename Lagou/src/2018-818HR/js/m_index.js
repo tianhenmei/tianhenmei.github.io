@@ -5,8 +5,8 @@ app = new Vue({
         // test
         mode:"development",
         lg:"1c5b",
-        loadingHost:'',
-        // loadingHost:'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/',
+        // loadingHost:'',
+        loadingHost:'https://www.lgstatic.com/activity-rsrc/dist/2018-818HR/',
         // test
         activePage:-1,
         clickStatus:false,
@@ -254,7 +254,7 @@ app = new Vue({
             "images/result-bg.png",
             "images/result-border.png",
             "images/result-bottom.png",
-            "images/result-ercode.png",
+            "images/result-ercode-02.png",
             "images/result-title-01.png",  // 4
             "images/result-title-02.png",
             "images/result-title-03.png",
@@ -318,7 +318,7 @@ app = new Vue({
         }],
         resultScore:0,
         showSaveTips:false,
-        toUrl:'https://mp.weixin.qq.com/s/r_ZQM-95nhWnTFv5GfnMjA',
+        toUrl:'https://mp.weixin.qq.com/s/gjWVqoB0ZwgpIGSzIMQSqg',
         user:{
             "nickname":"我",
             "headimgurl":"images/create-logo.png"
@@ -430,6 +430,7 @@ app = new Vue({
                     setTimeout(function(){
                         self.scene0.w0 = 2
                         self.scene0.w1 = 1
+                        self.$refs['music-01'].currentTime = 1.9
                         // self.$refs['music-01'].pause()
                         // // self.$refs['music-02'].play()
                         // self.playAudio(self.$refs['music-02'],function(){
@@ -437,6 +438,7 @@ app = new Vue({
                             setTimeout(function(){
                                 self.scene0.w1 = 2
                                 self.scene0.w2 = 1
+                                self.$refs['music-01'].currentTime = 3.1
                                 // self.$refs['music-02'].pause()
                                 // // self.$refs['music-03'].play()
                                 // self.playAudio(self.$refs['music-03'],function(){
@@ -466,6 +468,7 @@ app = new Vue({
             this.playingIndex = 1
             setTimeout(function(){
                 self.scene1.w0 = 1
+                self.$refs['music-01'].currentTime = 5.2
                 // self.$refs['music-03'].pause()
                 // // self.$refs['music-04'].play()
                 // self.playAudio(self.$refs['music-04'],function(){
@@ -714,7 +717,7 @@ app = new Vue({
             }
         },
         startDraw:function(){
-            var ercode = "images/result-ercode.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
+            var ercode = "images/result-ercode-02.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
                 self = this;
             var img = new Image()
             img.onload = function(){
