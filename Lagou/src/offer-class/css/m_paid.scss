@@ -1,0 +1,110 @@
+@function rem($n){
+	@return $n/(750/16)+rem;
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	.pic1 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: - rem(550);
+		margin-left: - rem(69);
+		width: rem(138);
+		height: rem(139);
+		background: url(../images/success.png);	
+		background-size: 100% 100%;
+	}
+	.word {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.word.w1 {
+		margin-top: - rem(365);
+		color: #555;
+		font-size: rem(50);
+	}
+	.word.w2 {
+		margin-top: - rem(280);
+		color: #878787;
+		font-size: rem(28);
+	}
+	input {
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: - rem(130);
+		margin-left: - rem(230);
+		width: rem(460);
+		text-align: center;
+		padding: rem(10);
+		background: #e5f7f1;
+		color: #008c5a;
+		font-size: rem(40);
+		border: 0;
+	}
+	.cut {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: - rem(10);
+		margin-left: - rem(150);
+		width: rem(300);
+		height: rem(87);
+		line-height: rem(87);
+		color: #fff;
+		font-size: rem(30);
+		text-align: center;
+		background: #00b272;
+		border-radius: rem(10);	
+		border: 0;
+	}
+	.guide {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: rem(150);
+		margin-left: - rem(330);
+		width: rem(660);
+		padding-top: rem(30);
+		margin-bottom: rem(96);
+		border-top: rem(1) solid #e5e5e5;
+		h1 {
+			font-size: rem(30);
+			color: #00b272;
+			margin-bottom: rem(25);
+		}
+		p {
+			font-size: rem(24);
+			color: #878787;
+			span {
+				padding-right: rem(10);
+			}
+		}
+	}
+	a {
+		display: block;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: rem(96);
+		background: #f5f5f5;
+		&:before {
+			content: '';
+			display: block;
+			margin: auto;
+			margin-top: rem(35);
+			width: rem(179);
+			height: rem(29);
+			background: url(../images/back.png) no-repeat;
+			background-size: 100% 100%;
+		}
+	}
+}

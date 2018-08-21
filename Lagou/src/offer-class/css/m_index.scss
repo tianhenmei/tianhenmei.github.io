@@ -1,0 +1,162 @@
+@function rem($n){
+	@return $n/(750/16)+rem;
+}
+
+.wrapper {
+	position: relative;
+	width: 100%;
+	overflow: hidden;
+	background: url(../images/bg.jpg?v=2) no-repeat;
+	background-size: 100%;
+	.pic1 {
+		width: rem(685);
+		height: rem(316);
+		margin: auto;
+		margin-top: rem(125);
+		background: url(../images/pic1.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.pic2 {
+		width: rem(556);
+		height: rem(77);
+		margin: auto;
+		margin-top: rem(16);
+		background: url(../images/pic2.png?v=2) no-repeat;
+		background-size: 100% 100%;		
+	}
+	.word {
+		margin: rem(40) auto 0 auto;
+		font-size: rem(22);
+		text-align: center;
+		color: #074587;
+	}
+	.board {
+		width: rem(724);
+		height: rem(475);
+		margin: auto;
+		margin-top: rem(10);
+		background: url(../images/pic3.png?v=2) no-repeat;
+		background-size: 100% 100%;		
+	}
+	.pic3 {
+		position: relative;
+		width: rem(712);
+		height: rem(393);
+		margin: auto;
+		margin-top: rem(36);
+		margin-bottom: rem(60);
+		background: url(../images/pic4.png?v=2) no-repeat;
+		background-size: 100% 100%;		
+		.btn {
+			position: absolute;
+			left: 50%;
+			bottom: rem(0);
+			width: rem(670);
+			height: rem(120);
+			margin-left: - rem(335);
+		}	
+	}
+	.menu.fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+		margin-top: rem(0);
+		z-index: 2;
+	}
+	.menu_fake {
+		width: 100%;
+		height: rem(103);
+		margin-top: rem(68);
+		margin-bottom: rem(40);	
+		display: none;
+	}
+	.menu::-webkit-scrollbar {display:none}
+	.menu {
+		width: 100%;
+		height: rem(103);
+		margin-top: rem(68);
+		margin-bottom: rem(40);
+		background: #342c91;
+		overflow: auto;
+		ul {
+			width: 300%;
+			height: 100%;
+			li.active {
+				a {
+					background: #21feb8;
+					border-radius: rem(10);
+					color: #342c91;
+				}
+			}
+			li {
+				height: 100%;
+				display: block;
+				float: left;
+				font-size: rem(26);
+				line-height: rem(103);
+				padding-left: rem(20);
+				a {
+					padding: rem(10) rem(15);
+					color: #fff;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+	.lesson {
+		position: relative;
+		display: block;
+		width: rem(714);
+		margin: auto;
+		margin-bottom: rem(150);
+		.btn {
+			position: absolute;
+			left: 50%;
+			bottom: rem(20);
+			width: rem(670);
+			height: rem(108);
+			margin-left: - rem(335);
+		}
+	}
+	.lesson.l1 {
+		height: rem(764);
+		background: url(../images/class1.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l2 {
+		height: rem(766);
+		background: url(../images/class2.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l3 {
+		height: rem(840);
+		background: url(../images/class3.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l4 {
+		height: rem(823);
+		background: url(../images/class4.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l5 {
+		height: rem(798);
+		background: url(../images/class5.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l6 {
+		height: rem(778);
+		background: url(../images/class6.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.lesson.l7 {
+		height: rem(758);
+		background: url(../images/class7.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+	.footer {
+		width: 100%;
+		height: rem(333);
+		background: url(../images/footer.png?v=2) no-repeat;
+		background-size: 100% 100%;
+	}
+}
