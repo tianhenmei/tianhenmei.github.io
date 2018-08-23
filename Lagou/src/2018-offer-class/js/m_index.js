@@ -9,10 +9,22 @@ $(document).ready(function() {
         }
         flag = true;
         var id = $(this).data('id');
-        console.log('购买 ' + id);
         var _url = 'activityapi/offer-lagou/buyOfferLagou';
         var _data = {
             offerLagouType: id
+        }
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+            $('#ios-pay').removeClass('opacityChange-out').addClass('opacityChange').css({
+                'display':'block'
+            })
+            $('.pay-tips,.pay-btn').css({
+                'display':'block'
+            })
+            $('.pay-center').removeClass('zoomY-out').addClass('zoomY-in').css({
+                'display':'block'
+            })
+            flag = false;
+            return
         }
         ajax(_url, _data, 'post', function(data) {
             flag = false;
@@ -23,6 +35,21 @@ $(document).ready(function() {
         });
         
     });
+    $('.pay-btn').bind('click', function (e){
+        e.stopPropagation();
+        e.preventDefault();
+
+        $('.pay-center').removeClass('zoomY-in').addClass('zoomY-out')
+        $('.pay-tips,.pay-btn').css({
+            'display':'none'
+        })
+        $('#ios-pay').removeClass('opacityChange').addClass('opacityChange-out')
+        setTimeout(function(){
+            $('#ios-pay').css({
+                'display':'none'
+            })
+        },500)
+    })
 });
 
 //导航栏
@@ -43,7 +70,7 @@ function setMenu() {
 
     $('ul').width(width + 10);
 
-    $('.lesson').each(function (i, lesson) {
+    $('.anchor').each(function (i, lesson) {
         var scrollTop = $(lesson).offset().top;
         scrollYList.push(scrollTop - $('.menu').outerHeight(true));
         scrollListMenu.push(scrollTop - $(this).outerHeight(true) * 0.5)
@@ -59,7 +86,7 @@ function setMenu() {
         var num = elem.index();
         $('li').removeClass('active');
         elem.addClass('active');
-        $('body').animate({
+        $('html,body').animate({
             scrollTop: scrollYList[num]
         }, 500, function () {
             setTimeout(function () {
@@ -84,6 +111,30 @@ function setMenu() {
     function setMenuWithScroll (scrollTop) {
         if (flag) {
             return
+        }
+        if (scrollTop > scrollListMenu[12]) {
+            setAcive(12);
+            return;
+        }
+        if (scrollTop > scrollListMenu[11]) {
+            setAcive(11);
+            return;
+        }
+        if (scrollTop > scrollListMenu[10]) {
+            setAcive(10);
+            return;
+        }
+        if (scrollTop > scrollListMenu[9]) {
+            setAcive(9);
+            return;
+        }
+        if (scrollTop > scrollListMenu[8]) {
+            setAcive(8);
+            return;
+        }
+        if (scrollTop > scrollListMenu[7]) {
+            setAcive(7);
+            return;
         }
         if (scrollTop > scrollListMenu[6]) {
             setAcive(6);

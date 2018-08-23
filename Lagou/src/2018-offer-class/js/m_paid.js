@@ -1,5 +1,6 @@
 $(document).ready(function() {
-    initLogin();
+    // test
+    // initLogin();
     // var nameList = {
     //     '全部课程': '市场运营系统课程大包购买',
     //     '大型活动': '如何策划与统筹一场万人级线下活动',
