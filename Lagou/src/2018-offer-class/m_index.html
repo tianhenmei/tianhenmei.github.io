@@ -8,7 +8,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="stylesheet" href="https://www.lgstatic.com/activity/css/base.css">
 		<link rel="stylesheet" href="css/m_index.css?v=$version$">
-		<title>OFFER 工场</title>
+		<title>开悟·7天成长训练营（初阶运营）</title>
 		<script>
 			var docEl = document.documentElement,
 			    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
@@ -27,62 +27,47 @@
 				<div class="banner-logo"></div>
 				<div class="banner-title"></div>
 				<div class="banner-info"></div>
+				<div class="menu_fake"></div>
+				<div class="menu">
+					<ul>
+						<li class="active">
+							<a>我们不一样</a>
+						</li>
+						<li>
+							<a>初阶全貌</a>
+						</li>
+						<li>  <!--3-->
+							<a>重塑运营观</a>
+						</li>
+						<li>
+							<a>用户运营</a>
+						</li>
+						<li>
+							<a>新媒体运营</a>
+						</li>
+						<li>  <!--6-->
+							<a>活动运营</a>
+						</li>
+						<li>
+							<a>往期学员</a>
+						</li>
+						<li>
+							<a>购买须知</a>
+						</li>
+					</ul>
+				</div>
 				<div class="card-01"></div>
 			</div>
-			<div class="menu_fake"></div>
-			<div class="menu">
-				<ul>
-					<li class="active">
-						<a>突破瓶颈</a>
-					</li>
-					<li>
-						<a>晋级简介</a>
-					</li>
-					<li>  <!--3-->
-						<a>什么不一样</a>
-					</li>
-					<li>
-						<a>运营前辈</a>
-					</li>
-					<li>
-						<a>MI系列(全套)</a>
-					</li>
-					<li>  <!--6-->
-						<a>重塑运营观</a>
-					</li>
-					<li>
-						<a>用户运营</a>
-					</li>
-					<li>
-						<a>新媒体运营</a>
-					</li>
-					<li>  <!--9-->
-						<a>活动运营</a>
-					</li>
-					<li>
-						<a>行业牛人</a>
-					</li>
-					<li>
-						<a>往期学员</a>
-					</li>
-					<li>  <!--12-->
-						<a>我要咨询</a>
-					</li>
-					<li>
-						<a>购买须知</a>
-					</li>
-				</ul>
-			</div>
-			<div class="card-02-bg anchor">
+			<div class="card-02-bg">
 				<div class="card-02"></div>
 			</div>
-			<div class="card-03-bg anchor">
+			<div class="card-03-bg">
 				<div class="card-03"></div>
 			</div>
 			<div class="card-04-bg anchor">
 				<div class="card-04"></div>
 			</div>
-			<div class="card-05-bg anchor">
+			<div class="card-05-bg">
 				<div class="card-05"></div>
 			</div>
 			<div class="card-06-bg anchor">
@@ -124,7 +109,7 @@
 						data-id="CHAPTER4"></div>
 				</div>
 			</div>
-			<div class="guest anchor">
+			<div class="guest">
 				<div class="guest-title"></div>
 				<div class="guest-01"></div>
 				<div class="guest-02"></div>
@@ -139,21 +124,50 @@
 					<div class="old-one old-04"></div>
 				</div>
 			</div>
-			<div class="ercode-bg anchor">
+			<div class="ercode-bg">
 				<div class="ercode-title"></div>
 				<div class="ercode-content"></div>
 			</div>
 			<div class="know anchor">
 				<div class="know-content"></div>
 			</div>
+			<div class="footer-logo"></div>
 			<div class="ios-pay" id="ios-pay">
-				<div class="pay-center">
-					<div class="pay-tips">当前IOS不支持支付<br/>请添加班主任微信号后支付</div>
-					<div class="pay-btn">立即拷贝</div>
+				<div class="pay-content">
+					<div class="pay-center">
+						<div class="pay-warning"></div>
+						<div class="pay-title">iOS 支付功能暂缓开通</div>
+						<div class="pay-tips">若您对本提升课程感兴趣<br/>请手动联系官方微信 kaiwubzr2</div>
+						<img class="weixin-ercode" src="images/weixin.jpeg" />
+					</div>
+					<div class="pay-btn"></div>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript"  src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+		<script type="text/javascript">
+			//微信分享
+			var datas = {
+				title: "不够专业？成长太慢？90%运营新人都需要这门充电课程",
+				desc: "开悟课程大纲基于拉勾网大数据支持、梳理自一线互联网公司用人标准，教你找准奋斗目标",
+				imgUrl: 'https://activity.lagou.com/activity/dist/2018-offer-class/images/share.jpeg',
+				activityType: '2018_OFFER_CLASS_H5',
+				shareUrl: 'https://activity.lagou.com/activity/dist/2018-offer-class/m_index.html'
+			};
+			share(datas);
+			//app 分享
+			function getShareInfo(){
+				var share={
+					share_title:datas.title,
+					share_desc:datas.desc,
+					share_url:datas.shareUrl,
+					share_imgUrl:datas.imgUrl
+				};
+				return share;
+			}
+		</script>
 		<script>
 			// test
 			// initLogin();
