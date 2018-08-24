@@ -8,7 +8,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="stylesheet" href="https://www.lgstatic.com/activity/css/base.css">
 		<link rel="stylesheet" href="css/m_paid.css?v=$version$">
-		<title>OFFER 工场</title>
+		<title>开悟·7天成长训练营（初阶运营）</title>
 		<script>
 			(function(){
 					var fs;
@@ -55,6 +55,29 @@
 			<a href="https://activity.lagou.com/activity/dist/offer-class/m_index.html"></a>
 		</div>
 		<script type="text/javascript"  src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+		<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+		<script type="text/javascript">
+			//微信分享
+			var datas = {
+				title: "不够专业？成长太慢？90%运营新人都需要这门充电课程",
+				desc: "开悟课程大纲基于拉勾网大数据支持、梳理自一线互联网公司用人标准，教你找准奋斗目标",
+				imgUrl: 'https://activity.lagou.com/activity/dist/2018-offer-class/images/share.jpeg',
+				activityType: '2018_OFFER_CLASS_H5',
+				shareUrl: 'https://activity.lagou.com/activity/dist/2018-offer-class/m_index.html'
+			};
+			share(datas);
+			//app 分享
+			function getShareInfo(){
+				var share={
+					share_title:datas.title,
+					share_desc:datas.desc,
+					share_url:datas.shareUrl,
+					share_imgUrl:datas.imgUrl
+				};
+				return share;
+			}
+		</script>
 		<script type="text/javascript"  src="./js/clipboard.min.js?v=$version$"></script>
 		<script type="text/javascript"  src="./js/m_paid.js?v=$version$"></script>
 		<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
