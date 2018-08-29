@@ -3,6 +3,26 @@
 $(document).ready(function() {
     var flag = false;
     setMenu();
+    $('.btn-link').bind('click', function () {
+        if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
+            flag = false;
+            postEncodingID({
+                "data-lg-tj-id":"1c5c" ,
+				"data-lg-tj-no":"0051" ,
+				"data-lg-tj-cid":"idnull"  
+            })
+            window.location.href='https://activity.lagou.com/topic/7dayios.html'
+            return
+        }else{
+            flag = false;
+            postEncodingID({
+                "data-lg-tj-id":"1c5c" ,
+                "data-lg-tj-no":"0052" ,
+                "data-lg-tj-cid":"idnull"  
+            })
+            window.location.href='https://st.h5.xiaoe-tech.com/st/9cUT10Yhf'
+        }
+    })
     $('.btn').not('.not').bind('click', function () {
         if (flag) {
             return
@@ -29,14 +49,14 @@ $(document).ready(function() {
             flag = false;
             postEncodingID({
                 "data-lg-tj-id":"1c5c" ,
-				"data-lg-tj-no":"0010" ,
+				"data-lg-tj-no":"0021" ,
 				"data-lg-tj-cid":"idnull"  
             })
             return
         }
         postEncodingID({
             "data-lg-tj-id":"1c5c" ,
-            "data-lg-tj-no":"0011" ,
+            "data-lg-tj-no":"0022" ,
             "data-lg-tj-cid":"idnull"  
         })
         ajax(_url, _data, 'post', function(data) {
@@ -84,7 +104,12 @@ function setMenu() {
 
     $('ul').width(width + 10);
 
-    $('.anchor').each(function (i, lesson) {
+    var i = 0,
+        anchor = []
+    for(i = 0; i < 8; i++){
+        anchor.push(document.getElementById('anchor'+i))
+    }
+    anchor.forEach(function (lesson, i) {
         var scrollTop = $(lesson).offset().top;
         scrollYList.push(scrollTop - $('.menu').outerHeight(true));
         scrollListMenu.push(scrollTop - $(this).outerHeight(true) * 0.5)
@@ -134,6 +159,10 @@ function setMenu() {
             setAcive(6);
             return;
         }
+        if (scrollTop > scrollListMenu[1]) {
+            setAcive(1);
+            return;
+        }
         if (scrollTop > scrollListMenu[5]) {
             setAcive(5);
             return;
@@ -148,10 +177,6 @@ function setMenu() {
         }
         if (scrollTop > scrollListMenu[2]) {
             setAcive(2);
-            return;
-        }
-        if (scrollTop > scrollListMenu[1]) {
-            setAcive(1);
             return;
         }
         if (scrollTop > scrollListMenu[0]) {

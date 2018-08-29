@@ -22,9 +22,9 @@
 	}
 	.banner-title {
 		width:rem(629);
-		height:rem(283);
+		height:rem(288);
 		margin:rem(113) auto rem(61);
-		background: url(../images/banner-title.png) no-repeat;
+		background: url(../images/banner-title-02.png) no-repeat;
 		background-size: 100%;
 	}
 	.banner-info {
@@ -68,7 +68,7 @@
 		width:rem(574);
 		height:rem(711);
 		margin:0 auto 0;
-		background: url(../images/card-03.png) no-repeat;
+		background: url(../images/card-03-02.png) no-repeat;
 		background-size: 100%;
 	}
 	.card-04-bg {
@@ -78,6 +78,7 @@
 		margin:0 auto 0;
 		background: url(../images/card-04-bg.png) no-repeat;
 		background-size: 100%;
+		display:none;
 	}
 	.card-04 {
 		width:rem(750);
@@ -88,18 +89,18 @@
 	}
 	.card-05-bg {
 		width:100%;
-		height:rem(1248-21);
-		padding:rem(21) 0 0 0;
+		height:rem(1025-68);
+		padding:0 0 0 0;
 		margin:0 auto 0;
-		background: url(../images/card-05-bg.png) no-repeat;
+		background: url(../images/card-05-bg-02.png) no-repeat center rem(-68);
 		background-size: 100%;
 	}
 	.card-05 {
-		width:rem(700);
-		height:rem(1158);
+		width:rem(750);
+		height:rem(957);
 		margin:0 auto 0;
-		background: url(../images/card-05.png) no-repeat;
-		background-size:100%;
+		background: url(../images/card-05-02.png) no-repeat center top;
+		background-size:rem(818) rem(957);
 	}
 	.card-06-bg {
 		width:100%;
@@ -108,6 +109,7 @@
 		margin:0 auto 0;
 		background: url(../images/card-06-bg.png) no-repeat;
 		background-size: 100%;
+		display:none;
 	}
 	.card-06 {
 		width:rem(700);
@@ -126,31 +128,33 @@
 	}
 	.chapter {
 		width:100%;
-		height:rem(5465);
-		background:#f1f1f2 url(../images/chapter.png) no-repeat;
+		height:rem(2968);
+		margin:rem(-53) 0 0 0;
+		background:#f1f1f2 url(../images/chapter-bg.png) no-repeat;
 		background-size:100%;
 	}
 	.chapter-01 {
-		width:rem(750);
-		height:rem(1312);
+		width:rem(701);
+		height:rem(559);
 		margin:0 auto 0;
-		background: url(../images/chapter-01.png) no-repeat center top;
-		background-size:rem(819) rem(1312);
+		background: url(../images/chapter-01-02.png) no-repeat center top;
+		background-size:100%;
 		position:relative;
 	}
 	.chapter-01-btn {
-		width:rem(584);
-		height:rem(122);
+		width:rem(437);
+		height:rem(59);
 		position:absolute;
-		left:rem(116 - 34.5);
-		top:rem(1026);
+		left:rem(207);
+		top:rem(500);
+		display:block;
 	}
 	.chapter-02 {
-		width:rem(750);
-		height:rem(1482);
-		margin:rem(-101) auto 0;
-		background: url(../images/chapter-02.png) no-repeat center top;
-		background-size:rem(819) rem(1482);
+		width:rem(700);
+		height:rem(578);
+		margin:rem(56) auto 0;
+		background: url(../images/chapter-02-02.png) no-repeat center top;
+		background-size:100%;
 		position:relative;
 	}
 	.chapter-02-btn {
@@ -159,13 +163,14 @@
 		position:absolute;
 		left:rem(116 - 34.5);
 		top:rem(1188);
+		display:none;
 	}
 	.chapter-03 {
-		width:rem(750);
-		height:rem(1531);
-		margin:rem(-101) auto 0;
-		background: url(../images/chapter-03.png) no-repeat center top;
-		background-size:rem(819) rem(1531);
+		width:rem(700);
+		height:rem(619);
+		margin:rem(61) auto 0;
+		background: url(../images/chapter-03-02.png) no-repeat center top;
+		background-size:100%;
 		position:relative;
 	}
 	.chapter-03-btn {
@@ -174,13 +179,14 @@
 		position:absolute;
 		left:rem(116 - 34.5);
 		top:rem(1238);
+		display:none;
 	}
 	.chapter-04 {
 		width:rem(750);
-		height:rem(1442);
-		margin:rem(-100) auto 0;
-		background: url(../images/chapter-04.png) no-repeat center top;
-		background-size:rem(819) rem(1442);
+		height:rem(832);
+		margin:rem(66) auto 0;
+		background: url(../images/chapter-04-02.png) no-repeat center top;
+		background-size:rem(818) rem(832);
 		position:relative;
 	}
 	.chapter-04-btn {
@@ -189,13 +195,59 @@
 		position:absolute;
 		left:rem(116 - 34.5);
 		top:rem(1188);
+		display:none;
+	}
+	.chapter-all {
+		width:rem(708);
+		height:rem(223);
+		margin:rem(-36) auto 0;
+		background: url(../images/chapter-btn.png) no-repeat center top;
+		background-size:100%;
+		position:relative;
+	}
+	.chapter-btn {
+		width:rem(706);
+		height:rem(123);
+		position:absolute;
+		left:0;
+		top:rem(58);
+	}
+	.later-01-bg {
+		width:100%;
+		height:rem(703-7);
+		padding:rem(7) 0 0 0;
+		margin:0 auto 0;
+		background: url(../images/later-01-bg.png) no-repeat;
+		background-size: 100%;
+	}
+	.later-01 {
+		width:rem(750);
+		height:rem(696);
+		margin:0 auto 0;
+		background: url(../images/later-01.png) no-repeat center top;
+		background-size: rem(818) rem(696);
+	}
+	.later-02 {
+		width:100%;
+		height:rem(1556-14);
+		padding:rem(14) 0 0 0;
+		margin:0 auto 0;
+		background: url(../images/later-02.png) no-repeat center rem(14);
+		background-size: rem(753) rem(1556);
+	}
+	.later-03 {
+		width:rem(700);
+		height:rem(563);
+		margin:rem(-655) auto 0;
+		background: url(../images/later-03.png) no-repeat center top;
+		background-size:100%;
 	}
 	.guest {
 		width:rem(750);
-		height:rem(1794-12);
-		padding:rem(12) 0 0 0;
-		margin:0 auto 0;
-		background: url(../images/guest.png) no-repeat center top;
+		height:rem(1755-26);
+		padding:rem(26) 0 0 0;
+		margin:rem(-66) auto 0;
+		background: url(../images/guest-bg.png) no-repeat center top;
 		background-size:100%;
 		position:relative;
 	}
@@ -210,21 +262,21 @@
 		width:rem(701);
 		height:rem(489);
 		margin:rem(-21) auto 0;
-		background: url(../images/guest-01.png) no-repeat center top;
+		background: url(../images/guest-01-02.png) no-repeat center top;
 		background-size:100%;
 	}
 	.guest-02 {
 		width:rem(701);
-		height:rem(486);
-		margin:rem(22) auto 0;
-		background: url(../images/guest-02.png) no-repeat center top;
+		height:rem(475);
+		margin:rem(32) auto 0;
+		background: url(../images/guest-02-02.png) no-repeat center top;
 		background-size:100%;
 	}
 	.guest-03 {
 		width:rem(701);
-		height:rem(482);
-		margin:rem(30) auto 0;
-		background: url(../images/guest-03.png) no-repeat center top;
+		height:rem(493);
+		margin:rem(20) auto 0;
+		background: url(../images/guest-03-02.png) no-repeat center top;
 		background-size:100%;
 	}
 	.old {
@@ -287,9 +339,9 @@
 	}
 	.ercode-content {
 		width:rem(701);
-		height:rem(335);
-		margin:rem(76) auto 0;
-		background: url(../images/ercode-content.png) no-repeat center top;
+		height:rem(364);
+		margin:rem(47) auto 0;
+		background: url(../images/ercode-content-02.png) no-repeat center top;
 		background-size:100%;
 		position:relative;
 	}
@@ -298,7 +350,7 @@
 		height:rem(284);
 		position:absolute;
 		left:rem(50);
-		top:rem(31);
+		top:rem(60);
 	}
 	.know {
 		width:100%;
