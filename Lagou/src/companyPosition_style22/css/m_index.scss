@@ -1,0 +1,282 @@
+@function getEleN($n) {
+    @return $n / (750/16) + rem;
+}
+
+@function getImgUrl($url){
+    @return '../static/img/newEdit/'+$url;
+}
+@font-face {
+    font-family:DINCondMedium;
+    src:url('../images/DINCond-Medium.otf');
+    // src:url("https://www.lgstatic.com/i/image/M00/39/9B/CgpFT1lMtbiAX21gAAB3SK_XOEg464.otf");
+}
+@font-face {
+    font-family:HelveticaNeueLTPro;
+    src:url('../images/HelveticaNeueLTPro-Th.otf');
+}
+* { position: relative; }
+
+ul{
+    list-style: none;
+}
+*{
+    margin: 0;
+    padding:0;
+}
+
+img { display: block; }
+dl,dt,dd,ul,ol,li { list-style:none; }
+.clearfix:after {
+    visibility:hidden;
+    display:block;
+    font-size:0;
+    content:" ";
+    clear:both;
+    height:0;
+    overflow:hidden;
+}
+.clearfix {
+    zoom:1; /* for IE6 IE7 */
+}
+
+.companyPosition_22Parent {
+    width:getEleN(750);
+    margin:0 auto;
+    padding:0 0 0 getEleN(3);
+    .companyPosition {
+        width:getEleN(713);
+        height:getEleN(837);
+        margin:0 auto getEleN(20);
+        background-repeat:no-repeat;
+        background-position:center top;
+        background-size:100% 100%;
+    }
+    .top-layer {
+        padding:getEleN(80) 0 0 getEleN(67);
+    }
+    .t-left {
+        float:left;
+    }
+    .nameTop {
+        text-decoration:none;
+        display:block;
+    }
+    .nameTop:hover {
+        text-decoration:none;
+    }
+    .name {
+        width:getEleN(229);
+        line-height:getEleN(91);
+        padding:0 getEleN(10);
+        color:#fff;
+        font-size:getEleN(48);
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        text-align:center;
+    }
+    .info {
+        width:getEleN(239);
+        line-height:getEleN(49);
+        padding:getEleN(24) 0 0 getEleN(10);
+        color:#fff;
+        font-size:getEleN(32);
+        text-align:left;
+    }
+    .city {
+        padding:0 getEleN(12) 0 0;
+    }
+    .logoLink {
+        width:getEleN(273);
+        height:getEleN(289);
+        margin: getEleN(39) 0 0 getEleN(76);
+        background-repeat: no-repeat;
+        background-position:center top;
+        background-size:100% 100%;
+        float:left;
+    }
+    .logo_photo {
+        width:getEleN(255);
+        height:getEleN(255);
+        margin:getEleN(5) 0 0 getEleN(8);
+        border-radius:getEleN(12);
+    }
+    .rightDiv {
+        height: getEleN(384);
+        padding:0 0 0 getEleN(30);
+        overflow: hidden;
+    }
+    .positionList li {
+        width:getEleN(651);
+        height:getEleN(94);
+        line-height:getEleN(94);
+        border-bottom:getEleN(2) solid rgba(51,47,63,0.7);
+        overflow:hidden;
+    }
+    .positionUrl {
+        text-decoration:none;
+        display:block;
+    }
+    .positionName {
+        width:getEleN(428);
+        padding:0 getEleN(10) 0 getEleN(30);
+        color:#fff;
+        font-size:getEleN(30);
+        float:left;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    .s-center,
+    .p-center {
+        font-style:normal;
+    }
+    .salary {
+        width:getEleN(114);
+        padding:getEleN(6) 0 0 0;
+        color:#e3264a;
+        font-size:getEleN(30);
+        float:left;
+        font-family:HelveticaNeueLTPro;
+    }
+    .right-arrow {
+        float:left;
+    }
+    .right-arrow1 {
+        width:getEleN(28);
+        height:getEleN(2);
+        background-color:#e3264a;
+        position:absolute;
+        left:getEleN(6);
+        top:getEleN(48);
+    }
+    .right-arrow2{
+        height: getEleN(12);
+        width: getEleN(12);
+        border-width:getEleN(2) getEleN(2) 0 0;
+        border-color: #e3264a;
+        border-style: solid;
+        transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+        position: absolute;
+        top:getEleN(42);
+        left:getEleN(20);
+    }
+}
+
+.companyPosition_23Parent {
+    width:getEleN(710);
+    margin:0 auto;
+    padding:0 0 0 0;
+    .companyPosition {
+        width:getEleN(710);
+        height:getEleN(481);
+        margin:0 0 getEleN(29) 0;
+        float:left;
+        background-color:#1f2128;
+        border-radius: getEleN(22);
+    }
+    .top-layer {
+        height:getEleN(155);
+        padding:getEleN(55) 0 0 getEleN(42);
+    }
+    .t-left {
+        float:left;
+    }
+    .nameTop {
+        text-decoration:none;
+        display:block;
+    }
+    .nameTop:hover {
+        text-decoration:none;
+    }
+    .name {
+        width:getEleN(461);
+        line-height:getEleN(56);
+        padding:getEleN(11) 0 0 0;
+        color:#3f3b4b;
+        font-size:getEleN(48);
+        font-weight:500;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        text-align:left;
+    }
+    .info {
+        width:getEleN(461);
+        line-height:getEleN(43);
+        color:#3f3b4b;
+        opacity:0.4;
+        font-size:getEleN(26);
+        text-align:left;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    .city {
+        padding:0 getEleN(10) 0 0;
+    }
+    .logoLink {
+        width:getEleN(100);
+        height:getEleN(100);
+        margin: 0 0 0 getEleN(53);
+        float:left;
+        position:relative;
+    }
+    .logo_photo {
+        width:getEleN(100);
+        height:getEleN(100);
+        border-radius:getEleN(14);
+    }
+    .logo_icon {
+        width:getEleN(98);
+        height:getEleN(100);
+        position:absolute;
+        left:getEleN(-53);
+        top:getEleN(61);
+        background-repeat: no-repeat;
+        background-position:center top;
+        background-size:100% 100%;
+    }
+    .rightDiv {
+        height: getEleN(260);
+        overflow: hidden;
+    }
+    .positionList {
+        width:getEleN(690);
+        margin:0 auto;
+        padding:0 0 0 getEleN(12);
+    }
+    .positionList li {
+        width:getEleN(332);
+        height:getEleN(121);
+        margin:0 getEleN(12) getEleN(12) 0;
+        background-color:#f1f3f6;
+        border-radius:getEleN(12);
+        float:left;
+    }
+    .positionUrl {
+        height:getEleN(121);
+        text-decoration:none;
+        display:block;
+    }
+    .positionName {
+        width:getEleN(283);
+        line-height:getEleN(48);
+        padding:getEleN(18) 0 0 getEleN(25);
+        color:#3f3b4b;
+        font-size:getEleN(32);
+        text-align:left;
+        display:block;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+    }
+    .salary {
+        line-height:getEleN(39);
+        padding:0 0 0 getEleN(25);
+        color:#00ca7c;
+        font-size:getEleN(30);
+        text-align:left;
+        display:block;
+        font-family:DINCondMedium;
+    }
+}

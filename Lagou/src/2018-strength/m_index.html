@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+		<meta charset="utf-8">
+		<link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>实力派选择最屌H5</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 1080,
+                    h: 1761 // 1920
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                lagoufrom = getQueryString('lagoufrom'),
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            // test
+            // alert(GC.w+", "+GC.h)
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                        lastHTMLSize = lastHTMLSize + 2.5;
+                    }
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+            setFontSize();
+            var loadingStatus = false,
+                pageStatus = false,
+                startTime = Date.now(),
+                app = null,
+                pload = {
+                    status:'in',
+                    in:{
+                        outer:"",
+                        title:"downToCenter delay0-5",
+                        detail:"opacityChange delay1-0",
+                        progress:"opacityChange delay1-5",
+                        num:"opacityChange delay1-7"
+                    },
+                    out:{
+                        outer:"page-clip-out delay0-2 duration0-3",
+                        title:"",
+                        detail:"",
+                        progress:"",
+                        num:""
+                    },
+                },
+                loadingComplete = function(){
+                    var loading = document.getElementById('loading'),
+                        appElement = document.getElementById('app'),
+                        loadingFlip = document.getElementById('loading-flip');
+
+                    pload.status = 'out';
+                    setLoadingHTML(100);
+                    loadingFlip.style.display = 'block'
+                    setTimeout(() => {
+                        document.getElementById('loading').className += ' hide';
+                        appElement.className = appElement.className.replace(' hide','');
+                        app.firstPage();
+                    }, 500);
+                },
+                loadingSuccess = function(){
+                    var now = Date.now(),
+                        space = now - startTime;
+                    if(space < 3000){
+                        setTimeout(function(){
+                            loadingComplete()
+                        },3000 - space)
+                    }else{
+                        loadingComplete()
+                    }
+                }
+		</script>
+	</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="icon loading__title loading__title--01" :class="pload[pload.status].title1"></div>
+        <div class="icon loading__title loading__title--02" :class="pload[pload.status].title2"></div>
+        <div class="icon loading__title loading__title--03" :class="pload[pload.status].title3"></div>
+        <div class="icon loading__title loading__title--04" :class="pload[pload.status].title4"></div>
+        <div class="icon loading__detail loading__detail--01" :class="pload[pload.status].detail1"></div>
+        <div class="icon loading__detail loading__detail--02" :class="pload[pload.status].detail2"></div>
+        <div class="icon loading__detail loading__detail--03" :class="pload[pload.status].detail3"></div>
+        <div class="loading__progress__layer">
+            <div class="loading__progress" id="loading__progress">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+        <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
+    </div>
+    <div class="page-flip" id="loading-flip"></div>
+    <script type="text/javascript">
+        function setLoadingHTML(progress){
+            var loading = document.getElementById('loading'),
+                data = pload[pload.status],
+                html = ''+
+                '<div class="loading '+data.outer+'" id="loading">'+
+                    '<div class="icon loading__title loading__title--01 '+data.title+'"></div>'+
+                    '<div class="icon loading__title loading__title--02 '+data.title+'"></div>'+
+                    '<div class="icon loading__title loading__title--03 '+data.title+'"></div>'+
+                    '<div class="icon loading__title loading__title--04 '+data.title+'"></div>'+
+                    '<div class="icon loading__detail loading__detail--01 '+data.detail+'"></div>'+
+                    '<div class="icon loading__detail loading__detail--02 '+data.detail+'"></div>'+
+                    '<div class="icon loading__detail loading__detail--03 '+data.detail+'"></div>'+
+                    '<div class="loading__progress__layer '+data.progress+'">'+
+                    '    <div class="loading__progress" id="loading__progress">'+
+                    '        <div class="progress" id="progress" style="width:'+progress+'%;"></div>'+
+                    '    </div>'+
+                    '</div>'+
+                    '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
+                '</div>'
+            loading.outerHTML = html
+        }
+        setLoadingHTML(0)
+    </script>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
+            <div class="line-content" :class="(page0.down ? 'wordsUpMove' : '')+(page0.hideWords ? ' hide' : '')">
+                <div class="line" v-for="(one,index) in page0.words"
+                    :class="'line-'+index+' '+(page0.down ? '' : page0[page0.status]['line'+index])">
+                    <div class="line-center">
+                        <div class="word" v-for="(item,ii) in one"
+                            :class="'line-'+index+'__word-'+ii"
+                            :style="setLineTransition(index,ii)">
+                            <div class="word-center" :style="setWordTransition(index,ii)">{{item}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cloud-back" :class="'cloudBackUp delay3-2'">
+                <div class="cloud cloud-06"></div>
+                <div class="cloud cloud-07"></div>
+                <div class="cloud cloud-08"></div>
+            </div>
+            <div class="circle-layer" :class="'cloudBackUp delay3-2'">
+                <div class="circle-content">
+                    <div class="circle circle-06 circleZoom06"></div>
+                    <div class="circle circle-05 circleZoom05"></div>
+                    <div class="circle circle-04 circleZoom04"></div>
+                    <div class="circle circle-03 circleZoom03"></div>
+                    <div class="circle circle-02 circleZoom02"></div>
+                    <div class="circle circle-01 circleZoom01"></div>
+                </div>
+            </div>
+            <div class="girl-layer" :class="'girlClip delay8-3'">
+                <div class="girl" :class="page0.down ? 'girlDown delay2-8' : ''">
+                    <div class="girl-center" :class="page0.down ? 'girlRotate delay2-8' : ''"></div>
+                </div>
+            </div>
+            <div class="cloud-content" :class="page0.down ? 'cloudUpMove' : ''">
+                <!-- <div class="cloud-center" :class="page0.down ? 'cloudUpMove delay5-0' : ''"> -->
+                    <div class="cloud cloud-01" :class="page0.down ? 'rightIn-out delay3-0 duration1-0' : ''"></div>
+                    <div class="cloud cloud-02" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
+                    <div class="cloud cloud-03" :class="page0.down ? 'rightIn-out delay3-0 duration1-0' : ''"></div>
+                    <div class="cloud cloud-04" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
+                    <div class="cloud cloud-05" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
+                <!-- </div> -->
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+            <div class="cloud cloud-01 moveLoop"></div>
+            <div class="cloud cloud-02 moveLoop"></div>
+            <div class="cloud cloud-03 moveLoop"></div>
+            <div class="cloud cloud-04 moveLoop"></div>
+            <div class="cloud cloud-05 moveLoop"></div>
+            <div class="bird birdMove">
+                <div class="bird-center birdChange delay0-4"></div>
+            </div>
+            <div class="paper paperChange delay0-5"></div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+            <div class="page-top" :class="page2[page2.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page2[page2.status].num">3 / {{total}}</div>
+            <div class="icon p2-title" :class="page2[page2.status].title"></div>
+            <div class="page-list">
+                <div  v-for="(one,index) in options" 
+                    class="page-option"
+                    :class="page2[page2.status]['option'+index]"
+                    @click.prevent="chooseAnswer(2,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page2-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page2.chose" :class="page0[page2.status].layer">
+                <div class="box-content" :class="page0[page2.status].content">
+                    <div class="box-text" :class="page0[page2.status].btext">请开始你的表演，把重点的项<br/>目按STAR法则叙述一遍<br/><span class="box-highlight box-delete">忌假大空</span><br/><span class="box-highlight box-delete">忌流水账</span><br/><span class="box-highlight box-delete">忌忆童年</span></div>
+                </div>
+                <div class="box-next" :class="page0[page2.status].next" @click.prevent="toNext(2)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">下一题</div>
+                </div>
+                <div class="icon box-close" :class="page0[page2.status].close" @click.prevent="closeEvent(2)"></div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
+            <div class="page-top" :class="page3[page3.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page3[page3.status].num">4 / {{total}}</div>
+            <div class="icon p3-title" :class="page3[page3.status].title"></div>
+            <div class="page-list">
+                <div class="page-option" v-for="(one,index) in options"
+                    :class="page3[page3.status]['option'+index]"
+                    @click.prevent="chooseAnswer(3,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page2-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page3.chose" :class="page0[page3.status].layer">
+                <div class="box-content" :class="page0[page3.status].content">
+                    <div class="box-text" :class="page0[page3.status].btext">你又不是个演员，<br/>别设计那些情节。<br/>提前了解<span class="box-highlight">投递岗位的成长路径</span><br/>并清晰阐述，<br/>能够为你的面试加分不少。</div>
+                </div>
+                <div class="box-next" :class="page0[page3.status].next" @click.prevent="toNext(3)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">下一题</div>
+                </div>
+                <div class="icon box-close" :class="page0[page3.status].close" @click.prevent="closeEvent(3)"></div>
+            </div>
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
+            <div class="page-top" :class="page4[page4.status].top">
+                <div class="icon top__testing"></div>
+                <div class="icon top__logo"></div>
+                <div class="top__line"></div>
+            </div>
+            <div class="page-num" :class="page4[page4.status].num">5 / {{total}}</div>
+            <div class="page4-icon p4-title" :class="page4[page4.status].title"></div>
+            <div class="page-list">
+                <div class="page-option" v-for="(one,index) in page4Options"
+                    :class="page4[page4.status]['option'+index]"
+                    @click.prevent="chooseAnswer(4,index)">
+                    <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                        <div class="option-center">
+                            <div class="icon option__arrow" :class="'option__arrow--'+one"></div>
+                            <div class="page4-icon option__text" :class="'option__text--'+one"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-layer" v-show="page4.chose" :class="page0[page4.status].layer">
+                <div class="box-content" :class="page0[page4.status].content">
+                    <div class="box-text" :class="page0[page4.status].btext">“没啥想问的”，抬走下一位。<br/>本题考察候选人对公司的渴求度<br/>和入职诉求。切忌问假大空<br/>的问题，应围绕求职岗位<span class="box-highlight">有针</span><br/><span class="box-highlight">对性</span>的进行提问。</div>
+                </div>
+                <div class="box-next" :class="page0[page4.status].next" @click.prevent="showResult(4)">
+                    <div class="next-shaow"></div>
+                    <div class="next-text">查看报告</div>
+                </div>
+                <div class="icon box-close" :class="page0[page4.status].close" @click.prevent="closeEvent(4)"></div>
+            </div>
+        </div>
+        <div class="page page5 opacityChange delay0-7" :class="activePage == 5 ? 'active' : 'hide'">
+            <div class="show-outer" v-show="showStatus">
+                <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
+                    <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
+                    <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
+                    <div class="show-me littleBottomIn delay1-0">{{user.nickname}}</div>
+                    <div class="show-text littleBottomIn delay1-2">的面试力：</div>
+                    <img class="show-light littleBottomIn delay1-4" :src="loadingArray[resultIndex]" />
+                    <img class="show-add littleBottomIn delay1-6" :src="loadingArray[2]" />
+                    <div class="show-words">
+                        <div class="word-one" 
+                            v-for="(one,index) in resultWords"
+                            :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
+                    </div>
+                    <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
+                    <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
+                    <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
+                </div>
+            </div>
+            <div class="draw-layer">
+                <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+            </div>
+            <div class="canvas-layer">
+                <!--<img class="save-img" :src="url" v-show="url" />-->
+            </div>
+            <img class="save-img zoomBigShake"
+                :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                :style="setSaveStyle"
+                :src="url" />
+            <div class="p5-tips littleBottomIn" 
+                :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
+            <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                @click.stop="retryEvent"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0010" 
+                data-lg-tj-cid="null">
+                <div class="btn-shadow"></div>
+                <div class="btn-text">重新测一次</div>
+            </div>
+            <div class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0011" 
+                data-lg-tj-cid="null">
+                <div class="btn-shadow"></div>
+                <div class="btn-text">进场拿Offer</div>
+            </div>
+        </div>
+        <div class="page-flip" id="page-flip"></div>
+    </div>
+    <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-autumn/m_index.html';
+        //微信分享
+        var datas = {
+            title: "我用这5个问题，淘汰了90%的应届生！",
+            desc: "大厂面试过不过，快来偷偷测一测",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-autumn/images/share.png",
+            activityType: 'ACTIVITY_H5_AUTUMN_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>	
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
+</body>
+</html>

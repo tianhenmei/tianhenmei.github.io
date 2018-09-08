@@ -1,7 +1,11 @@
 // var userId = 1111;
 
 $(document).ready(function() {
-    var flag = false;
+    var flag = false,
+        isIphone = /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent);
+    if(!isIphone){
+        $('.android-pay').show();
+    }
     setMenu();
     $('.btn-link').bind('click', function () {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
@@ -67,6 +71,24 @@ $(document).ready(function() {
             flag = false;
         });
         
+    });
+    $('.android-btn').bind('click',function(e){
+        if (flag) {
+            return
+        }
+        flag = true;
+        var id = $(this).data('id');
+        var _url = 'activityapi/offer-lagou/buyOfferLagou';
+        var _data = {
+            offerLagouType: id
+        }
+        ajax(_url, _data, 'post', function(data) {
+            flag = false;
+            window.location.href = data.payUrl;
+        }, function(msg){
+            alert('抱歉，' + msg);
+            flag = false;
+        });
     });
     $('.pay-btn').bind('click', function (e){
         e.stopPropagation();

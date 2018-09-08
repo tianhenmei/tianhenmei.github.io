@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>VUE 源码学习</title>
+    <link type="text/css" rel="stylesheet" href="css/prism-okaidia.css">
+    <link type="text/css" rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+    <div id="app" class="app">
+        <div class="app__nav scroll-bar">
+            <div class="app__title">目录</div>
+            <ul class="nav__ul">
+                <li v-for="(one,index) in nav"
+                    class="nav__li" 
+                    :class="{'active':index == active}"
+                    @click.stop.prevent="changeNavEvent(index)">
+                    <div class="li__title">{{one.title}}</div>
+                    <div class="li__child" v-if="one.detail"
+                        v-for="(item,ii) in one.detail">
+                        <a href="#选项-el、propsdata-的合并策略" class="active sidebar-link">
+                            {{item.title}}
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="app__content scroll-bar">
+            <div v-for="(one,index) in nav"
+                class="content__one"
+                v-show="index == active">
+                <div class="content__title">{{one.title}}</div>
+                <div class="content__info">{{one.info}}</div>
+                <div class="content__code" v-if="one.code">
+                    <pre><code class="language-js">{{one.code}}</code></pre>
+                </div>
+                <div class="content__detail" v-for="(item,ii) in one.detail" v-if="one.detail">
+                    <div class="detail__title" v-show="item.title" :id="item.title"><a :href="'#'+item.title" aria-hidden="true" class="header-anchor">#</a>{{item.title}}</div>
+                    <pre><code class="language-js">{{item.code}}</code></pre>
+                    <div class="content__explain" v-html="item.content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/prism.js"></script>
+    <script type="text/javascript" src="js/vue2.1.10.js"></script>
+    <script type="text/javascript" src="js/vue-router.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

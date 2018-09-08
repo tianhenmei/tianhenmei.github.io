@@ -1,0 +1,124 @@
+@charset "UTF-8";
+* {
+  position: relative; }
+
+ul {
+  list-style: none; }
+
+* {
+  margin: 0;
+  padding: 0; }
+
+img {
+  display: block; }
+
+dl, dt, dd, ul, ol, li {
+  list-style: none; }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+  overflow: hidden; }
+
+.clearfix {
+  zoom: 1;
+  /* for IE6 IE7 */ }
+
+html, body {
+  width: 100%;
+  height: 100%; }
+
+/*滚动条样式*/
+.scroll-bar::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 4px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 4px; }
+
+.scroll-bar::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.2); }
+
+.scroll-bar::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1); }
+
+.app {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+  .app__title {
+    line-height: 50px;
+    padding: 20px 0 0 20px;
+    font-size: 30px;
+    color: #333;
+    text-align: left; }
+  .app__nav {
+    width: 300px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    float: left; }
+  .app .nav__ul {
+    padding: 10px 0 0 20px; }
+  .app .nav__li {
+    line-height: 36px;
+    font-size: 16px;
+    color: #666;
+    text-align: left;
+    cursor: pointer; }
+  .app .nav__li.active {
+    color: #ff0084; }
+  .app .li__child {
+    padding: 0 0 0 20px; }
+  .app__content {
+    height: 100%;
+    margin: 0 0 0 300px;
+    overflow-x: hidden;
+    overflow-y: scroll; }
+  .app .content__title {
+    padding: 20px 0 0 80px;
+    font-size: 24px;
+    color: #333;
+    text-align: left; }
+  .app .content__info {
+    padding: 10px 0 0 80px;
+    font-size: 16px;
+    color: #666;
+    text-align: left; }
+  .app .content__code {
+    padding: 0 20px 0 80px; }
+  .app .content__detail {
+    line-height: 24px;
+    padding: 0 20px 0 80px;
+    color: #666;
+    font-size: 16px; }
+  .app .detail__title {
+    padding: 20px 0 0 0;
+    font-size: 24px;
+    color: #333;
+    text-align: left; }
+    .app .detail__title a {
+      color: #ff0084;
+      text-decoration: none; }
+    .app .detail__title a:hover {
+      text-decoration: none; }
+  .app .content__explain code {
+    color: #476582;
+    padding: 5px 10px;
+    margin: 0;
+    background-color: rgba(27, 31, 35, 0.05);
+    border-radius: 3px; }
+  .app .content__explain a {
+    color: #ff0084;
+    text-decoration: none; }
+  .app .content__explain a:hover {
+    text-decoration: none; }
