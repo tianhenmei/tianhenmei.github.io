@@ -6,8 +6,9 @@ app = new Vue({
         mode:"development",
         lg:"1bir",
         // test
-        activePage:1,
+        activePage:0,
         fontSize:16,
+        pageFlipStatus:false,
         sex:'',
         total:5,
         options:['a','b','c','d'],
@@ -81,24 +82,22 @@ app = new Vue({
         page2:{
             status:'in',
             chose:false,
+            options:['a','b'],
             score:[30,0,10,20],
             in:{
-                top:"rotateIn2 delay0-5",
-                title:"littleBottomIn delay1-0",
+                title:"littleBottomIn delay0-5",
+                content:"littleBottomIn delay1-0",
                 option0:"littleBottomIn delay1-5 duration1-0",
                 option1:"littleBottomIn delay1-8 duration1-0",
-                option2:"littleBottomIn delay2-1 duration1-0",
-                option3:"littleBottomIn delay2-4 duration1-0",
-                num:"opacityChange delay2-7"
+                layer:'opacityChange',
+                out:''
             },
             out:{
-                top:"topIn-out delay0-2",
-                title:"topIn-out delay0-2",
-                option0:"topIn-out delay0-2",
-                option2:"topIn-out delay0-2",
-                option1:"topIn-out delay0-2",
-                option3:"topIn-out delay0-2",
-                num:"topIn-out delay0-2"
+                title:"",
+                content:"",
+                option0:"",
+                option1:"",
+                out:'page-clip-out'
             },
         },
         page3:{
@@ -106,48 +105,80 @@ app = new Vue({
             chose:false,
             score:[0,30,20,10],
             in:{
-                top:"zoomIn delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"zoomIn delay1-5",
-                option1:"zoomIn delay1-5",
-                option2:"zoomIn delay1-5",
-                option3:"zoomIn delay1-5",
-                num:"opacityChange delay2-0"
+                title:"zoomIn delay0-5",
+                content:"zoomIn delay0-8",
+                option0:"zoomIn delay1-3 duration1-0",
+                option1:"zoomIn delay1-6 duration1-0",
+                layer:'opacityChange',
+                out:''
             },
             out:{
-                top:"zoomBig-outtop delay0-2",
-                title:"zoomBig-outtop delay0-2",
-                option0:"zoomBig-outleft delay0-2",
-                option2:"zoomBig-outleft delay0-2",
-                option1:"zoomBig-outright delay0-2",
-                option3:"zoomBig-outright delay0-2",
-                num:"zoomBig-outbottom delay0-2"
-            },
+                title:"",
+                content:"",
+                option0:"",
+                option1:"",
+                out:'page-clip-out'
+            }
         },
         page4:{
             status:'in',
             chose:false,
-            score:[0,10,30,20],
+            score:[0,30,20,10],
             in:{
-                top:"opacityChange delay0-5",
-                title:"opacityChange delay1-0",
-                option0:"rotateIn delay1-5",
-                option1:"rotateIn delay1-5",
-                option2:"rotateIn delay1-5",
-                option3:"rotateIn delay1-5",
-                option4:"rotateIn delay1-5",
-                num:"opacityChange delay2-0"
+                title:"rightIn delay0-5 duration1-0",
+                content:"rightIn delay0-8 duration1-0",
+                option0:"rightIn delay1-1 duration1-0",
+                option1:"rightIn delay1-3 duration1-0",
+                layer:'opacityChange',
+                out:''
             },
             out:{
-                top:"opacityChange-out delay0-2",
-                title:"opacityChange-out delay0-2",
-                option0:"opacityChange-out delay0-2",
-                option2:"opacityChange-out delay0-2",
-                option1:"opacityChange-out delay0-2",
-                option3:"opacityChange-out delay0-2",
-                option4:"opacityChange-out delay0-2",
-                num:"opacityChange-out delay0-2"
+                title:"",
+                content:"",
+                option0:"",
+                option1:"",
+                out:'page-clip-out'
+            }
+        },
+        page5:{
+            status:'in',
+            chose:false,
+            score:[0,30,20,10],
+            in:{
+                title:"opacityChange delay0-5 duration1-0",
+                content:"opacityChange delay0-8 duration1-0",
+                option0:"opacityChange delay1-1 duration1-0",
+                option1:"opacityChange delay1-3 duration1-0",
+                layer:'opacityChange',
+                out:''
             },
+            out:{
+                title:"",
+                content:"",
+                option0:"",
+                option1:"",
+                out:'page-clip-out'
+            }
+        },
+        page6:{
+            status:'in',
+            chose:false,
+            score:[0,30,20,10],
+            in:{
+                title:"littleTopIn delay0-5 duration1-0",
+                content:"littleTopIn delay0-8 duration1-0",
+                option0:"littleTopIn delay1-1 duration1-0",
+                option1:"littleTopIn delay1-3 duration1-0",
+                layer:'opacityChange',
+                out:''
+            },
+            out:{
+                title:"",
+                content:"",
+                option0:"",
+                option1:"",
+                out:'page-clip-out'
+            }
         },
         page4Options:['a','b','c','d'],
         canvas:null,
@@ -287,6 +318,7 @@ app = new Vue({
                     self.page0.hideWords = true;
                     setTimeout(function(){
                         self.activePage = 1;
+                        self.birdPage();
                     },8200);
                 },3200);
             },3000);
@@ -334,6 +366,12 @@ app = new Vue({
             }
             return style;
         },
+        birdPage:function(){
+            var self = this;
+            setTimeout(function(){
+                self.activePage = 2;
+            },4000);
+        },
         setDelayTime:function(start,now,index){
             var current = Math.floor(now / 10)
             return start + current
@@ -354,12 +392,48 @@ app = new Vue({
         },
         chooseAnswer:function(pindex,index){
             var self = this
-            this.result[pindex] = this['page'+pindex].score[index]
+            this.result[pindex-2] = this['page'+pindex].score[index]
             this.choseOptionIndex = index
+            this['page'+pindex].status = 'out'
+            this.pageFlipStatus = true
+            this['page'+pindex].chose = true
             setTimeout(function(){
                 self.choseOptionIndex = -1
-                self['page'+pindex].chose = true
+                self.pageFlipStatus = false
             },1000)
+            if(pindex == 2){
+                this.toPage3()
+            }else if(pindex == 3){
+                this.toPage4()
+            }else if(pindex == 4){
+                this.toPage5()
+            }else if(pindex == 5){
+                this.toPage6()
+            }
+        },
+        toPage3:function(){
+            var self = this;
+            setTimeout(function(){
+                self.activePage = 3;
+            },2400)
+        },
+        toPage4:function(){
+            var self = this;
+            setTimeout(function(){
+                self.activePage = 4;
+            },2400)
+        },
+        toPage5:function(){
+            var self = this;
+            setTimeout(function(){
+                self.activePage = 5;
+            },3200)
+        },
+        toPage6:function(){
+            var self = this;
+            setTimeout(function(){
+                self.activePage = 6;
+            },2400)
         },
         toNext:function(pindex){
             if(this.clickStatus){
