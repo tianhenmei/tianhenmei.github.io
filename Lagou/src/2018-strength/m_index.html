@@ -88,7 +88,7 @@
                         num:"opacityChange delay1-7"
                     },
                     out:{
-                        outer:"page-clip-out delay0-2 duration0-3",
+                        outer:"page-clip-out duration0-5",
                         title:"",
                         detail:"",
                         progress:"",
@@ -100,15 +100,18 @@
                         appElement = document.getElementById('app'),
                         loadingFlip = document.getElementById('loading-flip');
 
-                    pload.status = 'out';
-                    setLoadingHTML(100);
-                    loadingFlip.style.display = 'block'
-                    setTimeout(() => {
-                        document.getElementById('loading').className += ' hide';
-                        appElement.className = appElement.className.replace(' hide','');
-                        // test 注释
-                        app.firstPage();
-                    }, 500);
+                    // test 注释if
+                    // if(app && !app.testing){
+                        pload.status = 'out';
+                        setLoadingHTML(100);
+                        loadingFlip.style.display = 'block'
+                        setTimeout(() => {
+                            document.getElementById('loading').className += ' hide';
+                            appElement.className = appElement.className.replace(' hide','');
+                            // test 注释
+                            // app.firstPage();
+                        }, 500);
+                    // }
                 },
                 loadingSuccess = function(){
                     var now = Date.now(),
@@ -125,10 +128,21 @@
 	</head>
 <body>
     <div class="loading" id="loading">
-        <div class="icon loading__title loading__title--01" :class="pload[pload.status].title1"></div>
-        <div class="icon loading__title loading__title--02" :class="pload[pload.status].title2"></div>
-        <div class="icon loading__title loading__title--03" :class="pload[pload.status].title3"></div>
-        <div class="icon loading__title loading__title--04" :class="pload[pload.status].title4"></div>
+        <div class="loading__title--all" :class="pload[pload.status].title">
+            <div class="title-center loadingTitleChange"></div>
+        </div>
+        <!--<div class="loading__title loading__title--01" :class="pload[pload.status].title1">
+            <div class="title-center"></div>
+        </div>
+        <div class="loading__title loading__title--02" :class="pload[pload.status].title2">
+            <div class="title-center"></div>
+        </div>
+        <div class="loading__title loading__title--03" :class="pload[pload.status].title3">
+            <div class="title-center"></div>
+        </div>
+        <div class="loading__title loading__title--04" :class="pload[pload.status].title4">
+            <div class="title-center"></div>
+        </div>-->
         <div class="icon loading__detail loading__detail--01" :class="pload[pload.status].detail1"></div>
         <div class="icon loading__detail loading__detail--02" :class="pload[pload.status].detail2"></div>
         <div class="icon loading__detail loading__detail--03" :class="pload[pload.status].detail3"></div>
@@ -146,10 +160,13 @@
                 data = pload[pload.status],
                 html = ''+
                 '<div class="loading '+data.outer+'" id="loading">'+
-                    '<div class="icon loading__title loading__title--01 '+data.title+'"></div>'+
-                    '<div class="icon loading__title loading__title--02 '+data.title+'"></div>'+
-                    '<div class="icon loading__title loading__title--03 '+data.title+'"></div>'+
-                    '<div class="icon loading__title loading__title--04 '+data.title+'"></div>'+
+                    '<div class="loading__title--all '+data.title+'">'+
+                    '    <div class="title-center loadingTitleChange"></div>'+
+                    '</div>'+
+                    // '<div class="loading__title loading__title--01 '+data.title+'"><div class="title-center"></div></div>'+
+                    // '<div class="loading__title loading__title--02 '+data.title+'"><div class="title-center"></div></div>'+
+                    // '<div class="loading__title loading__title--03 '+data.title+'"><div class="title-center"></div></div>'+
+                    // '<div class="loading__title loading__title--04 '+data.title+'"><div class="title-center"></div></div>'+
                     '<div class="icon loading__detail loading__detail--01 '+data.detail+'"></div>'+
                     '<div class="icon loading__detail loading__detail--02 '+data.detail+'"></div>'+
                     '<div class="icon loading__detail loading__detail--03 '+data.detail+'"></div>'+
@@ -167,46 +184,57 @@
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
-            <div class="line-content" :class="(page0.down ? 'wordsUpMove' : '')+(page0.hideWords ? ' hide' : '')">
-                <div class="line" v-for="(one,index) in page0.words"
-                    :class="'line-'+index+' '+(page0.down ? '' : page0[page0.status]['line'+index])">
-                    <div class="line-center">
-                        <div class="word" v-for="(item,ii) in one"
-                            :class="'line-'+index+'__word-'+ii"
-                            :style="setLineTransition(index,ii)">
-                            <div class="word-center" :style="setWordTransition(index,ii)">{{item}}</div>
+            <div class="page0-center" :class="page0.down ? 'page0CenteMove delay8-2' : ''">
+                <div class="line-content" :class="(page0.down ? 'wordsUpMove' : '')+(page0.hideWords ? ' hide' : '')">
+                    <div class="line" v-for="(one,index) in page0.words"
+                        :class="'line-'+index+' '+(page0.down ? '' : page0[page0.status]['line'+index])">
+                        <div class="line-center">
+                            <div class="word" v-for="(item,ii) in one"
+                                :class="'line-'+index+'__word-'+ii"
+                                :style="setLineTransition(index,ii)">
+                                <div class="word-center" :style="setWordTransition(index,ii)">{{item}}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="cloud-back" :class="'cloudBackUp delay3-2'">
-                <div class="cloud cloud-06"></div>
-                <div class="cloud cloud-07"></div>
-                <div class="cloud cloud-08"></div>
-            </div>
-            <div class="circle-layer" :class="'cloudBackUp delay3-2'">
-                <div class="circle-content">
-                    <div class="circle circle-06 circleZoom06"></div>
-                    <div class="circle circle-05 circleZoom05"></div>
-                    <div class="circle circle-04 circleZoom04"></div>
-                    <div class="circle circle-03 circleZoom03"></div>
-                    <div class="circle circle-02 circleZoom02"></div>
-                    <div class="circle circle-01 circleZoom01"></div>
+                <div class="cloud-back" :class="page0.down ? 'cloudBackUp delay5-2' : 'hide'">
+                    <div class="cloud cloud-06"></div>
+                    <div class="cloud cloud-07"></div>
+                    <div class="cloud cloud-08"></div>
                 </div>
-            </div>
-            <div class="girl-layer" :class="'girlClip delay8-3'">
-                <div class="girl" :class="page0.down ? 'girlDown delay2-8' : ''">
-                    <div class="girl-center" :class="page0.down ? 'girlRotate delay2-8' : ''"></div>
+                <div class="circle-layer" :class="page0.down ? 'cloudBackUp delay5-2' : 'hide'">
+                    <div class="circle-content">
+                        <div class="circle circle-06 circleZoom06">
+                            <div class="circle-06-center circleRotate06"></div>
+                        </div>
+                        <div class="circle circle-05 circleZoom05">
+                            <!-- <div class="circle-05-center circleRotate06"></div> -->
+                        </div>
+                        <div class="circle circle-04 circleZoom04"></div>
+                        <div class="circle circle-03 circleZoom03"></div>
+                        <div class="circle circle-02 circleZoom02"></div>
+                        <div class="circle circle-01 circleZoom01"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="cloud-content" :class="page0.down ? 'cloudUpMove' : ''">
-                <!-- <div class="cloud-center" :class="page0.down ? 'cloudUpMove delay5-0' : ''"> -->
-                    <div class="cloud cloud-01" :class="page0.down ? 'rightIn-out delay3-0 duration1-0' : ''"></div>
+                <div class="girl-layer">
+                    <div class="girl-outer" :class="page0.down ? 'girlDisappear delay8-2' : ''">
+                        <div class="girl" :class="page0.down ? 'girlDown delay4-0' : ''">
+                            <div class="girl-content" :class="page0.down ? 'girlClip delay2-8' : ''">
+                                <div class="girl-center" :class="page0.down ? 'girlChange delay3-3' : ''"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cloud-content" :class="page0.down ? 'cloudUpMove' : 'hide'"><!---->
+                    <div class="page0-cloud0"></div><!-- :class="page0.down ? 'page0Cloud0Change delay3-3' : ''"-->
+                    <div class="page0-cloud" :class="page0.down ? 'page0CloudMove' : ''"></div>
+                    <!--<div class="page0-cloud" :class="page0.down ? '' : ''"></div>--><!--page0CloudChange delay7-8-->
+                    <!-- <div class="cloud cloud-01" :class="page0.down ? 'rightIn-out delay3-0 duration1-0' : ''"></div>
                     <div class="cloud cloud-02" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
                     <div class="cloud cloud-03" :class="page0.down ? 'rightIn-out delay3-0 duration1-0' : ''"></div>
                     <div class="cloud cloud-04" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
-                    <div class="cloud cloud-05" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div>
-                <!-- </div> -->
+                    <div class="cloud cloud-05" :class="page0.down ? 'leftIn-out delay3-0 duration1-0' : ''"></div> -->
+                </div>
             </div>
         </div>
         <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
@@ -225,10 +253,12 @@
         </div>
         <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
             <div class="box-layer" v-show="page2.chose" :class="page2[page2.status].layer">
-                <div class="box-content boxZoomLarge delay1-6">
-                    <div class="person"></div>
-                    <div class="hand handChange delay0-5"></div>
-                    <div class="screen-rotate screenRorate delay1-4"></div>
+                <div class="box-content boxZoomLarge delay2-2">
+                    <div class="person-outer zoomIn delay0-5">
+                        <div class="person"></div>
+                        <div class="hand handChange delay1-0"></div>
+                        <div class="screen-rotate screenRorate delay2-0"></div>
+                    </div>
                 </div>
             </div>
             <div class="page-content" :class="page2[page2.status].out">
@@ -278,7 +308,10 @@
         <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
             <div class="box-layer" v-show="page4.chose" :class="page4[page4.status].layer">
                 <div class="box-content">
-                    <div class="photo photoRotate delay0-5"></div>
+                    <div class="photo photoRotate delay0-5">
+                        <div class="photo-box"></div>
+                        <div class="photo-content photoMove3d delay0-5"></div>
+                    </div>
                     <div class="eye eyeRorate delay0-5">
                         <div class="eye-center eyeChange delay2-2"></div>
                     </div>

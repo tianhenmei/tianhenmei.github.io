@@ -4,9 +4,11 @@ app = new Vue({
     data:{
         // test
         mode:"development",
-        lg:"1bir",
         // test
-        activePage:0,
+        testing:true,
+        lg:"1c5d",
+        // test
+        activePage:4,
         fontSize:16,
         pageFlipStatus:false,
         sex:'',
@@ -42,15 +44,15 @@ app = new Vue({
             ]],
             score:[0,10,30,20],
             in:{
-                line0:"littleBottomIn duration1-0 delay0-5",
-                line1:"littleBottomIn duration1-0 delay0-7",
-                line2:"littleBottomIn duration1-0 delay0-9",
-                line3:"littleBottomIn duration1-0 delay1-1",
-                line4:"littleBottomIn duration1-0 delay1-3",
-                line5:"littleBottomIn duration1-0 delay1-5",
-                line6:"littleBottomIn duration1-0 delay1-7",
-                line7:"littleBottomIn duration1-0 delay1-9",
-                line8:"littleBottomIn duration1-0 delay2-1"
+                line0:"topIn duration1-0 delay0-5",
+                line1:"topIn duration1-0 delay0-7",
+                line2:"leftIn duration1-0 delay0-9",
+                line3:"leftIn duration1-0 delay1-1",
+                line4:"leftIn duration1-0 delay1-3",
+                line5:"rightIn duration1-0 delay1-5",
+                line6:"rightIn duration1-0 delay1-7",
+                line7:"bottomIn duration1-0 delay1-9",
+                line8:"bottomIn duration1-0 delay2-1"
             },
             out:{
                 
@@ -311,17 +313,26 @@ app = new Vue({
         },
         firstPage:function(){
             var self = this
-            setTimeout(function(){
-                self.page0.down = true;
+            // test 注释if
+            // if(!self.testing){
                 setTimeout(function(){
-                    // 隐藏文案
-                    self.page0.hideWords = true;
-                    setTimeout(function(){
-                        self.activePage = 1;
-                        self.birdPage();
-                    },8200);
-                },3200);
-            },3000);
+                    self.page0.down = true;
+                    // test 注释if
+                    // if(!self.testing){
+                        setTimeout(function(){
+                            // 隐藏文案
+                            self.page0.hideWords = true;
+                            // test 注释if
+                            // if(!self.testing){
+                                setTimeout(function(){
+                                    self.activePage = 1;
+                                    self.birdPage();
+                                },8200);
+                            // }
+                        },3000);
+                    // }
+                },3000);
+            // }
         },
         setWordDown:function(index,ii,one){
             var r = -1;
@@ -347,7 +358,7 @@ app = new Vue({
                 style.transition = 'all '+(20 - 2 * index) / 10+'s '+(2 * index + this.tempDelay) / 10+'s linear';
                 style.textShadow = '0 0 '+this.setRem(9)+' #fff';
                 height = GC.h/this.fontSize*(1080 / 16);
-                style.transform = 'translate3d(0,'+this.setRem(height - (height / 9 * 12 - height)  - arr[index] + 140 + 75 * 2)+',0)';  //  
+                style.transform = 'translate3d(0,'+this.setRem(height - (height / 9 * 12 - height)  - arr[index] + 140 + 75 * 3 + 30)+',0)';  //  
             }
             return style
         },
@@ -368,9 +379,12 @@ app = new Vue({
         },
         birdPage:function(){
             var self = this;
-            setTimeout(function(){
-                self.activePage = 2;
-            },4000);
+            // test 注释if
+            // if(!self.testing){
+                setTimeout(function(){
+                    self.activePage = 2;
+                },4000);
+            // }
         },
         setDelayTime:function(start,now,index){
             var current = Math.floor(now / 10)
@@ -425,9 +439,12 @@ app = new Vue({
         },
         toPage5:function(){
             var self = this;
-            setTimeout(function(){
-                self.activePage = 5;
-            },3200)
+            // test 注释if
+            // if(!self.testing){
+                setTimeout(function(){
+                    self.activePage = 5;
+                },3200)
+            // }
         },
         toPage6:function(){
             var self = this;
