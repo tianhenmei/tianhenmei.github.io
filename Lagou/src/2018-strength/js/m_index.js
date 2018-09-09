@@ -8,7 +8,7 @@ app = new Vue({
         testing:true,
         lg:"1c5d",
         // test
-        activePage:4,
+        activePage:0,
         fontSize:16,
         pageFlipStatus:false,
         sex:'',
