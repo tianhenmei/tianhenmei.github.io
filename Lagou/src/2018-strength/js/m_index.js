@@ -5,7 +5,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:true,
+        testing:false,
         lg:"1c5d",
         // test
         activePage:0,
@@ -44,15 +44,15 @@ app = new Vue({
             ]],
             score:[0,10,30,20],
             in:{
-                line0:"topIn duration1-0 delay0-5",
-                line1:"topIn duration1-0 delay0-7",
-                line2:"leftIn duration1-0 delay0-9",
-                line3:"leftIn duration1-0 delay1-1",
-                line4:"leftIn duration1-0 delay1-3",
-                line5:"rightIn duration1-0 delay1-5",
-                line6:"rightIn duration1-0 delay1-7",
-                line7:"bottomIn duration1-0 delay1-9",
-                line8:"bottomIn duration1-0 delay2-1"
+                line0:"opacityChange duration1-0 delay0-5",
+                line1:"opacityChange duration1-0 delay1-5",
+                line2:"opacityChange duration1-0 delay2-5",
+                line3:"opacityChange duration1-0 delay3-5",
+                line4:"opacityChange duration1-0 delay4-5",
+                line5:"opacityChange duration1-0 delay5-5",
+                line6:"opacityChange duration1-0 delay6-5",
+                line7:"opacityChange duration1-0 delay7-5",
+                line8:"opacityChange duration1-0 delay8-5"
             },
             out:{
                 
@@ -327,11 +327,11 @@ app = new Vue({
                                 setTimeout(function(){
                                     self.activePage = 1;
                                     self.birdPage();
-                                },8200);
+                                },7500);
                             // }
                         },3000);
                     // }
-                },3000);
+                },9500);
             // }
         },
         setWordDown:function(index,ii,one){
@@ -429,13 +429,16 @@ app = new Vue({
             var self = this;
             setTimeout(function(){
                 self.activePage = 3;
-            },2400)
+            },4400)
         },
         toPage4:function(){
             var self = this;
-            setTimeout(function(){
-                self.activePage = 4;
-            },2400)
+            // test 注释if
+            // if(!self.testing){
+                setTimeout(function(){
+                    self.activePage = 4;
+                },2800)
+            // }
         },
         toPage5:function(){
             var self = this;
