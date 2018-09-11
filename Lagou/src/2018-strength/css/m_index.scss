@@ -224,8 +224,10 @@ body {
     .title-center {
         width:rem(505);
         height:rem(583);
-        background:url('../images/loading-title-01.png') no-repeat center top;
-        background-size:100% 100%;
+        // background:url('../images/loading-title-01.png') no-repeat center top;
+        // background-size:100% 100%;
+        background:url('../images/loading-title.png') no-repeat 0 0;
+        background-size:rem(1560) rem(583);
     }
     .loading__title--01 {
         width:rem(234);
@@ -414,11 +416,11 @@ body {
     }
     .option-center {
         width:100%;
-        height:rem(107);
+        height:rem(111);
         // background:#ffffff;
         position:relative;
         background:url('../images/page2-options.png') no-repeat 0 0;
-        background-size:rem(900) rem(109);
+        background-size:rem(900) rem(111);
     }
     // .option__arrow {
     //     width:rem(95);
@@ -526,6 +528,13 @@ body {
         background:url('../images/page0-cloud0-01.png') no-repeat center top;
         background-size:100% 100%;
         @include center(59,-263);
+    }
+    .page0-cloud2 {
+        width:100%;
+        height:rem(1791);
+        background:url('../images/page0-cloud2-01.png') no-repeat center top;
+        background-size:100% rem(1791);
+        @include center(0,0);
     }
     .page0-cloud {
         width:rem(1127);
@@ -726,7 +735,7 @@ body {
     .girl-outer {
         width:100%;
         height:rem(732);
-        @include leftTop(0,543+227);//375);
+        @include leftTop(0,543+227); // 874);//;//375);
         overflow:hidden;
         clip-path: polygon(0 0, 100% 0, 100% 80%, 
             93.75% 85%, 87.5% 87%, 81.25% 89%, 75% 91%, 68.75% 93%, 62.5% 95%, 56.25% 97%, 50% 99%, 
@@ -751,6 +760,49 @@ body {
         background:url('../images/page0-girl-01.png') no-repeat center bottom;
         background-size:rem(854) rem(582);
         @include leftBottom(0,0);
+    }
+
+    .page0-icon {
+        background:url('../images/page0-icon.png') no-repeat 0 0;
+        background-size:rem(512) rem(512);
+    }
+    .page0-start,
+    .start-center{
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+    }
+    .s-words {
+        width:rem(365);
+        height:rem(46);
+        @include center(355,551);
+    }
+    .s-words-01 {
+        background-position:0 0;
+    }
+    .s-words-02 {
+        background-position:0 rem(-80);
+        top:rem(551+80);
+    }
+    .s-words-03 {
+        background-position:0 rem(-160);
+        top:rem(551+160);
+    }
+    .start-btn-layer {
+        width:rem(270);
+        height:rem(107);
+        @include center(404,871);
+    }
+    .start-btn {
+        width:rem(270);
+        height:rem(107);
+        background:url('../images/page0-start-btn.png') no-repeat 0 0;
+        background-size:rem(560) rem(107);
+    }
+    .start-btn--text {
+        width:rem(270);
+        height:rem(106);
+        background-position:0 rem(-250);
     }
 }
 
@@ -850,8 +902,8 @@ body {
         @include center(319,911);
     }
     .option__text {
-        width:rem(440);
-        height:rem(107);
+        width:rem(441);
+        height:rem(111);
         @include leftTop(0,0);
     }
     .option__text--a {
@@ -859,6 +911,12 @@ body {
     }
     .option__text--b {
         background-position:0 rem(-660);
+    }
+    .option__text--a.active {
+        background-position:rem(-552) rem(-540);
+    }
+    .option__text--b.active {
+        background-position:rem(-552) rem(-660);
     }
     .box-content,
     .person-outer {
@@ -872,11 +930,16 @@ body {
         @include leftTop(0,0);
     }
     .person {
-        width:rem(882);
-        height:rem(832);
-        background:url('../images/page2-girl.png') no-repeat center top;
+        width:rem(734);
+        height:rem(822);
+        background:url('../images/page2-girl-01.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(42,288);
+        @include center(193,298);
+        // width:rem(882);
+        // height:rem(832);
+        // background:url('../images/page2-girl.png') no-repeat center top;
+        // background-size:100% 100%;
+        // @include center(42,288);
     }
     .hand {
         width:rem(733);
@@ -884,6 +947,21 @@ body {
         background:url('../images/page2-hand.png') no-repeat 0 0;
         background-size:rem(2932) rem(511);
         @include center(194,539);
+    }
+    .bubble {
+        width:rem(510);
+        height:rem(266);
+        background:url('../images/page2-bubble.png') no-repeat 0 0;
+        background-size:100% 100%;
+        @include center(636,448);
+        transform-origin:0 27.8%;
+    }
+    .words {
+        width:rem(199);
+        height:rem(102);
+        background:url('../images/page2-words.png') no-repeat 0 0;
+        background-size:100% 100%;
+        @include leftTop(219,86);
     }
     .screen {
         width:rem(3650);
@@ -938,7 +1016,7 @@ body {
     }
     .option__text {
         width:rem(508);
-        height:rem(107);
+        height:rem(111);
         @include leftTop(0,0);
     }
     .option__text--a {
@@ -947,40 +1025,53 @@ body {
     .option__text--b {
         background-position:0 rem(-210);
     }
-    .lamb,
+    .option__text--a.active {
+        background-position:rem(-552) rem(-90);
+    }
+    .option__text--b.active {
+        background-position:rem(-552) rem(-210);
+    }
+    // .lamb,
     .box-content {
         width:100%;
         height:100%;
         @include leftTop(0,0);
     }
-    .pole {
-        width:rem(395);
-        height:rem(1362);
-        background:url('../images/page3-pole.png') no-repeat 0 0;
-        background-size:100% 100%;
-        @include center(690,153);
+    .walking {
+        width:100%;
+        height:100%;
+        background:url('../images/page3-girl2-01.png') no-repeat 0 0;
+        background-size:100%;
+        @include center(0,0);
     }
-    .light {
-        width:rem(265);
-        height:rem(1318);
-        background:url('../images/page3-light.png') no-repeat 0 0;
-        background-size:rem(550) rem(1318);
-        @include center(690,153);
-    }
-    .girl {
-        width:rem(998);
-        height:rem(1050);
-        background:url('../images/page3-girl-01.png') no-repeat 0 0;
-        background-size:100% 100%;
-        @include center(-98,458);
-    }
-    .house {
-        width:rem(496);
-        height:rem(1099);
-        background:url('../images/page3-house.png') no-repeat 0 0;
-        background-size:100% 100%;
-        @include leftTop(0,183);
-    }
+    // .pole {
+    //     width:rem(395);
+    //     height:rem(1362);
+    //     background:url('../images/page3-pole.png') no-repeat 0 0;
+    //     background-size:100% 100%;
+    //     @include center(690,153);
+    // }
+    // .light {
+    //     width:rem(265);
+    //     height:rem(1318);
+    //     background:url('../images/page3-light.png') no-repeat 0 0;
+    //     background-size:rem(550) rem(1318);
+    //     @include center(690,153);
+    // }
+    // .girl {
+    //     width:rem(998);
+    //     height:rem(1050);
+    //     background:url('../images/page3-girl-01.png') no-repeat 0 0;
+    //     background-size:100% 100%;
+    //     @include center(-98,458);
+    // }
+    // .house {
+    //     width:rem(496);
+    //     height:rem(1099);
+    //     background:url('../images/page3-house.png') no-repeat 0 0;
+    //     background-size:100% 100%;
+    //     @include leftTop(0,183);
+    // }
 }
 
 // page4
@@ -1019,7 +1110,7 @@ body {
     }
     .option__text {
         width:rem(508);
-        height:rem(107);
+        height:rem(111);
         @include leftTop(0,0);
     }
     .option__text--a {
@@ -1028,50 +1119,61 @@ body {
     .option__text--b {
         background-position:0 rem(-210-480);
     }
+    .option__text--a.active {
+        background-position:rem(-552) rem(-90-480);
+    }
+    .option__text--b.active {
+        background-position:rem(-552) em(-210-480);
+    }
     .box-content {
         width:100%;
         height:100%;
         @include leftTop(0,0);
     }
     .photo-layer {
-        width:rem(886);
-        height:rem(1063);
-        transform-style: preserve-3d;
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        // transform-style: preserve-3d;
         perspective: 2000;
     }
     .photo-outer,.photo-center {
         width:100%;
         height:100%;
+        @include leftTop(0,0);
     }
     .photo-outer {
-        
+        perspective:2000;
     }
     .photo-center {
-        transform: rotateY(30deg) translateX(20px);
+        // transform: rotateY(30deg) translate3d(-50px, 0, 100px);
     }
     .photo {
-        width:rem(886);
-        height:rem(1063);
+        width:rem(875);
+        height:rem(1251);
         // background:url('../images/page4-photo.png') no-repeat center top;
         // background-size:100% 100%;
-        @include center(64,183);
-        transform-style: preserve-3d;
-        -webkit-perspective: 2000;
-        perspective: 2000;
+        @include center(64,248);
+        // transform-style: preserve-3d;
+        // -webkit-perspective: 2000;
+        // perspective: 2000;
     }
     .photo-box {
-        width:rem(886);
-        height:rem(1063);
+        width:rem(797);
+        height:rem(1251);
         background:url('../images/page4-photo-box.png') no-repeat center top;
         background-size: 100% 100%;
+        @include leftTop(78,0);
     }
     .photo-content {
-        width:rem(886);
-        height:rem(1063);
+        width:rem(855);
+        height:rem(861);
         background:url('../images/page4-photo-content.png') no-repeat center top;
         background-size:100% 100%;
-        transform-style: preserve-3d;
-        transform: translate3d(0,-100%,-100px);
+        // transform-style: preserve-3d;
+        // transform: translate3d(0,-100%,-100px);
+        transform-origin: 50% 100%;
+        @include leftTop(0,197);
     }
     .eye {
         width:rem(416);
@@ -1133,10 +1235,24 @@ body {
     .option__text--b {
         background-position:0 rem(-210);
     }
+    .option__text--a.active {
+        background-position:rem(-552) rem(-90);
+    }
+    .option__text--b.active {
+        background-position:rem(-552) rem(-210);
+    }
     .box-content {
         width:100%;
         height:100%;
         @include leftTop(0,0);
+    }
+    .sign {
+        width:rem(1080);
+        height:rem(1920);
+        background-repeat:no-repeat;
+        background-position:0 0;
+        background-size:100% 100%;
+        @include center(0,-168);
     }
 }
 // page6
@@ -1175,7 +1291,7 @@ body {
     }
     .option__text {
         width:rem(581);
-        height:rem(107);
+        height:rem(111);
         @include leftTop(0,0);
     }
     .option__text--a {
@@ -1183,6 +1299,16 @@ body {
     }
     .option__text--b {
         background-position:0 rem(-210-480);
+    }
+    .option__text--a.active {
+        background-image:url('../images/page5-option-active.png');
+        background-size:rem(715) rem(230);
+        background-position:0 0;
+    }
+    .option__text--b.active {
+        background-image:url('../images/page5-option-active.png');
+        background-size:rem(715) rem(230);
+        background-position:0 rem(-210 + 90);
     }
     .box-content {
         width:100%;
@@ -1511,20 +1637,23 @@ body {
     }
 }
 .loadingTitleChange {
-    animation:loadingTitleChange 0.5s both linear infinite;
+    animation:loadingTitleChange 0.5s both steps(1,start) infinite;
 }
 @keyframes loadingTitleChange {
     0% {
 
     }
     33.3% {
-        background-image:url('../images/loading-title-01.png');
+        // background-image:url('../images/loading-title-01.png');
+        background-position:0 0;
     }
     66.7% {
-        background-image:url('../images/loading-title-02.png');
+        // background-image:url('../images/loading-title-02.png');
+        background-position:rem(-520) 0;
     }
     100% {
-        background-image:url('../images/loading-title-03.png');
+        // background-image:url('../images/loading-title-03.png');
+        background-position:rem(-1040) 0;
     }
 }
 .page0Cloud0Change {
@@ -1561,6 +1690,77 @@ body {
     }
     100% {
         background-image:none;
+    }
+}
+.page0Cloud2Change {
+    display:block;
+    animation:page0Cloud2Change 2s both steps(1,end);
+}
+@keyframes page0Cloud2Change {
+    0% {
+        // background-image:url('../images/page0-cloud2-17.png');
+        top:rem(-350-104);
+    }
+    5.26% {
+        top:rem(-250);
+        background-image:url('../images/page0-cloud2-01.png');
+    }
+    10.52% {
+        top:rem(-200);
+        background-image:url('../images/page0-cloud2-02.png');
+    }
+    15.78% {
+        top:rem(-150);
+        background-image:url('../images/page0-cloud2-03.png');
+    }
+    21.05% {
+        background-image:url('../images/page0-cloud2-04.png');
+    }
+    26.31% {
+        background-image:url('../images/page0-cloud2-05.png');
+    }
+    31.57% {
+        background-image:url('../images/page0-cloud2-06.png');
+    }
+    36.84% {
+        background-image:url('../images/page0-cloud2-07.png');
+    }
+    42.10% {
+        background-image:url('../images/page0-cloud2-08.png');
+    }
+    47.36% {
+        top:0;
+        background-image:url('../images/page0-cloud2-09.png');
+    }
+    52.63% {
+        background-image:url('../images/page0-cloud2-10.png');
+    }
+    57.89% {
+        background-image:url('../images/page0-cloud2-11.png');
+    }
+    63.15% {
+        background-image:url('../images/page0-cloud2-12.png');
+    }
+    68.42% {
+        background-image:url('../images/page0-cloud2-13.png');
+    }
+    73.68% {
+        background-image:url('../images/page0-cloud2-14.png');
+    }
+    78.94% {
+        background-image:url('../images/page0-cloud2-15.png');
+    }
+    84.21% {
+        background-image:url('../images/page0-cloud2-16.png');
+    }
+    89.47% {
+        background-image:url('../images/page0-cloud2-17.png');
+    }
+    94.73% {
+        background-image:url('../images/page0-cloud2-18.png');
+    }
+    100% {
+        background-image:url('../images/page0-cloud2-19.png');
     }
 }
 .page0CloudMove {
@@ -1716,7 +1916,7 @@ body {
         // height:0;
         transform:translateY(rem(-582));
     }
-    9%,50% {
+    9%,60% {
         transform:translateY(0);
     }
     100% {
@@ -1767,7 +1967,7 @@ body {
     }
 }
 .cloudBackUp {
-    animation:cloudBackUp 2s linear both;
+    animation:cloudBackUp 2.5s linear both;
 }
 @keyframes cloudBackUp {
     0% {
@@ -1783,6 +1983,33 @@ body {
 @keyframes page0CenteMove {
     100% {
         transform:translateY(-100%);
+    }
+}
+.page0StartMove {
+    animation:page0StartMove 0.5s linear both;
+}
+@keyframes page0StartMove {
+    0% {
+        opacity:0;
+        // transform:translateY(rem(-400));
+    }
+    1%, 100% {
+        opacity:1;
+    }
+    100% {
+        // transform:translateY(0);
+    }
+}
+.startFlip {
+    backface-visibility: hidden;
+    animation:startFlip 0.5s ease-in-out both;
+}
+@keyframes startFlip {
+    0% {
+        transform:rotateY(-180deg);
+    }
+    100% {
+        transform:rotateY(0);
     }
 }
 .titleChange {
@@ -1827,6 +2054,17 @@ body {
     }
     50% {
         background-position:rem(-600) 0;
+    }
+}
+.startBtnChange {
+    animation:startBtnChange 0.5s both steps(1,start) infinite;
+}
+@keyframes startBtnChange {
+    0%,100% {
+        background-position:0 0;
+    }
+    50% {
+        background-position:rem(-280) 0;
     }
 }
 .page0 {
@@ -2155,6 +2393,35 @@ body {
         opacity:0;
     }
 }
+.boxZoomOut {
+    animation:boxZoomOut 0.5s both linear;
+}
+@keyframes boxZoomOut {
+    0% {
+
+    }
+    99% {
+        opacity:1;  
+    }
+    100% {
+        opacity:0;
+        transform:scale(0,0);
+    }
+}
+.personChange {
+    animation:personChange 0.5s both steps(1,end);
+}
+@keyframes personChange {
+    33.3% {
+        background-image:url('../images/page2-girl-01.png');
+    }
+    66.7% {
+        background-image:url('../images/page2-girl-02.png');
+    }
+    100% {
+        background-image:url('../images/page2-girl-03.png');
+    }
+}
 .handChange {
     animation:handChange 0.5s both steps(1,end);
 }
@@ -2281,9 +2548,9 @@ body {
 @keyframes photoRotate {
     0% {
         opacity:1;
-        transform:translate3d(rem(-1080),rem(-1762),0) scale3d(1,1,1) rotateZ(170deg);
-        // -webkit-perspective: 500;
-        // perspective: 500;
+    }
+    1% {
+        // transform:translate3d(rem(-1080),rem(-1762),0) scale3d(1,1,1) rotateZ(170deg);
     }
     20%,30% {
         transform:translate3d(0,0,0) scale3d(1,1,1) rotateZ(0deg);
@@ -2292,7 +2559,7 @@ body {
         
     }
     45%,100% {
-        transform:scale3d(0.05,0.05,0.05) translate3d(rem(-13000),rem(13000),0);
+        transform:scale3d(0.05,0.05,0.05) translate3d(rem(-8000),rem(11000),0);
     }
     45% {
         opacity:1;
@@ -2300,6 +2567,30 @@ body {
     52%, 100% {
         opacity:0;
     }
+}
+.boxZoomIn {
+    animation:boxZoomIn 1s both ease-in-out;
+}
+@keyframes boxZoomIn {
+    0% {
+        opacity:0;
+    }
+    0%, 50% {
+        transform: scale3d(3,3,3);
+    }
+    50%,100% {
+        opacity:1;
+    }
+    90% {
+        transform: scale3d(0.9,0.9,0.9);
+    }
+    95% {
+        transform: scale3d(1.07,1.07,1.07);
+    }
+    100% {
+        transform:scale3d(1,1,1);
+    }
+
 }
 .photoMove3d {
     animation:photoMove3d 4s both linear;
@@ -2326,10 +2617,10 @@ body {
         transform:none;
     }
     1% {
-        transform: rotateY(0deg) translateX(rem(45));
+        transform: rotateY(0deg) translate3d(rem(45),0,100px);
     }
     100% {
-        transform: rotateY(1080deg) translateX(rem(45));
+        transform: rotateY(1080deg) translate3d(rem(45),0,100px);
     }
 }
 @keyframes photoMove3d {
@@ -2361,33 +2652,45 @@ body {
         transform:scale3d(1,1,1);
     }
     70% {
-        
+        opacity:1;
     }
     85%,100% {
-        
+        opacity:0;
     }
 }
 .eyeChange {
-    animation:eyeChange 1s both steps(1,end);
+    animation:eyeChange 1s both steps(1,start);
 }
 @keyframes eyeChange {
     0% {
-        
+
     }
-    16.7% {
+    33.3% {
+        background-position:0 0;
+    }
+    66.7% {
         background-position:rem(-416) 0;
     }
-    33.3%,100% {
+    100% {
         background-position:rem(-832) 0;
     }
-    50% {
-        opacity:1;
-        transform:scale3d(1,1,1);
-    }
-    100% {
-        opacity:0;
-        transform:scale3d(0,0,0);
-    }
+    // 0% {
+        
+    // }
+    // 16.7% {
+    //     background-position:rem(-416) 0;
+    // }
+    // 33.3%,100% {
+    //     background-position:rem(-832) 0;
+    // }
+    // 50% {
+    //     opacity:1;
+    //     transform:scale3d(1,1,1);
+    // }
+    // 100% {
+    //     opacity:0;
+    //     transform:scale3d(0,0,0);
+    // }
 }
 .lightChange {
     animation:lightChange 0.2s both steps(1,start) infinite;
@@ -2444,6 +2747,52 @@ body {
         background-image:none;
     }
 }
+.walkChange {
+    animation:walkChange 2s both steps(1,start);
+}
+@keyframes walkChange {
+    0% {
+        
+    }
+    6.25% {
+        background-image:url('../images/page3-girl2-01.png');
+    }
+    12.5% {
+        background-image:url('../images/page3-girl2-02.png');
+    }
+    18.75% {
+        background-image:url('../images/page3-girl2-03.png');
+    }
+    25% {
+        background-image:url('../images/page3-girl2-04.png');
+    }
+
+
+    56.25% {
+        background-image:url('../images/page3-girl2-05.png');
+    }
+    62.5% {
+        background-image:url('../images/page3-girl2-06.png');
+    }
+    68.75% {
+        background-image:url('../images/page3-girl2-07.png');
+    }
+    75% {
+        background-image:url('../images/page3-girl2-08.png');
+    }
+    81.25% {
+        background-image:url('../images/page3-girl2-09.png');
+    }
+    87.5% {
+        background-image:url('../images/page3-girl2-10.png');
+    }
+    93.75% {
+        background-image:url('../images/page3-girl2-11.png');
+    }
+    100% {
+        background-image:none;
+    }
+}
 .houseMove {
     animation:houseMove 1s both linear;
 }
@@ -2468,6 +2817,89 @@ body {
     }
     100% {
         transform:translateX(rem(500));
+    }
+}
+.signChange {
+    animation:signChange 2s both steps(1,start);
+}
+@keyframes signChange {
+    0% {
+
+    }
+    4% {
+        background-image:url('../images/page5-sign-01.png');
+    }
+    8% {
+        background-image:url('../images/page5-sign-02.png');
+    }
+    12% {
+        background-image:url('../images/page5-sign-03.png');
+    }
+    16% {
+        background-image:url('../images/page5-sign-04.png');
+    }
+    20% {
+        background-image:url('../images/page5-sign-05.png');
+    }
+    24% {
+        background-image:url('../images/page5-sign-06.png');
+    }
+    28% {
+        background-image:url('../images/page5-sign-07.png');
+    }
+    32% {
+        background-image:url('../images/page5-sign-08.png');
+    }
+    36% {
+        background-image:url('../images/page5-sign-09.png');
+    }
+    40% {
+        background-image:url('../images/page5-sign-10.png');
+    }
+    44% {
+        background-image:url('../images/page5-sign-11.png');
+    }
+    48% {
+        background-image:url('../images/page5-sign-12.png');
+    }
+    52% {
+        background-image:url('../images/page5-sign-13.png');
+    }
+    56% {
+        background-image:url('../images/page5-sign-14.png');
+    }
+    60% {
+        background-image:url('../images/page5-sign-15.png');
+    }
+    64% {
+        background-image:url('../images/page5-sign-16.png');
+    }
+    68% {
+        background-image:url('../images/page5-sign-17.png');
+    }
+    72% {
+        background-image:url('../images/page5-sign-18.png');
+    }
+    76% {
+        background-image:url('../images/page5-sign-19.png');
+    }
+    80% {
+        background-image:url('../images/page5-sign-20.png');
+    }
+    84% {
+        background-image:url('../images/page5-sign-21.png');
+    }
+    88% {
+        background-image:url('../images/page5-sign-22.png');
+    }
+    92% {
+        background-image:url('../images/page5-sign-23.png');
+    }
+    96% {
+        background-image:url('../images/page5-sign-24.png');
+    }
+    100% {
+        background-image:url('../images/page5-sign-25.png');
     }
 }
 .wordsDown0 {
@@ -3839,11 +4271,20 @@ body {
 .delay7-5 {
     animation-delay:7.5s;
 }
+.delay7-7 {
+    animation-delay:7.7s;
+}
 .delay7-6 {
     animation-delay:7.6s;
 }
 .delay7-8 {
     animation-delay:7.8s;
+}
+.delay7-9 {
+    animation-delay:7.9s;
+}
+.delay8-1 {
+    animation-delay:8.1s;
 }
 .delay8-2 {
     animation-delay:8.2s;

@@ -5,7 +5,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:false,
+        testing:true,
         lg:"1c5d",
         // test
         activePage:0,
@@ -301,7 +301,7 @@ app = new Vue({
         //     this.getUserWeixinData()
         // }     
         // test 注释
-        this.initCanvas()
+        // this.initCanvas()
     },
     methods:{
         getRem:function(value) {
@@ -324,15 +324,19 @@ app = new Vue({
                             self.page0.hideWords = true;
                             // test 注释if
                             // if(!self.testing){
-                                setTimeout(function(){
-                                    self.activePage = 1;
-                                    self.birdPage();
-                                },7500);
+                                // setTimeout(function(){
+                                    
+                                // },7500);
                             // }
                         },3000);
                     // }
                 },9500);
             // }
+        },
+        startTest:function(){
+            var self = this;
+            self.activePage = 1;
+            self.birdPage();
         },
         setWordDown:function(index,ii,one){
             var r = -1;
@@ -408,9 +412,11 @@ app = new Vue({
             var self = this
             this.result[pindex-2] = this['page'+pindex].score[index]
             this.choseOptionIndex = index
-            this['page'+pindex].status = 'out'
-            this.pageFlipStatus = true
-            this['page'+pindex].chose = true
+            setTimeout(function(){
+                self['page'+pindex].status = 'out'
+                self.pageFlipStatus = true
+                self['page'+pindex].chose = true
+            },500);
             setTimeout(function(){
                 self.choseOptionIndex = -1
                 self.pageFlipStatus = false
@@ -427,9 +433,12 @@ app = new Vue({
         },
         toPage3:function(){
             var self = this;
-            setTimeout(function(){
-                self.activePage = 3;
-            },4400)
+            // test 注释if
+            // if(!self.testing){
+                setTimeout(function(){
+                    self.activePage = 3;
+                },3500)
+            // }
         },
         toPage4:function(){
             var self = this;
@@ -446,14 +455,14 @@ app = new Vue({
             // if(!self.testing){
                 setTimeout(function(){
                     self.activePage = 5;
-                },3200)
+                },5100)
             // }
         },
         toPage6:function(){
             var self = this;
             setTimeout(function(){
                 self.activePage = 6;
-            },2400)
+            },2500)
         },
         toNext:function(pindex){
             if(this.clickStatus){
