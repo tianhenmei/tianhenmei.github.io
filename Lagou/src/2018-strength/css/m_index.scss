@@ -224,10 +224,10 @@ body {
     .title-center {
         width:rem(505);
         height:rem(583);
-        // background:url('../images/loading-title-01.png') no-repeat center top;
-        // background-size:100% 100%;
-        background:url('../images/loading-title.png') no-repeat 0 0;
-        background-size:rem(1560) rem(583);
+        background:url('../images/loading-title-01.png') no-repeat center top;
+        background-size:100% 100%;
+        // background:url('../images/loading-title.png') no-repeat 0 0;
+        // background-size:rem(1560) rem(583);
     }
     .loading__title--01 {
         width:rem(234);
@@ -1637,23 +1637,23 @@ body {
     }
 }
 .loadingTitleChange {
-    animation:loadingTitleChange 0.5s both steps(1,start) infinite;
+    animation:loadingTitleChange 0.5s both linear infinite;
 }
 @keyframes loadingTitleChange {
     0% {
 
     }
     33.3% {
-        // background-image:url('../images/loading-title-01.png');
-        background-position:0 0;
+        background-image:url('../images/loading-title-01.png');
+        // background-position:0 0;
     }
     66.7% {
-        // background-image:url('../images/loading-title-02.png');
-        background-position:rem(-520) 0;
+        background-image:url('../images/loading-title-02.png');
+        // background-position:rem(-520) 0;
     }
     100% {
-        // background-image:url('../images/loading-title-03.png');
-        background-position:rem(-1040) 0;
+        background-image:url('../images/loading-title-03.png');
+        // background-position:rem(-1040) 0;
     }
 }
 .page0Cloud0Change {

@@ -123,8 +123,8 @@ body {
   .loading .title-center {
     width: 7.48148rem;
     height: 8.63704rem;
-    background: url("../images/loading-title.png") no-repeat 0 0;
-    background-size: 23.11111rem 8.63704rem; }
+    background: url("../images/loading-title-01.png") no-repeat center top;
+    background-size: 100% 100%; }
   .loading .loading__title--01 {
     width: 3.46667rem;
     height: 4.14815rem;
@@ -1660,26 +1660,26 @@ body {
             clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); } }
 
 .loadingTitleChange {
-  -webkit-animation: loadingTitleChange 0.5s both steps(1, start) infinite;
-          animation: loadingTitleChange 0.5s both steps(1, start) infinite; }
+  -webkit-animation: loadingTitleChange 0.5s both linear infinite;
+          animation: loadingTitleChange 0.5s both linear infinite; }
 
 @-webkit-keyframes loadingTitleChange {
   0% { }
   33.3% {
-    background-position: 0 0; }
+    background-image: url("../images/loading-title-01.png"); }
   66.7% {
-    background-position: -7.7037rem 0; }
+    background-image: url("../images/loading-title-02.png"); }
   100% {
-    background-position: -15.40741rem 0; } }
+    background-image: url("../images/loading-title-03.png"); } }
 
 @keyframes loadingTitleChange {
   0% { }
   33.3% {
-    background-position: 0 0; }
+    background-image: url("../images/loading-title-01.png"); }
   66.7% {
-    background-position: -7.7037rem 0; }
+    background-image: url("../images/loading-title-02.png"); }
   100% {
-    background-position: -15.40741rem 0; } }
+    background-image: url("../images/loading-title-03.png"); } }
 
 .page0Cloud0Change {
   display: block;
