@@ -5,7 +5,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:true,
+        testing:false,
         lg:"1c5d",
         // test
         activePage:0,
@@ -462,7 +462,7 @@ app = new Vue({
             var self = this;
             setTimeout(function(){
                 self.activePage = 6;
-            },2500)
+            },3500)
         },
         toNext:function(pindex){
             if(this.clickStatus){
