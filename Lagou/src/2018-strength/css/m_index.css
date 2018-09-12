@@ -271,6 +271,16 @@ body {
   height: 100%;
   position: relative;
   background-color: #000; }
+  .pages .pages-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #000;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-image: url("../images/page-noise-01.png"); }
 
 .page {
   /*滑动页面的统一样式 */
@@ -346,7 +356,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    background-color: #000; }
+    background-color: transparent; }
   .page .page-title {
     width: 7.25926rem;
     height: 0.99259rem;
@@ -814,7 +824,7 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem;
-  background-color: #000; }
+  background-color: transparent; }
 
 .page2 .p2-title {
   width: 7.25926rem;
@@ -862,6 +872,7 @@ body {
   background-position: -8.17778rem -9.77778rem; }
 
 .page2 .box-content,
+.page2 .person-dippear,
 .page2 .person-outer {
   width: 100%;
   height: 100%;
@@ -917,18 +928,26 @@ body {
   left: 3.24444rem;
   top: 1.27407rem; }
 
+.page2 .screen-outer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0rem;
+  top: 0rem; }
+
 .page2 .screen {
-  width: 54.07407rem;
-  height: 36.44444rem;
+  width: 44.44444rem;
+  height: 51.85185rem;
   position: absolute;
   left: 50%;
-  top: -4.96296rem;
-  margin: 0 0 0 -27rem; }
+  bottom: -11.94074rem;
+  margin: 0 0 0 -23.06667rem;
+  background-color: transparent; }
 
 .page2 .screen-rotate {
-  width: 54.07407rem;
-  height: 36.44444rem;
-  background: url("../images/page2-screen-01.png") no-repeat 0 0;
+  width: 44.44444rem;
+  height: 51.85185rem;
+  background: url("../images/page2-screen1-01.png") no-repeat 0 0;
   background-size: 100% 100%; }
 
 .page3 .page3-icon {
@@ -941,7 +960,7 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem;
-  background-color: #000; }
+  background-color: transparent; }
 
 .page3 .p3-title {
   width: 7.25926rem;
@@ -1020,7 +1039,7 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem;
-  background-color: #000; }
+  background-color: transparent; }
 
 .page4 .p3-title {
   width: 7.25926rem;
@@ -1151,7 +1170,7 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem;
-  background-color: #000; }
+  background-color: transparent; }
 
 .page5 .p5-title {
   width: 7.25926rem;
@@ -1164,7 +1183,7 @@ body {
 
 .page5 .p5-content {
   width: 10.96296rem;
-  height: 1.8963rem;
+  height: 2.04444rem;
   background-position: 0 -4.88889rem;
   position: absolute;
   left: 50%;
@@ -1231,7 +1250,7 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem;
-  background-color: #000; }
+  background-color: transparent; }
 
 .page6 .p6-title {
   width: 7.25926rem;
@@ -1244,7 +1263,7 @@ body {
 
 .page6 .p6-content {
   width: 10.14815rem;
-  height: 2.84444rem;
+  height: 2.99259rem;
   background-position: 0 -12rem;
   position: absolute;
   left: 50%;
@@ -1479,6 +1498,15 @@ body {
   bottom: 0.6963rem;
   margin: 0 0 0 -2.19259rem; }
 
+.audio-layer {
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 1.48148%rem;
+  top: 0rem; }
+  .audio-layer audio {
+    opacity: 0; }
+
 .share-float {
   display: none;
   position: fixed;
@@ -1659,9 +1687,55 @@ body {
     -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
             clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); } }
 
+.pagesChange {
+  -webkit-animation: pagesChange 0.5s both steps(1, start) infinite;
+          animation: pagesChange 0.5s both steps(1, start) infinite; }
+
+@-webkit-keyframes pagesChange {
+  0% { }
+  11% {
+    background-image: url("../images/page-noise-01.png"); }
+  22% {
+    background-image: url("../images/page-noise-02.png"); }
+  33% {
+    background-image: url("../images/page-noise-03.png"); }
+  44% {
+    background-image: url("../images/page-noise-04.png"); }
+  55% {
+    background-image: url("../images/page-noise-05.png"); }
+  66% {
+    background-image: url("../images/page-noise-06.png"); }
+  77% {
+    background-image: url("../images/page-noise-07.png"); }
+  88% {
+    background-image: url("../images/page-noise-08.png"); }
+  100% {
+    background-image: url("../images/page-noise-09.png"); } }
+
+@keyframes pagesChange {
+  0% { }
+  11% {
+    background-image: url("../images/page-noise-01.png"); }
+  22% {
+    background-image: url("../images/page-noise-02.png"); }
+  33% {
+    background-image: url("../images/page-noise-03.png"); }
+  44% {
+    background-image: url("../images/page-noise-04.png"); }
+  55% {
+    background-image: url("../images/page-noise-05.png"); }
+  66% {
+    background-image: url("../images/page-noise-06.png"); }
+  77% {
+    background-image: url("../images/page-noise-07.png"); }
+  88% {
+    background-image: url("../images/page-noise-08.png"); }
+  100% {
+    background-image: url("../images/page-noise-09.png"); } }
+
 .loadingTitleChange {
-  -webkit-animation: loadingTitleChange 0.5s both linear infinite;
-          animation: loadingTitleChange 0.5s both linear infinite; }
+  -webkit-animation: loadingTitleChange 0.5s both steps(1, start) infinite;
+          animation: loadingTitleChange 0.5s both steps(1, start) infinite; }
 
 @-webkit-keyframes loadingTitleChange {
   0% { }
@@ -1730,100 +1804,124 @@ body {
 
 .page0Cloud2Change {
   display: block;
-  -webkit-animation: page0Cloud2Change 2s both steps(1, end);
-          animation: page0Cloud2Change 2s both steps(1, end); }
+  -webkit-animation: page0Cloud2Change 2.63s both steps(1, end);
+          animation: page0Cloud2Change 2.63s both steps(1, end); }
 
 @-webkit-keyframes page0Cloud2Change {
   0% {
     top: -6.72593rem; }
-  5.26% {
+  4% {
     top: -3.7037rem;
     background-image: url("../images/page0-cloud2-01.png"); }
-  10.52% {
+  8% {
     top: -2.96296rem;
     background-image: url("../images/page0-cloud2-02.png"); }
-  15.78% {
+  12% {
     top: -2.22222rem;
     background-image: url("../images/page0-cloud2-03.png"); }
-  21.05% {
+  16% {
     background-image: url("../images/page0-cloud2-04.png"); }
-  26.31% {
+  20% {
     background-image: url("../images/page0-cloud2-05.png"); }
-  31.57% {
+  24% {
     background-image: url("../images/page0-cloud2-06.png"); }
-  36.84% {
+  28% {
     background-image: url("../images/page0-cloud2-07.png"); }
-  42.10% {
+  32% {
     background-image: url("../images/page0-cloud2-08.png"); }
-  47.36% {
+  36% {
     top: 0;
     background-image: url("../images/page0-cloud2-09.png"); }
-  52.63% {
+  40% {
     background-image: url("../images/page0-cloud2-10.png"); }
-  57.89% {
+  44% {
     background-image: url("../images/page0-cloud2-11.png"); }
-  63.15% {
+  48% {
     background-image: url("../images/page0-cloud2-12.png"); }
-  68.42% {
+  52% {
     background-image: url("../images/page0-cloud2-13.png"); }
-  73.68% {
+  56% {
     background-image: url("../images/page0-cloud2-14.png"); }
-  78.94% {
+  60% {
     background-image: url("../images/page0-cloud2-15.png"); }
-  84.21% {
+  64% {
     background-image: url("../images/page0-cloud2-16.png"); }
-  89.47% {
+  68% {
     background-image: url("../images/page0-cloud2-17.png"); }
-  94.73% {
+  72% {
     background-image: url("../images/page0-cloud2-18.png"); }
+  76% {
+    background-image: url("../images/page0-cloud2-19.png"); }
+  80% {
+    background-image: url("../images/page0-cloud2-20.png"); }
+  84% {
+    background-image: url("../images/page0-cloud2-21.png"); }
+  88% {
+    background-image: url("../images/page0-cloud2-22.png"); }
+  92% {
+    background-image: url("../images/page0-cloud2-23.png"); }
+  96% {
+    background-image: url("../images/page0-cloud2-24.png"); }
   100% {
-    background-image: url("../images/page0-cloud2-19.png"); } }
+    background-image: url("../images/page0-cloud2-25.png"); } }
 
 @keyframes page0Cloud2Change {
   0% {
     top: -6.72593rem; }
-  5.26% {
+  4% {
     top: -3.7037rem;
     background-image: url("../images/page0-cloud2-01.png"); }
-  10.52% {
+  8% {
     top: -2.96296rem;
     background-image: url("../images/page0-cloud2-02.png"); }
-  15.78% {
+  12% {
     top: -2.22222rem;
     background-image: url("../images/page0-cloud2-03.png"); }
-  21.05% {
+  16% {
     background-image: url("../images/page0-cloud2-04.png"); }
-  26.31% {
+  20% {
     background-image: url("../images/page0-cloud2-05.png"); }
-  31.57% {
+  24% {
     background-image: url("../images/page0-cloud2-06.png"); }
-  36.84% {
+  28% {
     background-image: url("../images/page0-cloud2-07.png"); }
-  42.10% {
+  32% {
     background-image: url("../images/page0-cloud2-08.png"); }
-  47.36% {
+  36% {
     top: 0;
     background-image: url("../images/page0-cloud2-09.png"); }
-  52.63% {
+  40% {
     background-image: url("../images/page0-cloud2-10.png"); }
-  57.89% {
+  44% {
     background-image: url("../images/page0-cloud2-11.png"); }
-  63.15% {
+  48% {
     background-image: url("../images/page0-cloud2-12.png"); }
-  68.42% {
+  52% {
     background-image: url("../images/page0-cloud2-13.png"); }
-  73.68% {
+  56% {
     background-image: url("../images/page0-cloud2-14.png"); }
-  78.94% {
+  60% {
     background-image: url("../images/page0-cloud2-15.png"); }
-  84.21% {
+  64% {
     background-image: url("../images/page0-cloud2-16.png"); }
-  89.47% {
+  68% {
     background-image: url("../images/page0-cloud2-17.png"); }
-  94.73% {
+  72% {
     background-image: url("../images/page0-cloud2-18.png"); }
+  76% {
+    background-image: url("../images/page0-cloud2-19.png"); }
+  80% {
+    background-image: url("../images/page0-cloud2-20.png"); }
+  84% {
+    background-image: url("../images/page0-cloud2-21.png"); }
+  88% {
+    background-image: url("../images/page0-cloud2-22.png"); }
+  92% {
+    background-image: url("../images/page0-cloud2-23.png"); }
+  96% {
+    background-image: url("../images/page0-cloud2-24.png"); }
   100% {
-    background-image: url("../images/page0-cloud2-19.png"); } }
+    background-image: url("../images/page0-cloud2-25.png"); } }
 
 .page0CloudMove {
   -webkit-animation: page0CloudMove 4s both linear;
@@ -2575,6 +2673,26 @@ body {
     -webkit-transform: scale(0, 0);
             transform: scale(0, 0); } }
 
+.personDippearChange {
+  -webkit-animation: personDippearChange 0.5s both linear;
+          animation: personDippearChange 0.5s both linear; }
+
+@-webkit-keyframes personDippearChange {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0); } }
+
+@keyframes personDippearChange {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0); } }
+
 .personChange {
   -webkit-animation: personChange 0.5s both steps(1, end);
           animation: personChange 0.5s both steps(1, end); }
@@ -2691,6 +2809,32 @@ body {
     -webkit-transform: scale3d(1, 1, 1) rotateZ(0deg);
             transform: scale3d(1, 1, 1) rotateZ(0deg); } }
 
+.screenRorate1 {
+  -webkit-animation: screenRorate1 1s both linear;
+          animation: screenRorate1 1s both linear; }
+
+@-webkit-keyframes screenRorate1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0); }
+  1%, 100% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); } }
+
+@keyframes screenRorate1 {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0, 0, 0);
+            transform: scale3d(0, 0, 0); }
+  1%, 100% {
+    opacity: 1; }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); } }
+
 .screenChange {
   -webkit-animation: screenChange 1s both steps(1, start);
           animation: screenChange 1s both steps(1, start); }
@@ -2764,6 +2908,62 @@ body {
     background-image: url("../images/page2-screen-15.png"); }
   100% {
     background-image: none; } }
+
+.screenChange1 {
+  -webkit-animation: screenChange1 0.5s both steps(1, start) 3;
+          animation: screenChange1 0.5s both steps(1, start) 3; }
+
+@-webkit-keyframes screenChange1 {
+  0% { }
+  20% {
+    background-image: url("../images/page2-screen1-01.png"); }
+  40% {
+    background-image: url("../images/page2-screen1-02.png"); }
+  60% {
+    background-image: url("../images/page2-screen1-03.png"); }
+  80% {
+    background-image: url("../images/page2-screen1-04.png"); }
+  100% {
+    background-image: url("../images/page2-screen1-05.png"); } }
+
+@keyframes screenChange1 {
+  0% { }
+  20% {
+    background-image: url("../images/page2-screen1-01.png"); }
+  40% {
+    background-image: url("../images/page2-screen1-02.png"); }
+  60% {
+    background-image: url("../images/page2-screen1-03.png"); }
+  80% {
+    background-image: url("../images/page2-screen1-04.png"); }
+  100% {
+    background-image: url("../images/page2-screen1-05.png"); } }
+
+.screenOuterChange {
+  -webkit-animation: screenOuterChange 0.5s both linear;
+          animation: screenOuterChange 0.5s both linear; }
+
+@-webkit-keyframes screenOuterChange {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); }
+  99% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(2, 2, 2);
+            transform: scale3d(2, 2, 2); } }
+
+@keyframes screenOuterChange {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); }
+  99% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(2, 2, 2);
+            transform: scale3d(2, 2, 2); } }
 
 .photoRotate {
   -webkit-transform-origin: 100% 0;
@@ -5498,6 +5698,10 @@ body {
 .delay4-2 {
   -webkit-animation-delay: 4.2s;
           animation-delay: 4.2s; }
+
+.delay4-3 {
+  -webkit-animation-delay: 4.3s;
+          animation-delay: 4.3s; }
 
 .delay4-5 {
   -webkit-animation-delay: 4.5s;

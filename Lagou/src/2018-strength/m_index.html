@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="css/m_index.css?v=$version$">
 		<!---上线之后加-->
 		<title>实力派选择最屌H5</title>
-		<script>
+        <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+        <script>
 			var lastSize = 16,
                 bodyElement = document.documentElement || document.body,
                 html = document.getElementsByTagName("html")[0],
@@ -185,300 +186,316 @@
     </script>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
-        <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
-            <div class="page0-center" :class="page0.hideWords ? 'page0CenteMove delay3-5' : ''">
-                <div class="line-content" :class="(page0.down ? 'wordsUpMove' : '')+(page0.hideWords ? ' hide' : 'lineLittleUp')">
-                    <div class="line" v-for="(one,index) in page0.words"
-                        :class="'line-'+index+' '+(page0.down ? '' : page0[page0.status]['line'+index])">
-                        <div class="line-center">
-                            <div class="word" v-for="(item,ii) in one"
-                                :class="'line-'+index+'__word-'+ii"
-                                :style="setLineTransition(index,ii)">
-                                <div class="word-center" :style="setWordTransition(index,ii)">{{item}}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="cloud-back" :class="page0.hideWords ? 'cloudBackUp delay5-2' : 'hide'">
-                    <div class="cloud cloud-06"></div>
-                    <div class="cloud cloud-07"></div>
-                    <div class="cloud cloud-08"></div>
-                </div> -->
-                <div class="circle-layer" :class="page0.hideWords ? 'cloudBackUp delay1-8' : 'hide'">
-                    <div class="circle-content">
-                        <div class="circle circle-06 circleZoom06">
-                            <div class="circle-06-center circleRotate06"></div>
-                        </div>
-                        <div class="circle circle-05 circleZoom05">
-                            <!-- <div class="circle-05-center circleRotate06"></div> -->
-                        </div>
-                        <div class="circle circle-04 circleZoom04"></div>
-                        <div class="circle circle-03 circleZoom03"></div>
-                        <div class="circle circle-02 circleZoom02"></div>
-                        <div class="circle circle-01 circleZoom01"></div>
-                    </div>
-                </div>
-                <div class="girl-layer">
-                    <div class="girl-outer"><!-- :class="page0.hideWords ? 'girlDisappear delay2-8' : ''" -->
-                        <div class="girl"><!-- :class="page0.hideWords ? 'girlDown delay2-8' : ''"-->
-                            <div class="girl-content" :class="page0.hideWords ? 'girlClip delay1-8' : ''">
-                                <div class="girl-center" :class="page0.hideWords ? 'girlChange delay1-4' : ''"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="cloud-content" :class="page0.hideWords ? 'cloudUpMove' : 'hide'">
-                    <div class="page0-cloud2" :class="page0.hideWords ? 'page0Cloud2Change delay1-8' : ''"></div>
-                </div>
-                <!-- <div class="cloud-content" :class="page0.hideWords ? 'cloudUpMove' : 'hide'">
-                    <div class="page0-cloud0" :class="page0.hideWords ? 'page0Cloud0Change delay1-8' : ''"></div>
-                    <div class="page0-cloud" :class="page0.hideWords ? 'page0CloudMove' : ''"></div> 
-                </div> -->
-            </div>
-            <div class="page0-start" :class="page0.hideWords ? 'page0StartMove delay7-5' : 'hide'">
-                <div class="start-center">
-                    <div class="page0-icon s-words s-words-01" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-5' : ''"></div>
-                    <div class="page0-icon s-words s-words-02" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-7' : ''"></div>
-                    <div class="page0-icon s-words s-words-03" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-9' : ''"></div>
-                    <div class="start-btn-layer" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay8-1' : ''">
-                        <div class="start-btn startBtnChange" @click.prevent="startTest">
-                            <div class="page0-icon start-btn--text"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
-            <div class="page1-center zoomLarge delay4-0">
-                <!-- <div class="cloud cloud-01 moveLoop"></div>
-                <div class="cloud cloud-02 moveLoop"></div>
-                <div class="cloud cloud-03 moveLoop"></div>
-                <div class="cloud cloud-04 moveLoop"></div>
-                <div class="cloud cloud-05 moveLoop"></div> -->
-                <div class="bird birdMove">
-                    <div class="bird-center birdChange delay0-4"></div>
-                </div>
-                <div class="paper paperChange delay2-5"></div>
-                <div class="paper-white"></div>
-            </div>
-        </div>
-        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
-            <div class="box-layer" v-show="page2.chose" :class="page2[page2.status].layer">
-                <div class="box-content boxZoomOut delay3-0">
-                    <div class="person-outer zoomIn delay0-5">
-                        <div class="person-layer"><!-- personRotate delay2-0-->
-                            <div class="person personChange delay1-5"></div>
-                            <div class="hand handChange delay1-0"></div>
-                        </div>
-                        <div class="bubble zoomIn delay1-5">
-                            <div class="words opacityChange delay1-8"></div>
-                        </div>
-                        <!-- <div class="screen screenRorate delay2-0">
-                            <div class="screen-rotate screenChange delay2-0"></div>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-            <div class="page-content" :class="page2[page2.status].out">
-                <div class="page-title-layer" :class="page2[page2.status].title">
-                    <div class="page-title titleChange"></div>
-                    <div class="icon p2-title"></div>
-                </div>
-                <div class="icon p2-content" :class="page2[page2.status].content"></div>
-                <div class="page-list">
-                    <div  v-for="(one,index) in page2.options" 
-                        class="page-option"
-                        :class="page2[page2.status]['option'+index]"
-                        @click.prevent="chooseAnswer(2,index)">
-                        <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                            <div class="option-center optionChange">
-                                <!-- <div class="icon option__arrow" :class="'option__arrow--'+one"></div> -->
-                                <div class="icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
-            <div class="box-layer" v-show="page3.chose" :class="page3[page3.status].layer">
-                <div class="box-content"><!-- boxZoomLarge delay1-6-->
-                    <div class="walking walkChange delay0-5"></div>
-                    <!-- <div class="house houseMove delay1-8"></div>
-                    <div class="lamb poleMove delay1-6">
-                        <div class="light lightChange"></div>
-                        <div class="pole"></div>
-                    </div>
-                    <div class="girl page3GirlChange delay0-5"></div> -->
-                </div>
-            </div>
-            <div class="page-content" :class="page2[page3.status].out">
-                <div class="page-title-layer" :class="page3[page3.status].title">
-                    <div class="page-title titleChange"></div>
-                    <div class="page3-icon p3-title"></div>
-                </div>
-                <div class="page3-icon p3-content" :class="page3[page3.status].content"></div>
-                <div class="page-list">
-                    <div  v-for="(one,index) in page2.options" 
-                        class="page-option"
-                        :class="page3[page3.status]['option'+index]"
-                        @click.prevent="chooseAnswer(3,index)">
-                        <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                            <div class="option-center optionChange2">
-                                <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
-                                <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
-            <div class="box-layer" v-show="page4.chose" :class="page4[page4.status].layer">
-                <div class="box-content">
-                    <div class="photo-layer">
-                        <div class="photo-outer photoOuterChange delay1-7"> <!-- -->
-                            <div class="photo-center photoCenterChange delay1-7">
-                                <div class="photo photoRotate delay1-5">
-                                    <div class="photo-box boxZoomIn"></div>
-                                    <div class="photo-content opacityChange delay1-0"></div>
+        <div class="pages-content pagesChange">
+            <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
+                <div class="page0-center" :class="page0.hideWords ? 'page0CenteMove delay3-5' : ''">
+                    <div class="line-content" :class="(page0.down ? 'wordsUpMove' : '')+(page0.hideWords ? ' hide' : 'lineLittleUp')">
+                        <div class="line" v-for="(one,index) in page0.words"
+                            :class="'line-'+index+' '+(page0.down ? '' : page0[page0.status]['line'+index])">
+                            <div class="line-center">
+                                <div class="word" v-for="(item,ii) in one"
+                                    :class="'line-'+index+'__word-'+ii"
+                                    :style="setLineTransition(index,ii)">
+                                    <div class="word-center" :style="setWordTransition(index,ii)">{{item}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="eye eyeRorate delay1-7">
-                        <div class="eye-center eyeChange delay3-0"></div>
+                    <!-- <div class="cloud-back" :class="page0.hideWords ? 'cloudBackUp delay5-2' : 'hide'">
+                        <div class="cloud cloud-06"></div>
+                        <div class="cloud cloud-07"></div>
+                        <div class="cloud cloud-08"></div>
+                    </div> -->
+                    <div class="circle-layer" :class="page0.hideWords ? 'cloudBackUp delay1-8' : 'hide'">
+                        <div class="circle-content">
+                            <div class="circle circle-06 circleZoom06">
+                                <div class="circle-06-center circleRotate06"></div>
+                            </div>
+                            <div class="circle circle-05 circleZoom05">
+                                <!-- <div class="circle-05-center circleRotate06"></div> -->
+                            </div>
+                            <div class="circle circle-04 circleZoom04"></div>
+                            <div class="circle circle-03 circleZoom03"></div>
+                            <div class="circle circle-02 circleZoom02"></div>
+                            <div class="circle circle-01 circleZoom01"></div>
+                        </div>
                     </div>
+                    <div class="girl-layer">
+                        <div class="girl-outer"><!-- :class="page0.hideWords ? 'girlDisappear delay2-8' : ''" -->
+                            <div class="girl"><!-- :class="page0.hideWords ? 'girlDown delay2-8' : ''"-->
+                                <div class="girl-content" :class="page0.hideWords ? 'girlClip delay1-8' : ''">
+                                    <div class="girl-center" :class="page0.hideWords ? 'girlChange delay1-4' : ''"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cloud-content" :class="page0.hideWords ? 'cloudUpMove' : 'hide'">
+                        <div class="page0-cloud2" :class="page0.hideWords ? 'page0Cloud2Change delay1-8' : ''"></div>
+                    </div>
+                    <!-- <div class="cloud-content" :class="page0.hideWords ? 'cloudUpMove' : 'hide'">
+                        <div class="page0-cloud0" :class="page0.hideWords ? 'page0Cloud0Change delay1-8' : ''"></div>
+                        <div class="page0-cloud" :class="page0.hideWords ? 'page0CloudMove' : ''"></div> 
+                    </div> -->
                 </div>
-            </div>
-            <div class="page-content" :class="page4[page4.status].out">
-                <div class="page-title-layer" :class="page4[page4.status].title">
-                    <div class="page-title titleChange"></div>
-                    <div class="page3-icon p3-title"></div>
-                </div>
-                <div class="page3-icon p3-content" :class="page4[page4.status].content"></div>
-                <div class="page-list">
-                    <div  v-for="(one,index) in page2.options" 
-                        class="page-option"
-                        :class="page4[page4.status]['option'+index]"
-                        @click.prevent="chooseAnswer(4,index)">
-                        <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                            <div class="option-center optionChange2">
-                                <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
-                                <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                <div class="page0-start" :class="page0.hideWords ? 'page0StartMove delay7-5' : 'hide'">
+                    <div class="start-center">
+                        <div class="page0-icon s-words s-words-01" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-5' : ''"></div>
+                        <div class="page0-icon s-words s-words-02" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-7' : ''"></div>
+                        <div class="page0-icon s-words s-words-03" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-9' : ''"></div>
+                        <div class="start-btn-layer" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay8-1' : ''">
+                            <div class="start-btn startBtnChange" @click.prevent="startTest">
+                                <div class="page0-icon start-btn--text"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="page page5" :class="activePage == 5 ? 'active' : 'hide'">
-            <div class="box-layer" v-show="page5.chose" :class="page5[page5.status].layer">
-                <div class="box-content">
-                    <div class="sign signChange delay0-5"></div>
+            <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+                <div class="page1-center zoomLarge delay4-0">
+                    <!-- <div class="cloud cloud-01 moveLoop"></div>
+                    <div class="cloud cloud-02 moveLoop"></div>
+                    <div class="cloud cloud-03 moveLoop"></div>
+                    <div class="cloud cloud-04 moveLoop"></div>
+                    <div class="cloud cloud-05 moveLoop"></div> -->
+                    <div class="bird birdMove">
+                        <div class="bird-center birdChange delay0-4"></div>
+                    </div>
+                    <div class="paper paperChange delay2-5"></div>
+                    <div class="paper-white"></div>
                 </div>
             </div>
-            <div class="page-content" :class="page5[page5.status].out">
-                <div class="page-title-layer" :class="page5[page5.status].title">
-                    <div class="page-title titleChange"></div>
-                    <div class="page5-icon p5-title"></div>
+            <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+                <div class="box-layer" v-show="page2.chose" :class="page2[page2.status].layer">
+                    <div class="box-content"><!-- boxZoomOut delay5-0-->
+                        <div class="person-dippear personDippearChange delay2-8">
+                            <div class="person-outer zoomIn delay0-5">
+                                <div class="person-layer"><!-- personRotate delay2-0-->
+                                    <div class="person personChange delay1-5"></div>
+                                    <div class="hand handChange delay1-0"></div>
+                                </div>
+                                <div class="bubble zoomIn delay1-5">
+                                    <div class="words opacityChange delay1-8"></div>
+                                </div>
+                                <!-- <div class="screen screenRorate delay2-0">
+                                    <div class="screen-rotate screenChange delay2-0"></div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="screen-outer screenOuterChange delay4-3">
+                            <div class="screen screenRorate1 delay2-8">
+                                <div class="screen-rotate screenChange1 delay2-8"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="page5-icon p5-content" :class="page5[page5.status].content"></div>
-                <div class="page-list">
-                    <div  v-for="(one,index) in page2.options" 
-                        class="page-option"
-                        :class="page5[page5.status]['option'+index]"
-                        @click.prevent="chooseAnswer(5,index)">
-                        <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                            <div class="option-center optionChange2">
-                                <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
-                                <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                <div class="page-content" :class="page2[page2.status].out">
+                    <div class="page-title-layer" :class="page2[page2.status].title">
+                        <div class="page-title titleChange"></div>
+                        <div class="icon p2-title"></div>
+                    </div>
+                    <div class="icon p2-content" :class="page2[page2.status].content"></div>
+                    <div class="page-list">
+                        <div  v-for="(one,index) in page2.options" 
+                            class="page-option"
+                            :class="page2[page2.status]['option'+index]"
+                            @click.prevent="chooseAnswer(2,index)">
+                            <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                                <div class="option-center optionChange">
+                                    <!-- <div class="icon option__arrow" :class="'option__arrow--'+one"></div> -->
+                                    <div class="icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="page page6" :class="activePage == 6 ? 'active' : 'hide'">
-            <div class="box-layer" v-show="page6.chose" :class="page6[page6.status].layer">
-                <div class="box-content">
-                    <div class="photo photoRotate delay0-5"></div>
-                    <div class="eye eyeRorate delay0-5">
-                        <div class="eye-center eyeChange delay2-2"></div>
+            <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
+                <div class="box-layer" v-show="page3.chose" :class="page3[page3.status].layer">
+                    <div class="box-content"><!-- boxZoomLarge delay1-6-->
+                        <div class="walking walkChange delay0-5"></div>
+                        <!-- <div class="house houseMove delay1-8"></div>
+                        <div class="lamb poleMove delay1-6">
+                            <div class="light lightChange"></div>
+                            <div class="pole"></div>
+                        </div>
+                        <div class="girl page3GirlChange delay0-5"></div> -->
                     </div>
                 </div>
-            </div>
-            <div class="page-content" :class="page6[page6.status].out">
-                <div class="page-title-layer" :class="page6[page6.status].title">
-                    <div class="page-title titleChange"></div>
-                    <div class="page5-icon p6-title"></div>
-                </div>
-                <div class="page5-icon p6-content" :class="page6[page6.status].content"></div>
-                <div class="page-list">
-                    <div  v-for="(one,index) in page2.options" 
-                        class="page-option"
-                        :class="page6[page6.status]['option'+index]"
-                        @click.prevent="chooseAnswer(6,index)">
-                        <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                            <div class="option-center optionChange3">
-                                <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
-                                <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                <div class="page-content" :class="page2[page3.status].out">
+                    <div class="page-title-layer" :class="page3[page3.status].title">
+                        <div class="page-title titleChange"></div>
+                        <div class="page3-icon p3-title"></div>
+                    </div>
+                    <div class="page3-icon p3-content" :class="page3[page3.status].content"></div>
+                    <div class="page-list">
+                        <div  v-for="(one,index) in page2.options" 
+                            class="page-option"
+                            :class="page3[page3.status]['option'+index]"
+                            @click.prevent="chooseAnswer(3,index)">
+                            <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                                <div class="option-center optionChange2">
+                                    <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
+                                    <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="page page7 opacityChange delay0-7" :class="activePage == 7 ? 'active' : 'hide'">
-            <div class="show-outer" v-show="showStatus">
-                <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
-                    <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
-                    <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
-                    <div class="show-me littleBottomIn delay1-0">{{user.nickname}}</div>
-                    <div class="show-text littleBottomIn delay1-2">的面试力：</div>
-                    <img class="show-light littleBottomIn delay1-4" :src="loadingArray[resultIndex]" />
-                    <img class="show-add littleBottomIn delay1-6" :src="loadingArray[2]" />
-                    <div class="show-words">
-                        <div class="word-one" 
-                            v-for="(one,index) in resultWords"
-                            :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
+            <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
+                <div class="box-layer" v-show="page4.chose" :class="page4[page4.status].layer">
+                    <div class="box-content">
+                        <div class="photo-layer">
+                            <div class="photo-outer photoOuterChange delay1-7"> <!-- -->
+                                <div class="photo-center photoCenterChange delay1-7">
+                                    <div class="photo photoRotate delay1-5">
+                                        <div class="photo-box boxZoomIn"></div>
+                                        <div class="photo-content opacityChange delay1-0"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="eye eyeRorate delay1-7">
+                            <div class="eye-center eyeChange delay3-0"></div>
+                        </div>
                     </div>
-                    <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
-                    <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
-                    <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
+                </div>
+                <div class="page-content" :class="page4[page4.status].out">
+                    <div class="page-title-layer" :class="page4[page4.status].title">
+                        <div class="page-title titleChange"></div>
+                        <div class="page3-icon p3-title"></div>
+                    </div>
+                    <div class="page3-icon p3-content" :class="page4[page4.status].content"></div>
+                    <div class="page-list">
+                        <div  v-for="(one,index) in page2.options" 
+                            class="page-option"
+                            :class="page4[page4.status]['option'+index]"
+                            @click.prevent="chooseAnswer(4,index)">
+                            <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                                <div class="option-center optionChange2">
+                                    <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
+                                    <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="draw-layer">
-                <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+            <div class="page page5" :class="activePage == 5 ? 'active' : 'hide'">
+                <div class="box-layer" v-show="page5.chose" :class="page5[page5.status].layer">
+                    <div class="box-content">
+                        <div class="sign signChange delay0-5"></div>
+                    </div>
+                </div>
+                <div class="page-content" :class="page5[page5.status].out">
+                    <div class="page-title-layer" :class="page5[page5.status].title">
+                        <div class="page-title titleChange"></div>
+                        <div class="page5-icon p5-title"></div>
+                    </div>
+                    <div class="page5-icon p5-content" :class="page5[page5.status].content"></div>
+                    <div class="page-list">
+                        <div  v-for="(one,index) in page2.options" 
+                            class="page-option"
+                            :class="page5[page5.status]['option'+index]"
+                            @click.prevent="chooseAnswer(5,index)">
+                            <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                                <div class="option-center optionChange2">
+                                    <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
+                                    <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="canvas-layer">
-                <!--<img class="save-img" :src="url" v-show="url" />-->
+            <div class="page page6" :class="activePage == 6 ? 'active' : 'hide'">
+                <div class="box-layer" v-show="page6.chose" :class="page6[page6.status].layer">
+                    <div class="box-content">
+                        <div class="photo photoRotate delay0-5"></div>
+                        <div class="eye eyeRorate delay0-5">
+                            <div class="eye-center eyeChange delay2-2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-content" :class="page6[page6.status].out">
+                    <div class="page-title-layer" :class="page6[page6.status].title">
+                        <div class="page-title titleChange"></div>
+                        <div class="page5-icon p6-title"></div>
+                    </div>
+                    <div class="page5-icon p6-content" :class="page6[page6.status].content"></div>
+                    <div class="page-list">
+                        <div  v-for="(one,index) in page2.options" 
+                            class="page-option"
+                            :class="page6[page6.status]['option'+index]"
+                            @click.prevent="chooseAnswer(6,index)">
+                            <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
+                                <div class="option-center optionChange3">
+                                    <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
+                                    <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <img class="save-img zoomBigShake"
-                :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
-                :style="setSaveStyle"
-                :src="url" />
-            <div class="p5-tips littleBottomIn" 
-                :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
-            <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
-                @click.stop="retryEvent"
-                :data-lg-tj-id="lg" 
-                data-lg-tj-no="0010" 
-                data-lg-tj-cid="null">
-                <div class="btn-shadow"></div>
-                <div class="btn-text">重新测一次</div>
+            <div class="page page7 opacityChange delay0-7" :class="activePage == 7 ? 'active' : 'hide'">
+                <div class="show-outer" v-show="showStatus">
+                    <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
+                        <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
+                        <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
+                        <div class="show-me littleBottomIn delay1-0">{{user.nickname}}</div>
+                        <div class="show-text littleBottomIn delay1-2">的面试力：</div>
+                        <img class="show-light littleBottomIn delay1-4" :src="loadingArray[resultIndex]" />
+                        <img class="show-add littleBottomIn delay1-6" :src="loadingArray[2]" />
+                        <div class="show-words">
+                            <div class="word-one" 
+                                v-for="(one,index) in resultWords"
+                                :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
+                        </div>
+                        <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
+                        <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
+                        <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
+                    </div>
+                </div>
+                <div class="draw-layer">
+                    <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+                </div>
+                <div class="canvas-layer">
+                    <!--<img class="save-img" :src="url" v-show="url" />-->
+                </div>
+                <img class="save-img zoomBigShake"
+                    :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                    :style="setSaveStyle"
+                    :src="url" />
+                <div class="p5-tips littleBottomIn" 
+                    :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
+                <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                    @click.stop="retryEvent"
+                    :data-lg-tj-id="lg" 
+                    data-lg-tj-no="0010" 
+                    data-lg-tj-cid="null">
+                    <div class="btn-shadow"></div>
+                    <div class="btn-text">重新测一次</div>
+                </div>
+                <div class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                    :data-lg-tj-id="lg" 
+                    data-lg-tj-no="0011" 
+                    data-lg-tj-cid="null">
+                    <div class="btn-shadow"></div>
+                    <div class="btn-text">进场拿Offer</div>
+                </div>
             </div>
-            <div class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
-                :data-lg-tj-id="lg" 
-                data-lg-tj-no="0011" 
-                data-lg-tj-cid="null">
-                <div class="btn-shadow"></div>
-                <div class="btn-text">进场拿Offer</div>
+            <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
+            <div class="audio-layer">
+                <audio class="audio-bg" id="audio-bg" ref="audio-bg" preload="auto" src="images/music/bg.MP3"></audio>
+                <audio class="audio-bird" id="audio-bird" ref="audio-bird" preload="auto" src="images/music/bird.MP3"></audio>
+                <audio class="audio-computer" id="audio-computer" ref="audio-computer" preload="auto" src="images/music/computer.MP3"></audio>
+                <audio class="audio-steps" id="audio-steps" ref="audio-steps" preload="auto" src="images/music/steps.mp3"></audio>
+                <audio class="audio-camera" id="audio-camera" ref="audio-camera" preload="auto" src="images/music/camera.MP3"></audio>
+                <audio class="audio-guide" id="audio-guide" ref="audio-guide" preload="auto" src="images/music/guide.MP3"></audio>
             </div>
         </div>
-        <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
     </div>
-    <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
     <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
     <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
     <script src="js/vue.js?v=$version$"></script> 

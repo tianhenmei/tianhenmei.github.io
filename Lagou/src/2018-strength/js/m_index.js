@@ -1,4 +1,133 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+var audio = null;
+function bgMusicPlay(){
+    var audio = document.getElementById("audio-bg");
+    audio.preload = 'auto';
+    audio.loop = 'true'
+    audio.play();
+
+    //webPlayAudio();
+
+    function webPlayAudio(){
+        var context,
+            dogBarkingBuffer;
+        init();
+        function init() {
+            try {
+                // Fix up for prefixing
+                window.AudioContext = window.AudioContext||window.webkitAudioContext;
+                context = new AudioContext();
+            }
+            catch(e) {
+                alert('Web Audio API is not supported in this browser');
+            }
+        }
+
+        var source = null;
+        var audioBuffer = null;
+        function stopSound() {
+            if (source) {
+                source.noteOff(0); //立即停止
+            }
+        }
+        function playSound() {
+            var absn = context.createBufferSource();
+            var analyser = context.createAnalyser();
+            absn.connect(analyser);
+            absn.connect(context.destination);
+            absn.buffer = audioBuffer;
+            absn.loop = true;
+            absn.start(0);
+
+            /*source = context.createBufferSource();
+            var analyser = context.createAnalyser();
+            source.connect(analyser);
+            source.connect(context.destination);
+            source.buffer = audioBuffer;
+            source.loop = true;
+            //source.noteOn(0); //立即播放
+            //(source.start || source.noteOn)(0);
+            if(source.start){
+                source.start(0);
+            }else if(source.noteOn){
+                source.noteOn(0);
+            }*/
+        }
+        function initSound(arrayBuffer) {
+            context.decodeAudioData(arrayBuffer, function(buffer) { //解码成功时的回调函数
+                audioBuffer = buffer;
+                playSound();
+            }, function(e) { //解码出错时的回调函数
+                console.log('Error decoding file', e);
+            });
+        }
+        function loadAudioFile(url) {
+            var xhr = new XMLHttpRequest(); //通过XHR下载音频文件
+            xhr.open('GET', url, true);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function(e) { //下载完成
+                initSound(this.response);
+            };
+            xhr.send();
+        }
+        loadAudioFile('images/bg.mp3');
+    }
+
+    autoPlayMusic(audio);
+    // 音乐播放
+    function autoPlayMusic(audio) {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(audio,true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(audio,true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(audio,true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    function musicPlay(audio,isPlay) {
+        if (isPlay && audio.paused) {
+            audio.play();
+            app.musicStatus = false
+        }
+        if (!isPlay && !audio.paused) {
+            audio.pause();
+            app.musicStatus = true
+        }
+    }
+
+    //autoPlayMusic(audio);
+
+    // 音乐播放
+    /*function autoPlayMusic(audio) {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            audio.play();
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            audio.play();
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }*/
+
+
+}
 app = new Vue({
     el:"#app",
     data:{
@@ -9,6 +138,7 @@ app = new Vue({
         lg:"1c5d",
         // test
         activePage:0,
+        musicClickStatus:false,
         fontSize:16,
         pageFlipStatus:false,
         sex:'',
@@ -290,6 +420,7 @@ app = new Vue({
         // },
     },
     mounted:function(){
+        bgMusicPlay();
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
         }
@@ -385,7 +516,9 @@ app = new Vue({
             var self = this;
             // test 注释if
             // if(!self.testing){
+                self.$refs['audio-bird'].play();
                 setTimeout(function(){
+                    self.$refs['audio-bird'].pause();
                     self.activePage = 2;
                 },4000);
             // }
@@ -435,9 +568,13 @@ app = new Vue({
             var self = this;
             // test 注释if
             // if(!self.testing){
+                var computer = self.$refs['audio-computer'];
+                computer.currentTime = 2;
+                computer.play();
                 setTimeout(function(){
+                    self.$refs['audio-computer'].pause();
                     self.activePage = 3;
-                },3500)
+                },4800)
             // }
         },
         toPage4:function(){
@@ -445,6 +582,10 @@ app = new Vue({
             // test 注释if
             // if(!self.testing){
                 setTimeout(function(){
+                    self.$refs['audio-steps'].play();
+                },500);
+                setTimeout(function(){
+                    self.$refs['audio-steps'].pause();
                     self.activePage = 4;
                 },2800)
             // }
@@ -454,6 +595,10 @@ app = new Vue({
             // test 注释if
             // if(!self.testing){
                 setTimeout(function(){
+                    self.$refs['audio-camera'].play();
+                },500);
+                setTimeout(function(){
+                    self.$refs['audio-camera'].pause();
                     self.activePage = 5;
                 },5100)
             // }
@@ -461,6 +606,10 @@ app = new Vue({
         toPage6:function(){
             var self = this;
             setTimeout(function(){
+                self.$refs['audio-guide'].play();
+            },500);
+            setTimeout(function(){
+                self.$refs['audio-guide'].pause();
                 self.activePage = 6;
             },3500)
         },
