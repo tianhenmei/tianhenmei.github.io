@@ -545,15 +545,24 @@ app = new Vue({
             var self = this
             this.result[pindex-2] = this['page'+pindex].score[index]
             this.choseOptionIndex = index
-            setTimeout(function(){
-                self['page'+pindex].status = 'out'
-                self.pageFlipStatus = true
-                self['page'+pindex].chose = true
-            },500);
-            setTimeout(function(){
-                self.choseOptionIndex = -1
-                self.pageFlipStatus = false
-            },1000)
+            if(pindex < 6){
+                setTimeout(function(){
+                    self['page'+pindex].status = 'out'
+                    self.pageFlipStatus = true
+                    self['page'+pindex].chose = true
+                },500);
+                setTimeout(function(){
+                    self.choseOptionIndex = -1
+                    self.pageFlipStatus = false
+                },1000)
+            }else if(pindex == 6){
+                setTimeout(function(){
+                    self['page'+pindex].chose = true
+                },500);
+                setTimeout(function(){
+                    self.choseOptionIndex = -1
+                },4000)
+            }
             if(pindex == 2){
                 this.toPage3()
             }else if(pindex == 3){
@@ -566,11 +575,11 @@ app = new Vue({
         },
         toPage3:function(){
             var self = this;
+            var computer = self.$refs['audio-computer'];
+            computer.currentTime = 2;
+            computer.play();
             // test 注释if
             // if(!self.testing){
-                var computer = self.$refs['audio-computer'];
-                computer.currentTime = 2;
-                computer.play();
                 setTimeout(function(){
                     self.$refs['audio-computer'].pause();
                     self.activePage = 3;
@@ -579,11 +588,11 @@ app = new Vue({
         },
         toPage4:function(){
             var self = this;
+            setTimeout(function(){
+                self.$refs['audio-steps'].play();
+            },1000);
             // test 注释if
             // if(!self.testing){
-                setTimeout(function(){
-                    self.$refs['audio-steps'].play();
-                },500);
                 setTimeout(function(){
                     self.$refs['audio-steps'].pause();
                     self.activePage = 4;
@@ -607,11 +616,11 @@ app = new Vue({
             var self = this;
             setTimeout(function(){
                 self.$refs['audio-guide'].play();
-            },500);
+            },1000);
             setTimeout(function(){
                 self.$refs['audio-guide'].pause();
                 self.activePage = 6;
-            },3500)
+            },5000)
         },
         toNext:function(pindex){
             if(this.clickStatus){
@@ -661,6 +670,10 @@ app = new Vue({
             }
         },
 
+        // 绘制结果页
+        showResult2:function(){
+            alert("绘制结果页")
+        },
         showResult:function(pindex){
             if(this.clickStatus){
                 return

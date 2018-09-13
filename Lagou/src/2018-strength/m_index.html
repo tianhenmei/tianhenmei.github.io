@@ -99,21 +99,33 @@
                 loadingComplete = function(){
                     var loading = document.getElementById('loading'),
                         appElement = document.getElementById('app'),
-                        loadingFlip = document.getElementById('loading-flip');
+                        loadingFlip = document.getElementById('loading-flip'),
+                        loadingContent = document.getElementById('loading-content'),
+                        loadingCenter = document.getElementById('loading-center');;
 
+                    loadingFlip.style.display = 'block'
+                    loadingContent.className += ' pagesChange'
+                    loadingCenter.className += ' loadingCenterFlip delay1-8'
                     // test 注释if
                     // if(app && !app.testing){
-                        pload.status = 'out';
-                        setLoadingHTML(100);
-                        loadingFlip.style.display = 'block'
-                        setTimeout(() => {
-                            document.getElementById('loading').className += ' hide';
-                            appElement.className = appElement.className.replace(' hide','');
-                            // test 注释
-                            app.firstPage();
-                            // test 打开
-                            // app.page0.hideWords = true;
-                        }, 500);
+                        setTimeout(function(){
+                            var classname = loadingFlip.className.replace('loading-flip-move','opacityChange-out')
+                            loadingFlip.className = classname;
+                            // pload.status = 'out';
+                            // setLoadingHTML(100);
+                            // loadingFlip.style.display = 'block'
+                            setTimeout(() => {
+                                document.getElementById('loading').className += ' hide';
+                                appElement.className = appElement.className.replace(' hide','');
+                                // test 注释
+                                app.firstPage();
+
+
+                                // test 打开
+                                // app.birdPage();
+                                // app.page0.hideWords = true;
+                            }, 500);
+                        },4000);
                     // }
                 },
                 loadingSuccess = function(){
@@ -131,54 +143,62 @@
 	</head>
 <body>
     <div class="loading" id="loading">
-        <div class="loading__title--all" :class="pload[pload.status].title">
-            <div class="title-center loadingTitleChange"></div>
-        </div>
-        <!--<div class="loading__title loading__title--01" :class="pload[pload.status].title1">
-            <div class="title-center"></div>
-        </div>
-        <div class="loading__title loading__title--02" :class="pload[pload.status].title2">
-            <div class="title-center"></div>
-        </div>
-        <div class="loading__title loading__title--03" :class="pload[pload.status].title3">
-            <div class="title-center"></div>
-        </div>
-        <div class="loading__title loading__title--04" :class="pload[pload.status].title4">
-            <div class="title-center"></div>
-        </div>-->
-        <div class="icon loading__detail loading__detail--01" :class="pload[pload.status].detail1"></div>
-        <div class="icon loading__detail loading__detail--02" :class="pload[pload.status].detail2"></div>
-        <div class="icon loading__detail loading__detail--03" :class="pload[pload.status].detail3"></div>
-        <div class="loading__progress__layer">
-            <div class="loading__progress" id="loading__progress">
-                <div class="progress" id="progress"></div>
+        <div class="loading-content" id="loading-content">
+            <div class="loading-center" id="loading-center">
+                <div class="loading__title--all" :class="pload[pload.status].title">
+                    <div class="title-center loadingTitleChange"></div>
+                </div>
+                <!--<div class="loading__title loading__title--01" :class="pload[pload.status].title1">
+                    <div class="title-center"></div>
+                </div>
+                <div class="loading__title loading__title--02" :class="pload[pload.status].title2">
+                    <div class="title-center"></div>
+                </div>
+                <div class="loading__title loading__title--03" :class="pload[pload.status].title3">
+                    <div class="title-center"></div>
+                </div>
+                <div class="loading__title loading__title--04" :class="pload[pload.status].title4">
+                    <div class="title-center"></div>
+                </div>-->
+                <div class="icon loading__detail loading__detail--01" :class="pload[pload.status].detail1"></div>
+                <div class="icon loading__detail loading__detail--02" :class="pload[pload.status].detail2"></div>
+                <div class="icon loading__detail loading__detail--03" :class="pload[pload.status].detail3"></div>
+                <div class="loading__progress__layer">
+                    <div class="loading__progress" id="loading__progress">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                </div>
+                <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
             </div>
         </div>
-        <div class="loading__num" :class="pload[pload.status].num" id="loading__num">0%</div>
     </div>
-    <div class="page-flip" id="loading-flip"></div>
+    <div class="loading-flip loading-flip-move" id="loading-flip"></div>
     <script type="text/javascript">
         function setLoadingHTML(progress){
             var loading = document.getElementById('loading'),
                 data = pload[pload.status],
                 html = ''+
                 '<div class="loading '+data.outer+'" id="loading">'+
-                    '<div class="loading__title--all '+data.title+'">'+
-                    '    <div class="title-center loadingTitleChange"></div>'+
+                    '<div class="loading-content'+(data.progress == 100 ? ' pagesChange' : '')+'" id="loading-content">'+
+                        '<div class="loading-center'+(data.progress == 100 ? ' loadingCenterFlip delay2-0' : '')+'" id="loading-center">'+
+                            '<div class="loading__title--all '+data.title+'">'+
+                            '    <div class="title-center loadingTitleChange"></div>'+
+                            '</div>'+
+                            // '<div class="loading__title loading__title--01 '+data.title+'"><div class="title-center"></div></div>'+
+                            // '<div class="loading__title loading__title--02 '+data.title+'"><div class="title-center"></div></div>'+
+                            // '<div class="loading__title loading__title--03 '+data.title+'"><div class="title-center"></div></div>'+
+                            // '<div class="loading__title loading__title--04 '+data.title+'"><div class="title-center"></div></div>'+
+                            '<div class="icon loading__detail loading__detail--01 '+data.detail+'"></div>'+
+                            '<div class="icon loading__detail loading__detail--02 '+data.detail+'"></div>'+
+                            '<div class="icon loading__detail loading__detail--03 '+data.detail+'"></div>'+
+                            '<div class="loading__progress__layer '+data.progress+'">'+
+                            '    <div class="loading__progress" id="loading__progress">'+
+                            '        <div class="progress" id="progress" style="width:'+progress+'%;"></div>'+
+                            '    </div>'+
+                            '</div>'+
+                            '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
+                        '</div>'+
                     '</div>'+
-                    // '<div class="loading__title loading__title--01 '+data.title+'"><div class="title-center"></div></div>'+
-                    // '<div class="loading__title loading__title--02 '+data.title+'"><div class="title-center"></div></div>'+
-                    // '<div class="loading__title loading__title--03 '+data.title+'"><div class="title-center"></div></div>'+
-                    // '<div class="loading__title loading__title--04 '+data.title+'"><div class="title-center"></div></div>'+
-                    '<div class="icon loading__detail loading__detail--01 '+data.detail+'"></div>'+
-                    '<div class="icon loading__detail loading__detail--02 '+data.detail+'"></div>'+
-                    '<div class="icon loading__detail loading__detail--03 '+data.detail+'"></div>'+
-                    '<div class="loading__progress__layer '+data.progress+'">'+
-                    '    <div class="loading__progress" id="loading__progress">'+
-                    '        <div class="progress" id="progress" style="width:'+progress+'%;"></div>'+
-                    '    </div>'+
-                    '</div>'+
-                    '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
                 '</div>'
             loading.outerHTML = html
         }
@@ -208,16 +228,15 @@
                     </div> -->
                     <div class="circle-layer" :class="page0.hideWords ? 'cloudBackUp delay1-8' : 'hide'">
                         <div class="circle-content">
-                            <div class="circle circle-06 circleZoom06">
+                            <div class="circle-all circleRotateAll"></div>
+                            <!-- <div class="circle circle-06 circleZoom06">
                                 <div class="circle-06-center circleRotate06"></div>
                             </div>
-                            <div class="circle circle-05 circleZoom05">
-                                <!-- <div class="circle-05-center circleRotate06"></div> -->
-                            </div>
+                            <div class="circle circle-05 circleZoom05"></div>
                             <div class="circle circle-04 circleZoom04"></div>
                             <div class="circle circle-03 circleZoom03"></div>
                             <div class="circle circle-02 circleZoom02"></div>
-                            <div class="circle circle-01 circleZoom01"></div>
+                            <div class="circle circle-01 circleZoom01"></div> -->
                         </div>
                     </div>
                     <div class="girl-layer">
@@ -282,8 +301,8 @@
                             </div>
                         </div>
                         <div class="screen-outer screenOuterChange delay4-3">
-                            <div class="screen screenRorate1 delay2-8">
-                                <div class="screen-rotate screenChange1 delay2-8"></div>
+                            <div class="screen screenRorate2 delay2-8">
+                                <div class="screen-rotate screenChange2 delay2-8"></div>
                             </div>
                         </div>
                     </div>
@@ -311,7 +330,7 @@
             </div>
             <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
                 <div class="box-layer" v-show="page3.chose" :class="page3[page3.status].layer">
-                    <div class="box-content"><!-- boxZoomLarge delay1-6-->
+                    <div class="box-content opacityChange delay0-5"><!-- boxZoomLarge delay1-6-->
                         <div class="walking walkChange delay0-5"></div>
                         <!-- <div class="house houseMove delay1-8"></div>
                         <div class="lamb poleMove delay1-6">
@@ -383,8 +402,8 @@
             </div>
             <div class="page page5" :class="activePage == 5 ? 'active' : 'hide'">
                 <div class="box-layer" v-show="page5.chose" :class="page5[page5.status].layer">
-                    <div class="box-content">
-                        <div class="sign signChange delay0-5"></div>
+                    <div class="box-content opacityChange delay0-5">
+                        <div class="sign signChange delay1-0"></div>
                     </div>
                 </div>
                 <div class="page-content" :class="page5[page5.status].out">
@@ -411,13 +430,27 @@
             <div class="page page6" :class="activePage == 6 ? 'active' : 'hide'">
                 <div class="box-layer" v-show="page6.chose" :class="page6[page6.status].layer">
                     <div class="box-content">
-                        <div class="photo photoRotate delay0-5"></div>
+                        <div class="page6-flip page6-flip-move delay0-5"></div>
+                        <div class="page6-detail page6DetailFlip delay2-8">
+                            <div class="p6-words">
+                                <div class="page6-icon p6-words-one p6-words-01"></div>
+                                <div class="page6-icon p6-words-one p6-words-02"></div>
+                                <div class="page6-icon p6-words-one p6-words-03"></div>
+                                <div class="page6-icon p6-words-one p6-words-04"></div>
+                                <div class="page6-icon p6-words-one p6-words-05"></div>
+                                <div class="page6-icon p6-words-one p6-words-06"></div>
+                            </div>
+                            <div class="p6-btn page6BtnChange" @click.stop.prevent="showResult2">
+                                <div class="page6-icon p6-start-btn"></div>
+                            </div>
+                        </div>
+                        <!-- <div class="photo photoRotate delay0-5"></div>
                         <div class="eye eyeRorate delay0-5">
                             <div class="eye-center eyeChange delay2-2"></div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
-                <div class="page-content" :class="page6[page6.status].out">
+                <div class="page-content" :class="page6[page6.status].out+(page6.chose ? ' opacityChange-out delay2-3' : '')">
                     <div class="page-title-layer" :class="page6[page6.status].title">
                         <div class="page-title titleChange"></div>
                         <div class="page5-icon p6-title"></div>
@@ -488,7 +521,7 @@
             <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
             <div class="audio-layer">
                 <audio class="audio-bg" id="audio-bg" ref="audio-bg" preload="auto" src="images/music/bg.MP3"></audio>
-                <audio class="audio-bird" id="audio-bird" ref="audio-bird" preload="auto" src="images/music/bird.MP3"></audio>
+                <audio class="audio-bird" id="audio-bird" ref="audio-bird" preload="auto" loop="loop" src="images/music/bird.MP3"></audio>
                 <audio class="audio-computer" id="audio-computer" ref="audio-computer" preload="auto" src="images/music/computer.MP3"></audio>
                 <audio class="audio-steps" id="audio-steps" ref="audio-steps" preload="auto" src="images/music/steps.mp3"></audio>
                 <audio class="audio-camera" id="audio-camera" ref="audio-camera" preload="auto" src="images/music/camera.MP3"></audio>
