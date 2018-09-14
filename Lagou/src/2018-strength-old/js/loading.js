@@ -1,6 +1,6 @@
 // JavaScript Document
-// var loadingHost = '';
-var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-strength/';
+var loadingHost = '';
+// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-strength/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
 	loadingHost+"images/loading-title-01.png",
@@ -47,7 +47,7 @@ var imgArray = [
 	loadingHost+"images/page-noise-09.png",
 
 	loadingHost+"images/icon.png",
-	// loadingHost+"images/girl.png",
+	loadingHost+"images/girl.png",
 
 	loadingHost+"images/paper-01.png",
 	loadingHost+"images/paper-02.png",
@@ -109,7 +109,7 @@ var imgArray = [
 	// loadingHost+"images/page0-cloud-09.png",
 	// loadingHost+"images/page0-cloud-10.png",
 	// loadingHost+"images/page0-cloud-11.png",
-	// loadingHost+"images/page0-cloud.png",
+	loadingHost+"images/page0-cloud.png",
 	// loadingHost+"images/page0-circle-06-02.png",
 	loadingHost+"images/page0-circle.png",
 	loadingHost+"images/page0-girl-01.png",
@@ -117,17 +117,17 @@ var imgArray = [
 	// loadingHost+"images/bird.png",
 	// loadingHost+"images/bird-02.png",
 	loadingHost+"images/bird-03.png",
-	// loadingHost+"images/page1-cloud-01.png",
-	// loadingHost+"images/page1-cloud-02.png",
-	// loadingHost+"images/page1-cloud-03.png",
-	// loadingHost+"images/page1-cloud-04.png",
-	// loadingHost+"images/page1-cloud-05.png",
+	loadingHost+"images/page1-cloud-01.png",
+	loadingHost+"images/page1-cloud-02.png",
+	loadingHost+"images/page1-cloud-03.png",
+	loadingHost+"images/page1-cloud-04.png",
+	loadingHost+"images/page1-cloud-05.png",
 	// loadingHost+"images/page2-girl.png",
 	loadingHost+"images/page2-girl-01.png",
 	loadingHost+"images/page2-girl-02.png",
 	loadingHost+"images/page2-girl-03.png",
 	loadingHost+"images/page2-hand.png",
-	// loadingHost+"images/page2-rotate.png",
+	loadingHost+"images/page2-rotate.png",
 	loadingHost+"images/page2-options.png",
 	loadingHost+"images/page2-title.png",
 	loadingHost+"images/page2-bubble.png",
@@ -154,10 +154,10 @@ var imgArray = [
 	// loadingHost+"images/page2-screen-14.png",
 	// loadingHost+"images/page2-screen-15.png",
 	loadingHost+"images/page3-icon.png",
-	// loadingHost+"images/page3-house.png",
-	// loadingHost+"images/page3-light.png",
-	// loadingHost+"images/page3-pole.png",
+	loadingHost+"images/page3-house.png",
+	loadingHost+"images/page3-light.png",
 	loadingHost+"images/page3-options.png",
+	loadingHost+"images/page3-pole.png",
 	loadingHost+"images/page3-girl2-01.png",
 	loadingHost+"images/page3-girl2-02.png",
 	loadingHost+"images/page3-girl2-03.png",
