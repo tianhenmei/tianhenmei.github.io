@@ -263,7 +263,10 @@
                             <div class="page0-icon s-words s-words-02" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-7' : ''"></div>
                             <div class="page0-icon s-words s-words-03" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-9' : ''"></div>
                             <div class="start-btn-layer" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay8-1' : ''">
-                                <div class="start-btn startBtnChange" @click.prevent="startTest">
+                                <div class="start-btn startBtnChange" @click.prevent="startTest"
+                                    :data-lg-tj-id="lg" 
+                                    data-lg-tj-no="0001" 
+                                    data-lg-tj-cid="null">
                                     <div class="page0-icon start-btn--text" :class="choseOptionIndex == 0 ? ' active' : ''"></div>
                                 </div>
                             </div>
@@ -456,7 +459,10 @@
                                     <div class="page6-icon p6-words-one p6-words-05"></div>
                                     <div class="page6-icon p6-words-one p6-words-06"></div>
                                 </div>
-                                <div class="p6-btn page6BtnChange" @click.stop.prevent="showResult2">
+                                <div class="p6-btn page6BtnChange" @click.stop.prevent="showResult2"
+                                    :data-lg-tj-id="lg" 
+                                    data-lg-tj-no="0002" 
+                                    data-lg-tj-cid="null">
                                     <div class="page6-icon p6-start-btn"></div>
                                 </div>
                             </div>

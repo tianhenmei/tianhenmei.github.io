@@ -134,7 +134,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:true,
+        testing:false,
         lg:"1c5d",
         // test
         activePage:0,

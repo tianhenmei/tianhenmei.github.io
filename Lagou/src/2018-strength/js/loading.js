@@ -3,10 +3,10 @@ var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-strength/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
-	// loadingHost+"images/loading-title-01.png",
-	// loadingHost+"images/loading-title-02.png",
-	// loadingHost+"images/loading-title-03.png",
-	loadingHost+"images/loading-title.png",
+	loadingHost+"images/loading-title-01.png",
+	loadingHost+"images/loading-title-02.png",
+	loadingHost+"images/loading-title-03.png",
+	// loadingHost+"images/loading-title.png",
 	loadingHost+"images/loading-icon.png",
 	loadingHost+"images/loading-flip-01.png",
 	loadingHost+"images/loading-flip-02.png",
