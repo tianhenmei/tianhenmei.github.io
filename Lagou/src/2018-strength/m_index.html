@@ -256,14 +256,16 @@
                         <div class="page0-cloud" :class="page0.hideWords ? 'page0CloudMove' : ''"></div> 
                     </div> -->
                 </div>
-                <div class="page0-start" :class="page0.hideWords ? 'page0StartMove delay7-5' : 'hide'">
-                    <div class="start-center">
-                        <div class="page0-icon s-words s-words-01" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-5' : ''"></div>
-                        <div class="page0-icon s-words s-words-02" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-7' : ''"></div>
-                        <div class="page0-icon s-words s-words-03" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-9' : ''"></div>
-                        <div class="start-btn-layer" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay8-1' : ''">
-                            <div class="start-btn startBtnChange" @click.prevent="startTest">
-                                <div class="page0-icon start-btn--text"></div>
+                <div class="page0-start" :class="(page0.hideWords ? 'page0StartMove delay7-5' : 'hide')">
+                    <div class="start-layer" :class="page0[page0.status].out">
+                        <div class="start-center">
+                            <div class="page0-icon s-words s-words-01" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-5' : ''"></div>
+                            <div class="page0-icon s-words s-words-02" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-7' : ''"></div>
+                            <div class="page0-icon s-words s-words-03" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay7-9' : ''"></div>
+                            <div class="start-btn-layer" :class="page0.hideWords ? 'littleBottomIn duration1-0 delay8-1' : ''">
+                                <div class="start-btn startBtnChange" @click.prevent="startTest">
+                                    <div class="page0-icon start-btn--text" :class="choseOptionIndex == 0 ? ' active' : ''"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -280,6 +282,13 @@
                         <div class="bird-center birdChange delay0-4"></div>
                     </div>
                     <div class="paper paperChange delay2-5"></div>
+                    <!-- <div class="paper-layer">
+                        <div class="paper-list paperChange delay2-5 clearfix">
+                            <div class="paper-one" v-for="(one,index) in paperList"
+                                :class="'paper-one--'+one"></div>
+                        </div>
+                    </div> -->
+                    <!-- <div class="page1-animate" ref="page1-animate"></div> -->
                     <div class="paper-white"></div>
                 </div>
             </div>
@@ -312,7 +321,7 @@
                         <div class="page-title titleChange"></div>
                         <div class="icon p2-title"></div>
                     </div>
-                    <div class="icon p2-content" :class="page2[page2.status].content"></div>
+                    <div class="p2-content" :class="page2[page2.status].content"></div>
                     <div class="page-list">
                         <div  v-for="(one,index) in page2.options" 
                             class="page-option"
@@ -331,7 +340,13 @@
             <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
                 <div class="box-layer" v-show="page3.chose" :class="page3[page3.status].layer">
                     <div class="box-content opacityChange delay0-5"><!-- boxZoomLarge delay1-6-->
-                        <div class="walking walkChange delay0-5"></div>
+                        <div class="walk-layer">
+                            <div class="walk-list walkListChange delay0-5 clearfix">
+                                <div class="walk-one" v-for="(one,index) in walkList"
+                                    :class="'walk-one--'+one"></div>
+                            </div>
+                        </div>
+                        <!-- <div class="walking walkChange delay0-5"></div> -->
                         <!-- <div class="house houseMove delay1-8"></div>
                         <div class="lamb poleMove delay1-6">
                             <div class="light lightChange"></div>
@@ -391,7 +406,7 @@
                             :class="page4[page4.status]['option'+index]"
                             @click.prevent="chooseAnswer(4,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange2">
+                                <div class="option-center optionChange4">
                                     <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -418,7 +433,7 @@
                             :class="page5[page5.status]['option'+index]"
                             @click.prevent="chooseAnswer(5,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange2">
+                                <div class="option-center optionChange5">
                                     <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -432,16 +447,18 @@
                     <div class="box-content">
                         <div class="page6-flip page6-flip-move delay0-5"></div>
                         <div class="page6-detail page6DetailFlip delay2-8">
-                            <div class="p6-words">
-                                <div class="page6-icon p6-words-one p6-words-01"></div>
-                                <div class="page6-icon p6-words-one p6-words-02"></div>
-                                <div class="page6-icon p6-words-one p6-words-03"></div>
-                                <div class="page6-icon p6-words-one p6-words-04"></div>
-                                <div class="page6-icon p6-words-one p6-words-05"></div>
-                                <div class="page6-icon p6-words-one p6-words-06"></div>
-                            </div>
-                            <div class="p6-btn page6BtnChange" @click.stop.prevent="showResult2">
-                                <div class="page6-icon p6-start-btn"></div>
+                            <div class="p6-center" :class="clickStatus ? 'opacityChange-out' : ''">
+                                <div class="p6-words">
+                                    <div class="page6-icon p6-words-one p6-words-01"></div>
+                                    <div class="page6-icon p6-words-one p6-words-02"></div>
+                                    <div class="page6-icon p6-words-one p6-words-03"></div>
+                                    <div class="page6-icon p6-words-one p6-words-04"></div>
+                                    <div class="page6-icon p6-words-one p6-words-05"></div>
+                                    <div class="page6-icon p6-words-one p6-words-06"></div>
+                                </div>
+                                <div class="p6-btn page6BtnChange" @click.stop.prevent="showResult2">
+                                    <div class="page6-icon p6-start-btn"></div>
+                                </div>
                             </div>
                         </div>
                         <!-- <div class="photo photoRotate delay0-5"></div>
@@ -450,7 +467,7 @@
                         </div> -->
                     </div>
                 </div>
-                <div class="page-content" :class="page6[page6.status].out+(page6.chose ? ' opacityChange-out delay2-3' : '')">
+                <div class="page-content" :class="page6[page6.status].out"> <!--+(page6.chose ? ' opacityChange-out delay2-3' : '')-->
                     <div class="page-title-layer" :class="page6[page6.status].title">
                         <div class="page-title titleChange"></div>
                         <div class="page5-icon p6-title"></div>
@@ -518,20 +535,23 @@
                     <div class="btn-text">进场拿Offer</div>
                 </div>
             </div>
+            
             <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
             <div class="audio-layer">
                 <audio class="audio-bg" id="audio-bg" ref="audio-bg" preload="auto" src="images/music/bg.MP3"></audio>
-                <audio class="audio-bird" id="audio-bird" ref="audio-bird" preload="auto" loop="loop" src="images/music/bird.MP3"></audio>
+                <audio class="audio-bird" id="audio-bird" ref="audio-bird" preload="auto" loop="loop" src="images/music/bird-02.mp3"></audio>
                 <audio class="audio-computer" id="audio-computer" ref="audio-computer" preload="auto" src="images/music/computer.MP3"></audio>
                 <audio class="audio-steps" id="audio-steps" ref="audio-steps" preload="auto" src="images/music/steps.mp3"></audio>
                 <audio class="audio-camera" id="audio-camera" ref="audio-camera" preload="auto" src="images/music/camera.MP3"></audio>
-                <audio class="audio-guide" id="audio-guide" ref="audio-guide" preload="auto" src="images/music/guide.MP3"></audio>
+                <audio class="audio-guide" id="audio-guide" ref="audio-guide" preload="auto" loop="loop" src="images/music/guide.MP3"></audio>
             </div>
         </div>
     </div>
     <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
     <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
     <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/Tween.js?v=$version$"></script>
+    <!-- <script src="js/pixi.min.js?v=$version$"></script> -->
     <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
     <!-- <script src="js/outer.js?v=$version$"></script> -->
     <script src="js/m_index.js?v=$version$"></script>

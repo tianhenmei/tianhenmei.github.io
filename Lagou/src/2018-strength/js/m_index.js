@@ -134,7 +134,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:false,
+        testing:true,
         lg:"1c5d",
         // test
         activePage:0,
@@ -147,6 +147,8 @@ app = new Vue({
         result:[],
         choseOptionIndex:-1,
         clickStatus:false,
+        walkList:[1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+        paperList:[1,2,3,4,5,6,7,8,9,10],
         saveTips:'长按图片保存到本地相册',
         page0:{
             status:'in',
@@ -185,7 +187,7 @@ app = new Vue({
                 line8:"opacityChange duration1-0 delay8-5"
             },
             out:{
-                
+                out:'page-clip-out'
             },
         },
         page1:{
@@ -313,6 +315,7 @@ app = new Vue({
             }
         },
         page4Options:['a','b','c','d'],
+        // 绘制结果页
         canvas:null,
         ctx:null,
         url:'',
@@ -341,6 +344,7 @@ app = new Vue({
         loadedImgs:[],
         drawStatus:false,
         loaded:0,
+
         resultText:[
             [
                 ["面试HR如沐春风","分分钟Offer一箩筐。"],
@@ -420,6 +424,7 @@ app = new Vue({
         // },
     },
     mounted:function(){
+        // test
         bgMusicPlay();
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
@@ -432,7 +437,7 @@ app = new Vue({
         //     this.getUserWeixinData()
         // }     
         // test 注释
-        // this.initCanvas()
+        this.initCanvas()
     },
     methods:{
         getRem:function(value) {
@@ -466,8 +471,15 @@ app = new Vue({
         },
         startTest:function(){
             var self = this;
-            self.activePage = 1;
-            self.birdPage();
+            self.page0.status = 'out';
+            self.pageFlipStatus = true;
+            self.choseOptionIndex = 0;
+            setTimeout(function(){
+                self.activePage = 1;
+                self.pageFlipStatus = false;
+                self.choseOptionIndex = -1;
+                self.birdPage();
+            },500);
         },
         setWordDown:function(index,ii,one){
             var r = -1;
@@ -520,7 +532,7 @@ app = new Vue({
                 setTimeout(function(){
                     self.$refs['audio-bird'].pause();
                     self.activePage = 2;
-                },4000);
+                },6000);
             // }
         },
         setDelayTime:function(start,now,index){
@@ -545,7 +557,7 @@ app = new Vue({
             var self = this
             this.result[pindex-2] = this['page'+pindex].score[index]
             this.choseOptionIndex = index
-            if(pindex < 6){
+            // if(pindex < 6){
                 setTimeout(function(){
                     self['page'+pindex].status = 'out'
                     self.pageFlipStatus = true
@@ -555,14 +567,17 @@ app = new Vue({
                     self.choseOptionIndex = -1
                     self.pageFlipStatus = false
                 },1000)
-            }else if(pindex == 6){
-                setTimeout(function(){
-                    self['page'+pindex].chose = true
-                },500);
-                setTimeout(function(){
-                    self.choseOptionIndex = -1
-                },4000)
-            }
+            // }else if(pindex == 6){
+            //     setTimeout(function(){
+            //         self['page'+pindex].status = 'out'
+            //         self.pageFlipStatus = true
+            //         self['page'+pindex].chose = true
+            //     },500);
+            //     setTimeout(function(){
+            //         self.choseOptionIndex = -1
+            //         self.pageFlipStatus = false
+            //     },4000)
+            // }
             if(pindex == 2){
                 this.toPage3()
             }else if(pindex == 3){
@@ -577,26 +592,38 @@ app = new Vue({
             var self = this;
             var computer = self.$refs['audio-computer'];
             computer.currentTime = 2;
-            computer.play();
+            setTimeout(function(){
+                computer.play();
+            },500);
             // test 注释if
             // if(!self.testing){
                 setTimeout(function(){
-                    self.$refs['audio-computer'].pause();
+                    computer.pause();
                     self.activePage = 3;
-                },4800)
+                },4800);
             // }
         },
         toPage4:function(){
-            var self = this;
+            var self = this,
+                steps = self.$refs['audio-steps'];
             setTimeout(function(){
-                self.$refs['audio-steps'].play();
+                steps.play();
+                setTimeout(function(){
+                    steps.pause();
+                    setTimeout(function(){
+                        steps.currentTime = 0
+                        steps.play();
+                    },1800)
+                },1200)
             },1000);
             // test 注释if
             // if(!self.testing){
                 setTimeout(function(){
-                    self.$refs['audio-steps'].pause();
                     self.activePage = 4;
-                },2800)
+                    setTimeout(function(){
+                        steps.pause();
+                    },500)
+                },5000)
             // }
         },
         toPage5:function(){
@@ -642,7 +669,7 @@ app = new Vue({
         initCanvas:function(){
             this.canvas = this.$refs['canvas']
             this.ctx = this.canvas.getContext('2d')
-            var height = 1334
+            var height = 1761
             this.canvas.width = RC.w
             this.canvas.height = height
             this.ctx.clearRect(0,0,RC.w,height)
@@ -672,13 +699,29 @@ app = new Vue({
 
         // 绘制结果页
         showResult2:function(){
-            alert("绘制结果页")
-        },
-        showResult:function(pindex){
+            var self = this,
+                score = 0,
+                i = 0
             if(this.clickStatus){
                 return
             }
-            this.clickStatus = true
+            this.clickStatus = true;
+            for(i = 0; i < this.result.length; i++){
+                score += this.result[i]
+            }
+            this.resultScore = score
+            this.setResultData()
+            if(this.loaded == this.loadingArray.length){
+                this.startDraw()
+            }else{
+                this.drawStatus = true
+            }
+            setTimeout(function(){
+                self.activePage = 7;
+            },500);
+        },
+        showResult:function(pindex){
+            
             var self = this,
                 score = 0,
                 i = 0
@@ -873,8 +916,14 @@ app = new Vue({
             });
         },
         retryEvent:function(){
-            this.activePage = 0
+            this.activePage = 2
             this.showStatus = true
+            var i = 2;
+            for(i = 2; i <= 6; i++){
+                this['page'+i].status = 'in';
+                this['page'+i].chose = false;
+            }
+            this.clickStatus = false
         },
     }
 })
