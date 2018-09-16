@@ -13,7 +13,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<link rel="stylesheet" href="css/m_index.css?v=$version$">
 		<!---上线之后加-->
-		<title>实力派选择最屌H5</title>
+		<title>答案之书</title>
         <script src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
         <script>
 			var lastSize = 16,
@@ -331,7 +331,7 @@
                             :class="page2[page2.status]['option'+index]"
                             @click.prevent="chooseAnswer(2,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange">
+                                <div class="option-center" :class="choseOptionIndex == index ? ' active' : 'optionChange'">
                                     <!-- <div class="icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -370,7 +370,7 @@
                             :class="page3[page3.status]['option'+index]"
                             @click.prevent="chooseAnswer(3,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange2">
+                                <div class="option-center" :class="choseOptionIndex == index ? 'active' : 'optionChange2'">
                                     <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -409,7 +409,7 @@
                             :class="page4[page4.status]['option'+index]"
                             @click.prevent="chooseAnswer(4,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange4">
+                                <div class="option-center" :class="choseOptionIndex == index ? 'active' : 'optionChange'">
                                     <!-- <div class="page3-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page3-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -436,7 +436,7 @@
                             :class="page5[page5.status]['option'+index]"
                             @click.prevent="chooseAnswer(5,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange5">
+                                <div class="option-center" :class="choseOptionIndex == index ? 'active' : 'optionChange'">
                                     <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -485,7 +485,7 @@
                             :class="page6[page6.status]['option'+index]"
                             @click.prevent="chooseAnswer(6,index)">
                             <div class="option-content" :class="choseOptionIndex == index ? ' littleZoom delay0-0' : ''">
-                                <div class="option-center optionChange3">
+                                <div class="option-center" :class="choseOptionIndex == index ? 'active' : 'optionChange'">
                                     <!-- <div class="page5-icon option__arrow" :class="'option__arrow--'+one"></div> -->
                                     <div class="page5-icon option__text" :class="('option__text--'+one)+(choseOptionIndex == index ? ' active' : '')"></div>
                                 </div>
@@ -514,12 +514,13 @@
                                 <div class="one-name">{{one.name}}</div>
                                 <div class="one-progress">
                                     <div class="one-progress-content" :style="{width:one.rate+'%'}"></div>
-                                    <div class="one-number dark" :style="{
+                                    <div class="one-number" :class="one.rate >= 25 ? 'dark' : ''" :style="{
                                         left:setRem(338*one.rate/100-100)
                                     }">{{one.rate}}%</div>
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="show-info littleBottomIn delay2-8">
                             没有所谓正确的选择，<br/>
                             既然选择了就用实力把它变正确
@@ -527,6 +528,7 @@
                         <img class="show-logo littleBottomIn delay3-0" :src="loadingArray[24+resultIndex]" />
                         <img class="show-ercode littleBottomIn delay2-8" :src="loadingArray[36+resultIndex]" />
                         <img class="show-ertips littleBottomIn delay3-0" :src="loadingArray[30+resultIndex]" />
+                        -->
                         <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
                         <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
                         <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
@@ -538,19 +540,19 @@
                 <div class="canvas-layer">
                     <!--<img class="save-img" :src="url" v-show="url" />-->
                 </div>
-                <img class="save-img"
-                    :class="'zoomBigShake delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
-                    :style="setSaveStyle"
-                    :src="url" />
-                <div class="p5-tips opacityChange" 
-                    :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
+                <div class="img-parent" :style="getSaveParenStyle">
+                    <img class="save-img"
+                        :class="'zoomBigShake delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                        :style="setSaveStyle"
+                        :src="url" />
+                </div>
                 <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
                     @click.stop="retryEvent"
                     :data-lg-tj-id="lg" 
                     data-lg-tj-no="0010" 
                     data-lg-tj-cid="null">
-                    <div class="btn-shadow startBtnChange"></div>
-                    <div class="btn-text" :class="resultActiveStatus == 0 ? 'active' : ''">重新测一次</div>
+                    <div class="btn-shadow"></div> <!--startBtnChange-->
+                    <div class="btn-text"></div><!-- :class="resultActiveStatus == 0 ? 'active' : ''"-->
                 </div>
                 <a class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
                     href="javascript:void(0);" 
@@ -558,9 +560,14 @@
                     :data-lg-tj-id="lg" 
                     data-lg-tj-no="0011" 
                     data-lg-tj-cid="null">
-                    <div class="btn-shadow startBtnChange"></div>
-                    <div class="btn-text" :class="resultActiveStatus == 1 ? 'active' : ''">进场拿Offer</div>
+                    <div class="btn-shadow"></div><!--startBtnChange-->
+                    <div class="btn-text"></div><!-- :class="resultActiveStatus == 1 ? 'active' : ''"-->
                 </a>
+                <div class="page7-logo"></div>
+                <div class="page7-tips" :style="{backgroundImage:'url('+loadingArray[18+resultIndex]+')'}" :class="tipsStatus ? 'tipsBottomIn' : 'tipsbottomOut'">
+                    <div class="p5-tips opacityChange" 
+                        :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
+                </div>
             </div>
             
             <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
@@ -580,7 +587,6 @@
     <script src="js/Tween.js?v=$version$"></script>
     <!-- <script src="js/pixi.min.js?v=$version$"></script> -->
     <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
-    <!-- <script src="js/outer.js?v=$version$"></script> -->
     <script src="js/m_index.js?v=$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
@@ -588,9 +594,9 @@
         var baseUrl = 'https://activity.lagou.com/activity/dist/2018-strength/m_index.html';
         //微信分享
         var datas = {
-            title: "我用这5个问题，淘汰了90%的应届生！",
-            desc: "大厂面试过不过，快来偷偷测一测",
-            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-strength/images/share.png",
+            title: "恭喜你，抽中了人生重来一次的机会",
+            desc: "人都会好奇，自己没选择的路会通向何方",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-strength/images/share-02.png",
             activityType: 'ACTIVITY_H5_STRENGTH_2018',
             shareUrl:baseUrl
         };

@@ -134,7 +134,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:true,
+        testing:false,
         lg:"1c5d",
         // test
         activePage:0,
@@ -151,7 +151,7 @@ app = new Vue({
         paperList:[1,2,3,4,5,6,7,8,9,10],
         saveTips:'长按图片保存到本地相册',
         companyHref:{
-            one:"self.location=\'https://www.lagou.com",
+            one:"self.location=\'https://activity.lagou.com/topic/2018shilipai.html?lgfrom=H5tiaozhuan",
             two:"\';"
         },
         page0:{
@@ -326,53 +326,53 @@ app = new Vue({
         loadingArray:[
             "images/result-title-01.png",
             "images/result-title-02.png",
-            "images/result-title-02.png",
-            "images/result-title-02.png",
-            "images/result-title-02.png",
-            "images/result-title-02.png",
+            "images/result-title-03.png",
+            "images/result-title-04.png",
+            "images/result-title-05.png",
+            "images/result-title-06.png",
 
             "images/result-content-01.png",  // 6
             "images/result-content-02.png",
-            "images/result-content-01.png",
-            "images/result-content-01.png",
-            "images/result-content-01.png",
-            "images/result-content-01.png",
+            "images/result-content-03-02.png",
+            "images/result-content-04.png",
+            "images/result-content-05.png",
+            "images/result-content-06.png",
 
             "images/result-detail-01.png",  // 12
             "images/result-detail-02.png",
-            "images/result-detail-01.png",
-            "images/result-detail-01.png",
-            "images/result-detail-01.png",
-            "images/result-detail-01.png",
+            "images/result-detail-03.png",
+            "images/result-detail-04.png",
+            "images/result-detail-05.png",
+            "images/result-detail-06.png",
 
             "images/result-bg-01.png", // 18
             "images/result-bg-02.png", 
-            "images/result-bg-02.png", 
-            "images/result-bg-02.png", 
-            "images/result-bg-02.png", 
-            "images/result-bg-02.png", 
+            "images/result-bg-03.png", 
+            "images/result-bg-04.png", 
+            "images/result-bg-05.png", 
+            "images/result-bg-05.png", 
 
             "images/result-logo-01.png",  // 24
             "images/result-logo-02.png",  
-            "images/result-logo-02.png", 
-            "images/result-logo-02.png",  
-            "images/result-logo-02.png",  
-            "images/result-logo-02.png",  
+            "images/result-logo-03.png", 
+            "images/result-logo-04.png",  
+            "images/result-logo-05.png",  
+            "images/result-logo-06.png",  
 
 
             "images/result-ercode-tips-01.png",  // 30
             "images/result-ercode-tips-02.png",
-            "images/result-ercode-tips-02.png",
-            "images/result-ercode-tips-02.png",
-            "images/result-ercode-tips-02.png",
-            "images/result-ercode-tips-02.png",
+            "images/result-ercode-tips-03.png",
+            "images/result-ercode-tips-04.png",
+            "images/result-ercode-tips-05.png",
+            "images/result-ercode-tips-06.png",
 
             "images/result-ercode-01.png",  // 36
             "images/result-ercode-02.png",
-            "images/result-ercode-02.png",
-            "images/result-ercode-02.png",
-            "images/result-ercode-02.png",
-            "images/result-ercode-02.png",
+            "images/result-ercode-03.png",
+            "images/result-ercode-04.png",
+            "images/result-ercode-05.png",
+            "images/result-ercode-06.png",
 
             "images/result-progress-bg.png",  // 42
             "images/result-progress.png"  // 43
@@ -402,7 +402,7 @@ app = new Vue({
             rate:89
         },{
             name:'单身力：',
-            rate:66
+            rate:12
         }],
         resultStyle:[{
             l:490+20,
@@ -413,25 +413,26 @@ app = new Vue({
             t:475,
             color:'#e3ddcc'
         },{
-            l:517-15,
-            t:475,
-            color:'#e3ddcc'
+            l:490+20,
+            t:1236,
+            color:'#e0dfdb'
         },{
             l:517-15,
             t:475,
-            color:'#e3ddcc'
+            color:'#f3f3f3'
+        },{  // 4
+            l:517-15,
+            t:475,
+            color:'#fffaed'
         },{
             l:517-15,
             t:475,
-            color:'#e3ddcc'
-        },{
-            l:517-15,
-            t:475,
-            color:'#e3ddcc'
+            color:'#f0e6dc'
         }],
         resultActiveStatus:-1,
         retryStatus:false,
-        showStatus:true
+        showStatus:true,
+        tipsStatus:false,
     },
     computed:{
         qrcodeUrl:function(){
@@ -440,20 +441,21 @@ app = new Vue({
         createCode:function(){
             return encodeURIComponent(this.qrcodeUrl)
         },
-        setSaveStyle:function(){
-            var height = RC.w / GC.w * GC.h - RC.h,
-                width = RC.h / GC.h * GC.w - RC.w,
+        getSaveStyle:function(){
+            var designH = RC.h;
+            var height = RC.w / GC.w * GC.h - designH,
+                width = designH / GC.h * GC.w - RC.w,
                 temp = 0,
-                scale = 0.82,//0.748,
-                gap = -168;
+                scale = 0.9,//0.82,//0.82
+                gap = 0;//-168;
             if(height < 0){
-                temp = height / RC.h / 12,//Math.abs(height / RC.h / 12)
+                temp = height / designH / 12;//12;
                 scale += temp
-                gap = gap * (1 - scale) - RC.h * (1 - scale) / 2// gap * (1 + temp * 10)
+                gap = gap * (1 - scale) - designH * (1 - scale) / 2;
             }else if(height > 0){
-                temp = height / RC.h
+                temp = height / designH
                 scale += temp
-                gap = gap * (1 - scale) - RC.h * (1 - scale) / 2
+                gap = gap * (1 - scale) - designH * (1 - scale) / 2
                 if(scale > 1) {
                     scale = 1
                     gap = 0
@@ -463,7 +465,26 @@ app = new Vue({
                 }
             }
             return {
-                transform:"scale3d("+scale+","+scale+","+scale+") translateY("+this.setRem(gap)+")",
+                scale:scale,
+                gap:gap
+            }
+            // return {
+            //     scale:1,
+            //     gap:0
+            // }
+        },
+        getSaveParenStyle:function(){
+            var obj = this.getSaveStyle;
+            return {
+                height:this.setRem((1920 - 270) * obj.scale - obj.gap),
+                // height:this.setRem(1920 - 286 / obj.scale / 0.9),
+                transform:"translateY("+this.setRem(obj.gap)+")"
+            }
+        },
+        setSaveStyle:function(){
+            var obj = this.getSaveStyle;
+            return {
+                transform:"scale3d("+obj.scale+","+obj.scale+","+obj.scale+")",// translateY("+this.setRem(obj.gap)+")",
                 opacity:1
             }
         },
@@ -492,9 +513,9 @@ app = new Vue({
         pageStatus = true
         this.initCreateUserStyle()
         // test 注释
-        // if(this.isWeiXin()){
-        //     this.getUserWeixinData()
-        // }     
+        if(this.isWeiXin()){
+            this.getUserWeixinData()
+        }
         // test 注释
         this.initCanvas()
     },
@@ -811,16 +832,17 @@ app = new Vue({
             },700)
         },
         startDraw:function(){
-            var ercode = "images/result-ercode.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
-                self = this;
-            var img = new Image()
-            img.onload = function(){
-                self.drawAllInformation(img)
-            }
-            img.onerror = function(){
-                self.drawAllInformation(img)
-            }
-            img.src = ercode
+            // var ercode = "images/result-ercode.png", // "https://activity.lagou.com/activityapi/votelike/qrcode/"+147,
+            //     self = this;
+            // var img = new Image()
+            // img.onload = function(){
+            //     self.drawAllInformation(img)
+            // }
+            // img.onerror = function(){
+            //     self.drawAllInformation(img)
+            // }
+            // img.src = ercode
+            this.drawAllInformation()
         },
         setResultData:function(){
             var arr = [
@@ -850,16 +872,31 @@ app = new Vue({
             for(i = 0; i < 5; i++){
                 this.resultWords[i].rate = Math.floor(Math.random() * 10 +arr[index][i]);  // 70-80
             }
+            // test
+            // this.resultWords[4].rate = 12
             this.resultTitle = index;
             this.resultIndex = index;
             this.resultPerson = Math.floor(Math.random() * 6) + 6;
         },
-        drawAllInformation:function(ercode){
+        drawAllInformation:function(){  // ercode
             this.ctx.drawImage(this.loadedImgs[18+this.resultIndex],0,0);  // bg
-            this.ctx.drawImage(this.loadedImgs[6+this.resultIndex],26,26);
+            // content
+            if(this.resultIndex == 3 || this.resultIndex == 4 || this.resultIndex == 5){ 
+                this.ctx.drawImage(this.loadedImgs[6+this.resultIndex],24,25);
+            }else {
+                this.ctx.drawImage(this.loadedImgs[6+this.resultIndex],26,26);
+            }
 
-            this.ctx.drawImage(this.loadedImgs[0+this.resultIndex],73,142)
-            this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267,330)
+            this.ctx.drawImage(this.loadedImgs[0+this.resultIndex],73,142);
+            if(this.resultIndex == 2){
+                this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267-3,330);
+            }else if(this.resultIndex == 4){  // detail
+                this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267-40,330);
+            }else if(this.resultIndex == 5){
+                this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267-68,330);
+            }else{
+                this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267,330);
+            }
             
             this.ctx.drawImage(this.loadedImgs[24+this.resultIndex],55,1822);  // logo
             this.ctx.drawImage(this.loadedImgs[30+this.resultIndex],849,1853);  // ercode-tips
@@ -909,7 +946,12 @@ app = new Vue({
                     left+149,start+(42+20)*i,content.width*temp.rate/100,content.height);
                 this.ctx.font = "24px normal";
                 this.ctx.fillStyle = '#1b191c';
-                this.ctx.fillText(temp.rate+'%',left+149+content.width*temp.rate/100-100*24/36,start+(42+20)*i+3+30);
+                if(temp.rate >= 25){
+                    this.ctx.fillText(temp.rate+'%',left+149+content.width*temp.rate/100-100*24/36,start+(42+20)*i+3+30);
+                }else{
+                    this.ctx.fillStyle = '#ffffff';
+                    this.ctx.fillText(temp.rate+'%',left+149+content.width*temp.rate/100+20*24/36,start+(42+20)*i+3+30);
+                }
             }
             
         },
@@ -970,7 +1012,7 @@ app = new Vue({
                 success: function(data) {
                     if (data.state == 200 && data.content) { // 已登录
                         self.user = data.content
-                        self.getUserInfo()
+                        // self.getUserInfo()
                     } else{ // 未登录
                         var href = window.location.href
                             arr = href.split('?'),
@@ -993,20 +1035,25 @@ app = new Vue({
         },
         retryEvent:function(){
             var self = this;
-            this.resultActiveStatus = 0;
-            this.retryStatus = true;
+            this.tipsStatus = true;
             setTimeout(function(){
-                self.activePage = 2;
-                self.showStatus = true;
-                var i = 2;
-                for(i = 2; i <= 6; i++){
-                    self['page'+i].status = 'in';
-                    self['page'+i].chose = false;
-                }
-                self.clickStatus = false;
-                self.resultActiveStatus = -1;
-                self.retryStatus = false;
-            },500);
+                self.tipsStatus = false;
+            },2500);
+            // var self = this;
+            // this.resultActiveStatus = 0;
+            // this.retryStatus = true;
+            // // setTimeout(function(){
+            //     self.activePage = 2;
+            //     self.showStatus = true;
+            //     var i = 2;
+            //     for(i = 2; i <= 6; i++){
+            //         self['page'+i].status = 'in';
+            //         self['page'+i].chose = false;
+            //     }
+            //     self.clickStatus = false;
+            //     self.resultActiveStatus = -1;
+            //     self.retryStatus = false;
+            // // },500);
         },
     }
 })
