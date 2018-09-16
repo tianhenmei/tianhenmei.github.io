@@ -1507,190 +1507,234 @@ body {
   height: 1.64444rem;
   background-position: 0 -7.11111rem; }
 
-.page7 .show-outer {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 2; }
-
-.page7 .show-layer {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0rem;
-  top: 0rem; }
-  .page7 .show-layer .show-person {
-    width: 11.11111rem;
-    height: 19.76296rem;
-    position: absolute;
-    left: 50%;
-    top: 0rem;
-    margin: 0 0 0 -8rem; }
-  .page7 .show-layer .show-title {
-    width: 2.85926rem;
-    height: 1.25926rem;
-    position: absolute;
-    left: 50%;
-    top: 1.67407rem;
-    margin: 0 0 0 -0.97778rem; }
-  .page7 .show-layer .show-me {
-    line-height: 0.99259rem;
-    padding: 0 0 0 0.05926rem;
-    position: absolute;
-    left: 50%;
-    top: 3.58519rem;
-    margin: 0 0 0 -6.5037rem;
-    font-size: 0.68148rem;
-    font-style: italic; }
-  .page7 .show-layer .show-me:after {
-    content: "";
+.page7 {
+  background: url("../images/result-bg.png") no-repeat center top;
+  background-size: 100% 100%; }
+  .page7 .show-outer {
     width: 100%;
-    height: 0.05926rem;
-    background: #fff;
-    opacity: 0.3;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 2; }
+  .page7 .show-layer {
+    width: 100%;
+    height: 100%;
     position: absolute;
     left: 0rem;
-    bottom: 0.17778rem; }
-  .page7 .show-layer .show-text {
-    line-height: 1.33333rem;
-    position: absolute;
-    left: 50%;
-    top: 4.56296rem;
-    margin: 0 0 0 -6.5037rem;
-    font-size: 1.03704rem;
-    font-weight: bold; }
-  .page7 .show-layer .show-light {
-    width: 11.11111rem;
-    height: 19.76296rem;
+    top: 0rem;
+    background: url("../images/result-bg.png") no-repeat center top;
+    background-size: 100% 100%; }
+    .page7 .show-layer .show-bg {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      top: 0rem;
+      margin: 0 0 0 -8rem; }
+    .page7 .show-layer .show-person {
+      width: 15.22963rem;
+      height: 23.80741rem;
+      position: absolute;
+      left: 50%;
+      top: 0.38519rem;
+      margin: 0 0 0 -7.61481rem; }
+    .page7 .show-layer .show-me {
+      width: 100%;
+      line-height: 1.25926rem;
+      font-size: 0.71111rem;
+      color: #fff;
+      text-align: left;
+      position: absolute;
+      left: 50%;
+      top: 0.84444rem;
+      margin: 0 0 0 -6.91852rem; }
+    .page7 .show-layer .show-title {
+      width: 13.98519rem;
+      height: 2.4rem;
+      position: absolute;
+      left: 50%;
+      top: 2.1037rem;
+      margin: 0 0 0 -6.91852rem; }
+    .page7 .show-layer .show-text {
+      width: 11.02222rem;
+      height: 0.82963rem;
+      position: absolute;
+      left: 50%;
+      top: 4.88889rem;
+      margin: 0 0 0 -4.04444rem; }
+    .page7 .show-layer .show-info {
+      width: 100%;
+      line-height: 0.85926rem;
+      position: absolute;
+      left: 50%;
+      top: 24.8rem;
+      margin: 0 0 0 -7.18519rem;
+      font-size: 0.5037rem;
+      color: #fff;
+      text-align: left; }
+    .page7 .show-layer .show-logo {
+      width: 3.95556rem;
+      height: 0.54815rem;
+      position: absolute;
+      left: 50%;
+      top: 26.99259rem;
+      margin: 0 0 0 -7.18519rem; }
+    .page7 .show-layer .show-ercode {
+      width: 2.62222rem;
+      height: 2.60741rem;
+      position: absolute;
+      left: 50%;
+      top: 24.65185rem;
+      margin: 0 0 0 4.56296rem; }
+    .page7 .show-layer .show-ertips {
+      width: 2.57778rem;
+      height: 0.26667rem;
+      position: absolute;
+      left: 50%;
+      top: 27.45185rem;
+      margin: 0 0 0 4.57778rem; }
+    .page7 .show-layer .show-words {
+      width: 11.11111rem;
+      position: absolute;
+      left: 50%;
+      top: 7.03704rem;
+      margin: 0 0 0 -0.56296rem; }
+      .page7 .show-layer .show-words .word-one {
+        padding: 0 0 0.2963rem 0; }
+      .page7 .show-layer .show-words .one-name {
+        width: 2.42963rem;
+        line-height: 0.62222rem;
+        font-size: 0.50963rem;
+        color: #1b1a18;
+        text-align: left;
+        float: left; }
+      .page7 .show-layer .show-words .one-progress {
+        width: 5.00741rem;
+        height: 0.66667rem;
+        background: url("../images/result-progress-bg.png") no-repeat left top;
+        background-size: 5.00741rem 0.66667rem;
+        float: left;
+        position: relative; }
+      .page7 .show-layer .show-words .one-progress-content {
+        width: 5.00741rem;
+        height: 0.66667rem;
+        background: url("../images/result-progress.png") no-repeat left top;
+        background-size: 5.00741rem 0.66667rem; }
+      .page7 .show-layer .show-words .one-number {
+        line-height: 0.62222rem;
+        font-size: 0.53333rem;
+        color: #fff;
+        -webkit-transform-origin: 100% 50%;
+                transform-origin: 100% 50%;
+        -webkit-transform: scale3d(0.666, 0.666, 0.666);
+                transform: scale3d(0.666, 0.666, 0.666);
+        position: absolute;
+        left: 0.17778rem;
+        top: 0.04444rem; }
+      .page7 .show-layer .show-words .one-number.dark {
+        color: #1b191c; }
+    .page7 .show-layer .qrcode-img {
+      width: 1.54074rem;
+      height: 1.54074rem;
+      position: absolute;
+      left: 50%;
+      top: 17.6rem;
+      margin: 0 0 0 -7.33333rem; }
+    .page7 .show-layer .show-tips {
+      width: 1.92593rem;
+      height: 0.74074rem;
+      position: absolute;
+      left: 50%;
+      top: 18.41481rem;
+      margin: 0 0 0 -5.37778rem; }
+    .page7 .show-layer .show-lagou {
+      width: 0.82963rem;
+      height: 0.22222rem;
+      position: absolute;
+      left: 50%;
+      top: 18.88889rem;
+      margin: 0 0 0 1.61481rem; }
+  .page7 .draw-layer {
+    width: 16rem;
+    height: 26.08889rem;
     position: absolute;
     left: 50%;
     top: 0rem;
-    margin: 0 0 0 -8rem; }
-  .page7 .show-layer .show-add {
-    width: 0.56296rem;
-    height: 0.56296rem;
+    margin: 0 0 0 -8rem;
+    opacity: 0; }
+    .page7 .draw-layer .canvas {
+      width: 100%;
+      height: 100%; }
+  .page7 .canvas-layer {
+    width: 11.968rem;
+    height: 37.83704rem;
     position: absolute;
     left: 50%;
-    top: 12.84444rem;
-    margin: 0 0 0 -6.5037rem; }
-  .page7 .show-layer .show-words {
-    width: 11.11111rem;
+    top: 0.26667rem;
+    margin: 0 0 0 -6.60741rem; }
+    .page7 .canvas-layer .save-img {
+      width: 100%;
+      height: 100%; }
+  .page7 .save-img {
+    width: 16rem;
+    height: 28.44444rem;
     position: absolute;
     left: 50%;
-    top: 13.86667rem;
-    margin: 0 0 0 -6.51852rem; }
-    .page7 .show-layer .show-words .word-one {
-      line-height: 0.65185rem;
-      font-size: 0.42963rem;
-      color: #fff;
-      text-align: left; }
-  .page7 .show-layer .qrcode-img {
-    width: 1.54074rem;
-    height: 1.54074rem;
+    top: 0rem;
+    margin: 0 0 0 -8rem;
+    opacity: 0;
+    z-index: 5; }
+  .page7 .p5-tips {
+    width: 16rem;
+    height: 0.59259rem;
+    line-height: 0.59259rem;
     position: absolute;
     left: 50%;
-    top: 17.6rem;
-    margin: 0 0 0 -7.33333rem; }
-  .page7 .show-layer .show-tips {
-    width: 1.92593rem;
-    height: 0.74074rem;
+    bottom: 2.48889rem;
+    margin: 0 0 0 -8rem;
+    font-size: 0.32593rem;
+    color: #d2d2d2;
+    text-align: center;
+    z-index: 5; }
+  .page7 .p5-btn {
+    width: 4rem;
+    height: 1.58519rem;
     position: absolute;
     left: 50%;
-    top: 18.41481rem;
-    margin: 0 0 0 -5.37778rem; }
-  .page7 .show-layer .show-lagou {
-    width: 0.82963rem;
-    height: 0.22222rem;
+    bottom: 0.6963rem;
+    margin: 0 0 0 -4.59259rem;
+    z-index: 5; }
+  .page7 .btn-shadow {
+    width: 4rem;
+    height: 1.58519rem;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    background: url("../images/page0-start-btn.png") no-repeat 0 0;
+    background-size: 8.2963rem 1.58519rem; }
+  .page7 .btn-text {
+    width: 4rem;
+    height: 1.58519rem;
+    line-height: 1.58519rem;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    font-size: 0.5037rem;
+    color: #000000;
+    text-align: center;
+    font-weight: bold; }
+  .page7 .btn-text.active {
+    color: #fff; }
+  .page7 .p5-getoffer {
     position: absolute;
     left: 50%;
-    top: 18.88889rem;
-    margin: 0 0 0 1.61481rem; }
-
-.page7 .draw-layer {
-  width: 11.11111rem;
-  height: 19.76296rem;
-  position: absolute;
-  left: 50%;
-  top: 0rem;
-  margin: 0 0 0 -8rem;
-  opacity: 0; }
-  .page7 .draw-layer .canvas {
-    width: 100%;
-    height: 100%; }
-
-.page7 .canvas-layer {
-  width: 8.31111rem;
-  height: 14.7827rem;
-  position: absolute;
-  left: 50%;
-  top: 0.26667rem;
-  margin: 0 0 0 -6.60741rem; }
-  .page7 .canvas-layer .save-img {
-    width: 100%;
-    height: 100%; }
-
-.page7 .save-img {
-  width: 11.11111rem;
-  height: 19.76296rem;
-  position: absolute;
-  left: 50%;
-  top: 0rem;
-  margin: 0 0 0 -8rem;
-  opacity: 0;
-  z-index: 5; }
-
-.page7 .p5-tips {
-  width: 11.11111rem;
-  height: 0.59259rem;
-  line-height: 0.59259rem;
-  position: absolute;
-  left: 50%;
-  bottom: 2.04444rem;
-  margin: 0 0 0 -8rem;
-  font-size: 0.32593rem;
-  color: #9a9487;
-  text-align: center;
-  z-index: 5; }
-
-.page7 .p5-btn {
-  width: 4.05926rem;
-  height: 1.15556rem;
-  position: absolute;
-  left: 50%;
-  bottom: 0.6963rem;
-  margin: 0 0 0 -6.68148rem;
-  z-index: 5; }
-
-.page7 .btn-shadow {
-  width: 4.05926rem;
-  height: 1.03704rem;
-  border-radius: 1.03704rem;
-  position: absolute;
-  left: 0rem;
-  top: 0.11852rem;
-  background-color: #b5afa1; }
-
-.page7 .btn-text {
-  width: 4.05926rem;
-  height: 1.03704rem;
-  line-height: 1.03704rem;
-  border-radius: 1.03704rem;
-  position: absolute;
-  left: 0rem;
-  top: 0rem;
-  background-color: #fff;
-  font-size: 0.41481rem;
-  color: #9a9487;
-  text-align: center;
-  font-weight: bold; }
-
-.page7 .p5-getoffer {
-  position: absolute;
-  left: 50%;
-  bottom: 0.6963rem;
-  margin: 0 0 0 -2.19259rem; }
+    bottom: 0.6963rem;
+    margin: 0 0 0 1.18519rem;
+    display: block;
+    text-decoration: none; }
+  .page7 .p5-getoffer:hover {
+    text-decoration: none; }
 
 .audio-layer {
   width: 0;
@@ -6434,6 +6478,7 @@ body {
   -webkit-animation-delay: 2.9s;
           animation-delay: 2.9s; }
 
+.delay2-10,
 .delay3-0 {
   -webkit-animation-delay: 3.0s;
           animation-delay: 3.0s; }

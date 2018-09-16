@@ -224,28 +224,58 @@ var imgArray = [
 	loadingHost+"images/page6-icon.png",
 	loadingHost+"images/page6-start-btn.png",
 	
-	
-	"images/result-add.png",
-	"images/result-ercode.png",
-	"images/result-lagou.png",
-	"images/result-person-01.png",
-	"images/result-person-02.png",
-	"images/result-person-03.png",
-	"images/result-person-04.png",
-	"images/result-text-a-01.png",
-	"images/result-text-a-02.png",
-	"images/result-text-a-03.png",
-	"images/result-text-a-04.png",
-	"images/result-text-b-01.png",
-	"images/result-text-b-02.png",
-	"images/result-text-b-03.png",
-	"images/result-text-c-01.png",
-	"images/result-text-c-02.png",
-	"images/result-text-c-03.png",
-	"images/result-text-d-01.png",
-	"images/result-text-d-02.png",
-	"images/result-tips.png",
-	"images/result-title.png"
+	"images/result-title-01.png",
+	"images/result-title-02.png",
+	// "images/result-title-03.png",
+	// "images/result-title-04.png",
+	// "images/result-title-05.png",
+	// "images/result-title-06.png",
+
+	"images/result-content-01.png",  // 6
+	"images/result-content-02.png",
+	// "images/result-content-01.png",
+	// "images/result-content-01.png",
+	// "images/result-content-01.png",
+	// "images/result-content-01.png",
+
+	"images/result-detail-01.png",  // 12
+	"images/result-detail-02.png",
+	// "images/result-detail-01.png",
+	// "images/result-detail-01.png",
+	// "images/result-detail-01.png",
+	// "images/result-detail-01.png",
+
+	"images/result-bg-01.png", // 18
+	"images/result-bg-02.png", 
+	// "images/result-bg-02.png", 
+	// "images/result-bg-02.png", 
+	// "images/result-bg-02.png", 
+	// "images/result-bg-02.png", 
+
+	"images/result-logo-01.png",  // 24
+	"images/result-logo-02.png",  
+	// "images/result-logo-02.png", 
+	// "images/result-logo-02.png",  
+	// "images/result-logo-02.png",  
+	// "images/result-logo-02.png",  
+
+
+	"images/result-ercode-tips-01.png",  // 30
+	"images/result-ercode-tips-02.png",
+	// "images/result-ercode-tips-02.png",
+	// "images/result-ercode-tips-02.png",
+	// "images/result-ercode-tips-02.png",
+	// "images/result-ercode-tips-02.png",
+
+	"images/result-ercode-01.png",  // 36
+	"images/result-ercode-02.png",
+	// "images/result-ercode-02.png",
+	// "images/result-ercode-02.png",
+	// "images/result-ercode-02.png",
+	// "images/result-ercode-02.png",
+
+	"images/result-progress-bg.png",  // 42
+	"images/result-progress.png"  // 43
 ];
 var now = 0;
 // jQuery.ajax({

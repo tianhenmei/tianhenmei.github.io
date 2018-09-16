@@ -134,7 +134,7 @@ app = new Vue({
         // test
         mode:"development",
         // test
-        testing:false,
+        testing:true,
         lg:"1c5d",
         // test
         activePage:0,
@@ -150,6 +150,10 @@ app = new Vue({
         walkList:[1,2,3,4,5,6,7,8,9,10,11,12,13,14],
         paperList:[1,2,3,4,5,6,7,8,9,10],
         saveTips:'长按图片保存到本地相册',
+        companyHref:{
+            one:"self.location=\'https://www.lagou.com",
+            two:"\';"
+        },
         page0:{
             status:'in',
             down:false,
@@ -174,7 +178,7 @@ app = new Vue({
             ],[
                 '你','的','理','想','生','活','，','是','什','么','模','样','？'
             ]],
-            score:[0,10,30,20],
+            score:[1,2],
             in:{
                 line0:"opacityChange duration1-0 delay0-5",
                 line1:"opacityChange duration1-0 delay1-5",
@@ -193,7 +197,7 @@ app = new Vue({
         page1:{
             status:'in',
             chose:false,
-            score:[0,20,10,30],
+            score:[1,2],
             in:{
                 top:"opacityChange delay0-5",
                 title:"opacityChange delay1-0",
@@ -217,7 +221,7 @@ app = new Vue({
             status:'in',
             chose:false,
             options:['a','b'],
-            score:[30,0,10,20],
+            score:[1,2],
             in:{
                 title:"littleBottomIn delay0-5",
                 content:"littleBottomIn delay1-0",
@@ -237,7 +241,7 @@ app = new Vue({
         page3:{
             status:'in',
             chose:false,
-            score:[0,30,20,10],
+            score:[1,2],
             in:{
                 title:"zoomIn delay0-5",
                 content:"zoomIn delay0-8",
@@ -257,7 +261,7 @@ app = new Vue({
         page4:{
             status:'in',
             chose:false,
-            score:[0,30,20,10],
+            score:[1,2],
             in:{
                 title:"rightIn delay0-5 duration1-0",
                 content:"rightIn delay0-8 duration1-0",
@@ -277,7 +281,7 @@ app = new Vue({
         page5:{
             status:'in',
             chose:false,
-            score:[0,30,20,10],
+            score:[1,2],
             in:{
                 title:"opacityChange delay0-5 duration1-0",
                 content:"opacityChange delay0-8 duration1-0",
@@ -297,7 +301,7 @@ app = new Vue({
         page6:{
             status:'in',
             chose:false,
-            score:[0,30,20,10],
+            score:[1,2],
             in:{
                 title:"littleTopIn delay0-5 duration1-0",
                 content:"littleTopIn delay0-8 duration1-0",
@@ -320,58 +324,113 @@ app = new Vue({
         ctx:null,
         url:'',
         loadingArray:[
-            "images/result-title.png",
-            "images/result-lagou.png",
-            "images/result-add.png",
-            "images/result-tips.png",
-            "images/result-person-01.png",  // 4
-            "images/result-person-02.png",
-            "images/result-person-03.png",
-            "images/result-person-04.png",
-            "images/result-text-a-01.png",  // 8
-            "images/result-text-a-02.png",
-            "images/result-text-a-03.png",
-            "images/result-text-a-04.png",
-            "images/result-text-b-01.png",  // 12
-            "images/result-text-b-02.png",
-            "images/result-text-b-03.png",
-            "images/result-text-c-01.png",  // 15
-            "images/result-text-c-02.png",
-            "images/result-text-c-03.png",
-            "images/result-text-d-01.png",  // 18
-            "images/result-text-d-02.png"
+            "images/result-title-01.png",
+            "images/result-title-02.png",
+            "images/result-title-02.png",
+            "images/result-title-02.png",
+            "images/result-title-02.png",
+            "images/result-title-02.png",
+
+            "images/result-content-01.png",  // 6
+            "images/result-content-02.png",
+            "images/result-content-01.png",
+            "images/result-content-01.png",
+            "images/result-content-01.png",
+            "images/result-content-01.png",
+
+            "images/result-detail-01.png",  // 12
+            "images/result-detail-02.png",
+            "images/result-detail-01.png",
+            "images/result-detail-01.png",
+            "images/result-detail-01.png",
+            "images/result-detail-01.png",
+
+            "images/result-bg-01.png", // 18
+            "images/result-bg-02.png", 
+            "images/result-bg-02.png", 
+            "images/result-bg-02.png", 
+            "images/result-bg-02.png", 
+            "images/result-bg-02.png", 
+
+            "images/result-logo-01.png",  // 24
+            "images/result-logo-02.png",  
+            "images/result-logo-02.png", 
+            "images/result-logo-02.png",  
+            "images/result-logo-02.png",  
+            "images/result-logo-02.png",  
+
+
+            "images/result-ercode-tips-01.png",  // 30
+            "images/result-ercode-tips-02.png",
+            "images/result-ercode-tips-02.png",
+            "images/result-ercode-tips-02.png",
+            "images/result-ercode-tips-02.png",
+            "images/result-ercode-tips-02.png",
+
+            "images/result-ercode-01.png",  // 36
+            "images/result-ercode-02.png",
+            "images/result-ercode-02.png",
+            "images/result-ercode-02.png",
+            "images/result-ercode-02.png",
+            "images/result-ercode-02.png",
+
+            "images/result-progress-bg.png",  // 42
+            "images/result-progress.png"  // 43
         ],
         loadedImgs:[],
         drawStatus:false,
         loaded:0,
-
-        resultText:[
-            [
-                ["面试HR如沐春风","分分钟Offer一箩筐。"],
-                ["能直接发Offer","解决的问题，","就不要用面试解决。"],
-                ["戴上我的面霸手套","让HR不得不","发Offer给我。"],
-                ["只要我想","就没有拿不到的Offer。"]
-            ],[
-                ["纵然面试中","再多的突发问题，","也能微微一笑，","绝对不慌。"],
-                ["纵有万千套路，","我自巍然不动。"],
-                ["只要给我一个支点，","就能撬动HR的心。"]
-            ],[
-                ["虽然面试过程坎坷不断，","但是只要发挥自己的脑洞，","总能争取到Offer的机会。"],
-                ["面试就像一场戏，","Offer拿到不容易，","为了面试发脾气，","面完想想又何必。"],
-                ["只要参与足够多的面试","Offer自然会来到身边。"]
-            ],[
-                ["我在面试现场，","比梅西还慌的一比。","我不是天生要强，","我可能面试要凉。"],
-                ["看见面试官双腿忍不","住以75THz的频率抖","动，瞬间失忆，还需","票圈高人提点。"]
-            ]
-        ],
         resultScore:0,
         user:{
             "nickname":"我",
             "headimgurl":"images/create-logo.png"
         },
-        resultPerson:4,
+        resultTitle:0,
+        resultPerson:6,
         resultIndex:0,
-        resultWords:[],
+        resultWords:[{
+            name:'野心力：',
+            rate:78
+        },{
+            name:'赚钱力：',
+            rate:52
+        },{
+            name:'专注力：',
+            rate:99
+        },{
+            name:'平衡力：',
+            rate:89
+        },{
+            name:'单身力：',
+            rate:66
+        }],
+        resultStyle:[{
+            l:490+20,
+            t:1236,
+            color:'#bec6da'
+        },{
+            l:517-15,
+            t:475,
+            color:'#e3ddcc'
+        },{
+            l:517-15,
+            t:475,
+            color:'#e3ddcc'
+        },{
+            l:517-15,
+            t:475,
+            color:'#e3ddcc'
+        },{
+            l:517-15,
+            t:475,
+            color:'#e3ddcc'
+        },{
+            l:517-15,
+            t:475,
+            color:'#e3ddcc'
+        }],
+        resultActiveStatus:-1,
+        retryStatus:false,
         showStatus:true
     },
     computed:{
@@ -385,8 +444,8 @@ app = new Vue({
             var height = RC.w / GC.w * GC.h - RC.h,
                 width = RC.h / GC.h * GC.w - RC.w,
                 temp = 0,
-                scale = 0.748,
-                gap = -168
+                scale = 0.82,//0.748,
+                gap = -168;
             if(height < 0){
                 temp = height / RC.h / 12,//Math.abs(height / RC.h / 12)
                 scale += temp
@@ -669,7 +728,7 @@ app = new Vue({
         initCanvas:function(){
             this.canvas = this.$refs['canvas']
             this.ctx = this.canvas.getContext('2d')
-            var height = 1761
+            var height = 1920
             this.canvas.width = RC.w
             this.canvas.height = height
             this.ctx.clearRect(0,0,RC.w,height)
@@ -718,7 +777,11 @@ app = new Vue({
             }
             setTimeout(function(){
                 self.activePage = 7;
-            },500);
+                var tt = 2*1000+((6+self.resultWords.length*2) % 10 + 2 + 7) * 100
+                setTimeout(function(){
+                    self.showStatus = false;
+                },tt);
+            },500)
         },
         showResult:function(pindex){
             
@@ -760,80 +823,93 @@ app = new Vue({
             img.src = ercode
         },
         setResultData:function(){
-            var text = [],
-                title = null,
-                one = 0,
+            var arr = [
+                    [70,70,90,50,70],
+                    [50,70,90,90,40],
+                    [70,70,80,50,90],
+                    [60,70,70,90,90],
+                    [80,70,70,90,10],
+                    [90,90,90,60,50]
+                ],
                 index = 0,
-                start = 8,
-                person = 0
-            if(this.resultScore < 50){
-                index = 3
-                start = 18
-            }else if(this.resultScore < 100){
-                index = 2
-                start = 15
-            }else if(this.resultScore < 150){
-                index = 1
-                start = 12
-            }else{
-                index = 0
-                start = 8
+                person = 0,
+                i = 0;
+            if(this.resultScore <= 5){
+                index = 0;
+            }else if(this.resultScore == 6){
+                index = 1;
+            }else if(this.resultScore == 7){
+                index = 2;
+            }else if(this.resultScore == 8){
+                index = 3;
+            }else if(this.resultScore == 9){
+                index = 4;
+            }else if(this.resultScore >= 10){
+                index = 5;
             }
-            one = Math.floor(Math.random() * this.resultText[index].length)
-            text = this.resultText[index][one]
-            if(this.sex == 'boy'){
-                if(this.result[0] < 20){
-                    this.resultPerson = 4
-                }else{
-                    this.resultPerson = 5
-                }
-            }else{
-                if(this.result[0] < 20){
-                    this.resultPerson = 6
-                }else{
-                    this.resultPerson = 7
-                }
+            for(i = 0; i < 5; i++){
+                this.resultWords[i].rate = Math.floor(Math.random() * 10 +arr[index][i]);  // 70-80
             }
-            this.resultIndex = start+one
-            this.resultWords = text
+            this.resultTitle = index;
+            this.resultIndex = index;
+            this.resultPerson = Math.floor(Math.random() * 6) + 6;
         },
         drawAllInformation:function(ercode){
-            this.ctx.drawImage(this.loadedImgs[this.resultPerson],0,0)
-            this.ctx.drawImage(this.loadedImgs[0],474,113)
-            this.ctx.drawImage(this.loadedImgs[1],649,1275)
-            this.ctx.drawImage(this.loadedImgs[2],101,867)
-            this.ctx.drawImage(this.loadedImgs[3],177,1243)
-            this.ctx.drawImage(this.loadedImgs[this.resultIndex],0,0)
+            this.ctx.drawImage(this.loadedImgs[18+this.resultIndex],0,0);  // bg
+            this.ctx.drawImage(this.loadedImgs[6+this.resultIndex],26,26);
+
+            this.ctx.drawImage(this.loadedImgs[0+this.resultIndex],73,142)
+            this.ctx.drawImage(this.loadedImgs[12+this.resultIndex],267,330)
+            
+            this.ctx.drawImage(this.loadedImgs[24+this.resultIndex],55,1822);  // logo
+            this.ctx.drawImage(this.loadedImgs[30+this.resultIndex],849,1853);  // ercode-tips
+            this.ctx.drawImage(this.loadedImgs[36+this.resultIndex],848,1664);  // ercode
 
             this.drawUserInfo(this.resultWords)
-            this.drawErcode(ercode)
+            // this.drawErcode(ercode)
 
             this.canvasToImage()
         },
         drawErcode:function(drawErcode){
-            this.ctx.drawImage(drawErcode,0,0,drawErcode.width,drawErcode.height,45,1188,104,104)
+            this.ctx.drawImage(drawErcode,0,0,drawErcode.width,drawErcode.height,848,1664,177,176)
         },
         drawUserInfo:function(text){
-            var sp = 0
+            var sp = 0;
             this.ctx.fillStyle = '#ffffff'
-            this.ctx.font = "46px italic"
-            this.ctx.fillText(this.user.nickname,101,254+46)
-            sp = this.ctx.measureText(this.user.nickname).width
-            this.ctx.save()
-            this.ctx.beginPath();
-            this.ctx.globalAlpha = 0.3
-            this.ctx.rect(97,293,sp,4)
-            this.ctx.closePath()
-            this.ctx.restore()
+            this.ctx.font = "48px normal"
+            this.ctx.fillText(this.user.nickname+'是',73,57+48)
+            // sp = this.ctx.measureText(this.user.nickname).width
+            // this.ctx.save()
+            // this.ctx.beginPath();
+            // this.ctx.globalAlpha = 0.3
+            // this.ctx.rect(97,293,sp,4)
+            // this.ctx.closePath()
+            // this.ctx.restore()
 
-            this.ctx.font = "70px bold"
-            this.ctx.fillText("的面试力：",101,320+70)
+            this.ctx.font = "34px bold"
+            this.ctx.fillStyle = this.resultStyle[this.resultIndex].color;
+            this.ctx.fillText("没有所谓正确的选择，",55,1674+34);
+            this.ctx.fillText("既然选择了就用实力把它变正确",55,1674+58+34);
 
-            var i = 0,
-                start = 936
-            this.ctx.font = "29px normal"
+            var bg = this.loadedImgs[42],
+                content = this.loadedImgs[43],
+                nowobj = this.resultStyle[this.resultIndex],
+                left = nowobj.l,
+                start = nowobj.t,
+                temp = null,
+                i = 0
             for(i = 0; i < text.length; i++){
-                this.ctx.fillText(text[i],100,start+44*i+29)
+                temp = text[i];
+                this.ctx.font = "34.4px normal";
+                this.ctx.fillStyle = '#1b1a18';
+                this.ctx.fillText(temp.name,left,start+(42+20)*i+3+34.4);
+                this.ctx.drawImage(bg,left+149,start+(42+20)*i);
+                this.ctx.drawImage(content,
+                    0,0,content.width,content.height,
+                    left+149,start+(42+20)*i,content.width*temp.rate/100,content.height);
+                this.ctx.font = "24px normal";
+                this.ctx.fillStyle = '#1b191c';
+                this.ctx.fillText(temp.rate+'%',left+149+content.width*temp.rate/100-100*24/36,start+(42+20)*i+3+30);
             }
             
         },
@@ -916,14 +992,21 @@ app = new Vue({
             });
         },
         retryEvent:function(){
-            this.activePage = 2
-            this.showStatus = true
-            var i = 2;
-            for(i = 2; i <= 6; i++){
-                this['page'+i].status = 'in';
-                this['page'+i].chose = false;
-            }
-            this.clickStatus = false
+            var self = this;
+            this.resultActiveStatus = 0;
+            this.retryStatus = true;
+            setTimeout(function(){
+                self.activePage = 2;
+                self.showStatus = true;
+                var i = 2;
+                for(i = 2; i <= 6; i++){
+                    self['page'+i].status = 'in';
+                    self['page'+i].chose = false;
+                }
+                self.clickStatus = false;
+                self.resultActiveStatus = -1;
+                self.retryStatus = false;
+            },500);
         },
     }
 })

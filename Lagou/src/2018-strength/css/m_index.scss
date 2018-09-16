@@ -1585,8 +1585,8 @@ body {
     }
 }
 .page7 {
-    // background:#ede6d6 url('../images/page5-bg.png') no-repeat center top;
-    // background-size:100% 100%;
+    background:url('../images/result-bg.png') no-repeat center top;
+    background-size:100% 100%;
     .show-outer {
         width:100%;
         height:100%;
@@ -1599,61 +1599,101 @@ body {
         width:100%;
         height:100%;
         @include leftTop(0,0);
-        .show-person {
-            width:rem(750);
-            height:rem(1334);
+        background:url('../images/result-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        .show-bg {
+            width:100%;
+            height:100%;
             @include center(0,0);
+        }
+        .show-person {
+            width:rem(1028);
+            height:rem(1607);
+            @include center(26,26);
             // width:100%;
             // @include leftTop(0,0);
         }
-        .show-title {
-            width:rem(193);
-            height:rem(85);
-            @include center(474,113);
-        }
         .show-me {
-            // width:rem(750);
-            // height:rem(85);
-            line-height:rem(67);
-            padding:0 0 0 rem(4);
-            @include center(101,254-12);
-            font-size:rem(46);
-            font-style:italic;
-        }
-        .show-me:after {
-            content:"";
             width:100%;
-            height:rem(4);
-            background:#fff;
-            opacity:0.3;
-            @include leftBottom(0,12);
+            line-height:rem(85);
+            font-size:rem(48);
+            color:#fff;
+            text-align:left;
+            @include center(73,57);
+        }
+        .show-title {
+            width:rem(944);
+            height:rem(162);
+            @include center(73,142);
         }
         .show-text {
-            // width:rem(750);
-            // height:rem(85);
-            line-height:rem(90);
-            @include center(101,320-12);
-            font-size:rem(70);
-            font-weight:bold;
+            width:rem(744);
+            height:rem(56);
+            @include center(267,330);
         }
-        .show-light {
-            width:rem(750);
-            height:rem(1334);
-            @include center(0,0);
+        .show-info {
+            width:100%;
+            line-height:rem(58);
+            @include center(55,1674);
+            font-size:rem(34);
+            color:#fff;
+            text-align:left;
         }
-        .show-add {
-            width:rem(38);
-            height:rem(38);
-            @include center(101,867);
+        .show-logo {
+            width:rem(267);
+            height:rem(37);
+            @include center(55,1822);
+        }
+        .show-ercode {
+            width:rem(177);
+            height:rem(176);
+            @include center(848,1664);
+        }
+        .show-ertips {
+            width:rem(174);
+            height:rem(18);
+            @include center(849,1853);
         }
         .show-words {
             width:rem(750);
-            @include center(100,936);
+            @include center(517-15,475);
             .word-one {
-                line-height:rem(44);
-                font-size:rem(29);
-                color:#fff;
+                padding:0 0 rem(20) 0;
+            }
+            .one-name {
+                width:rem(164);
+                line-height:rem(42);
+                font-size:rem(34.4);
+                color:#1b1a18;
                 text-align:left;
+                float:left;
+            }
+            .one-progress {
+                width:rem(338);
+                height:rem(45);
+                background:url('../images/result-progress-bg.png') no-repeat left top;
+                background-size:rem(338) rem(45);
+                float:left;
+                position:relative;
+            }
+            .one-progress-content {
+                width:rem(338);
+                height:rem(45);
+                background:url('../images/result-progress.png') no-repeat left top;
+                background-size:rem(338) rem(45);
+            }
+            .one-number {
+                line-height:rem(42);
+                font-size:rem(36);
+                color:#fff;
+                transform-origin:100% 50%;
+                transform:scale3d(0.666,0.666,0.666);
+                position:absolute;
+                left:rem(12);
+                top:rem(3);
+            }
+            .one-number.dark {
+                color:#1b191c;
             }
         }
         .qrcode-img {
@@ -1673,8 +1713,8 @@ body {
         }
     }
     .draw-layer {
-        width:rem(750);
-        height:rem(1334);
+        width:rem(1080);
+        height:rem(1761);
         @include center(0,0);
         opacity:0;
         .canvas {
@@ -1683,8 +1723,8 @@ body {
         }
     }
     .canvas-layer {
-        width:rem(561);
-        height:rem(997.832);
+        width:rem(807.84);
+        height:rem(2554);
         // background-color:#000;
         @include center(94,18);
         .save-img {
@@ -1693,49 +1733,59 @@ body {
         }
     }
     .save-img {
-        width:rem(750);
-        height:rem(1334);
+        width:rem(1080);
+        height:rem(1920);
         @include center(0,0);
         opacity:0;
         z-index: 5;
     }
     .p5-tips {
-        width:rem(750);
+        width:rem(1080);
         height:rem(40);
         line-height:rem(40);
-        @include centerb(0,138);
+        @include centerb(0,168);
         font-size:rem(22);
-        color:#9a9487;
+        color:#d2d2d2;
         text-align:center;
         z-index: 5;
     }
     .p5-btn {
-        width:rem(274);
-        height:rem(78);
-        @include centerb(89,47);
+        width:rem(270);
+        height:rem(107);
+        @include centerb(230,47);
         z-index: 5;
     }
     .btn-shadow {
-        width:rem(274);
-        height:rem(70);
-        border-radius:rem(70);
-        @include leftTop(0,8);
-        background-color:#b5afa1;
+        width:rem(270);
+        height:rem(107);
+        // border-radius:rem(107);
+        @include leftTop(0,0);
+        // background-color:#b5afa1;
+        background:url('../images/page0-start-btn.png') no-repeat 0 0;
+        background-size:rem(560) rem(107);
     }
     .btn-text {
-        width:rem(274);
-        height:rem(70);
-        line-height:rem(70);
-        border-radius:rem(70);
+        width:rem(270);
+        height:rem(107);
+        line-height:rem(107);
+        // border-radius:rem(107);
         @include leftTop(0,0);
-        background-color:#fff;
-        font-size:rem(28);
-        color:#9a9487;
+        // background-color:#fff;
+        font-size:rem(34);
+        color:#000000;
         text-align:center;
         font-weight:bold;
     }
+    .btn-text.active {
+        color:#fff;
+    }
     .p5-getoffer {
-        @include centerb(392,47);
+        @include centerb(620,47);
+        display:block;
+        text-decoration: none;
+    }
+    .p5-getoffer:hover {
+        text-decoration: none;
     }
 }
 
@@ -5031,6 +5081,7 @@ body {
 .delay2-9 {
     animation-delay:2.9s;
 }
+.delay2-10,
 .delay3-0 {
     animation-delay:3.0s;
 }

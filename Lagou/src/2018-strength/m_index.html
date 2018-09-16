@@ -494,20 +494,39 @@
                     </div>
                 </div>
             </div>
-            <div class="page page7 opacityChange delay0-7" :class="activePage == 7 ? 'active' : 'hide'">
+            <div class="page page7 opacityChange delay0-7" :class="(activePage == 7 ? 'active' : 'hide')+(retryStatus ? ' opacityChange-out delay0-0' : '')"
+                :style="{backgroundImage:'url('+loadingArray[18+resultIndex]+')'}">
                 <div class="show-outer" v-show="showStatus">
-                    <div class="show-layer opacityChange-out" :class="resultWords.length ? 'delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'">
-                        <img class="show-person opacityChange" :src="loadingArray[resultPerson]" />
-                        <img class="show-title opacityChange delay0-5":src="loadingArray[0]" />
-                        <div class="show-me littleBottomIn delay1-0">{{user.nickname}}</div>
-                        <div class="show-text littleBottomIn delay1-2">的面试力：</div>
-                        <img class="show-light littleBottomIn delay1-4" :src="loadingArray[resultIndex]" />
-                        <img class="show-add littleBottomIn delay1-6" :src="loadingArray[2]" />
-                        <div class="show-words">
-                            <div class="word-one" 
+                    <div class="show-layer" :class="resultWords.length ? 'opacityChange-out delay2-'+((6+resultWords.length*2) % 10 + 2+2) : 'hide'"
+                        :style="{backgroundImage:'url('+loadingArray[18+resultIndex]+')'}">
+                        <!-- <img class="show-bg" src="images/result-bg.png"/> -->
+                        <img class="show-person opacityChange" :src="loadingArray[6+resultIndex]" />
+                        <div class="show-me littleBottomIn delay0-5">{{user.nickname}}是</div>
+                        <img class="show-title opacityChange delay1-0":src="loadingArray[0+resultIndex]" />
+                        <img class="show-text littleBottomIn delay1-2" :src="loadingArray[12+resultIndex]" />
+                        <div class="show-words" :style="{
+                            left:setRem(resultStyle[resultIndex].l),
+                            top:setRem(resultStyle[resultIndex].t)
+                        }">
+                            <div class="word-one clearfix" 
                                 v-for="(one,index) in resultWords"
-                                :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">{{one}}</div>
+                                :class="'littleBottomIn delay'+setDelayTime(1,8+index*2,index)+'-'+(8+index*2) % 10">
+                                <div class="one-name">{{one.name}}</div>
+                                <div class="one-progress">
+                                    <div class="one-progress-content" :style="{width:one.rate+'%'}"></div>
+                                    <div class="one-number dark" :style="{
+                                        left:setRem(338*one.rate/100-100)
+                                    }">{{one.rate}}%</div>
+                                </div>
+                            </div>
                         </div>
+                        <div class="show-info littleBottomIn delay2-8">
+                            没有所谓正确的选择，<br/>
+                            既然选择了就用实力把它变正确
+                        </div>
+                        <img class="show-logo littleBottomIn delay3-0" :src="loadingArray[24+resultIndex]" />
+                        <img class="show-ercode littleBottomIn delay2-8" :src="loadingArray[36+resultIndex]" />
+                        <img class="show-ertips littleBottomIn delay3-0" :src="loadingArray[30+resultIndex]" />
                         <!-- <img class="qrcode-img littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
                         <img class="show-tips littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[3]" />
                         <img class="show-lagou littleBottomIn" :class="'delay2-'+((6+resultWords.length*2) % 10 + 2)" :src="loadingArray[1]" /> -->
@@ -519,27 +538,29 @@
                 <div class="canvas-layer">
                     <!--<img class="save-img" :src="url" v-show="url" />-->
                 </div>
-                <img class="save-img zoomBigShake"
-                    :class="'delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
+                <img class="save-img"
+                    :class="'zoomBigShake delay2-'+((6+resultWords.length*2) % 10 + 2+2)"
                     :style="setSaveStyle"
                     :src="url" />
-                <div class="p5-tips littleBottomIn" 
+                <div class="p5-tips opacityChange" 
                     :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)">{{saveTips}}</div>
                 <div class="p5-btn p5-retry littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
                     @click.stop="retryEvent"
                     :data-lg-tj-id="lg" 
                     data-lg-tj-no="0010" 
                     data-lg-tj-cid="null">
-                    <div class="btn-shadow"></div>
-                    <div class="btn-text">重新测一次</div>
+                    <div class="btn-shadow startBtnChange"></div>
+                    <div class="btn-text" :class="resultActiveStatus == 0 ? 'active' : ''">重新测一次</div>
                 </div>
-                <div class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                <a class="p5-btn p5-getoffer littleBottomIn" :class="setLaterDelay(2,(6+resultWords.length*2) % 10 + 2 + 2 + 5)"
+                    href="javascript:void(0);" 
+                    :onclick="companyHref.one+companyHref.two" 
                     :data-lg-tj-id="lg" 
                     data-lg-tj-no="0011" 
                     data-lg-tj-cid="null">
-                    <div class="btn-shadow"></div>
-                    <div class="btn-text">进场拿Offer</div>
-                </div>
+                    <div class="btn-shadow startBtnChange"></div>
+                    <div class="btn-text" :class="resultActiveStatus == 1 ? 'active' : ''">进场拿Offer</div>
+                </a>
             </div>
             
             <div class="page-flip" id="page-flip" :class="pageFlipStatus ? 'show' : 'hide'"></div>
