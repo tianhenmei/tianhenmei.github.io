@@ -70,7 +70,7 @@ function bgMusicPlay(){
             };
             xhr.send();
         }
-        loadAudioFile('images/bg-02.MP3');
+        loadAudioFile('images/bg-03.MP3');
     }
 
     autoPlayMusic(audio);

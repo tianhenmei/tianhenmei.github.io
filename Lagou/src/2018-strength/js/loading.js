@@ -29,7 +29,7 @@ var imgArray = [
 	loadingHost+"images/loading-flip-19.png",
 	
 
-	loadingHost+"images/music/bg-02.MP3",
+	loadingHost+"images/music/bg-03.MP3",
 	loadingHost+"images/music/bird-02.mp3",
 	loadingHost+"images/music/camera.MP3",
 	loadingHost+"images/music/computer.MP3",
