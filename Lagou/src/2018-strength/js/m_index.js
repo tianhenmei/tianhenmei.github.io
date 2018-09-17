@@ -70,7 +70,7 @@ function bgMusicPlay(){
             };
             xhr.send();
         }
-        loadAudioFile('images/bg.mp3');
+        loadAudioFile('images/bg-02.MP3');
     }
 
     autoPlayMusic(audio);
@@ -505,7 +505,9 @@ app = new Vue({
     },
     mounted:function(){
         // test
-        bgMusicPlay();
+        // if(!this.testing){
+            bgMusicPlay();
+        // }
         if(lagoufrom == 'ios' || lagoufrom == 'android'){
             this.saveTips = '截图保存'
         }
@@ -856,19 +858,36 @@ app = new Vue({
                 index = 0,
                 person = 0,
                 i = 0;
-            if(this.resultScore <= 5){
-                index = 0;
-            }else if(this.resultScore == 6){
-                index = 1;
-            }else if(this.resultScore == 7){
-                index = 2;
-            }else if(this.resultScore == 8){
-                index = 3;
-            }else if(this.resultScore == 9){
-                index = 4;
-            }else if(this.resultScore >= 10){
-                index = 5;
-            }
+            // var re = [0,0,0,0,0];
+            // if(this.resultScore <= 5){
+            //     index = 0;
+            // }else if(this.resultScore == 6){
+            //     index = 1;
+            // }else if(this.resultScore == 7){
+            //     index = 2;
+            // }else if(this.resultScore == 8){
+            //     index = 3;
+            // }else if(this.resultScore == 9){
+            //     index = 4;
+            // }else if(this.resultScore >= 10){
+            //     index = 5;
+            // }
+            // index = Math.floor(Math.random() * 9+5);
+            // if(index < 7){  // 5 6
+            //     index = 0;
+            // }else if(index >= 7 && index < 9){  // 7 8
+            //     index = 1;
+            // }else if(index >= 9 && index < 11){  // 9 10
+            //     index = 2;
+            // }else if(index == 11){
+            //     index = 3;
+            // }else if(index == 12){
+            //     index = 4;
+            // }else if(index >= 13){
+            //     index = 5;
+            // }
+            index = Math.floor(Math.random() * 6);
+
             for(i = 0; i < 5; i++){
                 this.resultWords[i].rate = Math.floor(Math.random() * 10 +arr[index][i]);  // 70-80
             }

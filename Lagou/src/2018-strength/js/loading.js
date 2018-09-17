@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-strength/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-strength/';
 var imgArray = [
 	// "images/DIN-BlackItalic.otf",
 	loadingHost+"images/loading-title-01.png",
@@ -29,7 +29,7 @@ var imgArray = [
 	loadingHost+"images/loading-flip-19.png",
 	
 
-	loadingHost+"images/music/bg.MP3",
+	loadingHost+"images/music/bg-02.MP3",
 	loadingHost+"images/music/bird-02.mp3",
 	loadingHost+"images/music/camera.MP3",
 	loadingHost+"images/music/computer.MP3",
@@ -156,7 +156,7 @@ var imgArray = [
 	// loadingHost+"images/page2-screen-13.png",
 	// loadingHost+"images/page2-screen-14.png",
 	// loadingHost+"images/page2-screen-15.png",
-	loadingHost+"images/page3-icon.png?v=3",
+	loadingHost+"images/page3-icon-02.png?v=3",
 	// loadingHost+"images/page3-house.png",
 	// loadingHost+"images/page3-light.png",
 	// loadingHost+"images/page3-pole.png",
