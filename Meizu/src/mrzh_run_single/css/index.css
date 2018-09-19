@@ -1,0 +1,70 @@
+body{background: #fff;}
+
+.stage{height: 100%;-webkit-transform:translate3d(0,0,0);}
+.stage.in{-webkit-animation: fadeIn 0.5s 1 ease-in-out;}
+.stage.out{-webkit-animation: fadeOut 0.5s 1 ease-in-out;}
+
+#main_container{position: relative;}
+
+#main.fix{min-height: initial;}
+#main{-webkit-transform-origin: 0 0;}
+/*MAIN START*/
+#main{width: 750px; min-height: 1448px;}
+/*MAIN END*/
+
+.wx_tips .pic{position: absolute; width: 387px; height: 1150px; background: url(../images/wx.png); right: 30px; top: 30px; }
+
+.role_tips{}
+.role_tips .bg{background: rgba(0,0,0,0.7); }
+/*.role_tips.show .bg{opacity: 1; }*/
+.role_tips .pic{position: absolute; width: 598px; height: 912px; left: 0; right: 0; margin: 0 auto; background: url(../images/help_tips_pic.png); top: 150px; }
+.role_tips .pic .close_button{position: absolute; width: 150px; height: 150px; left: 0; right: 0; margin: 0 auto; top: 780px; }
+
+/*.stage4 START*/
+.stage4{}
+.stage4 .stage3_button{position: absolute; width: 107px; height: 34px; top: 30px; left: 0; right: 0; margin: 0 auto; background: url(../images/close_button.png); }
+.stage4 .title{position: absolute; width: 464px; height: 110px; top: 100px; left: 0; right: 0; margin: 0 auto; background: url(../images/rank_title.png); }
+.stage4 .bg{position: absolute; width: 750px; height: 1448px; top: 0px; left: 0px; background: url(../images/stage4.jpg); }
+.stage4 .rank_list{position: absolute; width: 750px; height: 1000px; top: 240px; left: 0; right: 0; margin: 0 auto; overflow-x: hidden; overflow-y: scroll; }
+.stage4 .rank_list .user{position: relative; width: 750px; height: 70px; background: rgba(0,0,0,0.4); }
+.stage4 .rank_list .user:nth-child(even){background: rgba(0,0,0,0.2); }
+.stage4 .rank_list .user .no_txt{position: absolute; color: #fff; line-height: 70px; left: 0; width: 150px; text-align: center; font-size: 30px; }
+.stage4 .rank_list .user .face{position: absolute; width: 60px; height: 60px; top: 5px; left: 170px; }
+.stage4 .rank_list .user .name_txt{position: absolute; color: #fff; line-height: 70px; left: 250px; width: 300px; text-align: center; font-size: 30px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.stage4 .rank_list .user .result_txt{position: absolute; color: #fff; line-height: 70px; left: 550px; width: 150px; text-align: center; font-size: 30px; }
+
+/*.stage3 START*/
+.stage3{}
+.stage3 .stage2_button{position: absolute; width: 387px; height: 130px; top: 688px; left: 0; right: 0; margin: 0 auto; }
+.stage3 .stage4_button{position: absolute; width: 387px; height: 130px; top: 856px; left: 0; right: 0; margin: 0 auto; }
+.stage3 .wx_button{position: absolute; width: 387px; height: 130px; top: 1024px; left: 0; right: 0; margin: 0 auto; }
+.stage3 .res_txt{position: absolute; color: #fff; top: 328px; width: 410px; left: 0; right: 0; margin: 0 auto; line-height: 90px; font-size: 60px; text-align: center; }
+.stage3 .rank_txt{position: absolute; color: #fff; top: 555px; width: 600px; left: 0; right: 0; margin: 0 auto; line-height: 90px; font-size: 40px; text-align: center; }
+.stage3 .bg{position: absolute; width: 750px; height: 1448px; top: 0px; left: 0px; background: url(../images/stage3.jpg); }
+
+/*.stage2 START*/
+.stage2{}
+.stage2 #game{position: absolute; width: 750px; height: 1448px; top: 0; left: 0; }
+.stage2 .res_mc{position: absolute; width: 388px; height: 64px; top: 30px; left: 0; right: 0; margin: 0 auto; background: url(../images/time.png); }
+.stage2 .res_txt{position: absolute; width: 388px; text-align: center; color: #fff; font-size: 40px; line-height: 64px; }
+
+/*@-webkit-keyframes catch { 
+	0%,100% { -webkit-transform:translate3d(0,0,0) scale(1); opacity: 1; }
+	50% { -webkit-transform:translate3d(0,0,0) scale(3); opacity: 0.7; }
+}*/
+
+/*.stage1 START*/
+.stage1{}
+.stage1 .start_movie{position: absolute; width: 750px; height: 1448px; left: 0; top: 0; }
+.stage1 .stage2_button{position: absolute; width: 387px; height: 130px; top: 1000px; left: 0; right: 0; margin: 0 auto; background: url(../images/start.png); }
+.stage1 .role_button{position: absolute; width: 318px; height: 46px; top: 1150px; left: 0; right: 0; margin: 0 auto; background: url(../images/role_button.png); }
+.stage1 .title{position: absolute; width: 614px; height: 331px; left: 12px; right: 0; margin: 0 auto; top: 22px; background: url(../images/title.png); }
+
+.bg{position: absolute; width: 750px; height: 1448px; top: 0px; left: 0px; background: url(../images/stage1.jpg); }
+
+/*.sound_button{position: absolute; width: 85px; height: 78px; top: 15px; left: 15px; background: url(../images/sound_pause.png); }
+.sound_button.play{background: url(../images/sound_play.png); }*/
+
+.yellow{color: #ffbb2a; }
+.big{font-size: 72px; }
+.red{color: #ff8700; }
