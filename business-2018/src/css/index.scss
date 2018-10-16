@@ -1,0 +1,235 @@
+@function set($n){
+    @return $n + px;
+}
+.main {
+    .green {
+        color:#00b38a;
+    }
+    &__banner {
+        width:100%;
+        height:650px;
+        background:url('~assets/images/main/banner.png') no-repeat center top;
+        &__center {
+            width:set(1200-49);
+            height:100%;
+            margin:0 auto;
+            padding:0 0 0 49px;
+        }
+        &__name {
+            width:105px;
+            height:23px;
+            padding:222px 0 0 0;
+        }
+        &__title {
+            width:481px;
+            height:104px;
+            padding:29px 0 0 0;
+        }
+        &__subtitle {
+            width:216px;
+            height:49px;
+            padding:24px 0 0 0;
+        }
+    }
+    &__data {
+        width:100%;
+        height:227px;
+        background-color:#f7f7f7;
+        &__center {
+            width:1200px;
+            margin:0 auto;
+        }
+        &__one {
+            width:400px;
+            float:left;
+            position:relative;
+        }
+        &__icon {
+            width:60px;
+            height:60px;
+            padding:40px 0 0 0;
+            margin:0 auto;
+            background:url('~assets/images/main/data-icon-01.png') no-repeat center bottom;
+        }
+        &__one--2 .main__data__icon {
+            background-image:url('~assets/images/main/data-icon-02.png');
+        }
+        &__one--3 .main__data__icon {
+            background-image:url('~assets/images/main/data-icon-03.png');
+        }
+        &__num {
+            line-height:41px;
+            padding:21px 0 0 0;
+            font-size:28px;
+            color:#3e4047;
+            text-align:center;
+            font-weight:500;
+        }
+        &__content {
+            line-height:23px;
+            font-size:14px;
+            color:#828799;
+            text-align:center;
+        }
+        &__one:after {
+            content:"";
+            width:1px;
+            height:30px;
+            background-color:#d5d5d5;
+            position:absolute;
+            right:0;
+            top:93px;
+        }
+        &__one--3:after{
+            opacity:0;
+        }
+    }
+    &__content {
+        width:100%;
+        background-color:#fff;
+        &__center {
+            width:1200px;
+            margin:0 auto;
+        }
+        &__title {
+            width:204px;
+            height:78px;
+            padding:102px 0 0 0;
+            margin:0 auto;
+        }
+        &__list {
+            width:804px;
+            padding:55px 0 78px 0;
+            margin:0 auto;
+        }
+        &__li {
+            width:400px;
+            height:454px;
+            border:1px solid transparent;
+            border-right-color:#f5f5f5;
+            border-bottom-color:#f5f5f5;
+            float:left;
+        }
+        &__li--1 {
+            border-right-color:#fff;
+        }
+        &__li--2 {
+            border-bottom-color:#fff;
+        }
+        &__li--3 {
+            border-bottom-color:#fff;
+            border-right-color:#fff;
+        }
+        &__one {
+            width:100%;
+            height:100%;
+        }
+        &__li:hover {
+            // border-color:#f5f5f5;
+            border-bottom-color:transparent;
+        }
+        &__li:hover .main__content__one {
+            box-shadow:0 4px 15px rgba(0,0,0,0.06);
+        }
+        &__icon {
+            width:70px;
+            height:70px;
+            padding:70px 0 0 0;
+            margin:0 auto;
+            background:url('~assets/images/main/content-icon-01.png') no-repeat center bottom;
+        }
+        &__icon--1 {
+            background-image:url('~assets/images/main/content-icon-02.png');
+        }
+        &__icon--2 {
+            background-image:url('~assets/images/main/content-icon-03.png');
+        }
+        &__icon--3 {
+            background-image:url('~assets/images/main/content-icon-04.png');
+        }
+        &__name {
+            padding:35px 0 0 0;
+            font-size:20px;
+            color:#3e4047;
+            text-align:center;
+            font-weight:600;
+        }
+        &__detail {
+            line-height:29px;
+            padding:42px 0 70px 0;
+            font-size:16px;
+            color:#828799;
+            text-align:center;
+        }
+        &__link {
+            width:set(150-2);
+            height:set(37-2);
+            line-height:set(37-2);
+            margin:0 auto;
+            border:1px solid rgba(62,64,71,0.2);
+            border-radius:3px;
+            font-size:14px;
+            color:#3e4047;
+            text-align:center;
+            display:block;
+        }
+        &__link:hover {
+            border-color:rgba(0,179,138,0.1);
+            background-color:rgba(0,179,138,0.1);
+            color:#00b38a;
+        }
+    }
+    &__corpartner {
+        width:100%;
+        height:833px;
+        background:url('~assets/images/main/corpartner.png') no-repeat center top;
+    }
+    &__advantage {
+        width:100%;
+        height:795px;
+        // background:url('~assets/images/main/advantage.png') no-repeat center top;
+        background-color:#fff;
+        &__title {
+            width:204px;
+            height:77px;
+            padding:100px 0 0 0;
+            margin:0 auto;
+        }
+        &__center {
+            width:1200px;
+            margin:0 auto;
+        }
+        &__one {
+            width:400px;
+            float:left;
+        }
+        &__icon {
+            width:81px;
+            height:81px;
+            padding:89px 0 0 0;
+            margin:0 auto;
+            background:url('~assets/images/main/advantage-icon-01.png') no-repeat center bottom;
+        }
+        &__one--1 .main__advantage__icon {
+            background-image:url('~assets/images/main/advantage-icon-02.png');
+        }
+        &__one--2 .main__advantage__icon {
+            background-image:url('~assets/images/main/advantage-icon-03.png');
+        }
+        &__name {
+            line-height:33px;
+            padding:20px 0 0 0;
+            font-size:20px;
+            color:#3e4047;
+            text-align:center;
+            font-weight:600;
+        }
+        &__content {
+            line-height:36px;
+            padding:36px 0 0 0;
+            font-size:16px;
+            color:#828799;
+            text-align:center;
+        }
+    }
+}

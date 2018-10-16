@@ -1,0 +1,428 @@
+.activity {
+    &__banner {
+        width:100%;
+        height:70px;
+        padding:550px 0 0 0;
+        background:url('~assets/images/activity/banner.png') no-repeat center top;
+    }
+    &__nav {
+        width:100%;
+        height:70px;
+        position: relative;
+        z-index: 2;
+        &__layer {
+            width:100%;
+            height:70px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.02);
+        }
+        &__layer--fixed {
+            background-color:#fff;
+            position:fixed;
+            left:0;
+            top:0;
+        }
+        &__center {
+            width:1200px;
+            margin:0 auto;
+        }
+        &__one {
+            // width:275px;
+            float:left;
+            cursor: pointer;
+        }
+        // &__one--4 {
+        //     width:100px;
+        // }
+        &__name {
+            line-height:70px;
+            margin:0 82px 0 0;
+            font-size:20px;
+            color:#828799;
+            text-align:left;
+            display:inline-block;
+            position:relative;
+        }
+        &__border {
+            content:"";
+            width:100%;
+            height:2px;
+            background-color:#00b38a;
+            position:absolute;
+            left:0;
+            bottom:0;
+            display:none;
+        }
+        &__one--6 {
+            float:right;
+        }
+        &__one--6 .activity__nav__name{
+            margin-right:0;
+            text-align:right;
+        }
+        // &__one--4 .activity__nav__name {
+        //     text-align:right;
+        // }
+        // &__one--4 .activity__nav__border {
+        //     left:auto;
+        //     right:0;
+        // }
+        &__one--active .activity__nav__name {
+            color:#00b38a;
+        }
+        &__one--active .activity__nav__border {
+            display:block;
+        }
+    }
+    &__content {
+
+    }
+    &__page {
+        width:100%;
+        background:url('~assets/images/activity/line.png') no-repeat center center;
+        .activity__name {
+            height:54px;
+            line-height:54px;
+            padding:30px 0 46px 0;
+            text-align:center;
+            font-size:24px;
+            color:#2b2d33;
+            font-weight:600;
+        }
+    }
+    &__imgs__title {
+        width:1200px;
+        line-height:39px;
+        padding:50px 0 0 0;
+        margin:0 auto;
+        text-align:left;
+        font-size:20px;
+        color:#2b2d33;
+        font-weight:600;
+    }
+    &__imgs__info {
+        width:1200px;
+        line-height:30px;
+        padding:0 0 21px 0;
+        margin:0 auto;
+        text-align:left;
+        font-size:18px;
+        color:#73798f;
+    }
+    &__one {
+        width:100%;
+        background:no-repeat center top;
+    }
+}
+.speed {
+    &__top {
+        width:1200px;
+        padding:81px 0 72px 0;
+        margin:0 auto;
+    }
+    &__left {
+        padding:0 90px 0 37px;
+        float:left;
+    }
+    &__mac {
+        width:399px;
+        height:322px;
+    }
+    &__right {
+        padding:8px 0 0 0;
+        float:left;
+    }
+    &__title {
+        &__name {
+            height:56px;
+            line-height:56px;
+            font-size:32px;
+            text-align:left;
+            font-weight:500;
+            color:#2b2d33;
+            float:left;
+        }
+        &__time {
+            width:156px;
+            height:33px;
+            line-height:33px;
+            padding: 12px 0 0 19px;
+            margin:0 0 0 15px;
+            // padding:0 14px;
+            // margin:12px 0 0 19px;
+            // border:1px solid #93e6d6;
+            // background-color:#fff;
+            color:#00b38a;
+            text-align:left;
+            font-size:14px;
+            float:left;
+            background:no-repeat center bottom;
+            position:relative;
+        }
+        // &__time:before {
+        //     content:"";
+        //     width:0;
+        //     height:0;
+        //     border-left:8px solid transparent;
+        //     border-right:8px solid transparent;
+        //     border-bottom:8px solid #93e6d6;
+        //     position:absolute;
+        //     left: -9px;
+        //     bottom: -1px;
+        // }
+    }
+    &__info {
+        width:641px;
+        line-height:20px;
+        padding:0 0 24px 0;
+        border-bottom:1px solid #e7eaf1;
+        text-align:left;
+        font-size:14px;
+        color:#81879a;
+    }
+    .strong {
+        font-weight:600;
+    }
+    &__t {
+        line-height:33px;
+        padding:22px 0 9px 0;
+        font-size:18px;
+        color:#828799;
+        text-align:left;
+        font-weight:600;
+    }
+    &__title2 {
+        line-height:30px;
+        padding:24px 0 0 0;
+        font-size:18px;
+        color:#828799;
+        text-align:left;
+        font-weight:600;
+    }
+    &__tinfo {
+        line-height:34px;
+        color:#828798;
+        font-size:14px;
+        text-align:left;
+        position:relative;
+    }
+    &__ta {
+        line-height:35px;
+        padding:0 0 0 15px;
+        color:#828799;
+        font-size:18px;
+        text-align:left;
+        position:relative;
+    }
+    &__ta:before {
+        content:"";
+        width:6px;
+        height:6px;
+        border-radius:6px;
+        background-color:#73798f;
+        position:absolute;
+        left:0;
+        top:15px;
+    }
+    &__btn {
+        padding:27px 0 0 0;
+    }
+    &__btn__center {
+        width:122px;
+        height:35px;
+        line-height:35px;
+        background-color:#00b787;
+        font-size:14px;
+        text-align:center;
+        color:#fff;
+        text-decoration:none;
+        display:block;
+    }
+    &__btn__center:hover {
+        background-color:#009b73;
+        text-decoration:none;
+    }
+
+
+    &__content {
+        width:100%;
+        height:896px;
+        background:url('~assets/images/activity/speed-02.png') no-repeat center top; 
+    }
+    &__content--promotion {
+        width:100%;
+        height:1032px;
+        background:url('~assets/images/activity/promotion-01.png') no-repeat center top; 
+    }
+
+    &__link {
+        line-height:38px;
+        padding:30px 0 44px 0;
+        font-size:18px;
+        text-align:center;
+    }
+    &__link__a {
+        color:#73798f;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    &__link__a:hover {
+        text-decoration: none;
+    }
+}
+
+.night__content {
+    width:100%;
+    height:558px;
+    background:url('~assets/images/activity/night-01.png') no-repeat center top;
+    &__layer {
+        width:1118px;
+        margin:0 auto;
+    }
+    &__center {
+        padding:84px 0 0 3px;
+    }
+    .night__banner {
+        width:770px;
+        height:408px;
+        overflow:hidden;
+        float:left;
+        position:relative;
+        &__center {
+            width:7700px;
+        }
+        &__one {
+            width:770px;
+            height:408px;
+        }
+        &__spot {
+            position:absolute;
+            left:50%;
+            bottom:17px;
+            z-index: 2;
+        }
+        &__sone {
+            width:4px;
+            height:4px;
+            margin:0 3px;
+            border-radius:4px;
+            background-color:#fff;
+            float:left;
+        }
+        &__sone--active {
+            width:13px;
+        }
+    }
+    .night__advantage {
+        padding:0 0 0 66px;
+        float:left;
+        &__title {
+            line-height:72px;
+            padding:11px 0 2px 0;
+            font-size:24px;
+            color:#2b2d34;
+            text-align:left;
+            font-weight: 600;
+            position:relative;
+        }
+        &__title:after {
+            content:"";
+            width:25px;
+            height:2px;
+            background-color:#2b2d34;
+            position:absolute;
+            left:0;
+            bottom:0;
+        }
+        &__list {
+            padding:25px 0 0 0;
+        }
+        &__li {
+            padding:0 0 20px 0;
+        }
+        &__name {
+            line-height:38px;
+            color:#00b787;
+            text-align:left;
+            font-size:18px;
+        }
+        &__detail {
+            width:219px;
+            line-height:25px;
+            padding:3px 0 24px 0;
+            border-bottom:1px solid #e7eaf1;
+            color:#73798f;
+            text-align:left;
+            font-size:14px;
+        }
+        &__li--1 .night__advantage__detail {
+            border-bottom:none;
+        }
+    }
+}
+
+.dream__content {
+    .night__banner {
+        width:718px;
+    }
+    .night__banner__one {
+        width:718px;
+        height:424px;
+    }
+    .night__advantage__title {
+        line-height:76px;
+        padding-top:8px;
+    }
+    .night__advantage__list {
+        padding-top:44px;
+    }
+    .night__advantage__li {
+        padding-bottom:19px;
+    }
+    .night__advantage__name {
+        line-height:29px;
+    }
+    .night__advantage__detail {
+        width:268px;
+        line-height:31px;
+        padding-top:0;
+        padding-bottom:16px;
+    }
+    .night__advantage__li--1 .night__advantage__detail {
+        border-bottom: 1px solid #e7eaf1;
+    }
+    .night__advantage__li--2 .night__advantage__detail {
+        border-bottom: none;
+    }
+}
+.activity__dream {
+    width:1200px;
+    margin:0 auto;
+    &__title {
+        font-size:20px;
+        text-align:left;
+        font-weight:600;
+        color:#2b2d33;
+    }
+    &__info {
+        padding:6px 0 22px 0;
+    }
+    &__one {
+        line-height:29px;
+        padding:0 0 0 9px;
+        color:#73798f;
+        font-size:14px;
+        text-align:left;
+        position:relative;
+    }
+    &__one:before {
+        content:"";
+        width:4px;
+        height:4px;
+        border-radius:4px;
+        background-color:#73798f;
+        position:absolute;
+        left:-2px;
+        top:12px;
+    }
+}
+

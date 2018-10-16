@@ -1,0 +1,64 @@
+.opacityChange {
+    animation:opacityChange 0.5s both linear;
+}
+@keyframes opacityChange {
+    0% {
+        opacity:0;
+    }
+    100% {
+        
+    }
+}
+.opacityChange-out {
+    animation:opacityChange-out 0.3s both linear;
+}
+@keyframes opacityChange-out {
+    0% {
+
+    }
+    100% {
+        opacity:0;
+    }
+}
+.heightChange {
+    animation:heightChange 0.5s both linear;
+}
+@keyframes heightChange {
+    0% {
+        height:0;
+    }
+    100% {
+        
+    }
+}
+.widthChange {
+    transform-origin:0 50%;
+    animation:widthChange 0.5s both linear;
+}
+@keyframes widthChange {
+    0% {
+        width:0;
+        // transform:scaleX(0);
+    }
+    100% {
+        // transform:scaleX(1);
+    }
+}
+
+
+
+.delay0-3 {
+    animation-delay: 0.3s;
+}
+.delay0-5 {
+    animation-delay: 0.5s;
+}
+.delay0-6 {
+    animation-delay: 0.6s;
+}
+.delay1-0 {
+    animation-delay: 1.0s;
+}
+.delay1-5 {
+    animation-delay: 1.5s;
+}

@@ -1,0 +1,208 @@
+@function set($n){
+    @return $n + px;
+}
+.hunter {
+    &__banner {
+        width:100%;
+        background-repeat:no-repeat;
+        background-position:center top;
+    }
+    .banner--01 {
+        height:650px;
+        background-image:url('~assets/images/hunter/1.png');
+    }
+    .banner--02 {
+        height:781px;
+        background-image:url('~assets/images/hunter/2.png');
+    }
+    .banner--03 {
+        height:980px;
+        background-image:url('~assets/images/hunter/3.png');
+    }
+    &__talent {
+        width:100%;
+        height:560px;
+        background-color:#fff;
+        &__center {
+            width:884px;
+            padding:37px 0 0 0;
+            margin:0 auto;
+        }
+    }
+    &__left {
+        width:189px;
+        height:432px;
+        padding:0 98px 0 0;
+        // border-right:1px solid #ebebeb;
+        float:left;
+        position:relative;
+    }
+    &__left:after {
+        content:"";
+        width:1px;
+        height:432px;
+        background-color:#ebebeb;
+        position:absolute;
+        right:0;
+        top:20px;
+    }
+    &__one {
+        width:100%;
+        height:130px;
+        padding:20px 0 0 0;
+        border-bottom:1px solid #ebebeb;
+        cursor: pointer;
+        &__icon {
+            width:70px;
+            height:70px;
+            margin:0 auto;
+            background:no-repeat center bottom;
+        }
+        &__icon--01 {
+            background-image:url('~assets/images/hunter/icon-01.png');
+        }
+        &__icon--02 {
+            background-image:url('~assets/images/hunter/icon-02.png');
+        }
+        &__icon--03 {
+            background-image:url('~assets/images/hunter/icon-03.png');
+        }
+        &__name {
+            line-height:40px;
+            text-align:center;
+            color:#636774;
+            font-size:14px;
+        }
+    }
+    &__one--3 {
+        border-bottom:none;
+    }
+    &__one--active {
+        .hunter__one__icon--01 {
+            background-image:url('~assets/images/hunter/icon-active-01.png');
+        }
+        .hunter__one__icon--02 {
+            background-image:url('~assets/images/hunter/icon-active-02.png');
+        }
+        .hunter__one__icon--03 {
+            background-image:url('~assets/images/hunter/icon-active-03.png');
+        }
+    }
+    &__right {
+        padding:20px 0 0 0;
+        float:left;
+    }
+    &__content {
+        &__title {
+            line-height:30px;
+            padding:0 0 11px 146px;
+            font-size:20px;
+            color:#3e4047;
+            text-align:left;
+            font-weight:600;
+            position:relative;
+        }
+        &__title:after {
+            content:"";
+            width:23px;
+            height:2px;
+            background-color:#3e4047;
+            position:absolute;
+            left:146px;
+            bottom:0;
+        }
+        &__info {
+            line-height:43px;
+            padding:0 0 0 146px;
+            font-size:14px;
+            color:#636774;
+            text-align:left;
+        }
+        &__list {
+            padding:47px 0 0 106px;
+        }
+        &__li {
+            width:120px;
+            float:left;
+        }
+        &__ratio {
+            line-height:44px;
+            font-size:14px;
+            color:#636774;
+            text-align:center;
+        }
+        &__bg {
+            width:40px;
+            height:213px;
+            margin:0 auto;
+            background-color:#f5f6f8;
+            position:relative;
+        }
+        &__progress {
+            width:100%;
+            // filter:alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#76838f,endcolorstr=#54616c,gradientType=0);	
+            // -ms-filter:alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#76838f,endcolorstr=#54616c,gradientType=0);	
+            background:#76838f;
+            background:-o-gradient(linear, 0 0, 0 bottom, from(#76838f), to(#54616c));
+            background:-moz-linear-gradient(top, #76838f, #54616c);  
+            background:-webkit-gradient(linear, 0 0, 0 bottom, from(#76838f), to(#54616c));
+            background:gradient(linear, 0 0, 0 bottom, from(#76838f), to(#54616c));
+            position:absolute;
+            left:0;
+            bottom:0;
+        }
+        &__text {
+            line-height:44px;
+            font-size:14px;
+            color:#636774;
+            text-align:center;
+        }
+        .initHide {
+            opacity:0;
+        }
+    }
+}
+
+.form-hunter {
+    height:919px;
+    padding-top:105px;
+    .form__title {
+        padding-bottom:39px;
+    }
+    .form__center {
+        background-color:transparent;
+        box-shadow:none;
+    }
+    .form__content {
+        width:599px;
+        padding:0 0 35px 0;
+    }
+    .form__one {
+        padding-bottom:17px;
+    }
+    .form__one__name {
+        line-height:29px;
+        padding:0 0 9px 0;
+        color:#828798;
+    }
+    .form__one__input {
+        width:557px;
+        height:58px;
+        line-height:58px;
+        border:1px solid #dddddd;
+        border-radius:0;
+        background-color:#fff;
+        color:#666;
+    }
+    .form__tips {
+        display:none;
+    }
+    .form__btn {
+        width:597px;
+        height:58px;
+        line-height:58px;
+        background:#6b7884;
+        color:#fff;
+        font-size:16px;
+    }
+}
