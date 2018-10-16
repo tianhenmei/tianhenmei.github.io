@@ -24,15 +24,17 @@
                         <img class="speed__mac" :src="item.mac" />
                     </div>
                     <div class="speed__right">
-                        <div class="speed__title clearfix">
-                            <div class="speed__title__name">{{item.name}}</div>
-                            <div class="speed__title__time" :style="{
-                                backgroundImage:'url('+item.time+')'
-                            }">{{item.time_text}}</div>
+                        <div class="speed__title__start">{{item.start}}</div>
+                        <div class="speed__title clearfix" :class="{'speed__title--short':item.name2}">
+                            <div class="speed__title__name">{{item.name2 || item.name}}</div>
+                            <div class="speed__title__time" 
+                                 :style="{
+                                    backgroundImage:'url('+item.time+')'
+                                }">{{item.time_text}}</div>
                         </div>
                         <div class="speed__info" :class="{'strong':pindex == 2}">{{item.info}}</div>
                         
-                        <div class="speed__t" v-if="item.title">{{item.title}}</div>
+                        <div class="speed__t" v-if="item.title || item.tarr">{{item.title}}</div>
                         <div class="speed__ta" 
                             v-for="(one,index) in item.tarr">{{one}}</div>
 
@@ -112,7 +114,10 @@
                     </div>
                 </div>
             </div>
-            <div class="activity__page" v-show="pindex != 1">
+            <summit v-show="pindex == 4"></summit>
+            <strength v-show="pindex == 5"></strength>
+            <ambition v-show="pindex == 6"></ambition>
+            <div class="activity__page" v-show="pindex != 1 && pindex != 4 && pindex != 5 && pindex != 6">
                 <div class="activity__name">活动解析</div>
             </div>
             <div class="activity__dream" v-if="pindex == 3">
@@ -126,7 +131,7 @@
                     height:item.banner.height+'px',
                     backgroundImage:'url('+item.banner.url+')'
                 }"></div>
-            <div class="activity__imgs" v-if="item.imgs" v-for="(one,index) in item.imgs">
+            <div class="activity__imgs" v-if="item.imgs && pindex != 4 && pindex != 5 && pindex != 6" v-for="(one,index) in item.imgs">
                 <div class="activity__imgs__title" v-if="one.title">{{one.title}}</div>
                 <div class="activity__imgs__info" v-if="one.info">{{one.info}}</div>
                 <div class="activity__one"
@@ -143,6 +148,9 @@
 </template>
 <script>
     import advantage from 'components/advantage.vue';
+    import summit from 'components/summit.vue';
+    import strength from 'components/strength.vue';
+    import ambition from 'components/ambition.vue';
     import { swiper, swiperSlide } from 'vue-awesome-swiper';
     import 'swiper/dist/css/swiper.css';
 
@@ -386,7 +394,6 @@
                     }]
                 },{
                     name:'互联网人才官领袖峰会',
-                    link:'https://activity.lagou.com/topic/rencaiguanfenghui.html',
                     imgs:[{
                         height:1000,
                         url:require('../assets/images/ads/position-banner-01.png')
@@ -410,6 +417,9 @@
         },
         components: {
             advantage,
+            summit,
+            strength,
+            ambition,
             swiper,
             swiperSlide
         },

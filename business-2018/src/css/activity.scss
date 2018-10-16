@@ -131,6 +131,13 @@
         padding:8px 0 0 0;
         float:left;
     }
+    &__title__start {
+        line-height:48px;
+        font-size:32px;
+        text-align:left;
+        font-weight:500;
+        color:#2b2d33;
+    }
     &__title {
         &__name {
             height:56px;
@@ -169,6 +176,16 @@
         //     left: -9px;
         //     bottom: -1px;
         // }
+    }
+    &__title--short {
+        .speed__title__name {
+            height:auto;
+            line-height:48px;
+            padding-bottom:7px;
+        }
+        .speed__title__time {
+            padding-top:8px;
+        }
     }
     &__info {
         width:641px;

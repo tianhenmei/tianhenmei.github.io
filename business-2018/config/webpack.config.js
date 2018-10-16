@@ -57,14 +57,19 @@ module.exports = {
             test: /\.woff|\.eot|\.svg|\.ttf|\.otf|\.png|\.jpg|\.gif|\.jpeg|\.mp3|\.mp4/,
             loader: 'url-loader',
             options: {
-                name: 'images/[name].[ext]',
+                name: 'images/[folder]/[name].[ext]',
                 limit: '1024'
             }
         },{
             test:/\.scss$/,
             exclude:/node_modules/,
             use:[
-                MiniCssExtractPlugin.loader,
+                {
+                    loader:MiniCssExtractPlugin.loader,
+                    options:{
+                        publicPath: '../'
+                    }
+                },
                 'css-loader',
                 {
                     loader:"postcss-loader",
