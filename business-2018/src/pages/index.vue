@@ -34,12 +34,16 @@
                 <img class="main__content__title" src="~assets/images/main/content-title.png"/>
                 <ul class="main__content__list clearfix">
                     <li class="main__content__li" v-for="(one,index) in content"
-                        :class="'main__content__li--'+index"
-                        :data-lg-tj-id="countId" 
+                        :class="'main__content__li--'+index">
+                        <!--:data-lg-tj-id="countId" 
                         :data-lg-tj-no="getCount(index+1)" 
                         :data-lg-tj-cid="null"
-                        @click="toChildActivity(one.href)">
+                        @click="toChildActivity(one.href)">-->
                         <!--<router-link :to="{ name: one.href }" class="main__content__lilink">-->
+                        <a class="main__content__lilink" target="_blank" :href="'/#/'+one.href"
+                            :data-lg-tj-id="countId" 
+                            :data-lg-tj-no="getCount(index+1)" 
+                            :data-lg-tj-cid="null">
                             <div class="main__content__one">
                                 <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
                                 <div class="main__content__name">{{one.name}}</div>
@@ -48,6 +52,7 @@
                                 <div class="main__content__link">了解详情</div>
                             </div>
                         <!--</router-link>-->
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -129,7 +134,6 @@
                 return '0000'.slice((num + '').length) + num;
             },
             toChildActivity(href){
-                console.log(href);
                 window.location.href = '#/'+href
             }
         }
