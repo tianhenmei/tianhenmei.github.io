@@ -61,7 +61,8 @@
                             :company="item.company"
                             :from="item.from"
                             :title3="item.title3"
-                            :detail3="item.detail3"></advantage>
+                            :detail3="item.detail3"
+                            :parent="'activity'+pindex"></advantage>
                     </div>
                 </div>
                 <div class="night__content" v-if="pindex == 1 || pindex == 3"
@@ -424,7 +425,7 @@
             swiperSlide
         },
         mounted(){
-            this.initWindowScrollEvent();
+            // this.initWindowScrollEvent();
         },
         methods:{
             getTabHeight:function(){
@@ -515,6 +516,7 @@
                 let nav = this.$refs['yh-center__nav'];
                 this.active = index;
                 window.scrollTo(0,nav.offsetTop);
+                this.$store.commit('setActivity','activity'+index)
             }
         }
     }

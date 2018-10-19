@@ -11,20 +11,20 @@
             </div>
         </div>
         <div class="main__data">
-            <div class="main__data__center clearfix">
+            <div class="main__data__center clearfix" ref="main__data__center">
                 <div class="main__data__one main__data__one--1">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num">36万+</div>
+                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">互联网公司</div>
                 </div>
                 <div class="main__data__one main__data__one--2">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num">1954万+</div>
+                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 1954 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">互联网人</div>
                 </div>
                 <div class="main__data__one main__data__one--3">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num">909万+</div>
+                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 909 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">每月投递简历</div>
                 </div>
             </div>
@@ -34,13 +34,20 @@
                 <img class="main__content__title" src="~assets/images/main/content-title.png"/>
                 <ul class="main__content__list clearfix">
                     <li class="main__content__li" v-for="(one,index) in content"
-                        :class="'main__content__li--'+index">
-                        <div class="main__content__one">
-                            <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
-                            <div class="main__content__name">{{one.name}}</div>
-                            <div class="main__content__detail" v-html="one.detail"></div>
-                            <router-link :to="{ name: one.href }" class="main__content__link">了解详情</router-link>
-                        </div>
+                        :class="'main__content__li--'+index"
+                        :data-lg-tj-id="countId" 
+                        :data-lg-tj-no="getCount(index+1)" 
+                        :data-lg-tj-cid="null"
+                        @click="toChildActivity(one.href)">
+                        <!--<router-link :to="{ name: one.href }" class="main__content__lilink">-->
+                            <div class="main__content__one">
+                                <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
+                                <div class="main__content__name">{{one.name}}</div>
+                                <div class="main__content__detail" v-html="one.detail"></div>
+                                <!--<router-link :to="{ name: one.href }" class="main__content__link">了解详情</router-link>-->
+                                <div class="main__content__link">了解详情</div>
+                            </div>
+                        <!--</router-link>-->
                     </li>
                 </ul>
             </div>
@@ -62,8 +69,16 @@
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex';
+    import DynamicNumber from 'components/dynamicNumber.vue';
     export default {
         name:'index',
+        computed:{
+            ...mapState(['countId'])
+        },
+        components:{
+            DynamicNumber
+        },
         data(){
             return {
                 content:[{
@@ -92,11 +107,31 @@
                 },{
                     name:"最具实力",
                     detail:"3次<span class='green'>李克强</span>总理接见<br/>4年完成<span class='green'>5</span>轮融资<br/>已进入<span class='green'>IPO</span>筹备阶段"
-                }]
+                }],
+                scrllStatus:false
             }
         },
+        mounted(){
+            // setTimeout(() => {
+            //     this.scrllStatus = true;
+            // },300);
+            let list = this.$refs['main__data__center'],
+                height = window.innerHeight;
+            window.onscroll = (e) => {
+                let top = e.currentTarget.scrollY;
+                if(list.offsetTop < (top + height)){
+                    this.scrllStatus = true;
+                }
+            };
+        },
         methods:{
-            
+            getCount(num) {
+                return '0000'.slice((num + '').length) + num;
+            },
+            toChildActivity(href){
+                console.log(href);
+                window.location.href = '#/'+href
+            }
         }
     }
 </script>

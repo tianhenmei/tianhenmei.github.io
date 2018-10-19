@@ -16,11 +16,12 @@
             </div>
         </div>
         <div class="ads__child">
-            <div class="ads__child__layer">
+            <div class="ads__child__layer" ref="ads__child__layer">
                 <div class="ads__child__center clearfix" :style="{
                     width:(357 * nav[active].child.length)+'px'
                 }">
-                    <div class="ads__child__one" v-for="(one,index) in nav[active].child">
+                    <div class="ads__child__one" v-for="(one,index) in nav[active].child"
+                        @click.stop.prevent="moveToChild">
                         <div class="ads__child__icon" :style="{
                             backgroundImage:'url('+(activeChild == index ? one.icon_active : one.icon)+')'
                         }"></div>
@@ -41,7 +42,6 @@
         <yh-form class="form-ads" 
             backgroundColor="#f5f6f8" 
             :titleBg="titleBg"
-            :formList="formList"
             ></yh-form>
     </div>
 </template>
@@ -183,31 +183,14 @@
                     }]
                 }],
                 // 表单
-                titleBg:require('../assets/images/ads/form-title.png'),
-                formList:[{
-                    cn:'联系人姓名',
-                    en:'user',
-                    validate:'validateNull'
-                },{
-                    cn:'联系人手机',
-                    en:'phone',
-                    validate:'validatePhone'
-                },{
-                    cn:'公司所在地址',
-                    en:'address',
-                    validate:'validateNull'
-                },{
-                    cn:'公司名称',
-                    en:'name',
-                    validate:'validateNull'
-                }]
+                titleBg:require('../assets/images/ads/form-title.png')
             }
         },
         components:{
             'yh-form':form
         },
         mounted(){
-            this.initWindowScrollEvent();
+            // this.initWindowScrollEvent();
         },
         methods:{
             getTabHeight:function(){
@@ -289,7 +272,17 @@
             navChange(index){
                 let nav = this.$refs['yh-center__nav'];
                 this.active = index;
-                window.scrollTo(0,nav.offsetTop);
+                // window.scrollTo(0,nav.offsetTop);
+                $('html,body').animate({
+                    'scrollTop':nav.offsetTop
+                },500);
+            },
+            moveToChild(){
+                let child = this.$refs.ads__child__layer;
+                // window.scrollTo(0,child.offsetTop);
+                $('html,body').animate({
+                    'scrollTop':child.offsetTop
+                },500);
             }
         }
     }

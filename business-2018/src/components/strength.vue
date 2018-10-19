@@ -32,7 +32,8 @@
                 :company="company"
                 :from="from"
                 :title3="title3"
-                :detail3="detail3"></advantage>
+                :detail3="detail3"
+                parent="activity5"></advantage>
         </div>
         <div class="strength__activity__page">
             <div class="strength__activity__name">活动解析</div>

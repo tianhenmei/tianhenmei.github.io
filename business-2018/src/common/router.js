@@ -1,8 +1,12 @@
 import index from 'pages/index.vue';
-import set from 'pages/set.vue';
-import hunter from 'pages/hunter.vue';
-import ads from 'pages/ads.vue';
-import activity from 'pages/activity.vue';
+// import set from 'pages/set.vue';
+// import hunter from 'pages/hunter.vue';
+// import ads from 'pages/ads.vue';
+// import activity from 'pages/activity.vue';
+var set = resolve => require(['pages/set.vue'],resolve),
+    hunter = resolve => require(['pages/hunter.vue'],resolve),
+    ads = resolve => require(['pages/ads.vue'],resolve),
+    activity = resolve => require(['pages/activity.vue'],resolve);
 
 var routes = [{  // 招聘指南
     path:'/',

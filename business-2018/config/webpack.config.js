@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
+// 清除以前打包的文件
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const mock = require('../mock/index.js');
 const util = require('./util.js');
@@ -14,19 +16,40 @@ const IP = util.getLocalIps()[0] || '127.0.0.1';
 const hash = IS_PRODUCTION ? 'chunkhash' : 'hash'; 
 
 
+let plugins = [
+    new webpack.DefinePlugin({
+        '__isProd__':  IS_PRODUCTION
+    }),
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new MiniCssExtractPlugin({
+        filename: "css/[name].["+hash+":8].css",
+        chunkFilename:"css/[name].["+hash+":8].css"
+    }),
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: path.resolve(__dirname, `../src/index.html`),
+        inject: true
+    }),
+    new CleanWebpackPlugin(['dist']),//实例化，参数为目录
+    new VueLoaderPlugin()
+]
+if(!IS_PRODUCTION){
+    plugins.push(new webpack.HotModuleReplacementPlugin())   
+}
 module.exports = {
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
     mode: IS_PRODUCTION ? "production" : "development",  // 'production' | 'development' | 'none'
     // mode: "production", // enable many optimizations for production builds
     // mode: "development", // enabled useful tools for development
     // mode: "none", // no defaults
-    devtool: "cheap-source-map",
+    // devtool: "cheap-source-map",
     entry:{ // string | object | array
         index:'./src/index.js',
         lib:['vue','vuex','vue-router']
     },
     output:{
-        path:path.resolve(__dirname,'dist'),
+        path:path.resolve(__dirname,'../dist/business-2018'),
         filename:'js/[name].['+hash+':8].js',
         publicPath:''  // url 相对于html
     },
@@ -57,7 +80,7 @@ module.exports = {
             test: /\.woff|\.eot|\.svg|\.ttf|\.otf|\.png|\.jpg|\.gif|\.jpeg|\.mp3|\.mp4/,
             loader: 'url-loader',
             options: {
-                name: 'images/[folder]/[name].[ext]',
+                name: "images/[folder]/[name].[hash:8].[ext]",
                 limit: '1024'
             }
         },{
@@ -102,23 +125,7 @@ module.exports = {
             ]
         }]
     },
-    plugins:[
-        new webpack.DefinePlugin({
-            '__isProd__':  IS_PRODUCTION
-        }),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new MiniCssExtractPlugin({
-            filename: "css/[name].["+hash+":8].css",
-            chunkFilename:"css/[name].["+hash+":8].css"
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: path.resolve(__dirname, `../src/index.html`),
-            inject: true
-        }),
-        new VueLoaderPlugin()
-    ],
+    plugins:plugins,
     optimization:{
         splitChunks:{
             chunks: "async", // 必须三选一： "initial"（只提取初始入口模块的公共代码） | "all"（同时提取前两者的代码） | "async" (默认，只会提取异步加载模块的公共模块)

@@ -38,6 +38,7 @@
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex'
     import Dialog from 'components/Dialog.vue';
 
     export default {
@@ -54,21 +55,21 @@
                 type:Array,
                 default(){
                     return [{
-                        cn:'企业名称',
-                        en:'name',
-                        validate:'validateNull'
-                    },{
-                        cn:'联系人名称',
+                        cn:'联系人姓名',
                         en:'user',
                         validate:'validateNull'
                     },{
-                        cn:'联系电话',
+                        cn:'联系人手机',
                         en:'phone',
                         validate:'validatePhone'
                     },{
-                        cn:'邮箱',
-                        en:'email',
-                        validate:'validateEmail'
+                        cn:'公司所在地址',
+                        en:'address',
+                        validate:'validateNull'
+                    },{
+                        cn:'公司名称',
+                        en:'name',
+                        validate:'validateNull'
                     }]
                 }
             }
@@ -95,6 +96,7 @@
             }
         },
         computed:{
+            ...mapState(['user']),
             getTitleBg(){
                 let style = {};
                 if(this.titleBg){
@@ -102,6 +104,9 @@
                 }
                 return style;
             },
+        },
+        mounted(){
+            this.form = {...this.user};
         },
         methods:{
             validateNull(name){
@@ -113,7 +118,8 @@
             },
             validatePhone(name){
                 let phone = this.form[name].trim();
-                if(/^(0|86|17951)?((13[0-9]|14[57]|15[0-9]|17[0-9]|18[0-9]|19[0-9])[0-9]{8})$/g.test(phone)
+                // if(/^(0|86|17951)?((13[0-9]|14[57]|15[0-9]|17[0-9]|18[0-9]|19[0-9])[0-9]{8})$/g.test(phone)
+                if(/^1[0-9]{10}$/g.test(phone)
                     || /^(0[0-9]{2,3}[-\u8f6c])?([2-9][0-9]{6,7})+([-\u8f6c][0-9]{1,4})?$/g.test(phone)){
                     this[name+'False'] = false;
                 }else{
@@ -148,12 +154,21 @@
                     return;
                 }
 
-                this.$store.dispatch('postForm',this.form).then(data => {
-                    if(data.content){
+                let formData = this.form;
+                this.$store.dispatch('postForm',{
+                    params: JSON.stringify({
+                        name:formData.user,
+                        contact:formData.phone,
+                        city:formData.address,
+                        companyName:formData.name,
+                        extend1:''
+                    })
+                }).then(data => {
+                    if(data.state == 200){
                         this.dialogStatus = true;
                     }else{
                         this.title = "";
-                        this.content = data.content;
+                        this.content = data.message;
                         this.dialogStatus = true;
                     }
                 }).catch(error => {

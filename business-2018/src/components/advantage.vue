@@ -28,7 +28,8 @@
                 :company="company"
                 :from="from"
                 :title3="title3"
-                :detail3="detail3"></contrast>
+                :detail3="detail3"
+                :parent="parent"></contrast>
         </div>
     </div>
 </template>
@@ -44,7 +45,8 @@
             'company',
             'from',
             'title3',
-            'detail3'
+            'detail3',
+            'parent'
         ],
         components:{
             contrast

@@ -15,6 +15,13 @@
 
             }
         },
+        mounted(){
+            this.$store.dispatch('getUserData',{});/*.then(data => {
+                // if(data.state == 200){
+
+                // }
+            });*/
+        },
         methods:{
             
         }

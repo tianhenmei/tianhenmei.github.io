@@ -64,11 +64,12 @@ function loopMultiply(arr){
 	return str;
 }
 function factorial(n){
-	var num = 1,
+	var max = 2**53 - 1,	
+		num = 1,
         arr = [],
         result = '';
 	for(var i = 2; i <= n; i++){
-		if(num >= ((2**53 - 1) / i)){
+		if(num >= (max / i)){
             arr.push(num);
             num = i;
         }else {

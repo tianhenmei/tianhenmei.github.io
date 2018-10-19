@@ -14,9 +14,13 @@
     </div>
 </template>
 <script>
+    import {mapState} from 'vuex';
     export default {
         name:'contrast',
-        props:['company','example','from','title3','detail3'],
+        props:['company','example','from','title3','detail3','parent'],
+        computed:{
+            ...mapState(['activeActivity'])
+        },
         data(){
             return {
                 scrollStatus:false
@@ -33,7 +37,8 @@
                 // window.onscroll = (e) => {
                 window.addEventListener("scroll",(e) => {
                     let top = e.currentTarget.scrollY;
-                    if(!self.scrollStatus && example.offsetTop < (top + height)){
+                    
+                    if(self.activeActivity == self.parent && !self.scrollStatus && example.offsetTop < (top + height)){
                         self.scrollStatus = true;
                     }
                 },false);
