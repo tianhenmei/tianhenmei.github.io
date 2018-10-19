@@ -45,6 +45,7 @@
             backgroundColor="#ffffff" 
             :titleBg="titleBg"
             :formList="formList"
+            :countNum="11"
             ></yh-form>
     </div>
 </template>

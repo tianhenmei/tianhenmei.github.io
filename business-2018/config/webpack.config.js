@@ -31,7 +31,7 @@ let plugins = [
         template: path.resolve(__dirname, `../src/index.html`),
         inject: true
     }),
-    new CleanWebpackPlugin(['dist']),//实例化，参数为目录
+    new CleanWebpackPlugin(['../dist']),//实例化，参数为目录
     new VueLoaderPlugin()
 ]
 if(!IS_PRODUCTION){

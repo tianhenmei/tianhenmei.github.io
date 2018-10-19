@@ -42,6 +42,7 @@
         <yh-form class="form-ads" 
             backgroundColor="#f5f6f8" 
             :titleBg="titleBg"
+            :countNum="10"
             ></yh-form>
     </div>
 </template>

@@ -32,7 +32,10 @@
                 </div>-->
             </div>
             <div class="form__tips">友情提醒：提交信息，我们的营销顾问将为您提供服务</div>
-            <div class="form__btn" @click.stop.prevent="postForm">提交信息</div>
+            <div class="form__btn" @click="postForm"
+                :data-lg-tj-id="countId" 
+                :data-lg-tj-no="getCount(countNum)" 
+                :data-lg-tj-cid="null">提交信息</div>
         </div>
         <Dialog v-show="dialogStatus" :title="title" :content="content" @toggleDialog="toggleDialog"></Dialog>
     </div>
@@ -72,7 +75,8 @@
                         validate:'validateNull'
                     }]
                 }
-            }
+            },
+            countNum:Number
         },
         data(){
             let list = this.formList,
@@ -96,7 +100,7 @@
             }
         },
         computed:{
-            ...mapState(['user']),
+            ...mapState(['user','countId']),
             getTitleBg(){
                 let style = {};
                 if(this.titleBg){
@@ -109,6 +113,9 @@
             this.form = {...this.user};
         },
         methods:{
+            getCount(num) {
+                return '0000'.slice((num + '').length) + num;
+            },
             validateNull(name){
                 if(this.form[name].trim()){
                     this[name+'False'] = false;
