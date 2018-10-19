@@ -8,12 +8,31 @@
     &__banner {
         width:100%;
         height:650px;
-        background:url('~assets/images/main/banner.png') no-repeat center top;
+        background-color:#192737;
+        // background:url('~assets/images/main/banner.png') no-repeat center top;
+        &__bg {
+            width:100%;
+            height:650px;
+            background:url('~assets/images/main/banner.png') no-repeat center top;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        &__line {
+            width:100%;
+            height:650px;
+            background:url('~assets/images/line.png') no-repeat center top;
+            position:absolute;
+            left:0;
+            top:0;
+        }
         &__center {
             width:set(1200-49);
             height:100%;
             margin:0 auto;
             padding:0 0 0 49px;
+            position:relative;
+            z-index:2;
         }
         &__name {
             width:105px;
@@ -237,5 +256,45 @@
             color:#828799;
             text-align:center;
         }
+    }
+
+    .zoomBigIn {
+        animation:zoomBigIn 0.5s both linear;
+    }
+    @keyframes zoomBigIn {
+        0% {
+            opacity:0;
+            transform:scale3d(1.2,1.2,1.2);
+        }
+        100% {
+            opacity:1;
+            transform:scale3d(1,1,1);
+        }
+    }
+    .littleBottomIn {
+        animation:littleBottomIn 0.5s both linear;
+    }
+    @keyframes littleBottomIn {
+        0% {
+            opacity:0;
+            transform:translate3d(0,100px,0);
+        }
+        100% {
+            opacity:1;
+            transform:translate3d(0,0,0);
+        }
+    }
+
+    .delay1-0 {
+        animation-delay:1.0s;
+    }
+    .delay1-3 {
+        animation-delay:1.3s;
+    }
+    .delay1-5 {
+        animation-delay:1.5s;
+    }
+    .delay1-7 {
+        animation-delay:1.7s;
     }
 }

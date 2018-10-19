@@ -1,13 +1,16 @@
 <style lang="scss">
     @import '../css/index.scss';
+    @import '../css/animation.scss';
 </style>
 <template>
     <div class="main">
         <div class="main__banner">
+            <div class="main__banner__bg" :class="'zoomBigIn delay1-0'"></div>
+            <div class="main__banner__line" :class="'opacityChange delay1-3'"></div>
             <div class="main__banner__center">
-                <img class="main__banner__name" src="~assets/images/main/banner-name@2.png"/>
-                <img class="main__banner__title" src="~assets/images/main/banner-title@2.png" />
-                <img class="main__banner__subtitle" src="~assets/images/main/banner-subtitle@2.png"/>
+                <img class="main__banner__name" :class="'littleBottomIn delay1-3'" src="~assets/images/main/banner-name@2.png"/>
+                <img class="main__banner__title" :class="'littleBottomIn delay1-5'" src="~assets/images/main/banner-title@2.png" />
+                <img class="main__banner__subtitle" :class="'littleBottomIn delay1-7'" src="~assets/images/main/banner-subtitle@2.png"/>
             </div>
         </div>
         <div class="main__data">

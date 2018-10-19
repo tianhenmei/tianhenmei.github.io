@@ -44,13 +44,31 @@ html, body {
 .main__banner {
   width: 100%;
   height: 650px;
-  background: url(../images/main/banner.dcfa390d.png) no-repeat center top;
+  background-color: #192737;
+}
+.main__banner__bg {
+    width: 100%;
+    height: 650px;
+    background: url(../images/main/banner.dcfa390d.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.main__banner__line {
+    width: 100%;
+    height: 650px;
+    background: url(../images/images/line.bc7b1a07.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .main__banner__center {
     width: 1151px;
     height: 100%;
     margin: 0 auto;
     padding: 0 0 0 49px;
+    position: relative;
+    z-index: 2;
 }
 .main__banner__name {
     width: 105px;
@@ -271,6 +289,78 @@ html, body {
     font-size: 16px;
     color: #828799;
     text-align: center;
+}
+.main .zoomBigIn {
+  -webkit-animation: zoomBigIn 0.5s both linear;
+          animation: zoomBigIn 0.5s both linear;
+}
+@-webkit-keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+@keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+.main .littleBottomIn {
+  -webkit-animation: littleBottomIn 0.5s both linear;
+          animation: littleBottomIn 0.5s both linear;
+}
+@-webkit-keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.main .delay1-0 {
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s;
+}
+.main .delay1-3 {
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+}
+.main .delay1-5 {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.main .delay1-7 {
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
 }
 
 
@@ -280,13 +370,31 @@ html, body {
 .main__banner {
   width: 100%;
   height: 650px;
-  background: url(../images/main/banner.dcfa390d.png) no-repeat center top;
+  background-color: #192737;
+}
+.main__banner__bg {
+    width: 100%;
+    height: 650px;
+    background: url(../images/main/banner.dcfa390d.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.main__banner__line {
+    width: 100%;
+    height: 650px;
+    background: url(../images/images/line.bc7b1a07.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .main__banner__center {
     width: 1151px;
     height: 100%;
     margin: 0 auto;
     padding: 0 0 0 49px;
+    position: relative;
+    z-index: 2;
 }
 .main__banner__name {
     width: 105px;
@@ -507,5 +615,171 @@ html, body {
     font-size: 16px;
     color: #828799;
     text-align: center;
+}
+.main .zoomBigIn {
+  -webkit-animation: zoomBigIn 0.5s both linear;
+          animation: zoomBigIn 0.5s both linear;
+}
+@-webkit-keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+@keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+.main .littleBottomIn {
+  -webkit-animation: littleBottomIn 0.5s both linear;
+          animation: littleBottomIn 0.5s both linear;
+}
+@-webkit-keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.main .delay1-0 {
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s;
+}
+.main .delay1-3 {
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+}
+.main .delay1-5 {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
+}
+.main .delay1-7 {
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
+}
+.opacityChange {
+  -webkit-animation: opacityChange 0.5s both linear;
+          animation: opacityChange 0.5s both linear;
+}
+@-webkit-keyframes opacityChange {
+0% {
+    opacity: 0;
+}
+100% {
+}
+}
+@keyframes opacityChange {
+0% {
+    opacity: 0;
+}
+100% {
+}
+}
+.opacityChange-out {
+  -webkit-animation: opacityChange-out 0.3s both linear;
+          animation: opacityChange-out 0.3s both linear;
+}
+@-webkit-keyframes opacityChange-out {
+0% {
+}
+100% {
+    opacity: 0;
+}
+}
+@keyframes opacityChange-out {
+0% {
+}
+100% {
+    opacity: 0;
+}
+}
+.heightChange {
+  -webkit-animation: heightChange 0.5s both linear;
+          animation: heightChange 0.5s both linear;
+}
+@-webkit-keyframes heightChange {
+0% {
+    height: 0;
+}
+100% {
+}
+}
+@keyframes heightChange {
+0% {
+    height: 0;
+}
+100% {
+}
+}
+.widthChange {
+  -webkit-transform-origin: 0 50%;
+          transform-origin: 0 50%;
+  -webkit-animation: widthChange 0.5s both linear;
+          animation: widthChange 0.5s both linear;
+}
+@-webkit-keyframes widthChange {
+0% {
+    width: 0;
+}
+100% {
+}
+}
+@keyframes widthChange {
+0% {
+    width: 0;
+}
+100% {
+}
+}
+.delay0-3 {
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+}
+.delay0-5 {
+  -webkit-animation-delay: 0.5s;
+          animation-delay: 0.5s;
+}
+.delay0-6 {
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
+}
+.delay1-0 {
+  -webkit-animation-delay: 1.0s;
+          animation-delay: 1.0s;
+}
+.delay1-5 {
+  -webkit-animation-delay: 1.5s;
+          animation-delay: 1.5s;
 }
 
