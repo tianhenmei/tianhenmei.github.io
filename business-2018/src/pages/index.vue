@@ -40,7 +40,7 @@
                         :data-lg-tj-cid="null"
                         @click="toChildActivity(one.href)">-->
                         <!--<router-link :to="{ name: one.href }" class="main__content__lilink">-->
-                        <a class="main__content__lilink" target="_blank" :href="'/#/'+one.href"
+                        <a class="main__content__lilink" target="_blank" :href="'#/'+one.href"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(index+1)" 
                             :data-lg-tj-cid="null">
