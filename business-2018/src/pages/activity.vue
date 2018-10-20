@@ -10,7 +10,7 @@
                         <div class="activity__nav__one" v-for="(one,index) in nav"
                             :class="'activity__nav__one--'+index+(active == index ? ' activity__nav__one--active' : '')"
                             @click.stop.prevent="navChange(index)">
-                            <div class="activity__nav__name">{{one.name}}<div class="activity__nav__border"></div></div>
+                            <div class="activity__nav__name" :class="active == index ? 'strong' : ''">{{one.name}}<div class="activity__nav__border"></div></div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +106,7 @@
                                 <div class="night__advantage__list">
                                     <div class="night__advantage__li" v-for="(one,index) in item.advantage"
                                         :class="'night__advantage__li--'+index">
-                                        <div class="night__advantage__name">{{one.name}}</div>
+                                        <div class="night__advantage__name strong">{{one.name}}</div>
                                         <div class="night__advantage__detail">{{one.detail}}</div>
                                     </div>
                                 </div>
@@ -425,7 +425,7 @@
             swiperSlide
         },
         mounted(){
-            // this.initWindowScrollEvent();
+            this.initWindowScrollEvent();
         },
         methods:{
             getTabHeight:function(){
@@ -480,12 +480,14 @@
                 this.tab.offsetTop = nav.offsetTop,
                 this.tab.height = tab.offsetHeight,
                 this.getTabHeight();
-                window.onscroll = (e) => {
+                window.onscroll = scrollEvent;
+                scrollEvent();
+                function scrollEvent(e){
                     if(self.click_status){
                         return
                     }
                     var imgs = self.nav[self.active].imgs,
-                        scrollTop = e.currentTarget.scrollY,
+                        scrollTop = e ? e.currentTarget.scrollY : window.scrollY,
                         one = null,
                         halfWidow = height / 4,
                         left = 0,
@@ -510,9 +512,12 @@
                             break;
                         }
                     }
-                };
+                }
             },
             navChange(index){
+                if(this.active == index){
+                    return;
+                }
                 let nav = this.$refs['yh-center__nav'];
                 this.active = index;
                 window.scrollTo(0,nav.offsetTop);

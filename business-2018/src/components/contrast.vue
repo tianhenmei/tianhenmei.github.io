@@ -35,13 +35,15 @@
                     example = this.$refs['contrast__example0'][0],
                     height = window.innerHeight;
                 // window.onscroll = (e) => {
-                window.addEventListener("scroll",(e) => {
-                    let top = e.currentTarget.scrollY;
+                window.addEventListener("scroll",scrollEvent,false);
+                scrollEvent();
+                function scrollEvent(e){
+                    let top = e ? e.currentTarget.scrollY : window.scrollY;
                     
                     if(self.activeActivity == self.parent && !self.scrollStatus && example.offsetTop < (top + height)){
                         self.scrollStatus = true;
                     }
-                },false);
+                }
             }
         }
     }

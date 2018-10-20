@@ -161,15 +161,19 @@
                     return;
                 }
 
-                let formData = this.form;
-                this.$store.dispatch('postForm',{
-                    params: JSON.stringify({
+                let formData = this.form,
+                    params = {
+                        avitvityFlag:this.user.avitvityFlag,
                         name:formData.user,
                         contact:formData.phone,
                         city:formData.address,
                         companyName:formData.name,
-                        extend1:''
-                    })
+                        extend1:'LGBANN'
+                    };
+                this.$store.dispatch('postForm',{
+                    params:{
+                        params: JSON.stringify(params)
+                    }
                 }).then(data => {
                     if(data.state == 200){
                         this.dialogStatus = true;

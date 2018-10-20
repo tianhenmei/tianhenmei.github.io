@@ -28,7 +28,7 @@
                     <div class="ambition__content__img"></div>
                     <div class="ambition__content__info">
                         <div class="ambition__content__name">招聘风暴周</div>
-                        <div class="ambition__content__green">投递量增加186%</div>
+                        <div class="ambition__content__green strong">投递量增加186%</div>
                         <div class="ambition__content__detail">春招前抢占优质人才的最大专场<br/>平均投递量相较平时增加186%</div>
                         <a class="ambition__content__btn" :href="storm" targe="_blank">在线查看</a>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="ambition__content__img"></div>
                 <div class="ambition__content__info">
                     <div class="ambition__content__name">雇主评选<span class="ambition__content__subname">/线下活动</span></div>
-                    <div class="ambition__content__green">35W+雇主、200W+互联网人参与</div>
+                    <div class="ambition__content__green strong">35W+雇主、200W+互联网人参与</div>
                     <div class="ambition__content__detail">最权威的互联网最佳雇主品牌评选<br/>35万家雇主参与角逐<br/>200万互联网人参与评选</div>
                     <a class="ambition__content__btn" :href="employer" targe="_blank">在线查看</a>
                 </div>
@@ -57,7 +57,7 @@
             <div class="ambition__night__center clearfix">
                 <div class="ambition__content__info">
                     <div class="ambition__content__name">拉勾之夜<span class="ambition__content__subname">/线下活动</span></div>
-                    <div class="ambition__content__green">5位最具影响力人物<br/>2000位现场嘉宾<br/>100+互联网KOL联合转发<br/>200W页面PV传播</div>
+                    <div class="ambition__content__green strong">5位最具影响力人物<br/>2000位现场嘉宾<br/>100+互联网KOL联合转发<br/>200W页面PV传播</div>
                     <div class="ambition__content__detail">互联网招聘行业规模最大的颁奖盛典</div>
                     <a class="ambition__content__btn" :href="nightLink" targe="_blank">在线查看</a>
                 </div>
@@ -75,6 +75,7 @@
                         <img class="ambition__img__one" :src="one" />
                     </swiper-slide>
                 </swiper>
+                <!--<div class="swiper-container" ref="mySwiper"></div>-->
             </div>
         </div>
         <div class="ambition__link">
@@ -378,6 +379,8 @@
                 display:block;
             }
             &__btn:hover {
+                text-decoration:none;
+                background-color:#009b73;
                 text-decoration:none;
             }
             .contrast {

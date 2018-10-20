@@ -9,8 +9,24 @@
     }
     .banner--01 {
         height:650px;
-        background-image:url('~assets/images/hunter/1.png');
+        background-color:#060606;
+        // background-image:url('~assets/images/hunter/1.png');
     }
+    &__banner--01 { 
+        height:130px;
+        background-image:url('~assets/images/hunter/banner_01.png'); }
+    &__banner--02 { 
+        height:130px;
+        background-image:url('~assets/images/hunter/banner_02.png'); }
+    &__banner--03 { 
+        height:130px;
+        background-image:url('~assets/images/hunter/banner_03.png'); }
+    &__banner--04 { 
+        height:130px;
+        background-image:url('~assets/images/hunter/banner_04.png'); }
+    &__banner--05 { 
+        height:130px;
+        background-image:url('~assets/images/hunter/banner_05.png'); }
     .banner--02 {
         height:781px;
         background-image:url('~assets/images/hunter/2.png');
@@ -91,8 +107,15 @@
     &__right {
         padding:20px 0 0 0;
         float:left;
+        position:relative;
     }
     &__content {
+        width:586px;
+        height:432px;
+        position:absolute;
+        left:0;
+        top:0;
+        display:none;
         &__title {
             line-height:30px;
             padding:0 0 11px 146px;
@@ -160,6 +183,9 @@
         .initHide {
             opacity:0;
         }
+    }
+    &__content.active {
+        display:block;
     }
 }
 

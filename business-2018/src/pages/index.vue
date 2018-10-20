@@ -17,17 +17,17 @@
             <div class="main__data__center clearfix" ref="main__data__center">
                 <div class="main__data__one main__data__one--1">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">互联网公司</div>
                 </div>
                 <div class="main__data__one main__data__one--2">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 1954 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 1954 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">互联网人</div>
                 </div>
                 <div class="main__data__one main__data__one--3">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__num"><DynamicNumber :num="scrllStatus ? 909 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 909 : 0" :wait="0"></DynamicNumber>万+</div>
                     <div class="main__data__content">每月投递简历</div>
                 </div>
             </div>
@@ -124,13 +124,16 @@
             //     this.scrllStatus = true;
             // },300);
             let list = this.$refs['main__data__center'],
-                height = window.innerHeight;
-            window.onscroll = (e) => {
-                let top = e.currentTarget.scrollY;
+                height = window.innerHeight,
+                self = this;
+            window.onscroll = scrollEvent;
+            function scrollEvent(e){
+                let top = e ? e.currentTarget.scrollY : window.scrollY;
                 if(list.offsetTop < (top + height)){
-                    this.scrllStatus = true;
+                    self.scrllStatus = true;
                 }
-            };
+            }
+            scrollEvent();
         },
         methods:{
             getCount(num) {

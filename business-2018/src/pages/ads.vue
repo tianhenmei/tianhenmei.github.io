@@ -10,7 +10,7 @@
                     <div class="ads__nav__one" v-for="(one,index) in nav"
                         :class="'ads__nav__one--'+index+(active == index ? ' ads__nav__one--active' : '')"
                         @click.stop.prevent="navChange(index)">
-                        <div class="ads__nav__name">{{one.name}}<div class="ads__nav__border"></div></div>
+                        <div class="ads__nav__name" :class="active == index ? 'strong' : ''">{{one.name}}<div class="ads__nav__border"></div></div>
                     </div>
                 </div>
             </div>
@@ -21,10 +21,10 @@
                     width:(357 * nav[active].child.length)+'px'
                 }">
                     <div class="ads__child__one" v-for="(one,index) in nav[active].child"
-                        @click.stop.prevent="moveToChild">
+                        @click.stop.prevent="moveToChild(index)">
                         <div class="ads__child__icon" :style="{
                             backgroundImage:'url('+(activeChild == index ? one.icon_active : one.icon)+')'
-                        }"></div>
+                        }" @mouseenter="iconEnterEvent(index)"  @mouseleave="iconEndEvent(index)"></div>
                         <div class="ads__child__name">{{one.name}}</div>
                     </div>
                 </div>
@@ -85,19 +85,19 @@
                         elem:'pc-01',
                         url:require('../assets/images/ads/pc-01.png')
                     },{
-                        height:1000,
+                        height:948,
                         offsetTop:0,
                         status:true,
                         elem:'pc-02',
                         url:require('../assets/images/ads/pc-02.png')
                     },{
-                        height:1000,
+                        height:1050,
                         offsetTop:0,
                         status:true,
                         elem:'pc-03',
                         url:require('../assets/images/ads/pc-03.png')
                     },{
-                        height:1000,
+                        height:1034,
                         offsetTop:0,
                         status:true,
                         elem:'pc-04',
@@ -125,11 +125,23 @@
                         name:'全程品牌策划'
                     }],
                     imgs:[{
-                        height:1000,
+                        height:527,
+                        offsetTop:0,
+                        status:true,
+                        elem:'app-01',
                         url:require('../assets/images/ads/app-01.png')
                     },{
-                        height:1000,
+                        height:425,
+                        offsetTop:0,
+                        status:true,
+                        elem:'app-02',
                         url:require('../assets/images/ads/app-02.png')
+                    },{
+                        height:1071,
+                        offsetTop:0,
+                        status:true,
+                        elem:'app-03',
+                        url:require('../assets/images/ads/app-03.png')
                     }/*,{
                         height:93,
                         url:require('../assets/images/ads/pc-05.png')
@@ -146,8 +158,17 @@
                         name:'雇主形象强感知'
                     }],
                     imgs:[{
-                        height:952,
+                        height:527,
+                        offsetTop:0,
+                        status:true,
+                        elem:'appfirst-banner-01',
                         url:require('../assets/images/ads/appfirst-banner-01.png')
+                    },{
+                        height:425,
+                        offsetTop:0,
+                        status:true,
+                        elem:'appfirst-banner-02',
+                        url:require('../assets/images/ads/appfirst-banner-02.png')
                     }]
                 },{
                     name:'热门公司',
@@ -161,10 +182,16 @@
                         name:'公司排名提升'
                     }],
                     imgs:[{
-                        height:1000,
+                        height:957,
+                        offsetTop:0,
+                        status:true,
+                        elem:'company-banner-01',
                         url:require('../assets/images/ads/company-banner-01.png')
                     },{
-                        height:852,
+                        height:895,
+                        offsetTop:0,
+                        status:true,
+                        elem:'company-banner-02',
                         url:require('../assets/images/ads/company-banner-02.png')
                     }]
                 },{
@@ -179,8 +206,17 @@
                         name:'职位排名提升'
                     }],
                     imgs:[{
-                        height:1000,
+                        height:957,
+                        offsetTop:0,
+                        status:true,
+                        elem:'position-banner-01',
                         url:require('../assets/images/ads/position-banner-01.png')
+                    },{
+                        height:895,
+                        offsetTop:0,
+                        status:true,
+                        elem:'position-banner-02',
+                        url:require('../assets/images/ads/position-banner-02.png')
                     }]
                 }],
                 // 表单
@@ -191,7 +227,7 @@
             'yh-form':form
         },
         mounted(){
-            // this.initWindowScrollEvent();
+            this.initWindowScrollEvent();
         },
         methods:{
             getTabHeight:function(){
@@ -271,19 +307,33 @@
                 };
             },
             navChange(index){
+                if(this.active == index){
+                    return;
+                }
                 let nav = this.$refs['yh-center__nav'];
                 this.active = index;
                 // window.scrollTo(0,nav.offsetTop);
-                $('html,body').animate({
-                    'scrollTop':nav.offsetTop
-                },500);
+                if(window.scrollY > nav.offsetTop){
+                    $('html,body').animate({
+                        'scrollTop':nav.offsetTop
+                    },500);
+                }
             },
-            moveToChild(){
-                let child = this.$refs.ads__child__layer;
+            moveToChild(index){
+                let nav = this.$refs['yh-center__nav'],
+                    child = this.$refs.ads__child__layer,
+                    data = this.nav[this.active].imgs[index],
+                    elem = this.$refs[data.elem][0];
                 // window.scrollTo(0,child.offsetTop);
                 $('html,body').animate({
-                    'scrollTop':child.offsetTop
+                    'scrollTop':elem.offsetTop - nav.offsetHeight // nav.offsetTop  // child.offsetTop
                 },500);
+            },
+            iconEnterEvent(index){
+                this.activeChild = index;
+            },
+            iconEndEvent(index){
+                this.activeChild = -1;
             }
         }
     }

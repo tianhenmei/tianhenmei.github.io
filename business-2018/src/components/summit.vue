@@ -42,7 +42,7 @@
                         <div class="summit__advantage__list">
                             <div class="summit__advantage__li" v-for="(one,index) in advantage"
                                 :class="'summit__advantage__li--'+index">
-                                <div class="summit__advantage__name">{{one.name}}</div>
+                                <div class="summit__advantage__name strong">{{one.name}}</div>
                                 <div class="summit__advantage__detail">{{one.detail}}</div>
                             </div>
                         </div>

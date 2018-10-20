@@ -5,8 +5,9 @@ export default {
     state:{
         host:IS_PRODUCTION ? 'https://activity.lagou.com' : '/api/mock',
         countId: '1biv',
-        activeActivity:0,
+        activeActivity:'activity0',
         user:{
+            avitvityFlag:0,
             name:"",  // 联系人姓名
             contact:"",  // 联系人手机
             city:"",   // 公司所在地
@@ -21,6 +22,7 @@ export default {
             let content = data.content;
             if(data.state == 200){
                 // setTimeout(() => {
+                    state.user.avitvityFlag = content.avitvityFlag || 0;
                     state.user.user = content.name || '';
                     state.user.phone = content.contact || '';
                     state.user.address = content.city || '';

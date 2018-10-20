@@ -45,7 +45,7 @@ module.exports = {
     // mode: "production", // enable many optimizations for production builds
     // mode: "development", // enabled useful tools for development
     // mode: "none", // no defaults
-    // devtool: "cheap-source-map",
+    devtool: IS_PRODUCTION ? "" : "cheap-source-map",
     entry:{ // string | object | array
         index:'./src/index.js',
         lib:['vue','vuex','vue-router']

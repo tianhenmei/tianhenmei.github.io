@@ -4,31 +4,39 @@
 </style>
 <template>
     <div class="hunter">
-        <div class="hunter__banner banner--01"></div>
+        <div class="hunter__banner banner--01">
+            <div class="hunter__banner hunter__banner--01"></div>
+            <div class="hunter__banner hunter__banner--02"></div>
+            <div class="hunter__banner hunter__banner--03"></div>
+            <div class="hunter__banner hunter__banner--04"></div>
+            <div class="hunter__banner hunter__banner--05"></div>
+        </div>
         <div class="hunter__banner banner--02"></div>
         <div class="hunter__talent">
             <div class="hunter__talent__center clearfix">
                 <div class="hunter__left">
                     <div class="hunter__one" v-for="(one,index) in hunter"
-                        :class="'hunter__one--'+(index+1)+(active == index ? ' hunter__one--active' : '')"
+                        :class="'hunter__one--'+(index+1)+(activeIcon == index ? ' hunter__one--active' : '')"
                         @click.stop.prevent="changeHunter(index)">
                         <div class="hunter__one__icon" :class="'hunter__one__icon--0'+(index+1)"></div>
-                        <div class="hunter__one__name">{{one.name}}</div>
+                        <div class="hunter__one__name strong">{{one.name}}</div>
                     </div>
                 </div>
                 <div class="hunter__right">
-                    <div class="hunter__content" :class="'hunter__content--0'+(active+1)+' '+activeClass">
+                    <div class="hunter__content" 
+                        v-for="(item,pindex) in hunter"
+                        :class="'hunter__content--0'+(pindex+1)+(pindex == active ? ' active '+activeClass : '')">
                         <div class="hunter__content__title" 
-                            :class="scrllStatus && animate ? 'opacityChange delay0-3' : 'initHide'">{{hunter[active].name}}</div>
+                            :class="contentStatus(pindex) ? 'opacityChange delay0-3' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'">{{item.name}}</div>
                         <div class="hunter__content__info"
-                            :class="scrllStatus && animate ? 'opacityChange delay0-6' : 'initHide'">{{hunter[active].info}}</div>
+                            :class="contentStatus(pindex) ? 'opacityChange delay0-6' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'">{{item.info}}</div>
                         <ul class="hunter__content__list clearfix" 
-                            :class="scrllStatus && animate ? 'opacityChange delay1-0' : 'initHide'" ref="hunter__content__list">
-                            <li class="hunter__content__li" v-for="(one,index) in hunter[active].list">
+                            :class="contentStatus(pindex) ? 'opacityChange delay1-0' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'" ref="hunter__content__list">
+                            <li class="hunter__content__li" v-for="(one,index) in item.list">
                                 <div class="hunter__content__ratio"><DynamicNumber :num="scrllStatus ? one.ratio : 0" :wait="wait"></DynamicNumber>%</div>
                                 <div class="hunter__content__bg">
                                     <div class="hunter__content__progress"
-                                        :class="scrllStatus && animate ? 'heightChange delay1-5' : 'initHide'" 
+                                        :class="contentStatus(pindex) ? 'heightChange delay1-5' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'" 
                                         :style="{
                                             height:one.ratio+'%'
                                         }"></div>
@@ -57,6 +65,7 @@
         name:'hunter',
         data(){
             return {
+                showArr:[],
                 hunter:[{
                     name:'人才高学历',
                     info:'集中为本科、研究生、博士等',
@@ -107,6 +116,7 @@
                     }]
                 }],
                 active:0,
+                activeIcon:0,
                 activeClass:'',
                 animate:true,
                 // 滚动的距离是否开始显示
@@ -139,19 +149,30 @@
         },
         mounted(){
             let list = this.$refs['hunter__content__list'],
-                height = window.innerHeight;
-            window.onscroll = (e) => {
-                let top = e.currentTarget.scrollY;
-                if(list.offsetTop < (top + height)){
-                    this.scrllStatus = true;
+                height = window.innerHeight,
+                self = this;
+            window.onscroll = scrollEvent;
+            function scrollEvent(e){
+                let top = e ? e.currentTarget.scrollY : window.scrollY;
+                if(list[self.active].offsetTop < (top + height)){
+                    self.scrllStatus = true;
                 }
-            };
+            }
+            scrollEvent();
         },
         methods:{
+            contentStatus(index){
+                if(index == this.active && this.showArr.indexOf(index) == -1 && this.scrllStatus && this.animate){
+                    return true;
+                }
+                return false;
+            },
             changeHunter(index){
                 this.activeClass = 'opacityChange-out';
                 this.animate = false;
+                this.activeIcon = index;
                 setTimeout(() => {
+                    this.showArr.push(this.active);
                     this.active = index;
                     this.activeClass = 'opacityChange';
                     this.animate = true;
