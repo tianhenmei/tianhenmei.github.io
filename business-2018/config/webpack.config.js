@@ -15,6 +15,11 @@ const IS_PRODUCTION = process.env.NODE_ENV === 'production';
 const IP = util.getLocalIps()[0] || '127.0.0.1';
 const hash = IS_PRODUCTION ? 'chunkhash' : 'hash'; 
 
+var argv = process.argv.slice(2),
+    host = '';
+if(argv.length > 2 && argv[2] == '--online'){
+    host = 'https://www.lgstatic.com/activity-rsrc/dist/business-2018/'
+}
 
 let plugins = [
     new webpack.DefinePlugin({
@@ -53,7 +58,7 @@ module.exports = {
     output:{
         path:path.resolve(__dirname,'../dist/business-2018'),
         filename:'js/[name].['+hash+':8].js',
-        publicPath:''  // url 相对于html
+        publicPath:host//''  // url 相对于html
     },
     resolve: {
         modules: ['node_modules'],

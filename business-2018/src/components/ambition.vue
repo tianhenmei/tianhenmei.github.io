@@ -69,13 +69,19 @@
         </div>
         <div class="ambition__activity__dream__title">招聘风暴：春招前，互联网最大规模人才招聘专场</div>
         <div class="ambition__img">
-            <div class="ambition__img__center">
+            <div class="ambition__img__center" v-if="swiperStatus">
                 <swiper :options="swiperOption" ref="mySwiper">
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
                         <img class="ambition__img__one" :src="one" />
                     </swiper-slide>
                 </swiper>
-                <!--<div class="swiper-container" ref="mySwiper"></div>-->
+                <!--<div class="swiper-container" ref="mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(one,index) in imgs" :key="index">
+                            <img class="ambition__img__one" :src="one" />
+                        </div>
+                    </div>
+                </div>-->
             </div>
         </div>
         <div class="ambition__link">
@@ -146,13 +152,19 @@
                     require('../assets/images/activity/ambition-04.png'),
                     require('../assets/images/activity/ambition-05.png')
                 ],
+                swiperStatus:false,
                 swiperOption:{
-                    autoplay:true,
+                    autoplay:{
+                        delay: 3000,
+                        //用户操作swiper之后，是否禁止autoplay.默认为true：停止。
+                        disableOnInteraction:false,
+                    },
                     loop:true,
                     effect: 'coverflow',
                     grabCursor: true,
                     slidesPerView: 1,
                     centeredSlides: true,
+                    loopAdditionalSlides:1,
                     coverflowEffect: {
                         rotate: 0,
                         stretch: 300,
@@ -169,21 +181,23 @@
                 if(n == 'activity6' && !this.firstTime){
                     this.firstTime = true;
                     this.$nextTick(() => {
-                        this.swiperOption = {
-                            autoplay:true,
-                            loop:true,
-                            effect: 'coverflow',
-                            grabCursor: true,
-                            slidesPerView: 1,
-                            centeredSlides: true,
-                            coverflowEffect: {
-                                rotate: 0,
-                                stretch: 300,
-                                depth: 100,
-                                modifier: 1,
-                                slideShadows : true,
-                            }
-                        }
+                        this.swiperStatus = true;
+                        // var mySwiper = new Swiper('.swiper-container', this.swiperOption);
+                        // this.swiperOption = {
+                        //     autoplay:true,
+                        //     loop:true,
+                        //     effect: 'coverflow',
+                        //     grabCursor: true,
+                        //     slidesPerView: 1,
+                        //     centeredSlides: true,
+                        //     coverflowEffect: {
+                        //         rotate: 0,
+                        //         stretch: 300,
+                        //         depth: 100,
+                        //         modifier: 1,
+                        //         slideShadows : true,
+                        //     }
+                        // }
                     });
                 }
             }
