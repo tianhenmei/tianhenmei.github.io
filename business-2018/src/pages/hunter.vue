@@ -33,7 +33,7 @@
                         <ul class="hunter__content__list clearfix" 
                             :class="contentStatus(pindex) ? 'opacityChange delay1-0' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'" ref="hunter__content__list">
                             <li class="hunter__content__li" v-for="(one,index) in item.list">
-                                <div class="hunter__content__ratio"><DynamicNumber :num="scrllStatus ? one.ratio : 0" :wait="wait"></DynamicNumber>%</div>
+                                <div class="hunter__content__ratio" v-if="false"><DynamicNumber :num="scrllStatus ? one.ratio : 0" :wait="wait"></DynamicNumber>%</div>
                                 <div class="hunter__content__bg">
                                     <div class="hunter__content__progress"
                                         :class="contentStatus(pindex) ? 'heightChange delay1-5' : showArr.indexOf(pindex) != -1 ? '' : 'initHide'" 
@@ -92,7 +92,7 @@
                         ratio:45,
                         text:'3年+'
                     },{
-                        ratio:28,
+                        ratio:29,
                         text:'5年+'
                     },{
                         ratio:5,

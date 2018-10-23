@@ -36,13 +36,15 @@ let plugins = [
         template: path.resolve(__dirname, `../src/index.html`),
         inject: true
     }),
-    new CleanWebpackPlugin(['dist'],{
-        root:path.resolve(__dirname, '../')
-    }),//实例化，参数为目录
+    //实例化，参数为目录
     new VueLoaderPlugin()
 ]
 if(!IS_PRODUCTION){
-    plugins.push(new webpack.HotModuleReplacementPlugin())   
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+}else {
+    plugins.push(new CleanWebpackPlugin(['dist'],{
+        root:path.resolve(__dirname, '../')
+    }))
 }
 module.exports = {
     // Chosen mode tells webpack to use its built-in optimizations accordingly.
