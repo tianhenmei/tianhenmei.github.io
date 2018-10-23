@@ -74,6 +74,8 @@
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
                         <img class="ambition__img__one" :src="one" />
                     </swiper-slide>
+                    <div class="ambition__arrow ambition__arrow--left swiper-button-prev" slot="button-prev"></div>
+                    <div class="ambition__arrow ambition__arrow--right swiper-button-next" slot="button-next"></div>
                 </swiper>
                 <!--<div class="swiper-container" ref="mySwiper">
                     <div class="swiper-wrapper">
@@ -165,6 +167,10 @@
                     slidesPerView: 1,
                     centeredSlides: true,
                     loopAdditionalSlides:1,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    },
                     coverflowEffect: {
                         rotate: 0,
                         stretch: 300,
@@ -572,6 +578,27 @@
             .swiper-slide-shadow-left,
             .swiper-slide-shadow-right {
                 // display:none;
+            }
+            .swiper-slide-prev,
+            .swiper-slide-next {
+                opacity:0.85;
+            }
+        }
+
+        &__arrow {
+            width:80px;
+            height:80px;
+            background-repeat:no-repeat;
+            background-position:center top;
+            position:absolute;
+            top:634px;
+            &--left {
+                left:0;
+                background-image:url('~assets/images/activity/ambition-left.png');
+            }
+            &--right {
+                right:0;
+                background-image:url('~assets/images/activity/ambition-right.png');
             }
         }
         
