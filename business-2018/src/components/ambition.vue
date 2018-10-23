@@ -30,7 +30,7 @@
                         <div class="ambition__content__name">招聘风暴周</div>
                         <div class="ambition__content__green strong">投递量增加186%</div>
                         <div class="ambition__content__detail">春招前抢占优质人才的最大专场<br/>平均投递量相较平时增加186%</div>
-                        <a class="ambition__content__btn" :href="storm" targe="_blank">在线查看</a>
+                        <a class="ambition__content__btn" :href="storm" target="_blank">在线查看</a>
                     </div>
                 </div>
                 <contrast
@@ -70,7 +70,9 @@
         <div class="ambition__activity__dream__title">招聘风暴：春招前，互联网最大规模人才招聘专场</div>
         <div class="ambition__img">
             <div class="ambition__img__center" v-if="swiperStatus">
-                <swiper :options="swiperOption" ref="mySwiper">
+                <swiper :options="swiperOption" ref="mySwiper"
+                    @mouseenter.stop.prevent="stopSwiperAutoplay"
+                    @mouseleave.stop.prevent="startSwiperAutoplay">
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
                         <img class="ambition__img__one" :src="one" />
                     </swiper-slide>
@@ -104,7 +106,10 @@
             swiperSlide
         },
         computed:{
-            ...mapState(['activeActivity'])
+            ...mapState(['activeActivity']),
+            swiper() {
+                return this.$refs.mySwiper.swiper
+            }
         },
         data(){
             return {
@@ -123,7 +128,7 @@
                     name:'拉勾之夜',
                     detail:'呈现一场用野心探索未来的互联网人年度盛典'
                 }],
-                link:'https://activity.lagou.com/activity/dist/ambition2017/pc/index.html',
+                link:'https://activity.lagou.com/activity/dist/stormWeek2017/pc/index.html',
                 storm:'https://activity.lagou.com/activity/dist/stormWeek2017/pc/index.html',
                 employer:'https://activity.lagou.com/topic/thebestemployers.html',
                 nightLink:'http://activity.lagou.com/activity/dist/yxsd2017/index.html',
@@ -173,8 +178,8 @@
                     },
                     coverflowEffect: {
                         rotate: 0,
-                        stretch: 300,
-                        depth: 100,
+                        stretch: 300,   // slide左右距离
+                        depth: 100, // slide前后距离
                         modifier: 1,
                         slideShadows : true,
                     }
@@ -206,6 +211,14 @@
                         // }
                     });
                 }
+            }
+        },
+        methods:{
+            stopSwiperAutoplay(){
+                this.swiper.autoplay.disableOnInteraction = true;
+            },
+            startSwiperAutoplay(){
+                this.swiper.autoplay.disableOnInteraction = false;
             }
         }
     }
