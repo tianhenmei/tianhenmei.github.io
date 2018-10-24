@@ -69,10 +69,10 @@
         </div>
         <div class="ambition__activity__dream__title">招聘风暴：春招前，互联网最大规模人才招聘专场</div>
         <div class="ambition__img">
-            <div class="ambition__img__center" v-if="swiperStatus">
-                <swiper :options="swiperOption" ref="mySwiper"
-                    @mouseenter.stop.prevent="stopSwiperAutoplay"
-                    @mouseleave.stop.prevent="startSwiperAutoplay">
+            <div class="ambition__img__center" v-if="swiperStatus"
+                @mouseenter.stop.prevent="stopSwiperAutoplay"
+                @mouseleave.stop.prevent="startSwiperAutoplay">
+                <swiper :options="swiperOption" ref="mySwiper">
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
                         <img class="ambition__img__one" :src="one" />
                     </swiper-slide>
@@ -215,10 +215,10 @@
         },
         methods:{
             stopSwiperAutoplay(){
-                this.swiper.autoplay.disableOnInteraction = true;
+                this.swiper.autoplay.stop()
             },
             startSwiperAutoplay(){
-                this.swiper.autoplay.disableOnInteraction = false;
+                this.swiper.autoplay.start()
             }
         }
     }
