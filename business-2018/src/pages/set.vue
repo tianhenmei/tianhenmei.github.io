@@ -9,7 +9,7 @@
         <div class="package__banner package--03"></div>
         <div class="package__banner package--04"></div>
         <div class="package__banner package--05"></div>
-        <yh-form :countNum="12"></yh-form>
+        <yh-form :countNum="12" extend1="LGJ"></yh-form>
     </div>
 </template>
 <script>

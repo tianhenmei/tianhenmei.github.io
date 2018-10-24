@@ -76,7 +76,8 @@
                     }]
                 }
             },
-            countNum:Number
+            countNum:Number,
+            extend1:String,
         },
         data(){
             let list = this.formList,
@@ -168,7 +169,7 @@
                         contact:formData.phone,
                         city:formData.address,
                         companyName:formData.name,
-                        extend1:'LGBANN'
+                        extend1:this.extend1
                     };
                 this.$store.dispatch('postForm',{
                     params:{

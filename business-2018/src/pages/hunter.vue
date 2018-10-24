@@ -54,6 +54,7 @@
             :titleBg="titleBg"
             :formList="formList"
             :countNum="11"
+            extend1="HUNTER"
             ></yh-form>
     </div>
 </template>

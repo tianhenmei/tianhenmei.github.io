@@ -43,6 +43,7 @@
             backgroundColor="#f5f6f8" 
             :titleBg="titleBg"
             :countNum="10"
+            :extend1="getExtend1"
             ></yh-form>
     </div>
 </template>
@@ -221,6 +222,23 @@
                 }],
                 // 表单
                 titleBg:require('../assets/images/ads/form-title.png')
+            }
+        },
+        computed:{
+            getExtend1(){
+                switch(this.active){
+                    case 0:  // PC banner
+                        return 'LGBANN';
+                    case 1:  // APP banner
+                        return 'APPBANN';
+                    case 2:  // APP 开屏
+                        return 'APP_OPEN';
+                    case 3:  // 热门公司
+                        return 'HOT_COMPANY';
+                    case 3:  // 热门职位
+                        return 'SYRM';
+                }
+                return '';
             }
         },
         components:{
