@@ -20,12 +20,20 @@
             top:0;
         }
         &__line {
-            width:100%;
+            // width:100%;
+            width:1920px;
             height:650px;
-            background:no-repeat center top;
+            // background:no-repeat center top;
             position:absolute;
-            left:0;
+            // left:0;
+            left:50%;
             top:0;
+            margin-left:-960px;
+            &--center {
+                width:100%;
+                height:100%;
+                background:no-repeat center top;
+            }
             &--left {
                 background-image:url('~assets/images/line-left.png');
             }
@@ -303,7 +311,7 @@
     @keyframes littleBottomIn40 {
         0% {
             opacity:0;
-            transform:translate3d(0,40,0);
+            transform:translate3d(0,40px,0);
         }
         100% {
             opacity:1;
@@ -316,7 +324,7 @@
     @keyframes littleBottomIn30 {
         0% {
             opacity:0;
-            transform:translate3d(0,40,0);
+            transform:translate3d(0,30px,0);
         }
         100% {
             opacity:1;
@@ -329,7 +337,7 @@
     @keyframes littleBottomIn20 {
         0% {
             opacity:0;
-            transform:translate3d(0,40,0);
+            transform:translate3d(0,20px,0);
         }
         100% {
             opacity:1;
@@ -337,12 +345,34 @@
         }
     }
 
-    .lineLeftTopIn {
-        animation:lineLeftTopIn 0.1666s 1.4s both linear;
+    .lineLeftIn {
+        animation:lineLeftIn 0.1666s 1.4s both linear;
     }
-    @keyframes lineLeftTopIn {
+    @keyframes lineLeftIn {
         0% {
-            transform:translate3d(-100%,-100%,0);
+            transform:translate3d(-100%,0,0);
+        }
+        100% {
+            transform:translate3d(0,0,0);
+        }
+    }
+    .lineTopIn {
+        animation:lineTopIn 0.1666s 1.4s both linear;
+    }
+    @keyframes lineTopIn {
+        0% {
+            transform:translate3d(0,-100%,0);
+        }
+        100% {
+            transform:translate3d(0,0,0);
+        }
+    }
+    .lineBottomIn {
+        animation:lineBottomIn 0.1666s 1.4s both linear;
+    }
+    @keyframes lineBottomIn {
+        0% {
+            transform:translate3d(0,100%,0);
         }
         100% {
             transform:translate3d(0,0,0);

@@ -6,8 +6,12 @@
     <div class="main">
         <div class="main__banner">
             <div class="main__banner__bg" :class="'zoomBigIn delay1-0'"></div>
-            <div class="main__banner__line main__banner__line--left" :class="'lineLeftTopIn'"></div>
-            <div class="main__banner__line main__banner__line--right" :class="'lineLeftBottomIn'"></div>
+            <div class="main__banner__line" :class="'lineLeftIn'">
+                <div class="main__banner__line--center main__banner__line--left lineTopIn"></div>
+            </div>
+            <div class="main__banner__line" :class="'lineLeftIn'">
+                <div class="main__banner__line--center main__banner__line--right lineBottomIn"></div>
+            </div>
             <div class="main__banner__center">
                 <img class="main__banner__name" :class="'littleBottomIn littleBottomIn40 delay1-1667 duration0-333'" src="~assets/images/main/banner-name@2.png"/>
                 <img class="main__banner__title" :class="'littleBottomIn littleBottomIn30 delay1-2667 duration0-233'" src="~assets/images/main/banner-title@2.png" />
