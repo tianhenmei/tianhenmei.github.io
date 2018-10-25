@@ -1486,9 +1486,49 @@
 
 .activity__banner {
   width: 100%;
-  height: 70px;
-  padding: 550px 0 0 0;
-  background: url(../images/activity/banner.19ec64de.png) no-repeat center top;
+  height: 620px;
+  position: relative;
+}
+.activity__banner__pure {
+    width: 100%;
+    height: 620px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.activity__banner__pure--left {
+      width: 50%;
+      height: 620px;
+      float: left;
+      background-color: #697787;
+}
+.activity__banner__pure--right {
+      width: 50%;
+      height: 620px;
+      float: left;
+      background-color: #465466;
+}
+.activity__banner__img {
+    width: 100%;
+    height: 620px;
+    background: url(../images/activity/banner-02.2373f429.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.activity__banner__center {
+    width: 1000px;
+    height: 550px;
+    margin: 0 auto;
+    position: relative;
+}
+.activity__banner__title {
+    width: 541px;
+    height: 230px;
+    background: url(../images/activity/banner-title.cc5474cd.png) no-repeat center top;
+    position: absolute;
+    left: 2px;
+    top: 170px;
 }
 .activity__nav {
   width: 100%;

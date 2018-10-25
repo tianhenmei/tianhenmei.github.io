@@ -4,6 +4,14 @@
 <template>
     <div class="activity">
         <div class="activity__banner">
+            <div class="activity__banner__pure clearfix">
+                <div class="activity__banner__pure--left"></div>
+                <div class="activity__banner__pure--right"></div>
+            </div>
+            <div class="activity__banner__img"></div>
+            <div class="activity__banner__center">
+                <div class="activity__banner__title"></div>
+            </div>
             <div class="activity__nav" ref="yh-center__nav">
                 <div class="activity__nav__layer" :class="{'activity__nav__layer--fixed':tab.fixed}" ref="yh-center__tab">
                     <div class="activity__nav__center clearfix">

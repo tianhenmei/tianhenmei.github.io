@@ -1,9 +1,51 @@
 .activity {
     &__banner {
         width:100%;
-        height:70px;
-        padding:550px 0 0 0;
-        background:url('~assets/images/activity/banner.png') no-repeat center top;
+        height:620px;
+        // height:70px;
+        // padding:550px 0 0 0;
+        position:relative;
+        &__pure {
+            width:100%;
+            height:620px;
+            position: absolute;
+            left:0;
+            top:0;
+            &--left {
+                width:50%;
+                height:620px;
+                float:left;
+                background-color:#697787;
+            }
+            &--right {
+                width:50%;
+                height:620px;
+                float:left;
+                background-color:#465466;
+            }
+        }
+        &__img {
+            width:100%;
+            height:620px;
+            background:url('~assets/images/activity/banner-02.png') no-repeat center top;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+        &__center {
+            width:1000px;
+            height:550px;
+            margin:0 auto;
+            position:relative;
+        }
+        &__title {
+            width:541px;
+            height:230px;
+            background:url('~assets/images/activity/banner-title.png') no-repeat center top;
+            position: absolute;
+            left:2px;
+            top:170px;
+        }
     }
     &__nav {
         width:100%;
