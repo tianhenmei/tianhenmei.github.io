@@ -447,6 +447,242 @@
 100% {
 }
 }
+.zoomBigIn {
+  -webkit-animation: zoomBigIn 0.833s both linear;
+          animation: zoomBigIn 0.833s both linear;
+}
+@-webkit-keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+@keyframes zoomBigIn {
+0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+            transform: scale3d(1.03, 1.03, 1.03);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+}
+}
+.littleBottomIn {
+  -webkit-animation: littleBottomIn 0.5s both linear;
+          animation: littleBottomIn 0.5s both linear;
+}
+@-webkit-keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100px, 0);
+            transform: translate3d(0, 100px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.littleBottomIn40 {
+  -webkit-animation-name: littleBottomIn40;
+          animation-name: littleBottomIn40;
+}
+@-webkit-keyframes littleBottomIn40 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 40px, 0);
+            transform: translate3d(0, 40px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn40 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 40px, 0);
+            transform: translate3d(0, 40px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.littleBottomIn30 {
+  -webkit-animation-name: littleBottomIn30;
+          animation-name: littleBottomIn30;
+}
+@-webkit-keyframes littleBottomIn30 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+            transform: translate3d(0, 30px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn30 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 30px, 0);
+            transform: translate3d(0, 30px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.littleBottomIn20 {
+  -webkit-animation-name: littleBottomIn20;
+          animation-name: littleBottomIn20;
+}
+@-webkit-keyframes littleBottomIn20 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20px, 0);
+            transform: translate3d(0, 20px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes littleBottomIn20 {
+0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 20px, 0);
+            transform: translate3d(0, 20px, 0);
+}
+100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.lineLeftIn {
+  -webkit-animation: lineLeftIn 0.1666s 1.4s both linear;
+          animation: lineLeftIn 0.1666s 1.4s both linear;
+}
+@-webkit-keyframes lineLeftIn {
+0% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes lineLeftIn {
+0% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.lineTopIn {
+  -webkit-animation: lineTopIn 0.1666s 1.4s both linear;
+          animation: lineTopIn 0.1666s 1.4s both linear;
+}
+@-webkit-keyframes lineTopIn {
+0% {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes lineTopIn {
+0% {
+    -webkit-transform: translate3d(0, -100%, 0);
+            transform: translate3d(0, -100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.lineBottomIn {
+  -webkit-animation: lineBottomIn 0.1666s 1.4s both linear;
+          animation: lineBottomIn 0.1666s 1.4s both linear;
+}
+@-webkit-keyframes lineBottomIn {
+0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes lineBottomIn {
+0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+.lineLeftBottomIn {
+  -webkit-animation: lineLeftBottomIn 0.1666s 1.4s both linear;
+          animation: lineLeftBottomIn 0.1666s 1.4s both linear;
+}
+@-webkit-keyframes lineLeftBottomIn {
+0% {
+    -webkit-transform: translate3d(-100%, 100%, 0);
+            transform: translate3d(-100%, 100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
+@keyframes lineLeftBottomIn {
+0% {
+    -webkit-transform: translate3d(-100%, 100%, 0);
+            transform: translate3d(-100%, 100%, 0);
+}
+100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+}
 .delay0-3 {
   -webkit-animation-delay: 0.3s;
           animation-delay: 0.3s;
@@ -475,9 +711,17 @@
   -webkit-animation-delay: 1.3333s;
           animation-delay: 1.3333s;
 }
+.delay1-3 {
+  -webkit-animation-delay: 1.3s;
+          animation-delay: 1.3s;
+}
 .delay1-5 {
   -webkit-animation-delay: 1.5s;
           animation-delay: 1.5s;
+}
+.delay1-7 {
+  -webkit-animation-delay: 1.7s;
+          animation-delay: 1.7s;
 }
 .duration0-1666 {
   -webkit-animation-duration: 0.1666s;

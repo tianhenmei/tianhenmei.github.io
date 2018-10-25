@@ -520,7 +520,12 @@
                 }
                 let nav = this.$refs['yh-center__nav'];
                 this.active = index;
-                window.scrollTo(0,nav.offsetTop);
+                // window.scrollTo(0,nav.offsetTop);
+                if(window.scrollY > nav.offsetTop){
+                    $('html,body').animate({
+                        'scrollTop':nav.offsetTop
+                    },500);
+                }
                 this.$store.commit('setActivity','activity'+index)
             }
         }

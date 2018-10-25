@@ -6,10 +6,10 @@
     <div class="main">
         <div class="main__banner">
             <div class="main__banner__bg" :class="'zoomBigIn delay1-0'"></div>
-            <div class="main__banner__line" :class="'lineLeftIn'">
+            <div class="main__banner__line">
                 <div class="main__banner__line--center main__banner__line--left lineTopIn"></div>
             </div>
-            <div class="main__banner__line" :class="'lineLeftIn'">
+            <div class="main__banner__line">
                 <div class="main__banner__line--center main__banner__line--right lineBottomIn"></div>
             </div>
             <div class="main__banner__center">
