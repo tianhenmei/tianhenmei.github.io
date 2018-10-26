@@ -9,7 +9,7 @@
                         backgroundImage:'url('+one.icon+')'
                     }"></div>
                     <div class="advantage__text">
-                        <div class="advantage__name">{{one.name}}</div>
+                        <div class="advantage__name strong">{{one.name}}</div>
                         <div class="advantage__detail">{{one.detail}}</div>
                     </div>
                 </div>

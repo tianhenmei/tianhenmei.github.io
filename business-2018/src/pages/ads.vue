@@ -3,14 +3,20 @@
 </style>
 <template>
     <div class="ads">
-        <div class="ads__banner"></div>
-        <div class="ads__nav" ref="yh-center__nav">
-            <div class="ads__nav__layer" :class="{'ads__nav__layer--fixed':tab.fixed}" ref="yh-center__tab">
-                <div class="ads__nav__center clearfix">
-                    <div class="ads__nav__one" v-for="(one,index) in nav"
-                        :class="'ads__nav__one--'+index+(active == index ? ' ads__nav__one--active' : '')"
-                        @click.stop.prevent="navChange(index)">
-                        <div class="ads__nav__name" :class="active == index ? 'strong' : ''">{{one.name}}<div class="ads__nav__border"></div></div>
+        <div class="ads__banner">
+            <div class="ads__banner__pure clearfix">
+                <div class="ads__banner__pure--left"></div>
+                <div class="ads__banner__pure--right"></div>
+            </div>
+            <div class="ads__banner__img"></div>
+            <div class="ads__nav" ref="yh-center__nav">
+                <div class="ads__nav__layer" :class="{'ads__nav__layer--fixed':tab.fixed}" ref="yh-center__tab">
+                    <div class="ads__nav__center clearfix">
+                        <div class="ads__nav__one" v-for="(one,index) in nav"
+                            :class="'ads__nav__one--'+index+(active == index ? ' ads__nav__one--active' : '')"
+                            @click.stop.prevent="navChange(index)">
+                            <div class="ads__nav__name" :class="active == index ? 'strong' : ''">{{one.name}}<div class="ads__nav__border"></div></div>
+                        </div>
                     </div>
                 </div>
             </div>

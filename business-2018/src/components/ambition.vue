@@ -594,7 +594,7 @@
             }
             .swiper-slide-prev,
             .swiper-slide-next {
-                opacity:0.85;
+                opacity:0.6;
             }
         }
 
@@ -603,6 +603,7 @@
             height:80px;
             background-repeat:no-repeat;
             background-position:center top;
+            background-size: 100%;
             position:absolute;
             top:634px;
             &--left {

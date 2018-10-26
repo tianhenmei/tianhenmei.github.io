@@ -1,8 +1,38 @@
 .ads {
     &__banner {
         width:100%;
-        height:550px;
-        background:url('~assets/images/ads/banner.png') no-repeat center top;
+        // height:621px;
+        height:71px;
+        padding-top:550px;
+        // background:url('~assets/images/ads/banner.png') no-repeat center top;
+        position:relative;
+        &__pure {
+            width:100%;
+            height:621px;
+            position: absolute;
+            left:0;
+            top:0;
+            &--left {
+                width:50%;
+                height:621px;
+                float:left;
+                background-color:#f7f7f7;
+            }
+            &--right {
+                width:50%;
+                height:621px;
+                float:left;
+                background-color:#e9e9e9;
+            }
+        }
+        &__img {
+            width:100%;
+            height:621px;
+            background:url('~assets/images/ads/banner-02.png') no-repeat center top;
+            position: absolute;
+            left:0;
+            top:0;
+        }
     }
     &__nav {
         width:100%;
