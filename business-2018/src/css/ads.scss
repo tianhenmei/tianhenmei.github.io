@@ -12,6 +12,11 @@
             position: absolute;
             left:0;
             top:0;
+            background:#f7f7f7;
+            background:-o-gradient(linear, 0 0, right 0, from(#f7f7f7), to(#e9e9e9));
+            background:-moz-linear-gradient(left, #f7f7f7, #e9e9e9);  
+            background:-webkit-gradient(linear, 0 0, right 0, from(#f7f7f7), to(#e9e9e9));
+            background:gradient(linear, 0 0, right 0, from(#f7f7f7), to(#e9e9e9));
             &--left {
                 width:50%;
                 height:621px;

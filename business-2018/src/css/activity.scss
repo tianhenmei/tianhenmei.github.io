@@ -11,23 +11,28 @@
             position: absolute;
             left:0;
             top:0;
+            background:#697a8c;
+            background:-o-gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
+            background:-moz-linear-gradient(left, #697a8c, #435366);  
+            background:-webkit-gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
+            background:gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
             &--left {
                 width:50%;
                 height:620px;
                 float:left;
-                background-color:#697787;
+                background-color:#697a8c;
             }
             &--right {
                 width:50%;
                 height:620px;
                 float:left;
-                background-color:#465466;
+                background-color:#435366;
             }
         }
         &__img {
             width:100%;
             height:620px;
-            background:url('~assets/images/activity/banner-02.png') no-repeat center top;
+            background:url('~assets/images/activity/banner-03.png') no-repeat center top;
             position: absolute;
             left:0;
             top:0;
@@ -45,6 +50,7 @@
             position: absolute;
             left:2px;
             top:170px;
+            opacity:0;
         }
     }
     &__nav {
@@ -52,6 +58,7 @@
         height:70px;
         position: relative;
         z-index: 2;
+        background-color:#fff;
         &__layer {
             width:100%;
             height:70px;

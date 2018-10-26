@@ -1496,23 +1496,28 @@
     position: absolute;
     left: 0;
     top: 0;
+    background: #697a8c;
+    background: -o-gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
+    background: -moz-linear-gradient(left, #697a8c, #435366);
+    background: -webkit-gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
+    background: gradient(linear, 0 0, right 0, from(#697a8c), to(#435366));
 }
 .activity__banner__pure--left {
       width: 50%;
       height: 620px;
       float: left;
-      background-color: #697787;
+      background-color: #697a8c;
 }
 .activity__banner__pure--right {
       width: 50%;
       height: 620px;
       float: left;
-      background-color: #465466;
+      background-color: #435366;
 }
 .activity__banner__img {
     width: 100%;
     height: 620px;
-    background: url(../images/activity/banner-02.2373f429.png) no-repeat center top;
+    background: url(../images/activity/banner-03.ab7d79bc.png) no-repeat center top;
     position: absolute;
     left: 0;
     top: 0;
@@ -1530,12 +1535,14 @@
     position: absolute;
     left: 2px;
     top: 170px;
+    opacity: 0;
 }
 .activity__nav {
   width: 100%;
   height: 70px;
   position: relative;
   z-index: 2;
+  background-color: #fff;
 }
 .activity__nav__layer {
     width: 100%;

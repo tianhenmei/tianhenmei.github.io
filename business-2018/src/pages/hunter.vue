@@ -23,6 +23,29 @@
                     </div>
                 </div>
                 <div class="hunter__right">
+                    <div class="hunter__content"
+                        :class="'hunter__content--0'+(active+1)+(' active '+activeClass)">
+                        <div class="hunter__content__title" 
+                            :class="contentStatus(active) ? removeClassStatus ? '' : 'opacityChange delay0-3' : ''">{{hunter[active].name}}</div>
+                        <div class="hunter__content__info"
+                            :class="contentStatus(active) ? removeClassStatus ? '' : 'opacityChange delay0-6' : ''">{{hunter[active].info}}</div>
+                        <ul class="hunter__content__list clearfix" 
+                            :class="contentStatus(active) ? removeClassStatus ? '' : 'opacityChange delay1-0' : ''" ref="hunter__content__list">
+                            <li class="hunter__content__li" v-for="(one,index) in hunter[active].list">
+                                <div class="hunter__content__ratio" v-if="false"><DynamicNumber :num="scrllStatus ? one.ratio : 0" :wait="wait"></DynamicNumber>%</div>
+                                <div class="hunter__content__bg">
+                                    <div class="hunter__content__progress"
+                                        :class="contentStatus(active) ? removeClassStatus ? '' : 'heightChange delay1-5' : ''" 
+                                        :style="{
+                                            height:one.ratio+'%'
+                                        }"></div>
+                                </div>
+                                <div class="hunter__content__text">{{one.text}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!--<div class="hunter__right">
                     <div class="hunter__content" 
                         v-for="(item,pindex) in hunter"
                         :class="'hunter__content--0'+(pindex+1)+(pindex == active ? ' active '+activeClass : '')">
@@ -45,7 +68,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="hunter__banner banner--03"></div>
@@ -119,6 +142,7 @@
                 active:0,
                 activeIcon:0,
                 activeClass:'',
+                removeClassStatus:false,
                 animate:true,
                 // 滚动的距离是否开始显示
                 scrllStatus:false,
@@ -155,7 +179,7 @@
             window.onscroll = scrollEvent;
             function scrollEvent(e){
                 let top = e ? e.currentTarget.scrollY : window.scrollY;
-                if(list[self.active].offsetTop < (top + height)){
+                if(list.offsetTop < (top + height)){
                     self.scrllStatus = true;
                 }
             }
@@ -163,20 +187,28 @@
         },
         methods:{
             contentStatus(index){
-                if(index == this.active && this.showArr.indexOf(index) == -1 && this.scrllStatus && this.animate){
+                if(index == this.active && this.showArr.length == 0){
                     return true;
                 }
+                // if(index == this.active && this.showArr.indexOf(index) == -1 && this.scrllStatus && this.animate){
+                //     return true;
+                // }
                 return false;
             },
             changeHunter(index){
-                this.activeClass = 'opacityChange-out';
+                // this.activeClass = 'opacityChange-out';
                 this.animate = false;
                 this.activeIcon = index;
+                // setTimeout(() => {
+                //     this.showArr.push(this.active);
+                //     this.active = index;
+                //     // this.activeClass = 'opacityChange';
+                //     this.animate = true;
+                // },300);
+                this.removeClassStatus = true;
                 setTimeout(() => {
                     this.showArr.push(this.active);
                     this.active = index;
-                    this.activeClass = 'opacityChange';
-                    this.animate = true;
                 },300);
             }
         }

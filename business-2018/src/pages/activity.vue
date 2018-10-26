@@ -5,8 +5,8 @@
     <div class="activity">
         <div class="activity__banner">
             <div class="activity__banner__pure clearfix">
-                <div class="activity__banner__pure--left"></div>
-                <div class="activity__banner__pure--right"></div>
+                <!--<div class="activity__banner__pure--left"></div>
+                <div class="activity__banner__pure--right"></div>-->
             </div>
             <div class="activity__banner__img"></div>
             <div class="activity__banner__center">

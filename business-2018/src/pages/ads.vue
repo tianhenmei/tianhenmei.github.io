@@ -5,8 +5,8 @@
     <div class="ads">
         <div class="ads__banner">
             <div class="ads__banner__pure clearfix">
-                <div class="ads__banner__pure--left"></div>
-                <div class="ads__banner__pure--right"></div>
+                <!--<div class="ads__banner__pure--left"></div>
+                <div class="ads__banner__pure--right"></div>-->
             </div>
             <div class="ads__banner__img"></div>
             <div class="ads__nav" ref="yh-center__nav">
