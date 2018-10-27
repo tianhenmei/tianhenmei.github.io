@@ -653,7 +653,7 @@
             }
             .swiper-slide-shadow-left,
             .swiper-slide-shadow-right {
-                display:none;
+                display:none!important;
             }
             .swiper-slide-prev,
             .swiper-slide-next {
