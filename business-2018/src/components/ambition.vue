@@ -75,11 +75,14 @@
                 <swiper :options="swiperOption" ref="mySwiper">
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
                         <div class="ambition__img__one">
-                            <img class="img__one"
-                                v-if="one.list"
-                                v-for="(item,iindex) in one.list" :src="item" />
-                            <img class="img__one"
-                                v-else :src="one.url" />
+                            <img class="img__one" v-if="one.list"
+                                v-for="(item,iindex) in one.list" 
+                                :src="item.url"
+                                :style="{
+                                    height:item.height+'px'
+                                }" />
+                            <img class="img__one" v-else 
+                                :src="one.url" />
                         </div>
                     </swiper-slide>
                     <div class="ambition__arrow ambition__arrow--left swiper-button-prev" slot="button-prev"></div>
@@ -164,57 +167,146 @@
                     {
                         url:require('../assets/images/activity/ambition-03.png'),
                         list:[
-                            require('../assets/images/activity/ambition-03_01.png'),
-                            require('../assets/images/activity/ambition-03_02.png'),
-                            require('../assets/images/activity/ambition-03_03.png'),
-                            require('../assets/images/activity/ambition-03_04.png'),
-                            require('../assets/images/activity/ambition-03_05.png'),
-                            require('../assets/images/activity/ambition-03_06.png'),
-                            require('../assets/images/activity/ambition-03_07.png'),
-                            require('../assets/images/activity/ambition-03_08.png'),
-                            require('../assets/images/activity/ambition-03_09.png'),
-                            require('../assets/images/activity/ambition-03_10.png')
+                            {
+                                url:require('../assets/images/activity/ambition-03_01.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_02.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_03.png'),
+                                height:134
+                            },{
+                                url:require('../assets/images/activity/ambition-03_04.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_05.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_06.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_07.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_08.png'),
+                                height:134
+                            },{
+                                url:require('../assets/images/activity/ambition-03_09.png'),
+                                height:135
+                            },{
+                                url:require('../assets/images/activity/ambition-03_10.png'),
+                                height:135
+                            }
                         ]
                     },{
                         url:require('../assets/images/activity/ambition-04.png'),
                         list:[
-                            require('../assets/images/activity/ambition-04_01.png'),
-                            require('../assets/images/activity/ambition-04_02.png'),
-                            require('../assets/images/activity/ambition-04_03.png'),
-                            require('../assets/images/activity/ambition-04_04.png'),
-                            require('../assets/images/activity/ambition-04_05.png'),
-                            require('../assets/images/activity/ambition-04_06.png'),
-                            require('../assets/images/activity/ambition-04_07.png'),
-                            require('../assets/images/activity/ambition-04_08.png'),
-                            require('../assets/images/activity/ambition-04_09.png'),
-                            require('../assets/images/activity/ambition-04_10.png'),
-                            require('../assets/images/activity/ambition-04_11.png'),
-                            require('../assets/images/activity/ambition-04_12.png'),
-                            require('../assets/images/activity/ambition-04_13.png'),
-                            require('../assets/images/activity/ambition-04_14.png'),
-                            require('../assets/images/activity/ambition-04_15.png')
+                            {
+                                url:require('../assets/images/activity/ambition-04_01.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_02.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_03.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_04.png'),
+                                height:89
+                            },{
+                                url:require('../assets/images/activity/ambition-04_05.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_06.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_07.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_08.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_09.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_10.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_11.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_12.png'),
+                                height:89
+                            },{
+                                url:require('../assets/images/activity/ambition-04_13.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_14.png'),
+                                height:90
+                            },{
+                                url:require('../assets/images/activity/ambition-04_15.png'),
+                                height:90
+                            }
                         ]
                     },{
                         url:require('../assets/images/activity/ambition-05.png'),
                         list:[
-                            require('../assets/images/activity/ambition-05_01.png'),
-                            require('../assets/images/activity/ambition-05_02.png'),
-                            require('../assets/images/activity/ambition-05_03.png'),
-                            require('../assets/images/activity/ambition-05_04.png'),
-                            require('../assets/images/activity/ambition-05_05.png'),
-                            require('../assets/images/activity/ambition-05_06.png'),
-                            require('../assets/images/activity/ambition-05_07.png'),
-                            require('../assets/images/activity/ambition-05_08.png'),
-                            require('../assets/images/activity/ambition-05_09.png'),
-                            require('../assets/images/activity/ambition-05_10.png'),
-                            require('../assets/images/activity/ambition-05_11.png'),
-                            require('../assets/images/activity/ambition-05_12.png'),
-                            require('../assets/images/activity/ambition-05_13.png'),
-                            require('../assets/images/activity/ambition-05_14.png'),
-                            require('../assets/images/activity/ambition-05_15.png'),
-                            require('../assets/images/activity/ambition-05_16.png'),
-                            require('../assets/images/activity/ambition-05_17.png'),
-                            require('../assets/images/activity/ambition-05_18.png'),
+                            {
+                                url:require('../assets/images/activity/ambition-05_01.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_02.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_03.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_04.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_05.png'),
+                                height:74
+                            },{
+                                url:require('../assets/images/activity/ambition-05_06.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_07.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_08.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_09.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_10.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_11.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_12.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_13.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_14.png'),
+                                height:74
+                            },{
+                                url:require('../assets/images/activity/ambition-05_15.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_16.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_17.png'),
+                                height:75
+                            },{
+                                url:require('../assets/images/activity/ambition-05_18.png'),
+                                height:75
+                            }
                         ]
                     }
                 ],

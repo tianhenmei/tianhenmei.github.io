@@ -8,7 +8,14 @@
                 <!--<div class="ads__banner__pure--left"></div>
                 <div class="ads__banner__pure--right"></div>-->
             </div>
-            <div class="ads__banner__img"></div>
+            <div class="ads__banner__img">
+                <img class="img__one"
+                    v-for="(item,iindex) in bannerList" 
+                    :src="item.url"
+                    :style="{
+                        height:item.height+'px'
+                    }" />
+            </div>
             <div class="ads__nav" ref="yh-center__nav">
                 <div class="ads__nav__layer" :class="{'ads__nav__layer--fixed':tab.fixed}" ref="yh-center__tab">
                     <div class="ads__nav__center clearfix">
@@ -67,6 +74,33 @@
                     click_status:false,
                     fixed:false
                 },
+                bannerList:[
+                    {
+                        url:require('../assets/images/ads/banner-02_01.png'),
+                        height:78
+                    },{
+                        url:require('../assets/images/ads/banner-02_02.png'),
+                        height:77
+                    },{
+                        url:require('../assets/images/ads/banner-02_03.png'),
+                        height:78
+                    },{
+                        url:require('../assets/images/ads/banner-02_04.png'),
+                        height:78
+                    },{
+                        url:require('../assets/images/ads/banner-02_05.png'),
+                        height:77
+                    },{
+                        url:require('../assets/images/ads/banner-02_06.png'),
+                        height:78
+                    },{
+                        url:require('../assets/images/ads/banner-02_07.png'),
+                        height:77
+                    },{
+                        url:require('../assets/images/ads/banner-02_08.png'),
+                        height:78
+                    }
+                ],
                 nav:[{
                     name:'PCbanner',
                     child:[{

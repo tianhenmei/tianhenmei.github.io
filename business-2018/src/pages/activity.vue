@@ -8,7 +8,14 @@
                 <!--<div class="activity__banner__pure--left"></div>
                 <div class="activity__banner__pure--right"></div>-->
             </div>
-            <div class="activity__banner__img"></div>
+            <div class="activity__banner__img">
+                <img class="img__one"
+                    v-for="(item,iindex) in bannerList" 
+                    :src="item.url"
+                    :style="{
+                        height:item.height+'px'
+                    }" />
+            </div>
             <div class="activity__banner__center">
                 <div class="activity__banner__title"></div>
             </div>
@@ -174,6 +181,84 @@
                     click_status:false,
                     fixed:false
                 },
+                bannerList:[
+                    {
+                        url:require('../assets/images/activity/banner-03_01.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_02.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_03.png'),
+                        height:24
+                    },{
+                        url:require('../assets/images/activity/banner-03_04.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_05.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_06.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_07.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_08.png'),
+                        height:24
+                    },{
+                        url:require('../assets/images/activity/banner-03_09.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_10.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_11.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_12.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_13.png'),
+                        height:24
+                    },{
+                        url:require('../assets/images/activity/banner-03_14.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_15.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_16.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_17.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_18.png'),
+                        height:24
+                    },{
+                        url:require('../assets/images/activity/banner-03_19.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_20.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_21.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_22.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_23.png'),
+                        height:24
+                    },{
+                        url:require('../assets/images/activity/banner-03_24.png'),
+                        height:25
+                    },{
+                        url:require('../assets/images/activity/banner-03_25.png'),
+                        height:25
+                    }
+                ],
                 nav:[{
                     name:'极速入职',
                     time:require('../assets/images/activity/speed-time.png'),
