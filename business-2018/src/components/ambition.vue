@@ -74,7 +74,13 @@
                 @mouseleave.stop.prevent="startSwiperAutoplay">
                 <swiper :options="swiperOption" ref="mySwiper">
                     <swiper-slide v-for="(one,index) in imgs" :key="index">
-                        <img class="ambition__img__one" :src="one" />
+                        <div class="ambition__img__one">
+                            <img class="img__one"
+                                v-if="one.list"
+                                v-for="(item,iindex) in one.list" :src="item" />
+                            <img class="img__one"
+                                v-else :src="one.url" />
+                        </div>
                     </swiper-slide>
                     <div class="ambition__arrow ambition__arrow--left swiper-button-prev" slot="button-prev"></div>
                     <div class="ambition__arrow ambition__arrow--right swiper-button-next" slot="button-next"></div>
@@ -155,17 +161,71 @@
                     ]
                 },
                 imgs:[
-                    require('../assets/images/activity/ambition-03.png'),
-                    require('../assets/images/activity/ambition-04.png'),
-                    require('../assets/images/activity/ambition-05.png')
+                    {
+                        url:require('../assets/images/activity/ambition-03.png'),
+                        list:[
+                            require('../assets/images/activity/ambition-03_01.png'),
+                            require('../assets/images/activity/ambition-03_02.png'),
+                            require('../assets/images/activity/ambition-03_03.png'),
+                            require('../assets/images/activity/ambition-03_04.png'),
+                            require('../assets/images/activity/ambition-03_05.png'),
+                            require('../assets/images/activity/ambition-03_06.png'),
+                            require('../assets/images/activity/ambition-03_07.png'),
+                            require('../assets/images/activity/ambition-03_08.png'),
+                            require('../assets/images/activity/ambition-03_09.png'),
+                            require('../assets/images/activity/ambition-03_10.png')
+                        ]
+                    },{
+                        url:require('../assets/images/activity/ambition-04.png'),
+                        list:[
+                            require('../assets/images/activity/ambition-04_01.png'),
+                            require('../assets/images/activity/ambition-04_02.png'),
+                            require('../assets/images/activity/ambition-04_03.png'),
+                            require('../assets/images/activity/ambition-04_04.png'),
+                            require('../assets/images/activity/ambition-04_05.png'),
+                            require('../assets/images/activity/ambition-04_06.png'),
+                            require('../assets/images/activity/ambition-04_07.png'),
+                            require('../assets/images/activity/ambition-04_08.png'),
+                            require('../assets/images/activity/ambition-04_09.png'),
+                            require('../assets/images/activity/ambition-04_10.png'),
+                            require('../assets/images/activity/ambition-04_11.png'),
+                            require('../assets/images/activity/ambition-04_12.png'),
+                            require('../assets/images/activity/ambition-04_13.png'),
+                            require('../assets/images/activity/ambition-04_14.png'),
+                            require('../assets/images/activity/ambition-04_15.png')
+                        ]
+                    },{
+                        url:require('../assets/images/activity/ambition-05.png'),
+                        list:[
+                            require('../assets/images/activity/ambition-05_01.png'),
+                            require('../assets/images/activity/ambition-05_02.png'),
+                            require('../assets/images/activity/ambition-05_03.png'),
+                            require('../assets/images/activity/ambition-05_04.png'),
+                            require('../assets/images/activity/ambition-05_05.png'),
+                            require('../assets/images/activity/ambition-05_06.png'),
+                            require('../assets/images/activity/ambition-05_07.png'),
+                            require('../assets/images/activity/ambition-05_08.png'),
+                            require('../assets/images/activity/ambition-05_09.png'),
+                            require('../assets/images/activity/ambition-05_10.png'),
+                            require('../assets/images/activity/ambition-05_11.png'),
+                            require('../assets/images/activity/ambition-05_12.png'),
+                            require('../assets/images/activity/ambition-05_13.png'),
+                            require('../assets/images/activity/ambition-05_14.png'),
+                            require('../assets/images/activity/ambition-05_15.png'),
+                            require('../assets/images/activity/ambition-05_16.png'),
+                            require('../assets/images/activity/ambition-05_17.png'),
+                            require('../assets/images/activity/ambition-05_18.png'),
+                        ]
+                    }
                 ],
                 swiperStatus:false,
                 swiperOption:{
-                    autoplay:{
-                        delay: 3000,
-                        //用户操作swiper之后，是否禁止autoplay.默认为true：停止。
-                        disableOnInteraction:false,
-                    },
+                    autoplay:false,
+                    // autoplay:{
+                    //     delay: 3000,
+                    //     //用户操作swiper之后，是否禁止autoplay.默认为true：停止。
+                    //     disableOnInteraction:false,
+                    // },
                     loop:true,
                     effect: 'coverflow',
                     grabCursor: true,
@@ -587,6 +647,9 @@
                 width:1090px;
                 height:1348px;
                 margin:0 auto;
+                .img__one {
+                    width:1090px;
+                }
             }
             .swiper-slide-shadow-left,
             .swiper-slide-shadow-right {

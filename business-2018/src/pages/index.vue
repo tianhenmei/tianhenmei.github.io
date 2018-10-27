@@ -5,7 +5,11 @@
 <template>
     <div class="main">
         <div class="main__banner">
-            <div class="main__banner__bg" :class="'zoomBigIn delay1-0'"></div>
+            <div class="main__banner__bg" :class="'zoomBigIn delay1-0'">
+                <img v-for="one in bannerList" 
+                    class="main__banner__bg__img"
+                    :src="one" />
+            </div>
             <div class="main__banner__line">
                 <div class="main__banner__line--center main__banner__line--left lineTopIn"></div>
             </div>
@@ -121,6 +125,32 @@
                     name:"最具实力",
                     detail:"3次<span class='green'>李克强</span>总理接见<br/>4年完成<span class='green'>5</span>轮融资<br/>已进入<span class='green'>IPO</span>筹备阶段"
                 }],
+                bannerList:[
+                    require('../assets/images/main/banner_01.png'),
+                    require('../assets/images/main/banner_02.png'),
+                    require('../assets/images/main/banner_03.png'),
+                    require('../assets/images/main/banner_04.png'),
+                    require('../assets/images/main/banner_05.png'),
+                    require('../assets/images/main/banner_06.png'),
+                    require('../assets/images/main/banner_07.png'),
+                    require('../assets/images/main/banner_08.png'),
+                    require('../assets/images/main/banner_09.png'),
+                    require('../assets/images/main/banner_10.png'),
+                    require('../assets/images/main/banner_11.png'),
+                    require('../assets/images/main/banner_12.png'),
+                    require('../assets/images/main/banner_13.png'),
+                    require('../assets/images/main/banner_14.png'),
+                    require('../assets/images/main/banner_15.png'),
+                    require('../assets/images/main/banner_16.png'),
+                    require('../assets/images/main/banner_17.png'),
+                    require('../assets/images/main/banner_18.png'),
+                    require('../assets/images/main/banner_19.png'),
+                    require('../assets/images/main/banner_20.png'),
+                    require('../assets/images/main/banner_21.png'),
+                    require('../assets/images/main/banner_22.png'),
+                    require('../assets/images/main/banner_23.png'),
+                    require('../assets/images/main/banner_24.png'),
+                ],
                 scrllStatus:false
             }
         },
@@ -143,6 +173,9 @@
         methods:{
             getCount(num) {
                 return '0000'.slice((num + '').length) + num;
+            },
+            getIndex(one){
+                return '00'.slice((one + '').length) + one;
             },
             toChildActivity(href){
                 window.location.href = '#/'+href
