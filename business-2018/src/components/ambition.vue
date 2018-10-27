@@ -220,12 +220,12 @@
                 ],
                 swiperStatus:false,
                 swiperOption:{
-                    autoplay:false,
-                    // autoplay:{
-                    //     delay: 3000,
-                    //     //用户操作swiper之后，是否禁止autoplay.默认为true：停止。
-                    //     disableOnInteraction:false,
-                    // },
+                    // autoplay:false,
+                    autoplay:{
+                        delay: 3000,
+                        //用户操作swiper之后，是否禁止autoplay.默认为true：停止。
+                        disableOnInteraction:false,
+                    },
                     loop:true,
                     effect: 'coverflow',
                     grabCursor: true,
@@ -653,7 +653,7 @@
             }
             .swiper-slide-shadow-left,
             .swiper-slide-shadow-right {
-                // display:none;
+                display:none;
             }
             .swiper-slide-prev,
             .swiper-slide-next {
