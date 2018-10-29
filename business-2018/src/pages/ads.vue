@@ -275,7 +275,7 @@
                         return 'APP_OPEN';
                     case 3:  // 热门公司
                         return 'HOT_COMPANY';
-                    case 3:  // 热门职位
+                    case 4:  // 热门职位
                         return 'SYRM';
                 }
                 return '';
