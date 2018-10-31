@@ -1,0 +1,208 @@
+@function rem($n){
+	@return $n/(750/16)+rem;
+}
+
+@function getTop($n) {
+	@return ($n - 1206 / 2) / (750 / 16) + rem;
+}
+@function getLeft($n) {
+	@return ($n - 750 / 2) / (750 / 16) + rem;
+}
+
+@mixin center($left,$top) {	
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:getTop($top) 0 0 getLeft($left);
+}
+
+[id]:not(
+    #foo,#weixin,#loading,#loading__num,#loading__layer,#loading__boy,#loading__girl,
+    #canvas,
+    #page0-lineSVG,#page0-road-01,#page0-road-02,#page0-road-01,#page0-star-01,#page0-star-02,#page0-star-03,
+    #loading-lineSVG,#loading-road-01,#loading-road-02,#loading-road-01,#loading-star-01,#loading-star-02,#loading-star-03,
+    #lineSVG,#road-01,#road-02,#road-03,#star-01,#star-02,#star-03
+),
+iframe {
+    width:0!important;
+    height:0!important;
+    opacity:0!important;
+    display:none!important;
+}
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+    /* for IE6 IE7 */
+}
+
+.wrapper {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+	.pic1 {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: - rem(550);
+		margin-left: - rem(69);
+		width: rem(138);
+		height: rem(139);
+		background: url(../images/success.png);	
+		background-size: 100% 100%;
+	}
+	.word {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 100%;
+		text-align: center;
+	}
+	.word.w1 {
+		margin-top: - rem(365);
+		color: #555;
+		font-size: rem(50);
+	}
+	.word.w2 {
+		margin-top: - rem(280);
+		color: #878787;
+		font-size: rem(28);
+	}
+	.light {
+		width:rem(520);
+		height:rem(91);
+		@include center(156,429);
+		.icon {
+			width:rem(86);
+			height:rem(91);
+			background:url('../images/light.png') no-repeat center top;
+			background-size:100% 100%;
+			float:left;
+		}
+		.text {
+			width:rem(365);
+			line-height:rem(39);
+			padding:rem(10) 0 0 rem(13);
+			text-align:left;
+			color:#00b272;
+			font-size:rem(28);
+			float:left;
+		}
+	}
+	.copy-btn {
+		width:rem(301);
+		height:rem(87);
+		line-height:rem(87);
+		border-radius:rem(6);
+		border:none;
+		background-color:#00b272;
+		color:#fff;
+		font-size:rem(30);
+		text-align:center;
+		@include center(225,533);
+	}
+	.info {
+		width:rem(750);
+		line-height:rem(55);
+		font-size:rem(28);
+		color:#282828;
+		text-align:center;
+		@include center(0,704);
+	}
+	input {
+		display: block;
+		@include center(152,775);
+		width: rem(460);
+		text-align: center;
+		padding: rem(10);
+		background: #282828;
+		background-color:rgba(40,40,40,0.1);
+		filter:Alpha(opacity=10);
+		*zoom:1;
+		color: #282828;
+		font-size: rem(40);
+		border: 0;
+		border-radius:rem(5);
+	}
+	#weixin {
+		opacity:0;
+	}
+	.line {
+		width:rem(650);
+		height:1px;
+		background:#e5e5e5;
+		@include center(52,877);
+	}
+	.rule {
+		width:rem(606);
+		height:rem(239);
+		background:url('../images/rule-x2.png') no-repeat center top;
+		background-size:100% 100%;
+		@include center(70,920);
+	}
+	.cut {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: - rem(10);
+		margin-left: - rem(150);
+		width: rem(300);
+		height: rem(87);
+		line-height: rem(87);
+		color: #fff;
+		font-size: rem(30);
+		text-align: center;
+		background: #00b272;
+		border-radius: rem(10);	
+		border: 0;
+	}
+	.guide {
+		@include center(52,877);
+		width: rem(650);
+		padding-top: rem(25);
+		padding-left:rem(18);
+		border-top: rem(1) solid #e5e5e5;
+		h1 {
+			line-height:rem(63);
+			font-size: rem(30);
+			color: #00b272;
+			margin-bottom: rem(25);
+		}
+		p {
+			line-height:rem(40);
+			font-size: rem(24);
+			color: #878787;
+			span {
+				padding-right: rem(10);
+			}
+		}
+	}
+	a {
+		display: block;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: rem(96);
+		background: #f5f5f5;
+		display:none;
+		&:before {
+			content: '';
+			display: block;
+			margin: auto;
+			margin-top: rem(35);
+			width: rem(179);
+			height: rem(29);
+			background: url(../images/back.png) no-repeat;
+			background-size: 100% 100%;
+		}
+	}
+}

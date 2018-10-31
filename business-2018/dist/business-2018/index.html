@@ -15,6 +15,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
         <title>拉勾人才招聘服务指南</title>
         <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+        <script type="text/javascript">
+            try {
+                if ( window.sessionStorage.getItem('syncUserLoginStatus') !== '1' ) {
+                    window.sessionStorage.setItem('syncUserLoginStatus', 1);
+                    window.location.href = 'https://activity.lagou.com/activityapi/basic/syncUser?redirect='+encodeURIComponent(window.location.href);                
+                }
+            } catch (e) {}
+        </script>
     <link href="css/index.e13a3089.css" rel="stylesheet"></head>
     <body>
         <div id="app"></div>
