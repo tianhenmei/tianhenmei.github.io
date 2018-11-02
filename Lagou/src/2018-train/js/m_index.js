@@ -11,7 +11,7 @@ $(document).ready(function() {
         if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) { //判断iPhone|iPad|iPod|iOS
             flag = false;
             postEncodingID({
-                "data-lg-tj-id":"1c5c" ,
+                "data-lg-tj-id":"1biw" ,
 				"data-lg-tj-no":"0051" ,
 				"data-lg-tj-cid":"idnull"  
             })
@@ -20,7 +20,7 @@ $(document).ready(function() {
         }else{
             flag = false;
             postEncodingID({
-                "data-lg-tj-id":"1c5c" ,
+                "data-lg-tj-id":"1biw" ,
                 "data-lg-tj-no":"0052" ,
                 "data-lg-tj-cid":"idnull"  
             })
@@ -52,14 +52,14 @@ $(document).ready(function() {
             })
             flag = false;
             postEncodingID({
-                "data-lg-tj-id":"1c5c" ,
+                "data-lg-tj-id":"1biw" ,
 				"data-lg-tj-no":"0021" ,
 				"data-lg-tj-cid":"idnull"  
             })
             return
         }
         postEncodingID({
-            "data-lg-tj-id":"1c5c" ,
+            "data-lg-tj-id":"1biw" ,
             "data-lg-tj-no":"0022" ,
             "data-lg-tj-cid":"idnull"  
         })
