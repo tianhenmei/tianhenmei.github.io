@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="https://www.lgstatic.com/activity/css/base.css">
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<title>canvas</title>
+		<script>
+			var docEl = document.documentElement,
+			    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+			    recalc = function() {
+			        //设置根字体大小
+					document.getElementsByTagName("html")[0].style.fontSize=document.documentElement.clientWidth/16+'px';
+			    };
+			document.addEventListener('DOMContentLoaded', recalc, false);
+		</script>
+	</head>
+	<body>
+		<div class="wrapper">
+            <div class="canvas__layer">
+                <canvas id="canvas" width="750" height="750"></canvas>
+            </div>
+            <img id="canvas__img" class="canvas__img" src="none" />
+            <div class="tips">长按保存图片</div>
+            <div class="btn__layer clearfix">
+                <button type="button" id="js-save" class="btn js-save">保存图片</button>
+                <button type="button" id="js-clear" class="btn js-clear">重画</button>
+            </div>
+		</div>
+		<script type="text/javascript"  src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+		<script type="text/javascript"  src="./js/m_index3.js?v=$version$"></script>	
+	</body>
+</html>

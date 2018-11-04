@@ -1,0 +1,43 @@
+@function rem($n){
+	@return $n/(750/16)+rem;
+}
+.wrapper {
+	.banner-title {
+		width:rem(682);
+		height:rem(233);
+		margin:rem(35) auto 0;
+		background: url(../images/charpter1/banner-title.png) no-repeat;
+		background-size: 100%;
+	}
+	.charpter {
+		&__name:after {
+			display:none;
+		}
+		&__content {
+			background-color:#fff;
+			&--line {
+				width:rem(634);
+				height:rem(3);
+				margin-left:rem(38);
+				background:url('../images/charpter1/border-dash.png') no-repeat center top;
+				background-size:100% 100%;
+			}
+			&--first {
+				padding-top:rem(29);
+			}
+			&--one {
+				line-height:rem(39);
+				color:#6f727f;
+			}
+			&--detail {
+				line-height:rem(38);
+				padding-left:rem(38);
+				padding-bottom:rem(30);
+				color:#93959c;
+				font-size:rem(26);
+			}
+		}
+	}
+	
+}
+
