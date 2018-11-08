@@ -57,6 +57,7 @@ li {
 .wrapper {
   position: relative;
   width: 100%;
+  padding-bottom: 2.13333rem;
   overflow: hidden;
   background: #ebebec; }
   .wrapper .banner {
@@ -471,24 +472,46 @@ li {
       margin: 0 auto;
       background: url("../images/know-bottom.png") center top;
       background-size: 100% 100%; }
-  .wrapper .buy__content {
+  .wrapper .buy {
     width: 100%;
-    height: 1.77067rem;
-    padding-top: 0.36267rem;
-    margin-bottom: 0.064rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    border-top: 1px solid #f5f5f5;
     background-color: #fff; }
-  .wrapper .buy__btn {
-    width: 12.096rem;
-    height: 1.45067rem;
-    line-height: 1.45067rem;
-    margin: 0 auto;
-    border-radius: 0.384rem;
-    background-color: #4c80e4;
-    color: #fff;
-    font-size: 0.512rem;
-    text-align: center; }
-    .wrapper .buy__btn--green {
-      background-color: #0fc274; }
+    .wrapper .buy__content {
+      width: 100%;
+      height: 1.77067rem;
+      padding-top: 0.36267rem;
+      margin-bottom: 0.064rem;
+      background-color: #fff; }
+    .wrapper .buy__btn {
+      width: 12.096rem;
+      height: 1.45067rem;
+      line-height: 1.45067rem;
+      margin: 0 auto;
+      border-radius: 0.384rem;
+      background-color: #4c80e4;
+      color: #fff;
+      font-size: 0.512rem;
+      text-align: center;
+      display: block; }
+      .wrapper .buy__btn--green {
+        background-color: #0fc274; }
+      .wrapper .buy__btn .origin-price {
+        padding-left: 0.21333rem;
+        padding-right: 0.21333rem;
+        position: relative; }
+      .wrapper .buy__btn .origin-price:after {
+        content: "";
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        -webkit-transform: translate(0, -50%, 0);
+                transform: translate(0, -50%, 0); }
   .wrapper .ios-pay {
     width: 100%;
     height: 100%;
