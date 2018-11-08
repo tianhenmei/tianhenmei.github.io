@@ -16,7 +16,12 @@
                     <img class="main__banner__title" src="~assets/images/main/banner2-title@2.png" /><!-- titleMove2 delay0-5-->
                     <img class="main__banner__subtitle" src="~assets/images/main/banner2-subtitle@2.png"/> <!-- subtitleMove2-->
                 </div>
-                <div class="main__banner__picture pictureMove2"></div>
+                <div class="main__banner__picture pictureMove2">
+                    <div class="main__banner__picture--one main__banner__picture--01"></div>
+                    <div class="main__banner__picture--one main__banner__picture--02"></div>
+                    <div class="main__banner__picture--one main__banner__picture--03"></div>
+                    <div class="main__banner__picture--one main__banner__picture--04"></div>
+                </div>
                 <div class="main__banner__cloundLayer1 cloudLayer1Move2">
                     <div class="main__banner__cloud01 cloud1Move2"></div>
                 </div>
@@ -73,7 +78,13 @@
                             :data-lg-tj-cid="null">
                             <div class="main__content__one clearfix" :class="'main__content__one--'+index">
                                 <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
-                                <div class="main__content__right">
+                                <div class="main__content__right" v-if="one.img">
+                                    <img class="main__content__img" :src="one.img" :style="{
+                                        width:one.width+'px',
+                                        paddingTop:'20px'
+                                    }" />
+                                </div>
+                                <div class="main__content__right" v-else>
                                     <div class="main__content__name">{{one.name}}</div>
                                     <div class="main__content__detail" v-html="one.detail"></div>
                                     <!--<router-link :to="{ name: one.href }" class="main__content__link">了解详情</router-link>-->
@@ -88,7 +99,13 @@
                             :data-lg-tj-no="getCount(index+1)" 
                             :data-lg-tj-cid="null">
                             <div class="main__content__one clearfix" :class="'main__content__one--'+index">
-                                <div class="main__content__right">
+                                <div class="main__content__right" v-if="one.img">
+                                    <img class="main__content__img" :src="one.img" :style="{
+                                        width:one.width+'px',
+                                        paddingTop:'20px'
+                                    }" />
+                                </div>
+                                <div class="main__content__right" v-else>
                                     <div class="main__content__name">{{one.name}}</div>
                                     <div class="main__content__detail" v-html="one.detail"></div>
                                     <div class="main__content__link">了解详情 ></div>
@@ -138,19 +155,27 @@
                 content:[{
                     name:"拉勾招聘套餐",
                     detail:"发布职位<span class='green'>自带特权</span>，<span class='green'>职位置顶</span>海量曝光<br/>电话直Call中意大咖， 满足多样招聘需求",
-                    href:"set"
+                    href:"set",
+                    img:require('../assets/images/main/content2-01@2.png'),
+                    width:722 / 2
                 },{
                     name:"拉勾猎头",
                     detail:"精英猎头团队，为您推荐<span class='green'>资深高端</span>互联网人才<br/><span class='green'>提供保到面/保offer/保入职</span>等多种服务",
-                    href:"hunter"
+                    href:"hunter",
+                    img:require('../assets/images/main/content2-02@2.png'),
+                    width:722 / 2
                 },{
                     name:"广告展示",
                     detail:"拉勾站内<span class='green'>核心职位</span>展示，强化雇主印象<br/><span class='green'>专业策划</span>主题招聘，打造最闪耀的雇主品牌  ",
-                    href:"ads"
+                    href:"ads",
+                    img:require('../assets/images/main/content2-03@2.png'),
+                    width:684 / 2
                 },{
                     name:"品牌活动",
                     detail:"<span class='green'>多渠道</span>超强曝光，旺季把握招聘先机<br/>抢占<span class='green'>大量优质</span>人才，塑造立体雇主形象",
-                    href:"activity"
+                    href:"activity",
+                    img:require('../assets/images/main/content2-04@2.png'),
+                    width:612 / 2
                 }],
                 advantage:[{
                     name:"最优质",
