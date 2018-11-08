@@ -5,47 +5,42 @@
 <template>
     <div class="main">
         <div class="main__banner">
-            <div class="main__banner__center clearfix">
-                <div class="main__banner__left">
-                    <img class="main__banner__title titleMove2 delay0-5" src="~assets/images/main/banner2-title@2.png" />
-                    <img class="main__banner__subtitle subtitleMove2" src="~assets/images/main/banner2-subtitle@2.png"/>
-                </div>
-                <div class="main__banner__picture pictureMove2"></div>
-                <div class="main__banner__cloundLayer1 cloudLayer1Move2">
-                    <div class="main__banner__cloud01 cloud1Move2"></div>
-                </div>
-                <div class="main__banner__cloundLayer2 cloudLayer2Move2">
-                    <div class="main__banner__cloud02 cloud2Move2"></div>
-                </div>
-                <div class="main__banner__ballonLayer ballonLayerMove2">
-                    <div class="main__banner__ballon balloonMove2"></div>
-                </div>
+            <div class="main__banner__bg" :class="'zoomBigIn delay1-0'">
+                <img v-for="one in bannerList" 
+                    class="main__banner__bg__img"
+                    :src="one.url"
+                    :style="{
+                        height:one.height+'px'
+                    }" />
             </div>
-            
-            <!--<div class="main__banner__bg" :class="'zoomBigIn delay1-0'"></div>-->
+            <div class="main__banner__line">
+                <div class="main__banner__line--center main__banner__line--left lineTopIn"></div>
+            </div>
+            <div class="main__banner__line">
+                <div class="main__banner__line--center main__banner__line--right lineBottomIn"></div>
+            </div>
+            <div class="main__banner__center">
+                <img class="main__banner__name" :class="'littleBottomIn littleBottomIn40 delay1-1667 duration0-333'" src="~assets/images/main/banner-name@2.png"/>
+                <img class="main__banner__title" :class="'littleBottomIn littleBottomIn30 delay1-2667 duration0-233'" src="~assets/images/main/banner-title@2.png" />
+                <img class="main__banner__subtitle" :class="'littleBottomIn littleBottomIn20 delay1-3333 duration0-1666'" src="~assets/images/main/banner-subtitle@2.png"/>
+            </div>
         </div>
         <div class="main__data">
             <div class="main__data__center clearfix" ref="main__data__center">
-                <div class="main__data__one main__data__one--1 clearfix">
+                <div class="main__data__one main__data__one--1">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__left">
-                        <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
-                        <div class="main__data__content">互联网公司</div>
-                    </div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__content">互联网公司</div>
                 </div>
-                <div class="main__data__one main__data__one--2 clearfix">
+                <div class="main__data__one main__data__one--2">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__left">
-                        <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 1954 : 0" :wait="0"></DynamicNumber>万+</div>
-                        <div class="main__data__content">互联网人</div>
-                    </div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 1954 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__content">互联网人</div>
                 </div>
-                <div class="main__data__one main__data__one--3 clearfix">
+                <div class="main__data__one main__data__one--3">
                     <div class="main__data__icon"></div>
-                    <div class="main__data__left">
-                        <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 909 : 0" :wait="0"></DynamicNumber>万+</div>
-                        <div class="main__data__content">每月投递简历</div>
-                    </div>
+                    <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 909 : 0" :wait="0"></DynamicNumber>万+</div>
+                    <div class="main__data__content">每月投递简历</div>
                 </div>
             </div>
         </div>
@@ -61,47 +56,24 @@
                         @click="toChildActivity(one.href)">-->
                         <!--<router-link :to="{ name: one.href }" class="main__content__lilink">-->
                         <a class="main__content__lilink" target="_blank" :href="'#/'+one.href"
-                            v-if="index % 2 == 0"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(index+1)" 
                             :data-lg-tj-cid="null">
-                            <div class="main__content__one clearfix" :class="'main__content__one--'+index">
+                            <div class="main__content__one">
                                 <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
-                                <div class="main__content__right">
-                                    <div class="main__content__name">{{one.name}}</div>
-                                    <div class="main__content__detail" v-html="one.detail"></div>
-                                    <!--<router-link :to="{ name: one.href }" class="main__content__link">了解详情</router-link>-->
-                                    <div class="main__content__link">了解详情 ></div>
-                                </div>
+                                <div class="main__content__name">{{one.name}}</div>
+                                <div class="main__content__detail" v-html="one.detail"></div>
+                                <!--<router-link :to="{ name: one.href }" class="main__content__link">了解详情</router-link>-->
+                                <div class="main__content__link">了解详情</div>
                             </div>
                         <!--</router-link>-->
                         </a>
-                        <a class="main__content__lilink" target="_blank" :href="'#/'+one.href"
-                            v-else
-                            :data-lg-tj-id="countId" 
-                            :data-lg-tj-no="getCount(index+1)" 
-                            :data-lg-tj-cid="null">
-                            <div class="main__content__one clearfix" :class="'main__content__one--'+index">
-                                <div class="main__content__right">
-                                    <div class="main__content__name">{{one.name}}</div>
-                                    <div class="main__content__detail" v-html="one.detail"></div>
-                                    <div class="main__content__link">了解详情 ></div>
-                                </div>
-                                <div class="main__content__icon" :class="'main__content__icon--'+index"></div>
-                            </div>
-                        </a>
                     </li>
                 </ul>
-                <div class="main__content__tree tree01 main__content__tree--01"></div>
-                <div class="main__content__tree tree01 main__content__tree--02"></div>
-                <div class="main__content__tree tree03 main__content__tree--03"></div>
-                <div class="main__content__tree tree02 main__content__tree--04"></div>
-                <div class="main__content__tree tree02 main__content__tree--05"></div>
             </div>
         </div>
         <div class="main__corpartner"></div>
         <div class="main__advantage">
-            <!--<div class="main__advantage2"></div>-->
             <img class="main__advantage__title" src="~assets/images/main/advantage-title@2.png"/>
             <div class="main__advantage__center clearfix">
                 <ul class="main__advantage__list">

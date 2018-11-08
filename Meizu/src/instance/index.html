@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>页面上各种宽高距离</title>
+        <style type="text/css">
+            * {
+                margin:0;
+                padding:0;
+            }
+            html {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                width:100%;
+                height:100%;
+                box-sizing:border-box;
+                border:20px solid #00a1ff;
+                padding:50px;
+            }
+            .inner {
+                width:200px;
+                height:300px;
+                padding-left:20px;
+                padding-top:5px;
+                padding-bottom:5px;
+                /* margin:0 auto; */
+                border:20px solid #00f3ff;
+                overflow: scroll;
+                margin: auto;
+                position:absolute;
+                left:0;
+                top:0;
+                right:0;
+                bottom:0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="inner" id="inner">
+            IS so cool! 
+            DHTML is so cool! 
+            DHTML is so cool! 
+            DHTML is so coo
+            只读的localStorage 允许你访问一个Document 的远端（origin）对象 Storage；数据存储为跨浏览器会话。 localStorage 类似于sessionStorage。区别在于，数据存储在 localStorage 是无期限的，而当页面会话结束——也就是说当页面被关闭时,数据存储在sessionStorage 会被清除 。
+            应注意无论数据存储在 localStorage 还是 sessionStorage ，它们都特定于页面的协议。
+        </div>
+        <script type="text/javascript">
+            // 页面大小：448*628
+            var body = document.body,
+                inner = document.getElementById('inner');
+            console.log(body.clientLeft);  // 20px(即body border的left 宽度)
+            console.log(inner.clientLeft);  // 20px(即inner border的left 宽度)
+            console.log(inner.offsetleft);  // 94px(inner 从border以外即margin开始到body border外边的距离)
+            console.log(inner.scrollHeight);  // 440px(inner 总高度，即将滚动展开的高度)
+            console.log(inner.offsetHeight);  // 350px(inner 显示的高度：内容+padding+border)
+            console.log(inner.clientHeight);  // 350px(inner 显示的高度：内容+padding)
+            console.log(inner.scrollTop);  // 0px(默认不滚动内容时，如果滚动，则是滚动的距离)
+            alert('是否启用cookie：'+window.navigator.cookieEnabled);
+            alert('是否连接了网络：'+window.navigator.onLine);
+            alert(window.navigator.userAgent);
+        </script>
+    </body>
+</html>
