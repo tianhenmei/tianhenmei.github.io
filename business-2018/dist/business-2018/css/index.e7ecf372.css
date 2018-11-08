@@ -53,15 +53,24 @@ html, body {
 .main__banner {
   width: 100%;
   height: 550px;
-  background: #00c89a url(../images/main/banner-decoration.e59c80e9.png) no-repeat center top;
+  background: #00c89a url(../images/main/banner-bg2.12ef4854.png) repeat-x center top;
   overflow: hidden;
   position: relative;
+}
+.main__banner__bg {
+    width: 100%;
+    height: 550px;
+    background: url(../images/main/banner-decoration.e59c80e9.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .main__banner__center {
     width: 1200px;
     height: 550px;
     margin: 0 auto;
     position: relative;
+    z-index: 2;
 }
 .main__banner__left {
     padding-left: 59px;
@@ -441,15 +450,24 @@ html, body {
 .main__banner {
   width: 100%;
   height: 550px;
-  background: #00c89a url(../images/main/banner-decoration.e59c80e9.png) no-repeat center top;
+  background: #00c89a url(../images/main/banner-bg2.12ef4854.png) repeat-x center top;
   overflow: hidden;
   position: relative;
+}
+.main__banner__bg {
+    width: 100%;
+    height: 550px;
+    background: url(../images/main/banner-decoration.e59c80e9.png) no-repeat center top;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 .main__banner__center {
     width: 1200px;
     height: 550px;
     margin: 0 auto;
     position: relative;
+    z-index: 2;
 }
 .main__banner__left {
     padding-left: 59px;
@@ -1188,8 +1206,8 @@ html, body {
 }
 }
 .pictureMove2 {
-  -webkit-animation: pictureMove2 1.06666s 0.5s both ease-in;
-          animation: pictureMove2 1.06666s 0.5s both ease-in;
+  -webkit-animation: pictureMove2 0.5s 0.5s both ease-in;
+          animation: pictureMove2 0.5s 0.5s both ease-in;
 }
 @-webkit-keyframes pictureMove2 {
 0% {

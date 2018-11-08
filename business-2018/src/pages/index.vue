@@ -5,10 +5,11 @@
 <template>
     <div class="main">
         <div class="main__banner">
+            <div class="main__banner__bg"></div>
             <div class="main__banner__center clearfix">
                 <div class="main__banner__left">
-                    <img class="main__banner__title titleMove2 delay0-5" src="~assets/images/main/banner2-title@2.png" />
-                    <img class="main__banner__subtitle subtitleMove2" src="~assets/images/main/banner2-subtitle@2.png"/>
+                    <img class="main__banner__title" src="~assets/images/main/banner2-title@2.png" /><!-- titleMove2 delay0-5-->
+                    <img class="main__banner__subtitle" src="~assets/images/main/banner2-subtitle@2.png"/> <!-- subtitleMove2-->
                 </div>
                 <div class="main__banner__picture pictureMove2"></div>
                 <div class="main__banner__cloundLayer1 cloudLayer1Move2">
@@ -29,7 +30,7 @@
                 <div class="main__data__one main__data__one--1 clearfix">
                     <div class="main__data__icon"></div>
                     <div class="main__data__left">
-                        <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 36 : 0" :wait="0"></DynamicNumber>万+</div>
+                        <div class="main__data__num strong"><DynamicNumber :num="scrllStatus ? 40 : 0" :wait="0"></DynamicNumber>万+</div>
                         <div class="main__data__content">互联网公司</div>
                     </div>
                 </div>
