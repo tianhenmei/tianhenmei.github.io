@@ -10,6 +10,10 @@
                 <div class="main__banner__bg--one main__banner__bg--02"></div>
                 <div class="main__banner__bg--one main__banner__bg--03"></div>
                 <div class="main__banner__bg--one main__banner__bg--04"></div>
+                <div class="main__banner__bg--one main__banner__bg--05"></div>
+                <div class="main__banner__bg--one main__banner__bg--06"></div>
+                <div class="main__banner__bg--one main__banner__bg--07"></div>
+                <div class="main__banner__bg--one main__banner__bg--08"></div>
             </div>
             <div class="main__banner__center clearfix">
                 <div class="main__banner__left">
@@ -21,6 +25,10 @@
                     <div class="main__banner__picture--one main__banner__picture--02"></div>
                     <div class="main__banner__picture--one main__banner__picture--03"></div>
                     <div class="main__banner__picture--one main__banner__picture--04"></div>
+                    <div class="main__banner__picture--one main__banner__picture--05"></div>
+                    <div class="main__banner__picture--one main__banner__picture--06"></div>
+                    <div class="main__banner__picture--one main__banner__picture--07"></div>
+                    <div class="main__banner__picture--one main__banner__picture--08"></div>
                 </div>
                 <div class="main__banner__cloundLayer1 cloudLayer1Move2">
                     <div class="main__banner__cloud01 cloud1Move2"></div>
