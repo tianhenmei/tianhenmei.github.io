@@ -179,6 +179,7 @@ module.exports = {
         },
         after: function(app){
             // app.use('/', express.static('dist'));
+            console.log("http://"+IP+':'+9999);
         },
         staticOptions:{},
         contentBase: [
