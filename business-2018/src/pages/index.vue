@@ -83,6 +83,7 @@
                                         width:one.width+'px',
                                         paddingTop:'20px'
                                     }" />
+                                    <div class="main__content__link">了解详情 ></div>
                                 </div>
                                 <div class="main__content__right" v-else>
                                     <div class="main__content__name">{{one.name}}</div>
@@ -104,6 +105,7 @@
                                         width:one.width+'px',
                                         paddingTop:'20px'
                                     }" />
+                                    <div class="main__content__link">了解详情 ></div>
                                 </div>
                                 <div class="main__content__right" v-else>
                                     <div class="main__content__name">{{one.name}}</div>
