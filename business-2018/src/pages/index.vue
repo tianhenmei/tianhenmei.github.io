@@ -5,7 +5,12 @@
 <template>
     <div class="main">
         <div class="main__banner">
-            <div class="main__banner__bg"></div>
+            <div class="main__banner__bg">
+                <div class="main__banner__bg--one main__banner__bg--01"></div>
+                <div class="main__banner__bg--one main__banner__bg--02"></div>
+                <div class="main__banner__bg--one main__banner__bg--03"></div>
+                <div class="main__banner__bg--one main__banner__bg--04"></div>
+            </div>
             <div class="main__banner__center clearfix">
                 <div class="main__banner__left">
                     <img class="main__banner__title" src="~assets/images/main/banner2-title@2.png" /><!-- titleMove2 delay0-5-->
