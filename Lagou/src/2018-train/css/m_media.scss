@@ -1,0 +1,155 @@
+@function rem($n){
+	@return $n/(750/16)+rem;
+}
+.wrapper {
+    padding-bottom:rem(222);
+    .banner {
+        height:rem(788);
+        background-image: url(../images/media/banner-bg.png);
+    }
+    .banner-logo {
+        width:rem(750);
+        height:rem(99);
+        margin:0 auto;
+        padding:0;
+        padding-top:rem(61);
+        background-image: url(../images/media/banner-logo.png);
+        background-position:0 rem(61);
+        background-size:rem(750) rem(99);
+    }
+    .banner-title {
+        width:rem(559);
+        height:rem(322);
+        margin-top:rem(40);
+        background-image: url(../images/media/banner-title.png);
+    }
+    .banner-info {
+        width:rem(668);
+        &__txt {
+            font-size:rem(24);
+        }
+    }
+
+    .courses {
+        height:rem(694);
+        background-image:url(../images/courses-bg.png);
+        &__center {
+			height:rem(694);
+		}
+        &__benefit {
+            &--left {
+                width:rem(91);
+                height:rem(72-10);
+                line-height:rem(30);
+                padding-top:rem(10);
+            }
+            &--right {
+                width:rem(472);
+                line-height:rem(28);
+                padding-top:rem(9);
+                padding-left:rem(16);
+            }
+        }
+        .courses__benefit--multi {
+            .courses__benefit--left {
+				height:rem(303-113);
+                line-height:rem(35);
+                padding-top:rem(113);
+			}
+        }
+    }
+    .teacher {
+        &__title {
+            height:rem(188);
+            background-image:url(../images/media/teacher-title.png);
+        }
+        &__photo {
+			width:rem(400);
+			height:rem(513);
+			background-image:url(../images/media/teacher-photo.png);
+        }
+        &__content {
+            padding-left:rem(39);
+        }
+        &__detail { 
+            width:rem(370);
+            height:rem(513);
+            left:rem(334);
+            top:rem(0);
+        }
+        &__name {
+			padding-left:rem(40);
+        }
+        &__experice {
+            line-height:rem(36);
+            padding-left:rem(40);
+        }
+        &__line {
+            margin-left:rem(40);
+        }
+        &__info {
+            width:rem(310 * 24 / 22);
+            padding-left:rem(40);
+        }
+    }
+    .charpter {
+		&__title {
+			height:rem(148);
+			background-image:url(../images/media/charpter-title.png);
+        }
+        &__name {
+            line-height:rem(118);
+            padding-top:rem(16);
+            color:#38c885;
+        }
+        &__arrow {
+            top:rem(61-4);
+        }
+        &__content {
+            &--one {
+                line-height:rem(40);
+                padding-left:rem(34);
+            }
+            &--first {
+                line-height:rem(46);
+                padding-top:rem(11);
+                font-size:rem(30);
+                color:#414349;
+            }
+            &--last {
+                padding-bottom:rem(19);
+            }
+        }
+    }
+
+    .know {
+        &__contact {
+            &--icon {
+				background-image:url('../images/media/know-contact.png');
+			}
+        }
+    }
+    .bottom-icon {
+        width:rem(750);
+        height:rem(95);
+        margin:0 auto;
+        background:url("../images/media/bottom-icon.png") no-repeat center top;
+        background-size:100% 100%;
+    }
+    .buy { 
+        &__content {
+            height:rem(108-18);
+			padding-top:rem(18);
+            margin-bottom:rem(6);
+        }
+        .none-bottom {
+            margin-bottom:0;
+        }
+        &__btn {
+            width:rem(667);
+            height:rem(74);
+			line-height:rem(74);
+            font-size:rem(30);
+        }
+    }
+}
