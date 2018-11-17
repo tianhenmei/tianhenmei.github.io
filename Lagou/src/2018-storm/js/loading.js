@@ -2,10 +2,48 @@
 var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 var imgArray = [
-	loadingHost+"images/loading-title.png",
-	
-
-	"images/canvas-bg.png"
+	loadingHost+"images/icon-02.png",
+	loadingHost+"images/icon.png",
+	loadingHost+"images/page0-bg01.png",
+	loadingHost+"images/page0-bg02.png",
+	loadingHost+"images/page0-bg03.png",
+	loadingHost+"images/page0-bg04.png",
+	loadingHost+"images/page0-bg05.png",
+	loadingHost+"images/page0-dot.png",
+	loadingHost+"images/page0-right.png",
+	loadingHost+"images/page0-vortex.png",
+	loadingHost+"images/page0-vortex01.png",
+	loadingHost+"images/page0-wave.png",
+	loadingHost+"images/page0-flip-01.png",
+	loadingHost+"images/page0-flip-02.png",
+	loadingHost+"images/page0-flip-03.png",
+	loadingHost+"images/page0-flip-04.png",
+	loadingHost+"images/page0-flip-05.png",
+	loadingHost+"images/page1-ball.png",
+	loadingHost+"images/page1-bg01.png",
+	loadingHost+"images/page1-icon.png",
+	loadingHost+"images/page1-light.png",
+	loadingHost+"images/page1-rightbottom.png",
+	loadingHost+"images/page1-shot.png",
+	loadingHost+"images/page1-sprinkle.png",
+	loadingHost+"images/page1-star.png",
+	loadingHost+"images/page2-arrow1.png",
+	loadingHost+"images/page2-arrow2.png",
+	loadingHost+"images/page2-rightbottom.png",
+	loadingHost+"images/page2-table.png",
+	loadingHost+"images/page3-card-bg.png",
+	loadingHost+"images/page3-card1.png",
+	loadingHost+"images/page3-card2.png",
+	loadingHost+"images/page3-icon.png",
+	loadingHost+"images/page4-card.png",
+	loadingHost+"images/page5-card.png",
+	loadingHost+"images/page5-icon.png",
+	loadingHost+"images/page6-btn.png",
+	loadingHost+"images/page6-company.png",
+	loadingHost+"images/page6-form-bg.png",
+	loadingHost+"images/page6-input.png",
+	loadingHost+"images/page6-success-bg.png",
+	loadingHost+"images/page6-success-text.png",
 ];
 var now = 0;
 // jQuery.ajax({

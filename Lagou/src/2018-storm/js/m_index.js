@@ -126,7 +126,7 @@ var scrollClass = function(options) {
     };
 
     this.moveScroll = function(e) {
-        // e.stopPropagation();
+        e.stopPropagation();
         e.preventDefault();
 
         if (app.scrollData[self.classname].length > app.scrollData[self.classname].number) {
@@ -322,19 +322,21 @@ var PageMove = function () {
     _createClass(PageMove, [{
         key: "pageMove",
         value: function pageMove(od, self) {
-            if(self.data.last < self.data.now){
-                app.$data['page'+self.data.last].status = 'out';
-            }else {
-                app.$data['page'+self.data.last].status = 'back';
-            }
+            // if(self.data.last < self.data.now){
+            //     app.$data['page'+self.data.last].status = 'out';
+            // }else {
+            //     app.$data['page'+self.data.last].status = 'back';
+            // }
             setTimeout(function(){
-                jQuery(".page").removeClass("pageCurrent").addClass("hide");
-                jQuery(".page" + self.data.last).attr('style','');
-                jQuery(".page" + self.data.now).removeClass("hide").addClass("pageCurrent");
+                // jQuery(".page").removeClass("pageCurrent").addClass("hide");
+                // jQuery(".page" + self.data.last).attr('style','');
+                // jQuery(".page" + self.data.now).removeClass("hide").addClass("pageCurrent");
                 self.data.isMoving = false;
                 app.$data.flipStatus = false;
-                app.$data['page'+self.data.now].status = 'in';
-                app.$data['page'+self.data.last].status = 'in';
+                jQuery(".page" + self.data.last)
+                    .removeClass("active moveUNow moveULast moveDNow moveDLast");
+                // app.$data['page'+self.data.now].status = 'in';
+                // app.$data['page'+self.data.last].status = 'in';
             },500)
         }
     }, {
@@ -359,9 +361,27 @@ var PageMove = function () {
     },{
         key: "_pageMoveCompute",
         value: function _pageMoveCompute(self) {
+            var direction = '';
             var od = "down";
+            if (self.data.direction.y == "up") {
+                direction = 'U';
+            } else {
+                direction = 'D';
+            }
             switch(true){
-                case self.data.now < 7:
+                case self.data.now == 0 && direction == 'U':
+                    if(!app.$data.firstFlip){
+                        app.$data.firstFlip = true;
+                        setTimeout(function(){
+                            app.$data.lastPage = 0;
+                            app.$data.activePage = 1;
+                            self.data.last = 0;
+                            self.data.now = 1;
+                            app.$data.firstFlip = false;
+                        },500);
+                    }
+                    break;
+                case true:
                     self.data.last = self.data.now;
                     if (self.data.direction.y == "up") {
                         self.data.now += 1;
@@ -369,7 +389,6 @@ var PageMove = function () {
                         self.data.now -= 1;
                         od = "up";
                     }
-
                     if ( self.data.now >= self.data.pageLength) {
                         self.data.now = self.data.pageLength - 1;
                         self.data.last = self.data.now - 1;
@@ -377,7 +396,6 @@ var PageMove = function () {
                         self.data.clickStatus = false;
                         app.$data.flipStatus = false;
                         return;
-                        self.data.now = 0;
                     }
                     if (self.data.now <= -1) {
                         self.data.last = 1;
@@ -387,18 +405,12 @@ var PageMove = function () {
                         app.$data.flipStatus = false;
                         return;
                     }
+                    app.$data.lastPage = self.data.last;
                     app.$data.activePage = self.data.now;
+                    app.$data.direction = direction;
+                    app.$data.firstMove = false;
                     self.pageMove(od, self);
                     break;
-                // case self.data.now == 1:
-                    // $('html,body,.page1').css({
-                    //     'height':'auto',
-                    //     'overflow-y': 'scroll'
-                    // });
-                    // $('.page1').css({
-                    //     'position':'relative'
-                    // });
-                    // break;
             }
         }
     }, {
@@ -412,9 +424,9 @@ var PageMove = function () {
                 self.data.start.y = touch.clientY;
             },false);
             document.addEventListener("touchmove", function (ev) {
-                if(self.data.now < 1){
+                // if(self.data.now < 1){
                     ev.preventDefault();
-                }
+                // }
                 var touch = ev.targetTouches[0];
                 self.data.end.x = touch.clientX;
                 self.data.end.y = touch.clientY;
@@ -459,7 +471,12 @@ app = new Vue({
         mode:"development",// "development",//"production",
         lg:"1k46",
         activePage:initialNow,
+        lastPage:initialLast,
+        direction:'U',
         pageStatus:true,
+        firstMove:true,
+        isMoving:false,
+        firstFlip:false,
         page0:{
             status:'in',
             in:{},
@@ -508,7 +525,13 @@ app = new Vue({
         phoneTips:'',
         signupSearchStatus:false,
         signupRequestStatus:false,
-        signupList:[]
+        signupList:[],
+        signupStatus:false,
+        scrollData:{
+            'page2__signup--search':{}
+        },
+        heightStatus:0,
+        maxHeight:0
     },
     computed:{
         
@@ -533,12 +556,16 @@ app = new Vue({
             currentSize = parseFloat((GC.w / GC.h).toFixed(1));
         if(rightSize > currentSize){
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+            this.maxHeight = this.heightStatus > 128 ? 128 : 0
         }
     },
     methods:{
         noop:function(){},
         getFitTop:function(def,ratio){
             return this.setRem(def+this.heightStatus * ratio);
+        },
+        getMaxTop:function(def,ratio){
+            return this.setRem(def+this.maxHeight * ratio);
         },
         setDataCount:function(count){
             return '0000'.slice((count+'').length)+count
@@ -561,6 +588,21 @@ app = new Vue({
                 l = current[1];
             }
             return f+'-'+l;
+        },
+        getPageMoveClass:function(index){
+            var classname = '';
+            if(this.firstMove){
+                if(this.activePage == index){
+                    classname = 'active';
+                }
+            }else{
+                if(this.activePage == index){
+                    classname = 'move'+this.direction+'Now active';
+                }else if(this.lastPage == index){
+                    classname = 'move'+this.direction+'Last active';
+                }
+            }
+            return classname;
         },
         // 报名
         checkNullEvent:function(key,cn){
@@ -595,6 +637,7 @@ app = new Vue({
             //     this.waitingRequest++;
             //     return;
             // }
+            console.log(this.signup.company);
             this.signupRequestStatus = true;
             $.ajax({
                 type: 'get',
@@ -634,10 +677,10 @@ app = new Vue({
             this.scrollData['page2__signup--search'] = new scrollClass({
                 classname: classname,
                 height: 270,
-                totalHeight:this.getRem(270),
+                totalHeight:this.getRem(270+40),
                 space: 0,
-                number: 5.19,
-                one: 52,
+                number: 270 / 36,
+                one: 36,
                 fixedHeight: false
             });
         },
@@ -646,6 +689,65 @@ app = new Vue({
             this.signup.companyId = one.id;
             this.signupSearchStatus = false;
         },
+        signupEvent:function(){
+            var status = true;
+            if(!this.checkNullEvent('name','您的名称')){
+                status = false;
+            }
+            if(!this.checkNullEvent('city','公司所在城市')){
+                status = false;
+            }
+            if(!this.checkNullEvent('company','公司名称')){
+                status = false;
+            }
+            if(!this.checkPhoneEvent('phone')){
+                status = false;
+            }
+
+            if(status){
+                // 信息填写完成
+                this.sendSighup();
+            }
+        },
+        sendSighup:function(){
+            var self = this;
+            if(this.mode == "development"){
+                self.showSuccessLayer();
+            }else{
+                var self = this,
+                    signup = this.signup;
+                $.ajax({
+                    type: 'get',
+                    url: 'https://activity.lagou.com/activityapi/employer/newEmployerSignUp',
+                    data:{
+                        companyId:signup.companyId,
+                        name:signup.name,
+                        city:signup.city,
+                        company:signup.company,
+                        phone:signup.phone,
+                    },
+                    success: function(result) {
+                        if (result.success) {
+                            self.showSuccessLayer();
+                        }else if(result.state == 300){
+                            alert(result.message);
+                        }else {
+                            alert(result.message);
+                        }
+                    },
+                    error: function(xhr, type) {
+                        alert('网络原因请重新尝试!');
+                    }
+                });
+            }
+        },
+        showSuccessLayer:function(){
+            var self = this;
+            self.signupStatus = true;
+            setTimeout(function(){
+                self.signupStatus = false;
+            },2000);
+        }
     }
 })
 },{}]},{},[1]);

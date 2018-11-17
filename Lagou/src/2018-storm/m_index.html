@@ -93,236 +93,244 @@
                     // pro = document.getElementById('loading__progress'),
                     number = document.getElementById('loading__num');
                 number.innerHTML = "100%";
-                // if(space < 3500){
-                //     setTimeout(function(){
-                //         loadingComplete();
-                //     },3500 - space)
-                // }else{
+                if(space < 2000){
+                    setTimeout(function(){
+                        loadingComplete();
+                    },2000 - space)
+                }else{
                     loadingComplete();
-                // }
+                }
             };
     </script>
     <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
 <body>
     <div class="loading" id="loading">
-        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
-        <!--<div class="loading__progress" id="loading__progress">
-            <div class="progress" id="progress"></div>
-        </div>-->
+        <div class="page0__bg01"></div>
+        <div class="page0__vortex zoomIn delay0-5"></div>
+        <div class="icon page0__center__logo littleTopIn delay1-2"></div>
+        <div class="icon page0__center__title zoomIn delay1-0"></div>
+        <div class="icon page0__center__time littleBottomIn delay1-2"></div>
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
-        <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+        <div class="page page0" :class="getPageMoveClass(0)+(firstFlip ? ' pageFlip' : '')">
             <div class="page0__bg01"></div>
-            <div class="page0__vortex delay1-0"></div>
-            <div class="page0__bg02"></div>
+            <div class="page0__vortex zoomIn delay1-0" :style="{top:getMaxTop(-500,1)}"></div>
+            <div class="page0__bg02 opacityChange delay0-5"></div>
             <!-- 浮动元素 -->
-            <div class="page0__float">
+            <div class="page0__float zoomRotateIn delay1-0" :style="{top:getMaxTop(16-128,1)}">
                 <div class="page0__float__dot"></div>
-                <div class="page0__float__icon01"><div class="icon center"></div></div>
-                <div class="page0__float__icon02"><div class="icon center"></div></div>
-                <div class="page0__float__icon03"><div class="icon center"></div></div>
+                <div class="page0__float__icon01 littleMoveLeft delay1-5"><div class="icon center"></div></div>
+                <div class="page0__float__icon02 littleMoveLeft delay1-8"><div class="icon center"></div></div>
+                <div class="page0__float__icon03 littleMoveBottom delay1-6"><div class="icon center"></div></div>
                 <div class="page0__float__icon04"><div class="icon center"></div></div>
-                <div class="page0__float__icon05"><div class="icon center"></div></div>
-                <div class="page0__float__icon06"><div class="icon center"></div></div>
-                <div class="page0__float__icon07"><div class="icon center"></div></div>
-                <div class="page0__float__icon08"><div class="icon center"></div></div>
+                <div class="page0__float__icon05 littleMoveTop delay1-5"><div class="icon center"></div></div>
+                <div class="page0__float__icon06 littleMoveBottom delay1-5"><div class="icon center"></div></div>
+                <div class="page0__float__icon07 littleMoveBottom delay1-7"><div class="icon center"></div></div>
+                <div class="page0__float__icon08 littleMoveRight delay1-5"><div class="icon center"></div></div>
                 <div class="page0__float__icon09"><div class="icon center"></div></div>
-                <div class="page0__float__icon10"><div class="icon center"></div></div>
+                <div class="page0__float__icon10 littleMoveRight delay1-9"><div class="icon center"></div></div>
                 <div class="page0__float__icon11"><div class="icon center"></div></div>
                 <div class="page0__float__icon12"><div class="icon center"></div></div>
-                <div class="page0__float__icon13"><div class="icon center"></div></div>
+                <div class="page0__float__icon13 littleMoveLeft delay1-5"><div class="icon center"></div></div>
                 <div class="page0__float__icon13-2"><div class="icon center"></div></div>
-                <div class="page0__float__icon14-1"><div class="icon center"></div></div>
+                <div class="page0__float__icon14-1 littleMoveTop delay1-6"><div class="icon center"></div></div>
                 <div class="page0__float__icon14"><div class="icon center"></div></div>
-                <div class="page0__float__icon15"><div class="icon center"></div></div>
+                <div class="page0__float__icon15 littleMoveRight delay1-9"><div class="icon center"></div></div>
                 <div class="page0__float__icon16"><div class="icon center"></div></div>
-                <div class="page0__float__icon17"><div class="icon center"></div></div>
-                <div class="page0__float__icon18"><div class="icon center"></div></div>
+                <div class="page0__float__icon17 littleMoveBottom delay1-5"><div class="icon center"></div></div>
+                <div class="page0__float__icon18 littleMoveLeft delay1-7"><div class="icon center"></div></div>
                 <div class="page0__float__icon19"><div class="icon center"></div></div>
                 <div class="page0__float__icon20"><div class="icon center"></div></div>
-                <div class="page0__float__icon21"><div class="icon center"></div></div>
+                <div class="page0__float__icon21 littleMoveBottom delay1-5"><div class="icon center"></div></div>
                 <div class="page0__float__icon22"><div class="icon center"></div></div>
                 <div class="page0__float__icon23"><div class="icon center"></div></div>
-                <div class="page0__float__icon24"><div class="icon center"></div></div>
+                <div class="page0__float__icon24 littleMoveRight delay1-8"><div class="icon center"></div></div>
                 <div class="page0__float__icon25"><div class="icon center"></div></div>
                 <div class="page0__float__icon26"><div class="icon center"></div></div>
-                <div class="page0__float__icon27"><div class="icon center"></div></div>
+                <div class="page0__float__icon27 littleMoveTop delay1-5"><div class="icon center"></div></div>
                 <div class="page0__float__icon28"><div class="icon center"></div></div>
-                <div class="page0__float__icon29"><div class="icon center"></div></div>
+                <div class="page0__float__icon29 littleMoveLeft delay1-5"><div class="icon center"></div></div>
                 <div class="page0__float__icon30"><div class="icon center"></div></div>
                 <div class="page0__float__icon31"><div class="icon center"></div></div>
-                <div class="page0__float__icon32"><div class="icon center"></div></div>
+                <div class="page0__float__icon32 littleMoveBottom delay1-9"><div class="icon center"></div></div>
                 <div class="page0__float__icon33"><div class="icon center"></div></div>
-                <div class="page0__float__icon34"><div class="icon center"></div></div>
+                <div class="page0__float__icon34 littleMoveLeft delay1-6"><div class="icon center"></div></div>
                 <div class="page0__float__icon35"><div class="icon center"></div></div>
-                <div class="page0__float__icon36"><div class="icon center"></div></div>
+                <div class="page0__float__icon36 littleMoveTop delay1-5"><div class="icon center"></div></div>
             </div>
-            <div class="page0__bg04"></div>
-            <div class="page0__bg05"></div>
+            <div class="page0__bg04 opacityChange delay1-0"></div>
+            <div class="page0__bg05 zoomIn delay1-0"></div>
             <div class="page0__center">
-                <div class="icon page0__center__logo"></div>
-                <div class="icon page0__center__title"></div>
-                <div class="icon page0__center__time"></div>
-                <div class="page0__center__wave"></div>
-                <div class="icon-02 page0__center__circle1"></div>
-                <div class="icon-02 page0__center__circle2"></div>
-                <div class="icon-02 page0__center__circle3"></div>
-                <div class="icon-02 page0__center__circle4"></div>
-                <div class="icon-02 page0__center__circle5"></div>
-                <div class="icon-02 page0__center__circle6"></div>
-                <div class="icon page0__center__info01"></div>
-                <div class="icon page0__center__info02"></div>
-                <div class="icon page0__center__ratio"></div>
-                <div class="icon page0__center__words01"></div>
-                <div class="icon page0__center__words02"></div>
+                <div class="icon page0__center__logo littleTopIn delay1-7" :style="{top:getMaxTop(255-128,1)}"></div>
+                <div class="icon page0__center__title zoomIn delay1-5" :style="{top:getMaxTop(328-128,1)}"></div>
+                <div class="icon page0__center__time littleBottomIn delay1-7" :style="{top:getMaxTop(459-128,1)}"></div>
+                <div class="page0__center__wave scaleY duration1-0 origin50-0 delay1-0" :style="{top:getMaxTop(778-128,1)}"></div>
+                <div class="icon-02 page0__center__circle1 zoomRotateIn delay3-0" :style="{top:getMaxTop(917-128,1)}"></div>
+                <div class="icon-02 page0__center__circle2 opacityChange delay1-0" :style="{top:getMaxTop(667-128,1)}"></div>
+                <div class="icon-02 page0__center__circle3 zoomLittleMoveIn duration1-0 delay1-0" :style="{top:getMaxTop(676-128,1)}"></div>
+                <div class="icon-02 page0__center__circle4 leftIn duration2-0 delay1-5" :style="{top:getMaxTop(980-128,1)}"></div>
+                <div class="page0__center__circle5Parent zoomLittleMoveIn duration1-0 delay2-5" :style="{top:getMaxTop(951-128,1)}">
+                    <div class="icon-02 page0__center__circle5 littleMoveLeft"></div>
+                </div>
+                <div class="page0__center__circle6Parent zoomLittleMoveIn duration1-0 delay1-5">
+                    <div class="icon-02 page0__center__circle6 littleMoveBottom"></div>
+                </div>
+                <div class="icon page0__center__info01 littleBottomIn duration1-0 delay2-0" :style="{top:getMaxTop(705-128,1)}"></div>
+                <div class="icon page0__center__info02 littleBottomIn duration1-0 delay2-3" :style="{top:getMaxTop(753-128,1)}"></div>
+                <div class="icon page0__center__ratio zoomInBack delay2-8" :style="{top:getMaxTop(753-128,1)}"></div>
+                <div class="page0__center__wordsLayer zoomIn delay3-0" :style="{top:getMaxTop(944-128,1)}">
+                    <div class="icon page0__center__words01"></div>
+                    <div class="icon page0__center__words02"></div>
+                </div>
                 
             </div>
-            <div class="page0__right"></div>
+            <div class="page0__right opacityChange duration1-0 delay3-5"></div>
         </div>
-        <div class="page page1" :class="activePage == 1 ? 'active' : ''" ref="page1">
-            <div class="page1__bg"></div>
-            <div class="page1__rightbottom"></div>
-            <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
-            <div class="page1__light"></div>
-            <div class="page1__icon page1__title1"></div>
-            <div class="page1__icon page1__title2"></div>
-            <div class="page1__icon page1__question"></div>
-            <div class="page1__line"></div>
-            <div class="page1__icon page1__info"></div>
-            <div class="page1__shot"></div>
-            <div class="page1__icon page1__logo"></div>
-            <div class="page1__moveParent">
-                <div class="page1__icon page1__move"></div>
+        <div class="page0__flip" v-show="firstFlip"></div>
+        <div class="page page1" :class="getPageMoveClass(1)" ref="page1">
+            <div class="page1__bg opacityChange delay0-5" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
+            <div class="page1__rightbottom leftIn duration2-0 delay0-5"></div>
+            <div class="page1__star opacityChange duration2-0 delay0-5"></div>
+            <div class="page1__ball littleRightBottomIn duration2-0 delay0-5" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle opacityChange delay1-0" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
+            <div class="page1__light opacityChange delay0-5" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__title1 rotateX delay1-5" :style="{top:getMaxTop(181-128,1)}"></div>
+            <div class="page1__icon page1__title2 rotateX delay1-7" :style="{top:getMaxTop(181+130-128,1)}"></div>
+            <div class="page1__icon page1__question rotateX delay2-0" :style="{top:getMaxTop(181+130+136-128,1)}"></div>
+            <div class="page1__line opacityChange delay2-5" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page1__icon page1__info rotateX delay2-5" :style="{top:getMaxTop(657-128,1)}"></div>
+            <div class="page1__shot opacityChange delay3-0" :style="{top:getMaxTop(761-128,1)}"></div>
+            <div class="page1__icon page1__logo littleTopIn delay3-5" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn delay3-8" :style="{top:getMaxTop(1156,1)}">
+                <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
-        <div class="page page2" :class="activePage == 2 ? 'active' : ''">
-            <div class="page1__bg"></div>
-            <div class="page2__rightbottom"></div>
-            <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
-            <div class="page2__table"></div>
-            <div class="page2__columnLayer">
-                <div class="page1__icon page2__c1"></div>
-                <div class="page1__icon page2__c2"></div>
-                <div class="page1__icon page2__c3"></div>
+        <div class="page page2" :class="getPageMoveClass(2)">
+            <div class="page1__bg opacityChange delay0-5" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
+            <div class="page2__rightbottom leftIn duration2-0 delay0-5"></div>
+            <div class="page1__star opacityChange duration2-0 delay0-5"></div>
+            <div class="page1__ball littleRightBottomIn duration2-0 delay0-5" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle opacityChange delay1-0" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
+            <div class="page2__table opacityChange delay2-5" :style="{top:getMaxTop(847-128,1)}"></div>
+            <div class="page2__columnLayer" :style="{top:getMaxTop(815-128,1)}">
+                <div class="page1__icon page2__c1 heightChange delay3-0"></div>
+                <div class="page1__icon page2__c2 heightChange delay3-1"></div>
+                <div class="page1__icon page2__c3 heightChange delay3-2"></div>
+                <div class="page2__arrow1 widthHeightChange origin0-0 duration0-3 delay3-7"></div>
+                <div class="page2__arrow2 widthHeightChange origin0-100 duration0-3 delay3-7"></div>
             </div>
-            <div class="page2__arrow1"></div>
-            <div class="page2__arrow2"></div>
-            <div class="page1__icon page2__title1"></div>
-            <div class="page1__icon page2__title2"></div>
-            <div class="page1__icon page2__title3"></div>
-            <div class="page1__line"></div>
-            <div class="page1__icon page2__info"></div>
+            <div class="page1__icon page2__title1 littleTopIn duration1-0 delay1-5" :style="{top:getMaxTop(164-128,1)}"></div>
+            <div class="page1__icon page2__title2 littleTopIn duration1-0 delay1-8" :style="{top:getMaxTop(164+154-128,1)}"></div>
+            <div class="page1__icon page2__title3 littleTopIn duration1-0 delay2-1" :style="{top:getMaxTop(164+154+135-128,1)}"></div>
+            <div class="page1__line littleBottomIn duration1-0 delay2-1" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page1__icon page2__info littleBottomIn duration1-0 delay1-8" :style="{top:getMaxTop(622-128,1)}"></div>
 
-            <div class="page1__icon page1__logo"></div>
-            <div class="page1__moveParent">
-                <div class="page1__icon page1__move"></div>
+            <div class="page1__icon page1__logo littleBottomIn duration1-0 delay1-0" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn duration1-0 delay1-0" :style="{top:getMaxTop(1156,1)}">
+                <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
-        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
-            <div class="page1__bg"></div>
-            <div class="page1__rightbottom"></div>
-            <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
+        <div class="page page3" :class="getPageMoveClass(3)">
+            <div class="page1__bg opacityChange delay0-5" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
+            <div class="page1__rightbottom leftIn duration2-0 delay0-5"></div>
+            <div class="page1__star opacityChange duration2-0 delay0-5"></div>
+            <div class="page1__ball littleRightBottomIn duration2-0 delay0-5" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle opacityChange delay1-0" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
             
-            <div class="page3__cardbg"></div>
-            <div class="page3__card1"></div>
-            <div class="page3__card2"></div>
+            <div class="page3__cardbg opacityChange delay3-5" :style="{top:getMaxTop(973-128,1)}"></div>
+            <div class="page3__card1 leftIn duration2-0 delay2-5" :style="{top:getMaxTop(808-128,1)}"></div>
+            <div class="page3__card2 rightIn duration2-0 delay2-5" :style="{top:getMaxTop(808-128,1)}"></div>
             
-            <div class="page3__icon page3__title1"></div>
-            <div class="page3__icon page3__title2"></div>
-            <div class="page3__icon page3__title3"></div>
-            <div class="page1__line"></div>
-            <div class="page3__icon page3__info"></div>
+            <div class="page3__icon page3__title1 littleBottomIn duration1-0 delay1-5" :style="{top:getMaxTop(158-128,1)}"></div>
+            <div class="page3__icon page3__title2 littleBottomIn duration1-0 delay1-8" :style="{top:getMaxTop(158+88-128,1)}"></div>
+            <div class="page3__icon page3__title3 littleBottomIn duration1-0 delay2-1" :style="{top:getMaxTop(158+88+130-128,1)}"></div>
+            <div class="page1__line littleBottomIn duration1-0 delay2-3" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page3__icon page3__info littleBottomIn duration1-0 delay2-5" :style="{top:getMaxTop(621-128,1)}"></div>
 
-            <div class="page1__icon page1__logo"></div>
-            <div class="page1__moveParent">
-                <div class="page1__icon page1__move"></div>
+            <div class="page1__icon page1__logo littleBottomIn duration1-0 delay1-0" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn duration1-0 delay1-0" :style="{top:getMaxTop(1156,1)}">
+                <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
-        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
-            <div class="page1__bg"></div>
-            <div class="page1__rightbottom"></div>
-            <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
+        <div class="page page4" :class="getPageMoveClass(4)">
+            <div class="page1__bg opacityChange delay0-5" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
+            <div class="page1__rightbottom leftIn duration2-0 delay0-5"></div>
+            <div class="page1__star opacityChange duration2-0 delay0-5"></div>
+            <div class="page1__ball littleRightBottomIn duration2-0 delay0-5" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle opacityChange delay1-0" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
             
-            <div class="page4__card"></div>
+            <div class="page4__card littleTopIn duration1-0 delay2-0" :style="{top:getMaxTop(-128,1)}"></div>
             
-            <div class="page3__icon page4__title1"></div>
-            <div class="page3__icon page4__title2"></div>
-            <div class="page3__icon page4__title3"></div>
-            <div class="page1__line"></div>
-            <div class="page3__icon page4__info"></div>
+            <div class="page3__icon page4__title1 rotateY180 duration2-0 delay1-0" :style="{top:getMaxTop(157-128,1)}"></div>
+            <div class="page3__icon page4__title2 rotateY180 duration2-0 delay1-2" :style="{top:getMaxTop(157+128-128,1)}"></div>
+            <div class="page3__icon page4__title3 rotateY180 duration2-0 delay1-4" :style="{top:getMaxTop(157+128+126-128,1)}"></div>
+            <div class="page1__line opacityChange delay2-0" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page3__icon page4__info littleBottomIn duration1-0 delay2-0" :style="{top:getMaxTop(619-128,1)}"></div>
 
-            <div class="page1__icon page1__logo"></div>
-            <div class="page1__moveParent">
+            <div class="page1__icon page1__logo rotateY180 duration2-0 delay1-6" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent opacityChange delay2-6" :style="{top:getMaxTop(1156,1)}">
                 <div class="page1__icon page1__move"></div>
             </div>
         </div>
-        <div class="page page5" :class="activePage == 5 ? 'active' : ''">
-            <div class="page1__bg"></div>
-            <div class="page1__rightbottom"></div>
-            <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
+        <div class="page page5" :class="getPageMoveClass(5)">
+            <div class="page1__bg opacityChange delay0-5" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
+            <div class="page1__rightbottom leftIn duration2-0 delay0-5"></div>
+            <div class="page1__star opacityChange duration2-0 delay0-5"></div>
+            <div class="page1__ball littleRightBottomIn duration2-0 delay0-5" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle opacityChange delay1-0" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
             
-            <div class="page5__card"></div>
+            <div class="page5__card rotateY180 duration1-0 delay2-0" :style="{top:getMaxTop(724-128,1)}"></div>
             
-            <div class="page5__icon page5__title1"></div>
-            <div class="page5__icon page5__title2"></div>
-            <div class="page5__icon page5__title3"></div>
-            <div class="page1__line"></div>
-            <div class="page5__icon page5__info"></div>
+            <div class="page5__icon page5__title1 zoomLittleMoveIn duration1-0 delay1-0" :style="{top:getMaxTop(154-128,1)}"></div>
+            <div class="page5__icon page5__title2 zoomLittleMoveIn duration1-0 delay1-2" :style="{top:getMaxTop(154+130-128,1)}"></div>
+            <div class="page5__icon page5__title3 zoomLittleMoveIn duration1-0 delay1-4" :style="{top:getMaxTop(154+130+125-128,1)}"></div>
+            <div class="page1__line opacityChange duration1-0 delay2-0" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page5__icon page5__info opacityChange duration1-0 delay2-0" :style="{top:getMaxTop(622-128,1)}"></div>
 
-            <div class="page1__icon page1__logo"></div>
-            <div class="page1__moveParent">
-                <div class="page1__icon page1__move"></div>
+            <div class="page1__icon page1__logo littleBottomIn duration1-0 delay1-0" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn duration1-0 delay1-0" :style="{top:getMaxTop(1156,1)}">
+                <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
-        <div class="page page6" :class="activePage == 6 ? 'active' : ''">
-            <div class="page1__bg"></div>
+        <div class="page page6" :class="getPageMoveClass(6)">
+            <div class="page1__bg" :style="{backgroundPosition:'center '+getMaxTop(-128,1)}"></div>
             <div class="page1__rightbottom"></div>
             <div class="page1__star"></div>
-            <div class="page1__ball"></div>
-            <div class="page1__sprinkle"></div>
-            <div class="page1__icon page1__piece1"></div>
-            <div class="page1__icon page1__piece2"></div>
-            <div class="page6__company"></div>
-            <div class="page5__icon page6__title1"></div>
-            <div class="page5__icon page6__title2"></div>
-            <div class="page6__form">
+            <div class="page1__ball" :style="{top:getMaxTop(1095,1)}"></div>
+            <div class="page1__sprinkle" :style="{top:getMaxTop(-128,1)}"></div>
+            <div class="page1__icon page1__piece1" :style="{top:getMaxTop(131-128,1)}"></div>
+            <div class="page1__icon page1__piece2" :style="{top:getMaxTop(359-128,1)}"></div>
+            <div class="page6__company littleBottomIn duration1-0 delay1-0" :style="{top:getMaxTop(344-128,1)}"></div>
+            <div class="page5__icon page6__title1 littleBottomIn duration1-0 delay0-5" :style="{top:getMaxTop(132-128,1)}"></div>
+            <div class="page5__icon page6__title2 littleBottomIn duration1-0 delay0-8" :style="{top:getMaxTop(308-128,1)}"></div>
+            <div class="page6__form littleBottomIn duration1-0 delay1-3" :style="{top:getMaxTop(-128,1)}">
                 <div class="page6__form__center">
                     <div class="page6__form__one">
-                        <div class="page5__icon page6__form__name page6__form__name1" v-model="signup.name" v-on:input="checkNullEvent('name','您的名称')"></div>
-                        <input type="text" class="page6__form__input" />
+                        <div class="page5__icon page6__form__name page6__form__name1"></div>
+                        <input type="text" class="page6__form__input" v-model="signup.name" v-on:input="checkNullEvent('name','您的名称')" />
                         <div class="page6__form__tips">{{nameTips}}</div>
                     </div>
                     <div class="page6__form__one">
-                        <div class="page5__icon page6__form__name page6__form__name2" v-model="signup.city" v-on:input="checkNullEvent('city','公司所在城市')"></div>
-                        <input type="text" class="page6__form__input" />
+                        <div class="page5__icon page6__form__name page6__form__name2"></div>
+                        <input type="text" class="page6__form__input" v-model="signup.city" v-on:input="checkNullEvent('city','公司所在城市')" />
                         <div class="page6__form__tips">{{cityTips}}</div>
                     </div>
                     <div class="page6__form__one">
-                        <div class="page5__icon page6__form__name page6__form__name3" v-model="signup.company" v-on:input="updateCompanyList"></div>
-                        <input type="text" class="page6__form__input" />
+                        <div class="page5__icon page6__form__name page6__form__name3"></div>
+                        <input type="text" class="page6__form__input" v-model="signup.company" v-on:input="updateCompanyList" />
                         <div class="page6__form__tips">{{companyTips}}</div>
                         <div class="page2__signup--list page2__signup--searchLayer" v-show="signupSearchStatus">
                             <div class="page2__signup--search">
@@ -339,11 +347,19 @@
                         </div>
                     </div>
                     <div class="page6__form__one">
-                        <div class="page5__icon page6__form__name page6__form__name4" v-model="signup.phone" v-on:input="checkPhoneEvent('phone')"></div>
-                        <input type="text" class="page6__form__input" />
+                        <div class="page5__icon page6__form__name page6__form__name4"></div>
+                        <input type="text" class="page6__form__input" v-model="signup.phone" v-on:input="checkPhoneEvent('phone')" />
                         <div class="page6__form__tips">{{phoneTips}}</div>
                     </div>
-                    <div class="page6__form__btn"></div>
+                    <div class="page6__form__btnParent">
+                        <div class="page6__form__btn rotateY180 duration1-0 delay1-5"
+                            @click.stop.prevent="signupEvent"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page6__successLayer" v-show="signupStatus">
+                <div class="page6__success">
+                    <div class="page6__success__text"></div>
                 </div>
             </div>
         </div>
@@ -363,7 +379,7 @@
     </script>
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/m_index.js?v=$version$"></script>
-    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-11.0.js"></script>
     <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
     <script>
         function share(datas){
