@@ -231,30 +231,65 @@
             <div class="page1__signup" v-show="page1.signupStatus">
                 <div class="page1__signup__center">
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input" type="text" placeholder="企业简称" v-model="page1.signup.company" />
+                        <input class="page1__signup__input page1__signup__input--company" type="text" placeholder="企业简称" v-model="page1.signup.company" v-on:input="updateCompanyList" />
                         <div class="page1__signup__tips">{{page1.companyTips}}</div>
+                        <div class="page1__signup--list page1__signup--searchLayer" v-show="page1.signupSearchStatus">
+                            <div class="page1__signup--search">
+                                <div class="page1__signup--search_bar_bg" v-show="page1.signupList.length > 5">
+                                    <div class="page1__signup--search_bar" ref="page1__signup--search_bar"></div>
+                                </div>
+                                <ul class="page1__signup--ul page1__signup--search_ul" ref="page1__signup--search_ul">
+                                    <li class="page1__signup--one page1__signup--search_li"
+                                        v-for="(one,index) in page1.signupList" @click.stop.prevent="signupSelectCompanyEvent(one)">
+                                        <div class="page1__signup--text">{{one.companyname}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input" type="text" placeholder="姓名" v-model="page1.signup.user" />
+                        <input class="page1__signup__input" type="text" placeholder="姓名" v-model="page1.signup.user" v-on:input="checkNullEvent('user','姓名')" />
                         <div class="page1__signup__tips">{{page1.userTips}}</div>
                     </div>
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input" type="text" placeholder="职位" v-model="page1.signup.position" />
+                        <input class="page1__signup__input" type="text" placeholder="职位" v-model="page1.signup.position" v-on:input="checkNullEvent('position','职位')" />
                         <div class="page1__signup__tips">{{page1.positionTips}}</div>
                     </div>
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input" type="text" placeholder="电话" v-model="page1.signup.phone" />
+                        <input class="page1__signup__input" type="text" placeholder="电话" v-model="page1.signup.phone" v-on:input="checkPhoneEvent('phone')" />
                         <div class="page1__signup__tips">{{page1.phoneTips}}</div>
                     </div>
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input" type="text" placeholder="" v-model="page1.signup.city" />
-                        <div class="page1__signup__list">{{page1.phoneTips}}</div>
+                        <input class="page1__signup__input page1__signup__input--city" type="text" placeholder="" v-model="page1.cityCN" v-on:input="checkNullEvent('city','城市')"
+                            @touchstart.stop.prevent="showChooseLayer" />
+                        <div class="page1__signup__unfold"></div>
+                        <div class="page1__signup__tips">{{page1.cityTips}}</div>
+                        <div class="page1__signup--list" v-show="page1.cityStatus">
+                            <div class="page1__signup--one"
+                                v-for="(one,index) in page1.cityArr" @click.stop.prevent="chooseCityEvent(one.en,one.cn,one.templateId)"
+                                data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2020+index)" data-lg-tj-cid="null">
+                                <div class="page1__signup--text">{{one.cn}}</div>
+                            </div>
+                        </div>
                     </div>
+                    <div class="page1__signup__btn" @click.stop.prevent="signupEvent"
+                        data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2050" data-lg-tj-cid="null"></div>
                 </div>
+                <div class="page1__signup__close" @click.stop.prevent="signupCloseEvent"></div>
             </div>
         </div>
         <div class="page page2" :class="activePage == 2 ? 'active' : ''">
-            
+            <div class="page0__bg01"></div>
+            <div class="page0__bg02"></div>
+            <div class="icon page0__logo"></div>
+            <div class="page0__dot01"></div>
+            <div class="page0__dot02"></div>
+            <div class="page0__grotesque"></div>
+            <div class="icon page0__2018"></div>
+            <div class="icon page0__circle"></div>
+            <div class="icon page2__theme"></div>
+            <div class="page2__companybg">特别邀请 {{page1.signup.company}}</div>
+            <div class="page2__company">特别邀请 {{page1.signup.company}}</div>
         </div>
         <div class="page page3" :class="activePage == 3 ? 'active' : ''">
             

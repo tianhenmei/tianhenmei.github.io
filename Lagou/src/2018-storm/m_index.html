@@ -93,10 +93,10 @@
                     // pro = document.getElementById('loading__progress'),
                     number = document.getElementById('loading__num');
                 number.innerHTML = "100%";
-                if(space < 2000){
+                if(space < 1000){
                     setTimeout(function(){
                         loadingComplete();
-                    },2000 - space)
+                    },1000 - space)
                 }else{
                     loadingComplete();
                 }
@@ -107,11 +107,11 @@
 <body>
     <div class="loading" id="loading">
         <div class="page0__bg01"></div>
-        <div class="page0__vortex zoomIn delay0-5"></div>
+        <!--<div class="page0__vortex zoomIn delay0-5"></div>
         <div class="icon page0__center__logo littleTopIn delay1-2"></div>
         <div class="icon page0__center__title zoomIn delay1-0"></div>
-        <div class="icon page0__center__time littleBottomIn delay1-2"></div>
-        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+        <div class="icon page0__center__time littleBottomIn delay1-2"></div>-->
+        <div class="loading__num littleBottomIn delay0-5 clearfix" id="loading__num">0%</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
@@ -199,14 +199,16 @@
             <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
             <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
             <div class="page1__light opacityChange delay0-5" :style="{top:getMaxTop(-128,1)}"></div>
-            <div class="page1__icon page1__title1 rotateX delay1-5" :style="{top:getMaxTop(181-128,1)}"></div>
-            <div class="page1__icon page1__title2 rotateX delay1-7" :style="{top:getMaxTop(181+130-128,1)}"></div>
-            <div class="page1__icon page1__question rotateX delay2-0" :style="{top:getMaxTop(181+130+136-128,1)}"></div>
-            <div class="page1__line opacityChange delay2-5" :style="{top:getMaxTop(594-128,1)}"></div>
-            <div class="page1__icon page1__info rotateX delay2-5" :style="{top:getMaxTop(657-128,1)}"></div>
-            <div class="page1__shot opacityChange delay3-0" :style="{top:getMaxTop(761-128,1)}"></div>
-            <div class="page1__icon page1__logo littleTopIn delay3-5" :style="{top:getMaxTop(1167-128,1)}"></div>
-            <div class="page1__moveParent littleTopIn delay3-8" :style="{top:getMaxTop(1156,1)}">
+            <div class="page1__title1Parent zoomInBack1 delay1-5" :style="{top:getMaxTop(181-128,1)}">
+                <div class="page1__icon page1__title1"></div>
+            </div>
+            <div class="page1__icon page1__title2 rotateX delay2-3" :style="{top:getMaxTop(181+130-128,1)}"></div>
+            <div class="page1__icon page1__question rotateX delay2-5" :style="{top:getMaxTop(181+130+136-128,1)}"></div>
+            <div class="page1__line opacityChange delay2-8" :style="{top:getMaxTop(594-128,1)}"></div>
+            <div class="page1__icon page1__info rotateX delay2-8" :style="{top:getMaxTop(657-128,1)}"></div>
+            <div class="page1__shot opacityChange delay3-3" :style="{top:getMaxTop(761-128,1)}"></div>
+            <div class="page1__icon page1__logo littleTopIn delay3-8" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn delay4-1" :style="{top:getMaxTop(1156,1)}">
                 <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
@@ -226,7 +228,9 @@
                 <div class="page2__arrow1 widthHeightChange origin0-0 duration0-3 delay3-7"></div>
                 <div class="page2__arrow2 widthHeightChange origin0-100 duration0-3 delay3-7"></div>
             </div>
-            <div class="page1__icon page2__title1 littleTopIn duration1-0 delay1-5" :style="{top:getMaxTop(164-128,1)}"></div>
+            <div class="page2__title1Parent littleTopIn duration1-0 delay1-5" :style="{top:getMaxTop(164-128,1)}">
+                <div class="page1__icon page2__title1 rubberBand delay2-5"></div>
+            </div>
             <div class="page1__icon page2__title2 littleTopIn duration1-0 delay1-8" :style="{top:getMaxTop(164+154-128,1)}"></div>
             <div class="page1__icon page2__title3 littleTopIn duration1-0 delay2-1" :style="{top:getMaxTop(164+154+135-128,1)}"></div>
             <div class="page1__line littleBottomIn duration1-0 delay2-1" :style="{top:getMaxTop(594-128,1)}"></div>
@@ -334,7 +338,7 @@
                         <div class="page6__form__tips">{{companyTips}}</div>
                         <div class="page2__signup--list page2__signup--searchLayer" v-show="signupSearchStatus">
                             <div class="page2__signup--search">
-                                <div class="page2__signup--search_bar_bg" v-show="signupList.length > 5">
+                                <div class="page2__signup--search_bar_bg" v-show="signupList.length > 7.5">
                                     <div class="page2__signup--search_bar" ref="page2__signup--search_bar"></div>
                                 </div>
                                 <ul class="page2__signup--ul page2__signup--search_ul" ref="page2__signup--search_ul">

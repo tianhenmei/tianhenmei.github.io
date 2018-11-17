@@ -265,7 +265,7 @@ body {
         font-size:rem(31.5);
         color:#e3d0b0;
         text-align:center;
-        @include leftTop(0,878);
+        @include leftTop(0,878-250);
     }
 }
 
@@ -964,12 +964,16 @@ body {
         background-size:100%;
         @include leftTop(0,-128);
     }
+    &__title1Parent {
+        width:rem(444);
+        height:rem(130);
+        @include center(153,181-128);
+    }
     // page1__title1
     &__title1 {
         width:rem(444);
         height:rem(130);
         background-position:0 0;
-        @include center(153,181-128);
     }
     // page1__title2
     &__title2 {
@@ -1079,12 +1083,16 @@ body {
         background-size:100% 100%;
         @include leftBottom(-12,-16);
     }
+    &__title1Parent {
+        width:rem(598);
+        height:rem(154);
+        @include center(81,164-128);
+    }
     // page2__title1
     &__title1 {
         width:rem(598);
         height:rem(154);
         background-position:0 rem(-580);
-        @include center(81,164-128);
     }
     &__title2 {
         width:rem(598);
@@ -1609,6 +1617,22 @@ body {
         transform: scale3d(1,1,1);
     }
 }
+.zoomInBack1 {
+    animation:zoomInBack1 0.5s both ease-in-out;
+}
+@keyframes zoomInBack1 {
+    0% {
+        opacity: 0;
+        transform: scale3d(0,0,0);
+    }
+    70% {
+        transform: scale3d(3,3,3);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1,1,1);
+    }
+}
 .zoomIn-out {
     animation:zoomIn-out 0.5s both ease-in-out;
 }
@@ -1666,6 +1690,121 @@ body {
         transform: scale3d(2,2,2);
     }
 }
+.bounce {
+    animation-name: bounce;
+    transform-origin: center bottom
+}
+@keyframes bounce {
+    0%,20%,53%,80%,to {
+        animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        transform: translateZ(0)
+    }
+
+    40%,43% {
+        animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+        transform: translate3d(0,-30px,0)
+    }
+
+    70% {
+        animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+        transform: translate3d(0,-15px,0)
+    }
+
+    90% {
+        transform: translate3d(0,-4px,0)
+    }
+}
+.tada {
+    animation-name: tada;
+    animation-duration: 0.5s;
+}
+@keyframes tada {
+    0% {
+        transform: scaleX(1)
+    }
+
+    10%,20% {
+        transform: scale3d(.9,.9,.9) rotate(-3deg)
+    }
+
+    30%,50%,70%,90% {
+        transform: scale3d(1.1,1.1,1.1) rotate(3deg)
+    }
+
+    40%,60%,80% {
+        transform: scale3d(1.1,1.1,1.1) rotate(-3deg)
+    }
+
+    to {
+        transform: scaleX(1)
+    }
+}
+.bounceInDown {
+    animation: bounceInDown 0.5s both;
+}
+@keyframes bounceInDown {
+    0%,60%,75%,90%,to {
+        animation-timing-function: cubic-bezier(.215,.61,.355,1)
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(0,-3000px,0)
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0,25px,0)
+    }
+
+    75% {
+        transform: translate3d(0,-10px,0)
+    }
+
+    90% {
+        transform: translate3d(0,5px,0)
+    }
+
+    to {
+        transform: none
+    }
+}
+
+.rubberBand {
+    animation: rubberBand 0.5s both;
+}
+@keyframes rubberBand {
+    0% {
+        transform: scaleX(1)
+    }
+
+    30% {
+        transform: scale3d(1.25,.75,1)
+    }
+
+    40% {
+        transform: scale3d(.75,1.25,1)
+    }
+
+    50% {
+        transform: scale3d(1.15,.85,1)
+    }
+
+    65% {
+        transform: scale3d(.95,1.05,1)
+    }
+
+    75% {
+        transform: scale3d(1.05,.95,1)
+    }
+
+    to {
+        transform: scaleX(1)
+    }
+}
+
+
+
 .rightIn {
     animation:rightIn 0.5s both ease-in-out;
 }

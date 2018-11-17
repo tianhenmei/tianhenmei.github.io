@@ -3,6 +3,233 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function noop(){}
+var scrollClass = function(options) {
+    this.elem = null;
+    this.initHeight = 0;
+    this.elemHeight = 0;
+    this.ul = null;
+    this.li = null;
+    this.bar = null;
+    this.barHeight = 0;
+    this.classname = '';
+    this.length = 0;
+    this.one = 0;
+    this.height = 0;
+    this.top = 0;
+    this.start = 0;
+    this.end = 0;
+    this.number = 0;
+    this.space = 0;
+    this.scale = 0;
+    this.fixedHeight = true;
+    // 滑到底部调用回调函数
+    this.moveEndCallback = null;
+    this.moveEndStatus = false;
+    this.secondTimeStatus = false;
+    // 滑到顶部调用回调函数
+    this.moveUpCallback = null;
+    this.moveUpStatus = false;
+    this.secondUpTimeStatus = false;
+
+    var self = this;
+    this.init = function(options) {
+        var elem = $('.' + options.classname),
+            ul = elem.children('ul').length ? elem.children('ul') : elem.find('.'+options.classname+'_ul'),
+            li = ul.children('li').length ? ul.children('li') : ul.find('.'+options.classname+'_li'),
+            bar = elem.find('.' + options.classname + '_bar'),
+            length = options.length ? options.length : li.length,
+            one = length > 0 ? li.eq(0).height() : 0;
+
+        self.initHeight = options.height;
+        self.elemHeight = options.totalHeight || elem.height();
+        self.classname = options.classname;
+        self.elem = elem[0];
+        self.ul = ul;
+        self.li = li;
+        self.bar = bar;
+        self.length = length;
+        self.one = options.one ? self.getRem(options.one) : one;
+        self.height = self.one * length + parseFloat(ul.css('padding-top')) + parseFloat(ul.css('padding-bottom')) - self.getRem(self.initHeight);
+        self.number = options.number;
+        self.space = options.space;
+        self.barHeight = self.elemHeight * self.number / self.length;
+        self.scale = (self.elemHeight - self.barHeight - self.getRem(self.space) * 2) / ((self.length - self.number) * self.one);
+        self.fixedHeight = options.fixedHeight == undefined ? true : !!options.fixedHeight;
+        self.moveEndCallback = options.moveEndCallback || null;
+        self.moveUpCallback = options.moveUpCallback || null;
+        bar.css({
+            height: self.barHeight + 'px'
+        });
+
+        var barParent = self.bar.parent('.' + self.classname + '_bar_bg');
+        if (self.length > self.number) { // 只有列表的值太多，才会出现滚动条
+            if (barParent.length > 0) {
+                barParent.removeClass('search_hide');
+            } else {
+                self.bar.removeClass('search_hide');
+            }
+            self.initEvent();
+            if (!self.fixedHeight) {
+                elem.css({
+                    'height': self.getRem(self.initHeight) + 'px'
+                });
+            }
+        } else {
+            if (barParent.length > 0) {
+                barParent.addClass('search_hide');
+            } else {
+                self.bar.addClass('search_hide');
+            }
+            if (!self.fixedHeight) {
+                elem.css({
+                    'height': ul.height() + parseFloat(ul.css('padding-top')) + parseFloat(ul.css('padding-bottom')) + 'px'
+                });
+            }
+            if(app.scrollData[self.classname]){
+                elem[0].removeEventListener('touchstart', app.scrollData[self.classname].startScroll, false);
+                elem[0].removeEventListener('touchmove', app.scrollData[self.classname].moveScroll, false);
+            }
+        }
+    };
+
+    this.initEvent = function() {
+        var elem = $('.' + self.classname)[0];
+        this.removeEvent();
+
+        elem.addEventListener('touchstart', self.startScroll, false);
+        elem.addEventListener('touchmove', self.moveScroll, false);
+    };
+
+    this.removeEvent = function(){
+        var elem = $('.' + self.classname)[0];
+        elem.removeEventListener('touchstart', self.startScroll, false);
+        elem.removeEventListener('touchmove', self.moveScroll, false);        
+    },
+
+    this.startScroll = function(e) {
+        // e.stopPropagation();
+        // e.preventDefault();
+
+        app.scrollData.isMoving = false;
+        // clickTime = new Date().getTime();
+        if (app.scrollData[self.classname].length > app.scrollData[self.classname].number) {
+            var touch = e.targetTouches[0];
+            app.scrollData[self.classname].start = touch.clientY;
+            app.scrollData[self.classname].top = parseFloat(app.scrollData[self.classname].ul.css('top')) || 0;
+            if(self.moveEndStatus){
+                self.secondTimeStatus = true;
+            }
+            if(self.moveUpStatus){
+                self.secondUpTimeStatus = true;
+            }
+        }
+    };
+
+    this.moveScroll = function(e) {
+        // e.stopPropagation();
+        e.preventDefault();
+
+        if (app.scrollData[self.classname].length > app.scrollData[self.classname].number) {
+            app.scrollData.isMoving = true;
+            var touch = e.targetTouches[0],
+                direction = touch.clientY - app.scrollData[self.classname].start;
+
+            app.scrollData[self.classname].end = touch.clientY - app.scrollData[self.classname].start + app.scrollData[self.classname].top
+            
+            if(Math.abs(direction) > 60){
+                e.stopPropagation();
+            }
+            direction = direction > 0 ? 1 : -1;
+            if (direction == 1 && app.scrollData[self.classname].end >= 0) { // 向上
+                self.secondTimeStatus = false;
+                app.scrollData[self.classname].end = 0;
+                // 移动到顶部：
+                if(self.moveUpCallback){
+                    if(app.scrollData[self.classname].top == 0){
+                        self.moveUpStatus = false;
+                        self.secondUpTimeStatus = false;
+                        self.moveUpCallback();
+                    }else{
+                        if(!self.moveUpStatus){
+                            self.moveUpStatus = true;
+                        }else if(self.secondUpTimeStatus){
+                            self.moveUpStatus = false;
+                            self.secondUpTimeStatus = false;
+                            self.moveUpCallback();
+                        }
+                    }
+                }
+            } else if (direction == -1 && app.scrollData[self.classname].end <= -app.scrollData[self.classname].height) { // 向下
+
+                app.scrollData[self.classname].end = -app.scrollData[self.classname].height;
+                // 移动到底部：
+                if(self.moveEndCallback){
+                    if(app.scrollData[self.classname].top == -app.scrollData[self.classname].height){
+                        self.moveEndStatus = false;
+                        self.secondTimeStatus = false;
+                        self.moveEndCallback();
+                    }else{
+                        if(!self.moveEndStatus){
+                            self.moveEndStatus = true;
+                        }else if(self.secondTimeStatus){
+                            self.moveEndStatus = false;
+                            self.secondTimeStatus = false;
+                            self.moveEndCallback();
+                        }
+                    }
+                }
+            }
+            // console.log(-self.scale*self.end);
+            app.scrollData[self.classname].bar.css({
+                top: -app.scrollData[self.classname].scale * app.scrollData[self.classname].end + 'px'
+            });
+            app.scrollData[self.classname].ul.css({
+                top: app.scrollData[self.classname].end + 'px'
+            });
+        }
+    };
+
+    this.setRank = function(rank) {
+        rank -= 1;
+        self.li.removeClass('rank-active');
+        if (rank <= (self.length - 1) && rank >= 0) {
+            var rankTop = (rank - 1) * self.one,
+                position = rank;
+            if (rank <= self.number / 2) { // 当前排行在一半以下
+                // 什么也不用做
+                position = 0;
+            } else if (rank >= (self.length - self.number / 2)) { // 当前排行在最后一屏的一半以上
+                // 定位在最后一屏
+                position = self.length - self.number;
+
+            } else {
+                position = rank - Math.floor(self.number / 2);
+            }
+            self.li.eq(rank).addClass('rank-active');
+        } else {
+            position = 0;
+            // rank = 0;
+        }
+        self.ul.css({
+            top: -(position * self.one) + 'px'
+        });
+        self.bar.css({
+            top: self.scale * (position * self.one) + 'px'
+        });
+    };
+
+    this.getRem = function(value) {
+        var scale = 1206 / 750,
+            currentScale = GC.h / GC.w,
+            fontSize = parseFloat(document.documentElement.style.fontSize) || 16 //GC.w / (10 / currentScale * scale);
+        
+        return value / (750 / 16) * fontSize;
+        // return value / 750 * 10 * fontSize;
+        // return value / 750 * document.documentElement.clientWidth;
+    }
+
+    self.init(options);
+};
 function setRem(value){
     return value / (750 / 16)+'rem';
 }
@@ -43,8 +270,8 @@ function backgroundMusic(audio){
 // }
 // 3: 报名成功，展示公司页
 // test
-var initialNow = 1,
-    initialLast = 0,
+var initialNow = 2,
+    initialLast = 1,
     initialCompanyId = 0,
     mode = "development",// "development",//"production",
     initialText = '测试',
@@ -401,38 +628,53 @@ app = new Vue({
             ],
             signupStatus:true,
             signup:{
+                templateId:'',
                 companyId:initialCompanyId,
-                company:initialText,
+                company:'',
                 user:initialText,
                 position:initialText,
                 phone:initialPhone,
-                city:'11.21上海'
+                city:'shanghai'
             },
+            signupList:[],
+            signupSearchStatus:false,
+            waitingRequest:0,
+            signupRequestStatus:false,
+            signupFromOther:false,
+            cityCN:'11.21上海',
+            cityStatus:false,
             cityArr:[
                 {
                     cn:'11.21上海',
-                    en:''
+                    en:'shanghai',
+                    templateId:''
                 },{
                     cn:'11.23杭州',
-                    en:''
+                    en:'hangzhou',
+                    templateId:''
                 },{
                     cn:'11.27深圳',
-                    en:''
+                    en:'shenzhen',
+                    templateId:''
                 },{
                     cn:'11.29广州',
-                    en:''
+                    en:'guangzhou',
+                    templateId:''
                 },{
                     cn:'11.29成都',
-                    en:''
+                    en:'chengdu',
+                    templateId:''
                 },{
                     cn:'12.21北京',
-                    en:''
+                    en:'beijing',
+                    templateId:''
                 }
             ],
             companyTips:'',  // * 请输入公司简称
             userTips:'',
             positionTips:'',
             phoneTips:'',  // * 请输入正确的电话格式
+            cityTips:''
         },
         page2:{
             status:'in',
@@ -441,27 +683,7 @@ app = new Vue({
             rankActiveIndex:0,//:-1,
             rankSubActive:-1,
             rankListStatus:true,
-            showSubListStatus:false,
-            // 报名
-            signupStatus:false,
-            signup:{
-                companyId:initialCompanyId,
-                company:initialText,
-                industryfield:initialText,
-                user:initialText,
-                position:initialText,
-                phone:initialPhone
-            },
-            signupList:[],
-            signupSearchStatus:false,
-            signupRequestStatus:false,
-            waitingRequest:0,
-            industryfieldCN:'',
-            companyTips:'',  // * 您输入的企业已经参选TOP雇主，为TA助力吧
-            industryfieldTips:'',
-            userTips:'',
-            positionTips:'',
-            phoneTips:'',  // * 请输入正确的电话格式
+            showSubListStatus:false
             
         },
         page3:{
@@ -759,7 +981,7 @@ app = new Vue({
             'search_list': {},
             'rank-center': {},
             'page2__rank--item':{},
-            'page2__signup--search':{},
+            'page1__signup--search':{},
             confirmCompany: false, // 是否选择公司
             requestCompany: '', // 当前请求公司的搜索值
             company: {},
@@ -1014,11 +1236,11 @@ app = new Vue({
             this.page2.signupStatus = false;
         },
         signupCloseEvent:function(){
-            if(this.signupFromOther){
-                this.signupFromOther = false;
-                this.showSearchPageEvent();
-            }
-            this.page2.signupStatus = false;
+            // if(this.signupFromOther){
+            //     this.signupFromOther = false;
+            //     this.showSearchPageEvent();
+            // }
+            this.page1.signupStatus = false;
         },
         showPage2InfoEvent:function(index){
             this.page2.dirActive = index;
@@ -1176,45 +1398,50 @@ app = new Vue({
         },
         // 报名
         checkNullEvent:function(key,cn){
-            if(!this.page2.signup[key].trim()){
-                this.page2[key+'Tips'] = '* 请输入'+cn;
+            if(!this.page1.signup[key].trim()){
+                this.page1[key+'Tips'] = '* 请输入'+cn;
                 return false;
             }else{
-                this.page2[key+'Tips'] = '';
+                this.page1[key+'Tips'] = '';
                 return true;
             }
         },
         checkPhoneEvent:function(key){
-            var value = this.page2.signup[key],
-                isValidPhone = /^1[\d]{10}$/g.test(this.page2.signup[key]);
+            var value = this.page1.signup[key],
+                isValidPhone = /^1[\d]{10}$/g.test(this.page1.signup[key]);
             if(!isValidPhone) {
-                this.page2[key+'Tips'] = '* 请输入正确的电话格式';
+                this.page1[key+'Tips'] = '* 请输入正确的电话格式';
                 return false;
             }else{
-                this.page2[key+'Tips'] = '';
+                this.page1[key+'Tips'] = '';
                 return true;
             }
         },
         showChooseLayer:function(){
-            this.page2.industryfieldStatus = true;
+            if(this.page1.cityStatus){
+                this.page1.cityStatus = false;
+            }else{
+                this.page1.cityStatus = true;
+            }
         },
-        chooseIndustryfieldEvent:function(en,cn){
-            this.page2.industryfieldStatus = false;
-            this.page2.signup.industryfield = en;
-            this.page2.industryfieldCN = cn;
+        chooseCityEvent:function(en,cn,templateId){
+            this.page1.cityStatus = false;
+            this.page1.signup.city = en;
+            this.page1.cityCN = cn;
+            this.page1.signup.templateId = templateId;
         },
         signupEvent:function(){
             var status = true;
-            if(!this.checkNullEvent('company','企业简称')){
+            if(!this.checkNullEvent('company','公司名称')){
                 status = false;
             }
-            if(!this.checkNullEvent('industryfield','所属行业')){
+            if(!this.checkNullEvent('user','姓名')){
                 status = false;
             }
-            if(!this.checkNullEvent('user','联系人')){
+            if(!this.checkNullEvent('position','职位')){
                 status = false;
             }
-            if(!this.checkNullEvent('position','联系人职位')){
+            if(!this.checkNullEvent('city','城市')){
                 status = false;
             }
             if(!this.checkPhoneEvent('phone')){
@@ -1232,35 +1459,22 @@ app = new Vue({
                 this.showSuccessPage();
             }else{
                 var self = this,
-                    signup = this.page2.signup;
+                    signup = this.page1.signup;
                 self.selectedId = signup.companyId;
                 $.ajax({
                     type: 'get',
                     url: 'https://activity.lagou.com/activityapi/employer/newEmployerSignUp',
                     data:{
+                        templateId:signup.companyId,
                         companyId:signup.companyId,
-                        industryfield:signup.industryfield,
+                        city:signup.city,
                         user:signup.user,
                         position:signup.position,
                         phone:signup.phone,
                     },
                     success: function(result) {
                         if (result.success) {
-                            var data = result.content,
-                                voteList = self.setCompanyVoteList(data.employerOptionList);
-
-                            self.selected = data;
-                            self.selected.voteList = voteList;
-
-                            self.mycompany = data;
-                            self.mycompany.voteList = voteList;
-                            self.mycompany.companyId = self.selectedId;
-
-                            self.companyList = data;
-                            self.companyList.voteList = voteList;
-                            self.companyList.companyId = self.selectedId;
-                            self.getCompanyInfo(true);
-                            // self.showSuccessPage();
+                            self.showSuccessPage();
                         }else if(result.state == 300){
                             alert(result.message);
                         }
@@ -1271,52 +1485,23 @@ app = new Vue({
                 });
             }
         },
-        // 获取公司信息（已对）
-        getCompanyInfo:function(status){
-            var self = this;
-            if(this.mode == "development"){
-                return;
-            }
-            $.ajax({
-                type: 'get',
-                url: 'https://activity.lagou.com/activityapi/employer/employerInfo',
-                data:{
-                    companyId:this.selectedId
-                },
-                success: function(result) {
-                    if (result.success) {
-                        var data = result.content,
-                            voteList = self.setCompanyVoteList(data.optionList);
-                        self.mycompany = data;
-                        self.mycompany.voteList = voteList;
-                        self.mycompany.companyId = self.selectedId;
-
-                        if(status){
-                            self.companyList = data;
-                            self.companyList.voteList = voteList;
-                            self.companyList.companyId = self.selectedId;
-                        }
-                        self.showSuccessPage();
-                    }
-                },
-                error: function(xhr, type) {
-                    alert('网络原因请重新尝试!');
-                }
-            });
-        },
         showSuccessPage:function(){
             var self = this;
-            this.page2.status = 'out';
-            PM.data.last = 2;
-            PM.data.now = 3;
+            this.page1.status = 'out';
+            PM.data.last = 1;
+            PM.data.now = 2;
             setTimeout(function(){
-                jQuery(".page").removeClass("pageCurrent").addClass("hide");
-                jQuery(".page" + PM.data.last).attr('style','');
-                jQuery(".page" + PM.data.now).removeClass("hide").addClass("pageCurrent");
+                $('html,body,.page1').css({
+                    'height':'100%',
+                    'overflow': 'hidden'
+                });
+                // jQuery(".page").removeClass("pageCurrent").addClass("hide");
+                // jQuery(".page" + PM.data.last).attr('style','');
+                // jQuery(".page" + PM.data.now).removeClass("hide").addClass("pageCurrent");
                 PM.data.isMoving = false;
                 self['page'+PM.data.now].status = 'in';
                 self['page'+PM.data.last].status = 'in';
-                self.activePage = 3;
+                self.activePage = 2;
             },500);
         },
         showPage3VoteEvent:function(){
@@ -2040,11 +2225,11 @@ app = new Vue({
         },
         updateCompanyList:function(){
             var self = this;
-            if(!this.page2.signup.company){
-                this.page2.companyTips = '* 请输入企业名称或企业ID';
+            if(!this.page1.signup.company){
+                this.page1.companyTips = '* 请输入企业名称或企业ID';
                 return;
             }
-            this.page2.companyTips = '';
+            this.page1.companyTips = '';
             // 正在请求
             // if(this.signupRequestStatus){
             //     this.waitingRequest++;
@@ -2055,41 +2240,41 @@ app = new Vue({
                 type: 'get',
                 url: 'https://activity.lagou.com/activityapi/common/queryCompany.json',
                 data:{
-                    keyword:this.page2.signup.company
+                    keyword:this.page1.signup.company
                 },
                 success: function(result) {
                     self.signupRequestStatus = false;
                     if (result.success) {
                         var data = result.content || [];
                         if(data.length > 0){
-                            self.page2.signupList = data;
-                            self.page2.signupSearchStatus = true;
+                            self.page1.signupList = data;
+                            self.page1.signupSearchStatus = true;
                             self.$nextTick(function(){
                                 self.setSignupSearchScroll();
                             })
                         }else{
-                            self.page2.companyTips = '* 您输入的企业不存在';
-                            self.page2.signupSearchStatus = false;
+                            self.page1.companyTips = '* 您输入的企业不存在';
+                            self.page1.signupSearchStatus = false;
                         }
                     } else{ // 查找失败
-                        self.page2.companyTips = '* 您输入的企业不存在';
-                        self.page2.signupSearchStatus = false;
+                        self.page1.companyTips = '* 您输入的企业不存在';
+                        self.page1.signupSearchStatus = false;
                     }
                 },
                 error: function(xhr, type) {
                     self.signupRequestStatus = false;
-                    self.page2.companyTips = '网络原因请重新尝试!';
+                    self.page1.companyTips = '网络原因请重新尝试!';
                 }
             });
         },
         setSignupSearchScroll:function(){
-            var classname = 'page2__signup--search';
-            this.$refs['page2__signup--search_ul'].style.top = 0;
-            this.$refs['page2__signup--search_bar'].style.top = 0;
-            this.scrollData['page2__signup--search'] = new scrollClass({
+            var classname = 'page1__signup--search';
+            this.$refs['page1__signup--search_ul'].style.top = 0;
+            this.$refs['page1__signup--search_bar'].style.top = 0;
+            this.scrollData['page1__signup--search'] = new scrollClass({
                 classname: classname,
                 height: 270,
-                totalHeight:this.getRem(270),
+                totalHeight:this.getRem(270+35),
                 space: 0,
                 number: 5.19,
                 one: 52,
@@ -2097,9 +2282,9 @@ app = new Vue({
             });
         },
         signupSelectCompanyEvent:function(one){
-            this.page2.signup.company = one.companyname;
-            this.page2.signup.companyId = one.id;
-            this.page2.signupSearchStatus = false;
+            this.page1.signup.company = one.companyname;
+            this.page1.signup.companyId = one.id;
+            this.page1.signupSearchStatus = false;
         },
         searchCompanyEvent:function(){
             var self = this
