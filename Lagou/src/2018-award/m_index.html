@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <!---上线之后加-->
+    <title>2018拉勾年度TOP雇主颁奖盛典</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 750,
+                h: 1206
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            currentCount = 0;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var appElement = document.getElementById('app');
+                document.getElementById('loading').className += ' opacityChange-out';
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                    appElement.className = appElement.className.replace(' hide','');
+                },500);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    loadingComplete();
+                // }
+            };
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <!--<div class="loading__progress" id="loading__progress">
+            <div class="progress" id="progress"></div>
+        </div>-->
+        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+            <div class="page0__bg01"></div>
+            <div class="page0__bg02"></div>
+            <div class="icon page0__logo"></div>
+            <div class="page0__dot01"></div>
+            <div class="page0__dot02"></div>
+            <div class="page0__grotesque"></div>
+            <div class="icon page0__2018"></div>
+            <div class="icon page0__talent"></div>
+            <div class="icon page0__organization"></div>
+            <div class="icon page0__power"></div>
+            <div class="icon page0__circle"></div>
+            <div class="icon page0__name"></div>
+            <div class="icon page0__title"></div>
+            <div class="page0__line"></div>
+            <div class="page0__textLayer">
+                <div class="icon page0__text page0__text1"></div>
+                <div class="icon page0__icon page0__icon1"></div>
+                <div class="icon page0__text page0__text2"></div>
+                <div class="icon page0__icon page0__icon2"></div>
+                <div class="icon page0__text page0__text3"></div>
+                <div class="icon page0__icon page0__icon3"></div>
+                <div class="icon page0__text page0__text4"></div>
+                <div class="icon page0__icon page0__icon4"></div>
+            </div>
+            <div class="page0__move" :class="page0[page0.status].move">
+                <div class="icon page0__move--center moveTopInfinite delay1-5"></div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : ''" ref="page1">
+            <div class="page1__bg"></div>
+            <div class="page1__textLayer">
+                <div class="page1__icon page1__text page1__text01"></div>
+                <div class="page1__icon page1__text page1__text02"></div>
+                <div class="page1__icon page1__text page1__text03"></div>
+                <div class="page1__icon page1__text page1__text04"></div>
+                <div class="page1__icon page1__text page1__text05"></div>
+                <div class="page1__icon page1__text page1__text06"></div>
+                <div class="page1__icon page1__text page1__text07"></div>
+                <div class="page1__icon page1__text page1__text08"></div>
+                <div class="page1__icon page1__text page1__text09"></div>
+            </div>
+            <div class="page1__city">
+                <div class="page1__icon page1__city__cn"></div>
+                <div class="page1__icon page1__city__en"></div>
+                <div class="page1__city__line"></div>
+                <div class="page1__icon page1__city__name page1__city__sh"></div>
+                <div class="page1__icon page1__city__name page1__city__hz"></div>
+                <div class="page1__icon page1__city__name page1__city__sz"></div>
+                <div class="page1__icon page1__city__name page1__city__gz"></div>
+                <div class="page1__icon page1__city__name page1__city__cd"></div>
+                <div class="page1__icon page1__city__name page1__city__bj"></div>
+            </div>
+            <div class="page1__schedule">
+                <div class="page1__icon page1__schedule__cn"></div>
+                <div class="page1__icon page1__schedule__en"></div>
+                <div class="page1__schedule__line"></div>
+                <div class="page1__schedule__content">
+                    <div class="page1__schedule__one clearfix" 
+                        v-for="(one,index) in page1.schedule" :class="{'short-schedule':one.line == 'short-line'}">
+                        <div class="page1__schedule__icon page1__schedule__time" :style="{
+                            backgroundPosition:one.timePosition
+                        }"></div>
+                        <div class="page1__schedule__oline" :class="one.line"></div>
+                        <div class="page1__schedule__right">
+                            <div class="page1__schedule__icon page1__schedule__name" :style="{
+                                backgroundPosition:one.namePosition
+                            }"></div>
+                            <div class="page1__schedule__icon page1__schedule__info" 
+                                v-if="one.infoPosition"
+                                :style="{
+                                    backgroundPosition:one.infoPosition
+                                }"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page1__guest">
+                <div class="icon page1__guest__cn"></div>
+                <div class="icon page1__guest__en"></div>
+                <div class="page1__guest__line"></div>
+                <div class="page1__guest__content">
+                    <div class="page1__guest__row clearfix"
+                        v-for="(one,index) in page1.guest">
+                        <div class="icon page1__guest__time" :style="{
+                            backgroundPosition:one.timePosition
+                        }"></div>
+                        <div class="page1__guest__right clearfix">
+                            <div class="page1__guest__one" v-for="(item,iindex) in one.list">
+                                <img class="page1__guest__img" :src="item.src"/>
+                                <div class="page1__guest__name">{{item.guestName}}</div>
+                                <div class="page1__guest__company">{{item.companyName}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page1__company">
+                <div class="icon page1__company__cn"></div>
+                <div class="icon page1__company__en"></div>
+                <div class="page1__company__line"></div>
+                <div class="page1__company__content"></div>
+            </div>
+            <div class="page1__partner">
+                <div class="icon page1__partner__cn"></div>
+                <div class="icon page1__partner__en"></div>
+                <div class="page1__partner__line"></div>
+                <div class="page1__partner__content"></div>
+            </div>
+            <div class="page1__shadow"></div>
+            <div class="page1__move" :class="page1[page1.status].move">
+                <div class="icon page1__move--center moveTopInfinite delay1-5"></div>
+            </div>
+            <div class="page1__btn"></div>
+            <div class="page1__signup" v-show="page1.signupStatus">
+                <div class="page1__signup__center">
+                    <div class="page1__signup__one">
+                        <input class="page1__signup__input" type="text" placeholder="企业简称" v-model="page1.signup.company" />
+                        <div class="page1__signup__tips">{{page1.companyTips}}</div>
+                    </div>
+                    <div class="page1__signup__one">
+                        <input class="page1__signup__input" type="text" placeholder="姓名" v-model="page1.signup.user" />
+                        <div class="page1__signup__tips">{{page1.userTips}}</div>
+                    </div>
+                    <div class="page1__signup__one">
+                        <input class="page1__signup__input" type="text" placeholder="职位" v-model="page1.signup.position" />
+                        <div class="page1__signup__tips">{{page1.positionTips}}</div>
+                    </div>
+                    <div class="page1__signup__one">
+                        <input class="page1__signup__input" type="text" placeholder="电话" v-model="page1.signup.phone" />
+                        <div class="page1__signup__tips">{{page1.phoneTips}}</div>
+                    </div>
+                    <div class="page1__signup__one">
+                        <input class="page1__signup__input" type="text" placeholder="" v-model="page1.signup.city" />
+                        <div class="page1__signup__list">{{page1.phoneTips}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : ''">
+            
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
+            
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
+            
+        </div>
+        <div class="page page5" :class="activePage == 5 ? 'active' : ''">
+            <canvas class="temp-canvas" ref="temp-canvas"></canvas>
+            <canvas class="canvas" ref="canvas"></canvas>
+        </div>
+        <!--排行榜-->
+        <div class="page2__layer" v-show="page2.rankStatus">
+            <div class="loading__bg loading__bg--01"></div>
+            <div class="loading__bg loading__bg--02"></div>
+            <div class="page2__center page2__rank clearfix">
+                <div class="page2__rank--title clearfix">
+                    <!-- page2.rankSubActive == -1 &&  -->
+                    <div class="icon-02 page2__rank--otitle"
+                        v-for="(one,index) in rank"
+                        :class="'page2__rank--otitle'+index+((page2.rankSubActive != -1 && index == page2.rankLastActive) || (index == page2.rankActive) ? ' active' : '')"
+                        @click.stop.prevent="page2RankTabEvent(index,one.list ? one.classify : '',-1)"
+                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+index*100)" data-lg-tj-cid="null">
+                        <div class="page2__rank--list" v-if="one.list"
+                            :class="index == page2.rankActive && page2.showSubListStatus ? '' : 'hide'"><!-- || !page2.rankListStatus-->
+                            <div class="page2__rank--li"
+                                v-for="(item,iindex) in one.list"
+                                @click.stop.prevent="page2RankTabEvent(index,item.classify,iindex)"
+                                data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+iindex+index*100)" data-lg-tj-cid="null">
+                                <div class="page2__rank--lic" v-html="item.text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 排行榜 -->
+                <div class="page2__content page2__rank--content"
+                    @touchstart.stop.prevent="noop"
+                    @touchmove.stop.prevent="noop"
+                    @touchend.stop.prevent="noop"
+                    :style="{ height:getPage2RankHeight }"
+                    :class="getRankSubType ? '' : 'page2__rank--content-nomine'">
+                    <div class="page2__rank--item">
+                        <div class="page2__rank--itemul page2__rank--item_ul">
+                            <div class="page2__rank--itemli page2__rank--item_li clearfix"
+                                v-for="(one,index) in rankData"
+                                v-if="getSelfRanking != one.top"
+                                :class="{'page2__rank--itemli_last':getRankLast(index)}">
+                                <div class="page2__rank--num">{{one.top}}</div>
+                                <img class="page2__rank--logo" :src="getCompanyLogo(one.logo)"/>
+                                <div class="page2__rank--right">
+                                    <div class="page2__rank--company">{{one.companyName}}</div>
+                                    <div class="page2__rank--got">当前票数：<span class="green num">{{one.voteNum || 0}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__rank--item_bar_bg">
+                            <div class="page2__rank--item_bar"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon page2__close"
+                v-show="!searchLayerStatus"
+                :style="{ top:getPage2CloseTop }"
+                @click.stop.prevent="page2CloseEvent"></div>
+            <div class="icon-02 page2__search" v-show="searchLayerStatus" :style="{ top:getPage2CloseTop }"
+                @click.stop.prevent="showSearchPageEvent"></div>
+        </div>
+    </div>
+    <!--<div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
+        </div>
+    </div>-->
+    <script type="text/javascript">
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script>
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
+        var randomText = [
+                '我们总是轻言放弃，而登顶之路则是，再来一次。',
+                'TOP之路，一旦开始，就要坚持到底。',
+                '没有人不想当TOP，所谓甘于平凡，但愿不是耽于平庸。',
+                'TOP，不是转瞬荣誉，而是极致追求。',
+                '你的目标不是赢，而是尽力做到TOP1。',
+                '自由之所以是奢望，是因为，你割舍不了选择TOP雇主的权利。',
+                '我努力K掉所有人，就是为了成为你心中的TOP1！',
+                '哪有天生的TOP1，我不过是为你一直坚持！',
+                '未必最大，但必定最强 ，Pick你心中的TOP雇主！'  // 8
+            ];
+        //微信分享
+        var datas = {
+            title: "2018拉勾年度TOP雇主颁奖盛典",
+            desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.jpg",
+            activityType: 'ACTIVITY_H5_AWARD_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+</body>
+</html>

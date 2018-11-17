@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <!---上线之后加-->
+    <title>2018拉勾年度TOP雇主评选</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 750,
+                h: 1206
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            currentCount = 0;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var appElement = document.getElementById('app');
+                document.getElementById('loading').className += ' opacityChange-out';
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                    appElement.className = appElement.className.replace(' hide','');
+                },500);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    loadingComplete();
+                // }
+            };
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="loading__bg loading__bg--01"></div>
+    <div class="loading__bg loading__bg--02"></div>
+    <div class="loading__bg loading__bg--03"></div>
+    <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <div class="loading__titleLayer">
+            <div class="loading__title02 loading__title02--t1 opacityChange duration0-1 delay1-0"></div>
+            <div class="loading__title02 loading__title02--a1 opacityChange duration0-1 delay1-1"></div>
+            <div class="loading__title02 loading__title02--l1 opacityChange duration0-1 delay1-2"></div>
+            <div class="loading__title02 loading__title02--e1 opacityChange duration0-1 delay1-3"></div>
+            <div class="loading__title02 loading__title02--n1 opacityChange duration0-1 delay1-4"></div>
+            <div class="loading__title02 loading__title02--t12 opacityChange duration0-1 delay1-5"></div>
+            <div class="loading__title02 loading__title02--O2 opacityChange duration0-1 delay1-6"></div>
+            <div class="loading__title02 loading__title02--r2 opacityChange duration0-1 delay1-7"></div>
+            <div class="loading__title02 loading__title02--g2 opacityChange duration0-1 delay1-8"></div>
+            <div class="loading__title02 loading__title02--a2 opacityChange duration0-1 delay1-9"></div>
+            <div class="loading__title02 loading__title02--n2 opacityChange duration0-1 delay2-0"></div>
+            <div class="loading__title02 loading__title02--i2 opacityChange duration0-1 delay2-1"></div>
+            <div class="loading__title02 loading__title02--z2 opacityChange duration0-1 delay2-2"></div>
+            <div class="loading__title02 loading__title02--a22 opacityChange duration0-1 delay2-3"></div>
+            <div class="loading__title02 loading__title02--t2 opacityChange duration0-1 delay2-4"></div>
+            <div class="loading__title02 loading__title02--i22 opacityChange duration0-1 delay2-5"></div>
+            <div class="loading__title02 loading__title02--o22 opacityChange duration0-1 delay2-6"></div>
+            <div class="loading__title02 loading__title02--n22 opacityChange duration0-1 delay2-7"></div>
+            <div class="loading__title02 loading__title02--p3 opacityChange duration0-1 delay2-8"></div>
+            <div class="loading__title02 loading__title02--o3 opacityChange duration0-1 delay2-9"></div>
+            <div class="loading__title02 loading__title02--w3 opacityChange duration0-1 delay3-0"></div>
+            <div class="loading__title02 loading__title02--e3 opacityChange duration0-1 delay3-1"></div>
+            <div class="loading__title02 loading__title02--r3 opacityChange duration0-1 delay3-2"></div>
+        </div>
+        <!--<div class="loading__progress" id="loading__progress">
+            <div class="progress" id="progress"></div>
+        </div>-->
+        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="loading__bg loading__bg--01"></div>
+        <div class="loading__bg loading__bg--02"></div>
+        <div class="loading__bg loading__bg--03"></div>
+        <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+            <div class="page0__text" :class="page0[page0.status].out">
+                <div class="page0__text--01" :class="page0[page0.status].text1">未来不远<br/></div>
+                <div class="page0__text--02" :class="page0[page0.status].text2">但充满变数<br/></div>
+                <div class="page0__text--03" :class="page0[page0.status].text3">一切将被重新定义<br/></div>
+                <div class="page0__text--03" :class="page0[page0.status].text31">除了登顶(TOP)的野心<br/></div>
+                <div class="page0__text--04" :class="page0[page0.status].text4"><span class="green">人才之水</span><br/></div>
+                <div class="page0__text--05" :class="page0[page0.status].text5"><span class="green">注入组织之海</span><br/></div>
+                <div class="page0__text--06" :class="page0[page0.status].text6"><span class="green">浪潮之巅</span><br/></div>
+                <div class="page0__text--06" :class="page0[page0.status].text61"><span class="green">一切将被重新定义</span><br/></div>
+                <div class="page0__text--06" :class="page0[page0.status].text62"><span class="green">唯有能量把控未来</span><br/></div>
+                <div class="page0__text--07" :class="page0[page0.status].text7">拉勾年度TOP雇主评选<br/></div>
+                <div class="page0__text--08" :class="page0[page0.status].text8">让人们见证<br/></div>
+                <div class="page0__text--09" :class="page0[page0.status].text9">企业的喷薄力量<br/></div>
+                <div class="page0__text--10" :class="page0[page0.status].text10"><br/></div>
+                <div class="page0__text--11" :class="page0[page0.status].text11">……</div>
+            </div>
+            <div class="page0__move" :class="page0[page0.status].move">
+                <div class="page0__move--center moveTopInfinite delay1-5"></div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : ''">
+            <div class="page1__center">
+                <div class="icon page1__year" :class="page1[page1.status].year"></div>
+                <div class="icon page1__logo" :class="page1[page1.status].logo"></div>
+                <div class="icon page1__title" :class="page1[page1.status].title"></div>
+                <div class="icon page1__subtitle" :class="page1[page1.status].subtitle"></div>
+                <div class="page1__info clearfix" :class="page1[page1.status].info">
+                    <div class="icon page1__text"
+                        v-for="(one,index) in page1.text"
+                        :class="'opacityChange1 duration0-2 delay'+getDelayTime(6,2,index)"
+                        :style="{
+                            width:setRem(one.w),
+                            backgroundPosition:setRem(-one.l)+' '+setRem(-840)
+                        }"></div>
+                </div>
+            </div>
+            <div class="page0__move" :class="page1[page1.status].move">
+                <div class="page0__move--center moveTopInfinite delay1-5"></div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : ''">
+            <div class="icon page2__title" :style="{ top:getPage2TitleTop }" 
+                :class="page2[page2.status].title"></div>
+            <div class="icon page2__info":style="{ top:getPage2InfoTop }"
+                :class="page2[page2.status].info"></div>
+            <div class="page2__list" :style="{ top:getPage2listTop }"
+                :class="page2[page2.status].list">
+                <div class="icon page2__one" v-for="(one,index) in page2.dir"
+                    :class="'page2__one--'+index" :style="{ marginBottom:getPage2OneBottom }">
+                    <div class="icon page2__one--txt"
+                        @click.stop.prevent="showPage2InfoEvent(index)"
+                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2001+index)" data-lg-tj-cid="null"
+                        :style="{
+                            backgroundPosition:setRem(-one.l)+' '+setRem(-one.t)
+                        }"></div>
+                    <div class="page2__one--btn" @click.stop.prevent="showPage2InfoEvent(index)"
+                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2001+index)" data-lg-tj-cid="null"></div>
+                </div>
+            </div>
+            <div class="page2__btn" :style="{ top:getPage2BtnTop}"
+                :class="page2[page2.status].btn"
+                @click.stop.prevent="showSignupEvent"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2010" data-lg-tj-cid="null"></div>
+            <div class="icon page2__go-rank" :style="{ top:getPage2RankTop }"
+                :class="page2[page2.status].go"
+                @click.stop.prevent="showPage2SearchRankEvent"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2011" data-lg-tj-cid="null"></div>
+            <!--介绍-->
+            <div class="page2__layer" v-show="page2.dirStatus"
+                @touchstart.stop.prevent="noop"
+                @touchmove.stop.prevent="noop"
+                @touchend.stop.prevent="noop">
+                <div class="loading__bg loading__bg--01"></div>
+                <div class="loading__bg loading__bg--02"></div>
+                <!--<div class="loading__bg loading__bg--03"></div>-->
+                <div class="page2__outer"
+                    :style="{ height:getPage2OuterHeight }"
+                    @touchstart.stop.prevent="touchstartEvent"
+                    @touchmove.stop.prevent="touchmoveEvent"
+                    @touchend.stop.prevent="touchendEvent">
+                    <div class="page2__center clearfix" :class="page2.dirClass">
+                        <div class="page2__content"
+                            :style="{ height:getPage2OuterHeight }"
+                            v-for="(one,index) in page2.dir"
+                            :class="'page2__content--'+index">
+                            <div class="page2__content--name">{{one.name}}</div>
+                            <div class="page2__content--line"></div>
+                            <div class="page2__content--center info-list clearfix"
+                                :class="'info-list--'+index+' '+one.classname"
+                                :style="{ height:getFitTop(772,1) }">
+                                <div class="page2__content--ul info-list_ul" :class="'info-list--'+index+'_ul'">
+                                    <div class="page2__content__outer" v-show="index == 1">
+                                        <div class="page2__time__top">
+                                            <div class="page2__time__day clearfix page2__time__signup">
+                                                <div class="page2__time__name">报名参选</div>
+                                                <div class="page2__time__md">11.14</div>
+                                                <div class="page2__time__line" :style="{ width:setRem(162) }"></div>
+                                            </div>
+                                            <div class="page2__time__day clearfix page2__time__getvote">
+                                                <div class="page2__time__name">加速拉票期</div>
+                                                <div class="page2__time__md">11.15-11.30</div>
+                                                <div class="page2__time__line" :style="{ width:setRem(137) }"></div>
+                                            </div>
+                                            <div class="page2__time__day clearfix page2__time__notify">
+                                                <div class="page2__time__name">城市榜公布</div>
+                                                <div class="page2__time__md">11.21</div>
+                                                <div class="page2__time__line" :style="{width:setRem(137) }"></div>
+                                            </div>
+                                            <div class="page2__time__day clearfix page2__time__allnotify">
+                                                <div class="page2__time__name">全国入围榜单公布</div>
+                                                <div class="page2__time__md">11.30</div>
+                                                <div class="page2__time__line" :style="{ width:setRem(46) }"></div>
+                                            </div>
+                                            <div class="page2__time__day clearfix page2__time__last">
+                                                <div class="page2__time__name">全国终极评审期</div>
+                                                <div class="page2__time__md">12.3-12.20</div>
+                                                <div class="page2__time__line" :style="{ width:setRem(76) }"></div>
+                                            </div>
+                                        </div>
+                                        <div class="page2__time__map">
+                                            <div class="page2__time__title"></div>
+                                            <div class="page2__time__arrow"></div>
+                                            <div class="page2__time__city page2__time__bj">
+                                                <div class="page2__time__bjicon"></div>
+                                                <div class="page2__time__cn page2__time__bjcn">北京·水立方<span class="white">（12.21）</span></div>
+                                                <div class="page2__time__circle page2__time__bjcircle" :class="page2.dirActive == 1 ? 'pulseShow6 delay0-5' : ''"></div>
+                                            </div>
+                                            <div class="page2__time__city page2__time__sh">
+                                                <div class="page2__time__cn page2__time__shcn">上海<span class="white">（11.21）</span></div>
+                                                <div class="page2__time__circle page2__time__shcircle" :class="page2.dirActive == 1 ? 'pulseShow1 delay0-5' : ''"></div>
+                                            </div>
+                                            <div class="page2__time__city page2__time__hz">
+                                                <div class="page2__time__cn page2__time__hzcn">杭州<span class="white">（11.23）</span></div>
+                                                <div class="page2__time__circle page2__time__hzcircle" :class="page2.dirActive == 1 ? 'pulseShow2 delay0-5' : ''"></div>
+                                            </div>
+                                            <div class="page2__time__city page2__time__cd">
+                                                <div class="page2__time__cn page2__time__cdcn">成都<span class="white">（11.29）</span></div>
+                                                <div class="page2__time__circle page2__time__cdcircle" :class="page2.dirActive == 1 ? 'pulseShow5 delay0-5' : ''"></div>
+                                            </div>
+                                            <div class="page2__time__city page2__time__gz">
+                                                <div class="page2__time__cn page2__time__gzcn">广州<span class="white">（11.29）</span></div>
+                                                <div class="page2__time__circle page2__time__gzcircle" :class="page2.dirActive == 1 ? 'pulseShow4 delay0-5' : ''"></div>
+                                            </div>
+                                            <div class="page2__time__city page2__time__sz">
+                                                <div class="page2__time__cn page2__time__szcn">深圳<span class="white">（11.27）</span></div>
+                                                <div class="page2__time__circle page2__time__szcircle" :class="page2.dirActive == 1 ? 'pulseShow3 delay0-5' : ''"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="page2__content__outer" v-show="index != 1">
+                                        <div class="page2__content--detail"
+                                            v-for="(item,iindex) in one.detail">
+                                            <div class="page2__content--top clearfix" :class="'page2__content--top'+iindex">
+                                                <span class="icon page2__content--icon" :class="item.icon"></span>
+                                                <span class="icon-text page2__content--title" :style="{
+                                                    backgroundPosition:item.backgroundPosition
+                                                }"></span><!--{{item.title}}-->
+                                            </div>
+                                            <div class="page2__content--info" v-if="item.info" v-html="item.info"></div>
+                                            <ul class="page2__content--list">
+                                                <li class="page2__content--li"
+                                                    v-for="(value,key) in item.list">
+                                                    <div class="icon page2__content--liname" :class="value.name"></div>
+                                                    <div class="page2__content--liinfo" v-html="value.info"></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="info-list_bar_bg" :class="'info-list--'+index+'_bar_bg'" v-show="one.listStatus">
+                                    <div class="info-list_bar" :class="'info-list--'+index+'_bar'" :ref="'info-list--'+index+'_bar'"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="icon page2__left" @touchstart.prevent="page2InfoPrev"></div>
+                <div class="icon page2__right" @touchstart.prevent="page2InfoNext"></div>
+                <div class="icon page2__close"
+                    :style="{ top:getPage2CloseTop }"
+                    @touchstart.stop.prevent="page2CloseEvent"></div>
+            </div>
+            <!--报名页面-->
+            <div class="page2__layer" v-show="page2.signupStatus">
+                <div class="loading__bg loading__bg--01"></div>
+                <div class="loading__bg loading__bg--02"></div>
+                <div class="page2__center page2__signup">
+                    <div class="page2__signup--form">
+                        <div class="page2__signup--item">
+                            <input class="page2__signup--input page2__signup--zindex11" type="text" placeholder="企业简称" v-model="page2.signup.company" v-on:input="updateCompanyList" />
+                            <div class="page2__signup--tips" v-show="page2.companyTips">{{page2.companyTips}}</div>
+                            <div class="page2__signup--list page2__signup--searchLayer" v-show="page2.signupSearchStatus">
+                                <div class="page2__signup--search">
+                                    <div class="page2__signup--search_bar_bg" v-show="page2.signupList.length > 5">
+                                        <div class="page2__signup--search_bar" ref="page2__signup--search_bar"></div>
+                                    </div>
+                                    <ul class="page2__signup--ul page2__signup--search_ul" ref="page2__signup--search_ul">
+                                        <li class="page2__signup--one page2__signup--search_li"
+                                            v-for="(one,index) in page2.signupList" @click.stop.prevent="signupSelectCompanyEvent(one)">
+                                            <div class="page2__signup--text">{{one.companyname}}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__signup--item">
+                            <input type="text" class="page2__signup--input page2__signup--zindex" placeholder="所属行业" v-model="page2.industryfieldCN"
+                                @touchstart.stop.prevent="showChooseLayer" />
+                            <div class="icon-02 page2__signup--icon"></div>
+                            <div class="page2__signup--tips" v-show="page2.industryfieldTips">{{page2.industryfieldTips}}</div>
+                            <div class="page2__signup--list" v-show="page2.industryfieldStatus">
+                                <div class="page2__signup--one"
+                                    v-for="(one,index) in page2.industryfield" @click.stop.prevent="chooseIndustryfieldEvent(one.en,one.cn)"
+                                    data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2020+index)" data-lg-tj-cid="null">
+                                    <div class="page2__signup--text">{{one.cn}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__signup--item">
+                            <input class="page2__signup--input" type="text" placeholder="联系人" v-model="page2.signup.user" v-on:input="checkNullEvent('user','联系人')" />
+                            <div class="page2__signup--tips" v-show="page2.userTips">{{page2.userTips}}</div>
+                        </div>
+                        <div class="page2__signup--item">
+                            <input class="page2__signup--input" type="text" placeholder="职位" v-model="page2.signup.position" v-on:input="checkNullEvent('position','联系人职位')" />
+                            <div class="page2__signup--tips" v-show="page2.positionTips">{{page2.positionTips}}</div>
+                        </div>
+                        <div class="page2__signup--item">
+                            <input class="page2__signup--input" type="text" placeholder="电话" v-model="page2.signup.phone" v-on:input="checkPhoneEvent('phone')" />
+                            <div class="page2__signup--tips" v-show="page2.phoneTips">{{page2.phoneTips}}</div>
+                        </div>
+                    </div>
+                    <div class="page2__signup--btn" @click.stop.prevent="signupEvent"
+                        data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2050" data-lg-tj-cid="null"></div>
+                </div>
+                <div class="icon page2__close"
+                    :style="{ top:getPage2CloseTop }"
+                    @click.stop.prevent="signupCloseEvent"></div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
+            <div class="page3__logo-bg zoomIn delay0-5" 
+                :class="page3.showVote && page3.scanStatus ? 'page3__logo-bg--up' : ''"
+                :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(0,1 / 8) : getPage3LogoTop}">
+                <img class="page3__logo" :src="getCompanyLogo(mycompany.logo)" />
+            </div>
+            <div class="page3__name littleBottomIn duration1-0 delay1-0"
+                :class="page3.showVote && page3.scanStatus ? 'page3__name--up' : ''"
+                :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(299,1 / 8) : getFitTop(329,1 / 8)}">{{mycompany.companyShortName || mycompany.shortName}}</div>
+            <div class="icon-02 page3__arrow littleBottomIn duration1-0 delay1-5" 
+                :class="page3.showVote && page3.scanStatus ? 'page3__arrow--up' : ''"
+                :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(356,3 / 16) : getFitTop(406,3 / 8)}"></div>
+            <div class="icon-02 page3__title littleBottomIn duration1-0 delay1-5" 
+                :class="page3.showVote && page3.scanStatus ? 'page3__title--up' : ''"
+                v-show="!page3.showVote || page3.scanStatus"
+                :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(381,3/8) : getFitTop(461,2 / 4)}"></div>
+            <div class="page3__result rotateY delay2-0" v-show="!page3.showVote">
+                <div class="page3__list" :style="{ top: getPage3ListTop}">
+                    <div class="page3__one clearfix" v-for="(one,index) in mycompany.voteList"
+                        v-if="one"
+                        :class="'page3__one--'+one.key"
+                        :style="{ paddingBottom: getPage3ListHeight}">
+                        <div class="icon-02 page3__one__icon"></div>
+                        <div class="page3__one__current">（当前排名：<span class="vote" :class="{'vote-none':!one.ranking}">{{one.ranking ? one.ranking : '无'}}</span></div>
+                        <div class="page3__one__votenum">（当前票数：<span class="green">{{mycompany.voteNum}}</span></div>
+                    </div>
+                </div>
+                <div class="page3__share littleBottomIn duration1-0 delay2-5" @click.stop.prevent="showPage3VoteEvent"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3001" data-lg-tj-cid="null"
+                    :style="{ top: getPage3ShareTop}"></div>
+                <div class="icon-02 page3__rank littleBottomIn duration1-0 delay3-0" @click.stop.prevent="showPage2RankEvent"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3002" data-lg-tj-cid="null"
+                    :style="{ top: getPage2RankTop}"></div>
+            </div>
+            <div class="page3__vote" v-show="page3.showVote" ref="page3__vote">
+                <div class="page3__vote__info" 
+                    v-show="!page3.scanStatus && (page3.confirmSuccess || hasVoted[selectedId || mycompany.companyId])" 
+                    :style="{ top: getPage3SuccessTop}"
+                    :class="{
+                        'littleBottomIn duration1-0 delay1-5':hasVoted[selectedId || mycompany.companyId]
+                    }">因为有你，我们TOP雇主增加到<span class="green">{{mycompany.voteNum}}</span>票</div>
+                <div class="page3__vote__info" 
+                    v-show="page3.scanStatus && (page3.confirmSuccess || hasVoted[selectedId || mycompany.companyId])" 
+                    :style="{ top: getFitTop(604,10 / 16)}"
+                    :class="{
+                        'littleBottomIn duration1-0 delay1-5':hasVoted[selectedId || mycompany.companyId]
+                    }">因为有你<br/>我们TOP雇主增加到<span class="green">{{mycompany.voteNum}}</span>票</div>
+                <div class="page3__vote__random" 
+                    :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(40,9 / 16) :getPage3RandomTop}"
+                    :class="page3.showVote && page3.scanStatus ? 'page3__vote__random--down zoomIn duration1-0 delay2-0' : 'zoomIn duration1-0 delay1-0'"><!--</div>v-show="!page3.scanStatus">-->
+                    <div class="page3__vote__tips">温馨提示：</div>
+                    <div class="icon-02 page3__vote__quoto page3__vote__quoto1"></div>
+                    <div class="icon-02 page3__vote__quoto page3__vote__quoto2"></div>
+                    <div class="page3__vote__words">
+                        每个ID每日限助力<span class="white">3</span>次；<br/>
+                        每日助力不限一家企业；<br/>
+                        如出现违规行为，将取消入选资格；<br/>
+                        本活动提供的福利以页面展示为主；<br/>
+                        本活动最终解释权归拉勾所有。
+                    </div>
+                </div>
+                <div class="page3__vote__drag" ref="dragDiv" 
+                    :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(507,9 / 16) : getFitTop(477,2 / 4)}"
+                    :class="page3.showVote && page3.scanStatus ? 'page3__vote__drag--up littleBottomIn duration1-0 delay1-5' : 'littleBottomIn duration1-0 delay0-5'">
+                    <div class="drag_end" v-show="!page3.confirmSuccess" :class="{
+                        'handler_none':hasVoted[selectedId || mycompany.companyId]
+                    }"></div>
+                    <div class="drag_bg" ref="drag_bg"></div>
+                    <div class="drag_text" ref="drag_text">{{page3.confirmWords}}</div>
+                    <div ref="handler" 
+                        class="handler handler_bg"
+                        :class="{
+                            'handler_ok_bg pulse delay0-5':page3.confirmSuccess,
+                            'handler_none':hasVoted[selectedId || mycompany.companyId]
+                        }"
+                        @touchstart.stop.prevent="page3DragVoteStart($event)" 
+                        :style="{
+                            left:page3.moveLeft
+                        }"></div>
+                </div>
+                <div class="page3__vote__save" 
+                    :class="page3.showVote && page3.scanStatus ? 'littleBottomIn duration1-0 delay2-5' : 'littleBottomIn duration1-0 delay1-5'"
+                    v-show="!page3.scanStatus" 
+                    :style="{ top: getPage3SaveTop}"
+                    @touchstart.prevent="createCanvasImg"></div>
+                <div class="page3__metoo littleBottomIn duration1-0 delay2-5" 
+                    class="page3.showVote && page3.scanStatus ? 'page3__metoo--down' : ''"
+                    @touchstart.prevent="getBackToStart"
+                    v-show="page3.scanStatus"
+                    :style="{ top: page3.showVote && page3.scanStatus ? getFitTop(985,14 / 16) :getPage3ShareTop}"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3004" data-lg-tj-cid="null"></div>
+                <div class="icon-02 page3__rank littleBottomIn duration1-0 delay2-5" @touchstart.prevent="showPage2RankEvent"
+                    v-show="page3.scanStatus"
+                    :style="{ top: getPage2RankTop}"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3005" data-lg-tj-cid="null"></div>
+            </div>
+            <div class="page3__create zoomIn" v-show="page3.createStatus" ref="page3__create">
+                <div class="canvas__layer">
+                    <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+                </div>
+                <div class="loading__bg loading__bg--01"></div>
+                <div class="loading__bg loading__bg--02"></div>
+                <div class="loading__bg loading__bg--03"></div>
+                <img class="page3__create__logo" :src="getCompanyLogo(mycompany.logo)"
+                    :style="{top:getFitTop(84,1/8)}" />
+                <div class="page3__create__name"
+                    :style="{top:getFitTop(375-128,1/8)}">{{mycompany.companyShortName || mycompany.shortName}}</div>
+                <div class="page3__create__rightWords"
+                    :style="{top:getFitTop(209-128,1/4)}"></div>
+                <div class="icon-02 page3__vote__quoto page3__vote__quoto1"
+                    :style="{top:getFitTop(488-128,2/4)}"></div>
+                <div class="icon-02 page3__vote__quoto page3__vote__quoto2"
+                    :style="{top:getFitTop(846-128,2/4)}"></div>
+                <!--v-html="page3.randomWords"-->
+                <div class="page3__create__words"
+                    :style="{
+                        width:setRem(shareArr[getRandomIndex].w),
+                        height:setRem(shareArr[getRandomIndex].h),
+                        top:getFitTop(550-128,2/4),
+                        backgroundImage:'url('+loadingArray[6+getRandomIndex]+')'
+                    }"></div>
+                <div class="page3__create__bottomWords"
+                    :style="{top:getFitTop(975-128,3/4)}"></div>
+                <div class="page3__create__sharetips"
+                    :style="{top:getFitTop(1236-128,3/4)}"></div>
+                <div class="page3__create__save"
+                    :style="{top:getFitTop(1096-128,3/4)}"></div>
+                <img class="page3__save__img--bottom" v-show="!page3.scanStatus" :src="url"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3007" data-lg-tj-cid="null"/>
+                <img class="page3__save__img" v-show="!page3.scanStatus" :src="url" 
+                    :style="{top:getFitTop(1096-128,3/4)}"
+                    data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="3006" data-lg-tj-cid="null"/>
+            </div>
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
+            <div class="icon page2__title zoomIn delay0-5" :style="{ top:getPage2TitleTop }"></div>
+            <div class="icon page2__info opacityChange delay1-0" :style="{ top:getPage2InfoTop }"></div>
+            <div class="container littleTopIn delay1-0" :style="{top:getFitTop(567,2/4)}">
+                <div class="list company-list" ref="company-list">
+                    <div class="one" v-if="companyList">
+                        <div class="one-center">
+                            <a class="logo-bg" target="_blank"
+                                href="javascript:void(0);" :onclick="'self.location=\'https://www.lagou.com/center/company_'+companyList.id+'.html\';'" class="logo" target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="" :data-lg-tj-cid="companyList.id">
+                                <img :src="getCompanyLogo(companyList.logo)" class="logo-img" />
+                            </a>
+                            <div class="company-name">{{companyList.companyShortName || companyList.companyName}}</div>
+                            <div class="name-line"></div>
+                            <div class="page3__list">
+                                <div class="page3__one clearfix" v-for="(one,index) in companyList.voteList"
+                                    v-if="one"
+                                    :class="'page3__one--'+one.key"
+                                    :style="{ paddingBottom: getPage3ListHeight}">
+                                    <div class="icon-02 page3__one__icon"></div>
+                                    <div class="page3__one__current">（当前排名：<span class="vote" :class="{'vote-none':!one.ranking}">{{one.ranking ? one.ranking : '无'}}</span></div>
+                                    <div class="page3__one__votenum">（当前票数：<span class="green">{{companyList.voteNum}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="vote-list">
+                    <div class="vote-left" 
+                        :class="{
+                            'active-icon':getVotedStatus(companyList.id)
+                        }"
+                        @click.prevent="voteCompanyEvent(companyList)" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0001" :data-lg-tj-cid="companyList.id">
+                        
+                    </div>
+                    <div class="vote-right opacityChange delay1-3">
+                        <div class="vote-current">今日投票次数：<span class="highlight">{{userTotal-userUsed}}/{{userTotal}}</span></div>
+                        <div class="vote-info">每多分享一次<br/>即可多获得一次投票机会</div>
+                        <div class="rank-btn" @click.prevent="getRankList" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0003" data-lg-tj-cid="null"><span class="icon rank-go"></span></div>
+                    </div>
+                </div>-->
+            </div>
+            <div class="page3__rank bottomIn delay1-0" @click.stop.prevent="showPage2RankEvent"
+                :style="{top:getFitTop(486+567,3/4)}"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="4000" data-lg-tj-cid="null"></div>
+            <div class="page4__vote bottomIn delay1-0" @click.stop.prevent="goToPage3VoteEvent"
+                :style="{top:getFitTop(486+567,3/4)}"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="4001" data-lg-tj-cid="null"></div>
+            <div class="page4__input clearfix littleBottomIn delay1-0" :style="{top:getFitTop(384,2/4)}">
+                <input class="input-text" type="text" placeholder="请输入企业名称"  v-model.trim="search_name" />
+                <div class="input-btn" @click.prevent="searchCompanyEvent" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="4002" data-lg-tj-cid="null"></div>
+            </div>
+            <div class="search_list" v-show="searchStatus" :style="{top:getFitTop(481,2/4)}">
+                <div class="search_list_bar_bg" v-show="search_list.length > 4">
+                    <div class="search_list_bar"></div>
+                </div>
+                <ul class="">
+                    <li class="result" v-for="(one,index) in search_list"
+                        @click.stop.prevent="selectCompanyEvent(one)" 
+                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(4010+index)" :data-lg-tj-cid="one.id">{{one.companyname}} ></li>
+                </ul>
+            </div>
+            <p class="search_tips" v-show="search_tips" :style="{top:getFitTop(490,2/4)}">{{search_tips}}</p>
+            <div class="signup-tips clearfix" v-show="showSignupStatus" :style="{top:getFitTop(619-128,2/4)}">
+                <div class="signup-tips__text">* 您查询的企业还未报名参选</div>
+                <div class="signup-tips__btn" @click.stop.prevent="toSignupEvent"></div>
+            </div>
+            <div class="none-selected" v-show="noneSelected">
+                <div class="none-selected__center">
+                    <div class="none-selected__tips">请先搜索并选择公司</div>
+                    <div class="none-selected__btn" @touchstart.stop.prevent="closeNoneSelectedLayer">确定</div>
+                </div>
+            </div>
+            <div class="rank-layer" v-show="rankStatus">
+                <div class="rank-top">
+                    <div class="icon top-line"></div>
+                    <div class="icon top-bg"></div>
+                    <div class="icon top-sprinkle"></div>
+                    <div class="icon top-title"></div>
+                    <div class="icon rank-close" @click.prevent="closeRank"></div>
+                </div>
+                <div class="rank-content">
+                    <div class="rank-title clearfix">
+                        <div class="title-text title-01">排名</div>
+                        <div class="title-text title-02">公司名称</div>
+                        <div class="title-text title-03">获得票数</div>
+                    </div>
+                    <div class="rank-center">
+                        <div class="rank-center_bar_bg" v-show="rankList.length > 8">
+                            <div class="rank-center_bar"></div>
+                        </div>
+                        <ul class="rank-list">
+                            <li class="clearfix" v-for="(one,index) in rankList">
+                                <div class="rank-company-rank" :class="'rank'+index">No.{{index+1}}</div>
+                                <div class="rank-company-logo" :class="{'award-logo':index < 3}">
+                                    <div class="icon company-crown" :class="'company-crown-'+index"></div>
+                                    <img class="logo-img" :src="'http://www.lgstatic.com/thumbnail_200x200/'+one.logo" />
+                                </div>
+                                <div class="rank-company-name">{{one.companyShortName}}</div>
+                                <div class="rank-company-support">{{one.voteNum+((one.voteNum+'').length >= 6 ? '' : '支持')}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="vote-success" v-show="successStatus">
+                <div class="tipbox">
+                    <div class="success-title"></div>
+                    <div class="success-content"></div>
+                    <a class="go-gift" 
+                        href="javascript:void(0);" :onclick="'self.location=\''+giftHref+'\';'"
+                        target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
+                    <div class="create-img"
+                        @click.prevent="createPictures" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
+                    <div class="icon success-close" @click.prevent="closeSuccess"></div>
+                </div>
+            </div>
+            <div class="create-layer" v-show="createStatus">
+                <div class="create-center">
+                    <div class="create-bottom opacityChange delay0-5"></div>
+                    <div class="create-top opacityChange delay0-5"></div>
+                    <div class="create-logo opacityChange delay1-0"></div>
+                    <div class="create-light opacityChange delay1-0"></div>
+                    <div class="create-card-02 opacityChange delay2-0"></div>
+                    <div class="create-title zoomIn delay1-0"></div>
+                    <div class="create-tips leftIn delay2-5"></div>
+                    <img class="user-logo rotateIn delay1-5" :src="user.headimgurl" :style="createUserStyle" />
+                    <div class="user-info littleBottomIn delay1-5" :style="createUserStyle">
+                        {{user.nickname}}<br/>
+                        是<span class="highlight">{{selected.companyShortName}}</span><br/>
+                        第<span class="highlight">{{userRank}}</span>位支持者<br/>
+                        并获得了神秘秋招大礼
+                    </div>
+                    <img class="company-logo opacityChange delay2-0" :src="'http://www.lgstatic.com/thumbnail_400x400/'+selected.logo" />
+                    <div class="company-name opacityChange delay2-0">{{selected.companyShortName}}</div>
+                    <div class="company-info cinfo-01 opacityChange delay2-0">{{selected.city}}</div>
+                    <div class="company-info cinfo-02 opacityChange delay2-0">{{selected.industryfield}}</div>
+                    <div class="company-info cinfo-03 opacityChange delay2-0">{{selected.financestage}}</div>
+                    <div class="company-info cinfo-04-icon opacityChange delay2-0" :class="!selected.financestage || selected.financestage.length <= 3 ? 'cinfo-04-icon-03' : ''"></div>
+                    <div class="company-info cinfo-04 opacityChange delay2-0" :class="!selected.financestage || selected.financestage.length <= 3 ? 'cinfo-04-03' : ''">{{selected.companysize}}</div>
+                    <div class="company-labels clearfix opacityChange delay2-0">
+                        <div class="clabel" 
+                            v-for="(one,index) in labelList(selected.otherlabel)"
+                            v-if="companyLabelLimit(selected.otherlabel,one,index)">{{one}}</div>
+                    </div>
+                    <div class="qrcode rightIn delay2-5">
+                        <img class="qrcode-img" :src="'https://api.qrserver.com/v1/create-qr-code/?size=220*220&data='+createCode" />
+                    </div>
+                </div>
+                <div id="code" ref="code">
+                </div>
+                <canvas class="canvas" ref="canvas"></canvas>
+                <canvas class="temp-canvas" ref="temp-canvas"></canvas>
+                <canvas id="canvas" width="200" height="200" style="width:200px; height:200px; position:fixed; left:200px; top:200px; "></canvas>
+                <img class="final-img" :src="url" v-show="url" />
+                <!--<img class="user-logo" :src="testUserLogo" />-->
+                <div class="long-tap leftIn delay2-5">
+                    <div class="lt lt-icon zoomInfiniteB"></div>
+                    <div class="lt lt-text"></div>
+                </div>
+            </div>
+            <!--<svg id="svg" width="100%" height="100%" viewbox="0 0 200 200" style="width:200px; height:200px; position:fixed; left:200px; top:200px; z-index:1000;">
+                <image ref="svg-img" x="0" y="0" height="200" width="200" preserveAspectRatio="none" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="http://www.lgstatic.com/thumbnail_200x200/i/image/M00/21/3E/CgpFT1kVdzeAJNbUAABJB7x9sm8374.png"/>
+            </svg>-->
+        </div>
+        <!--排行榜-->
+        <div class="page2__layer" v-show="page2.rankStatus">
+            <div class="loading__bg loading__bg--01"></div>
+            <div class="loading__bg loading__bg--02"></div>
+            <div class="page2__center page2__rank clearfix">
+                <div class="page2__rank--title clearfix">
+                    <!-- page2.rankSubActive == -1 &&  -->
+                    <div class="icon-02 page2__rank--otitle"
+                        v-for="(one,index) in rank"
+                        :class="'page2__rank--otitle'+index+((page2.rankSubActive != -1 && index == page2.rankLastActive) || (index == page2.rankActive) ? ' active' : '')"
+                        @click.stop.prevent="page2RankTabEvent(index,one.list ? one.classify : '',-1)"
+                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+index*100)" data-lg-tj-cid="null">
+                        <div class="page2__rank--list" v-if="one.list"
+                            :class="index == page2.rankActive && page2.showSubListStatus ? '' : 'hide'"><!-- || !page2.rankListStatus-->
+                            <div class="page2__rank--li"
+                                v-for="(item,iindex) in one.list"
+                                @click.stop.prevent="page2RankTabEvent(index,item.classify,iindex)"
+                                data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+iindex+index*100)" data-lg-tj-cid="null">
+                                <div class="page2__rank--lic" v-html="item.text"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 排行榜 -->
+                <div class="page2__content page2__rank--content"
+                    @touchstart.stop.prevent="noop"
+                    @touchmove.stop.prevent="noop"
+                    @touchend.stop.prevent="noop"
+                    :style="{ height:getPage2RankHeight }"
+                    :class="getRankSubType ? '' : 'page2__rank--content-nomine'">
+                    <div class="page2__rank--item">
+                        <div class="page2__rank--itemul page2__rank--item_ul">
+                            <div class="page2__rank--itemli page2__rank--item_li clearfix"
+                                v-for="(one,index) in rankData"
+                                v-if="getSelfRanking != one.top"
+                                :class="{'page2__rank--itemli_last':getRankLast(index)}">
+                                <div class="page2__rank--num">{{one.top}}</div>
+                                <img class="page2__rank--logo" :src="getCompanyLogo(one.logo)"/>
+                                <div class="page2__rank--right">
+                                    <div class="page2__rank--company">{{one.companyName}}</div>
+                                    <div class="page2__rank--got">当前票数：<span class="green num">{{one.voteNum || 0}}</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__rank--item_bar_bg">
+                            <div class="page2__rank--item_bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page2__mine" v-show="companyList && getRankSubType">
+                    <div class="page2__rank--itemli page2__rank--item_li page2__rank--itemli_last clearfix">
+                        <!--mycompany.voteList[page2.rankSubActive == -1 ? page2.rankActive : page2.rankLastActive].ranking-->
+                        <div class="page2__rank--num">{{getSelfRanking}}</div>
+                        <img class="page2__rank--logo" :src="getCompanyLogo(mycompany.logo)"/>
+                        <div class="page2__rank--right">
+                            <div class="page2__rank--company">{{mycompany.companyShortName || mycompany.shortName}}</div>
+                            <div class="page2__rank--got">当前票数：<span class="green num">{{mycompany.voteNum}}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="icon page2__close"
+                v-show="!searchLayerStatus"
+                :style="{ top:getPage2CloseTop }"
+                @click.stop.prevent="page2CloseEvent"></div>
+            <div class="icon-02 page2__search" v-show="searchLayerStatus" :style="{ top:getPage2CloseTop }"
+                @click.stop.prevent="showSearchPageEvent"></div>
+        </div>
+    </div>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
+        </div>
+    </div>
+    <script type="text/javascript">
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script>
+    <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/jquery.qrcode.min.js?v=$version$"></script>
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script>
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-vote/m_index.html';
+        var randomText = [
+                '我们总是轻言放弃，而登顶之路则是，再来一次。',
+                'TOP之路，一旦开始，就要坚持到底。',
+                '没有人不想当TOP，所谓甘于平凡，但愿不是耽于平庸。',
+                'TOP，不是转瞬荣誉，而是极致追求。',
+                '你的目标不是赢，而是尽力做到TOP1。',
+                '自由之所以是奢望，是因为，你割舍不了选择TOP雇主的权利。',
+                '我努力K掉所有人，就是为了成为你心中的TOP1！',
+                '哪有天生的TOP1，我不过是为你一直坚持！',
+                '未必最大，但必定最强 ，Pick你心中的TOP雇主！'  // 8
+            ];
+        //微信分享
+        var datas = {
+            title: "2018拉勾年度TOP雇主评选",
+            desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-vote/images/share.jpg",
+            activityType: 'ACTIVITY_H5_VOTE_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+</body>
+</html>

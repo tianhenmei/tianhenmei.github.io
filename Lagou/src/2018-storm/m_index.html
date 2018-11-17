@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <!---上线之后加-->
+    <title>2018风暴周报名</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 750,
+                h: 1206
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            currentCount = 0;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var appElement = document.getElementById('app');
+                document.getElementById('loading').className += ' opacityChange-out';
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                    appElement.className = appElement.className.replace(' hide','');
+                },500);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    loadingComplete();
+                // }
+            };
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <!--<div class="loading__progress" id="loading__progress">
+            <div class="progress" id="progress"></div>
+        </div>-->
+        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+            <div class="page0__bg01"></div>
+            <div class="page0__vortex delay1-0"></div>
+            <div class="page0__bg02"></div>
+            <!-- 浮动元素 -->
+            <div class="page0__float">
+                <div class="page0__float__dot"></div>
+                <div class="page0__float__icon01"><div class="icon center"></div></div>
+                <div class="page0__float__icon02"><div class="icon center"></div></div>
+                <div class="page0__float__icon03"><div class="icon center"></div></div>
+                <div class="page0__float__icon04"><div class="icon center"></div></div>
+                <div class="page0__float__icon05"><div class="icon center"></div></div>
+                <div class="page0__float__icon06"><div class="icon center"></div></div>
+                <div class="page0__float__icon07"><div class="icon center"></div></div>
+                <div class="page0__float__icon08"><div class="icon center"></div></div>
+                <div class="page0__float__icon09"><div class="icon center"></div></div>
+                <div class="page0__float__icon10"><div class="icon center"></div></div>
+                <div class="page0__float__icon11"><div class="icon center"></div></div>
+                <div class="page0__float__icon12"><div class="icon center"></div></div>
+                <div class="page0__float__icon13"><div class="icon center"></div></div>
+                <div class="page0__float__icon13-2"><div class="icon center"></div></div>
+                <div class="page0__float__icon14-1"><div class="icon center"></div></div>
+                <div class="page0__float__icon14"><div class="icon center"></div></div>
+                <div class="page0__float__icon15"><div class="icon center"></div></div>
+                <div class="page0__float__icon16"><div class="icon center"></div></div>
+                <div class="page0__float__icon17"><div class="icon center"></div></div>
+                <div class="page0__float__icon18"><div class="icon center"></div></div>
+                <div class="page0__float__icon19"><div class="icon center"></div></div>
+                <div class="page0__float__icon20"><div class="icon center"></div></div>
+                <div class="page0__float__icon21"><div class="icon center"></div></div>
+                <div class="page0__float__icon22"><div class="icon center"></div></div>
+                <div class="page0__float__icon23"><div class="icon center"></div></div>
+                <div class="page0__float__icon24"><div class="icon center"></div></div>
+                <div class="page0__float__icon25"><div class="icon center"></div></div>
+                <div class="page0__float__icon26"><div class="icon center"></div></div>
+                <div class="page0__float__icon27"><div class="icon center"></div></div>
+                <div class="page0__float__icon28"><div class="icon center"></div></div>
+                <div class="page0__float__icon29"><div class="icon center"></div></div>
+                <div class="page0__float__icon30"><div class="icon center"></div></div>
+                <div class="page0__float__icon31"><div class="icon center"></div></div>
+                <div class="page0__float__icon32"><div class="icon center"></div></div>
+                <div class="page0__float__icon33"><div class="icon center"></div></div>
+                <div class="page0__float__icon34"><div class="icon center"></div></div>
+                <div class="page0__float__icon35"><div class="icon center"></div></div>
+                <div class="page0__float__icon36"><div class="icon center"></div></div>
+            </div>
+            <div class="page0__bg04"></div>
+            <div class="page0__bg05"></div>
+            <div class="page0__center">
+                <div class="icon page0__center__logo"></div>
+                <div class="icon page0__center__title"></div>
+                <div class="icon page0__center__time"></div>
+                <div class="page0__center__wave"></div>
+                <div class="icon-02 page0__center__circle1"></div>
+                <div class="icon-02 page0__center__circle2"></div>
+                <div class="icon-02 page0__center__circle3"></div>
+                <div class="icon-02 page0__center__circle4"></div>
+                <div class="icon-02 page0__center__circle5"></div>
+                <div class="icon-02 page0__center__circle6"></div>
+                <div class="icon page0__center__info01"></div>
+                <div class="icon page0__center__info02"></div>
+                <div class="icon page0__center__ratio"></div>
+                <div class="icon page0__center__words01"></div>
+                <div class="icon page0__center__words02"></div>
+                
+            </div>
+            <div class="page0__right"></div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : ''" ref="page1">
+            <div class="page1__bg"></div>
+            <div class="page1__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            <div class="page1__light"></div>
+            <div class="page1__icon page1__title1"></div>
+            <div class="page1__icon page1__title2"></div>
+            <div class="page1__icon page1__question"></div>
+            <div class="page1__line"></div>
+            <div class="page1__icon page1__info"></div>
+            <div class="page1__shot"></div>
+            <div class="page1__icon page1__logo"></div>
+            <div class="page1__moveParent">
+                <div class="page1__icon page1__move"></div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : ''">
+            <div class="page1__bg"></div>
+            <div class="page2__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            <div class="page2__table"></div>
+            <div class="page2__columnLayer">
+                <div class="page1__icon page2__c1"></div>
+                <div class="page1__icon page2__c2"></div>
+                <div class="page1__icon page2__c3"></div>
+            </div>
+            <div class="page2__arrow1"></div>
+            <div class="page2__arrow2"></div>
+            <div class="page1__icon page2__title1"></div>
+            <div class="page1__icon page2__title2"></div>
+            <div class="page1__icon page2__title3"></div>
+            <div class="page1__line"></div>
+            <div class="page1__icon page2__info"></div>
+
+            <div class="page1__icon page1__logo"></div>
+            <div class="page1__moveParent">
+                <div class="page1__icon page1__move"></div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
+            <div class="page1__bg"></div>
+            <div class="page1__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            
+            <div class="page3__cardbg"></div>
+            <div class="page3__card1"></div>
+            <div class="page3__card2"></div>
+            
+            <div class="page3__icon page3__title1"></div>
+            <div class="page3__icon page3__title2"></div>
+            <div class="page3__icon page3__title3"></div>
+            <div class="page1__line"></div>
+            <div class="page3__icon page3__info"></div>
+
+            <div class="page1__icon page1__logo"></div>
+            <div class="page1__moveParent">
+                <div class="page1__icon page1__move"></div>
+            </div>
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
+            <div class="page1__bg"></div>
+            <div class="page1__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            
+            <div class="page4__card"></div>
+            
+            <div class="page3__icon page4__title1"></div>
+            <div class="page3__icon page4__title2"></div>
+            <div class="page3__icon page4__title3"></div>
+            <div class="page1__line"></div>
+            <div class="page3__icon page4__info"></div>
+
+            <div class="page1__icon page1__logo"></div>
+            <div class="page1__moveParent">
+                <div class="page1__icon page1__move"></div>
+            </div>
+        </div>
+        <div class="page page5" :class="activePage == 5 ? 'active' : ''">
+            <div class="page1__bg"></div>
+            <div class="page1__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            
+            <div class="page5__card"></div>
+            
+            <div class="page5__icon page5__title1"></div>
+            <div class="page5__icon page5__title2"></div>
+            <div class="page5__icon page5__title3"></div>
+            <div class="page1__line"></div>
+            <div class="page5__icon page5__info"></div>
+
+            <div class="page1__icon page1__logo"></div>
+            <div class="page1__moveParent">
+                <div class="page1__icon page1__move"></div>
+            </div>
+        </div>
+        <div class="page page6" :class="activePage == 6 ? 'active' : ''">
+            <div class="page1__bg"></div>
+            <div class="page1__rightbottom"></div>
+            <div class="page1__star"></div>
+            <div class="page1__ball"></div>
+            <div class="page1__sprinkle"></div>
+            <div class="page1__icon page1__piece1"></div>
+            <div class="page1__icon page1__piece2"></div>
+            <div class="page6__company"></div>
+            <div class="page5__icon page6__title1"></div>
+            <div class="page5__icon page6__title2"></div>
+            <div class="page6__form">
+                <div class="page6__form__center">
+                    <div class="page6__form__one">
+                        <div class="page5__icon page6__form__name page6__form__name1" v-model="signup.name" v-on:input="checkNullEvent('name','您的名称')"></div>
+                        <input type="text" class="page6__form__input" />
+                        <div class="page6__form__tips">{{nameTips}}</div>
+                    </div>
+                    <div class="page6__form__one">
+                        <div class="page5__icon page6__form__name page6__form__name2" v-model="signup.city" v-on:input="checkNullEvent('city','公司所在城市')"></div>
+                        <input type="text" class="page6__form__input" />
+                        <div class="page6__form__tips">{{cityTips}}</div>
+                    </div>
+                    <div class="page6__form__one">
+                        <div class="page5__icon page6__form__name page6__form__name3" v-model="signup.company" v-on:input="updateCompanyList"></div>
+                        <input type="text" class="page6__form__input" />
+                        <div class="page6__form__tips">{{companyTips}}</div>
+                        <div class="page2__signup--list page2__signup--searchLayer" v-show="signupSearchStatus">
+                            <div class="page2__signup--search">
+                                <div class="page2__signup--search_bar_bg" v-show="signupList.length > 5">
+                                    <div class="page2__signup--search_bar" ref="page2__signup--search_bar"></div>
+                                </div>
+                                <ul class="page2__signup--ul page2__signup--search_ul" ref="page2__signup--search_ul">
+                                    <li class="page2__signup--one page2__signup--search_li"
+                                        v-for="(one,index) in signupList" @click.stop.prevent="signupSelectCompanyEvent(one)">
+                                        <div class="page2__signup--text">{{one.companyname}}</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page6__form__one">
+                        <div class="page5__icon page6__form__name page6__form__name4" v-model="signup.phone" v-on:input="checkPhoneEvent('phone')"></div>
+                        <input type="text" class="page6__form__input" />
+                        <div class="page6__form__tips">{{phoneTips}}</div>
+                    </div>
+                    <div class="page6__form__btn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
+        </div>
+    </div>-->
+    <script type="text/javascript">
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script>
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
+        var randomText = [
+                '我们总是轻言放弃，而登顶之路则是，再来一次。',
+                'TOP之路，一旦开始，就要坚持到底。',
+                '没有人不想当TOP，所谓甘于平凡，但愿不是耽于平庸。',
+                'TOP，不是转瞬荣誉，而是极致追求。',
+                '你的目标不是赢，而是尽力做到TOP1。',
+                '自由之所以是奢望，是因为，你割舍不了选择TOP雇主的权利。',
+                '我努力K掉所有人，就是为了成为你心中的TOP1！',
+                '哪有天生的TOP1，我不过是为你一直坚持！',
+                '未必最大，但必定最强 ，Pick你心中的TOP雇主！'  // 8
+            ];
+        //微信分享
+        var datas = {
+            title: "2018拉勾年度TOP雇主颁奖盛典",
+            desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.jpg",
+            activityType: 'ACTIVITY_H5_AWARD_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+</body>
+</html>

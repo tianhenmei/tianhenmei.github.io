@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+        <meta charset="utf-8">
+        <meta name="keywords" content="2018脉脉年度雇主颁奖盛典">
+        <meta name="description" content="2018脉脉年度雇主颁奖盛典">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<link rel="Shortcut Icon" href="http://img.digoo.cn/h5/002/images/share.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>2018脉脉年度雇主颁奖盛典</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 640,
+                    h: 1130
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            // test
+            // alert(GC.w+", "+GC.h)
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+            setFontSize();
+            var loadingStatus = false,
+                pageStatus = false,
+                startTime = Date.now(),
+                app = null,
+                pload = {
+                    status:'in',
+                    in:{
+                        outer:"",
+                        bg:"opacityChange delay1-5",
+                        logo:"opacityChange delay0-5",
+                        title:"downToCenter delay0-7",
+                        detail:"opacityChange delay1-2",
+                        num:"opacityChange delay2-0",
+                        layer:"zoomIn",
+                        choose:"opacityChange delay0-5",
+                        boy:"bounceInLeft delay1-0",
+                        girl:"bounceInRight delay1-0"
+                    },
+                    out:{
+                        outer:"opacityChange-out delay0-2 duration0-3",
+                        bg:"",
+                        logo:"",
+                        title:"",
+                        detail:"",
+                        num:"",
+                        layer:"zoomIn-out duration0-2",
+                        choose:"",
+                        boy:"",
+                        girl:""
+                    },
+                },
+                loadingComplete = function(){
+                    var loading = document.getElementById('loading')
+                    var appElement = document.getElementById('app');
+                    appElement.className = appElement.className.replace(' hide','');
+
+                    pload.status = 'out';
+                    loading.className += ' opacityChange-out duration0-3'
+                    // setLoadingHTML(100)
+                    setTimeout(() => {
+                        document.getElementById('loading').className += ' hide';
+                    }, 500);
+                },
+                loadingSuccess = function(){
+                    var now = Date.now(),
+                        space = now - startTime;
+                    if(space < 2000){
+                        setTimeout(function(){
+                            loadingComplete()
+                        },2000 - space)
+                    }else{
+                        loadingComplete()
+                    }
+                }
+		</script>
+	</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="mmlogo"></div>
+        <div class="page1__piece1Parent leftIn duration1-0 delay1-0">
+            <div class="icon page1__piece1 littleTopInfinite delay1-5"></div>
+        </div>
+        <div class="page1__piece2Parent leftTopRotateIn delay0-5">
+            <div class="icon page1__piece2 littleRightTopInfinite delay1-0"></div>
+        </div>
+        <div class="page1__piece3Parent littleLeftBottomIn duration1-0 delay1-0">
+            <div class="icon page1__piece3 littleRightTopInfinite delay1-7"></div>
+        </div>
+        <div class="page1__piece4Parent opacityChange delay0-5">
+            <div class="icon page1__piece4 littleTopInfinite delay1-0"></div>
+        </div>
+        <!-- <div class="icon page0__title littleBottomIn delay0-5"></div> -->
+        <!-- <div class="loading__subtitle littleBottomIn delay0-7"></div> -->
+        <div class="loading__num opacityChange delay0-5" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript">
+        function setLoadingHTML(progress){
+            var loading = document.getElementById('loading'),
+                data = pload[pload.status],
+                html = ''+
+                '<div class="loading '+data.outer+'" id="loading">'+
+                    '<img class="loading__gif" src="images/loading.gif" />'+
+                    '<div class="icon loading__logo '+data.logo+'"></div>'+
+                    '<div class="loading__num '+data.num+'" id="loading__num">'+progress+'%</div>'+
+                '</div>'
+            loading.outerHTML = html
+        }
+        var loading = document.getElementById('loading');
+        loading.addEventListener('touchmove',function(e){
+            e.stopPropagation();
+            e.preventDefault();
+        },{passive:false});
+        // setLoadingHTML(0)
+    </script>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
+            <div class="page0__bg"></div>
+            <div class="page0__bg--light opacityChange delay0-8"></div>
+            <div class="page0__bg--bottom"></div>
+            <div class="page0__piece01Parent leftTopRotateIn delay0-5" :style="{top:getFitTop(428-123,2/4)}">
+                <div class="icon page0__piece01 littleTopInfinite delay1-0"></div>
+            </div>
+            <div class="page0__piece02Parent leftIn duration1-0 delay2-0" :style="{top:getFitTop(882-123,1)}">
+                <div class="icon page0__piece02 littleLeftInfinite delay2-0"></div>
+            </div>
+            <div class="page0__max" :style="{top:getFitTop(69,1/4)}"> <!-- centerZoomIn delay0-5-->
+                <div class="page0__mt page0__m rotateMove60 duration1-0 delay0-5"></div>
+                <div class="page0__mt page0__a rotateMoveMinus60 duration1-0 delay0-5"></div>
+                <div class="page0__mt page0__x rotateMove90 duration1-0 delay0-5"></div>
+            </div>
+            <div class="icon page0__title littleBottomIn duration1-0 delay1-5" :style="{top:getFitTop(237,2/4)}"></div>
+            <div class="icon page0__theme littleBottomIn duration1-0 delay1-8" :style="{top:getFitTop(303,5/8)}"></div>
+            <div class="icon page0__logo zoomIn duration1-0 delay2-3" :style="{top:getFitTop(453,6/8)}"></div>
+            <div class="icon page0__subtitle zoomIn duration1-0 delay2-5" :style="{top:getFitTop(669-123,6/8)}"></div>
+            
+            <div class="page0__txtLayer littleBottomIn duration2-0 delay2-7" :style="{top:getFitTop(0,7/8)}">
+                <div class="icon page0__txt page0__txt01 littleBottomIn duration1-0 delay2-7"></div>
+                <div class="icon page0__txt page0__txt02 littleBottomIn duration1-0 delay2-9"></div>
+                <div class="icon page0__txt page0__txt03 littleBottomIn duration1-0 delay3-1"></div>
+                <div class="icon page0__txt page0__txt04 littleBottomIn duration1-0 delay3-3"></div>
+                <div class="icon page0__txt page0__txt05 littleBottomIn duration1-0 delay3-5"></div>
+            </div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+            <div class="page1__bg"></div>
+            <div class="page1__piece1Parent leftIn duration1-0 delay1-0">
+                <div class="icon page1__piece1 littleTopInfinite delay2-0"></div>
+            </div>
+            <div class="page1__piece2Parent leftTopRotateIn delay0-5">
+                <div class="icon page1__piece2 littleRightTopInfinite delay1-0"></div>
+            </div>
+            <div class="page1__piece3Parent littleLeftBottomIn duration1-0 delay1-7" :style="{top:getFitTop(871-123,1)}">
+                <div class="icon page1__piece3 littleRightTopInfinite delay2-7"></div>
+            </div>
+            <div class="page1__piece4Parent opacityChange delay2-5" :style="{top:getFitTop(1094-123,1)}">
+                <div class="icon page1__piece4 littleTopInfinite delay3-0"></div>
+            </div>
+            <div class="page1__title scaleY delay0-5" :style="{top:getFitTop(196-123,1/4)}"></div>
+            <div class="page1__infoLayer opacityChange delay1-0" :style="{top:getFitTop(0,2/4)}">
+                <div class="page1__info page1__info01"></div>
+                <div class="page1__info page1__info02"></div>
+                <div class="page1__info page1__info03"></div>
+                <div class="page1__info page1__info04"></div>
+                <div class="page1__info page1__info05"></div>
+                <div class="page1__info page1__info06"></div>
+                <div class="page1__info page1__info07"></div>
+            </div>
+            <div class="page1__outer pulse delay1-5" :style="{top:getFitTop(560-123,3/4)}"></div>
+            <div class="page1__inner pulse delay1-7" :style="{top:getFitTop(666-123,3/4)}"></div>
+            <div class="page1__name opacityChange delay2-0" :style="{top:getFitTop(796-123,3/4)}"></div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+            <div class="page2__bg"></div>
+            <div class="page2__piece1Parent zoomIn duration1-0 delay1-0" :style="{top:getFitTop(543-123,5/8)}">
+                <div class="icon page2__piece1 littleTopInfinite delay4-0"></div>
+            </div>
+            <div class="page2__piece2Parent zoomIn duration1-0 delay2-0" :style="{top:getFitTop(439-123,4/8)}">
+                <div class="icon page2__piece2 littleTopInfinite delay2-0"></div>
+            </div>
+            <div class="page2__piece3Parent opacityChange delay2-5" :style="{top:getFitTop(854-123,1)}">
+                <div class="icon page2__piece3 littleTopInfinite delay3-0"></div>
+            </div>
+            <div class="page2__piece4Parent opacityChange delay2-0" :style="{top:getFitTop(1077-123,1)}">
+                <div class="icon page2__piece4 littleTopInfinite delay2-5"></div>
+            </div>
+            <div class="page2__title opacityChange delay0-5" :style="{top:getFitTop(199-123,3/8)}"></div>
+            <div class="page2__info opacityChange delay1-0" :style="{top:getFitTop(275-123,4/8)}"></div>
+            <div class="page2__first" :style="{top:getFitTop(0,5/8)}">
+                <div class="page2__first01 rotateY duration1-0 origin-lt delay1-5">
+                    <img class="page2__first__picture" src="images/page2-talent01.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">2019人才招聘趋势关键词发布</div>
+                        <div class="page2__first__company">脉脉CEO</div>
+                        <div class="page2__first__name">林凡</div>
+                    </div>
+                </div>
+                <div class="page2__first02 rotateY duration1-0 origin-rt delay2-0">
+                    <img class="page2__first__picture" src="images/page2-talent02-02.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">大数据智能化的企业人才战略</div>
+                        <div class="page2__first__company">百度商业智能实验室主任</div>
+                        <div class="page2__first__name page2__first__name--minus">熊辉博士（拟邀）</div>
+                    </div>
+                </div>
+                <div class="page2__first03 rotateY duration1-0 origin-lt delay2-5">
+                    <img class="page2__first__picture" src="images/page2-talent03.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">奥运冠军到创投明星，无边界的力量</div>
+                        <div class="page2__first__company">悉尼奥运竞走冠军   王者传奇创始人</div>
+                        <div class="page2__first__name">王丽萍</div>
+                    </div>
+                </div>
+            </div>
+            <div class="page2__text littleBottomIn duration1-0 delay3-5" :style="{top:getFitTop(808-123,7/8)}">在经济趋势的不确定中寻找确定</div>
+            <div class="page2__secondLayer" :style="{top:getFitTop(0,1)}">
+                <div class="page2__second page2__second01 rotateY duration1-0 delay4-0">
+                    <img class="page2__second__pictrue" src="images/page2-stalent01.png" />
+                    <div class="page2__second__info page2__second__info1">社交招聘</div>
+                    <div class="page2__second__info page2__second__info2">自媒体人</div>
+                    <div class="page2__second__info page2__second__info3">欧阳泽林</div>
+                </div>
+                <div class="page2__second page2__second02 rotateY duration1-0 delay4-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent02.png" />
+                    <div class="page2__second__info page2__second__info1">HROOT</div>
+                    <div class="page2__second__info page2__second__info2">总经理</div>
+                    <div class="page2__second__info page2__second__info3">唐秋勇</div>
+                </div>
+                <div class="page2__second page2__second03 rotateY duration1-0 delay5-0">
+                    <img class="page2__second__pictrue" src="images/page2-stalent03.png" />
+                    <div class="page2__second__info page2__second__info1">HRPC</div>
+                    <div class="page2__second__info page2__second__info2">创始人</div>
+                    <div class="page2__second__info page2__second__info3">庄黎</div>
+                </div>
+                <div class="page2__second page2__second04 rotateY duration1-0 delay5-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent04.png" />
+                    <div class="page2__second__info page2__second__info1">脉脉</div>
+                    <div class="page2__second__info page2__second__info2">联合创始人</div>
+                    <div class="page2__second__info page2__second__info3">王倩</div>
+                </div>
+            </div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <!--<div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+            <div class="page2__bg"></div>
+            <div class="page2__piece1Parent zoomIn duration1-0 delay1-0" :style="{top:getFitTop(543-123,5/8)}">
+                <div class="icon page2__piece1 littleTopInfinite delay4-0"></div>
+            </div>
+            <div class="page2__piece2Parent zoomIn duration1-0 delay2-0" :style="{top:getFitTop(439-123,4/8)}">
+                <div class="icon page2__piece2 littleTopInfinite delay2-0"></div>
+            </div>
+            <div class="page2__piece3Parent opacityChange delay2-5" :style="{top:getFitTop(854-123,1)}">
+                <div class="icon page2__piece3 littleTopInfinite delay3-0"></div>
+            </div>
+            <div class="page2__piece4Parent opacityChange delay2-0" :style="{top:getFitTop(1077-123,1)}">
+                <div class="icon page2__piece4 littleTopInfinite delay2-5"></div>
+            </div>
+            <div class="page2__title opacityChange delay0-5" :style="{top:getFitTop(199-123,3/8)}"></div>
+            <div class="page2__info opacityChange delay1-0" :style="{top:getFitTop(275-123,4/8)}"></div>
+            <div class="page2__first" :style="{top:getFitTop(0,5/8)}">
+                <div class="page2__first01 leftIn delay1-5">
+                    <img class="page2__first__picture" src="images/page2-talent01.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">2019人才招聘趋势关键词发布</div>
+                        <div class="page2__first__company">脉脉CEO</div>
+                        <div class="page2__first__name">林凡</div>
+                    </div>
+                </div>
+                <div class="page2__first02 rightIn delay1-5">
+                    <img class="page2__first__picture" src="images/page2-talent02.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">让技术人才成为时代人才</div>
+                        <div class="page2__first__company">蔚来汽车HRVP</div>
+                        <div class="page2__first__name page2__first__name--minus">周全（拟邀）</div>
+                    </div>
+                </div>
+                <div class="page2__first03 leftIn delay1-5">
+                    <img class="page2__first__picture" src="images/page2-talent03.png"/>
+                    <div class="page2__first__info">
+                        <div class="page2__first__keyword">奥运冠军到创投明星，无边界的力量</div>
+                        <div class="page2__first__company">悉尼奥运竞走冠军   王者传奇</div>
+                        <div class="page2__first__name">王丽萍</div>
+                    </div>
+                </div>
+            </div>
+            <div class="page2__text opacityChange delay2-0" :style="{top:getFitTop(808-123,7/8)}">在经济趋势的不确定中寻找确定</div>
+            <div class="page2__secondLayer" :style="{top:getFitTop(0,1)}">
+                <div class="page2__second page2__second01 rotateY delay2-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent01.png" />
+                    <div class="page2__second__info page2__second__info1">社交招聘</div>
+                    <div class="page2__second__info page2__second__info2">自媒体人</div>
+                    <div class="page2__second__info page2__second__info3">欧阳泽林</div>
+                </div>
+                <div class="page2__second page2__second02 rotateY delay2-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent02.png" />
+                    <div class="page2__second__info page2__second__info1">HROOT</div>
+                    <div class="page2__second__info page2__second__info2">总经理</div>
+                    <div class="page2__second__info page2__second__info3">唐秋勇</div>
+                </div>
+                <div class="page2__second page2__second03 rotateY delay2-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent03.png" />
+                    <div class="page2__second__info page2__second__info1">HRPC</div>
+                    <div class="page2__second__info page2__second__info2">创始人</div>
+                    <div class="page2__second__info page2__second__info3">庄黎</div>
+                </div>
+                <div class="page2__second page2__second04 rotateY delay2-5">
+                    <img class="page2__second__pictrue" src="images/page2-stalent04.png" />
+                    <div class="page2__second__info page2__second__info1">脉脉</div>
+                    <div class="page2__second__info page2__second__info2">联合创始人</div>
+                    <div class="page2__second__info page2__second__info3">王倩</div>
+                </div>
+            </div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>-->
+        <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
+            <div class="page3__bg"></div>
+            <div class="page3__piece01Parent littleRightBottomIn delay1-2">
+                <div class="icon page3__piece01 littleTopInfinite delay1-7"></div>
+            </div>
+            <div class="page3__piece02Parent littleLeftBottomIn duration1-0 delay1-7"
+                :style="{top:getFitTop(813,1)}">
+                <div class="icon page3__piece02 littleRightTopInfinite delay2-7"></div>
+            </div>
+            <div class="page3__piece03Parent opacityChange delay2-5"
+                :style="{top:getFitTop(957-123,1)}">
+                <div class="icon page3__piece03 littleTopInfinite delay3-0"></div>
+            </div>
+            <div class="page3__piece04Parent opacityChange delay2-5"
+                :style="{top:getFitTop(1159-123,1)}">
+                <div class="icon page3__piece04 littleTopInfinite delay3-0"></div>
+            </div>
+            <div class="page3__title1 littleBottomIn delay0-5" :style="{top:getFitTop(177-123,3/8)}"></div>
+            <div class="page3__title2 littleBottomIn delay0-7" :style="{top:getFitTop(245-123,4/8)}"></div>
+            <div class="page3__info zoomIn delay1-2" :style="{top:getFitTop(326-123,4/8)}"></div>
+            <div class="page3__list" :style="{top:getFitTop(300,6/8)}">
+                <div class="page3__one clearfix" v-for="(one,index) in page3.list"
+                    :class="'littleBottomIn duration1-0 delay'+getDelayTime(17,index,2)"
+                    :style="{height:getFitTop(84,1/4/page3.list.length)}">
+                    <div class="icon page3__one__icon"></div>
+                    <div class="icon page3__one__bg clearfix">
+                        <div class="page3__one__name">{{one.name}}</div>
+                        <div class="page3__one__all">{{one.all}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : 'hide'">
+            <div class="page4__piece1Parent opacityChange delay1-5">
+                <div class="icon page4__piece1"></div>
+            </div>
+            <div class="page4__piece2Parent opacityChange delay1-8" :style="{bottom:getFitTop(115,3/16)}">
+                <div class="icon page4__piece2"></div>
+            </div>
+            <div class="page4__piece3Parent zoomIn duration1-0 delay2-3">
+                <div class="icon page4__piece3"></div>
+            </div>
+            <div class="page4__piece4Parent opacityChange delay2-1">
+                <div class="icon page4__piece4"></div>
+            </div>
+            <div class="page4__bg"></div>
+            <div class="page4__title rotateY delay0-5" :style="{top:getFitTop(198-123,3/8)}"></div>
+            <div class="page4__subtitle opacityChange delay1-0" :style="{top:getFitTop(279-123,3/8)}"></div>
+            <div class="page4__theme page4__theme01" :style="{top:getFitTop(0,5/8)}">
+                <div class="page4__theme__title littleTopIn delay1-5"></div>
+                <div class="page4__theme__bg leftIn delay1-5"></div>
+                <div class="page4__theme__img rightIn delay1-5"></div>
+            </div>
+            <div class="page4__theme page4__theme02" :style="{top:getFitTop(0,7/8)}">
+                <div class="page4__theme__title littleTopIn delay1-5"></div>
+                <div class="page4__theme__bg rightIn delay1-5"></div>
+                <div class="page4__theme__img leftIn delay1-5"></div>
+            </div>
+
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page5" :class="activePage == 5 ? 'active' : 'hide'">
+            <div class="page5__bg"></div>
+            <div class="page5__piece01Parent littleBottomIn delay2-0" :style="{top:getFitTop(806-123,3/4)}">
+                <div class="icon page5__piece01 littleTopInfinite delay2-0"></div>
+            </div>
+            <div class="page5__piece02Parent littleBottomIn delay2-2" :style="{top:getFitTop(878-123,3/4)}">
+                <div class="icon page5__piece02 littleTopInfinite delay2-2"></div>
+            </div>
+            <div class="page5__piece03Parent littleBottomIn delay2-4">
+                <div class="icon page5__piece03 littleTopInfinite delay2-4"></div>
+            </div>
+            <div class="page5__piece04Parent littleBottomIn delay2-2">
+                <div class="icon page5__piece04 littleTopInfinite delay2-2"></div>
+            </div>
+            <div class="page5__title littleBottomIn delay0-5" :style="{top:getFitTop(177-123,1/4)}"></div>
+            <div class="page5__address littleBottomIn delay0-7" :style="{top:getFitTop(245-123,2/4)}"></div>
+            <div class="page5__schedule" :style="{top:getFitTop(0,3/4)}">
+                <div class="page5__line page5__line01 heightChange delay1-2"></div>
+                <div class="icon page5__ticon page5__ticon01 opacityChange delay1-7"></div>
+                <div class="page5__time01 leftIn duration1-0 delay1-2"></div>
+                <div class="page5__line page5__line02 heightChange delay2-2"></div>
+                <div class="icon page5__ticon page5__ticon02 opacityChange delay2-7"></div>
+                <div class="page5__time02 rightIn duration1-0 delay2-2"></div>
+                <div class="page5__line page5__line03 heightChange delay3-2"></div>
+                <div class="icon page5__ticon page5__ticon03 opacityChange delay3-7"></div>
+                <div class="page5__time03 leftIn duration1-0 delay3-2"></div>
+                <div class="page5__line page5__line04 heightChange delay4-2"></div>
+                <div class="icon page5__ticon page5__ticon04 opacityChange delay4-7"></div>
+                <div class="page5__time04 rightIn duration1-0 delay4-2"></div>
+                <div class="page5__line page5__line05 heightChange delay5-2"></div>
+                <div class="icon page5__ticon page5__ticon05 opacityChange delay5-7"></div>
+                <div class="page5__time05 leftIn duration1-0 delay5-2"></div>
+                <div class="page5__line page5__line06 heightChange delay6-2"></div>
+            </div>
+
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page6" :class="activePage == 6 ? 'active' : 'hide'">
+            <div class="page6__piece01Parent littleBottomIn delay2-0">
+                <div class="icon page6__piece01 littleTopInfinite delay2-0"></div>
+            </div>
+            <div class="page6__piece02Parent littleBottomIn delay2-2" :style="{top:getFitTop(1004-123,7/8)}">
+                <div class="icon page6__piece02 littleTopInfinite delay2-2"></div>
+            </div>
+            <div class="page6__piece03Parent littleBottomIn delay2-4" :style="{top:getFitTop(1076-123,7/8)}">
+                <div class="icon page6__piece03 littleTopInfinite delay2-4"></div>
+            </div>
+            <div class="page6__piece04Parent littleBottomIn delay2-2">
+                <div class="icon page6__piece04 littleTopInfinite delay2-2"></div>
+            </div>
+            <div class="page6__bg"></div>
+            <div class="page6__title littleTopIn delay0-5" :style="{top:getFitTop(177-123,3/8)}"></div>
+            <div class="page6__infobg rotateY delay1-0" :style="{top:getFitTop(282-123,5/8)}"></div>
+            <div class="page6__infoLayer" :style="{top:getFitTop(0,5/8)}">
+                <div class="page6__info page6__info01 littleBottomIn duration1-0 delay1-5"></div>
+                <div class="page6__info page6__info02 littleBottomIn duration1-0 delay1-7"></div>
+                <div class="page6__info page6__info03 littleBottomIn duration1-0 delay1-9"></div>
+                <div class="page6__info page6__info04 littleBottomIn duration1-0 delay2-1"></div>
+                <div class="page6__info page6__info05 littleBottomIn duration1-0 delay2-3"></div>
+                <div class="page6__info page6__info06 littleBottomIn duration1-0 delay2-5"></div>
+                <div class="page6__info page6__info07 littleBottomIn duration1-0 delay2-7"></div>
+                <div class="page6__info page6__info08 littleBottomIn duration1-0 delay2-9"></div>
+                <div class="page6__info page6__info09 littleBottomIn duration1-0 delay3-1"></div>
+            </div>
+            <div class="page6__btn rotateY delay3-0" :style="{top:getFitTop(860-123,7/8)}">
+                <a class="page6__btna page6__btna01" target="_blank" href="https://www.wenjuan.com/s/MzaM7rU/"></a>
+                <a class="page6__btna page6__btna02" target="_blank" href="https://www.wenjuan.com/s/3i2mem4/"></a>
+                <a class="page6__btna page6__btna03" target="_blank" href="https://www.wenjuan.com/s/nqmQbqi/"></a>
+                <a class="page6__btna page6__btna04" target="_blank" href="https://www.wenjuan.com/s/rmqIbyi/"></a>
+            </div>
+            <div class="page0__arrow opacityChange delay0-5" :style="{top:getFitTop(945,1)}">
+                <div class="icon page0__arrow__center moveDownInfinite delay1-0"></div>
+            </div>
+        </div>
+        <div class="page page7" :class="activePage == 7 ? 'active' : 'hide'">
+            <div class="page7__bg"></div>
+            <div class="icon page7__piece01 opacityChange delay1-0"></div>
+            <div class="icon page7__piece02 opacityChange delay1-2"></div>
+            <div class="icon page7__piece03 littleBottomIn delay3-2" :style="{top:getFitTop(871-123,1)}"></div>
+            <div class="icon page7__piece04 littleBottomIn delay3-4" :style="{top:getFitTop(1094-123,1)}"></div>
+            <div class="page7__title littleTopIn delay0-5" :style="{top:getFitTop(177-123,1/4)}"></div>
+            <div class="page7__logo littleTopIn delay1-0" :style="{top:getFitTop(274-123,2/4)}"></div>
+            <div class="page7__partnerLayer" :style="{top:getFitTop(0,3/4)}">
+                <div class="page7__partner page7__partner01 zoomIn duration1-0 delay1-5"></div>
+                <div class="page7__partner page7__partner02 zoomIn duration1-0 delay1-8"></div>
+                <div class="page7__partner page7__partner03 zoomIn duration1-0 delay2-1"></div>
+                <div class="page7__partner page7__partner04 zoomIn duration1-0 delay2-4"></div>
+                <div class="page7__partner page7__partner05 zoomIn duration1-0 delay2-7"></div>
+            </div>
+        </div>
+        <div class="mmlogo"></div>
+    </div>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music04.mp3"></audio>
+        </div>
+    </div>
+    <script src="js/jquery.1.10.1.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        if(isWeiXin()){
+            ShareWeChat();
+        }
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true
+            } else {
+                return false
+            }
+        }
+        function ShareWeChat(){
+            var url = location.href.split('#')[0];
+            url = encodeURIComponent(url);
+            $.ajax({  
+                type : "get",  
+                url : "http://a2.digoo.cn/wx/jssdk.php?url="+url,
+                dataType : "jsonp",  
+                jsonp: "callback",  
+                jsonpCallback:"success_jsonpCallback",  
+                success : function(data){
+                    wx.config({ 
+                        debug:false, 
+                        appId: data.appId,  
+                        timestamp: data.timestamp,  
+                        nonceStr: data.nonceStr,  
+                        signature: data.signature,  
+                        jsApiList: [
+                            "onMenuShareTimeline",
+                            "onMenuShareAppMessage",   
+                            "onMenuShareQQ",  
+                            "onMenuShareWeibo",
+                        ]  
+                    });  
+                },  
+                error:function(data){  }  
+            });
+            wx.ready(function (){
+                var shareTimeline = {  
+                    "imgUrl": "images/share.jpeg",
+                    "desc": "11/30-12/1 北京，TOP100名企、行业大咖、权威媒体都在现场，等你来",//$fxtext[Math.floor(Math.random()*10)],
+                    "title": '2018脉脉年度雇主评选盛典报名中',
+                    "link": window.location.href  //"http://a2.digoo.cn/h5/002/",
+                }; 
+                wx.onMenuShareAppMessage(shareTimeline);  
+                wx.onMenuShareTimeline(shareTimeline);  
+                wx.onMenuShareQQ(shareTimeline);  
+                wx.onMenuShareWeibo(shareTimeline);  	
+            }); 
+        }
+    </script>
+</body>
+</html>

@@ -117,7 +117,7 @@ $(document).ready(function() {
             otherOne = that.parent().siblings('.charpter__one');
         if(that.hasClass('active')){
             that.children('.charpter__arrow')
-                .removeClass('charpter__arrow--movedown')
+                .removeClass('charpter__arrow--movedown charpter__arrow--moveback')
                 .addClass('charpter__arrow--moveback');
             that.siblings('.charpter__content').slideUp(500);
             setTimeout(function(){
@@ -129,12 +129,14 @@ $(document).ready(function() {
             },500);
             otherOne
                 .find('.charpter__arrow')
-                .removeClass('charpter__arrow--movedown')
+                .removeClass('charpter__arrow--movedown charpter__arrow--moveback')
                 .addClass('charpter__arrow--moveback');
             otherOne.find('.charpter__content').slideUp(500);
 
             that.addClass('active');
-            that.children('.charpter__arrow').addClass('charpter__arrow--movedown');
+            that.children('.charpter__arrow')
+                .removeClass('charpter__arrow--movedown charpter__arrow--moveback')
+                .addClass('charpter__arrow--movedown');
             that.siblings('.charpter__content').slideDown(500);
         }
     });

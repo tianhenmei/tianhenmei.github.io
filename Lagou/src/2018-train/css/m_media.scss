@@ -1,11 +1,14 @@
 @function rem($n){
 	@return $n/(750/16)+rem;
 }
+html{
+    font-family:Arial,"Hiragino Sans GB";
+}
 .wrapper {
     padding-bottom:rem(222);
     .banner {
         height:rem(788);
-        background-image: url(../images/media/banner-bg.png);
+        background-image: url(../images/media/banner-bg-02.png);
     }
     .banner-logo {
         width:rem(750);
@@ -25,17 +28,23 @@
     }
     .banner-info {
         width:rem(668);
+        padding-top:rem(29);
+        &__one {
+            padding-bottom:rem(16+15);
+        }
         &__txt {
+            line-height:rem(41);  // 56
             font-size:rem(24);
         }
     }
 
     .courses {
         height:rem(694);
-        background-image:url(../images/courses-bg.png);
+        background-image:url(../images/media/courses-bg-02.png);
         &__center {
 			height:rem(694);
-		}
+        }
+        // courses__benefit--left
         &__benefit {
             &--left {
                 width:rem(91);
@@ -105,7 +114,140 @@
         &__arrow {
             top:rem(61-4);
         }
+        // charpter__content
         &__content {
+            // charpter__one--2
+            &--day1 {
+                width:rem(715);
+                height:rem(100);
+                background:url('../images/media/day1.png') no-repeat center top;
+                background-size:100% 100%;
+            }
+            &--day2 {
+                width:rem(715);
+                height:rem(100);
+                background:url('../images/media/day2.png') no-repeat center top;
+                background-size:100% 100%;
+            }
+            .charpter__content--detail {
+                width:rem(800);
+                line-height:rem(92);
+                margin-left:rem(17);
+                margin-right:rem(20);
+                // border-bottom:1px dashed #bfbfbf;
+                font-size:rem(30);  // 30
+                color:#525564;
+                text-align:left;
+                font-weight:500;
+                position:relative;
+                // transform-origin:0 0;
+                // transform:scale3d(0.6,0.6,0.6);
+                -webkit-text-size-adjust: none;
+            }
+            .charpter__content--line {
+                width:rem(643);
+                height:rem(2);
+                margin-left:rem(6);
+                background:url('../images/media/day1-line.png') no-repeat center top;
+            }
+            .charpter__content--dmutil {
+                line-height:rem(44);
+                padding-top:rem(19);
+                padding-bottom:rem(19);
+                border-bottom:none;
+            }
+            .normal {
+                position:relative;
+                z-index:2;
+            }
+            .charpter__content--green2 {
+                width:rem(514);
+                height:rem(18);
+                background:#7fd8b6;
+                position:absolute;
+                left:rem(10);
+                // left:rem(182+8);
+                top:rem(45);
+                z-index:1;
+            }
+            .charpter__content--blue2 {
+                width:rem(514);
+                height:rem(18);
+                background:#87b8fa;
+                position:absolute;
+                left:rem(10);
+                // left:rem(182+8);
+                top:rem(45);
+                z-index:1;
+            }
+            .charpter__content--dtime {
+                width:rem(180);
+                // display:inline-block;
+                display:none;
+            }
+            .charpter__content--time {
+                width:rem(716-16);
+                height:rem(101);
+                line-height:rem(101);
+                padding-left:rem(16);
+                background-color:#fff;
+                font-size:rem(30);
+                text-align:left;
+                color:#22b381;
+                font-style:italic;
+                font-weight:bold;
+            }
+            .charpter__content--blue {
+                color:#2c70cb;
+            }
+
+            // charpter__one--1
+            .charpter1__content--one {
+                width:rem(765);
+                padding-left:rem(27);
+                padding-bottom:rem(31);
+            }
+            .charpter1__content--first {
+                padding-top:rem(9);
+            }
+            .charpter1__content--last {
+                padding-bottom:rem(3);
+            }
+            .charpter1__content--number {
+                width:rem(89);
+                height:rem(76);
+                background:url('../images/media/charpter1-number.png') no-repeat 0 0;
+                background-size:rem(89) rem(519);
+                float:left;
+            }
+            .charpter1__content--number1 {
+                background-position:0 0;
+            }
+            .charpter1__content--number2 {
+                background-position:0 rem(-102);
+            }
+            .charpter1__content--number3 {
+                background-position:0 rem(-200);
+            }
+            .charpter1__content--number4 {
+                background-position:0 rem(-305);
+            }
+            .charpter1__content--number5 {
+                height:rem(105);
+                padding-top:rem(8);
+                background-position:0 rem(-414+8);
+            }
+            .charpter1__content--text {
+                width:rem(665);
+                line-height:rem(38);
+                padding-top:rem(4);
+                text-align:left;
+                font-size:rem(24);
+                color:#52545f;
+                float:left;
+            }
+
+
             &--one {
                 line-height:rem(40);
                 padding-left:rem(34);
@@ -137,6 +279,7 @@
         background-size:100% 100%;
     }
     .buy { 
+        z-index:3;
         &__content {
             height:rem(108-18);
 			padding-top:rem(18);
@@ -150,6 +293,7 @@
             height:rem(74);
 			line-height:rem(74);
             font-size:rem(30);
+            
         }
     }
 }
