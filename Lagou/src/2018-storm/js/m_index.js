@@ -279,9 +279,9 @@ var initialNow = 0,
     randomIndex = Math.floor(Math.random() * 10);
 
 // 音乐
-if(mode != "development"){
+// if(mode != "development"){
     backgroundMusic(document.getElementById("music"));
-}
+// }
 var PageMove = function () {
     function PageMove(options) {
         _classCallCheck(this, PageMove);
