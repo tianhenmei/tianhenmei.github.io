@@ -335,6 +335,8 @@ var PageMove = function () {
                 app.$data.flipStatus = false;
                 jQuery(".page" + self.data.last)
                     .removeClass("active moveUNow moveULast moveDNow moveDLast");
+                jQuery(".page" + self.data.now)
+                    .removeClass("moveUNow moveULast moveDNow moveDLast");
                 // app.$data['page'+self.data.now].status = 'in';
                 // app.$data['page'+self.data.last].status = 'in';
             },500)
@@ -372,12 +374,15 @@ var PageMove = function () {
                 case self.data.now == 0 && direction == 'U':
                     if(!app.$data.firstFlip){
                         app.$data.firstFlip = true;
+                        app.$data.firstMove = true;
                         setTimeout(function(){
                             app.$data.lastPage = 0;
                             app.$data.activePage = 1;
                             self.data.last = 0;
                             self.data.now = 1;
                             app.$data.firstFlip = false;
+                            jQuery(".page" + self.data.now)
+                                .removeClass("moveUNow moveULast moveDNow moveDLast");
                         },500);
                     }
                     break;

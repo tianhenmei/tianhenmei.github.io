@@ -868,9 +868,20 @@ body {
     &__right {
         width:100%;
         height:100%;
-        background:url('../images/page0-right.png') no-repeat center bottom;
+        background:url('../images/page0-right.png?v=2') no-repeat center bottom;
         background-size:100%;
         @include leftTop(0,0);
+    }
+    &__bottomParent {
+        width:rem(72);
+        height:rem(72);
+        @include rightBottom(35,96);
+    }
+    &__bottom-text {
+        width:rem(72);
+        height:rem(72);
+        background:url('../images/page0-bottom-text.png') no-repeat center bottom;
+        background-size:100%;
     }
 }
 .page0__flip {
@@ -1197,20 +1208,125 @@ body {
     }
 }
 .page5{
-    // page5__card
-    &__card {
+    &__cardLayer {
         width:rem(428);
         height:rem(432);
-        background:url('../images/page5-card.png') no-repeat center top;
-        background-size:100% 100%;
         @include center(152,724-128);
     }
-    // page5__title1
-    &__title1 {
-        width:rem(668);
+    &__cardbg {
+        width:rem(428);
+        height:rem(432);
+        background:url('../images/page5-card-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        @include leftTop(0,0);
+    }
+    // page5__card
+    &__card {
+        background:url('../images/page5-card.png') no-repeat 0 0;
+        background-size:rem(428) rem(432);
+        position:absolute;
+    }
+    &__card01 {
+        width:rem(122);
+        height:rem(79);
+        background-position:rem(-37) rem(-26);
+        left:rem(37);
+        top:rem(26);
+    }
+    &__card02 {
+        width:rem(91);
+        height:rem(79);
+        background-position:rem(-174) rem(-26);
+        left:rem(174);
+        top:rem(26);
+    }
+    &__card03 {
+        width:rem(149);
+        height:rem(79);
+        background-position:rem(-279) rem(-26);
+        left:rem(279);
+        top:rem(26);
+    }
+    &__card04 {
+        width:rem(86);
+        height:rem(80);
+        background-position:rem(-37) rem(-123);
+        left:rem(37);
+        top:rem(123);
+    }
+    &__card05 {
+        width:rem(86);
+        height:rem(80);
+        background-position:rem(-139) rem(-123);
+        left:rem(139);
+        top:rem(123);
+    }
+    &__card06 {
+        width:rem(86);
+        height:rem(80);
+        background-position:rem(-240) rem(-123);
+        left:rem(240);
+        top:rem(123);
+    }
+    &__card07 {
+        width:rem(86);
+        height:rem(80);
+        background-position:rem(-342) rem(-123);
+        left:rem(342);
+        top:rem(123);
+    }
+    &__card08 {
+        width:rem(122);
+        height:rem(84);
+        background-position:rem(-37) rem(-221);
+        left:rem(37);
+        top:rem(221);
+    }
+    &__card09 {
+        width:rem(92);
+        height:rem(84);
+        background-position:rem(-174) rem(-221);
+        left:rem(174);
+        top:rem(221);
+    }
+    &__card10 {
+        width:rem(150);
+        height:rem(84);
+        background-position:rem(-278) rem(-221);
+        left:rem(278);
+        top:rem(221);
+    }
+    &__card11 {
+        width:rem(180);
+        height:rem(84);
+        background-position:rem(-37) rem(-322);
+        left:rem(37);
+        top:rem(322);
+    }
+    &__card12 {
+        width:rem(180);
+        height:rem(85);
+        background-position:rem(-233) rem(-320);
+        left:rem(233);
+        top:rem(320);
+    }
+    &__title0 {
+        width:rem(360);
         height:rem(130);
         background-position:0 0;
         @include center(43,154-128);
+    }
+    &__title1Parent {
+        width:rem(668-360);
+        height:rem(130);
+        @include center(43+360,154-128);
+    }
+    // page5__title1
+    &__title1 {
+        width:rem(668-360);
+        height:rem(130);
+        background-position:rem(-360) 0;
+        transform:translate3d(rem(-150),0,0);
     }
     &__title2 {
         width:rem(668);
@@ -1769,6 +1885,14 @@ body {
         transform: none
     }
 }
+.moveBack {
+    animation:moveBack 0.5s both linear;
+}
+@keyframes moveBack {
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
 
 .rubberBand {
     animation: rubberBand 0.5s both;
@@ -2141,6 +2265,17 @@ body {
     }
     100% {
         transform:translate3d(0,20px,0);
+    }
+}
+.moveUInfinite {
+    animation:moveUInfinite 3s both linear infinite;
+}
+@keyframes moveUInfinite {
+    0%,80%,100% {
+        transform:translate3d(0,0,0);
+    }
+    40% {
+        transform:translate3d(0,-20px,0);
     }
 }
 .heightChange {
@@ -2731,6 +2866,176 @@ body {
 //     }
 // }
 
+.moveMinus1500-minus1500 {
+    animation:moveMinus1500-minus1500 1s both linear;
+}
+@keyframes moveMinus1500-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(-1500px,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.moveMinus600-minus1500 {
+    animation:moveMinus600-minus1500 1s both linear;
+}
+@keyframes moveMinus600-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(-600px,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move0-minus1500 {
+    animation:move0-minus1500 1s both linear;
+}
+@keyframes move0-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(0,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move600-minus1500 {
+    animation:move600-minus1500 1s both linear;
+}
+@keyframes move600-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(600px,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move1500-minus1500 {
+    animation:move1500-minus1500 1s both linear;
+}
+@keyframes move1500-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(1500px,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.moveMinus1500-minus600 {
+    animation:moveMinus1500-minus600 1s both linear;
+}
+@keyframes moveMinus1500-minus600 {
+    0% {
+        opacity:0;
+        transform:translate3d(-1500px,-600px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move1500-minus600 {
+    animation:move1500-minus600 1s both linear;
+}
+@keyframes move1500-minus600 {
+    0% {
+        opacity:0;
+        transform:translate3d(1500px,-600px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move1500-minus1500 {
+    animation:move1500-minus1500 1s both linear;
+}
+@keyframes move1500-minus1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(1500px,-1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+
+.moveMinus1500-600 {
+    animation:moveMinus1500-600 1s both linear;
+}
+@keyframes moveMinus1500-600 {
+    0% {
+        opacity:0;
+        transform:translate3d(-1500px,600px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move0-1500 {
+    animation:move0-1500 1s both linear;
+}
+@keyframes move0-1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(0,1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move1500-600 {
+    animation:move1500-600 1s both linear;
+}
+@keyframes move1500-600 {
+    0% {
+        opacity:0;
+        transform:translate3d(1500px,600px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.moveMinus1500-1500 {
+    animation:moveMinus1500-1500 1s both linear;
+}
+@keyframes moveMinus1500-1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(-1500px,1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.move1500-1500 {
+    animation:move1500-1500 1s both linear;
+}
+@keyframes move1500-1500 {
+    0% {
+        opacity:0;
+        transform:translate3d(1500px,1500px,0);
+    }
+    100% {
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
 .pageFlip {
     animation:pageFlip 0.5s both steps(1,end);
 }

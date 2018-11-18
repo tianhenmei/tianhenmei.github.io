@@ -188,6 +188,9 @@
                 
             </div>
             <div class="page0__right opacityChange duration1-0 delay3-5"></div>
+            <div class="page0__bottomParent opacityChange delay4-0">
+                <div class="page0__bottom-text moveUInfinite"></div>
+            </div>
         </div>
         <div class="page0__flip" v-show="firstFlip"></div>
         <div class="page page1" :class="getPageMoveClass(1)" ref="page1">
@@ -207,8 +210,8 @@
             <div class="page1__line opacityChange delay2-8" :style="{top:getMaxTop(594-128,1)}"></div>
             <div class="page1__icon page1__info rotateX delay2-8" :style="{top:getMaxTop(657-128,1)}"></div>
             <div class="page1__shot opacityChange delay3-3" :style="{top:getMaxTop(761-128,1)}"></div>
-            <div class="page1__icon page1__logo littleTopIn delay3-8" :style="{top:getMaxTop(1167-128,1)}"></div>
-            <div class="page1__moveParent littleTopIn delay4-1" :style="{top:getMaxTop(1156,1)}">
+            <div class="page1__icon page1__logo littleTopIn delay1-0" :style="{top:getMaxTop(1167-128,1)}"></div>
+            <div class="page1__moveParent littleTopIn delay1-3" :style="{top:getMaxTop(1156,1)}">
                 <div class="page1__icon page1__move moveInfinite"></div>
             </div>
         </div>
@@ -229,7 +232,7 @@
                 <div class="page2__arrow2 widthHeightChange origin0-100 duration0-3 delay3-7"></div>
             </div>
             <div class="page2__title1Parent littleTopIn duration1-0 delay1-5" :style="{top:getMaxTop(164-128,1)}">
-                <div class="page1__icon page2__title1 rubberBand delay2-5"></div>
+                <div class="page1__icon page2__title1 rubberBand delay4-0"></div>
             </div>
             <div class="page1__icon page2__title2 littleTopIn duration1-0 delay1-8" :style="{top:getMaxTop(164+154-128,1)}"></div>
             <div class="page1__icon page2__title3 littleTopIn duration1-0 delay2-1" :style="{top:getMaxTop(164+154+135-128,1)}"></div>
@@ -296,9 +299,29 @@
             <div class="page1__icon page1__piece1 leftIn delay1-0" :style="{top:getMaxTop(131-128,1)}"></div>
             <div class="page1__icon page1__piece2 rightIn delay1-0" :style="{top:getMaxTop(359-128,1)}"></div>
             
-            <div class="page5__card rotateY180 duration1-0 delay2-0" :style="{top:getMaxTop(724-128,1)}"></div>
+            <div class="page5__cardLayer" :style="{top:getMaxTop(724-128,1)}">
+                <div class="page5__cardbg opacityChange delay3-5"></div>
+                <div class="page5__card page5__card01 moveMinus1500-minus1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card02 move0-minus1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card03 move1500-minus1500 duration1-0 delay2-5"></div>
+
+                <div class="page5__card page5__card04 moveMinus1500-minus600 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card05 moveMinus600-minus1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card06 move600-minus1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card07 move1500-minus1500 duration1-0 delay2-5"></div>
+                
+                <div class="page5__card page5__card08 moveMinus1500-600 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card09 move0-1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card10 move1500-600 duration1-0 delay2-5"></div>
+
+                <div class="page5__card page5__card11 moveMinus1500-1500 duration1-0 delay2-5"></div>
+                <div class="page5__card page5__card12 move1500-1500 duration1-0 delay2-5"></div>
+            </div>
             
-            <div class="page5__icon page5__title1 zoomLittleMoveIn duration1-0 delay1-0" :style="{top:getMaxTop(154-128,1)}"></div>
+            <div class="page5__icon page5__title0 bounceInDown delay2-4" :style="{top:getMaxTop(154-128,1)}"></div>
+            <div class="page5__title1Parent zoomLittleMoveIn duration1-0 delay1-0" :style="{top:getMaxTop(154-128,1)}">
+                <div class="page5__icon page5__title1 moveBack duration0-2 delay2-5"></div>
+            </div>
             <div class="page5__icon page5__title2 zoomLittleMoveIn duration1-0 delay1-2" :style="{top:getMaxTop(154+130-128,1)}"></div>
             <div class="page5__icon page5__title3 zoomLittleMoveIn duration1-0 delay1-4" :style="{top:getMaxTop(154+130+125-128,1)}"></div>
             <div class="page1__line opacityChange duration1-0 delay2-0" :style="{top:getMaxTop(594-128,1)}"></div>

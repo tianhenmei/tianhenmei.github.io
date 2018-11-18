@@ -118,9 +118,11 @@ var scrollClass = function(options) {
             app.scrollData[self.classname].top = parseFloat(app.scrollData[self.classname].ul.css('top')) || 0;
             if(self.moveEndStatus){
                 self.secondTimeStatus = true;
-            }
-            if(self.moveUpStatus){
+            }else if(self.moveUpStatus){
                 self.secondUpTimeStatus = true;
+            }else {
+                self.secondTimeStatus = false;
+                self.secondUpTimeStatus = false;
             }
         }
     };
@@ -148,13 +150,20 @@ var scrollClass = function(options) {
                     if(app.scrollData[self.classname].top == 0){
                         self.moveUpStatus = false;
                         self.secondUpTimeStatus = false;
+                        self.moveEndStatus = false;
+                        self.secondTimeStatus = false;
                         self.moveUpCallback();
                     }else{
                         if(!self.moveUpStatus){
                             self.moveUpStatus = true;
+                            self.secondUpTimeStatus = false;
+                            self.moveEndStatus = false;
+                            self.secondTimeStatus = false;
                         }else if(self.secondUpTimeStatus){
                             self.moveUpStatus = false;
                             self.secondUpTimeStatus = false;
+                            self.moveEndStatus = false;
+                            self.secondTimeStatus = false;
                             self.moveUpCallback();
                         }
                     }
@@ -165,13 +174,20 @@ var scrollClass = function(options) {
                 // 移动到底部：
                 if(self.moveEndCallback){
                     if(app.scrollData[self.classname].top == -app.scrollData[self.classname].height){
+                        self.moveUpStatus = false;
+                        self.secondUpTimeStatus = false;
                         self.moveEndStatus = false;
                         self.secondTimeStatus = false;
                         self.moveEndCallback();
                     }else{
                         if(!self.moveEndStatus){
+                            self.moveUpStatus = false;
+                            self.secondUpTimeStatus = false;
                             self.moveEndStatus = true;
+                            self.secondTimeStatus = false;
                         }else if(self.secondTimeStatus){
+                            self.moveUpStatus = false;
+                            self.secondUpTimeStatus = false;
                             self.moveEndStatus = false;
                             self.secondTimeStatus = false;
                             self.moveEndCallback();
@@ -663,16 +679,16 @@ app = new Vue({
                     t:485,
                     name:'参选规则',
                     listStatus:true,
-                    totalHeight:840,
+                    totalHeight:840-139,
                     classname:'page2__content--d2',
                     detail:[
-                        {
+                        /*{
                             icon:'',
                             title:'申报数量',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             info:'每个企业至少选择一项，最多申报两项<br/>趣味奖不算在选项里；',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*14)
-                        },{
+                        },*/{
                             icon:'',
                             title:'参选条件',
                             height:setRem(33 * 6 + 26 + 2 + 45),

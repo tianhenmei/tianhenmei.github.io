@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-vote/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-vote/';
 var imgArray = [
 	loadingHost+"images/loading-title.png",
 	loadingHost+"images/loading-bg01-03.png",
