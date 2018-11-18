@@ -524,7 +524,7 @@ app = new Vue({
             company:'',
             phone:''
         },
-        nameTips:'* 请输入您的名字',
+        nameTips:'',  // * 请输入您的名字
         cityTips:'',
         companyTips:'',
         phoneTips:'',
