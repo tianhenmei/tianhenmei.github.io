@@ -11,6 +11,11 @@
     <meta name="format-detection" content="telphone=no, email=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="true">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <!---上线之后加-->
     <title>2018拉勾年度TOP雇主颁奖盛典</title>
@@ -80,11 +85,41 @@
             pageStatus = false,
             startTime = new Date().getTime(),
             loadingComplete = function(){
-                var appElement = document.getElementById('app');
+                var appElement = document.getElementById('app'),
+                    videos = document.getElementById('videos');
                 document.getElementById('loading').className += ' opacityChange-out';
+                console.log('loadingComplete');
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
+                    videos.className = videos.className.replace(' hide','');
+                    var btn = document.getElementById('video__btn'),
+                        video = document.getElementById('video');
+                    // test
                     appElement.className = appElement.className.replace(' hide','');
+
+                    // btn.addEventListener('click',function(e){
+                    //     e.stopPropagation();
+                    //     e.preventDefault();
+
+                    //     btn.className += ' hide';
+                    //     video.className = video.className.replace(' hide','');
+                    //     video.play();
+                    // },false);
+                    // video.addEventListener("ended",function(){
+                    //     videos.className += ' opacityChange-out';
+                    //     setTimeout(function(){
+                    //         videos.className += ' hide';
+                    //         appElement.className = appElement.className.replace(' hide','');
+                    //     },500);
+                    // });
+                    // video.addEventListener("timeupdate",function(){
+                    //     var timeDisplay;
+                    //     // 当前播放秒数
+                    //     timeDisplay = Math.floor(video.currentTime);
+                    //     if(timeDisplay == 23){
+                    //         // 当前logo刚出来的时候
+                    //     }
+                    // },false);
                 },500);
             },
             loadingSuccess = function(){
@@ -112,32 +147,36 @@
         </div>-->
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
     </div>
+    <div class="videos hide" id="videos">
+        <video class="video hide" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1080" preload="auto" src="images/movie.mp4"></video>
+        <div class="video__btn" id="video__btn">立即开始</div>
+    </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : ''">
             <div class="page0__bg01"></div>
-            <div class="page0__bg02"></div>
-            <div class="icon page0__logo"></div>
-            <div class="page0__dot01"></div>
-            <div class="page0__dot02"></div>
-            <div class="page0__grotesque"></div>
-            <div class="icon page0__2018"></div>
-            <div class="icon page0__talent"></div>
-            <div class="icon page0__organization"></div>
-            <div class="icon page0__power"></div>
-            <div class="icon page0__circle"></div>
-            <div class="icon page0__name"></div>
-            <div class="icon page0__title"></div>
-            <div class="page0__line"></div>
+            <div class="page0__bg02 opacityChange delay0-5"></div>
+            <div class="icon page0__logo rightIn duration1-0 delay0-5"></div>
+            <div class="page0__dot01 opacityChange delay1-0"></div>
+            <div class="page0__dot02 opacityChange delay1-0"></div>
+            <div class="page0__grotesque littleBottomIn delay1-2"></div>
+            <div class="icon page0__2018 rightIn duration2-0 delay0-5"></div>
+            <div class="icon page0__talent leftIn duration2-0 delay0-7"></div>
+            <div class="icon page0__organization leftIn duration2-0 delay1-0"></div>
+            <div class="icon page0__power leftIn duration2-0 delay1-4"></div>
+            <div class="icon page0__circle opacityChange delay3-0"></div>
+            <div class="icon page0__name littleBottomIn duration1-0 delay2-5"></div>
+            <div class="icon page0__title littleBottomIn duration1-0 delay2-7"></div>
+            <div class="page0__line littleBottomIn duration1-0 delay3-0"></div>
             <div class="page0__textLayer">
-                <div class="icon page0__text page0__text1"></div>
-                <div class="icon page0__icon page0__icon1"></div>
-                <div class="icon page0__text page0__text2"></div>
-                <div class="icon page0__icon page0__icon2"></div>
-                <div class="icon page0__text page0__text3"></div>
-                <div class="icon page0__icon page0__icon3"></div>
-                <div class="icon page0__text page0__text4"></div>
-                <div class="icon page0__icon page0__icon4"></div>
+                <div class="icon page0__text page0__text1 leftIn duration1-0 delay3-2"></div>
+                <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay3-2"></div>
+                <div class="icon page0__text page0__text2 leftIn duration1-0 delay3-2"></div>
+                <div class="icon page0__icon page0__icon2 leftIn duration1-0 delay3-2"></div>
+                <div class="icon page0__text page0__text3 rightIn duration1-0 delay3-2"></div>
+                <div class="icon page0__icon page0__icon3 rightIn duration1-0 delay3-2"></div>
+                <div class="icon page0__text page0__text4 rightIn duration1-0 delay3-2"></div>
+                <div class="icon page0__icon page0__icon4 rightIn duration1-0 delay3-2"></div>
             </div>
             <div class="page0__move" :class="page0[page0.status].move">
                 <div class="icon page0__move--center moveTopInfinite delay1-5"></div>
@@ -146,32 +185,34 @@
         <div class="page page1" :class="activePage == 1 ? 'active' : ''" ref="page1">
             <div class="page1__bg"></div>
             <div class="page1__textLayer">
-                <div class="page1__icon page1__text page1__text01"></div>
-                <div class="page1__icon page1__text page1__text02"></div>
-                <div class="page1__icon page1__text page1__text03"></div>
-                <div class="page1__icon page1__text page1__text04"></div>
-                <div class="page1__icon page1__text page1__text05"></div>
-                <div class="page1__icon page1__text page1__text06"></div>
-                <div class="page1__icon page1__text page1__text07"></div>
-                <div class="page1__icon page1__text page1__text08"></div>
-                <div class="page1__icon page1__text page1__text09"></div>
+                <div class="page1__icon page1__text page1__text01 littleBottomIn duration1-0 delay0-5"></div>
+                <div class="page1__icon page1__text page1__text02 littleBottomIn duration1-0 delay0-7"></div>
+                <div class="page1__icon page1__text page1__text03 littleBottomIn duration1-0 delay0-9"></div>
+                <div class="page1__icon page1__text page1__text04 littleBottomIn duration1-0 delay1-1"></div>
+                <div class="page1__icon page1__text page1__text05 littleBottomIn duration1-0 delay1-3"></div>
+                <div class="page1__icon page1__text page1__text06 littleBottomIn duration1-0 delay1-5"></div>
+                <div class="page1__icon page1__text page1__text07 littleBottomIn duration1-0 delay1-7"></div>
+                <div class="page1__icon page1__text page1__text08 littleBottomIn duration1-0 delay1-9"></div>
+                <!-- <div class="page1__icon page1__text page1__text09 littleBottomIn duration1-0 delay2-1"></div> -->
             </div>
             <div class="page1__city">
-                <div class="page1__icon page1__city__cn"></div>
-                <div class="page1__icon page1__city__en"></div>
-                <div class="page1__city__line"></div>
-                <div class="page1__icon page1__city__name page1__city__sh"></div>
-                <div class="page1__icon page1__city__name page1__city__hz"></div>
-                <div class="page1__icon page1__city__name page1__city__sz"></div>
-                <div class="page1__icon page1__city__name page1__city__gz"></div>
-                <div class="page1__icon page1__city__name page1__city__cd"></div>
-                <div class="page1__icon page1__city__name page1__city__bj"></div>
+                <div class="page1__city__bg opacityChange duration1-0 delay2-5"></div>
+                <div class="page1__icon page1__city__cn rightIn duration1-0 delay1-5"></div>
+                <div class="page1__icon page1__city__en rightIn duration1-0 delay1-7"></div>
+                <div class="page1__city__line opacityChange duration1-0 delay2-5"></div>
+                <div class="page1__icon page1__city__name page1__city__sh rotateY delay3-0"></div>
+                <div class="page1__icon page1__city__name page1__city__hz rotateY delay3-0"></div>
+                <div class="page1__icon page1__city__name page1__city__sz rotateY delay3-0"></div>
+                <div class="page1__icon page1__city__name page1__city__gz rotateY delay3-0"></div>
+                <div class="page1__icon page1__city__name page1__city__cd rotateY delay3-0"></div>
+                <div class="page1__icon page1__city__name page1__city__bj rotateY delay3-0"></div>
             </div>
-            <div class="page1__schedule">
-                <div class="page1__icon page1__schedule__cn"></div>
-                <div class="page1__icon page1__schedule__en"></div>
-                <div class="page1__schedule__line"></div>
-                <div class="page1__schedule__content">
+            <div class="page1__schedule" ref="page1__schedule">
+                <div class="page1__icon page1__schedule__cn littleBottomIn duration1-0 delay3-0"></div>
+                <div class="page1__icon page1__schedule__en littleBottomIn duration1-0 delay3-0"></div>
+                <div class="page1__schedule__line littleBottomIn duration1-0 delay3-0"></div>
+                <div class="page1__schedule__content" 
+                    ref="page1__schedule__content" :class="page1.tab[0].active ? 'active' : 0">
                     <div class="page1__schedule__one clearfix" 
                         v-for="(one,index) in page1.schedule" :class="{'short-schedule':one.line == 'short-line'}">
                         <div class="page1__schedule__icon page1__schedule__time" :style="{
@@ -183,6 +224,7 @@
                                 backgroundPosition:one.namePosition
                             }"></div>
                             <div class="page1__schedule__icon page1__schedule__info" 
+                                :class="one.infoClass"
                                 v-if="one.infoPosition"
                                 :style="{
                                     backgroundPosition:one.infoPosition
@@ -191,7 +233,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page1__guest">
+            <div class="page1__guest" ref="page1__guest">
                 <div class="icon page1__guest__cn"></div>
                 <div class="icon page1__guest__en"></div>
                 <div class="page1__guest__line"></div>
@@ -206,25 +248,30 @@
                                 <img class="page1__guest__img" :src="item.src"/>
                                 <div class="page1__guest__name">{{item.guestName}}</div>
                                 <div class="page1__guest__company">{{item.companyName}}</div>
+                                <div class="page1__guest__position">{{item.position}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="page1__company">
+            <!--<div class="page1__company">
                 <div class="icon page1__company__cn"></div>
                 <div class="icon page1__company__en"></div>
                 <div class="page1__company__line"></div>
                 <div class="page1__company__content"></div>
-            </div>
-            <div class="page1__partner">
+            </div>-->
+            <div class="page1__partner" ref="page1__partner">
                 <div class="icon page1__partner__cn"></div>
                 <div class="icon page1__partner__en"></div>
                 <div class="page1__partner__line"></div>
-                <div class="page1__partner__content"></div>
+                <div class="page1__partner__content">
+                    <div class="page1__partner__list clearfix">
+                        <img class="page1__partner__one" v-for="one in page1.partner" :src="one" />
+                    </div>
+                </div>
             </div>
             <div class="page1__shadow"></div>
-            <div class="page1__move" :class="page1[page1.status].move">
+            <div class="page1__move" :class="page1.showStatus ? page1[page1.status].move : ''" v-show="page1.moveStatus">
                 <div class="icon page1__move--center moveTopInfinite delay1-5"></div>
             </div>
             <div class="page1__btn"></div>
@@ -266,7 +313,7 @@
                         <div class="page1__signup__tips">{{page1.cityTips}}</div>
                         <div class="page1__signup--list" v-show="page1.cityStatus">
                             <div class="page1__signup--one"
-                                v-for="(one,index) in page1.cityArr" @click.stop.prevent="chooseCityEvent(one.en,one.cn,one.templateId)"
+                                v-for="(one,index) in page1.cityArr" @click.stop.prevent="chooseCityEvent(one.en,one.cn,one,index)"
                                 data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2020+index)" data-lg-tj-cid="null">
                                 <div class="page1__signup--text">{{one.cn}}</div>
                             </div>
@@ -281,25 +328,24 @@
         <div class="page page2" :class="activePage == 2 ? 'active' : ''">
             <div class="page0__bg01"></div>
             <div class="page0__bg02"></div>
-            <div class="icon page0__logo"></div>
-            <div class="page0__dot01"></div>
-            <div class="page0__dot02"></div>
-            <div class="page0__grotesque"></div>
-            <div class="icon page0__2018"></div>
+            <div class="icon page0__logo" :style="{top:getFitTop(23,1/4)}"></div>
+            <div class="page0__dot01" :style="{top:getFitTop(261-128,1/4)}"></div>
+            <div class="page0__dot02" :style="{top:getFitTop(436-128,2/4)}"></div>
+            <div class="icon page2__grotesque" :style="{top:getFitTop(287-128,1/4)}"></div>
+            <div class="icon page0__2018" :style="{top:getFitTop(647-128,2/4)}"></div>
             <div class="icon page0__circle"></div>
-            <div class="icon page2__theme"></div>
-            <div class="page2__companybg">特别邀请 {{page1.signup.company}}</div>
-            <div class="page2__company">特别邀请 {{page1.signup.company}}</div>
-        </div>
-        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
-            
-        </div>
-        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
-            
-        </div>
-        <div class="page page5" :class="activePage == 5 ? 'active' : ''">
+            <div class="icon page2__theme1" :style="{top:getFitTop(440-128,2/4)}"></div>
+            <div class="icon page2__theme2" :style="{top:getFitTop(523-128,2/4)}"></div>
+            <div class="page2__companybg" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
+            <div class="page2__company" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
+            <div class="page2__user" :style="{top:getFitTop(838-128,3/4)}">{{page1.signup.user}}</div>
+            <div class="icon page2__save" :style="{top:getFitTop(992-128,6/8)}"></div>
+            <div class="icon page2__line" :style="{top:getFitTop(1158-128,7/8)}"></div>
+            <div class="icon page2__share" :style="{top:getFitTop(1194-128,1)}"></div>
+            <div class="icon page2__value" :style="{top:getFitTop(1229-128,1)}"></div>
             <canvas class="temp-canvas" ref="temp-canvas"></canvas>
             <canvas class="canvas" ref="canvas"></canvas>
+            <img class="page2__img" :src="url" />
         </div>
         <!--排行榜-->
         <div class="page2__layer" v-show="page2.rankStatus">

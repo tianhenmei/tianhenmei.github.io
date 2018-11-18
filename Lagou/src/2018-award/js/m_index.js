@@ -270,14 +270,16 @@ function backgroundMusic(audio){
 // }
 // 3: 报名成功，展示公司页
 // test
-var initialNow = 2,
-    initialLast = 1,
+var initialNow = 0,
+    initialLast = 0,
     initialCompanyId = 0,
+    initialDraw = false,
     mode = "development",// "development",//"production",
     initialText = '测试',
     initialPhone = '12345678900',
     randomIndex = Math.floor(Math.random() * 10);
-
+var baseHost = '';
+// var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 // 音乐
 if(mode != "development"){
     backgroundMusic(document.getElementById("music"));
@@ -496,137 +498,156 @@ app = new Vue({
             },
             schedule:[
                 {
-                    time:'13:30',
-                    name:'活动议程',
+                    time:'13:30-14:00',
+                    name:'签到',
                     info:'',
-                    line:'short-line',
+                    line:'',
                     timePosition:'0 0',
                     namePosition:setRem(-280)+' 0'
                 },{
-                    time:'14:00 - 14:20',
-                    name:'拉勾白皮书发布',
-                    info:'洞悉人才现状，了解招聘趋势',
+                    time:'14:00 - 14:30',
+                    name:'白皮书发布：',
+                    info:'拉勾董事长许单单致辞，2018<br/>互联网人才白皮书发布',
                     timePosition:'0 '+setRem(-63),
                     namePosition:setRem(-280)+' '+setRem(-63),
-                    infoPosition:setRem(-280)+' '+setRem(-111)
+                    infoPosition:setRem(-280)+' '+setRem(-111),
+                    infoClass:'page1__schedule__info--2'
                 },{
-                    time:'14:20 - 14:30',
-                    name:'颁奖',
-                    info:'拉勾年度TOP雇主奖-区域奖',
-                    timePosition:'0 '+setRem(-191),
-                    namePosition:setRem(-280)+' '+setRem(-191),
+                    time:'14:30 - 14:40',
+                    name:'颁奖仪式',
+                    info:'2018拉勾年度区域TOP雇主奖',
+                    timePosition:'0 '+setRem(-190),
+                    namePosition:setRem(-280)+' '+setRem(-190),
                     infoPosition:setRem(-280)+' '+setRem(-235)
                 },{
-                    time:'14:30 - 15:00',
-                    name:'嘉宾分享',
-                    info:'组织 · 人才 · 力量',
+                    time:'14:40 - 15:10',
+                    name:'高峰论坛',
+                    info:'面向未来的组织与人才发展变革',
                     timePosition:'0 '+setRem(-317),
                     namePosition:setRem(-280)+' '+setRem(-317),
                     infoPosition:setRem(-280)+' '+setRem(-364)
                 },{
-                    time:'15:00 - 15:20',
-                    name:'颁奖',
-                    info:'拉勾年度新锐雇主奖-区域奖',
+                    time:'15:10 - 15:20',
+                    name:'颁奖仪式',
+                    info:'2018拉勾年度区域领先TOP雇主奖',
                     timePosition:'0 '+setRem(-445),
                     namePosition:setRem(-280)+' '+setRem(-445),
                     infoPosition:setRem(-280)+' '+setRem(-491)
                 },{
-                    time:'15:20 - 15:40',
+                    time:'15:20 - 15:50',
                     name:'拉勾招聘秘籍发布',
-                    info:'招聘技巧阐述',
+                    info:'拉勾城市总监解读2019招聘<br/>致胜秘籍',
                     timePosition:'0 '+setRem(-571),
                     namePosition:setRem(-280)+' '+setRem(-571),
-                    infoPosition:setRem(-280)+' '+setRem(-617)
+                    infoPosition:setRem(-280)+' '+setRem(-617),
+                    infoClass:'page1__schedule__info--2'
                 },{
-                    time:'15:40 - 16:40',
-                    name:'沙龙酒会',
-                    info:'',
+                    time:'15:50 - 16:00',
+                    name:'启动仪式',
+                    info:'2018拉勾年度TOP雇主奖颁奖<br/>盛典全国巡回启动仪式',
                     timePosition:'0 '+setRem(-698),
-                    namePosition:setRem(-280)+' '+setRem(-698)
+                    namePosition:setRem(-280)+' '+setRem(-698),
+                    infoClass:'page1__schedule__info--2'
+                },{
+                    time:'16:00 - 16:30',
+                    name:'答谢酒会',
+                    info:'',
+                    timePosition:'0 '+setRem(-822),
+                    namePosition:setRem(-280)+' '+setRem(-822),
+                    infoClass:'page1__schedule__info--2'
                 }
             ],
             guest:[
                 {
                     timePosition:'0 '+setRem(-480), 
-                    list:[
+                    list:[  // 0
                         {
                             src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            guestName:'张帆',
+                            companyName:'迅雷集团',
+                            position:'人力资源高级副总裁'
                         },{
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            src:'images/page1-guest02.png',
+                            guestName:'吴宇',
+                            companyName:'小鹏汽车',
+                            position:'人力资源总监'
                         }
                     ]
                 },{
                     timePosition:'0 '+setRem(-480-50), 
-                    list:[
+                    list:[ // 2
                         {
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            src:'images/page1-guest03.png',
+                            guestName:'Eva Gong',
+                            companyName:'Shopee',
+                            position:'人力资源负责人'
                         },{
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            src:'images/page1-guest04.png',
+                            guestName:'Terry Luo',
+                            companyName:'阅文集团',
+                            position:'招聘及员工关系总监'
                         }
                     ]
                 },{
                     timePosition:'0 '+setRem(-480-50*2), 
-                    list:[
+                    list:[ // 4
                         {
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            src:'images/page1-guest05.png',
+                            guestName:'张丽俊',
+                            companyName:'创业酵母',
+                            position:'创始人'
                         },{
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            src:'images/page1-guest06.png',
+                            guestName:'麦老师',
+                            companyName:'500强外企',
+                            position:'人力资源副总裁'
                         }
                     ]
                 },{
                     timePosition:'0 '+setRem(-480-50*3), 
-                    list:[
+                    list:[ // 6
                         {
                             src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            guestName:'庄黎',
+                            companyName:'HRPC创始人',
+                            position:''
                         },{
                             src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
-                        }
-                    ]
-                },{
-                    timePosition:'0 '+setRem(-480-50*4), 
-                    list:[
-                        {
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
-                        },{
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
-                        }
-                    ]
-                },{
-                    timePosition:'0 '+setRem(-480-50*5), 
-                    list:[
-                        {
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
-                        },{
-                            src:'images/page1-guest-default.png',
-                            guestName:'嬴政',
-                            companyName:'拉勾网'
+                            guestName:'更多嘉宾',
+                            companyName:'敬请期待',
+                            position:''
                         }
                     ]
                 }
             ],
-            signupStatus:true,
+            partner:[
+                baseHost+'images/partner-01.png',
+                baseHost+'images/partner-02.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-default.png'
+            ],
+            showStatus:true,
+            moveStatus:true,
+            signupStatus:false,
             signup:{
                 templateId:'',
                 companyId:initialCompanyId,
@@ -641,33 +662,53 @@ app = new Vue({
             waitingRequest:0,
             signupRequestStatus:false,
             signupFromOther:false,
+            tab:[
+                {
+                    elem:'page1__schedule__content',
+                    parent:['page1__schedule'],
+                    height:1074,
+                    top:1207,
+                    active:false
+                },{
+                    elem:'page1__guest',
+                    height:1637,
+                    top:2400-128,
+                    active:false
+                },{
+                    elem:'page1__partner',
+                    height:861,
+                    top:4046-128,
+                    active:false
+                }
+            ],
             cityCN:'11.21上海',
+            citySelected:0,
             cityStatus:false,
             cityArr:[
                 {
                     cn:'11.21上海',
                     en:'shanghai',
-                    templateId:''
+                    templateId:'5bee67a4e4b030768a24cbcf'
                 },{
                     cn:'11.23杭州',
                     en:'hangzhou',
-                    templateId:''
+                    templateId:'5bee5d08e4b030768a24cb4a'
                 },{
                     cn:'11.27深圳',
                     en:'shenzhen',
-                    templateId:''
+                    templateId:'5bee5cc5e4b030768a24cb1b'
                 },{
                     cn:'11.29广州',
                     en:'guangzhou',
-                    templateId:''
+                    templateId:'5bee5c7de4b030768a24caea'
                 },{
                     cn:'11.29成都',
                     en:'chengdu',
-                    templateId:''
+                    templateId:'5bee5ad1e4b030768a24ca85'
                 },{
                     cn:'12.21北京',
                     en:'beijing',
-                    templateId:''
+                    templateId:'5bee5ac4e4b030768a24ca84'
                 }
             ],
             companyTips:'',  // * 请输入公司简称
@@ -684,10 +725,6 @@ app = new Vue({
             rankSubActive:-1,
             rankListStatus:true,
             showSubListStatus:false
-            
-        },
-        page3:{
-            status:'in',
             
         },
         rankActive:0,
@@ -921,21 +958,20 @@ app = new Vue({
         loadingArray:[
             // "images/create-bg.png"
             "images/canvas-bg.png",
-            "images/canvas-bottom.png",
-            "images/canvas-right-text.png",
-            "images/canvas-bottom-text.png",
-            "images/canvas-ercode-bg.png",
-            "images/canvas-logo-bg.png",
-            "images/create-share01.png",  // 6
-            "images/create-share02.png",
-            "images/create-share03.png",
-            "images/create-share04.png",
-            "images/create-share05.png",
-            "images/create-share06.png",
-            "images/create-share07.png",
-            "images/create-share08.png",
-            "images/create-share09.png",  // 14
-            "images/create-share10.png"  // 15
+            "images/canvas-dot1.png",
+            "images/canvas-dot2.png",
+            "images/canvas-grotesque.png",
+            "images/canvas-title.png",
+            "images/canvas-2018.png",
+            "images/canvas-text.png",  // 6
+            "images/canvas-bottom.png",  // 7
+            "images/canvas-ercode.png",  // 8
+            "images/canvas-city1.png",  // 9
+            "images/canvas-city2.png",
+            "images/canvas-city3.png",
+            "images/canvas-city4.png",
+            "images/canvas-city5.png",
+            "images/canvas-city6.png"   // 14
         ],
         shareArr:[{
             w:543,
@@ -971,7 +1007,7 @@ app = new Vue({
         loadedImgs:[],
         loadedImgs2:[],
         loaded:0,
-        drawStatus:false,
+        drawStatus:initialDraw,
         createUserStyle:{
 
         },
@@ -1144,7 +1180,7 @@ app = new Vue({
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
         }
         // test
-        if(mode == 'production'){
+        if(mode !== 'production' && initialDraw){
             this.initCanvas();
         }
     },
@@ -1424,11 +1460,12 @@ app = new Vue({
                 this.page1.cityStatus = true;
             }
         },
-        chooseCityEvent:function(en,cn,templateId){
+        chooseCityEvent:function(en,cn,one,index){
             this.page1.cityStatus = false;
             this.page1.signup.city = en;
             this.page1.cityCN = cn;
-            this.page1.signup.templateId = templateId;
+            this.page1.signup.templateId = one.templateId;
+            this.page1.citySelected = index;
         },
         signupEvent:function(){
             var status = true;
@@ -1889,10 +1926,13 @@ app = new Vue({
             },500)
         },
         initPage1MoveEvent:function(){
-            var isFirst = false;
+            var self = this,
+                isFirst = false,
+                screenHeight = document.documentElement.clientHeight;
             this.$refs.page1.addEventListener('touchstart',function(){
                 if(!isFirst){
                     isFirst = true;
+                    self.page1.showStatus = false;
                     $('html,body,.page1').css({
                         'height':'auto',
                         'overflow-y': 'scroll'
@@ -1900,8 +1940,68 @@ app = new Vue({
                     $('.page1').css({
                         'position':'relative'
                     });
+                    self.$nextTick(function(){
+                        document.addEventListener('scroll',scrollEvent,false);
+                    });
                 }
             },false);
+            var halfWidow = document.documentElement.clientHeight * 3 / 4;
+            function scrollEvent(e){
+                self.getTabHeight();
+                var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || document.scrollTop,
+                    height = document.documentElement.offsetHeight,
+                    one = null,
+                    i = 0;
+                if((height - scrollTop - 50) <= screenHeight){
+                    self.page1.moveStatus = false;
+                }else {
+                    self.page1.moveStatus = true;
+                }
+                for (i = 0; i < self.page1.tab.length; i++) {
+                    one = self.page1.tab[i];
+                    
+                    if (one.elem && one.top - halfWidow < scrollTop && one.top + one.height - halfWidow > scrollTop && !self.page1.tab[i].active) {
+                        self.page1.tab[i].active = true;
+                        break;
+                    }
+                }
+            }
+        },
+        getTabHeight:function(){
+            var list = this.page1.tab,
+                elem = null,
+                parent = [],
+                height = 0,
+                top = 0,
+                i = 0,
+                j = 0;
+            for (i = 0; i < list.length; i++) {
+                if (list[i].elem) {
+                    elem = this.$refs[list[i].elem];
+                    top = 0;
+                    height = 0;
+                    if (list[i].parent) {
+                        parent = list[i].parent;
+                        for (j = 0; j < parent.length; j++) {
+                            top += this.$refs[parent[j]].offsetTop;
+                            // height += this.$refs[parent[j]].height;
+                        }
+                        top += elem.offsetTop;
+                        // top += this.getRem(list[i].top);
+                    } else {
+                        top += elem.offsetTop;
+                    }
+                    if (list[i].initHeight) {
+                        height = this.getRem(list[i].initHeight);
+                    } else {
+                        height = elem.offsetHeight;
+                    }
+                    if (list[i].top != top || list[i].height != height) {
+                        this.page1.tab[i].top = top;
+                        this.page1.tab[i].height = height;
+                    }
+                }
+            }
         },
         initCanvas:function(){
             //圆角矩形
@@ -1941,11 +2041,14 @@ app = new Vue({
             this.loaded++
             if(this.loaded == this.loadingArray.length){
                 this.ctx.drawImage(this.loadedImgs[0],0,0);
-                this.ctx.drawImage(this.loadedImgs[1],0,1193);
-                this.ctx.drawImage(this.loadedImgs[2],686,124);
-                this.ctx.drawImage(this.loadedImgs[3],75,1113);
-                this.ctx.drawImage(this.loadedImgs[4],70,929);
-                this.ctx.drawImage(this.loadedImgs[5],69,122);
+                this.ctx.drawImage(this.loadedImgs[1],666,700);
+                this.ctx.drawImage(this.loadedImgs[2],527,373);
+                this.ctx.drawImage(this.loadedImgs[3],0,0);
+                this.ctx.drawImage(this.loadedImgs[4],86,390);
+                this.ctx.drawImage(this.loadedImgs[5],479,576);
+                this.ctx.drawImage(this.loadedImgs[6],90,820);
+                this.ctx.drawImage(this.loadedImgs[7],0,1125);
+                this.ctx.drawImage(this.loadedImgs[8],69,1151);
                 
                 if(this.drawStatus){
                     this.startDraw()
@@ -1961,64 +2064,13 @@ app = new Vue({
             return RC.w / GC.w * GC.h
         },
         startDraw:function(){
-            var sp = 0,
-                sw = 0,
-                id = this.selectedId || this.mycompany.companyId,
-                url = window.location.href;
-            if(!getQueryString('selected')){
-                if(/\?/g.test(url)){
-                    url += '&selected='+id;
-                }else {
-                    url += '?selected='+id;
-                }
-            }
-            this.down = 0;
-            var imgs = [
-                    // "https://activity.lagou.com/activityapi/votelike/userHeadImg",
-                    "https://activity.lagou.com/activityapi/votelike/image/"+id+"/logo",
-                    "https://activity.lagou.com/activityapi/employer/qrcode?url="+encodeURIComponent(url)+"&size=120&imageFormat=JPEG"
-                    // "https://activity.lagou.com/activityapi/votelike/qrcode/"+this.mycompany.companyId
-                    // ercode
-                ],
-                loadedImgs = [],
-                loaded = 0,
-                self = this;
-            if(this.mode == "development"){
-                imgs = [
-                    "images/page3-drag-success.png",
-                    "images/page3-drag-success.png",
-                    "images/page3-drag-success.png",
-                ]
-            }
-            imgs.forEach(function(url){
-                var img = new Image()
-                img.onload = function(){
-                    loaded++
-                    if(loaded == imgs.length){
-                        self.drawAllInformation()
-                    }
-                }
-                img.onerror = function(){
-                    // alert("error: "+url)
-                    loaded++
-                    if(loaded == imgs.length){
-                        self.drawAllInformation()
-                    }
-                }
-                img.src = url
-                self.loadedImgs2.push(img)
-            })
+            this.drawAllInformation();
         },
         drawAllInformation:function(){
-            // this.drawUserPicture(this.loadedImgs2[0])
-            // this.drawUserInfo()
-            var index = randomIndex;// shareRandomIndex >= 8 ? 8 : shareRandomIndex;
-            this.ctx.drawImage(this.loadedImgs[6+index],70,421);
-            this.drawCompanyLogo(this.loadedImgs2[0]);
-            this.drawCompanyInfo()
-            this.drawErcode(this.loadedImgs2[1])
-
-            this.canvasToImage()
+            var index = this.page1.citySelected;
+            this.ctx.drawImage(this.loadedImgs[9+index],236,1220);
+            this.drawCompanyInfo();
+            this.canvasToImage();
         },
         canvasToImage:function(){
             // this.shareSuccessCallback();
@@ -2131,9 +2183,22 @@ app = new Vue({
             )
         },
         drawCompanyInfo:function(){
-            this.ctx.font = "28px normal"
-            this.ctx.fillStyle = "#5a5241"
-            this.ctx.fillText(this.mycompany.companyShortName || this.mycompany.shortName,73,304+28)
+            var company = this.page1.signup.company,
+                gradient = this.ctx.createLinearGradient(0, 661, 0, 661+34);
+            gradient.addColorStop(0,'#f0d38e');
+            gradient.addColorStop(1,'#9d7c3b');
+            this.ctx.font = "34px normal";
+            this.ctx.fillStyle = "#42351b";
+            this.ctx.strokeStyle = "#42351b";
+            this.ctx.lineWidth = 2;
+            this.ctx.fillText("特别邀请 "+company,89,661+34);
+            this.ctx.strokeText("特别邀请 "+company,89,661+34);
+            this.ctx.fillStyle = gradient;
+            this.ctx.fillText('特别邀请 '+company,89,661+34);
+            this.ctx.fillText('特别邀请 '+company,89,661+34);
+            this.ctx.font = "54px normal";
+            this.ctx.fillStyle = "#61de8f";
+            this.ctx.fillText(this.page1.signup.user,89,717+54);
         },
         // getBase64("https://z649319834.github.io/Learn_Example/video_track/webvtt.jpg")
         getBase64:function(imgUrl,callback) {

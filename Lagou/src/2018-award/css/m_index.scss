@@ -92,7 +92,7 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#music,#loading-num,#loading__num),
+[id]:not(#app,#loading,#music,#loading-num,#loading__num,#videos,#video,#video__btn),
 iframe {
     width:0!important;
     height:0!important;
@@ -418,10 +418,31 @@ body {
     }
 }
 
+.videos {
+    width:100%;
+    height:100%;
+    @include leftTop(0,0);
+    background-color:#000;
+    .video {
+        width:100%;
+        height:100%;
+    }
+    .video__btn {
+        width:rem(300);
+        height:rem(77);
+        line-height:rem(77);
+        border:rem(2) solid #fff;
+        font-size:rem(28);
+        color:#fff;
+        text-align:center;
+        @include center(225,400);
+    }
+}
 .pages {
     width: 100%;
     height: 100%;
     position: relative;
+    background-color:#000;
 }
 
 .page {
@@ -632,14 +653,14 @@ body {
     }
     // page1__btn
     &__btn {
-        width:rem(614);
-        height:rem(77);
-        background:url('../images/page1-btn.png') no-repeat center top;
+        width:rem(640);
+        height:rem(144);
+        background:url('../images/page1-btn-02.png') no-repeat center top;
         background-size:100%;
         position:fixed;
         left:50%;
-        bottom:rem(62);
-        margin-left:rem(-614/2);
+        bottom:rem(-5);
+        margin-left:rem(-640/2);
         z-index:2;
     }
     // page1__shadow
@@ -728,6 +749,13 @@ body {
         z-index:2;
         // @include center(52,713);
         // page1__city__cn 
+        &__bg {
+            width:rem(138);
+            height:rem(33);
+            @include leftTop(109,23);
+            background:url('../images/page1-light.png') no-repeat center top;
+            background-size:100% 100%;
+        }
         &__cn {
             width:rem(196);
             height:rem(52);
@@ -781,7 +809,7 @@ body {
     // page1__schedule
     &__schedule {
         width:rem(641);
-        height:rem(1049-135-113);
+        height:rem(1161-135-113);
         margin:0 auto;
         padding-top:rem(135);
         padding-bottom:rem(113);
@@ -811,8 +839,8 @@ body {
         }
         // page1__schedule__icon
         &__icon {
-            background:url('../images/page1-schedule.png') no-repeat 0 0;
-            background-size:rem(623) rem(733);
+            background:url('../images/page1-schedule-02.png') no-repeat 0 0;
+            background-size:rem(660) rem(861);
         }
         &__content {
 
@@ -828,12 +856,16 @@ body {
             height:rem(40);
             margin-right:rem(105);
             float:left;
+            transition:1s all;
+            transform:translate3d(-1000px,0,0);
         }
         &__oline {
             width:rem(58);
             height:rem(2);
             background-color:#565041;
             @include leftTop(194,17);
+            transition:1s all;
+            opacity:0;
         }
         .short-line {
             width:rem(151);
@@ -843,6 +875,8 @@ body {
             top:rem(17);
         }
         &__right {
+            transition:1s all;
+            transform:translate3d(1000px,0,0);
             float:left;
         }
         &__name {
@@ -852,6 +886,20 @@ body {
         &__info {
             width:rem(350);
             height:rem(40);
+            &--2 {
+                height:rem(79);
+            }
+        }
+        .active {
+            .page1__schedule__time {
+                transform:translate3d(0,0,0);
+            }
+            .page1__schedule__oline {
+                opacity:1;
+            }
+            .page1__schedule__right {
+                transform:translate3d(0,0,0);
+            }
         }
     }
     // page1__guest
@@ -896,7 +944,7 @@ body {
             // padding-left:rem(43);
         }
         &__row {
-            padding-bottom:rem(56);
+            padding-bottom:rem(69);
         }
         &__time {
             width:rem(165);
@@ -904,34 +952,47 @@ body {
             margin-top:rem(75);
             padding-right:rem(93);
             float:left;
+            display:none;
         }
         &__right {
-            width:rem(400);
+            width:rem(680);
             float:left;
         }
         &__one {
-            margin-right:rem(37);
+            width:rem(274);
+            margin-right:rem(10);
             float:left;
         }
         &__img {
-            width:rem(163);
-            height:rem(163);
+            width:rem(163-4);
+            height:rem(163-4);
             border-radius:rem(163);
+            border:rem(2) solid #d4b76f;
             background-color:#d4b76f;
         }
         &__name,
-        &__company {
-            width:rem(163);
+        &__company,
+        &__position {
+            width:100%;
             line-height:rem(40);
             padding-top:rem(18);
+            padding-left:rem(6);
             font-size:rem(30);
-            text-align:center;
+            text-align:left;
             color:#d4b76f;
             overflow:hidden;
             text-overflow:ellipsis;
             white-space:nowrap;
         }
         &__company {
+            line-height:rem(33);
+            padding-top:rem(2);
+            font-size:rem(24);
+            opacity:0.5;
+        }
+        &__position {
+            line-height:rem(32);
+            padding-top:0;
             font-size:rem(24);
             opacity:0.5;
         }
@@ -971,7 +1032,7 @@ body {
         width:rem(641);
         margin:0 auto;
         padding-top:rem(139);
-        padding-bottom:rem(113);
+        // padding-bottom:rem(113);
         position:relative;
         z-index:2;
         // page1__partner__cn 
@@ -994,6 +1055,22 @@ body {
             height:1px;
             background-color:#565041;
             @include leftTop(18-14,84);
+        }
+        &__content {
+            padding-bottom:rem(218);
+        }
+        &__list {
+            width:rem(680);
+        }
+        &__one {
+            width:rem(103);
+            height:rem(103);
+            margin-right:rem(23);
+            margin-bottom:rem(41);
+            border-radius:rem(103);
+            border:rem(2) solid #d4b76f;
+            background-color:#fff;
+            float:left;
         }
     }
 
@@ -1123,28 +1200,44 @@ body {
     }
 }
 .page2 {
-    &__theme {
-        width:rem(220);
+    &__grotesque {
+        width:rem(248);
         height:rem(100);
         background-position:rem(-580) rem(-180);
-        @include center(100,456-128);
+        @include center(78,287-128);
+    }
+    &__theme1 {
+        width:rem(554);
+        height:rem(70);
+        background-position:rem(-470) rem(-410);
+        @include center(87,440-128);
+    }
+    &__theme2 {
+        width:rem(554);
+        height:rem(70);
+        background-position:rem(-470) rem(-493);
+        @include center(87,523-128);
     }
     .page0__circle {
-        top:rem(637-128);
+        @include center(93,639-128);
+    }
+    .page0__2018 {
+        top:rem(636-128);
     }
     &__companybg {
         width:rem(750);
         line-height:rem(47);
-        @include center(0,788);
+        @include center(0,788-128);
         font-size:rem(28);
         color:#64583b;
         text-align:center;
-        -webkit-text-stroke: rem(6);
+        -webkit-text-stroke: rem(2);
     }
+    // page2__company
     &__company {
         width:rem(750);
         line-height:rem(47);
-        @include center(0,788);
+        @include center(0,788-128);
         font-size:rem(28);
         color:#d4b76f;
         text-align:center;
@@ -1156,6 +1249,53 @@ body {
         background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#f0d38e), to(#9d7c3b));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+    // page2__user 
+    &__user {
+        width:rem(750);
+        line-height:rem(74);
+        font-size:rem(54);
+        text-align:center;
+        color:#61de8f;
+        @include center(0,838-128);
+    }
+    // page2__save
+    &__save {
+        width:rem(310);
+        height:rem(140);
+        background-position:rem(-470) rem(-580);
+        @include center(228,992-128);
+    }
+    &__share {
+        width:rem(468);
+        height:rem(32);
+        background-position:rem(-470) rem(-730);
+        @include center(141,1194-128);
+    }
+    &__value {
+        width:rem(468);
+        height:rem(32);
+        background-position:rem(-470) rem(-765);
+        @include center(141,1229-128);
+    }
+    &__line {
+        width:rem(46);
+        height:rem(2);
+        @include center(352,1158-128);
+        background-color:#d4b76f;
+    }
+    .canvas {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        opacity:0;
+    }
+    // page2__img
+    &__img {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        opacity:0;
     }
 }
 .page3 {
