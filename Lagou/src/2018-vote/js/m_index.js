@@ -1491,9 +1491,12 @@ app = new Vue({
             return this.setRem(1060+this.heightStatus);
         },
         getSelfRanking:function(){
-            var index = this.page2.rankSubActive == -1 ? this.page2.rankActive : this.page2.rankLastActive,
+            var parent = this.page2,
+                index = parent.rankSubActive == -1 ? parent.rankActive : parent.rankLastActive,
+                subIndex = parent.rankActiveIndex != -1 ? parent.rankActiveIndex : 0,
+                classify = this.rank[parent.rankActive].list[subIndex].classify,
                 data = this.mycompany.voteList;
-            if(data[index]){
+            if(data[index] && data[index].optionKey == classify){
                 return data[index].ranking;
             }
             return undefined
@@ -2093,6 +2096,7 @@ app = new Vue({
                             self.companyList = data;
                             self.companyList.voteList = voteList;
                             self.companyList.companyId = self.selectedId;
+                            self.getUserVoteStatus();
                             self.getCompanyInfo(true);
                             // self.showSuccessPage();
                         }else if(result.state == 300){
@@ -2212,7 +2216,8 @@ app = new Vue({
             });
         },
         setVoted:function(){
-            this.page3.confirmWords = '您已助力，非常感谢！';
+            // this.page3.confirmWords = '您已助力，非常感谢！';
+            this.page3.confirmWords = '3次助力已用完，明日再来！';
             this.$refs['drag_text'].style.color = '#00e18a';
             this.$refs['drag_text'].style.opacity = 1;
             var page3__vote = this.$refs['page3__vote'];
@@ -2303,7 +2308,9 @@ app = new Vue({
                         // var data = result.content || [];
                         // self.companyList = data
                     }else{
-                        alert(result.message);
+                        // 已投过票
+                        self.getCompanyInfo(false);
+                        // alert(result.message || result.content);
                     }
                 },
                 error: function(xhr, type) {
