@@ -518,6 +518,7 @@ app = new Vue({
             out:{}
         },
         signup:{
+            templateId:'5bf2336ce4b030768a24d2f1',
             companyId:0,
             name:'',
             city:'',
@@ -723,13 +724,14 @@ app = new Vue({
                     signup = this.signup;
                 $.ajax({
                     type: 'get',
-                    url: 'https://activity.lagou.com/activityapi/employer/newEmployerSignUp',
+                    url: 'http://www.lagou.com/activityapi/common/signUp.json',
                     data:{
-                        companyId:signup.companyId,
+                        type:signup.templateId,
                         name:signup.name,
                         city:signup.city,
-                        company:signup.company,
-                        phone:signup.phone,
+                        companyName:signup.company,
+                        contact:signup.phone,
+                        extend1:signup.companyId
                     },
                     success: function(result) {
                         if (result.success) {

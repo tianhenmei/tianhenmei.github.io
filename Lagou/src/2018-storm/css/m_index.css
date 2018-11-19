@@ -100,17 +100,23 @@ li {
   opacity: 0.8; }
 
 .music-box {
-  width: 1.04533rem;
-  height: 1.04533rem;
+  width: 0.96rem;
+  height: 0.96rem;
   position: absolute;
-  left: 50%;
+  right: 50%;
   top: 0.81067rem;
-  margin: 0 0 0 -6.89067rem; }
+  margin: 0 -7.44533rem 0 0; }
 
 .music-icon {
   z-index: 99;
-  width: 1.04533rem;
-  height: 0.832rem; }
+  width: 0.96rem;
+  height: 0.96rem;
+  background: url("../images/music.png") no-repeat center top;
+  background-size: 100% 100%; }
+
+.music-icon.open {
+  -webkit-animation: musicRotateInfinite 2s both linear infinite;
+          animation: musicRotateInfinite 2s both linear infinite; }
 
 @-webkit-keyframes musicRotateInfinite {
   0% {
@@ -127,9 +133,6 @@ li {
   100% {
     -webkit-transform: rotateZ(360deg);
             transform: rotateZ(360deg); } }
-
-.music-icon.close {
-  background-image: url("../images/music-pause.png"); }
 
 html,
 body {
@@ -151,6 +154,13 @@ body {
     top: 9.6rem; }
   .loading .page0__center__time {
     top: 12.39467rem; }
+  .loading__gif {
+    width: 3.62667rem;
+    height: 3.62667rem;
+    position: absolute;
+    left: 50%;
+    top: 6.4rem;
+    margin: 0 0 0 -1.81333rem; }
   .loading__num {
     width: 100%;
     line-height: 0.93867rem;
@@ -1449,12 +1459,12 @@ body {
       text-align: left;
       color: #f00; }
     .page6__form__btnParent {
-      width: 5.86667rem;
-      height: 1.83467rem;
-      background: url("../images/page6-btn.png") no-repeat center top;
+      width: 5.952rem;
+      height: 1.856rem;
+      background: url("../images/page6-btn-02.png") no-repeat center top;
       background-size: 100% 100%;
       position: absolute;
-      left: 3.136rem;
+      left: 3.09333rem;
       top: 14.86933rem; }
     .page6__form__btn {
       width: 5.86667rem;

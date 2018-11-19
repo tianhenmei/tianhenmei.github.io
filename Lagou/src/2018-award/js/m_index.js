@@ -274,16 +274,16 @@ var initialNow = 0,
     initialLast = 0,
     initialCompanyId = 0,
     initialDraw = false,
-    mode = "development",// "development",//"production",
+    mode = "production",// "development",//"production",
     initialText = '测试',
     initialPhone = '12345678900',
     randomIndex = Math.floor(Math.random() * 10);
-var baseHost = '';
-// var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
+// var baseHost = '';
+var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 // 音乐
-if(mode != "development"){
-    backgroundMusic(document.getElementById("music"));
-}
+// if(mode != "development"){
+//     backgroundMusic(document.getElementById("music"));
+// }
 var PageMove = function () {
     function PageMove(options) {
         _classCallCheck(this, PageMove);

@@ -80,11 +80,13 @@
             pageStatus = false,
             startTime = new Date().getTime(),
             loadingComplete = function(){
-                var appElement = document.getElementById('app');
+                var appElement = document.getElementById('app'),
+                    musicBox = document.getElementsByClassName('music-box')[0];
                 document.getElementById('loading').className += ' opacityChange-out';
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
                     appElement.className = appElement.className.replace(' hide','');
+                    musicBox.className = musicBox.className.replace(' hide','');
                 },500);
             },
             loadingSuccess = function(){
@@ -105,12 +107,18 @@
     <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
 <body>
+    <div class="music-box hide">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music-03.mp3"></audio>
+        </div>
+    </div>
     <div class="loading" id="loading">
         <div class="page0__bg01"></div>
         <!--<div class="page0__vortex zoomIn delay0-5"></div>
         <div class="icon page0__center__logo littleTopIn delay1-2"></div>
         <div class="icon page0__center__title zoomIn delay1-0"></div>
         <div class="icon page0__center__time littleBottomIn delay1-2"></div>-->
+        <img class="loading__gif opacityChange delay0-5" src="images/loding.gif" />
         <div class="loading__num littleBottomIn delay0-5 clearfix" id="loading__num">0%</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
@@ -389,11 +397,6 @@
                     <div class="page6__success__text"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="music-box">
-        <div class="music-icon open">
-            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music-03.mp3"></audio>
         </div>
     </div>
     <script type="text/javascript">

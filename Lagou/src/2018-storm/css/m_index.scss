@@ -206,20 +206,20 @@ li {
 }
 
 .music-box {
-    width: rem(49);
-    height: rem(49);
-    @include center(52,38);
+    width: rem(45);
+    height: rem(45);
+    @include centerr(52,38);
 }
 .music-icon {
     z-index: 99;
-    width: rem(49);
-    height: rem(39);
+    width: rem(45);
+    height: rem(45);
     // @include centerr(25, 11);
-    // background: url('../images/music-play.png') no-repeat center top;
-    // background-size:100% 100%;
+    background: url('../images/music.png') no-repeat center top;
+    background-size:100% 100%;
 }
 .music-icon.open{
-    // animation:musicRotateInfinite 2s both linear infinite;
+    animation:musicRotateInfinite 2s both linear infinite;
 }
 @keyframes musicRotateInfinite {
     0% {
@@ -230,7 +230,7 @@ li {
     }
 }
 .music-icon.close{
-    background-image: url('../images/music-pause.png');
+    // background-image: url('../images/music-pause.png');
 }
 
 
@@ -257,6 +257,12 @@ body {
     }
     .page0__center__time {
         top:rem(459-128+250);
+    }
+    // loading__gif
+    &__gif {
+        width:rem(170);
+        height:rem(170);
+        @include center(290,300);
     }
     &__num {
         width:100%;
@@ -1426,11 +1432,11 @@ body {
             color:#f00;
         }
         &__btnParent {
-            width:rem(275);
-            height:rem(86);
-            background:url('../images/page6-btn.png') no-repeat center top;
+            width:rem(279);
+            height:rem(87);
+            background:url('../images/page6-btn-02.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(147,697);
+            @include leftTop(145,697);
         }
         &__btn {
             width:rem(275);
