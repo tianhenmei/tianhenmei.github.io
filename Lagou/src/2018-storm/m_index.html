@@ -388,7 +388,8 @@
                     </div>
                     <div class="page6__form__btnParent">
                         <div class="page6__form__btn rotateY180 duration1-0 delay1-5"
-                            @click.stop.prevent="signupEvent"></div>
+                            @click.stop.prevent="signupEvent"
+                            data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0001" data-lg-tj-cid="null"></div>
                     </div>
                 </div>
             </div>
@@ -500,7 +501,7 @@
     <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
     <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
     <script type="text/javascript">
-        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-storm/m_index.html';
         var randomText = [
                 '我们总是轻言放弃，而登顶之路则是，再来一次。',
                 'TOP之路，一旦开始，就要坚持到底。',
@@ -516,8 +517,8 @@
         var datas = {
             title: "2018拉勾年度TOP雇主颁奖盛典",
             desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
-            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.jpg",
-            activityType: 'ACTIVITY_H5_AWARD_2018',
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-storm/images/share.png",
+            activityType: 'ACTIVITY_H5_STORM_2018',
             shareUrl:baseUrl
         };
         share(datas);

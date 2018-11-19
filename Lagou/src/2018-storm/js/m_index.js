@@ -473,8 +473,8 @@ app = new Vue({
     el:"#app",
     data:{
         // test
-        mode:"development",// "development",//"production",
-        lg:"1k46",
+        mode:mode,// "development",//"production",
+        lg:"1k67",
         activePage:initialNow,
         lastPage:initialLast,
         direction:'U',
