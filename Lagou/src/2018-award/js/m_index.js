@@ -379,7 +379,6 @@ var PageMove = function () {
                         self.data.clickStatus = false;
                         app.$data.flipStatus = false;
                         return;
-                        self.data.now = 0;
                     }
                     if (self.data.now <= -1) {
                         self.data.last = 1;
@@ -389,8 +388,18 @@ var PageMove = function () {
                         app.$data.flipStatus = false;
                         return;
                     }
-                    app.$data.activePage = self.data.now;
-                    self.pageMove(od, self);
+                    jQuery(".page" + self.data.last)
+                        .addClass("active moveULast");
+                    jQuery(".page" + self.data.now)
+                        .addClass("active moveUNow");
+                    setTimeout(function(){
+                        jQuery(".page" + self.data.last)
+                            .removeClass("active moveUNow moveULast moveDNow moveDLast");
+                        jQuery(".page" + self.data.now)
+                            .removeClass("moveUNow moveULast moveDNow moveDLast");
+                        app.$data.activePage = self.data.now;
+                    },500);
+                    // self.pageMove(od, self);
                     break;
                 case self.data.now == 1:
                     // $('html,body,.page1').css({
@@ -458,8 +467,8 @@ app = new Vue({
     el:"#app",
     data:{
         // test
-        mode:"development",// "development",//"production",
-        lg:"1k46",
+        mode:mode,// "development",//"production",
+        lg:"1k66",
         activePage:initialNow,
         pageStatus:true,
         heightStatus:0,
@@ -626,27 +635,27 @@ app = new Vue({
             partner:[
                 baseHost+'images/partner-01.png',
                 baseHost+'images/partner-02.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-03.png',
+                baseHost+'images/partner-04.png',
+                baseHost+'images/partner-05.png',
 
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-06.png',
+                baseHost+'images/partner-07.png',
+                baseHost+'images/partner-08.png',
+                baseHost+'images/partner-09.png',
+                baseHost+'images/partner-10.png',
 
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
+                baseHost+'images/partner-11.png',
+                baseHost+'images/partner-12.png',
+                baseHost+'images/partner-13.png',
+                baseHost+'images/partner-14.png',
+                baseHost+'images/partner-15.png',
 
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png',
-                baseHost+'images/partner-default.png'
+                baseHost+'images/partner-16.png',
+                baseHost+'images/partner-17.png',
+                baseHost+'images/partner-18.png',
+                baseHost+'images/partner-19.png',
+                baseHost+'images/partner-20.png'
             ],
             showStatus:true,
             moveStatus:true,
@@ -665,6 +674,8 @@ app = new Vue({
             waitingRequest:0,
             signupRequestStatus:false,
             signupFromOther:false,
+            tipsStatus:false,
+            successTips:'报名成功！',
             tab:[
                 {
                     elem:'page1__schedule__content',
@@ -1183,9 +1194,9 @@ app = new Vue({
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
         }
         // test
-        if(mode !== 'production' && initialDraw){
+        // if(mode !== 'production' && initialDraw){
             this.initCanvas();
-        }
+        // }
     },
     methods:{
         noop:function(){},
@@ -1420,7 +1431,7 @@ app = new Vue({
             return url;
         },
         showSignupEvent:function(){
-            this.page2.signupStatus = true;
+            this.page1.signupStatus = true;
             // var self = this;
             // this.page2.status = 'out';
             // PM.data.last = 2;
@@ -1503,14 +1514,15 @@ app = new Vue({
                 self.selectedId = signup.companyId;
                 $.ajax({
                     type: 'get',
-                    url: 'https://activity.lagou.com/activityapi/employer/newEmployerSignUp',
+                    url: 'http://www.lagou.com/activityapi/common/signUp.json',
                     data:{
-                        templateId:signup.companyId,
-                        companyId:signup.companyId,
-                        city:signup.city,
-                        user:signup.user,
-                        position:signup.position,
-                        phone:signup.phone,
+                        type:signup.templateId,
+                        name:signup.user,
+                        companyName:signup.company,
+                        city:this.page1.cityCN,//signup.city,
+                        positionName:signup.position,
+                        contact:signup.phone,
+                        extend1:signup.companyId
                     },
                     success: function(result) {
                         if (result.success) {
@@ -1527,22 +1539,36 @@ app = new Vue({
         },
         showSuccessPage:function(){
             var self = this;
-            this.page1.status = 'out';
             PM.data.last = 1;
             PM.data.now = 2;
+            this.page1.signupStatus = false;
+            this.page1.tipsStatus = true;
+            this.page1.successTips = '报名成功！(2)';
+            this.drawStatus = true;
+            if(this.loaded == this.loadingArray.length){
+                this.startDraw();
+            }
             setTimeout(function(){
-                $('html,body,.page1').css({
-                    'height':'100%',
-                    'overflow': 'hidden'
-                });
-                // jQuery(".page").removeClass("pageCurrent").addClass("hide");
-                // jQuery(".page" + PM.data.last).attr('style','');
-                // jQuery(".page" + PM.data.now).removeClass("hide").addClass("pageCurrent");
-                PM.data.isMoving = false;
-                self['page'+PM.data.now].status = 'in';
-                self['page'+PM.data.last].status = 'in';
-                self.activePage = 2;
-            },500);
+                self.page1.successTips = '报名成功！(1)';
+                setTimeout(function(){
+                    self.page1.successTips = '报名成功！';
+                    self.page1.tipsStatus = false;
+                    self.page1.status = 'out';
+                    // setTimeout(function(){
+                        $('html,body,.page1').css({
+                            'height':'100%',
+                            'overflow': 'hidden'
+                        });
+                        // jQuery(".page").removeClass("pageCurrent").addClass("hide");
+                        // jQuery(".page" + PM.data.last).attr('style','');
+                        // jQuery(".page" + PM.data.now).removeClass("hide").addClass("pageCurrent");
+                        PM.data.isMoving = false;
+                        self['page'+PM.data.now].status = 'in';
+                        self['page'+PM.data.last].status = 'in';
+                        self.activePage = 2;
+                    // },500);
+                },1000);
+            },1000);
         },
         showPage3VoteEvent:function(){
             this.initDragVote();
@@ -2353,6 +2379,7 @@ app = new Vue({
             this.page1.signup.company = one.companyname;
             this.page1.signup.companyId = one.id;
             this.page1.signupSearchStatus = false;
+            this.page1.companyTips = '';
         },
         searchCompanyEvent:function(){
             var self = this

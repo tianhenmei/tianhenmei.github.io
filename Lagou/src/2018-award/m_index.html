@@ -88,38 +88,37 @@
                 var appElement = document.getElementById('app'),
                     videos = document.getElementById('videos');
                 document.getElementById('loading').className += ' opacityChange-out';
-                console.log('loadingComplete');
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
                     videos.className = videos.className.replace(' hide','');
                     var btn = document.getElementById('video__btn'),
                         video = document.getElementById('video');
                     // test
-                    appElement.className = appElement.className.replace(' hide','');
+                    // appElement.className = appElement.className.replace(' hide','');
 
-                    // btn.addEventListener('click',function(e){
-                    //     e.stopPropagation();
-                    //     e.preventDefault();
+                    btn.addEventListener('click',function(e){
+                        e.stopPropagation();
+                        e.preventDefault();
 
-                    //     btn.className += ' hide';
-                    //     video.className = video.className.replace(' hide','');
-                    //     video.play();
-                    // },false);
-                    // video.addEventListener("ended",function(){
-                    //     videos.className += ' opacityChange-out';
-                    //     setTimeout(function(){
-                    //         videos.className += ' hide';
-                    //         appElement.className = appElement.className.replace(' hide','');
-                    //     },500);
-                    // });
-                    // video.addEventListener("timeupdate",function(){
-                    //     var timeDisplay;
-                    //     // 当前播放秒数
-                    //     timeDisplay = Math.floor(video.currentTime);
-                    //     if(timeDisplay == 23){
-                    //         // 当前logo刚出来的时候
-                    //     }
-                    // },false);
+                        btn.className += ' hide';
+                        video.className = video.className.replace(' hide','');
+                        video.play();
+                    },false);
+                    video.addEventListener("ended",function(){
+                        videos.className += ' opacityChange-out';
+                        setTimeout(function(){
+                            videos.className += ' hide';
+                            appElement.className = appElement.className.replace(' hide','');
+                        },500);
+                    });
+                    video.addEventListener("timeupdate",function(){
+                        var timeDisplay;
+                        // 当前播放秒数
+                        timeDisplay = Math.floor(video.currentTime);
+                        if(timeDisplay == 23){
+                            // 当前logo刚出来的时候
+                        }
+                    },false);
                 },500);
             },
             loadingSuccess = function(){
@@ -141,48 +140,50 @@
 </head>
 <body>
     <div class="loading" id="loading">
-        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <!--<div class="loading__title loading__title01 littleBottomIn delay0-5"></div>-->
         <!--<div class="loading__progress" id="loading__progress">
             <div class="progress" id="progress"></div>
         </div>-->
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
     </div>
     <div class="videos hide" id="videos">
-        <video class="video hide" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1080" preload="auto" src="images/movie.mp4"></video>
-        <div class="video__btn" id="video__btn">立即开始</div>
+        <video class="video hide" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1080" preload="auto" src="images/movie-02.mp4"></video>
+        <div class="video__btn" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">立即开始</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : ''">
-            <div class="page0__bg01"></div>
-            <div class="page0__bg02 opacityChange delay0-5"></div>
-            <div class="icon page0__logo rightIn duration1-0 delay0-5"></div>
-            <div class="page0__dot01 opacityChange delay1-0"></div>
-            <div class="page0__dot02 opacityChange delay1-0"></div>
-            <div class="page0__grotesque littleBottomIn delay1-2"></div>
-            <div class="icon page0__2018 rightIn duration2-0 delay0-5"></div>
+            <div class="page0__bg01 opacityChange duration0-5 delay1-0"></div>
+            <div class="page0__bg02 opacityChange duration0-5 delay2-5"></div>
+            <div class="icon page0__logo rightIn duration1-0 delay0-5" :style="{top:getFitTop(23,1/4)}"></div>
+            <!--<div class="page0__dot01 opacityChange delay1-0"></div>
+            <div class="page0__dot02 opacityChange delay1-0"></div>-->
+            <div class="icon page0__grotesque littleBottomIn delay0-5" :style="{top:getFitTop(266-128,1/4)}"></div>
+            <!--<div class="icon page0__2018 rightIn duration2-0 delay0-5"></div>
             <div class="icon page0__talent leftIn duration2-0 delay0-7"></div>
             <div class="icon page0__organization leftIn duration2-0 delay1-0"></div>
             <div class="icon page0__power leftIn duration2-0 delay1-4"></div>
-            <div class="icon page0__circle opacityChange delay3-0"></div>
-            <div class="icon page0__name littleBottomIn duration1-0 delay2-5"></div>
-            <div class="icon page0__title littleBottomIn duration1-0 delay2-7"></div>
-            <div class="page0__line littleBottomIn duration1-0 delay3-0"></div>
-            <div class="page0__textLayer">
-                <div class="icon page0__text page0__text1 leftIn duration1-0 delay3-2"></div>
-                <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay3-2"></div>
-                <div class="icon page0__text page0__text2 leftIn duration1-0 delay3-2"></div>
-                <div class="icon page0__icon page0__icon2 leftIn duration1-0 delay3-2"></div>
-                <div class="icon page0__text page0__text3 rightIn duration1-0 delay3-2"></div>
-                <div class="icon page0__icon page0__icon3 rightIn duration1-0 delay3-2"></div>
-                <div class="icon page0__text page0__text4 rightIn duration1-0 delay3-2"></div>
-                <div class="icon page0__icon page0__icon4 rightIn duration1-0 delay3-2"></div>
+            <div class="icon page0__circle opacityChange delay3-0"></div>-->
+            <div class="page0__title page0__title1 littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(414-128,2/4)}"></div>
+            <div class="page0__title page0__title2 littleBottomIn duration1-0 delay1-2" :style="{top:getFitTop(513-128,2/4)}"></div>
+            <div class="page0__line littleBottomIn duration1-0 delay2-2" :style="{top:getFitTop(999-128,3/4)}"></div>
+            <div class="page0__textLayer" :style="{top:getFitTop(747-128,3/4)}">
+                <div class="icon page0__text page0__text1 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text2 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon2 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text3 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon3 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text4 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon4 rightIn duration1-0 delay1-7"></div>
             </div>
             <div class="page0__move" :class="page0[page0.status].move">
                 <div class="icon page0__move--center moveTopInfinite delay1-5"></div>
             </div>
         </div>
-        <div class="page page1" :class="activePage == 1 ? 'active' : ''" ref="page1">
+        <div class="page page1" 
+            :class="(activePage == 1 ? 'active' : '')+(page1.status == 'out' ? ' opacityChange-out' : '')" 
+            ref="page1">
             <div class="page1__bg"></div>
             <div class="page1__textLayer">
                 <div class="page1__icon page1__text page1__text01 littleBottomIn duration1-0 delay0-5"></div>
@@ -234,7 +235,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page1__guest" ref="page1__guest">
+            <div class="page1__guest" ref="page1__guest"  :class="page1.tab[1].active ? 'active' : 0">
                 <div class="icon page1__guest__cn"></div>
                 <div class="icon page1__guest__en"></div>
                 <div class="page1__guest__line"></div>
@@ -262,7 +263,7 @@
                 <div class="page1__company__line"></div>
                 <div class="page1__company__content"></div>
             </div>-->
-            <div class="page1__partner" ref="page1__partner">
+            <div class="page1__partner" ref="page1__partner" :class="page1.tab[2].active ? 'active' : 0">
                 <div class="icon page1__partner__cn"></div>
                 <div class="icon page1__partner__en"></div>
                 <div class="page1__partner__line"></div>
@@ -276,8 +277,9 @@
             <div class="page1__move" :class="page1.showStatus ? page1[page1.status].move : ''" v-show="page1.moveStatus">
                 <div class="icon page1__move--center moveTopInfinite delay1-5"></div>
             </div>
-            <div class="page1__btn"></div>
-            <div class="page1__signup" v-show="page1.signupStatus">
+            <div class="page1__btn" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0002" data-lg-tj-cid="null"
+                @click.stop.prevent="showSignupEvent"></div>
+            <div class="page1__signup zoomIn" v-show="page1.signupStatus">
                 <div class="page1__signup__center">
                     <div class="page1__signup__one">
                         <input class="page1__signup__input page1__signup__input--company" type="text" placeholder="企业简称" v-model="page1.signup.company" v-on:input="updateCompanyList" />
@@ -322,32 +324,38 @@
                         </div>
                     </div>
                     <div class="page1__signup__btn" @click.stop.prevent="signupEvent"
-                        data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2050" data-lg-tj-cid="null"></div>
+                        data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0003" data-lg-tj-cid="null"></div>
                 </div>
                 <div class="page1__signup__close" @click.stop.prevent="signupCloseEvent"></div>
             </div>
+            <div class="page1__tipsLayer" v-show="page1.tipsStatus">
+                <div class="page1__tips">
+                    <div class="page1__success">{{page1.successTips}}</div>
+                </div>
+            </div>
         </div>
         <div class="page page2" :class="activePage == 2 ? 'active' : ''">
-            <div class="page0__bg01"></div>
-            <div class="page0__bg02"></div>
-            <div class="icon page0__logo" :style="{top:getFitTop(23,1/4)}"></div>
-            <div class="page0__dot01" :style="{top:getFitTop(261-128,1/4)}"></div>
-            <div class="page0__dot02" :style="{top:getFitTop(436-128,2/4)}"></div>
-            <div class="icon page2__grotesque" :style="{top:getFitTop(287-128,1/4)}"></div>
-            <div class="icon page0__2018" :style="{top:getFitTop(647-128,2/4)}"></div>
-            <div class="icon page0__circle"></div>
-            <div class="icon page2__theme1" :style="{top:getFitTop(440-128,2/4)}"></div>
-            <div class="icon page2__theme2" :style="{top:getFitTop(523-128,2/4)}"></div>
-            <div class="page2__companybg" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
-            <div class="page2__company" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
-            <div class="page2__user" :style="{top:getFitTop(838-128,3/4)}">{{page1.signup.user}}</div>
-            <div class="icon page2__save" :style="{top:getFitTop(992-128,6/8)}"></div>
-            <div class="icon page2__line" :style="{top:getFitTop(1158-128,7/8)}"></div>
-            <div class="icon page2__share" :style="{top:getFitTop(1194-128,1)}"></div>
-            <div class="icon page2__value" :style="{top:getFitTop(1229-128,1)}"></div>
+            <!--<div class="page0__bg01"></div>-->
+            <div class="page2__bg02 opacityChange delay0-5"></div>
+            <div class="icon page0__logo rightIn duration1-0 delay0-5" :style="{top:getFitTop(23,1/4)}"></div>
+            <div class="page0__dot01 opacityChange delay0-8" :style="{top:getFitTop(261-128,1/4)}"></div>
+            <div class="page0__dot02 opacityChange delay0-8" :style="{top:getFitTop(436-128,2/4)}"></div>
+            <div class="icon page2__grotesque leftIn duration1-0 delay0-5" :style="{top:getFitTop(287-128,1/4)}"></div>
+            <div class="icon page0__2018 rightIn duration1-0 delay1-5" :style="{top:getFitTop(647-128,2/4)}"></div>
+            <div class="icon page0__circle leftIn duration1-0 delay1-4" :style="{top:getFitTop(639-128,2/4)}"></div>
+            <div class="icon page2__theme1 leftIn duration1-0 delay0-8" :style="{top:getFitTop(440-128,2/4)}"></div>
+            <div class="icon page2__theme2 leftIn duration1-0 delay1-1" :style="{top:getFitTop(523-128,2/4)}"></div>
+            <div class="page2__companybg littleBottomIn duration1-0 delay2-0" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
+            <div class="page2__company littleBottomIn duration1-0 delay2-0" :style="{top:getFitTop(788-128,3/4)}">特别邀请 {{page1.signup.company}}</div>
+            <div class="page2__user littleBottomIn duration1-0 delay2-3" :style="{top:getFitTop(838-128,3/4)}">{{page1.signup.user}}</div>
+            <div class="icon page2__save rotateY delay3-0" :style="{top:getFitTop(992-128,6/8)}"></div>
+            <div class="icon page2__line opacityChange duration1-0 delay3-2" :style="{top:getFitTop(1158-128,7/8)}"></div>
+            <div class="icon page2__share littleBottomIn duration1-0 delay3-2" :style="{top:getFitTop(1194-128,1)}"></div>
+            <div class="icon page2__value littleBottomIn duration1-0 delay3-5" :style="{top:getFitTop(1229-128,1)}"></div>
             <canvas class="temp-canvas" ref="temp-canvas"></canvas>
             <canvas class="canvas" ref="canvas"></canvas>
-            <img class="page2__img" :src="url" />
+            <img class="page2__img" :src="url"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0004" data-lg-tj-cid="null" />
         </div>
         <!--排行榜-->
         <div class="page2__layer" v-show="page2.rankStatus">
