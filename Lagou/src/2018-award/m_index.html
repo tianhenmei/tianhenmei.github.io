@@ -86,24 +86,26 @@
             startTime = new Date().getTime(),
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
-                    videos = document.getElementById('videos');
-                document.getElementById('loading').className += ' opacityChange-out';
-                setTimeout(function(){
-                    document.getElementById('loading').className += ' hide';
-                    videos.className = videos.className.replace(' hide','');
-                    var btn = document.getElementById('video__btn'),
-                        video = document.getElementById('video');
-                    // test
-                    // appElement.className = appElement.className.replace(' hide','');
+                    btn = document.getElementById('video__btn'),
+                    videos = document.getElementById('videos'),
+                    num = document.getElementById('loading__num');
+                // test
+                // appElement.className = appElement.className.replace(' hide','');
+                num.className += ' hide';
+                btn.addEventListener('click',function(e){
+                    e.stopPropagation();
+                    e.preventDefault();
 
-                    btn.addEventListener('click',function(e){
-                        e.stopPropagation();
-                        e.preventDefault();
-
-                        btn.className += ' hide';
+                    var video = document.getElementById('video'),
+                        loading = document.getElementById('loading');
+                    // btn.className += ' hide';
+                    video.play();
+                    loading.className += ' opacityChange-out';
+                    setTimeout(function(){
+                        loading.className += ' hide';
+                        videos.className = videos.className.replace(' hide','');
                         video.className = video.className.replace(' hide','');
-                        video.play();
-                    },false);
+                    },500);
                     video.addEventListener("ended",function(){
                         videos.className += ' opacityChange-out';
                         setTimeout(function(){
@@ -119,7 +121,7 @@
                             // 当前logo刚出来的时候
                         }
                     },false);
-                },500);
+                },false);
             },
             loadingSuccess = function(){
                 var now = Date.now(),
@@ -140,15 +142,47 @@
 </head>
 <body>
     <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <div class="loading__titleLayer">
+            <div class="loading__title02 loading__title02--t1 opacityChange duration0-1 delay1-0"></div>
+            <div class="loading__title02 loading__title02--a1 opacityChange duration0-1 delay1-1"></div>
+            <div class="loading__title02 loading__title02--l1 opacityChange duration0-1 delay1-2"></div>
+            <div class="loading__title02 loading__title02--e1 opacityChange duration0-1 delay1-3"></div>
+            <div class="loading__title02 loading__title02--n1 opacityChange duration0-1 delay1-4"></div>
+            <div class="loading__title02 loading__title02--t12 opacityChange duration0-1 delay1-5"></div>
+            <div class="loading__title02 loading__title02--O2 opacityChange duration0-1 delay1-6"></div>
+            <div class="loading__title02 loading__title02--r2 opacityChange duration0-1 delay1-7"></div>
+            <div class="loading__title02 loading__title02--g2 opacityChange duration0-1 delay1-8"></div>
+            <div class="loading__title02 loading__title02--a2 opacityChange duration0-1 delay1-9"></div>
+            <div class="loading__title02 loading__title02--n2 opacityChange duration0-1 delay2-0"></div>
+            <div class="loading__title02 loading__title02--i2 opacityChange duration0-1 delay2-1"></div>
+            <div class="loading__title02 loading__title02--z2 opacityChange duration0-1 delay2-2"></div>
+            <div class="loading__title02 loading__title02--a22 opacityChange duration0-1 delay2-3"></div>
+            <div class="loading__title02 loading__title02--t2 opacityChange duration0-1 delay2-4"></div>
+            <div class="loading__title02 loading__title02--i22 opacityChange duration0-1 delay2-5"></div>
+            <div class="loading__title02 loading__title02--o22 opacityChange duration0-1 delay2-6"></div>
+            <div class="loading__title02 loading__title02--n22 opacityChange duration0-1 delay2-7"></div>
+            <div class="loading__title02 loading__title02--p3 opacityChange duration0-1 delay2-8"></div>
+            <div class="loading__title02 loading__title02--o3 opacityChange duration0-1 delay2-9"></div>
+            <div class="loading__title02 loading__title02--w3 opacityChange duration0-1 delay3-0"></div>
+            <div class="loading__title02 loading__title02--e3 opacityChange duration0-1 delay3-1"></div>
+            <div class="loading__title02 loading__title02--r3 opacityChange duration0-1 delay3-2"></div>
+        </div>
         <!--<div class="loading__title loading__title01 littleBottomIn delay0-5"></div>-->
         <!--<div class="loading__progress" id="loading__progress">
             <div class="progress" id="progress"></div>
         </div>-->
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+        <div class="video__btn" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">
+            <div class="circle circle00"></div>
+            <div class="circle circle01"></div>
+            <div class="circle circle02"></div>
+            <div class="circle circle03"></div>
+            <div class="start-text">登顶之路</div>
+        </div>
     </div>
     <div class="videos hide" id="videos">
         <video class="video hide" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1080" preload="auto" src="images/movie-02.mp4"></video>
-        <div class="video__btn" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">立即开始</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
@@ -166,7 +200,7 @@
             <div class="icon page0__circle opacityChange delay3-0"></div>-->
             <div class="page0__title page0__title1 littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(414-128,2/4)}"></div>
             <div class="page0__title page0__title2 littleBottomIn duration1-0 delay1-2" :style="{top:getFitTop(513-128,2/4)}"></div>
-            <div class="page0__line littleBottomIn duration1-0 delay2-2" :style="{top:getFitTop(999-128,3/4)}"></div>
+            <!--<div class="page0__line littleBottomIn duration1-0 delay2-2" :style="{top:getFitTop(999-128,3/4)}"></div>-->
             <div class="page0__textLayer" :style="{top:getFitTop(747-128,3/4)}">
                 <div class="icon page0__text page0__text1 leftIn duration1-0 delay1-7"></div>
                 <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay1-7"></div>

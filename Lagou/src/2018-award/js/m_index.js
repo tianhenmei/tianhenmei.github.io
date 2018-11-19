@@ -278,8 +278,8 @@ var initialNow = 0,
     initialText = '测试',
     initialPhone = '12345678900',
     randomIndex = Math.floor(Math.random() * 10);
-// var baseHost = '';
-var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
+var baseHost = '';
+// var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 // 音乐
 // if(mode != "development"){
 //     backgroundMusic(document.getElementById("music"));
@@ -573,19 +573,19 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480), 
                     list:[  // 0
                         {
-                            src:'images/page1-guest-default.png',
+                            src:baseHost+'images/page1-guest-default.png',
                             guestName:'张帆',
                             companyName:'迅雷集团',
                             position:'人力资源高级副总裁',
                             city:'深圳'
                         },{
-                            src:'images/page1-guest02.png',
+                            src:baseHost+'images/page1-guest02.png',
                             guestName:'吴宇',
                             companyName:'小鹏汽车',
                             position:'人力资源总监',
                             city:'广州'
                         },{
-                            src:'images/page1-guest04.png',
+                            src:baseHost+'images/page1-guest04.png',
                             guestName:'Terry Luo',
                             companyName:'阅文集团',
                             position:'招聘及员工关系总监',
@@ -596,19 +596,19 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480-50), 
                     list:[ // 3
                         {
-                            src:'images/page1-guest03.png',
+                            src:baseHost+'images/page1-guest03.png',
                             guestName:'Eva Gong',
                             companyName:'Shopee',
                             position:'人力资源负责人',
                             city:'深圳'
                         },{
-                            src:'images/page1-guest05.png',
+                            src:baseHost+'images/page1-guest05.png',
                             guestName:'张丽俊',
                             companyName:'创业酵母',
                             position:'创始人',
                             city:'杭州'
                         },{
-                            src:'images/page1-guest06.png',
+                            src:baseHost+'images/page1-guest06.png',
                             guestName:'麦老师',
                             companyName:'500强外企',
                             position:'人力资源副总裁',
@@ -619,12 +619,12 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480-50*2), 
                     list:[ // 6
                         {
-                            src:'images/page1-guest-default.png',
+                            src:baseHost+'images/page1-guest-default.png',
                             guestName:'庄黎',
                             companyName:'HRPC创始人',
                             position:''
                         },{
-                            src:'images/page1-guest-default.png',
+                            src:baseHost+'images/page1-guest-default.png',
                             guestName:'更多嘉宾',
                             companyName:'敬请期待',
                             position:''
@@ -661,7 +661,7 @@ app = new Vue({
             moveStatus:true,
             signupStatus:false,
             signup:{
-                templateId:'',
+                templateId:'5bee5ac4e4b030768a24ca84',
                 companyId:initialCompanyId,
                 company:'',
                 user:initialText,
@@ -702,15 +702,15 @@ app = new Vue({
                 {
                     cn:'11.21上海',
                     en:'shanghai',
-                    templateId:'5bee67a4e4b030768a24cbcf'
+                    templateId:'5bee5ac4e4b030768a24ca84'
                 },{
                     cn:'11.23杭州',
                     en:'hangzhou',
-                    templateId:'5bee5d08e4b030768a24cb4a'
+                    templateId:'5bee5cc5e4b030768a24cb1b'
                 },{
                     cn:'11.27深圳',
                     en:'shenzhen',
-                    templateId:'5bee5cc5e4b030768a24cb1b'
+                    templateId:'5bee5d08e4b030768a24cb4a'
                 },{
                     cn:'11.29广州',
                     en:'guangzhou',
@@ -722,7 +722,7 @@ app = new Vue({
                 },{
                     cn:'12.21北京',
                     en:'beijing',
-                    templateId:'5bee5ac4e4b030768a24ca84'
+                    templateId:'5bee67a4e4b030768a24cbcf'
                 }
             ],
             companyTips:'',  // * 请输入公司简称
@@ -1514,7 +1514,7 @@ app = new Vue({
                 self.selectedId = signup.companyId;
                 $.ajax({
                     type: 'get',
-                    url: 'http://www.lagou.com/activityapi/common/signUp.json',
+                    url: 'https://activity.lagou.com/activityapi/common/signUp.json',
                     data:{
                         type:signup.templateId,
                         name:signup.user,

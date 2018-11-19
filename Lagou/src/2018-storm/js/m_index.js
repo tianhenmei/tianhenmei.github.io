@@ -724,7 +724,7 @@ app = new Vue({
                     signup = this.signup;
                 $.ajax({
                     type: 'get',
-                    url: 'http://www.lagou.com/activityapi/common/signUp.json',
+                    url: 'https://activity.lagou.com/activityapi/common/signUp.json',
                     data:{
                         type:signup.templateId,
                         name:signup.name,
