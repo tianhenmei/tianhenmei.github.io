@@ -608,7 +608,7 @@ app = new Vue({
                             city:'杭州'
                         },{
                             src:baseHost+'images/page1-guest06.png',
-                            guestName:'麦老师',
+                            guestName:'麦科',
                             companyName:'500强外企',
                             position:'人力资源副总裁',
                             city:'上海'
