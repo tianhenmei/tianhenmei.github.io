@@ -103,7 +103,7 @@
                     // loading.className += ' hide';
                     video.play();
                     loading.className += ' opacityChange-out';
-                    // videos.className = videos.className.replace(' hide','');
+                    videos.className = videos.className.replace(' hide','');
                     setTimeout(function(){
                         loading.className += ' hide';
                         // video.className = video.className.replace(' hide','');
@@ -183,7 +183,7 @@
             <div class="start-text">登顶之路</div>
         </div>
     </div>
-    <div class="videos" id="videos">
+    <div class="videos hide" id="videos">
         <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="images/movie-03.mp4"></video>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
