@@ -278,13 +278,13 @@ var initialNow = 0,
     initialText = '',
     initialPhone = '',
     randomIndex = Math.floor(Math.random() * 10);
-var baseHost = '';
-// var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
+// var baseHost = '';
+var baseHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 // 音乐
 // if(mode != "development"){
 //     backgroundMusic(document.getElementById("music"));
 // }
-var PageMove = function () {
+PageMove = function () {
     function PageMove(options) {
         _classCallCheck(this, PageMove);
         
@@ -457,8 +457,7 @@ var PageMove = function () {
     return PageMove;
 }();
 
-var app = null;
-var PM = new PageMove({ animation: "move" });  
+// var PM = new PageMove({ animation: "move" });  
 
 // Vue.config.errorHandler = function (err, vm, info) {
 //     alert(err);

@@ -697,8 +697,7 @@
         <!--排行榜-->
         <div class="page2__layer" v-show="page2.rankStatus">
             <div class="page-bg"></div>
-            <!-- <div class="loading__bg loading__bg--01"></div>
-            <div class="loading__bg loading__bg--02"></div> -->
+            <input class="page2__rank__search" type="text" v-model="page2.rankSearch" placeholder="搜索榜单类别" />
             <div class="page2__center page2__rank clearfix">
                 <div class="page2__rank--title clearfix">
                     <!-- page2.rankSubActive == -1 &&  -->

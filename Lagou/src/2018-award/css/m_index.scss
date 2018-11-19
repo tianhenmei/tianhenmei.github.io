@@ -92,7 +92,7 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#music,#loading-num,#loading__num,#videos,#video,#video__btn),
+[id]:not(#app,#loading,#music,#loading-num,#loading__num,#videos,#video,#video__btn,#video__text),
 iframe {
     width:0!important;
     height:0!important;
@@ -518,6 +518,16 @@ body {
         color:#fff;
         text-align:center;
         @include center(225,400);
+    }
+    .video__text {
+        width:rem(100);
+        height:rem(48);
+        line-height:rem(48);
+        font-size:rem(28);
+        color:#fff;
+        text-align:right;
+        opacity:0.6;
+        @include rightBottom(50,50);
     }
 }
 .pages {

@@ -1,9 +1,9 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 var imgArray = [
 	"images/LTe50012.ttf",
-	// "images/movie.mp4",
+	"images/movie-03.mp4",
 	loadingHost+"images/icon.png",
 	loadingHost+"images/page0-bg01-02.png",
 	loadingHost+"images/page0-bg02-02.png",
@@ -182,14 +182,14 @@ var Loader = function(){
 	};
 	this.loadLoading = function(imgArray,obj){
 		var loading = document.getElementById('loading');
-		loading.addEventListener('touchstart',function(e){
-			e.stopPropagation();
-			e.preventDefault();
-		},false);
-		loading.addEventListener('touchmove',function(e){
-			e.stopPropagation();
-			e.preventDefault();
-		},false);
+		// loading.addEventListener('touchstart',function(e){
+		// 	// e.stopPropagation();
+		// 	e.preventDefault();
+		// },false);
+		// loading.addEventListener('touchmove',function(e){
+		// 	// e.stopPropagation();
+		// 	e.preventDefault();
+		// },false);
 		// var img = new Image();
 		// img.onload = function(){
 			obj.Loading(imgArray,obj.success);

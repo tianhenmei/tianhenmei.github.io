@@ -81,6 +81,9 @@
         setFontSize();
         // 随机文案索引
         var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var PageMove = null;
+        var PM = null;
+        var app = null;
         var loadingStatus = false,
             pageStatus = false,
             startTime = new Date().getTime(),
@@ -88,23 +91,31 @@
                 var appElement = document.getElementById('app'),
                     btn = document.getElementById('video__btn'),
                     videos = document.getElementById('videos'),
-                    num = document.getElementById('loading__num');
+                    num = document.getElementById('loading__num'),
+                    video = document.getElementById('video');
                 // test
                 // appElement.className = appElement.className.replace(' hide','');
                 btn.className = btn.className.replace(' hide','');
                 num.className += ' hide';
-                btn.addEventListener('touchstart',function(e){
+                btn.addEventListener('click',function(e){
                     // e.stopPropagation();
-                    e.preventDefault();
+                    // e.preventDefault();
+                    try{
+                        video.play();
+                    }catch(e){
+                        alert(e);
+                    }
 
-                    var video = document.getElementById('video'),
-                        loading = document.getElementById('loading');
+                    var loading = document.getElementById('loading'),
+                        text = document.getElementById('video__text');
                     // btn.className += ' hide';
                     // loading.className += ' hide';
-                    video.play();
                     loading.className += ' opacityChange-out';
                     videos.className = videos.className.replace(' hide','');
                     setTimeout(function(){
+                        if(video.paused){
+                            video.play();
+                        }
                         loading.className += ' hide';
                         // video.className = video.className.replace(' hide','');
                     },500);
@@ -113,6 +124,7 @@
                         setTimeout(function(){
                             videos.className += ' hide';
                             appElement.className = appElement.className.replace(' hide','');
+                            PM = new PageMove({ animation: "move" });
                         },500);
                     });
                     video.addEventListener("timeupdate",function(){
@@ -122,6 +134,15 @@
                         if(timeDisplay == 23){
                             // 当前logo刚出来的时候
                         }
+                    },false);
+                    text.addEventListener("click",function(){
+                        video.pause();
+                        videos.className += ' opacityChange-out';
+                        setTimeout(function(){
+                            videos.className += ' hide';
+                            appElement.className = appElement.className.replace(' hide','');
+                            PM = new PageMove({ animation: "move" });
+                        },500);
                     },false);
                 },false);
             },
@@ -143,6 +164,10 @@
     <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
 <body>
+    <div class="videos hide" id="videos">
+        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="images/movie-03.mp4"></video>
+        <div class="video__text" id="video__text">跳过</div>
+    </div>
     <div class="loading" id="loading">
         <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
         <div class="loading__titleLayer">
@@ -182,9 +207,6 @@
             <div class="circle circle03"></div>
             <div class="start-text">登顶之路</div>
         </div>
-    </div>
-    <div class="videos hide" id="videos">
-        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="images/movie-03.mp4"></video>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">

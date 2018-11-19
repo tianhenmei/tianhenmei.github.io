@@ -884,6 +884,7 @@ app = new Vue({
             userTips:'',
             positionTips:'',
             phoneTips:'',  // * 请输入正确的电话格式
+            rankSearch:'',
             industryfieldStatus:false,
             industryfield:[
                 {

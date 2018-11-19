@@ -921,6 +921,19 @@ body {
     &__rank {
         width:rem(645);
         @include center(53,69);
+        &__search {
+            width:rem(529-52);
+            height:rem(58);
+            line-height:rem(58);
+            padding-left:rem(52);
+            border-radius:rem(12);
+            border:none;
+            background-color:#fff;
+            font-size:rem(28.5);
+            color:#151414;
+            display:block;
+            @include center(113,6);
+        }
         &--title {
             width:rem(660);
             height:rem(73);
