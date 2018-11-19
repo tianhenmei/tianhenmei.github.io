@@ -91,20 +91,22 @@
                     num = document.getElementById('loading__num');
                 // test
                 // appElement.className = appElement.className.replace(' hide','');
+                btn.className = btn.className.replace(' hide','');
                 num.className += ' hide';
-                btn.addEventListener('click',function(e){
-                    e.stopPropagation();
+                btn.addEventListener('touchstart',function(e){
+                    // e.stopPropagation();
                     e.preventDefault();
 
                     var video = document.getElementById('video'),
                         loading = document.getElementById('loading');
                     // btn.className += ' hide';
+                    // loading.className += ' hide';
                     video.play();
                     loading.className += ' opacityChange-out';
+                    // videos.className = videos.className.replace(' hide','');
                     setTimeout(function(){
                         loading.className += ' hide';
-                        videos.className = videos.className.replace(' hide','');
-                        video.className = video.className.replace(' hide','');
+                        // video.className = video.className.replace(' hide','');
                     },500);
                     video.addEventListener("ended",function(){
                         videos.className += ' opacityChange-out';
@@ -173,7 +175,7 @@
             <div class="progress" id="progress"></div>
         </div>-->
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
-        <div class="video__btn" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">
+        <div class="video__btn hide" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">
             <div class="circle circle00"></div>
             <div class="circle circle01"></div>
             <div class="circle circle02"></div>
@@ -181,8 +183,8 @@
             <div class="start-text">登顶之路</div>
         </div>
     </div>
-    <div class="videos hide" id="videos">
-        <video class="video hide" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1080" preload="auto" src="images/movie-02.mp4"></video>
+    <div class="videos" id="videos">
+        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="images/movie-03.mp4"></video>
     </div>
     <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
     <div class="wrapper pages hide" id="app">
@@ -556,21 +558,10 @@
     <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
     <script type="text/javascript">
         var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
-        var randomText = [
-                '我们总是轻言放弃，而登顶之路则是，再来一次。',
-                'TOP之路，一旦开始，就要坚持到底。',
-                '没有人不想当TOP，所谓甘于平凡，但愿不是耽于平庸。',
-                'TOP，不是转瞬荣誉，而是极致追求。',
-                '你的目标不是赢，而是尽力做到TOP1。',
-                '自由之所以是奢望，是因为，你割舍不了选择TOP雇主的权利。',
-                '我努力K掉所有人，就是为了成为你心中的TOP1！',
-                '哪有天生的TOP1，我不过是为你一直坚持！',
-                '未必最大，但必定最强 ，Pick你心中的TOP雇主！'  // 8
-            ];
         //微信分享
         var datas = {
             title: "2018拉勾年度TOP雇主颁奖盛典",
-            desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
+            desc: "2018互联网人才白皮书首发，19年招聘策略分享~",
             imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.jpg",
             activityType: 'ACTIVITY_H5_AWARD_2018',
             shareUrl:baseUrl

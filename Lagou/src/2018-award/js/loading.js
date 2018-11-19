@@ -181,11 +181,11 @@ var Loader = function(){
 	this.loadLoading = function(imgArray,obj){
 		var loading = document.getElementById('loading');
 		loading.addEventListener('touchstart',function(e){
-			e.stopPropogation();
+			e.stopPropagation();
 			e.preventDefault();
 		},false);
 		loading.addEventListener('touchmove',function(e){
-			e.stopPropogation();
+			e.stopPropagation();
 			e.preventDefault();
 		},false);
 		// var img = new Image();
