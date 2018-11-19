@@ -1896,7 +1896,7 @@ app = new Vue({
             // 点击顶部导航
             if(iindex == -1){
                 this.page2.rankActiveIndex = iindex;
-                if(this.page2.showSubListStatus){
+                if(this.page2.showSubListStatus && this.page2.rankActive == index){
                     this.page2.showSubListStatus = false;
                 }else{
                     this.page2.showSubListStatus = true;

@@ -809,10 +809,10 @@ body {
     // page1__schedule
     &__schedule {
         width:rem(641);
-        height:rem(1161-135-113);
+        height:rem(1214-135-46);
         margin:0 auto;
         padding-top:rem(135);
-        padding-bottom:rem(113);
+        padding-bottom:rem(46);
         position:relative;
         z-index:2;
         // @include center(67,128);
@@ -839,20 +839,24 @@ body {
         }
         // page1__schedule__icon
         &__icon {
-            background:url('../images/page1-schedule-02.png') no-repeat 0 0;
-            background-size:rem(660) rem(861);
+            background:url('../images/page1-schedule-03.png') no-repeat 0 0;
+            background-size:rem(660) rem(986);
         }
         &__content {
 
         }
         &__one {
-            height:rem(127);
+            width:rem(750);
+            height:rem(138);
+            &--short {
+                height:rem(69);
+            }
         }
         .short-schedule {
             height:rem(64);
         }
         &__time {
-            width:rem(180);
+            width:rem(140);
             height:rem(40);
             margin-right:rem(105);
             float:left;
@@ -863,7 +867,7 @@ body {
             width:rem(58);
             height:rem(2);
             background-color:#565041;
-            @include leftTop(194,17);
+            @include leftTop(194-36,17);
             transition:1s all;
             opacity:0;
         }
@@ -875,6 +879,7 @@ body {
             top:rem(17);
         }
         &__right {
+            width:rem(416);
             transition:1s all;
             transform:translate3d(1000px,0,0);
             float:left;
@@ -884,7 +889,7 @@ body {
             height:rem(40);
         }
         &__info {
-            width:rem(350);
+            width:rem(416);
             height:rem(40);
             &--2 {
                 height:rem(79);
@@ -908,7 +913,7 @@ body {
         // height:rem(1049-135-113);
         margin:0 auto;
         padding-top:rem(139);
-        padding-bottom:rem(113);
+        padding-bottom:rem(21);
         position:relative;
         z-index:2;
         // page1__guest__cn 
@@ -955,17 +960,19 @@ body {
             display:none;
         }
         &__right {
-            width:rem(680);
+            width:rem(750);
+            margin-left:rem(-35);
             float:left;
         }
         &__one {
-            width:rem(274);
-            margin-right:rem(10);
+            width:rem(233);
             float:left;
+            position:relative;
         }
         &__img {
             width:rem(163-4);
             height:rem(163-4);
+            margin:0 auto;
             border-radius:rem(163);
             border:rem(2) solid #d4b76f;
             background-color:#d4b76f;
@@ -974,27 +981,40 @@ body {
         &__company,
         &__position {
             width:100%;
-            line-height:rem(40);
+            line-height:rem(42);
             padding-top:rem(18);
-            padding-left:rem(6);
             font-size:rem(30);
-            text-align:left;
+            text-align:center;
             color:#d4b76f;
             overflow:hidden;
             text-overflow:ellipsis;
             white-space:nowrap;
         }
         &__company {
-            line-height:rem(33);
-            padding-top:rem(2);
+            line-height:rem(36);
             font-size:rem(24);
             opacity:0.5;
         }
         &__position {
-            line-height:rem(32);
+            line-height:rem(29);
             padding-top:0;
             font-size:rem(24);
             opacity:0.5;
+        }
+        &__city {
+            width:rem(52);
+            height:rem(52);
+            line-height:rem(52);
+            border-radius:rem(52);
+            overflow:hidden;
+            font-size:rem(20);
+            text-align:center;
+            color:#080808;
+            background-color:#d4b76f;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            @include leftTop(143,114);
         }
     }
     // page1__company

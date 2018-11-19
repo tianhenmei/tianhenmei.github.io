@@ -503,57 +503,59 @@ app = new Vue({
                     info:'',
                     line:'',
                     timePosition:'0 0',
-                    namePosition:setRem(-280)+' 0'
+                    namePosition:setRem(-244)+' 0',
+                    classname:'page1__schedule__one--short'
                 },{
                     time:'14:00 - 14:30',
                     name:'白皮书发布：',
-                    info:'拉勾董事长许单单致辞，2018<br/>互联网人才白皮书发布',
-                    timePosition:'0 '+setRem(-63),
-                    namePosition:setRem(-280)+' '+setRem(-63),
-                    infoPosition:setRem(-280)+' '+setRem(-111),
+                    info:'拉勾董事长许单单致辞·2018<br/>互联网人才白皮书发布',
+                    timePosition:'0 '+setRem(-69),
+                    namePosition:setRem(-244)+' '+setRem(-69),
+                    infoPosition:setRem(-244)+' '+setRem(-110),
                     infoClass:'page1__schedule__info--2'
                 },{
                     time:'14:30 - 14:40',
                     name:'颁奖仪式',
                     info:'2018拉勾年度区域TOP雇主奖',
-                    timePosition:'0 '+setRem(-190),
-                    namePosition:setRem(-280)+' '+setRem(-190),
-                    infoPosition:setRem(-280)+' '+setRem(-235)
+                    timePosition:'0 '+setRem(-207),
+                    namePosition:setRem(-244)+' '+setRem(-207),
+                    infoPosition:setRem(-244)+' '+setRem(-246)
                 },{
                     time:'14:40 - 15:10',
-                    name:'高峰论坛',
+                    name:'嘉宾分享',
                     info:'面向未来的组织与人才发展变革',
-                    timePosition:'0 '+setRem(-317),
-                    namePosition:setRem(-280)+' '+setRem(-317),
-                    infoPosition:setRem(-280)+' '+setRem(-364)
+                    timePosition:'0 '+setRem(-344),
+                    namePosition:setRem(-244)+' '+setRem(-344),
+                    infoPosition:setRem(-244)+' '+setRem(-388)
                 },{
                     time:'15:10 - 15:20',
                     name:'颁奖仪式',
                     info:'2018拉勾年度区域领先TOP雇主奖',
-                    timePosition:'0 '+setRem(-445),
-                    namePosition:setRem(-280)+' '+setRem(-445),
-                    infoPosition:setRem(-280)+' '+setRem(-491)
+                    timePosition:'0 '+setRem(-483),
+                    namePosition:setRem(-244)+' '+setRem(-483),
+                    infoPosition:setRem(-244)+' '+setRem(-526)
                 },{
                     time:'15:20 - 15:50',
                     name:'拉勾招聘秘籍发布',
                     info:'拉勾城市总监解读2019招聘<br/>致胜秘籍',
-                    timePosition:'0 '+setRem(-571),
-                    namePosition:setRem(-280)+' '+setRem(-571),
-                    infoPosition:setRem(-280)+' '+setRem(-617),
+                    timePosition:'0 '+setRem(-621),
+                    namePosition:setRem(-244)+' '+setRem(-621),
+                    infoPosition:setRem(-244)+' '+setRem(-664),
                     infoClass:'page1__schedule__info--2'
                 },{
                     time:'15:50 - 16:00',
                     name:'启动仪式',
-                    info:'2018拉勾年度TOP雇主奖颁奖<br/>盛典全国巡回启动仪式',
-                    timePosition:'0 '+setRem(-698),
-                    namePosition:setRem(-280)+' '+setRem(-698),
+                    info:'2018拉勾年度TOP雇主颁奖<br/>盛典·全国巡回启动仪式',
+                    timePosition:'0 '+setRem(-759),
+                    namePosition:setRem(-244)+' '+setRem(-759),
+                    infoPosition:setRem(-244)+' '+setRem(-801),
                     infoClass:'page1__schedule__info--2'
                 },{
                     time:'16:00 - 16:30',
                     name:'答谢酒会',
                     info:'',
-                    timePosition:'0 '+setRem(-822),
-                    namePosition:setRem(-280)+' '+setRem(-822),
+                    timePosition:'0 '+setRem(-896),
+                    namePosition:setRem(-244)+' '+setRem(-896),
                     infoClass:'page1__schedule__info--2'
                 }
             ],
@@ -565,46 +567,47 @@ app = new Vue({
                             src:'images/page1-guest-default.png',
                             guestName:'张帆',
                             companyName:'迅雷集团',
-                            position:'人力资源高级副总裁'
+                            position:'人力资源高级副总裁',
+                            city:'深圳'
                         },{
                             src:'images/page1-guest02.png',
                             guestName:'吴宇',
                             companyName:'小鹏汽车',
-                            position:'人力资源总监'
-                        }
-                    ]
-                },{
-                    timePosition:'0 '+setRem(-480-50), 
-                    list:[ // 2
-                        {
-                            src:'images/page1-guest03.png',
-                            guestName:'Eva Gong',
-                            companyName:'Shopee',
-                            position:'人力资源负责人'
+                            position:'人力资源总监',
+                            city:'广州'
                         },{
                             src:'images/page1-guest04.png',
                             guestName:'Terry Luo',
                             companyName:'阅文集团',
-                            position:'招聘及员工关系总监'
+                            position:'招聘及员工关系总监',
+                            city:'上海'
                         }
                     ]
                 },{
-                    timePosition:'0 '+setRem(-480-50*2), 
-                    list:[ // 4
+                    timePosition:'0 '+setRem(-480-50), 
+                    list:[ // 3
                         {
+                            src:'images/page1-guest03.png',
+                            guestName:'Eva Gong',
+                            companyName:'Shopee',
+                            position:'人力资源负责人',
+                            city:'深圳'
+                        },{
                             src:'images/page1-guest05.png',
                             guestName:'张丽俊',
                             companyName:'创业酵母',
-                            position:'创始人'
+                            position:'创始人',
+                            city:'杭州'
                         },{
                             src:'images/page1-guest06.png',
                             guestName:'麦老师',
                             companyName:'500强外企',
-                            position:'人力资源副总裁'
+                            position:'人力资源副总裁',
+                            city:'上海'
                         }
                     ]
                 },{
-                    timePosition:'0 '+setRem(-480-50*3), 
+                    timePosition:'0 '+setRem(-480-50*2), 
                     list:[ // 6
                         {
                             src:'images/page1-guest-default.png',
