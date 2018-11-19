@@ -750,7 +750,8 @@ app = new Vue({
                             icon:'none',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             title:'凝聚力',
-                            info:'公平公正的评选结果，<br/>为互联网人的求职选择提供参考',
+                            info:'权利分配、归属心理<br/>在共同责任目标上的统一感',
+                            // info:'公平公正的评选结果，<br/>为互联网人的求职选择提供参考',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*10)
                         },{
                             icon:'none',
@@ -795,7 +796,7 @@ app = new Vue({
                             icon:'page2__content--iconarea',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             title:'区域榜',
-                            info:'2018拉勾年度城市TOP雇主<br/>2018拉勾年度城市新锐TOP雇主',
+                            info:'2018拉勾年度区域TOP雇主<br/>2018拉勾年度区域领先TOP雇主',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*7)
                         },{
                             icon:'page2__content--iconindrustry',

@@ -573,7 +573,7 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480), 
                     list:[  // 0
                         {
-                            src:baseHost+'images/page1-guest-default.png',
+                            src:baseHost+'images/page1-guest01.png',
                             guestName:'张帆',
                             companyName:'迅雷集团',
                             position:'人力资源高级副总裁',
@@ -619,10 +619,11 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480-50*2), 
                     list:[ // 6
                         {
-                            src:baseHost+'images/page1-guest-default.png',
+                            src:baseHost+'images/page1-guest07.png',
                             guestName:'庄黎',
                             companyName:'HRPC创始人',
-                            position:''
+                            position:'',
+                            city:'成都'
                         },{
                             src:baseHost+'images/page1-guest-default.png',
                             guestName:'更多嘉宾',
