@@ -1521,14 +1521,17 @@ app = new Vue({
                         companyName:signup.company,
                         city:this.page1.cityCN,//signup.city,
                         positionName:signup.position,
-                        contact:signup.phone,
-                        extend1:signup.companyId
+                        contact:signup.phone//,
+                        // extend1:signup.companyId
                     },
                     success: function(result) {
                         if (result.success) {
                             self.showSuccessPage();
                         }else if(result.state == 300){
                             alert(result.message);
+                        }else if(result.state == -3){
+                            // message: "你已经报过名了!"
+                            self.showSuccessPage();
                         }
                     },
                     error: function(xhr, type) {

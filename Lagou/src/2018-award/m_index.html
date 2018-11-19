@@ -340,9 +340,10 @@
             <div class="page1__signup zoomIn" v-show="page1.signupStatus">
                 <div class="page1__signup__center">
                     <div class="page1__signup__one">
-                        <input class="page1__signup__input page1__signup__input--company" type="text" placeholder="企业简称" v-model="page1.signup.company" v-on:input="updateCompanyList" />
+                        <input class="page1__signup__input page1__signup__input--company" type="text" placeholder="企业简称" v-model="page1.signup.company"
+                            v-on:input="checkNullEvent('company','公司名称')" /> <!--v-on:input="updateCompanyList"-->
                         <div class="page1__signup__tips">{{page1.companyTips}}</div>
-                        <div class="page1__signup--list page1__signup--searchLayer" v-show="page1.signupSearchStatus">
+                        <!--<div class="page1__signup--list page1__signup--searchLayer" v-show="page1.signupSearchStatus">
                             <div class="page1__signup--search">
                                 <div class="page1__signup--search_bar_bg" v-show="page1.signupList.length > 5">
                                     <div class="page1__signup--search_bar" ref="page1__signup--search_bar"></div>
@@ -354,7 +355,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                     <div class="page1__signup__one">
                         <input class="page1__signup__input" type="text" placeholder="姓名" v-model="page1.signup.user" v-on:input="checkNullEvent('user','姓名')" />
