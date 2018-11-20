@@ -918,6 +918,7 @@ body {
         background-position:0 rem(-850);
         @include center(151,1074);
     }
+    /*排行榜*/
     &__rank {
         width:rem(645);
         @include center(53,69);
@@ -1036,6 +1037,13 @@ body {
             background: -moz-linear-gradient(top, #a17c2f, #eaca7d); 
             background: -o-linear-gradient(top,#a17c2f, #eaca7d); 
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a17c2f), to(#eaca7d)); 
+        }
+        &--itemname {
+            width:rem(542);
+            line-height:rem(47);
+            font-size:rem(29);
+            color:#ab843e;
+            text-align:center;
         }
         &--itemli {
             width:rem(542);

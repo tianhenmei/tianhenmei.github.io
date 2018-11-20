@@ -17,6 +17,7 @@
     <meta name="x5-fullscreen" content="true">
     <meta name="360-fullscreen" content="true">
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <link rel="prefetch" href="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"/>  
     <!---上线之后加-->
     <title>拉勾年度TOP雇主颁奖盛典</title>
     <script>
@@ -165,7 +166,7 @@
 </head>
 <body>
     <div class="videos hide" id="videos">
-        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="images/movie-03.mp4"></video>
+        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"></video>
         <div class="video__text" id="video__text">跳过</div>
     </div>
     <div class="loading" id="loading">
@@ -416,64 +417,6 @@
             <img class="page2__img" :src="url"
                 data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0004" data-lg-tj-cid="null" />
         </div>
-        <!--排行榜-->
-        <div class="page2__layer" v-show="page2.rankStatus">
-            <div class="loading__bg loading__bg--01"></div>
-            <div class="loading__bg loading__bg--02"></div>
-            <div class="page2__center page2__rank clearfix">
-                <div class="page2__rank--title clearfix">
-                    <!-- page2.rankSubActive == -1 &&  -->
-                    <div class="icon-02 page2__rank--otitle"
-                        v-for="(one,index) in rank"
-                        :class="'page2__rank--otitle'+index+((page2.rankSubActive != -1 && index == page2.rankLastActive) || (index == page2.rankActive) ? ' active' : '')"
-                        @click.stop.prevent="page2RankTabEvent(index,one.list ? one.classify : '',-1)"
-                        data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+index*100)" data-lg-tj-cid="null">
-                        <div class="page2__rank--list" v-if="one.list"
-                            :class="index == page2.rankActive && page2.showSubListStatus ? '' : 'hide'"><!-- || !page2.rankListStatus-->
-                            <div class="page2__rank--li"
-                                v-for="(item,iindex) in one.list"
-                                @click.stop.prevent="page2RankTabEvent(index,item.classify,iindex)"
-                                data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+iindex+index*100)" data-lg-tj-cid="null">
-                                <div class="page2__rank--lic" v-html="item.text"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- 排行榜 -->
-                <div class="page2__content page2__rank--content"
-                    @touchstart.stop.prevent="noop"
-                    @touchmove.stop.prevent="noop"
-                    @touchend.stop.prevent="noop"
-                    :style="{ height:getPage2RankHeight }"
-                    :class="getRankSubType ? '' : 'page2__rank--content-nomine'">
-                    <div class="page2__rank--item">
-                        <div class="page2__rank--itemul page2__rank--item_ul">
-                            <div class="page2__rank--itemli page2__rank--item_li clearfix"
-                                v-for="(one,index) in rankData"
-                                v-if="getSelfRanking != one.top"
-                                :class="{'page2__rank--itemli_last':getRankLast(index)}">
-                                <div class="page2__rank--num">{{one.top}}</div>
-                                <img class="page2__rank--logo" :src="getCompanyLogo(one.logo)"/>
-                                <div class="page2__rank--right">
-                                    <div class="page2__rank--company">{{one.companyName}}</div>
-                                    <div class="page2__rank--got">当前票数：<span class="green num">{{one.voteNum || 0}}</span></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="page2__rank--item_bar_bg">
-                            <div class="page2__rank--item_bar"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="icon page2__close"
-                v-show="!searchLayerStatus"
-                :style="{ top:getPage2CloseTop }"
-                @click.stop.prevent="page2CloseEvent"></div>
-            <div class="icon-02 page2__search" v-show="searchLayerStatus" :style="{ top:getPage2CloseTop }"
-                @click.stop.prevent="showSearchPageEvent"></div>
-        </div>
-    </div>
     <!--<div class="music-box">
         <div class="music-icon open">
             <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>

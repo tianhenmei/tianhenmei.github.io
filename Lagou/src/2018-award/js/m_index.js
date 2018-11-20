@@ -618,10 +618,10 @@ app = new Vue({
                     timePosition:'0 '+setRem(-480-50*2), 
                     list:[ // 6
                         {
-                            src:baseHost+'images/page1-guest07.png',
-                            guestName:'庄黎',
-                            companyName:'HRPC创始人',
-                            position:'',
+                            src:baseHost+'images/page1-guest07-02.png',
+                            guestName:'Bill',
+                            companyName:'亚马逊',
+                            position:'企业服务总监',
                             city:'成都'
                         },{
                             src:baseHost+'images/page1-guest-default.png',

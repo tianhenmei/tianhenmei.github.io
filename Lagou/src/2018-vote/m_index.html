@@ -730,6 +730,7 @@
                     <div class="page2__rank--item" :class="'page2__rank--item'+pindex">
                         <div class="page2__rank--itemul page2__rank--item_ul" :class="'page2__rank--item'+pindex+'_ul'">
                             <div class="page2__rank--itemcenter" v-for="(value,key) in item">
+                                <div class="page2__rank--itemname">{{item.optionName}}</div>
                                 <div class="page2__rank--itemli page2__rank--item_li clearfix"
                                     v-for="(one,index) in value.companyTopInfo"
                                     :class="'page2__rank--item'+pindex+'_li'+(getRankLast(pindex,key,index) ? ' page2__rank--itemli_last' : '')"> <!--v-if="getSelfRanking != one.top"-->

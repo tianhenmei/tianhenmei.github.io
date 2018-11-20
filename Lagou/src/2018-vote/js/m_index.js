@@ -2009,6 +2009,7 @@ app = new Vue({
             // if(this.getSelfRanking < length){
             //     length--;
             // }
+            console.log(data);
             // page2
             var classname = 'page2__rank--item'+index,
                 elem = $('.'+classname),
@@ -2469,7 +2470,9 @@ app = new Vue({
                         var data = result.content;
                         if(data){
                             self.rankAllData[index] = data;
-                            self.setRankList(index);
+                            self.$nextTick(function(){
+                                self.setRankList(index);
+                            });
                             // // 排行榜大类：传值分别是ZHL（综合类）、QUL（区域类）、HYL（行业类）
                             // var obj = [
                             //     {  // 综合类  ZHL:

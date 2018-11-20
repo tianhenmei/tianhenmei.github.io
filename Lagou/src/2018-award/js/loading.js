@@ -3,7 +3,7 @@
 var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 var imgArray = [
 	"images/LTe50012.ttf",
-	"images/movie-03.mp4",
+	// "images/movie-03.mp4",
 	loadingHost+"images/icon.png",
 	loadingHost+"images/page0-bg01-02.png",
 	loadingHost+"images/page0-bg02-02.png",
