@@ -640,9 +640,9 @@
                     <div class="success-content"></div>
                     <a class="go-gift" 
                         href="javascript:void(0);" :onclick="'self.location=\''+giftHref+'\';'"
-                        target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
+                        target="_blank" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
                     <div class="create-img"
-                        @click.prevent="createPictures" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
+                        @click.prevent="createPictures" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
                     <div class="icon success-close" @click.prevent="closeSuccess"></div>
                 </div>
             </div>
@@ -706,40 +706,44 @@
                         :class="'page2__rank--otitle'+index+((page2.rankSubActive != -1 && index == page2.rankLastActive) || (index == page2.rankActive) ? ' active' : '')"
                         @click.stop.prevent="page2RankTabEvent(index,one.list ? one.classify : '',-1)"
                         data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+index*100)" data-lg-tj-cid="null">
-                        <div class="page2__rank--list" v-if="one.list"
-                            :class="index == page2.rankActive && page2.showSubListStatus ? '' : 'hide'"><!-- || !page2.rankListStatus-->
+                        <!-- || !page2.rankListStatus-->
+                        <!--<div class="page2__rank--list" v-if="one.list"
+                            :class="index == page2.rankActive && page2.showSubListStatus ? '' : 'hide'">
                             <div class="page2__rank--li"
                                 v-for="(item,iindex) in one.list"
                                 @click.stop.prevent="page2RankTabEvent(index,item.classify,iindex)"
                                 data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(5000+iindex+index*100)" data-lg-tj-cid="null">
                                 <div class="page2__rank--lic" v-html="item.text"></div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- 排行榜 -->
                 <div class="page2__content page2__rank--content"
+                    v-for="(item,pindex) in rankAllData"
+                    v-show="pindex == page2.rankActive"
                     @touchstart.stop.prevent="noop"
                     @touchmove.stop.prevent="noop"
                     @touchend.stop.prevent="noop"
                     :style="{ height:getPage2RankHeight }"
                     :class="getRankSubType ? '' : 'page2__rank--content-nomine'">
-                    <div class="page2__rank--item">
-                        <div class="page2__rank--itemul page2__rank--item_ul">
-                            <div class="page2__rank--itemli page2__rank--item_li clearfix"
-                                v-for="(one,index) in rankData"
-                                v-if="getSelfRanking != one.top"
-                                :class="{'page2__rank--itemli_last':getRankLast(index)}">
-                                <div class="page2__rank--num">{{one.top}}</div>
-                                <img class="page2__rank--logo" :src="getCompanyLogo(one.logo)"/>
-                                <div class="page2__rank--right">
-                                    <div class="page2__rank--company">{{one.companyName}}</div>
-                                    <div class="page2__rank--got">当前票数：<span class="green num">{{one.voteNum || 0}}</span></div>
+                    <div class="page2__rank--item" :class="'page2__rank--item'+pindex">
+                        <div class="page2__rank--itemul page2__rank--item_ul" :class="'page2__rank--item'+pindex+'_ul'">
+                            <div class="page2__rank--itemcenter" v-for="(value,key) in item">
+                                <div class="page2__rank--itemli page2__rank--item_li clearfix"
+                                    v-for="(one,index) in value.companyTopInfo"
+                                    :class="'page2__rank--item'+pindex+'_li'+(getRankLast(pindex,key,index) ? ' page2__rank--itemli_last' : '')"> <!--v-if="getSelfRanking != one.top"-->
+                                    <div class="page2__rank--num">{{one.top}}</div>
+                                    <img class="page2__rank--logo" :src="getCompanyLogo(one.logo)"/>
+                                    <div class="page2__rank--right">
+                                        <div class="page2__rank--company">{{one.companyName || one.shortName}}</div>
+                                        <div class="page2__rank--got">当前票数：<span class="green num">{{one.voteNum || 0}}</span></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="page2__rank--item_bar_bg">
-                            <div class="page2__rank--item_bar"></div>
+                        <div class="page2__rank--item_bar_bg" :class="'page2__rank--item'+pindex+'_bar_bg'">
+                            <div class="page2__rank--item_bar" :class="'page2__rank--item'+pindex+'_bar'"></div>
                         </div>
                     </div>
                 </div>

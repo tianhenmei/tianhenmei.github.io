@@ -25,7 +25,7 @@ var imgArray = [
 	loadingHost+"images/page2-signup-btn.png",
 	loadingHost+"images/page2-time-bg.png",
 	loadingHost+"images/page2-time-map-03.png",
-	loadingHost+"images/page2-intro-03.png",
+	loadingHost+"images/page2-intro-04.png",
 	loadingHost+"images/page2-intro-arrow.png",
 	loadingHost+"images/page2-intro-bg.png",
 	loadingHost+"images/page2-intro-bgcenter.png",

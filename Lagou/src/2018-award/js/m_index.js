@@ -975,9 +975,9 @@ app = new Vue({
             "images/canvas-dot1.png",
             "images/canvas-dot2.png",
             "images/canvas-grotesque.png",
-            "images/canvas-title.png",
+            "images/canvas-title.png",  // 4
             "images/canvas-2018.png",
-            "images/canvas-text.png",  // 6
+            "images/canvas-text-02.png",  // 6
             "images/canvas-bottom.png",  // 7
             "images/canvas-ercode.png",  // 8
             "images/canvas-city1.png",  // 9
@@ -985,7 +985,8 @@ app = new Vue({
             "images/canvas-city3.png",
             "images/canvas-city4.png",
             "images/canvas-city5.png",
-            "images/canvas-city6.png"   // 14
+            "images/canvas-city6.png",   // 14
+            "images/canvas-logo.png"   // 15
         ],
         shareArr:[{
             w:543,
@@ -2073,14 +2074,15 @@ app = new Vue({
             this.loaded++
             if(this.loaded == this.loadingArray.length){
                 this.ctx.drawImage(this.loadedImgs[0],0,0);
-                this.ctx.drawImage(this.loadedImgs[1],666,700);
-                this.ctx.drawImage(this.loadedImgs[2],527,373);
-                this.ctx.drawImage(this.loadedImgs[3],0,0);
-                this.ctx.drawImage(this.loadedImgs[4],86,390);
-                this.ctx.drawImage(this.loadedImgs[5],479,576);
-                this.ctx.drawImage(this.loadedImgs[6],90,820);
-                this.ctx.drawImage(this.loadedImgs[7],0,1125);
-                this.ctx.drawImage(this.loadedImgs[8],69,1151);
+                this.ctx.drawImage(this.loadedImgs[1],665,700);  // dot1
+                this.ctx.drawImage(this.loadedImgs[2],528,374);
+                this.ctx.drawImage(this.loadedImgs[3],0,141-227);  // grotesque
+                this.ctx.drawImage(this.loadedImgs[4],86,347);  // title
+                this.ctx.drawImage(this.loadedImgs[5],479,526);  // 2018
+                this.ctx.drawImage(this.loadedImgs[6],90,718);  // text
+                this.ctx.drawImage(this.loadedImgs[7],0,1125);  // bottom
+                this.ctx.drawImage(this.loadedImgs[8],69,1151);  // ercode
+                this.ctx.drawImage(this.loadedImgs[15],564,71);  // logo
                 
                 if(this.drawStatus){
                     this.startDraw()
@@ -2223,14 +2225,14 @@ app = new Vue({
             this.ctx.fillStyle = "#42351b";
             this.ctx.strokeStyle = "#42351b";
             this.ctx.lineWidth = 2;
-            this.ctx.fillText("特别邀请 "+company,89,661+34);
-            this.ctx.strokeText("特别邀请 "+company,89,661+34);
+            this.ctx.fillText("特别邀请 "+company,89,588+34);
+            this.ctx.strokeText("特别邀请 "+company,89,588+34);
             this.ctx.fillStyle = gradient;
-            this.ctx.fillText('特别邀请 '+company,89,661+34);
-            this.ctx.fillText('特别邀请 '+company,89,661+34);
+            this.ctx.fillText('特别邀请 '+company,89,588+34);
+            this.ctx.fillText('特别邀请 '+company,89,588+34);
             this.ctx.font = "54px normal";
             this.ctx.fillStyle = "#61de8f";
-            this.ctx.fillText(this.page1.signup.user,89,717+54);
+            this.ctx.fillText(this.page1.signup.user,89,632+54);
         },
         // getBase64("https://z649319834.github.io/Learn_Example/video_track/webvtt.jpg")
         getBase64:function(imgUrl,callback) {

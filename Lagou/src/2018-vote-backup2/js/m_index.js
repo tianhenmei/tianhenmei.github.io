@@ -750,7 +750,7 @@ app = new Vue({
                             icon:'none',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             title:'凝聚力',
-                            info:'权利分配、归属心理<br/>在共同责任目标上的统一感',
+                            info:'集体效能，权力分配、归属心里<br/>在共同责任目标上的统一感',
                             // info:'公平公正的评选结果，<br/>为互联网人的求职选择提供参考',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*10)
                         },{
@@ -2623,14 +2623,16 @@ app = new Vue({
             var sp = 0,
                 sw = 0,
                 id = this.selectedId || this.mycompany.companyId,
-                url = window.location.href;
-            if(!getQueryString('selected')){
-                if(/\?/g.test(url)){
-                    url += '&selected='+id;
-                }else {
-                    url += '?selected='+id;
-                }
-            }
+                url = window.location.href.split('?')[0];
+            url += '?selected='+id;
+            //     url = window.location.href;
+            // if(!getQueryString('selected')){
+            //     if(/\?/g.test(url)){
+            //         url += '&selected='+id;
+            //     }else {
+            //         url += '?selected='+id;
+            //     }
+            // }
             this.down = 0;
             var imgs = [
                     // "https://activity.lagou.com/activityapi/votelike/userHeadImg",

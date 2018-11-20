@@ -538,7 +538,7 @@
                     <div class="one" v-if="companyList">
                         <div class="one-center">
                             <a class="logo-bg" target="_blank"
-                                href="javascript:void(0);" :onclick="'self.location=\'https://www.lagou.com/center/company_'+companyList.id+'.html\';'" class="logo" target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="" :data-lg-tj-cid="companyList.id">
+                                href="javascript:void(0);" :onclick="'self.location=\'https://www.lagou.com/center/company_'+companyList.id+'.html\';'" class="logo" target="_blank" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="" :data-lg-tj-cid="companyList.id">
                                 <img :src="getCompanyLogo(companyList.logo)" class="logo-img" />
                             </a>
                             <div class="company-name">{{companyList.companyShortName || companyList.companyName}}</div>
@@ -640,9 +640,9 @@
                     <div class="success-content"></div>
                     <a class="go-gift" 
                         href="javascript:void(0);" :onclick="'self.location=\''+giftHref+'\';'"
-                        target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
+                        target="_blank" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0005" data-lg-tj-cid="null"></a>
                     <div class="create-img"
-                        @click.prevent="createPictures" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
+                        @click.prevent="createPictures" data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="0006" data-lg-tj-cid="null"></div>
                     <div class="icon success-close" @click.prevent="closeSuccess"></div>
                 </div>
             </div>

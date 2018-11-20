@@ -24,7 +24,7 @@ var imgArray = [
 	loadingHost+"images/page1-guest05.png",
 	loadingHost+"images/page1-guest06.png",
 	loadingHost+"images/page1-guest07.png",
-	loadingHost+"images/page1-icon.png",
+	loadingHost+"images/page1-icon-02.png",
 	loadingHost+"images/page1-light.png",
 	loadingHost+"images/page1-schedule-03.png",
 	loadingHost+"images/page1-shadow.png",
@@ -63,8 +63,9 @@ var imgArray = [
 	"images/canvas-dot2.png",
 	"images/canvas-ercode.png",
 	"images/canvas-grotesque.png",
-	"images/canvas-text.png",
-	"images/canvas-title.png"
+	"images/canvas-text-02.png",
+	"images/canvas-title.png",
+	"images/canvas-logo.png"
 ];
 var now = 0;
 // jQuery.ajax({
