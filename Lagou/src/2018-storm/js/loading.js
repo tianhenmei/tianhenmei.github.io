@@ -22,7 +22,7 @@ var imgArray = [
 	loadingHost+"images/page0-flip-05.png",
 	loadingHost+"images/page1-ball.png",
 	loadingHost+"images/page1-bg01.png",
-	loadingHost+"images/page1-icon-02.png",
+	loadingHost+"images/page1-icon-03.png",
 	loadingHost+"images/page1-light.png",
 	loadingHost+"images/page1-rightbottom.png",
 	loadingHost+"images/page1-shot.png",
