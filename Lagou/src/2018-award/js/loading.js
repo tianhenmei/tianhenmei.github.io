@@ -2,7 +2,7 @@
 // var loadingHost = '';
 var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
 var imgArray = [
-	"images/LTe50012.ttf",
+	// "images/LTe50012.ttf",
 	// "images/movie-03.mp4",
 	loadingHost+"images/icon.png",
 	loadingHost+"images/page0-bg01-02.png",
@@ -24,7 +24,7 @@ var imgArray = [
 	loadingHost+"images/page1-guest05.png",
 	loadingHost+"images/page1-guest06.png",
 	loadingHost+"images/page1-guest07.png",
-	loadingHost+"images/page1-icon-02.png",
+	loadingHost+"images/page1-icon-03.png",
 	loadingHost+"images/page1-light.png",
 	loadingHost+"images/page1-schedule-03.png",
 	loadingHost+"images/page1-shadow.png",

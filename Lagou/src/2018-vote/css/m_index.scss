@@ -1018,6 +1018,12 @@ body {
             width:rem(645);
             padding-left:0;
         }
+        &--test {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
         &--item {
             height:100%;
             overflow:hidden;
@@ -1039,11 +1045,16 @@ body {
             background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a17c2f), to(#eaca7d)); 
         }
         &--itemname {
-            width:rem(542);
+            width:100%;
             line-height:rem(47);
+            padding-top:rem(18);
+            padding-bottom:rem(13);
             font-size:rem(29);
             color:#ab843e;
             text-align:center;
+        }
+        &--itemname_first {
+            padding-top:rem(3);
         }
         &--itemli {
             width:rem(542);
@@ -1054,6 +1065,9 @@ body {
         }
         &--itemli_last {
             border-bottom:rem(2) solid transparent;
+        }
+        &--itemli_first {
+            padding-top:rem(0);
         }
         &--num {
             width:rem(62);

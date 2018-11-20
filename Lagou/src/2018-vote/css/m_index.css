@@ -879,6 +879,11 @@ body {
     .page2__rank--content {
       width: 13.76rem;
       padding-left: 0; }
+    .page2__rank--test {
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: 0; }
     .page2__rank--item {
       height: 100%;
       overflow: hidden;
@@ -896,11 +901,15 @@ body {
       background: -o-linear-gradient(top, #a17c2f, #eaca7d);
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a17c2f), to(#eaca7d)); }
     .page2__rank--itemname {
-      width: 11.56267rem;
+      width: 100%;
       line-height: 1.00267rem;
+      padding-top: 0.384rem;
+      padding-bottom: 0.27733rem;
       font-size: 0.61867rem;
       color: #ab843e;
       text-align: center; }
+    .page2__rank--itemname_first {
+      padding-top: 0.064rem; }
     .page2__rank--itemli {
       width: 11.56267rem;
       margin: 0 auto;
@@ -909,6 +918,8 @@ body {
       border-bottom: 0.04267rem solid #5a5241; }
     .page2__rank--itemli_last {
       border-bottom: 0.04267rem solid transparent; }
+    .page2__rank--itemli_first {
+      padding-top: 0rem; }
     .page2__rank--num {
       width: 1.32267rem;
       line-height: 1.856rem;

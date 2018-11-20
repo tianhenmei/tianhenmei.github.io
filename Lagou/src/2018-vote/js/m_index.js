@@ -864,6 +864,7 @@ app = new Vue({
             rankSubActive:-1,
             rankListStatus:true,
             showSubListStatus:false,
+            rankSearchList:[],
             // 报名
             signupStatus:false,
             signup:{
@@ -992,6 +993,7 @@ app = new Vue({
             [],  // QUL（区域类）
             []   // HYL（行业类）
         ],
+        timeupdate:Date.now(),
         rank:[
             {  // 综合类
                 list:[
@@ -1332,6 +1334,7 @@ app = new Vue({
             'page2__rank--item0':{},
             'page2__rank--item1':{},
             'page2__rank--item2':{},
+            'page2__rank--item3':{},
             'page2__signup--search':{},
             confirmCompany: false, // 是否选择公司
             requestCompany: '', // 当前请求公司的搜索值
@@ -1509,9 +1512,13 @@ app = new Vue({
         },
         getPage2RankHeight:function(){
             var height = 746
-            if(!this.getRankSubType){
+            if(!this.getSelfRanking){
                 height = 890;
             }
+            return this.setRem(height+this.heightStatus);
+        },
+        getSearchRankHeight:function(){
+            var height = 890;
             return this.setRem(height+this.heightStatus);
         },
         getPage2CloseTop:function(){
@@ -1519,11 +1526,9 @@ app = new Vue({
         },
         getSelfRanking:function(){
             var parent = this.page2,
-                index = parent.rankSubActive == -1 ? parent.rankActive : parent.rankLastActive,
-                subIndex = parent.rankActiveIndex != -1 ? parent.rankActiveIndex : 0,
-                classify = this.rank[parent.rankActive].list[subIndex].classify,
+                index = parent.rankActive,
                 data = this.mycompany.voteList;
-            if(data[index] && data[index].optionKey == classify){
+            if(data[index]){
                 return data[index].ranking;
             }
             return undefined
@@ -1540,6 +1545,17 @@ app = new Vue({
             //     return true;
             // }
             // return false;
+        },
+        getMineRank:function(){
+            var data = this.companyList ? this.companyList.voteList : this.mycompany.voteList,
+                active = this.page2.rankActive,
+                i = 0;
+            for(i = 0; i < data.length; i++){
+                if(data[i] && data[i].key == active){
+                    return true;
+                }
+            }
+            return false;
         },
     },
     mounted:function(){
@@ -1604,7 +1620,7 @@ app = new Vue({
         },
         getRankLast:function(pindex,iindex,index){
             var data = this.rankAllData[pindex];
-            return iindex == data.length - 1 && index == data[iindex].length - 1;
+            return iindex == data.length - 1 && index == data[iindex].companyTopInfo.length - 1;
             // return index == this.rankData.length - 1;
             // var index = this.page2.rankSubActive == -1 ? this.page2.rankActive : this.page2.rankLastActive,
             //     data = this.mycompany.voteList,
@@ -1620,6 +1636,10 @@ app = new Vue({
             //     console.log(rank > len ? index == len - 1 : index == len - 2)
             // }
             // return rank > len ? index == len - 1 : index == len - 2
+        },
+        getSearchRankLast:function(pindex,iindex,index){
+            var data = this.page2.rankSearchList;
+            return iindex == data.length - 1 && index == data[iindex].companyTopInfo.length - 1;
         },
         setDataCount:function(count){
             return '0000'.slice((count+'').length)+count
@@ -1914,6 +1934,7 @@ app = new Vue({
                 
             }else{
                 this.page2.rankActive = index;
+                this.page2.rankSearchList = [];
                 if(this.rankAllData[index].length == 0){
                     this.getRankList(index,classify,iindex,this.page2);
                 }
@@ -1993,24 +2014,21 @@ app = new Vue({
                 }
             }
         },
-        setRankList:function(index){
-            var iheight = 746;
-            if(!this.getRankSubType){
-                iheight = 890;
-            }
+        setSearchRankScroll:function(){
+            var iheight = 890;
             var height = iheight+this.heightStatus,
-                data = this.rankAllData[index],
+                data = this.page2.rankSearchList,
                 length = data.length,
+                nameHeight = 0,
                 sublen = 0,
+                index = 3,
                 i = 0;
             for(i = 0; i < length; i++){
                 sublen += data[i].companyTopInfo.length;
+                nameHeight += 47+18+13-28;
             }
-            // if(this.getSelfRanking < length){
-            //     length--;
-            // }
-            console.log(data);
-            // page2
+            nameHeight -= 15;
+            sublen += nameHeight / 146;
             var classname = 'page2__rank--item'+index,
                 elem = $('.'+classname),
                 bar = elem.find('.' + classname + '_bar'),
@@ -2037,6 +2055,120 @@ app = new Vue({
                 }
                 this.scrollData[classname] = {};
             }
+        },
+        setRankList:function(index){
+            var iheight = 746;
+            if(!this.getMineRank){
+                iheight = 890;
+            }
+            var height = iheight+this.heightStatus,
+                data = this.rankAllData[index],
+                length = data.length,
+                nameHeight = 0,
+                sublen = 0,
+                i = 0;
+            for(i = 0; i < length; i++){
+                sublen += data[i].companyTopInfo.length;
+                nameHeight += 47+18+13-28;
+            }
+            nameHeight -= 15;
+            // if(this.getSelfRanking < length){
+            //     length--;
+            // }
+            // page2
+            var classname = 'page2__rank--item'+index,
+                elem = $('.'+classname),
+                bar = elem.find('.' + classname + '_bar'),
+                num = height / 146;
+            elem.children('ul,.'+classname+'_ul').css('top','0');
+            bar.css('top','0');
+
+            if(sublen > num){
+                bar.show();
+                this.scrollData[classname] = new scrollClass({
+                    classname: classname,
+                    height: height,
+                    totalHeight:this.getRem(height),
+                    length:sublen+nameHeight / 146,
+                    one: 146,
+                    space: 0,
+                    number: num
+                });
+            }else{
+                var scrollObj = this.scrollData[classname]
+                bar.hide();
+                if(scrollObj && scrollObj.removeEvent){
+                    scrollObj.removeEvent();
+                }
+                this.scrollData[classname] = {};
+            }
+        },
+        rankSearchEvent:function(){
+            var text = this.page2.rankSearch.trim(),
+                has = [],
+                arr = [],
+                len = 0;
+            if(text){
+                var self = this,
+                    data = null,
+                    i = 0,j = 0;
+                for(i = 0; i < this.rank.length; i++){
+                    data = this.rank[i].list;
+                    for(j = 0; j < data.length; j++){
+                        if(data[j].text.indexOf(text) != -1){
+                            if(has.indexOf(i) == -1){
+                                has.push(i);
+                            }
+                            arr.push(data[j].classify);
+                        }
+                    }
+                }
+                if(arr.length){
+                    for(i = 0; i < has.length; i++){
+                        if(this.rankAllData[has[i]].length == 0){
+                            len++;
+                            this.getRankList(has[i],this.rank[has[i]].classify,-1,this.page2,function(){
+                                len--;
+                                if(len == 0){
+                                    // 加载完成
+                                    self.setSearchRankList(arr);
+                                }
+                            });
+                        }
+                    }
+                    if(len == 0){  // 已获取所有数据
+                        self.setSearchRankList(arr);
+                    }
+                }
+            }else{
+                this.page2.rankSearchList = [];
+                this.page2.rankActive = 0;
+                if(this.rankAllData[0].length == 0){
+                    this.getRankList(0,'ZHL',-1,this.page2);
+                }else{
+                    this.setRankList(0);
+                }
+            }
+        },
+        setSearchRankList:function(arr){
+            var self = this,
+                brr = [],
+                data = null,
+                i = 0, j = 0;
+            for(i = 0; i < this.rankAllData.length; i++){
+                data = this.rankAllData[i];
+                for(j = 0; j < data.length; j++){
+                    if(arr.indexOf(data[j].optionKey) != -1){
+                        brr.push(data[j]);
+                    }
+                }
+            }
+            this.page2.rankActive = -1;
+            this.page2.rankSearchList = brr;
+            this.timeupdate = Date.now();
+            this.$nextTick(function(){
+                self.setSearchRankScroll();
+            });
         },
         getCompanyLogo:function(logo){
             var url = logo;
@@ -2448,7 +2580,7 @@ app = new Vue({
             })
         },
         // 获取排行榜（未完成）
-        getRankList:function(index,classify,iindex,parent){
+        getRankList:function(index,classify,iindex,parent,callback){
             var self = this,
                 url = 'https://activity.lagou.com/activityapi/employer/employerAllTop',
                 data = {
@@ -2461,6 +2593,7 @@ app = new Vue({
                     activityId:20180723
                 };
             }
+            // // 排行榜大类：传值分别是ZHL（综合类）、QUL（区域类）、HYL（行业类）
             $.ajax({
                 type: 'get',
                 url: url,
@@ -2469,72 +2602,21 @@ app = new Vue({
                     if (result.success) {
                         var data = result.content;
                         if(data){
+                            var i = 0;
+                            if(index == 0){
+                                for(i = 0; i < data.length; i++){
+                                    data[i].optionName = '2018拉勾年度'+data[i].optionName;
+                                }
+                            }
                             self.rankAllData[index] = data;
-                            self.$nextTick(function(){
-                                self.setRankList(index);
-                            });
-                            // // 排行榜大类：传值分别是ZHL（综合类）、QUL（区域类）、HYL（行业类）
-                            // var obj = [
-                            //     {  // 综合类  ZHL:
-                            //         xrgz:0, // NDTGZ("xrgz", "年度top雇主"), 
-                            //         zjgz:1  // XRTGZ("zjgz", "新锐top雇主");  // zjgz
-                            //     },
-                            //     {  // 行业类  HYL:
-                            //         dsly:0,  // SALY 电商领域
-                            //         shfw:1,  // SHFW 生活服务
-                            //         yx:2,  // YX 游戏
-                            //         jy:3,  // JY 金融
-                            //         zsff:4,  // ZSFF 知识付费
-                            //         jyu:5,  // JYU 教育
-                            //         wy:6,  // WY 文娱
-                            //         xmt:7,  // XMT 新媒体
-                            //         sj:8,  // SJ 社交
-                            //         yj:9,  // YJ 硬件
-                            //         qyfw:10,  // QYFW 企业服务
-                            //         rgzn:11,  // RGZN 人工智能（AI）
-                            //         qqh:12,  // QQH 全球化
-                            //         other:13,  // OTHER 其他
-                            //     },
-                            //     {  // 区域类  QUL:
-                            //         hb:0,  // HB("hb", "华北地区"), 
-                            //         hd:1,  // HD("hd", "华东地区"), 
-                            //         hn:2   // HN("hn", "华南地区"),
-                            //     }
-                            // ];
-                            
-                            // var list = {},
-                            //     type = '',
-                            //     i = 0; 
-                            // for(i = 0; i < data.length; i++){
-                            //     type = data[i].optionKey;
-                            //     list[type] = data[i].companyTopInfo;
-                            //     // if(!list[type]){
-                            //     //     list[type] = [];   
-                            //     // }
-                            //     // list[type].push(data[i]);
-                            // }
-
-                            // for(i in obj[index]){
-                            //     self.rank[index].list[obj[index][i]].data = list[i];
-                            // }
-
-                            // // if(iindex != -1){
-                            // //     self.rank[index].list[iindex].data = data || [];
-                            // // }else {
-                            // //     self.rank[index].data = data || [];
-                            // // }
-                            // var temp = null,
-                            //     tempIndex = parent.rankActiveIndex != -1 ? parent.rankActiveIndex : 0;
-                            // temp = self.rank[parent.rankActive].list[tempIndex].data;
-                            // // if(parent.rankActiveIndex != -1){
-                            // //     temp = self.rank[parent.rankActive].list[parent.rankActiveIndex].data;
-                            // // }else{
-                            // //     temp = self.rank[parent.rankActive].data;
-                            // // }
-                            // // if(temp){
-                            //     self.rankData = temp || [];
-                            //     self.setRankList();
-                            // // }
+                            if(callback){
+                                callback();
+                            }else{
+                                self.timeupdate = Date.now();
+                                self.$nextTick(function(){
+                                    self.setRankList(index);
+                                });
+                            }
                         }
                     }
                 },

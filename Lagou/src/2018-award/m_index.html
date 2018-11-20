@@ -430,11 +430,9 @@
             loadingSuccess();
         }
     </script>
-    <script src="js/vue.js?v=$version$"></script> 
-    <script src="js/m_index.js?v=$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
-    <script>
+    <script type="text/javascript">
         function share(datas){
             function encode(url) {
                 return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
@@ -520,8 +518,6 @@
             })
         }
     </script>
-    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
-    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
     <script type="text/javascript">
         var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
         //微信分享
@@ -545,5 +541,10 @@
         }
 
     </script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
 </body>
 </html>
