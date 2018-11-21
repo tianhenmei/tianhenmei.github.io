@@ -761,6 +761,9 @@ app = new Vue({
             if (GC.h == window.innerHeight) {
                 $('.page').css('height', window.innerHeight + 'px');
             }
+            setTimeout(function(){
+                alert("blur");
+            },1000)
         },
     }
 })
