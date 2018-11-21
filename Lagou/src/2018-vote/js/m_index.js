@@ -970,13 +970,13 @@ app = new Vue({
             "companyName":"京东集团",
             voteNum:8899,
             voteList:[{
-                ranking:123,
+                ranking:-1,
                 key:0
             },{
-                ranking:1,
+                ranking:-1,
                 key:1
             },{
-                ranking:19,
+                ranking:-1,
                 key:2
             }]
         },
@@ -1598,20 +1598,20 @@ app = new Vue({
             if(!this.getSelfRanking){
                 height = 890;
             }
-            return this.setRem(height+this.heightStatus);
+            return this.setRem(height+this.heightStatus * 2 / 4);
         },
         getSearchRankHeight:function(){
             var height = 890;
-            return this.setRem(height+this.heightStatus);
+            return this.setRem(height+this.heightStatus * 2 / 4);
         },
         getPage2CloseTop:function(){
-            return this.setRem(1060+60+this.heightStatus);
+            return this.setRem(1060+60+this.heightStatus * 3 / 4);
         },
         getSelfRanking:function(){
             var parent = this.page2,
                 index = parent.rankActive,
                 data = this.mycompany.voteList;
-            if(data[index]){
+            if(data[index] && data[index].ranking !== -1){
                 return data[index].ranking;
             }
             return undefined
@@ -1634,7 +1634,7 @@ app = new Vue({
                 active = this.page2.rankActive,
                 i = 0;
             for(i = 0; i < data.length; i++){
-                if(data[i] && data[i].key == active){
+                if(data[i] && data[i].key == active && data[i].ranking !== -1){
                     return true;
                 }
             }
@@ -2112,7 +2112,7 @@ app = new Vue({
         },
         setSearchRankScroll:function(){
             var iheight = 890;
-            var height = iheight+this.heightStatus,
+            var height = iheight+this.heightStatus * 2 / 4,
                 data = this.page2.rankSearchList,
                 length = data.length,
                 nameHeight = 0,
@@ -2184,7 +2184,7 @@ app = new Vue({
             if(!this.getMineRank){
                 iheight = 890;
             }
-            var height = iheight+this.heightStatus,
+            var height = iheight+this.heightStatus * 2 / 4,
                 data = this.rankAllData[index],
                 length = data.length,
                 nameHeight = 0,

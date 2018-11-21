@@ -698,12 +698,14 @@
         <div class="page2__layer" v-show="page2.rankStatus">
             <div class="page-bg"></div>
             <input class="page2__rank__search" type="text" v-model="page2.rankSearch" placeholder="搜索榜单类别"
-                :style="{ top:getFitTop(56,1/4) }"
+                :style="{ top:getFitTop(56,1/8) }"
                 v-on:input="rankSearchEvent"
                 @touchstart.stop="showRankClassify" />
-            <div class="page2__rank__searchicon"></div>
-            <div class="page2__ranksearch--empty" v-show="rankClassifyEmpty">* 您输入的类型错误，请重新输入</div>
-            <div class="page2__ranksearch--list page2__ranksearch--searchLayer" v-show="rankSearchListStatus && !rankClassifyEmpty">
+            <div class="page2__rank__searchicon" :style="{ top:getFitTop(56+19,1/8) }"></div>
+            <div class="page2__ranksearch--empty" v-show="rankClassifyEmpty"
+                :style="{ top:getFitTop(56+58-12,1/8) }">* 您输入的类型错误，请重新输入</div>
+            <div class="page2__ranksearch--list page2__ranksearch--searchLayer" v-show="rankSearchListStatus && !rankClassifyEmpty"
+                :style="{ top:getFitTop(56+58-12,1/8) }">
                 <div class="page2__ranksearch--search">
                     <div class="page2__ranksearch--search_bar_bg" v-show="rankClassifyCopy.length > 6">
                         <div class="page2__ranksearch--search_bar" ref="page2__ranksearch--search_bar"></div>
@@ -716,7 +718,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="page2__center page2__rank clearfix" :style="{ top:getFitTop(69+60,2/4) }">
+            <div class="page2__center page2__rank clearfix" :style="{ top:getFitTop(69+60,1/4) }">
                 <div class="page2__rank--title clearfix">
                     <!-- page2.rankSubActive == -1 &&  -->
                     <div class="icon-02 page2__rank--otitle"
