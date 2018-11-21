@@ -1665,6 +1665,11 @@ app = new Vue({
             this.page3.showVote = true;
             this.page3.scanStatus = true;
             this.searchLayerStatus = true;
+            postEncodingID({
+                "data-lg-tj-id":this.lg,
+                "data-lg-tj-no":"1000" ,
+                "data-lg-tj-cid":"idnull"
+            });
         }
         this.initCreateUserStyle();
         // test

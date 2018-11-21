@@ -754,7 +754,13 @@ app = new Vue({
             setTimeout(function(){
                 self.signupStatus = false;
             },2000);
-        }
+        },
+        inputBlurEvent:function(){
+            // GC.h: 键盘没有弹出时window.innerHeight
+            if (GC.h == window.innerHeight) {
+                $('.page').css('height', window.innerHeight + 'px');
+            }
+        },
     }
 })
 },{}]},{},[1]);

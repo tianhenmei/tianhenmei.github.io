@@ -355,17 +355,17 @@
                 <div class="page6__form__center">
                     <div class="page6__form__one">
                         <div class="page5__icon page6__form__name page6__form__name1"></div>
-                        <input type="text" class="page6__form__input" v-model="signup.name" v-on:input="checkNullEvent('name','您的名称')" />
+                        <input type="text" class="page6__form__input" v-model="signup.name" v-on:input="checkNullEvent('name','您的名称')" v-on:blur="inputBlurEvent" />
                         <div class="page6__form__tips">{{nameTips}}</div>
                     </div>
                     <div class="page6__form__one">
                         <div class="page5__icon page6__form__name page6__form__name2"></div>
-                        <input type="text" class="page6__form__input" v-model="signup.city" v-on:input="checkNullEvent('city','公司所在城市')" />
+                        <input type="text" class="page6__form__input" v-model="signup.city" v-on:input="checkNullEvent('city','公司所在城市')" v-on:blur="inputBlurEvent" />
                         <div class="page6__form__tips">{{cityTips}}</div>
                     </div>
                     <div class="page6__form__one">
                         <div class="page5__icon page6__form__name page6__form__name3"></div>
-                        <input type="text" class="page6__form__input" v-model="signup.company" v-on:input="updateCompanyList" />
+                        <input type="text" class="page6__form__input" v-model="signup.company" v-on:input="updateCompanyList" v-on:blur="inputBlurEvent" />
                         <div class="page6__form__tips">{{companyTips}}</div>
                         <div class="page2__signup--list page2__signup--searchLayer" v-show="signupSearchStatus">
                             <div class="page2__signup--search">
@@ -383,7 +383,7 @@
                     </div>
                     <div class="page6__form__one">
                         <div class="page5__icon page6__form__name page6__form__name4"></div>
-                        <input type="text" class="page6__form__input" v-model="signup.phone" v-on:input="checkPhoneEvent('phone')" />
+                        <input type="text" class="page6__form__input" v-model="signup.phone" v-on:input="checkPhoneEvent('phone')" v-on:blur="inputBlurEvent" />
                         <div class="page6__form__tips">{{phoneTips}}</div>
                     </div>
                     <div class="page6__form__btnParent">
