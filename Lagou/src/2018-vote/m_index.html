@@ -695,7 +695,7 @@
             </svg>-->
         </div>
         <!--排行榜-->
-        <div class="page2__layer" v-show="page2.rankStatus">
+        <div class="page2__layer hide" v-show="page2.rankStatus">
             <div class="page-bg"></div>
             <input class="page2__rank__search" type="text" v-model="page2.rankSearch" placeholder="搜索榜单类别"
                 :style="{ top:getFitTop(56,1/8) }"

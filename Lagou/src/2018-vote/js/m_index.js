@@ -1643,6 +1643,7 @@ app = new Vue({
     },
     mounted:function(){
         this.selectedId = getQueryString('selected') || '';
+        $('.page2__layer').removeClass('hide');
         //音乐
         $('.music-icon').on('click',function(){
             if($('#music')[0].paused){
