@@ -756,6 +756,7 @@ app = new Vue({
             },2000);
         },
         inputBlurEvent:function(){
+            document.body.scrollTop = 0;
             // GC.h: 键盘没有弹出时window.innerHeight
             if (GC.h == window.innerHeight) {
                 $('.page').css('height', window.innerHeight + 'px');
