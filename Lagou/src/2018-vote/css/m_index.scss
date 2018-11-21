@@ -910,18 +910,74 @@ body {
         width:rem(78);
         height:rem(78);
         background-position:rem(-810) rem(-755);
-        @include center(337,1060);
+        @include center(337,1060+60);
     }
     &__search {
         width:rem(451);
         height:rem(38);
         background-position:0 rem(-850);
-        @include center(151,1074);
+        @include center(151,1074+60);
+    }
+    &__ranksearch--empty {
+        width:rem(529-28);
+        line-height:rem(42);
+        padding-top:rem(12+20);
+        padding-bottom:rem(20);
+        padding-left:rem(28);
+        border-radius:0 0 rem(12) rem(12);
+        @include center(113,56+58-12);
+        z-index:2;
+        font-size:rem(26);
+        color: #666;
+        text-align:left;
+        background-color:#fff;
+    }
+    &__ranksearch--empty:before,
+    &__ranksearch--list:before {
+        content:"";
+        width:100%;
+        height:rem(2);
+        background-color:#f1f1f1;
+        @include leftTop(0,12);
+    }
+    &__ranksearch--list {
+        width:rem(529-28);
+        max-height:rem(252);
+        padding-top:rem(12);
+        padding-left:rem(28);
+        border-radius:0 0 rem(12) rem(12);
+        @include center(113,56+58-12);
+        z-index: 10;
+        background-color: #fff;
+        color: #666;
+        .page2__ranksearch--search {
+            overflow:hidden;
+        }
+        .page2__ranksearch--text {
+            line-height:rem(42);
+            font-size:rem(26);
+            text-align:left;
+        }
+        .page2__ranksearch--search_bar_bg {
+            width:rem(6);
+            height:100%;
+            position:absolute;
+            right:0;
+            top:0;
+        }
+        .page2__ranksearch--search_bar {
+            width:100%;
+            border-radius:rem(6);
+            filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr='#a17c2f',endColorStr='#eaca7d',gradientType='0'); 
+            background: -moz-linear-gradient(top, #a17c2f, #eaca7d); 
+            background: -o-linear-gradient(top,#a17c2f, #eaca7d); 
+            background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#a17c2f), to(#eaca7d)); 
+        }
     }
     /*排行榜*/
     &__rank {
         width:rem(645);
-        @include center(53,69);
+        @include center(53,69+60);
         &__search {
             width:rem(529-52);
             height:rem(58);
@@ -933,7 +989,14 @@ body {
             font-size:rem(28.5);
             color:#151414;
             display:block;
-            @include center(113,6);
+            @include center(113,56);
+        }
+        &__searchicon {
+            width:rem(20);
+            height:rem(21);
+            background:url('../images/rank-search-icon.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(113+14,56+19);
         }
         &--title {
             width:rem(660);

@@ -994,6 +994,88 @@ app = new Vue({
             []   // HYL（行业类）
         ],
         timeupdate:Date.now(),
+        rankClassify:[
+            {
+                cn:'2018拉勾年度年度top雇主',
+                en:'xrgz',
+                parent:0
+            },{
+                cn:'2018拉勾年度新锐top雇主',
+                en:'zjgz',
+                parent:0
+            },{
+                cn:'电商领域',
+                en:'dsly',
+                parent:1
+            },{
+                cn:'生活服务',
+                en:'shfw',
+                parent:1
+            },{
+                cn:'游戏',
+                en:'yx',
+                parent:1
+            },{
+                cn:'金融',
+                en:'jy',
+                parent:1
+            },{
+                cn:'知识付费',
+                en:'zsff',
+                parent:1
+            },{
+                cn:'教育',
+                en:'jyu',
+                parent:1
+            },{
+                cn:'文娱',
+                en:'wy',
+                parent:1
+            },{
+                cn:'新媒体',
+                en:'xmt',
+                parent:1
+            },{
+                cn:'社交',
+                en:'sj',
+                parent:1
+            },{
+                cn:'硬件',
+                en:'yj',
+                parent:1
+            },{
+                cn:'企业服务',
+                en:'qyfw',
+                parent:1
+            },{
+                cn:'人工智能（AI）',
+                en:'rgzn',
+                parent:1
+            },{
+                cn:'全球化',
+                en:'qqh',
+                parent:1
+            },{
+                cn:'其他',
+                en:'other',
+                parent:1
+            },{
+                cn:'华北区',
+                en:'hb',
+                parent:2
+            },{
+                cn:'华东区',
+                en:'hd',
+                parent:2
+            },{
+                cn:'华南区',
+                en:'hn',
+                parent:2
+            }
+        ],
+        rankClassifyCopy:[],
+        rankClassifyEmpty:false,
+        rankSearchListStatus:false,
         rank:[
             {  // 综合类
                 list:[
@@ -1336,6 +1418,7 @@ app = new Vue({
             'page2__rank--item2':{},
             'page2__rank--item3':{},
             'page2__signup--search':{},
+            'page2__ranksearch--search':{},
             confirmCompany: false, // 是否选择公司
             requestCompany: '', // 当前请求公司的搜索值
             company: {},
@@ -1522,7 +1605,7 @@ app = new Vue({
             return this.setRem(height+this.heightStatus);
         },
         getPage2CloseTop:function(){
-            return this.setRem(1060+this.heightStatus);
+            return this.setRem(1060+60+this.heightStatus);
         },
         getSelfRanking:function(){
             var parent = this.page2,
@@ -1742,6 +1825,12 @@ app = new Vue({
             this.page2.rankActiveIndex = 0; //-1;
             this.page2.rankSubActive = -1;
             this.page2.rankListStatus = true;
+            // 排行榜搜索内容清空
+            this.rankClassifyCopy = [];
+            this.rankSearchListStatus = false;
+            this.rankClassifyEmpty = false;
+            this.page2.rankSearchList = [];
+            this.page2.rankSearch = "";
             this.getRankList(0,this.rank[0].classify,-1,this.page2);
         },
         showPage2SearchRankEvent:function(){
@@ -1937,6 +2026,8 @@ app = new Vue({
                 this.page2.rankSearchList = [];
                 if(this.rankAllData[index].length == 0){
                     this.getRankList(index,classify,iindex,this.page2);
+                }else{
+                    this.setRankList(index);
                 }
                 // if(rank.data){
                 //     this.rankData = rank.data;
@@ -2056,6 +2147,33 @@ app = new Vue({
                 this.scrollData[classname] = {};
             }
         },
+        setRankSearchScroll:function(){
+            var classname = 'page2__ranksearch--search',
+                elem = $('.'+classname),
+                bar = elem.find('.' + classname + '_bar')
+            elem.children('ul').css('top','0');
+            bar.css('top','0');
+            if(this.rankClassifyCopy.length > 6 ){
+                bar.show();
+                this.scrollData[classname] = new scrollClass({
+                    classname: classname,
+                    height: 252,
+                    totalHeight:this.getRem(252),
+                    length:this.rankClassifyCopy.length,
+                    space: 0,
+                    number: 252 / 42,
+                    one: 42,
+                    fixedHeight: false
+                })
+            }else{
+                var scrollObj = this.scrollData[classname]
+                bar.hide();
+                if(scrollObj && scrollObj.removeEvent){
+                    scrollObj.removeEvent();
+                }
+                this.scrollData[classname] = {};
+            }
+        },
         setRankList:function(index){
             var iheight = 746;
             if(!this.getMineRank){
@@ -2103,52 +2221,91 @@ app = new Vue({
                 this.scrollData[classname] = {};
             }
         },
+        // 修改input内容
         rankSearchEvent:function(){
-            var text = this.page2.rankSearch.trim(),
+            var self = this,
+                text = this.page2.rankSearch.trim(),
                 has = [],
                 arr = [],
                 len = 0;
             if(text){
-                var self = this,
-                    data = null,
-                    i = 0,j = 0;
-                for(i = 0; i < this.rank.length; i++){
-                    data = this.rank[i].list;
-                    for(j = 0; j < data.length; j++){
-                        if(data[j].text.indexOf(text) != -1){
-                            if(has.indexOf(i) == -1){
-                                has.push(i);
-                            }
-                            arr.push(data[j].classify);
-                        }
+                var data = null,
+                    i = 0;
+                for(i = 0; i < this.rankClassify.length; i++){
+                    data = this.rankClassify[i];
+                    if(data.cn.indexOf(text) != -1){
+                        arr.push(data);
                     }
                 }
                 if(arr.length){
-                    for(i = 0; i < has.length; i++){
-                        if(this.rankAllData[has[i]].length == 0){
-                            len++;
-                            this.getRankList(has[i],this.rank[has[i]].classify,-1,this.page2,function(){
-                                len--;
-                                if(len == 0){
-                                    // 加载完成
-                                    self.setSearchRankList(arr);
-                                }
-                            });
-                        }
-                    }
-                    if(len == 0){  // 已获取所有数据
-                        self.setSearchRankList(arr);
-                    }
-                }
-            }else{
-                this.page2.rankSearchList = [];
-                this.page2.rankActive = 0;
-                if(this.rankAllData[0].length == 0){
-                    this.getRankList(0,'ZHL',-1,this.page2);
+                    this.rankClassifyCopy = arr;
+                    this.rankClassifyEmpty = false;
+                    this.timeupdate = Date.now();
+                    this.$nextTick(function(){
+                        self.setRankSearchScroll();
+                    });
                 }else{
-                    this.setRankList(0);
+                    this.rankClassifyCopy = [];
+                    this.rankClassifyEmpty = true;
+                    this.timeupdate = Date.now();
+                    this.$nextTick(function(){
+                        self.setRankSearchScroll();
+                    });
                 }
+            }else {
+                this.rankClassifyCopy = this.rankClassify;
+                this.rankSearchListStatus = true;
+                this.rankClassifyEmpty = false;
+                this.timeupdate = Date.now();
+                this.$nextTick(function(){
+                    self.setRankSearchScroll();
+                });
             }
+            // var text = this.page2.rankSearch.trim(),
+            //     has = [],
+            //     arr = [],
+            //     len = 0;
+            // if(text){
+            //     var self = this,
+            //         data = null,
+            //         i = 0,j = 0;
+            //     for(i = 0; i < this.rank.length; i++){
+            //         data = this.rank[i].list;
+            //         for(j = 0; j < data.length; j++){
+            //             if(data[j].text.indexOf(text) != -1){
+            //                 if(has.indexOf(i) == -1){
+            //                     has.push(i);
+            //                 }
+            //                 arr.push(data[j].classify);
+            //             }
+            //         }
+            //     }
+            //     if(arr.length){
+            //         for(i = 0; i < has.length; i++){
+            //             if(this.rankAllData[has[i]].length == 0){
+            //                 len++;
+            //                 this.getRankList(has[i],this.rank[has[i]].classify,-1,this.page2,function(){
+            //                     len--;
+            //                     if(len == 0){
+            //                         // 加载完成
+            //                         self.setSearchRankList(arr);
+            //                     }
+            //                 });
+            //             }
+            //         }
+            //         if(len == 0){  // 已获取所有数据
+            //             self.setSearchRankList(arr);
+            //         }
+            //     }
+            // }else{
+            //     this.page2.rankSearchList = [];
+            //     this.page2.rankActive = 0;
+            //     if(this.rankAllData[0].length == 0){
+            //         this.getRankList(0,'ZHL',-1,this.page2);
+            //     }else{
+            //         this.setRankList(0);
+            //     }
+            // }
         },
         setSearchRankList:function(arr){
             var self = this,
@@ -3426,6 +3583,39 @@ app = new Vue({
             }else {
                 this.currentIndex = this.companyList.length - 1
                 this.isMoving = false
+            }
+        },
+        showRankClassify:function(){
+            var self = this;
+            if(!this.page2.rankSearch){
+                this.rankClassifyCopy = this.rankClassify;
+            }
+            this.rankSearchListStatus = true;
+            this.timeupdate = Date.now();
+            this.$nextTick(function(){
+                self.setRankSearchScroll();
+            });
+        },
+        setRankClassify:function(one){
+            var self = this,
+                has = [],
+                brr = [],
+                data = null,
+                status = false,
+                len = 0,
+                i = 0, j = 0;
+            this.page2.rankSearch = one.cn;
+            this.rankSearchListStatus = false;
+            if(this.rankAllData[one.parent].length == 0){
+                this.getRankList(one.parent,this.rank[one.parent].classify,-1,this.page2,function(){
+                    // 加载完成
+                    self.rankClassifyCopy = [one];
+                    self.setSearchRankList([one.en]);
+                });
+            }else{
+                // 已获取所有数据
+                self.rankClassifyCopy = [one];
+                self.setSearchRankList([one.en]);
             }
         },
     }
