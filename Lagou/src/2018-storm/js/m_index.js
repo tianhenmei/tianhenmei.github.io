@@ -273,9 +273,9 @@ function backgroundMusic(audio){
 var initialNow = 0,
     initialLast = 0,
     initialCompanyId = 0,
-    mode = "development",// "development",//"production",
-    initialText = '测试',
-    initialPhone = '12345678900',
+    mode = "production",// "development",//"production",
+    initialText = '',
+    initialPhone = '',
     randomIndex = Math.floor(Math.random() * 10);
 
 // 音乐
