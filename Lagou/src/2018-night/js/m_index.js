@@ -141,12 +141,12 @@
             value: function _pageMoveCompute(self) {
                 var od = "down",
                     now = Date.now();
-                if(now - firstTime < 3000){
-                    self.data.isMoving = false;
-                    self.data.clickStatus = false;
-                    app.$data.flipStatus = false;
-                    return;
-                }
+                // if(now - firstTime < 3000){
+                //     self.data.isMoving = false;
+                //     self.data.clickStatus = false;
+                //     app.$data.flipStatus = false;
+                //     return;
+                // }
                 switch(self.data.now){
                     case 0:
                         self.data.last = self.data.now;
@@ -265,37 +265,42 @@
                 ],
                 style:[
                     {
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },{  // 4
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },{  // 7
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },{
-                        line:null,
+                        line:[],
                         list:[]
                     },
                 ]
             },
             page1:{
-                status:'in'
+                status:'in',
+                animated:false,
+                time:{
+                    x:0,
+                    y:0
+                },
             },
             page2:{
                 lastCard:0,
@@ -452,7 +457,14 @@
                 return f+'-'+l;
             },
             setPage0DownStatus:function(status){
+                var self = this;
                 this.page0.down = status;
+                if(!self.animated){
+                    self.animated = true;
+                    setTimeout(function(){
+                        self.updateNum();
+                    },5000);
+                }
             },
             initPage0Ani:function(){
                 var words = this.page0.words,
@@ -463,23 +475,41 @@
                     i = 0,
                     j = 0;
                 for(i = 0; i < words.length; i++){
-                    this.tempDelay = Math.floor(Math.random() * 8);
                     height = GC.h/this.fontSize*(1080 / 16)+400;
-                    transition = 'all '+(40 - 4 * i) / 10+'s '+(4 * i + this.tempDelay) / 10+'s linear';
-                    this.page0.style[i].line = { 
-                        transition: transition,
-                        textShadow: '0 0 '+this.setRem(20)+' #fff',
-                        transform: 'translate3d(0,'+this.setRem(height - (height / 9 * 12 - height)  - arr[i] + 140 + 75 * 3 + 30)+',0)'
-                    };
                     for(j = 0; j < words[i].length; j++){
+                        this.tempDelay = Math.floor(Math.random() * 8);
+                        transition = 'all '+(40 - 4 * i) / 10+'s '+(4 * i + this.tempDelay) / 10+'s linear';
+                        this.page0.style[i].line.push({ 
+                            transition: transition,
+                            textShadow: '0 0 '+this.setRem(20)+' #fff',
+                            transform: 'translate3d(0,'+this.setRem(height - (height / 9 * 12 - height)  - arr[i] + 140 + 75 * 3 + 30)+',0)'
+                        });
                         this.page0.style[i].list.push({
                             opacity:'0.'+(Math.floor(Math.random() * 100)),
                             transition: transition,
                             transform: 'rotate('+(Math.floor(Math.random() * 360))+'deg) '+
-                                'translate3d(0,'+Math.floor(Math.random() * 10)+'px,0)'
+                                'translate3d(0,'+Math.floor(Math.random() * 50)+'px,0)'
                         });
                     }
                 }
+            },
+            updateNum:function(){
+                function animate () {
+                    if (TWEEN.update()) {
+                        requestAnimationFrame(animate)
+                    }
+                }
+                this.page1.time.x = 0;
+                this.page1.time.y = 0;
+                new TWEEN.Tween(this.page1.time)
+                    .delay(1500)
+                    .to({
+                        x:18,
+                        y:30
+                    }, 1000)
+                    .start();
+
+                animate();
             },
             getPage2CardClass:function(index){
                 // 初始状态，直接显示
@@ -508,9 +538,11 @@
                 return '';
             },
             page1ToPage2:function(){
-                PM.data.last = 1;
-                PM.data.now = 2;
-                PM.pageMove('down',PM);
+                setTimeout(function(){
+                    PM.data.last = 1;
+                    PM.data.now = 2;
+                    PM.pageMove('down',PM);
+                },1000);
             },
             initPage2FlipEvent:function(){
                 var elem = this.$refs['page2'],
