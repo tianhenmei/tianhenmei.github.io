@@ -115,10 +115,13 @@
     <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page-bg"></div>
-        <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''">
-            <div class="page0__text outTopMoveIn duration3-0 delay0-5">
+        <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''"
+            @touchstart="page0TouchStart"
+            @touchmove="page0TouchMove"
+            @touchend="page0TouchEnd">
+            <div class="page0__text"><!-- outTopMoveIn duration3-0 delay0-5-->
                 <div v-for="(one,index) in page0.words"
-                    :class="'page0__text--0'+(index+1)+(' delay'+getDelayTime(5,2,index))+(page0.down ? '' : ' littleBottomIn duration1-0')">
+                    :class="'page0__text--0'+(index+1)+(' delay'+getDelayTime(5,4,index))+(page0.down ? '' : ' littleBottomIn duration2-0')">
                     <span class="page0__text--one" v-for="(item,iindex) in one"
                         :style="page0.down ? page0.style[index].line[iindex] : null">
                         <span class="page0__text--oneCenter"
@@ -134,6 +137,13 @@
                 <div class="page0__text--07 littleBottomIn duration1-0 delay1-7">而职场是一座奇幻森林</div>
                 <div class="page0__text--08 littleBottomIn duration1-0 delay1-9">当你拥抱所有“不确定”</div>
                 <div class="page0__text--09 littleBottomIn duration1-0 delay2-1">就能把遇见变为奇遇</div> -->
+            </div>
+            <div class="page0__line opacityChange" 
+                :class="page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0'"
+                :style="{top:getFitTop(1240,1)}"></div>
+            <div class="page0__btnParent opacityChange delay2-0" :style="{top:getFitTop(1462,1)}">
+                <div class="page0__btn" :class="(page0.moveBtnStatus ? 'btnMoveStart' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')"
+                    :style="page0.btnStyle"></div>
             </div>
             <!--<div class="page0__move" :class="page0[page0.status].move">
                 <div class="page0__move--center moveTopInfinite delay1-5"></div>
@@ -160,8 +170,10 @@
                 <div class="page1__item page1__item3"></div>
                 <div class="icon page1__item4"></div>
                 <div class="page1__item page1__item5"></div>
-                <div class="icon page1__item0"></div>
-                <div class="icon page1__item0__bubble"></div>
+                <div class="icon page1__item0 rightIn duration1-0 delay1-0"></div>
+                <div class="page1__item0__bubbleParent zoomIn origin100-100 delay2-0">
+                    <div class="icon page1__item0__bubble zoomInfinite origin100-100 delay2-8"></div>
+                </div>
                 <div class="icon page1__item6"></div>
                 <div class="icon page1__item7"></div>
                 <!-- 中间 -->
@@ -201,23 +213,26 @@
                     <div class="page1__item page1__item28"></div>
                 </div>
                 <!-- 中间: 底边 -->
-                <div class="page1__icon01 page1__item41"
-                    :style="{top:getFitTop(981-3+42,2/8)}"></div>
+                <!-- 手 -->
+                <div class="page1__item41Parent" :style="{top:getFitTop(981-3+42-300,2/8)}">
+                    <div class="page1__icon01 page1__item41"></div><!-- handRightTopIn delay1-0-->
+                </div>
+
+                <div class="page1__item page1__item27"
+                    :style="{top:getFitTop(834,2/8)}"></div>
+                <!-- 水立方 -->
                 <div class="page1__item page1__item42"
                     :style="{top:getFitTop(1072,2/8)}"></div>
-                <div class="page1__icon01 page1__item62"
-                    :style="{top:getFitTop(1158-3,2/8)}"></div>
-                <div class="page1__icon01 page1__item63"
-                    :style="{top:getFitTop(1088-3,2/8)}"></div>
-
                 <div class="page1__item page1__item43"
                     :style="{top:getFitTop(1149,2/8)}"></div>
                 <div class="page1__icon01 page1__item44"
                     :style="{top:getFitTop(1155-3,2/8)}"></div>
                 <div class="page1__icon01 page1__item45"
                     :style="{top:getFitTop(891-3,2/8)}"></div>
-                <div class="page1__item page1__item27"
-                    :style="{top:getFitTop(834,2/8)}"></div>
+                <div class="page1__icon01 page1__item62"
+                    :style="{top:getFitTop(1158-3,2/8)}"></div>
+                <div class="page1__icon01 page1__item63"
+                    :style="{top:getFitTop(1088-3,2/8)}"></div>
                     <!-- 底边 -->
                 <div class="page1__icon01 page1__item46"
                     :style="{bottom:getFitTop(408-3,3/8)}"></div>
@@ -468,7 +483,7 @@
             <div class="icon page1__aicon littleTopIn delay1-0"
                 :style="{top:getFitTop(1261,2/8)}"></div>
             <div class="page1__inLayer leftLittleIn delay1-0"
-                :style="{top:getFitTop(1328,2/8)}"
+                :style="{top:getFitTop(1328+(106-95)/2,2/8)}"
                 :data-lg-tj-id="lg" 
                 data-lg-tj-no="0001" 
                 data-lg-tj-cid="null"
@@ -480,11 +495,12 @@
             <div class="page2__center">
                 <div class="page2__list">
                     <div class="page2__one" ref="page2__one--0" :class="getPage2CardClass(0)">
-                        <div class="page2__card__bg" 
-                            :class="page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay0-5' : ''"
+                        <!-- :class="page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay0-5' : ''" -->
+                        <div class="page2__card__bg opacityChange delay1-0"
                             :style="{height:getFitTop(1535,1)}"></div>
+                        <!-- page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay1-0' : '' -->
                         <div class="page2__card__bg02"
-                            :class="page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay1-0' : ''" 
+                            :class="'opacityChange delay1-5'" 
                             :style="{height:getFitTop(1697,1)}"></div>
                         <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}"
                             :class="page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : ''">
@@ -528,21 +544,22 @@
                         </div>
                     </div>
                     <div class="page2__one" ref="page2__one--1" :class="getPage2CardClass(1)">
-                        <div class="page2__card__bg" :style="{height:getFitTop(1535,1)}"></div>
-                        <div class="page2__card__bg02" :style="{height:getFitTop(1697,1)}"></div>
+                        <div class="page2__card__bg opacityChange delay1-0" :style="{height:getFitTop(1535,1)}"></div>
+                        <div class="page2__card__bg02 opacityChange delay1-5" :style="{height:getFitTop(1697,1)}"></div>
                         <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}">
                             TOP HR奇遇派对
                         </div>
                     </div>
                     <div class="page2__one" ref="page2__one--2" :class="getPage2CardClass(2)">
-                        <div class="page2__card__bg" :style="{height:getFitTop(1535,1)}"></div>
-                        <div class="page2__card__bg02" :style="{height:getFitTop(1697,1)}"></div>
+                        <div class="page2__card__bg opacityChange delay1-0" :style="{height:getFitTop(1535,1)}"></div>
+                        <div class="page2__card__bg02 opacityChange delay1-5" :style="{height:getFitTop(1697,1)}"></div>
                         <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}">
                             尖叫小剧场
                         </div>
                     </div>
                     <div class="page2__card__btnbg opacityChange delay0-5" :style="{top:getFitTop(1535,1)}">
                         <div class="page2__card__btn"></div>
+                        <div class="page2__card__btnline widthChange delay1-0"></div>
                     </div>
                 </div>
             </div>

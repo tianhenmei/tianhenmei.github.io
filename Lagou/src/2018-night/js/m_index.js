@@ -147,8 +147,8 @@
                 //     app.$data.flipStatus = false;
                 //     return;
                 // }
-                switch(self.data.now){
-                    case 0:
+                switch(true){  // self.data.now
+                    case false:
                         self.data.last = self.data.now;
                         if (self.data.direction.y == "up") {
                             self.data.now += 1;
@@ -252,6 +252,12 @@
                     text9:"littleBottomIn duration1-0 delay2-1"
                 },
                 down:false,
+                moveEndStatus:false,
+                moveBtnStatus:true,
+                firstMove:false,
+                start:0,
+                end:0,
+                btnStyle:null,
                 words:[
                     ['你','的','生','活','中'],
                     ['已','经','多','久','没','有','奇','遇'],
@@ -407,6 +413,7 @@
             },
         },
         mounted:function(){
+            var self = this;
             //音乐
             $('.music-icon').on('click',function(){
                 if($('#music')[0].paused){
@@ -428,6 +435,12 @@
             this.initPage0Ani();
             // 给page2 的卡片添加滑动翻事件
             this.initPage2FlipEvent();
+            if(mode == 'development' && initialNow == 1){
+                self.animated = true;
+                setTimeout(function(){
+                    self.updateNum();
+                },5000);
+            }
         },
         methods:{
             noop:function(){},
@@ -470,6 +483,7 @@
                 var words = this.page0.words,
                     style = { },
                     arr = [0,84,211,296,376,504,587,715,798],
+                    sign = [1,-1],
                     transition = '',
                     height = 0,
                     i = 0,
@@ -482,7 +496,7 @@
                         this.page0.style[i].line.push({ 
                             transition: transition,
                             textShadow: '0 0 '+this.setRem(20)+' #fff',
-                            transform: 'translate3d(0,'+this.setRem(height - (height / 9 * 12 - height)  - arr[i] + 140 + 75 * 3 + 30)+',0)'
+                            transform: 'translate3d('+(sign[Math.floor(Math.random() * 2)] * Math.floor(Math.random() * 150))+'px,'+this.setRem(height - (height / 9 * 12 - height)  - arr[i] + 140 + 75 * 3 + 30)+',0)'
                         });
                         this.page0.style[i].list.push({
                             opacity:'0.'+(Math.floor(Math.random() * 100)),
@@ -493,6 +507,67 @@
                     }
                 }
             },
+            page0TouchStart:function(e){
+                var touch = e.targetTouches[0];
+                if(this.page0.moveBtnStatus){
+                    this.page0.moveBtnStatus = false;
+                    this.page0.start = touch.clientY;
+                }
+            },
+            page0TouchMove:function(e){
+                var touch = e.targetTouches[0],
+                    top = this.getRem(216+73/2),
+                    gap = this.page0.start - this.page0.end;
+                this.page0.end = touch.clientY;
+                if(!this.page0.moveBtnStatus && this.page0.start && this.page0.end){
+                    if(gap > 0){
+                        this.page0.btnStyle = {
+                            transform:'translate3d(0,'+(-(gap > top ? top : gap))+'px,0)'
+                        };
+                    }else{
+                        this.page0.btnStyle = {
+                            transform:'translate3d(0,0,0)'
+                        };
+                    }
+                }
+            },
+            page0TouchEnd:function(e){
+                var top = this.getRem(216+73/2),
+                    gap = this.page0.start - this.page0.end;
+                if(this.page0.start && this.page0.end){
+                    if(gap > 0){
+                        if(gap < top * 0.6){
+                            this.page0.moveBtnStatus = true;
+                            this.page0.btnStyle = null;
+                        }else {
+                            this.page0.btnStyle = {
+                                transform:'translate3d(0,'+(-top)+'px,0)'
+                            };
+                            this.page0.moveEndStatus = true;
+                            PM.data.last = 0;
+                            PM.data.now = 1;
+                            PM.pageMove('down',PM);
+                            postEncodingID({
+                                "data-lg-tj-id":this.lg,
+                                "data-lg-tj-no":"0002" ,
+                                "data-lg-tj-cid":"idnull"
+                            });
+                        }
+                    }else{
+                        this.page0.moveBtnStatus = true;
+                        this.page0.btnStyle = null;
+                        this.page0.btnStyle = {
+                            transform:'translate3d(0,0,0)'
+                        };
+                    }
+                }else{
+                    this.page0.moveBtnStatus = true;
+                    this.page0.btnStyle = null;
+                }   
+                this.page0.firstMove = true;
+                this.page0.start = 0;
+                this.page0.end = 0;
+            },
             updateNum:function(){
                 function animate () {
                     if (TWEEN.update()) {
@@ -502,7 +577,7 @@
                 this.page1.time.x = 0;
                 this.page1.time.y = 0;
                 new TWEEN.Tween(this.page1.time)
-                    .delay(1500)
+                    .delay(2000)
                     .to({
                         x:18,
                         y:30
@@ -520,15 +595,15 @@
                     // 如果是向后翻
                     if(this.page2.lastCard < this.page2.activeCard){
                         if(index == this.page2.lastCard){
-                            return 'flipCardLast';
+                            return 'cutCardLast';//'flipCardLast';
                         }else if(index == this.page2.activeCard){
-                            return 'flipCardNow';
+                            return '';// return 'flipCardNow';
                         }
                     }else{
                         if(index == this.page2.lastCard){
-                            return 'flipCardBLast';
+                            return 'cutCardBLast';// return 'flipCardBLast';
                         }else if(index == this.page2.activeCard){
-                            return 'flipCardBNow';
+                            return 'active-card';// return 'flipCardBNow';
                         }
                     }
                 }else if(index == this.page2.activeCard){
@@ -538,11 +613,11 @@
                 return '';
             },
             page1ToPage2:function(){
-                setTimeout(function(){
+                // setTimeout(function(){
                     PM.data.last = 1;
                     PM.data.now = 2;
                     PM.pageMove('down',PM);
-                },1000);
+                // },1000);
             },
             initPage2FlipEvent:function(){
                 var elem = this.$refs['page2'],
@@ -587,7 +662,7 @@
                         self.page2.activeCard = self.page2.activeCard - 1;
                         setTimeout(function(){
                             self.page2.isMoving = false;
-                        },500);
+                        },1500);
                     },200);
                 }
             },
