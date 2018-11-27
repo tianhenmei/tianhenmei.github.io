@@ -43,7 +43,7 @@
     // }
     // 3: 报名成功，展示公司页
     // test
-    var initialNow = 0,
+    var initialNow = 1,
         initialLast = 0,
         mode = "development";// "development",//"production",
     
@@ -329,10 +329,10 @@
                             paddingRight:setRem(314)
                         },
                         theme:'《世界上没有哪个方向是一定对的》',
-                        imgAni:'rightIn duration1-0 delay1-5',
-                        infoAni:'leftIn duration1-0 delay1-5'
+                        imgAni:'littleBottomIn duration1-0 delay1-5',
+                        infoAni:'littleBottomIn duration1-0 delay1-5'
                     },{
-                        img:'images/page2-card-guest02.png',
+                        img:'images/page2-card-guest04.png',
                         title:'拉勾·超级CEO',
                         icon:{
                             width:setRem(466),
@@ -346,8 +346,8 @@
                             paddingLeft:setRem(396)
                         },
                         theme:'《拥抱变化，职场会有奇遇》',
-                        imgAni:'leftIn duration1-0 delay1-5',
-                        infoAni:'rightIn duration1-0 delay1-5'
+                        imgAni:'littleBottomIn duration1-0 delay1-7',
+                        infoAni:'littleBottomIn duration1-0 delay1-7'
                     },{
                         img:'images/page2-card-guest02.png',
                         title:'拉勾·运营之光',
@@ -363,10 +363,10 @@
                             paddingRight:setRem(365)
                         },
                         theme:'《如何在不确定中成就自己》',
-                        imgAni:'rightIn duration1-0 delay1-5',
-                        infoAni:'leftIn duration1-0 delay1-5'
+                        imgAni:'littleBottomIn duration1-0 delay1-9',
+                        infoAni:'littleBottomIn duration1-0 delay1-9'
                     },{
-                        img:'images/page2-card-guest02.png',
+                        img:'images/page2-card-guest05.png',
                         title:'拉勾·心理大师',
                         icon:{
                             width:setRem(466),
@@ -380,8 +380,8 @@
                             paddingLeft:setRem(335)
                         },
                         theme:'《不要让自己成为你的屏障》',
-                        imgAni:'leftIn duration1-0 delay1-5',
-                        infoAni:'rightIn duration1-0 delay1-5'
+                        imgAni:'littleBottomIn duration1-0 delay2-1',
+                        infoAni:'littleBottomIn duration1-0 delay2-1'
                     },{
                         img:'images/page2-card-guest03.png',
                         title:'拉勾·人才发展专家',
@@ -397,8 +397,40 @@
                             paddingRight:setRem(262)
                         },
                         theme:'《如何在不确定中成就自己》',
-                        imgAni:'rightIn duration1-0 delay1-5',
-                        infoAni:'leftIn duration1-0 delay1-5'
+                        imgAni:'littleBottomIn duration1-0 delay2-3',
+                        infoAni:'littleBottomIn duration1-0 delay2-3'
+                    }
+                ],
+                party:[
+                    {
+                        indexPosition:'0 '+setRem(-280),
+                        movePosition:setRem(-630)+' '+setRem(-280),
+                        info:[
+                            '阿里、爱奇艺、360、京东、百度...',
+                            '顶级互联网好公司齐聚，',
+                            '争夺年度TOP雇主光环'
+                        ]
+                    },{
+                        indexPosition:setRem(-210)+' '+setRem(-280),
+                        movePosition:setRem(-700)+' '+setRem(-280),
+                        info:[
+                            '200+大厂HRD在专属区域，',
+                            '期待与所有职场人面对面直聊'
+                        ]
+                    },{
+                        indexPosition:setRem(-420)+' '+setRem(-280),
+                        movePosition:setRem(-770)+' '+setRem(-280),
+                        info:[
+                            '2018拉勾年度TOP雇主将现身红毯，',
+                            '绽放领先企业荣耀'
+                        ]
+                    }
+                ],
+                theater:[
+                    {
+                        pic:'images/page2-card03-img01.png'
+                    },{
+                        pic:'images/page2-card03-img02.png'
                     }
                 ]
             }
@@ -484,25 +516,29 @@
                     style = { },
                     arr = [0,84,211,296,376,504,587,715,798],
                     sign = [1,-1],
+                    len = 0,
+                    dir = 1,
                     transition = '',
                     height = 0,
                     i = 0,
                     j = 0;
                 for(i = 0; i < words.length; i++){
                     height = GC.h/this.fontSize*(1080 / 16)+400;
-                    for(j = 0; j < words[i].length; j++){
+                    len = words[i].length;
+                    for(j = 0; j < len; j++){
                         this.tempDelay = Math.floor(Math.random() * 8);
                         transition = 'all '+(40 - 4 * i) / 10+'s '+(4 * i + this.tempDelay) / 10+'s linear';
+                        dir = j < len / 2 ? -1 : j > len / 2 ? 1 : 0;
                         this.page0.style[i].line.push({ 
                             transition: transition,
                             textShadow: '0 0 '+this.setRem(20)+' #fff',
-                            transform: 'translate3d('+(sign[Math.floor(Math.random() * 2)] * Math.floor(Math.random() * 150))+'px,'+this.setRem(height - (height / 9 * 12 - height)  - arr[i] + 140 + 75 * 3 + 30)+',0)'
+                            transform: 'translate3d('+(dir * Math.floor(Math.random() * 150))+'px,'+this.setRem(height / 15 * 12  - arr[i] + 140 + 75 * 3 + 30)+',0)'
                         });
                         this.page0.style[i].list.push({
                             opacity:'0.'+(Math.floor(Math.random() * 100)),
                             transition: transition,
                             transform: 'rotate('+(Math.floor(Math.random() * 360))+'deg) '+
-                                'translate3d(0,'+Math.floor(Math.random() * 50)+'px,0)'
+                                'translate3d(0,0,0)'
                         });
                     }
                 }
@@ -586,6 +622,29 @@
 
                 animate();
             },
+            getPage2CardParentClass:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
+                    
+                }else if(this.page2.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page2.lastCard < this.page2.activeCard){
+                        if(index == this.page2.lastCard){
+                            return 'cutCardParentShake';
+                        }else if(index < this.page2.lastCard){
+                            return 'hide';
+                        }
+                    }else{
+                        if(index == this.page2.lastCard){
+                            return 'cutCardParentShakeBack';
+                        }else if(index < this.page2.lastCard){
+                            return 'hide';
+                        }
+                    }
+                }
+                return '';
+            },
             getPage2CardClass:function(index){
                 // 初始状态，直接显示
                 if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
@@ -612,12 +671,36 @@
                 }
                 return '';
             },
+            getPage2CardTicketClass:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
+                    
+                }else if(this.page2.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page2.lastCard < this.page2.activeCard){
+                        if(index == this.page2.lastCard){
+                            return 'cutCardTicketShake';
+                        }
+                    }else{
+                        if(index == this.page2.lastCard){
+                            return 'cutCardTicketShakeBack';
+                        }
+                    }
+                }
+                return '';
+            },
             page1ToPage2:function(){
                 // setTimeout(function(){
                     PM.data.last = 1;
                     PM.data.now = 2;
                     PM.pageMove('down',PM);
                 // },1000);
+                var one = this.$refs['page2__li--0'];
+                one.className += ' hide';
+                setTimeout(function(){
+                    one.className = one.className.replace(/( hide)/g,'');
+                },1000);
             },
             initPage2FlipEvent:function(){
                 var elem = this.$refs['page2'],
@@ -656,11 +739,11 @@
                     one = this.$refs['page2__one--'+(this.page2.activeCard - 1)];
                     one.className += ' hide';
                     setTimeout(function(){
-                        one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = true;
                         self.page2.lastCard = self.page2.activeCard;
                         self.page2.activeCard = self.page2.activeCard - 1;
                         setTimeout(function(){
+                            one.className = one.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
                         },1500);
                     },200);
@@ -671,16 +754,19 @@
                     len = 3,
                     one = null;
                 if(this.page2.activeCard < len - 1){
-                    one = this.$refs['page2__one--'+(this.page2.activeCard + 1)];
+                    one = this.$refs['page2__li--'+(this.page2.activeCard + 1)];
                     one.className += ' hide';
                     setTimeout(function(){
-                        one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = true;
                         self.page2.lastCard = self.page2.activeCard;
                         self.page2.activeCard = self.page2.activeCard + 1;
+                        // setTimeout(function(){
+                        //      one.className = one.className.replace(/( hide)/g,'');
+                        // },1000);
                         setTimeout(function(){
+                            one.className = one.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
-                        },500);
+                        },1500);
                     },200);
                 }
             }
