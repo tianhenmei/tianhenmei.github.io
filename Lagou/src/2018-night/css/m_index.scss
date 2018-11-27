@@ -90,7 +90,12 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#music,#loading-num,#loading__num),
+[id]:not(#app,#loading,#music,#loading-num,#loading__num){
+    width:0!important;
+    height:0!important;
+    opacity:0!important;
+    display:none!important;
+}
 iframe {
     width:0!important;
     height:0!important;
@@ -301,6 +306,11 @@ body {
 .page1__icon02 {
     background:url('../images/page1-icon02.png') no-repeat 0 0;
     background-size:rem(1024) rem(1024);
+}
+.page1__part {
+    background:url('../images/page1-part.png') no-repeat 0 0;
+    background-size:rem(500) rem(6000);
+    position:absolute;
 }
 .page2__icon {
     background:url('../images/page2-icon.png') no-repeat 0 0;
@@ -673,7 +683,7 @@ body {
     &__item42 {
         width:rem(802);
         height:rem(268);
-        background-image:url('../images/page1-item42.png');
+        // background-image:url('../images/page1-item42.png');
         @include center(386,1072);
     }
     &__item43 {
@@ -963,9 +973,21 @@ body {
     &__title {
         width:rem(828);
         height:rem(263);
-        background:url('../images/page1-title-01.png') no-repeat center top;
-        background-size:100% 100%;
+        // background:url('../images/page1-title-01.png') no-repeat center top;
+        // background-size:100% 100%;
         @include center(119,644);
+        &__center {
+            width:rem(720);
+            height:rem(220);
+            overflow:hidden;
+            @include leftTop(73-11,6-2);
+        }
+        &__content {
+            width:rem(720);
+            height:rem(3520);
+            background:url('../images/page1-titlegif.png') no-repeat center top;
+            background-size:100%;
+        }
     }
     // page1__wave
     // &__wave {
@@ -1006,6 +1028,61 @@ body {
         transform:scale3d(0.2526,0.2526,0.2526);
     }
 }
+.page1__part0 { width:rem(42); height:rem(90); left:rem(795-10); top:rem(177-10); background-position:0 0;}
+.page1__part1 { left:rem(615-10); top:rem(217-10); width:rem(70); height:rem(60); background-position:0 rem(-100)}
+.page1__part2 { left:rem(655-10); top:rem(217-10); width:rem(115); height:rem(60); background-position:0 rem(-180)}
+.page1__part3 { left:rem(646-10); top:rem(128-10); width:rem(116); height:rem(130); background-position:0 rem(-250)}
+.page1__part4 { left:rem(646-10); top:rem(90-10); width:rem(102); height:rem(82); background-position:0 rem(-380)}
+.page1__part5 { left:rem(720-10); top:rem(102-10); width:rem(72); height:rem(50); background-position:0 rem(-470)}
+.page1__part6 { left:rem(724-10); top:rem(115-10); width:rem(72); height:rem(122); background-position:0 rem(-520)}
+.page1__part7 { left:rem(724-10); top:rem(179-10); width:rem(100); height:rem(98); background-position:0 rem(-650)}
+.page1__part8 { left:rem(786-10); top:rem(210-10); width:rem(38); height:rem(60); background-position:0 rem(-750)}
+.page1__part9 { left:rem(740-10); top:rem(177-10); width:rem(85); height:rem(56); background-position:0 rem(-820)}
+.page1__part10 { left:rem(740-10); top:rem(115-10); width:rem(92); height:rem(90); background-position:0 rem(-880) }
+.page1__part11 { left:rem(351-10); top:rem(0-10); width:rem(92); height:rem(72); background-position:0 rem(-970); }
+.page1__part12 { left:rem(351-10); top:rem(35-10); width:rem(90); height:rem(110); background-position:0 rem(-1050) }
+.page1__part13 { left:rem(351-10); top:rem(98-10); width:rem(88); height:rem(90); background-position:0 rem(-1170); }
+.page1__part14 { left:rem(351-10); top:rem(158-10); width:rem(50); height:rem(80); background-position:0 rem(-1270); }
+.page1__part15 { left:rem(351-10); top:rem(199-10); width:rem(112); height:rem(92); background-position:0 rem(-1355); }
+.page1__part16 { left:rem(351-10); top:rem(0-10); width:rem(154); height:rem(72); background-position:0 rem(-1456) }
+.page1__part17 { left:rem(377-10); top:rem(98-10); width:rem(94); height:rem(135); background-position:0 rem(-1530); }
+.page1__part18 { left:rem(417-10); top:rem(158-10); width:rem(70); height:rem(102); background-position:0 rem(-1670); }
+.page1__part19 { left:rem(429-10); top:rem(205-10); width:rem(116); height:rem(80); background-position:0 rem(-1775); }
+.page1__part20 { left:rem(462-10); top:rem(102-10); width:rem(120); height:rem(132); background-position:0 rem(-1860); }
+.page1__part21 { left:rem(432-10); top:rem(102-10); width:rem(105); height:rem(135); background-position:0 rem(-2000); }
+.page1__part22 { left:rem(417-10); top:rem(35-10); width:rem(132); height:rem(104); background-position:0 rem(-2140); }
+.page1__part23 { left:rem(512-10); top:rem(48-10); width:rem(112); height:rem(106); background-position:0 rem(-2250); }
+.page1__part24 { left:rem(544-10); top:rem(126-10); width:rem(100); height:rem(120); background-position:0 rem(-2360); }
+.page1__part25 { left:rem(504-10); top:rem(199-10); width:rem(138); height:rem(86); background-position:0 rem(-2486); }
+.page1__part26 { left:rem(594-10); top:rem(68-10); width:rem(108); height:rem(81); background-position:0 rem(-2578); }
+.page1__part27 { left:rem(594-10); top:rem(124-10); width:rem(108); height:rem(122); background-position:0 rem(-2660); }
+.page1__part28 { left:rem(317-10); top:rem(0-10); width:rem(60); height:rem(74); background-position:0 rem(-2785); }
+.page1__part29 { left:rem(328-10); top:rem(35-10); width:rem(52); height:rem(210); background-position:0 rem(-2862); }
+.page1__part30 { left:rem(290-10); top:rem(152-10); width:rem(86); height:rem(90); background-position:0 rem(-3075); }
+.page1__part31 { left:rem(304-10); top:rem(202-10); width:rem(72); height:rem(88); background-position:0 rem(-3170); }
+.page1__part32 { left:rem(309-10); top:rem(217-10); width:rem(69); height:rem(74); background-position:0 rem(-3265); }
+.page1__part33 { left:rem(256-10); top:rem(202-10); width:rem(78); height:rem(90); background-position:0 rem(-3342); }
+.page1__part34 { left:rem(244-10); top:rem(168-10); width:rem(84); height:rem(118); background-position:0 rem(-3436); }
+.page1__part35 { left:rem(244-10); top:rem(152-10); width:rem(68); height:rem(86); background-position:0 rem(-3560); }
+.page1__part36 { left:rem(246-10); top:rem(72-10); width:rem(68); height:rem(117); background-position:0 rem(-3648); }
+.page1__part37 { left:rem(283-10); top:rem(72-10); width:rem(66); height:rem(119); background-position:0 rem(-3770); }
+.page1__part38 { left:rem(283-10); top:rem(41-10); width:rem(75); height:rem(134); background-position:0 rem(-3894); }
+.page1__part39 { left:rem(230-10); top:rem(12-10); width:rem(115); height:rem(86); background-position:0 rem(-4032); }
+.page1__part40 { left:rem(317-10); top:rem(41-10); width:rem(43); height:rem(134); background-position:0 rem(-4120); }
+.page1__part41 { left:rem(176-10); top:rem(214-10); width:rem(102); height:rem(70); background-position:0 rem(-4255); }
+.page1__part42 { left:rem(182-10); top:rem(152-10); width:rem(90); height:rem(99); background-position:0 rem(-4326); }
+.page1__part43 { left:rem(163-10); top:rem(68-10); width:rem(111); height:rem(127); background-position:0 rem(-4430); }
+.page1__part44 { left:rem(199-10); top:rem(53-10); width:rem(75); height:rem(122); background-position:0 rem(-4560); }
+.page1__part45 { left:rem(123-10); top:rem(102-10); width:rem(67); height:rem(77); background-position:0 rem(-4685); }
+.page1__part46 { left:rem(163-10); top:rem(153-10); width:rem(70); height:rem(98); background-position:0 rem(-4765); }
+.page1__part47 { left:rem(94-10); top:rem(228-10); width:rem(108); height:rem(53); background-position:0 rem(-4865); }
+.page1__part48 { left:rem(94-10); top:rem(228-10); width:rem(108); height:rem(53); background-position:0 rem(-4920); }
+.page1__part49 { left:rem(119-10); top:rem(148-10); width:rem(90); height:rem(118); background-position:0 rem(-4980); }
+.page1__part50 { left:rem(84-10); top:rem(240-10); width:rem(32); height:rem(36); background-position:0 rem(-5100); }
+.page1__part51 { left:rem(94-10); top:rem(223-10); width:rem(59); height:rem(55); background-position:0 rem(-5137); }
+.page1__part52 { left:rem(22-10); top:rem(243-10); width:rem(93); height:rem(36); background-position:0 rem(-5195); }
+
+
 .page2 {
     // page2__center
     &__list,
@@ -1688,9 +1765,75 @@ body {
 
 
 
+.page1TitleWave {
+    animation:page1TitleWave 3s 0s both steps(15,end) infinite;
+}
+@keyframes page1TitleWave {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    100% {
+        transform:translate3d(0,rem(-220 * 15),0);
+    }
+}
 
-
-
+// .page1TitleWave {
+//     animation:page1TitleWave 2s both steps(1,end) infinite;
+// }
+// @keyframes page1TitleWave {
+//     0% {
+//         transform:translate3d(0,0,0);
+//     }
+//     6.25% {
+//         transform:translate3d(0,rem(-220 * 1),0);
+//     }
+//     12.5% {
+//         transform:translate3d(0,rem(-220 * 2),0);
+//     }
+//     18.75% {
+//         transform:translate3d(0,rem(-220 * 3),0);
+//     }
+//     25% {
+//         transform:translate3d(0,rem(-220 * 4),0);
+//     }
+//     31.25% {
+//         transform:translate3d(0,rem(-220 * 5),0);
+//     }
+//     37.5% {
+//         transform:translate3d(0,rem(-220 * 6),0);
+//     }
+//     43.75% {
+//         transform:translate3d(0,rem(-220 * 7),0);
+//     }
+//     50% {
+//         transform:translate3d(0,rem(-220 * 8),0);
+//     }
+//     56.25% {
+//         transform:translate3d(0,rem(-220 * 9),0);
+//     }
+//     62.5% {
+//         transform:translate3d(0,rem(-220 * 10),0);
+//     }
+//     68.75% {
+//         transform:translate3d(0,rem(-220 * 11),0);
+//     }
+//     75% {
+//         transform:translate3d(0,rem(-220 * 12),0);
+//     }
+//     81.25% {
+//         transform:translate3d(0,rem(-220 * 13),0);
+//     }
+//     87.5% {
+//         transform:translate3d(0,rem(-220 * 14),0);
+//     }
+//     93.75% {
+//         transform:translate3d(0,rem(-220 * 15),0);
+//     }
+//     100% {
+//         transform:translate3d(0,0,0);
+//         // transform:translate3d(0,rem(-220 * 16),0);
+//     }
+// }
 .card03MoveLeft {
     animation:card03MoveLeft 2s both linear;
 }
@@ -3143,6 +3286,17 @@ body {
     }
     100% {
         transform:rotateY(0);
+    }
+}
+.page1PartChange {
+    animation:page1PartChange 0.5s steps(1,end) infinite;
+}
+@keyframes page1PartChange {
+    0%,5%,100% {
+        background-position-x:0;
+    }
+    1%,95% {
+        background-position-x:rem(-250);
     }
 }
 

@@ -149,7 +149,8 @@
                 <div class="page0__move--center moveTopInfinite delay1-5"></div>
             </div>-->
         </div>
-        <div class="page page1" :class="activePage == 1 && !startMoving ? 'active' : ''">
+        <div class="page page1" :class="activePage == 1 && !startMoving ? 'active' : page1.hidden ? 'hide' : ''"
+            ref="page1">
             <!-- <div class="page1__bg" :class="isOverHeight ? 'page1__bg--over' : ''"></div> -->
             <div class="page1__itemLayer opacityChange delay0-5">
                 <!-- 左边 -->
@@ -225,7 +226,12 @@
                     :style="{top:getFitTop(834,2/8)}"></div>
                 <!-- 水立方 -->
                 <div class="page1__item page1__item42"
-                    :style="{top:getFitTop(1072,2/8)}"></div>
+                    :style="{top:getFitTop(1072,2/8)}">
+                    <div class="page1__part page1PartChange" v-for="(one,index) in page1.building"
+                        :class="'page1__part'+index"
+                        :style="one.ani">
+                    </div>
+                </div>
                 <div class="page1__item page1__item43"
                     :style="{top:getFitTop(1149,2/8)}"></div>
                 <div class="page1__icon01 page1__item44 zoomIn origin100-0 duration1-0 delay1-5"
@@ -476,7 +482,11 @@
             <div class="page1__text littleBottomIn duration1-0 delay0-7" 
                 :style="{bottom:getFitTop(554,2/8)}">{{page1.time.x.toFixed(0)}}:{{page1.time.y.toFixed(0)}}</div>
             <div class="page1__title zoomIn delay0-5"
-                :style="{top:getFitTop(644,2/8)}"></div>
+                :style="{top:getFitTop(644,2/8)}">
+                <div class="page1__title__center">
+                    <div class="page1__title__content page1TitleWave"></div>
+                </div>
+            </div>
             <!-- <div class="page1__wave"></div> -->
             <div class="page1__circleLayer opacityChange delay1-0"
                 :style="{top:getFitTop(1331,2/8)}"

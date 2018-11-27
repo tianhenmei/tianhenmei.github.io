@@ -307,6 +307,169 @@
                     x:0,
                     y:0
                 },
+                hidden:false,
+                building:[
+                    {  // 1
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' 0'}
+                    },{  // 2
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-100)}
+                    },{  // 3
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-180)}
+                    },{  // 4
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-250)}
+                    },{  // 5
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-380)}
+                    },{  // 6
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-470)}
+                    },{  // 7
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-520)}
+                    },{  // 8
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-650)}
+                    },{  // 9
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-750)}
+                    },{  // 10
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-820)}
+                    },{  // 11
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-880)}
+                    },{  // 12
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-970)}
+                    },{  // 13
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1050)}
+                    },{  // 14
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1170)}
+                    },{  // 15
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1270)}
+                    },{  // 16
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1355)}
+                    },{  // 17
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1456)}
+                    },{  // 18
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1530)}
+                    },{  // 19
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1670)}
+                    },{  // 20
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1775)}
+                    },{  // 21
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-1860)}
+                    },{  // 22
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2000)}
+                    },{  // 23
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2140)}
+                    },{  // 24
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2250)}
+                    },{  // 25
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2360)}
+                    },{  // 26
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2486)}
+                    },{  // 27
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2578)}
+                    },{  // 28
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2660)}
+                    },{  // 29
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2785)}
+                    },{  // 30
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-2862)}
+                    },{  // 31
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3075)}
+                    },{  // 32
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3170)}
+                    },{  // 33
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3265)}
+                    },{  // 34
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3342)}
+                    },{  // 35
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3436)}
+                    },{  // 36
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3560)}
+                    },{  // 37
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3648)}
+                    },{  // 38
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3770)}
+                    },{  // 39
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-3894)}
+                    },{  // 40
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4032)}
+                    },{  // 41
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4120)}
+                    },{  // 42
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4255)}
+                    },{  // 43
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4326)}
+                    },{  // 44
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4430)}
+                    },{  // 45
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4560)}
+                    },{  // 46
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4685)}
+                    },{  // 47
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4765)}
+                    },{  // 48
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4865)}
+                    },{  // 49
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4920)}
+                    },{  // 50
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-4980)}
+                    },{  // 51
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-5100)}
+                    },{  // 52
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-5137)}
+                    },{  // 53
+                        ani:{},
+                        active:{  backgroundPosition:setRem(-250)+' '+setRem(-5195)}
+                    }
+                ]
             },
             page2:{
                 lastCard:0,
@@ -465,6 +628,8 @@
             this.fontSize = parseFloat(document.documentElement.style.fontSize) || 16;
             // 设置page0文字动画
             this.initPage0Ani();
+            // 设置水立方动画
+            this.initPage1PartAni();
             // 给page2 的卡片添加滑动翻事件
             this.initPage2FlipEvent();
             if(mode == 'development' && initialNow == 1){
@@ -622,6 +787,26 @@
 
                 animate();
             },
+            initPage1PartAni:function(){
+                var arr = [],
+                    list = this.page1.building,
+                    len = list.length,
+                    index = -1,
+                    igap = 0.2,
+                    total = igap * (len+1),
+                    i = 0;
+                for(i = 0; i < len; i++){
+                    arr.push(i);
+                }
+                for(i = 0; i < len; i++){
+                    index = Math.floor(Math.random() * arr.length);
+                    list[arr[index]].ani = {
+                        animationDelay:(igap * (index+1))+'s',
+                        animationDuration:total+'s'
+                    };
+                    arr.splice(index,1);
+                }
+            },
             getPage2CardParentClass:function(index){
                 // 初始状态，直接显示
                 if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
@@ -696,9 +881,11 @@
                     PM.data.now = 2;
                     PM.pageMove('down',PM);
                 // },1000);
-                var one = this.$refs['page2__li--0'];
+                var self = this,
+                    one = this.$refs['page2__li--0'];
                 one.className += ' hide';
                 setTimeout(function(){
+                    self.page1.hidden = true;
                     one.className = one.className.replace(/( hide)/g,'');
                 },1000);
             },
