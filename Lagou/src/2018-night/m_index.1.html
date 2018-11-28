@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <!---上线之后加-->
+    <title>2018拉勾之夜</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 1080,
+                h: 1755
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            currentCount = 0;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            firstTime = 0;
+            loadingComplete = function(){
+                var appElement = document.getElementById('app');
+                document.getElementById('loading').className += ' opacityChange-out';
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                    appElement.className = appElement.className.replace(' hide','');
+                    firstTime = Date.now();
+                },500);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    loadingComplete();
+                // }
+            };
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="page-bg"></div>
+    <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page-bg"></div>
+        <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''"
+            @touchstart="page0TouchStart"
+            @touchmove="page0TouchMove"
+            @touchend="page0TouchEnd">
+            <div class="page0__text"><!-- outTopMoveIn duration3-0 delay0-5-->
+                <div v-for="(one,index) in page0.words"
+                    :class="'page0__text--0'+(index+1)+(' delay'+getDelayTime(5,4,index))+(page0.down ? '' : ' littleBottomIn duration2-0')">
+                    <span class="page0__text--one" v-for="(item,iindex) in one"
+                        :style="page0.down ? page0.style[index].line[iindex] : null">
+                        <span class="page0__text--oneCenter"
+                            :style="page0.down ? page0.style[index].list[iindex] : null">{{item}}</span>
+                        </span>
+                </div>
+            </div>
+            <div class="page0__line opacityChange" 
+                :class="page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0'"
+                :style="{top:getFitTop(1240,1)}"></div>
+            <div class="page0__btnParent opacityChange delay2-0" :style="{top:getFitTop(1462,1)}">
+                <div class="page0__btn" :class="(page0.moveBtnStatus ? 'btnMoveStart' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')"
+                    :style="page0.btnStyle"></div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 && !startMoving ? 'active' : page1.hidden ? 'hide' : ''"
+            ref="page1">
+            <!-- <div class="page1__bg" :class="isOverHeight ? 'page1__bg--over' : ''"></div> -->
+            <div class="page1__itemLayer opacityChange delay0-5">
+                <!-- 左边 -->
+                <div class="page1__item page1__item8"></div>
+                <div class="icon page1__item9"></div>
+                <div class="page1__item page1__item10"></div>
+                <div class="icon page1__item11"></div>
+                <div class="icon page1__item12"></div>
+                <div class="page1__item page1__item13"></div>
+                <div class="icon page1__item14"></div>
+                <div class="page1__item page1__item15"></div>
+                <div class="page1__item page1__item16"></div>
+                <div class="page1__item page1__item17"></div>
+                <div class="icon page1__item18 zoomInfinite-02 delay1-5"></div>
+                <!-- 右边 -->
+                <!-- 转盘 -->
+                <div class="page1__item1Parent">
+                    <div class="page1__item page1__item1 rotateInfinite"></div>
+                </div>
+                <div class="page1__item page1__item2"></div>
+                <div class="page1__item page1__item3"></div>
+                <div class="icon page1__item4"></div>
+                <div class="page1__item page1__item5"></div>
+                <div class="icon page1__item0 rightIn duration1-0 delay1-0"></div>
+                <div class="page1__item0__bubbleParent zoomIn origin100-100 delay2-0">
+                    <div class="icon page1__item0__bubble zoomInfinite origin100-100 delay2-8"></div>
+                </div>
+                <div class="icon page1__item6"></div>
+                <div class="icon page1__item7"></div>
+                <!-- 中间 -->
+                <div class="page1__item page1__item19"
+                    :style="{top:getFitTop(313,2/8)}"></div>
+                <div class="page1__item page1__item20"
+                    :style="{top:getFitTop(493,2/8)}"></div>
+                <div class="page1__item page1__item21"
+                    :style="{top:getFitTop(493,2/8)}"></div>
+                <div class="page1__item page1__item22"
+                    :style="{top:getFitTop(496,2/8)}"></div>
+                <div class="icon page1__item23"
+                    :style="{top:getFitTop(565-3,2/8)}"></div>
+                    <!-- 中间: 中间 -->
+                <div class="page1__item__center"
+                    :style="{top:getFitTop(0,2/8)}">
+                    <div class="page1__item page1__item29"></div>
+                    <div class="page1__item page1__item30"></div>
+                    <div class="page1__icon02 page1__item31"></div>
+                    <div class="page1__item page1__item32"></div>
+                    <div class="page1__icon02 page1__item33"></div>
+                    <div class="page1__item page1__item34"></div>
+                    <div class="page1__item page1__item35"></div>
+                    <div class="page1__item page1__item36"></div>
+                    <div class="page1__item page1__item37"></div>
+                </div>
+                <!-- 左边 -->
+                <div class="icon page1__item38 zoomInfiniteC delay1-5"></div>
+                <div class="page1__item page1__item39"></div>
+                <div class="page1__item page1__item40"></div>
+                <!-- 中间: 右边 -->
+                <div class="page1__item__center"
+                    :style="{top:getFitTop(0,2/8)}">
+                    <div class="page1__item page1__item24"></div>
+                    <div class="page1__item page1__item25"></div>
+                    <div class="page1__item page1__item26"></div>
+                    <div class="page1__item page1__item28"></div>
+                </div>
+                <!-- 中间: 底边 -->
+                <!-- 手 -->
+                <div class="page1__item41Parent" :style="{top:getFitTop(981-3+42-300,2/8)}">
+                    <div class="page1__icon01 page1__item41"></div><!-- handRightTopIn delay1-0-->
+                </div>
+
+                <div class="page1__item page1__item27"
+                    :style="{top:getFitTop(834,2/8)}"></div>
+                <!-- 水立方 -->
+                <div class="page1__item page1__item42"
+                    :style="{top:getFitTop(1072,2/8)}">
+                    <div class="page1__part page1PartChange" v-for="(one,index) in page1.building"
+                        :class="'page1__part'+index"
+                        :style="one.ani">
+                    </div>
+                </div>
+                <div class="page1__item page1__item43"
+                    :style="{top:getFitTop(1149,2/8)}"></div>
+                <div class="page1__icon01 page1__item44 zoomIn origin100-0 duration1-0 delay1-5"
+                    :style="{top:getFitTop(1155-3,2/8)}"></div>
+                <div class="page1__item45Parent leftTopIn duration5-0" :style="{top:getFitTop(891-3,2/8)}">
+                    <div class="page1__icon01 page1__item45 rotateZIn1 duration5-0"></div>
+                </div>
+                <!-- <div class="page1__item62Parent"> -->
+                    <div class="page1__icon01 page1__item62 rotateInfinite delay0-3"
+                        :style="{top:getFitTop(1158-3,2/8)}"></div>
+                <!-- </div> -->
+                <div class="page1__icon01 page1__item63"
+                    :style="{top:getFitTop(1088-3,2/8)}"></div>
+                    <!-- 底边 -->
+                <div class="page1__icon01 page1__item46 littleBottomIn duration1-0 delay1-4"
+                    :style="{bottom:getFitTop(408-3,3/8)}"></div>
+                <div class="icon page1__item47 littleBottomIn duration1-0 delay1-6"
+                    :style="{bottom:getFitTop(435-3,3/8)}"></div>
+                <div class="page1__icon01 page1__item48 littleBottomIn duration1-0 delay1-8"
+                    :style="{bottom:getFitTop(422-3,3/8)}"></div>
+                
+                <div class="page1__item page1__item49"
+                    :style="{bottom:getFitTop(-50,3/8)}"></div>
+
+                <div class="page1__icon01 page1__item50 littleBottomIn duration1-0 delay1-6"
+                    :style="{bottom:getFitTop(239-3,1/8)}"></div>
+                <div class="page1__icon01 page1__item52 littleBottomIn duration1-0 delay1-8"
+                    :style="{bottom:getFitTop(228-3,1/8)}"></div>
+                <div class="page1__icon01 page1__item51 littleBottomIn duration1-0 delay2-0"
+                    :style="{bottom:getFitTop(227-3,1/8)}"></div>
+
+                <div class="page1__item page1__item53"
+                    :style="{bottom:getFitTop(-121,2/16)}"></div>
+                <div class="page1__icon02 page1__item54"></div>
+                <div class="page1__icon01 page1__item55"
+                    :style="{bottom:getFitTop(136,1/8)}"></div>
+                <div class="page1__icon02 page1__item56"></div>
+                <div class="page1__icon02 page1__item57"></div>
+                <div class="page1__item page1__item58 leftIn duration2-0 delay1-0"></div>
+                <div class="page1__icon01 page1__item59"></div>
+                <div class="page1__icon01 page1__item60 zoomInfiniteC delay1-5"></div>
+                <div class="page1__icon01 page1__item61"></div>
+                
+                <div class="page1__item page1__item64"
+                    :style="{bottom:getFitTop(-66,4/8)}"></div>
+                <!--widthChange rotateYIn-->
+                <div class="page1__item65Parent"
+                    :style="{bottom:getFitTop(656-3,4/8)}">
+                    <div class="page1__icon01 page1__item65 widthChange duration0-5 delay0-5"></div>
+                </div>
+                <div class="page1__icon01 page1__item66"></div>
+                <div class="page1__icon01 page1__item67"></div>
+                <div class="page1__icon01 page1__item68"></div>
+                <div class="page1__icon01 page1__item69 littleBottomIn duration1-0 delay0-7"
+                    :style="{bottom:getFitTop(550-3,2/8)}"></div>
+                <div class="page1__item70Parent"
+                    :style="{top:getFitTop(561,2/8)}">
+                    <div class="icon page1__item70 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item71Parent"
+                    :style="{top:getFitTop(564,2/8)}">
+                    <div class="icon page1__item71 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item72Parent"
+                    :style="{top:getFitTop(520,2/8)}">
+                    <div class="icon page1__item72 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item73Parent"
+                    :style="{top:getFitTop(515,2/8)}">
+                    <div class="icon page1__item73 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item74Parent"
+                    :style="{top:getFitTop(638,2/8)}">
+                    <div class="icon page1__item74 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item75Parent"
+                    :style="{top:getFitTop(575,2/8)}">
+                    <div class="icon page1__item75 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item76Parent"
+                    :style="{top:getFitTop(623,2/8)}">
+                    <div class="icon page1__item76 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="icon page1__item77 zoomIn origin0-100 delay1-0"
+                    :style="{top:getFitTop(507,2/8)}"></div>
+                <div class="icon page1__item78 zoomIn origin0-100 delay1-2"
+                    :style="{top:getFitTop(498,2/8)}"></div>
+                <div class="icon page1__item79 zoomIn origin0-100 delay1-4"
+                    :style="{top:getFitTop(522,2/8)}"></div>
+            </div>
+            <!-- <div class="page1__itemLayer"> -->
+                <!-- 左边 -->
+                <!-- <div class="page1__item page1__item8 leftIn duration1-0 delay0-9"></div>
+                <div class="icon page1__item9 leftIn duration1-0 delay0-7"></div>
+                <div class="page1__item page1__item10 leftIn duration1-0 delay0-5"></div>
+                <div class="icon page1__item11 leftIn duration1-0 delay2-3"></div>
+                <div class="icon page1__item12 leftIn duration1-0 delay1-3"></div>
+                <div class="page1__item page1__item13 leftIn duration1-0 delay1-3"></div>
+                <div class="icon page1__item14 leftIn duration1-0 delay2-5"></div>
+                <div class="page1__item page1__item15 leftIn duration1-0 delay1-5"></div>
+                <div class="page1__item page1__item16 leftIn duration1-0 delay1-7"></div>
+                <div class="page1__item page1__item17 leftIn duration1-0 delay1-9"></div>
+                <div class="icon page1__item18 zoomIn duration1-0 delay2-1"></div> -->
+                <!-- 右边 -->
+                <!-- <div class="page1__item page1__item1 rotateLittleIn duration1-0 delay0-5"></div>
+                <div class="page1__item page1__item2 rightIn duration1-0 delay0-7"></div>
+                <div class="page1__item page1__item3 rightIn duration1-0 delay0-9"></div>
+                <div class="icon page1__item4 rightIn duration1-0 delay1-1"></div>
+                <div class="page1__item page1__item5 rightIn duration1-0 delay1-3"></div>
+                <div class="icon page1__item0 rightIn duration1-0 delay2-1"></div>
+                <div class="icon page1__item0__bubble zoomIn origin100-100 duration1-0 delay3-1"></div>
+                <div class="icon page1__item6 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page1__item7 rightIn duration1-0 delay1-9"></div> -->
+                <!-- 中间 -->
+                <!-- <div class="page1__item page1__item19 leftIn duration1-0 delay2-0"
+                    :style="{top:getFitTop(313,2/8)}"></div>
+                <div class="page1__item page1__item20 leftIn duration1-0 delay2-2"
+                    :style="{top:getFitTop(493,2/8)}"></div>
+                <div class="page1__item page1__item21 leftIn duration1-0 delay2-4"
+                    :style="{top:getFitTop(493,2/8)}"></div>
+                <div class="page1__item page1__item22 leftIn duration1-0 delay2-6"
+                    :style="{top:getFitTop(496,2/8)}"></div>
+                <div class="icon page1__item23 leftIn duration1-0 delay2-8"
+                    :style="{top:getFitTop(565-3,2/8)}"></div> -->
+                <!-- 中间: 中间 -->
+                <!-- <div class="page1__item__center rotateZIn duration1-0 delay1-0"
+                    :style="{top:getFitTop(0,2/8)}">
+                    <div class="page1__item page1__item29"></div>
+                    <div class="page1__item page1__item30"></div>
+                    <div class="page1__icon02 page1__item31"></div>
+                    <div class="page1__item page1__item32"></div>
+                    <div class="page1__icon02 page1__item33"></div>
+                    <div class="page1__item page1__item34"></div>
+                    <div class="page1__item page1__item35"></div>
+                    <div class="page1__item page1__item36"></div>
+                    <div class="page1__item page1__item37"></div>
+                </div> -->
+                <!-- 左边 -->
+                <!-- <div class="icon page1__item38 zoomIn duration1-0 delay4-2"></div>
+                <div class="page1__item page1__item39 littleBottomIn duration1-0 delay2-0"></div>
+                <div class="page1__item page1__item40 leftIn duration1-0 delay2-0"></div> -->
+                
+                <!-- 中间: 右边 -->
+                <!-- <div class="page1__item__center"
+                    :style="{top:getFitTop(0,2/8)}">
+                    <div class="page1__item page1__item24 rightIn duration1-0 delay2-0"></div>
+                    <div class="page1__item page1__item25 rightIn duration1-0 delay2-2"></div>
+                    <div class="page1__item page1__item26 rightIn duration1-0 delay2-4"></div>
+                    <div class="page1__item page1__item28 rightIn duration1-0 delay2-6"></div>
+                </div> -->
+                
+                <!-- 中间: 底边 -->
+                <!-- <div class="page1__icon01 page1__item41 zoomIn origin100-0 duration1-0 delay3-0"
+                    :style="{top:getFitTop(981-3+42,2/8)}"></div>
+                <div class="page1__item page1__item42 opacityChange delay3-5"
+                    :style="{top:getFitTop(1072,2/8)}"></div>
+                <div class="page1__icon01 page1__item62 rightIn duration1-0 delay3-7"
+                    :style="{top:getFitTop(1158-3,2/8)}"></div>
+                <div class="page1__icon01 page1__item63 opacityChange duration1-0 delay3-7"
+                    :style="{top:getFitTop(1088-3,2/8)}"></div>
+
+                <div class="page1__item page1__item43 opacityChange delay2-2"
+                    :style="{top:getFitTop(1149,2/8)}"></div>
+                <div class="page1__icon01 page1__item44 zoomIn origin100-0 duration1-0 delay3-0"
+                    :style="{top:getFitTop(1155-3,2/8)}"></div>
+                <div class="page1__icon01 page1__item45 zoomIn origin100-100 duration1-0 delay3-2"
+                    :style="{top:getFitTop(891-3,2/8)}"></div>
+                <div class="page1__item page1__item27 zoomIn origin0-100 duration1-0 delay2-0"
+                    :style="{top:getFitTop(834,2/8)}"></div> -->
+                
+                <!-- 底边 -->
+                <!-- <div class="page1__icon01 page1__item46 littleBottomIn duration1-0 delay2-6"
+                    :style="{bottom:getFitTop(408-3,3/8)}"></div>
+                <div class="icon page1__item47 littleBottomIn duration1-0 delay2-8"
+                    :style="{bottom:getFitTop(435-3,3/8)}"></div>
+                <div class="page1__icon01 page1__item48 littleBottomIn duration1-0 delay3-0"
+                    :style="{bottom:getFitTop(422-3,3/8)}"></div>
+                
+                <div class="page1__item page1__item49 opacityChange delay2-4"
+                    :style="{bottom:getFitTop(-50,3/8)}"></div>
+
+                <div class="page1__icon01 page1__item50 littleBottomIn duration1-0 delay2-8"
+                    :style="{bottom:getFitTop(239-3,1/8)}"></div>
+                <div class="page1__icon01 page1__item52 littleBottomIn duration1-0 delay3-0"
+                    :style="{bottom:getFitTop(228-3,1/8)}"></div>
+                <div class="page1__icon01 page1__item51 littleBottomIn duration1-0 delay3-2"
+                    :style="{bottom:getFitTop(227-3,1/8)}"></div>
+
+                <div class="page1__item page1__item53 opacityChange delay2-6"
+                    :style="{bottom:getFitTop(-121,2/16)}"></div>
+                <div class="page1__icon02 page1__item54 opacityChange delay2-8"></div>
+                <div class="page1__icon01 page1__item55 littleTopIn duration1-0 delay3-0"
+                    :style="{bottom:getFitTop(136,1/8)}"></div>
+                <div class="page1__icon02 page1__item56 rightIn duration1-0 delay3-2"></div>
+                <div class="page1__icon02 page1__item57 opacityChange delay3-0"></div>
+                <div class="page1__item page1__item58 opacityChange delay3-2"></div>
+                <div class="page1__icon01 page1__item59 leftIn duration1-0 delay2-0"></div>
+                <div class="page1__icon01 page1__item60 zoomIn duration1-0 delay3-0"></div>
+                <div class="page1__icon01 page1__item61 leftIn duration1-0 delay3-4"></div>
+                
+                <div class="page1__item page1__item64 topIn delay3-0"
+                    :style="{bottom:getFitTop(-66,4/8)}"></div> -->
+                <!--widthChange rotateYIn-->
+                <!-- <div class="page1__item65Parent"
+                    :style="{bottom:getFitTop(656-3,4/8)}">
+                    <div class="page1__icon01 page1__item65 widthChange duration0-5 delay3-5"></div>
+                </div>
+                <div class="page1__icon01 page1__item66 rightIn duration1-0 delay2-2"></div>
+                <div class="page1__icon01 page1__item67 opacityChange duration1-0 delay2-4"></div>
+                <div class="page1__icon01 page1__item68 opacityChange duration1-0 delay2-6"></div>
+                <div class="page1__icon01 page1__item69 littleBottomIn duration1-0 delay3-7"
+                    :style="{bottom:getFitTop(550-3,2/8)}"></div>
+                <div class="page1__item70Parent opacityChange delay2-5"
+                    :style="{top:getFitTop(561,2/8)}">
+                    <div class="icon page1__item70 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item71Parent opacityChange delay2-7"
+                    :style="{top:getFitTop(564,2/8)}">
+                    <div class="icon page1__item71 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item72Parent opacityChange delay2-9"
+                    :style="{top:getFitTop(520,2/8)}">
+                    <div class="icon page1__item72 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item73Parent opacityChange delay3-1"
+                    :style="{top:getFitTop(515,2/8)}">
+                    <div class="icon page1__item73 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item74Parent opacityChange delay3-3"
+                    :style="{top:getFitTop(638,2/8)}">
+                    <div class="icon page1__item74 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item75Parent opacityChange delay3-5"
+                    :style="{top:getFitTop(575,2/8)}">
+                    <div class="icon page1__item75 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="page1__item76Parent opacityChange delay3-7"
+                    :style="{top:getFitTop(623,2/8)}">
+                    <div class="icon page1__item76 opacityChangeInfinite delay0-5"></div>
+                </div>
+                <div class="icon page1__item77 zoomIn origin0-100 delay3-0"
+                    :style="{top:getFitTop(507,2/8)}"></div>
+                <div class="icon page1__item78 zoomIn origin0-100 delay3-2"
+                    :style="{top:getFitTop(498,2/8)}"></div>
+                <div class="icon page1__item79 zoomIn origin0-100 delay3-4"
+                    :style="{top:getFitTop(522,2/8)}"></div> -->
+            <!-- </div> -->
+            <div class="page1__text littleBottomIn duration1-0 delay0-7" 
+                :style="{bottom:getFitTop(554,2/8)}">{{page1.time.x.toFixed(0)}}:{{page1.time.y.toFixed(0)}}</div>
+            <div class="page1__title zoomIn delay0-5"
+                :style="{top:getFitTop(644,2/8)}">
+                <div class="page1__title__center">
+                    <div class="page1__title__content page1TitleWave"></div>
+                </div>
+            </div>
+            <!-- <div class="page1__wave"></div> -->
+            <div class="page1__circleLayer opacityChange delay1-0"
+                :style="{top:getFitTop(1331,2/8)}"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0003" 
+                data-lg-tj-cid="null"
+                @touchstart="page1ToPage2">
+                <div class="page1__circle page1__circle01 circleAni1 delay0-5"></div>
+                <div class="page1__circle page1__circle02 circleAni2 delay0-5"></div>
+                <div class="page1__circle page1__circle03 circleAni3 delay0-5"></div>
+                <div class="page1__circle page1__circle04 circleAni4 delay0-5"></div>
+                <div class="page1__circle page1__circle05 circleAni5 delay0-5"></div>
+            </div>
+            <div class="icon page1__aicon littleTopIn delay1-0"
+                :style="{top:getFitTop(1261,2/8)}"></div>
+            <div class="page1__inLayer leftLittleIn delay1-0"
+                :style="{top:getFitTop(1328+(106-95)/2,2/8)}"
+                :data-lg-tj-id="lg" 
+                data-lg-tj-no="0001" 
+                data-lg-tj-cid="null"
+                @touchstart="page1ToPage2">
+                <div class="icon page1__in leftLittleMoveIn"></div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : ''" ref="page2">
+            <div class="page2__center">
+                <div class="page2__list">
+                    <div class="page2__li" ref="page2__li--0" :class="getPage2CardParentClass(0)">
+                        <div class="page2__one" ref="page2__one--0" :class="getPage2CardClass(0)">
+                            <!-- :class="page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay0-5' : ''" -->
+                            <div class="page2__card__bg opacityChange"
+                                :style="{height:getFitTop(1535,1)}"></div>
+                            <!-- page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay1-0' : '' -->
+                            <div class="page2__card__bg02"
+                                :class="'opacityChange delay0-5'" 
+                                :style="{height:getFitTop(1697,1)}"></div>
+                            <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}"
+                                :class="page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : ''">
+                                <div class="page2__card__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                    <div class="page2__icon page2__card__titlebg opacityChange delay1-0"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title01 opacityChange duration0-1 delay1-3"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title02 opacityChange duration0-1 delay1-4"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title03 opacityChange duration0-1 delay1-5"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title04 opacityChange duration0-1 delay1-6"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title05 opacityChange duration0-1 delay1-7"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title06 opacityChange duration0-1 delay1-8"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title07 opacityChange duration0-1 delay1-9"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title08 opacityChange duration0-1 delay2-0"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title09 opacityChange duration0-1 delay2-1"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title10 opacityChange duration0-1 delay2-2"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title11 opacityChange duration0-1 delay2-3"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title12 opacityChange duration0-1 delay2-4"></div>
+                                    <div class="page2__icon page2__card__title page2__card__title13 opacityChange duration0-1 delay2-5"></div>
+                                </div>
+                                <div class="page2__icon page2__card__logo littleTopIn duration1-0 delay1-0"></div>
+                                <div class="page2__icon page2__card__info littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(182,3/16)}"></div>
+                                <div class="page2__card__list" :style="{top:getFitTop(329,2/8)}">
+                                    <div class="page2__card__one clearfix" v-for="(one,index) in page2.list"
+                                        :class="'page2__card__one--'+index+(index % 2 == 1 ? ' page2__card__one--odd' : '' )"
+                                        :style="{marginTop:getFitTop(-9,index == 0 ? 0 : 1/8)}">
+                                        <img class="page2__card__one--img" :src="one.img" :class="one.imgAni" />
+                                        <div class="page2__card__one--info" :class="one.infoAni">
+                                            <div class="page2__icon page2__card__one--arrow"></div>
+                                            <div class="page2__card__one--line"></div>
+                                            <div class="page2__card__one--title">{{one.title}}</div>
+                                            <div class="page2__card__one--name" :style="one.nameStyle">{{one.name}}</div>
+                                            <div class="page2__icon page2__card__one--icon"
+                                                :style="one.icon"></div>
+                                            <div class="page2__card__one--theme">{{one.theme}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page2__card__arrowParent opacityChange delay2-0">
+                                    <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__card__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
+                            :class="getPage2CardTicketClass(0)+(!page2.isMoving && page2.lastCard == 0 && page2.activeCard == 0 ? ' ' : '')"
+                            v-show="(!page2.isMoving && page2.activeCard == 0) || (page2.isMoving && page2.lastCard == 0)">
+                            <div class="page2__card__btn opacityChange delay1-0"></div>
+                            <div class="page2__card__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                    <div class="page2__li" ref="page2__li--1" :class="getPage2CardParentClass(1)">
+                        <div class="page2__one" ref="page2__one--1" :class="getPage2CardClass(1)">
+                            <div class="page2__card02__bg opacityChange" :style="{height:getFitTop(1652,1)}"></div>
+                            <div class="page2__card02__bg02 opacityChange delay0-5" :style="{height:getFitTop(1697,1)}"></div>
+                            <div class="page2__card02Layer" :style="{height:getFitTop(1535,1)}">
+                                <div class="page2__card02__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                    <div class="page2__icon02 page2__card02__titlebg leftIn delay1-0"></div>
+                                    <div class="page2__icon02 page2__card02__title opacityChange delay1-5"></div>
+                                </div>
+                                <div class="page2__icon page2__card__logo littleTopIn duration1-0 delay1-0"></div>
+                                <div class="page2__icon02 page2__card02__info leftIn duration1-0 delay1-0" :style="{top:getFitTop(181,3/16)}"></div>
+                                <div class="page2__card02__list" :style="{top:getFitTop(398,4/16)}">
+                                    <div class="page2__card02__one clearfix" 
+                                        v-for="(one,index) in page2.party"
+                                        :class="'page2__card02__one--'+index"
+                                        :style="{height:getFitTop(index == 0 ? 246 : index == 1 ? 208 : 222,1/16)}">
+                                        <div class="page2__icon02 page2__card02__one--index leftIn duration1-0"
+                                            :class="'delay'+getDelayTime(15,10,index)"
+                                            :style="{
+                                                backgroundPosition:one.indexPosition
+                                            }"></div>
+                                        <div class="page2__card02__one--info">
+                                            <div v-for="(item,iindex) in one.info"
+                                                :class="'page2__card02__one--info'+iindex+(' littleBottomIn delay'+getDelayTime(23+iindex*2,10,index))">{{item}}</div>
+                                        </div>
+                                        <div class="page2__card02__one--moveParent opacityChange" :class="'delay'+getDelayTime(28,10,index)">
+                                            <div class="page2__icon02 page2__card02__one--move topLittleMoveIn"
+                                                :style="{
+                                                    backgroundPosition:one.movePosition
+                                                }"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="page2__card02__imgs" :style="{top:getFitTop(1099,8/16)}">
+                                    <div class="page2__card02__pic page2__card02__pic01 littleBottomIn delay5-2">
+                                        <div class="page2__card02__pic--img"></div>
+                                        <div class="page2__icon02 page2__card02__pic--flower zoomIn delay5-7"></div>
+                                    </div>
+                                    <div class="page2__card02__pic page2__card02__pic02 littleBottomIn delay5-4">
+                                        <div class="page2__card02__pic--img"></div>
+                                        <div class="page2__icon02 page2__card02__pic--flower zoomIn delay5-9"></div>
+                                    </div>
+                                    <div class="page2__card02__pic page2__card02__pic03 littleBottomIn delay5-6">
+                                        <div class="page2__card02__pic--img"></div>
+                                        <div class="page2__icon02 page2__card02__pic--flower zoomIn delay6-1"></div>
+                                    </div>
+                                </div>
+                                <div class="page2__card__arrowParent opacityChange delay2-0">
+                                    <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__card02__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
+                            :class="getPage2CardTicketClass(1)+(!page2.isMoving ? '' : '')"
+                            v-show="(!page2.isMoving && page2.activeCard == 1) || (page2.isMoving && page2.lastCard == 1)">
+                            <div class="page2__card02__btn opacityChange delay1-0"></div>
+                            <div class="page2__card02__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                    <div class="page2__li" ref="page2__li--2" :class="getPage2CardParentClass(2)">
+                        <div class="page2__one" ref="page2__one--2" :class="getPage2CardClass(2)">
+                            <div class="page2__card__bg page2__card03__bg opacityChange delay0-5" :style="{height:getFitTop(1535,1)}"></div>
+                            <div class="page2__card__bg02 opacityChange delay1-0" :style="{height:getFitTop(1697,1)}"></div>
+                            <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}">
+                                <div class="page2__card03__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                    <div class="page2__icon02 page2__card03__titlebg opacityChange delay1-0"></div>
+                                    <div class="page2__icon02 page2__card03__title opacityChange delay1-5"></div>
+                                </div>
+                                <div class="page2__icon page2__card__logo littleTopIn duration1-0 delay1-0"></div>
+                                <div class="page2__icon02 page2__card03__info littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(181,3/16)}"></div>
+                                <div class="page2__card03__list" :style="{top:getFitTop(390,4/16)}">
+                                    <div class="page2__card03__one" v-for="(one,index) in page2.theater"
+                                        :class="'page2__card03__one--'+index"
+                                        :style="{height:getFitTop(529,2/16)}">
+                                        <div class="page2__icon03 page2__card03__one--titlebg littleBottomIn duration1-0" :class="'delay'+getDelayTime(12,16,index)"></div>
+                                        <div class="page2__icon03 page2__card03__one--titleline opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                        <div class="page2__icon03 page2__card03__one--title opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star01 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star02 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star03 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star04 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star05 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                        <div class="page2__icon02 page2__card03__one--star page2__card03__one--star06 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
+                                        <div class="page2__card03__one--content clearfix littleBottomIn duration1-0" :class="'delay'+getDelayTime(17,16,index)">
+                                            <div class="page2__icon03 page2__card03__one--infobg">
+                                                <div class="page2__icon03 page2__card03__one--info"></div>
+                                            </div>
+                                            <div class="page2__card03__one--pic"></div>
+                                        </div>
+                                        <div class="page2__card03__one--arrow" :style="{top:getFitTop(index == 0 ? 416 : 424,1/16)}"
+                                            :class="(index == 0 ? 'card03MoveLeft' : 'card03MoveRight') + ' delay'+getDelayTime(33,16,index)"></div>
+                                        <div class="page2__icon03 page2__card03__one--line widthChange" :class="'delay'+getDelayTime(27,16,index)" :style="{top:getFitTop(index == 0 ? 435 : 443,1/16)}"></div>
+                                    </div>
+                                </div>
+                                <div class="page2__card__arrowParent opacityChange delay2-0">
+                                    <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="page2__card__btnbg page2__card03__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
+                            :class="getPage2CardTicketClass(2)+(!page2.isMoving ? '' : '')"
+                            v-show="(!page2.isMoving && page2.activeCard == 2) || (page2.isMoving && page2.lastCard == 2)">
+                            <div class="page2__card__btn page2__card03__btn opacityChange delay1-0"></div>
+                            <div class="page2__card__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : ''">
+            
+        </div>
+        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
+           
+        </div>
+    </div>
+    <!-- <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
+        </div>
+    </div> -->
+    <script type="text/javascript">
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script>
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-night/m_index.html';
+        var randomText = [
+                '我们总是轻言放弃，而登顶之路则是，再来一次。',
+                'TOP之路，一旦开始，就要坚持到底。',
+                '没有人不想当TOP，所谓甘于平凡，但愿不是耽于平庸。',
+                'TOP，不是转瞬荣誉，而是极致追求。',
+                '你的目标不是赢，而是尽力做到TOP1。',
+                '自由之所以是奢望，是因为，你割舍不了选择TOP雇主的权利。',
+                '我努力K掉所有人，就是为了成为你心中的TOP1！',
+                '哪有天生的TOP1，我不过是为你一直坚持！',
+                '未必最大，但必定最强 ，Pick你心中的TOP雇主！'  // 8
+            ];
+        //微信分享
+        var datas = {
+            title: "40万+互联网企业都在争评的TOP雇主，你Pick谁？",
+            desc: randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-night/images/share.jpg",
+            activityType: 'ACTIVITY_H5_NIGHT_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+    <script src="js/tween.min.js?v=$version$"></script> 
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+</body>
+</html>

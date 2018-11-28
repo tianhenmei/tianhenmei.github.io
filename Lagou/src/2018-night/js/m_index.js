@@ -43,7 +43,7 @@
     // }
     // 3: 报名成功，展示公司页
     // test
-    var initialNow = 1,
+    var initialNow = 0,
         initialLast = 0,
         mode = "development";// "development",//"production",
     
