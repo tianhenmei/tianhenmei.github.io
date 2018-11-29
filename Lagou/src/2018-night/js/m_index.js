@@ -475,7 +475,9 @@
                 lastCard:0,
                 activeCard:0,
                 isMoving:false,
-
+                nomove:false,  // 如果点击了票根就不能滑动了
+                cardActive:[false,false,false],
+                hidden:false,
                 list:[
                     {
                         img:'images/page2-card-guest01.png',
@@ -596,6 +598,9 @@
                         pic:'images/page2-card03-img02.png'
                     }
                 ]
+            },
+            page3:{
+                hidden:false
             }
         },
         computed:{
@@ -903,18 +908,20 @@
                     isMoving = false;
                 }
                 function endMove(e){
-                    isMoving = true;
-                    var touch = e.changedTouches[0],
-                        direction = touch.clientX - start;
-                    if(Math.abs(direction) > 60){
-                        e.stopPropagation();
-                        direction = direction > 0 ? 1 : -1;
-                        if(direction > 0){
-                            // back
-                            self.page2CardMoveBack();
-                        }else{
-                            // next
-                            self.page2CardMoveNext();
+                    if(!self.page2.nomove){
+                        isMoving = true;
+                        var touch = e.changedTouches[0],
+                            direction = touch.clientX - start;
+                        if(Math.abs(direction) > 60){
+                            e.stopPropagation();
+                            direction = direction > 0 ? 1 : -1;
+                            if(direction > 0){
+                                // back
+                                self.page2CardMoveBack();
+                            }else{
+                                // next
+                                self.page2CardMoveNext();
+                            }
                         }
                     }
                 }
@@ -956,7 +963,27 @@
                         },1500);
                     },200);
                 }
-            }
+            },
+            cardClickEvent:function(index){
+                var self = this,
+                    arr = [false,false,false];
+                arr[index] = true;
+                this.page2.nomove = true;
+                this.page2.cardActive = arr;
+                var page2 = this.$refs['page2'],
+                    page3 = this.$refs['page3'];
+                setTimeout(function(){
+                    page2.className += ' pageMoveU';
+                    self.page3.hidden = true;
+                    setTimeout(function(){
+                        self.page2.hidden = true;
+                        self.page3.hidden = false;
+                        PM.data.last = 2;
+                        PM.data.now = 3;
+                        self.activePage = 3;
+                    },500);
+                },500);
+            },
         }
     })
     },{}]},{},[1]);
