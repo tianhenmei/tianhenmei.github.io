@@ -378,13 +378,17 @@
                         <div class="page2__card__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
                             :class="getPage2CardTicketClass(0)+(!page2.isMoving && page2.lastCard == 0 && page2.activeCard == 0 ? ' ' : '')+(page2.activeCard == 0 ? ' activeTop' : '')"
                             v-show="(!page2.isMoving && page2.activeCard == 0) || (page2.isMoving && page2.lastCard == 0)">
-                            <div class="page2__card__btn opacityChange delay1-0"
-                                :class="page2.cardActive[0] ? 'active' : ''"
+                            <div class="page2__card__btnCenter opacityChange delay1-0"
                                 :data-lg-tj-id="lg" 
                                 data-lg-tj-no="0010" 
                                 data-lg-tj-cid="null"
-                                @touchstart="cardClickEvent(0)"></div>
-                            <div class="page2__card__btnline widthChange delay1-5"></div>
+                                @touchstart="toLoginIn">
+                                <div class="page2__card__btnContent cardBtnChange delay1-5">
+                                    <div class="page2__card__btn"></div>
+                                    <div class="page2__card__btn page2__card__btnnext"></div>
+                                </div>
+                                <div class="page2__card__btnline widthChange delay1-5"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="page2__li" ref="page2__li--1">
@@ -450,13 +454,17 @@
                         <div class="page2__card02__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
                             :class="getPage2CardTicketClass(1)+(!page2.isMoving ? '' : '')+(page2.activeCard == 1 ? ' activeTop' : '')"
                             v-show="(!page2.isMoving && page2.activeCard == 1) || (page2.isMoving && page2.lastCard == 1)">
-                            <div class="page2__card02__btn opacityChange delay1-0"
-                                :class="page2.cardActive[1] ? 'active' : ''"
+                            <div class="page2__card02__btnCenter opacityChange delay1-0"
                                 :data-lg-tj-id="lg" 
                                 data-lg-tj-no="0011" 
                                 data-lg-tj-cid="null"
-                                @touchstart="cardClickEvent(1)"></div>
-                            <div class="page2__card02__btnline widthChange delay1-5"></div>
+                                @touchstart="toLoginIn">
+                                <div class="page2__card02__btnContent cardBtnChange delay1-5">
+                                    <div class="page2__card__btn page2__card02__btn"></div>
+                                    <div class="page2__card__btn page2__card02__btnnext"></div>
+                                </div>
+                                <div class="page2__card02__btnline widthChange delay1-5"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="page2__li" ref="page2__li--2">
@@ -504,19 +512,23 @@
                         <div class="page2__card__btnbg page2__card03__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
                             :class="getPage2CardTicketClass(2)+(!page2.isMoving ? '' : '')+(page2.activeCard == 2 ? ' activeTop' : '')"
                             v-show="(!page2.isMoving && page2.activeCard == 2) || (page2.isMoving && page2.lastCard == 2)">
-                            <div class="page2__card__btn page2__card03__btn opacityChange delay1-0"
-                                :class="page2.cardActive[2] ? 'active' : ''"
+                            <div class="page2__card03__btnCenter opacityChange delay1-0"
                                 :data-lg-tj-id="lg" 
                                 data-lg-tj-no="0012" 
                                 data-lg-tj-cid="null"
-                                @touchstart="cardClickEvent(2)"></div>
-                            <div class="page2__card__btnline widthChange delay1-5"></div>
+                                @touchstart="toLoginIn">
+                                <div class="page2__card03__btnContent cardBtnChange delay1-5">
+                                    <div class="page2__card__btn page2__card03__btn"></div>
+                                    <div class="page2__card__btn page2__card03__btnnext"></div>
+                                </div>
+                                <div class="page2__card__btnline widthChange delay1-5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page page3" :class="activePage == 3 && !startMoving ? 'active' : page3.hidden ? 'hide' : ''" ref="page3">
+        <div class="page page3" :class="(activePage == 3 && !startMoving ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname)" ref="page3">
             <div class="page3__list">
                 <div class="page3__one">
                     <div class="page3__card" :style="{height:getFitTop(771*2,1)}">

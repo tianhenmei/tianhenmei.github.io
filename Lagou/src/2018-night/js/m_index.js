@@ -600,7 +600,8 @@
                 ]
             },
             page3:{
-                hidden:false
+                hidden:false,
+                classname:''
             }
         },
         computed:{
@@ -946,8 +947,9 @@
             page2CardMoveNext:function(){
                 var self = this,
                     len = 3,
+                    last = len - 1,
                     one = null;
-                if(this.page2.activeCard < len - 1){
+                if(this.page2.activeCard < last){
                     one = this.$refs['page2__li--'+(this.page2.activeCard + 1)];
                     one.className += ' hide';
                     setTimeout(function(){
@@ -960,29 +962,40 @@
                         setTimeout(function(){
                             one.className = one.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
-                        },1500);
+                        },1000);
                     },200);
+                }else if(this.page2.activeCard == last){
+                    this.page2.nomove = true;
+                    this.page2.isMoving = true;
+                    this.page2.lastCard = this.page2.activeCard;
+                    this.page2.activeCard = this.page2.activeCard + 1;
+                    setTimeout(function(){
+                        // one.className = one.className.replace(/( hide)/g,'');
+                        self.page2.isMoving = false;
+                    },1000);
+                    setTimeout(function(){
+                        self.toPage3();
+                    },500);
                 }
             },
-            cardClickEvent:function(index){
+            toPage3:function(index){
                 var self = this,
-                    arr = [false,false,false];
-                arr[index] = true;
-                this.page2.nomove = true;
-                this.page2.cardActive = arr;
-                var page2 = this.$refs['page2'],
+                    page2 = this.$refs['page2'],
                     page3 = this.$refs['page3'];
+                self.page2.hidden = true;
+                self.page3.hidden = true;
                 setTimeout(function(){
-                    page2.className += ' pageMoveU';
-                    self.page3.hidden = true;
+                    self.page3.hidden = false;
+                    self.page3.classname = 'pageMoveU';
                     setTimeout(function(){
-                        self.page2.hidden = true;
-                        self.page3.hidden = false;
                         PM.data.last = 2;
                         PM.data.now = 3;
                         self.activePage = 3;
                     },500);
                 },500);
+            },
+            toLoginIn:function(){
+
             },
         }
     })

@@ -1669,17 +1669,31 @@ body {
   top: 22.74074rem;
   margin: 0 0 0 -7.43704rem; }
 
+.page2__card__btnCenter {
+  width: 14.88889rem;
+  height: 3.25926rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden; }
+
+.page2__card__btnContent {
+  width: 14.88889rem;
+  height: 6.51852rem; }
+
 .page2__card__btn {
   width: 14.88889rem;
   height: 3.25926rem;
   background: url("../images/page2-card-btn.png") no-repeat center top;
-  background-size: 100% 100%;
-  position: absolute;
-  left: 0rem;
-  top: 0rem; }
+  background-size: 100% 100%; }
 
 .page2__card__btn.active {
   background-image: url("../images/page2-card-btnactive.png"); }
+
+.page2__card__btnnext {
+  background-image: url("../images/page2-card-btnactive.png");
+  -webkit-transform: translate3d(0, 3.25926rem, 0);
+          transform: translate3d(0, 3.25926rem, 0); }
 
 .page2__card__btnline {
   width: 1.76296rem;
@@ -1871,17 +1885,31 @@ body {
   top: 22.74074rem;
   margin: 0 0 0 -7.48148rem; }
 
-.page2__card02__btn {
+.page2__card02__btnCenter {
+  width: 14.96296rem;
+  height: 3.43704rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden; }
+
+.page2__card02__btnContent {
+  width: 14.96296rem;
+  height: 6.87407rem; }
+
+.page2__card02__btnnext, .page2__card02__btn {
   width: 14.96296rem;
   height: 3.43704rem;
   background: url("../images/page2-card02-btn.png") no-repeat center top;
-  background-size: 100% 100%;
-  position: absolute;
-  left: 0rem;
-  top: 0rem; }
+  background-size: 100% 100%; }
 
 .page2__card02__btn.active {
   background-image: url("../images/page2-card02-btnactive.png"); }
+
+.page2__card02__btnnext {
+  background-image: url("../images/page2-card02-btnactive.png");
+  -webkit-transform: translate3d(0, 3.43704rem, 0);
+          transform: translate3d(0, 3.43704rem, 0); }
 
 .page2__card02__btnline {
   width: 1.76296rem;
@@ -1898,11 +1926,28 @@ body {
 .page2__card03__btnbg {
   background-image: url("../images/page2-card03-btnbg.png"); }
 
+.page2__card03__btnCenter {
+  width: 14.88889rem;
+  height: 3.25926rem;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  overflow: hidden; }
+
+.page2__card03__btnContent {
+  width: 14.88889rem;
+  height: 6.51852rem; }
+
 .page2__card03__btn {
   background-image: url("../images/page2-card03-btn.png"); }
 
 .page2__card03__btn.active {
   background-image: url("../images/page2-card03-btnactive.png"); }
+
+.page2__card03__btnnext {
+  background-image: url("../images/page2-card03-btnactive.png");
+  -webkit-transform: translate3d(0, 3.25926rem, 0);
+          transform: translate3d(0, 3.25926rem, 0); }
 
 .page2__card03__titleLayer {
   width: 100%;
@@ -4945,14 +4990,38 @@ body {
           animation: pageMoveU 0.5s both linear; }
 
 @-webkit-keyframes pageMoveU {
-  0% { }
+  0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); }
   100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+@keyframes pageMoveU {
+  0% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+.cardBtnChange {
+  -webkit-animation: cardBtnChange 1s both steps(1, end) infinite;
+          animation: cardBtnChange 1s both steps(1, end) infinite; }
+
+@-webkit-keyframes cardBtnChange {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  50% {
     -webkit-transform: translate3d(0, -100%, 0);
             transform: translate3d(0, -100%, 0); } }
 
-@keyframes pageMoveU {
-  0% { }
-  100% {
+@keyframes cardBtnChange {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  50% {
     -webkit-transform: translate3d(0, -100%, 0);
             transform: translate3d(0, -100%, 0); } }
 

@@ -1310,16 +1310,30 @@ body {
             background-size:100% 100%;
             @include center(38,1535);
         }
+        // page2__card__btnCenter
+        &__btnCenter {
+            width:rem(1005);
+            height:rem(220);
+            @include leftTop(0,0);
+            overflow:hidden;
+        }
+        &__btnContent {
+            width:rem(1005);
+            height:rem(220*2);
+        }
         // page2__card__btn
         &__btn {
             width:rem(1005);
             height:rem(220);
             background:url('../images/page2-card-btn.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(0,0);
         }
         &__btn.active {
             background-image:url('../images/page2-card-btnactive.png');
+        }
+        &__btnnext {
+            background-image:url('../images/page2-card-btnactive.png');
+            transform:translate3d(0,rem(220),0);
         }
         // page2__card__btnline
         &__btnline {
@@ -1525,16 +1539,31 @@ body {
             background-size:100% 100%;
             @include center(35,1535);
         }
+        // page2__card__btnCenter
+        &__btnCenter {
+            width:rem(1010);
+            height:rem(232);
+            @include leftTop(0,0);
+            overflow:hidden;
+        }
+        &__btnContent {
+            width:rem(1010);
+            height:rem(232*2);
+        }
         // page2__card02__btn
+        &__btnnext,
         &__btn {
             width:rem(1010);
             height:rem(232);
             background:url('../images/page2-card02-btn.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(0,0);
         }
         &__btn.active {
             background-image:url('../images/page2-card02-btnactive.png');
+        }
+        &__btnnext {
+            background-image:url('../images/page2-card02-btnactive.png');
+            transform:translate3d(0,rem(232),0);
         }
         // page2__card02__btnline
         &__btnline {
@@ -1553,12 +1582,27 @@ body {
         &__btnbg {
             background-image:url('../images/page2-card03-btnbg.png');
         }
+        // page2__card__btnCenter
+        &__btnCenter {
+            width:rem(1005);
+            height:rem(220);
+            @include leftTop(0,0);
+            overflow:hidden;
+        }
+        &__btnContent {
+            width:rem(1005);
+            height:rem(220*2);
+        }
         // page2__card03__btn
         &__btn {
             background-image:url('../images/page2-card03-btn.png');
         }
         &__btn.active {
             background-image:url('../images/page2-card03-btnactive.png');
+        }
+        &__btnnext {
+            background-image:url('../images/page2-card03-btnactive.png');
+            transform:translate3d(0,rem(220),0);
         }
         // page2__card03__titleLayer
         &__titleLayer {
@@ -3573,9 +3617,20 @@ body {
 }
 @keyframes pageMoveU {
     0% {
-        
+        transform:translate3d(0,100%,0);
     }
     100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.cardBtnChange {
+    animation:cardBtnChange 1s both steps(1,end) infinite;
+}
+@keyframes cardBtnChange {
+    0%,100% {
+        transform:translate3d(0,0,0);
+    }
+    50% {
         transform:translate3d(0,-100%,0);
     }
 }
