@@ -324,6 +324,14 @@ body {
     background:url('../images/page2-icon03.png') no-repeat 0 0;
     background-size:rem(1024) rem(1024);
 }
+.page3__icon {
+    background:url('../images/page3-icon.png') no-repeat 0 0;
+    background-size:rem(1024) rem(1024);
+}
+.page3__icon02 {
+    background:url('../images/page3-icon02.png') no-repeat 0 0;
+    background-size:rem(1024) rem(1024);
+}
 .page0 {
     &__text {
         width:rem(1080);
@@ -1794,181 +1802,384 @@ body {
     }
     // page3__card
     &__card {
-        width:rem(506*2);
-        height:rem(771*2);
+        width:rem(1006);
+        height:rem(1501);
         background:url('../images/page3-card-bg.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(18*2,0);
+        @include center(36,0);
+        opacity:0;
         // page3__card__light
         &__light {
-            width:rem(504*2);
-            height:rem(850*2);
+            width:rem(1011);
+            height:rem(1705);
             background:url('../images/page3-card-light.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(0,-83*2);
+            @include leftTop(-1,-166);
+        }
+        &__light02 {
+            background-image:url('../images/page3-card02-light.png');
         }
         // page3__card__door
         &__door {
-            width:rem(504*2);
-            height:rem(750*2);
-            background:url('../images/page3-card-door.png') no-repeat center top;
-            background-size:100% 100%;
+            width:rem(1006);
+            height:rem(1501);
+            // background:url('../images/page3-card-door.png') no-repeat center top;
+            // background-size:100% 100%;
             @include leftBottom(0,0);
+        }
+        &__inner {
+            width:rem(1006);
+            height:rem(1502);
+            @include leftBottom(0,0);
+            &--bg,
+            &--border,
+            &--light,
+            &--content {
+                width:100%;
+                height:100%;
+                @include leftTop(0,-7);
+                background-repeat:no-repeat;
+                background-position:center top;
+                background-size:100% 100%;
+            }
+            &--bg {
+                top:auto;
+                bottom:rem(7);
+                background-image:url('../images/page3-card-inner-bg.png');
+            }
+            &--border {
+                background-image:url('../images/page3-card-inner-border.png');
+            }
+            &--light {
+                background-image:url('../images/page3-card-inner-light.png');
+            }
+            &--content {
+                background-image:url('../images/page3-card-inner.png');
+            }
+        }
+        &__inner-x {
+            width:rem(1005);
+            height:rem(1731);
+            .page3__card__inner--bg {
+                background-image:url('../images/page3-card-inner-x-bg.png');
+            }
+            .page3__card__inner--border {
+                background-image:url('../images/page3-card-inner-x-border.png');
+            }
+            .page3__card__inner--light {
+                background-image:url('../images/page3-card-inner-x-light.png');
+            }
+            .page3__card__inner--content {
+                background-image:url('../images/page3-card-inner-x.png');
+            }
+        }
+        &__ul,
+        &__li {
+            width:100%;
+            height:rem(1100);
+            @include leftTop(0,0);
+        }
+        // page3__card__cover
+        // &__cover {
+        //     width:rem(1040);
+        //     height:rem(36);
+        //     background:url('../images/page3-card-cover.png') no-repeat center top;
+        //     background-size:100% 100%;
+        //     @include leftBottom(-17,-17);
+        // }
+        &__nameLayer {
+            width:rem(281);
+            height:rem(368);
+            @include leftTop(-13,-16);
+            overflow:hidden;
+            &__nameCenter,
+            &__name,
+            &__name-active {
+                width:rem(281);
+                height:rem(368);
+            }
+            &__nameCenter {
+                height:rem(368*2);
+            }
+            &__name,
+            &__name-active {
+                background-repeat:no-repeat;
+                background-position:center top;
+                background-size:100% 100%;
+            }
+            &__name {
+                background-image:url('../images/page3-name.png');
+            }
+            &__name-active {
+                background-image:url('../images/page3-name-active.png');
+            }
+            &__name02 {
+                background-image:url('../images/page3-name02.png');
+            }
+            &__name02-active {
+                background-image:url('../images/page3-name02-active.png');
+            }
+        }
+        // page3__card__logo
+        &__logo {
+            width:rem(214);
+            height:rem(321);
+            background:url('../images/page3-logo.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(782,-41);
         }
         // page3__card__tv
         &__tv,
         &__tvbg {
-            width:rem(332*2);
-            height:rem(275*2);
             background:no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(85*2,135*2);
         }
         &__tvbg {
+            width:rem(699);
+            height:rem(699);
             background-image:url('../images/page3-card-tv.png');
+            @include leftTop(155,70);
         }
-        &__tv01 {
-            background-image:url('../images/page3-card-tv01.png');
+        &__tvbg02 {
+            background-image:url('../images/page3-card02-tv.png');
+        }
+        &__tvimg {
+            width:rem(621);
+            height:rem(364);
+            // background-image:url('../images/page3-card-tv01.png');
+            @include leftTop(195,300);
+        }
+        &__tvold {
+            width:rem(621);
+            height:rem(364);
+            border-radius:rem(20);
+            background:url('../images/page3-card-tvold.gif') no-repeat center top;
+            background-size:100% 100%;
+            overflow:hidden;
+            @include leftTop(195,300);
         }
         // page3__card__tvicon
         &__tvicon {
-            width:rem(89*2);
-            height:rem(53*2);
+            width:rem(226);
+            height:rem(148);
             background:url('../images/page3-card-tvicon.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(329*2,115*2);
+            @include leftTop(642,215);
+            overflow:hidden;
+            &--text {
+                width:rem(226*5);
+                height:rem(148);
+                background:url('../images/page3-card-tvicon-text.png') no-repeat 0 0;
+                background-size:rem(226*5) rem(148);
+                @include leftTop(0,0);
+            }
         }
-        // page3__card__title
-        &__title {
-            width:rem(206*2);
-            height:rem(30*2);
-            line-height:rem(30*2);
-            background:no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(148*2,379*2);
-            font-size:rem(17*2);
+        &__tvi02 {
+            background-image:url('../images/page3-card02-tvicon.png');
+        }
+        &__tvicon01 {
+            width:rem(84);
+            height:rem(84);
+            background-position:0 0;
+            @include leftTop(185,677);
+            transform-origin:47.61% 47.61%;
+        }
+        &__tvicon02 {
+            width:rem(84);
+            height:rem(84);
+            background-position:rem(-100) 0;
+            @include leftTop(264,677);
+            transform-origin:47.61% 47.61%;
+        }
+        &__tvicon03 {
+            width:rem(53);
+            height:rem(70);
+            background-position:rem(-200) 0;
+            @include leftTop(709,677);
+        }
+        &__tvicon04 {
+            width:rem(53);
+            height:rem(70);
+            background-position:rem(-260) 0;
+            @include leftTop(763,677);
+        }
+        // page3__card__bug
+        &__bug {
+            width:rem(176);
+            height:rem(110);
+            background-position:rem(-520) 0;
+            @include leftTop(727,771);
+        }
+        &__bubble02Parent {
+            width:rem(144);
+            height:rem(65);
+            @include leftTop(634,810);
+        }
+        // page3__card__bubble02
+        &__bubble02 {
+            width:rem(144);
+            height:rem(65);
+            background-position:rem(-320) 0;
+            transform-origin:100% 43.076%;
+        }
+        // page3__card__title01
+        &__title01 {
+            width:rem(366);
+            height:rem(60);
+            line-height:rem(56);
+            background-position:0 rem(-130);
+            @include leftTop(322,777);
+            font-size:rem(31.46);
+            font-weight:bold;
             text-align:center;
             color:#fff;
         }
-        &__title01 {
-            background-image:url('../images/page3-card-title01.png');
-        }
         &__titlestar {
-            width:rem(143*2);
-            height:rem(14*2);
-            background:url('../images/page3-card-titlestar.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(181*2,386*2);
+            width:rem(33);
+            height:rem(33);
+            background-position:rem(-730) 0;
+            @include leftTop(367,789);
+        }
+        &__titlestar02 {
+            left:rem(614);
         }
         // page3__card__textbg01
         &__textbg01 {
-            width:rem(396*2);
-            height:rem(93*2);
+            width:rem(719);
+            height:rem(272);
             background:url('../images/page3-card-textbg01.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(54*2,419*2);
+            @include leftTop(145,841);
+            &-02 {
+                background-image:url('../images/page3-card02-textbg01.png');
+            }
         }
         // page3__card__textbg02
         &__textbg02 {
-            width:rem(390*2);
-            height:rem(153*2);
+            width:rem(799);
+            height:rem(324);
             background:url('../images/page3-card-textbg02.png') no-repeat center top;
             background-size:100% 100%;
-            @include leftTop(56*2,541*2);
+            @include leftTop(102,1073);
+            &-02 {
+                background-image:url('../images/page3-card02-textbg02.png');
+            }
         }
         // page3__card__textstar
-        &__textstar {
-            width:rem(302*2);
-            height:rem(14*2);
-            background:url('../images/page3-card-textstar.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(102*2,562*2);
+        &__textstar01,
+        &__textstar04 {
+            width:rem(24);
+            height:rem(24);
+            background-position:rem(-780) 0;
+            @include leftTop(201,1127);
+        }
+        &__textstar04 {
+            left:rem(786);
+        }
+        &__textstar02,
+        &__textstar05 {
+            width:rem(28);
+            height:rem(28);
+            background-position:rem(-810) 0;
+            @include leftTop(240,1125);
+        }
+        &__textstar05 {
+            left:rem(745);
+        }
+        &__textstar03,
+        &__textstar06 {
+            width:rem(34);
+            height:rem(34);
+            background-position:rem(-840) 0;
+            @include leftTop(275,1122);
+        }
+        &__textstar06 {
+            left:rem(702);
         }
         // page3__card__tail 
         &__tail {
-            width:rem(109*2);
-            height:rem(153*2);
-            background:url('../images/page3-card-tail.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(-17*2,317*2);
+            width:rem(180);
+            height:rem(318);
+            background-position:0 rem(-340);
+            @include leftTop(18,634);
         }
         // page3__card__bubble 
         &__bubble {
-            width:rem(66*2);
-            height:rem(54*2);
-            background:url('../images/page3-card-bubble.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(108*2,678*2);
+            width:rem(132);
+            height:rem(110);
+            background-position:0 rem(-210);
+            @include leftBottom(217,38);
         }
         // page3__card__text01
         &__text01 {
-            width:rem(396*2);
-            height:rem(93*2);
-            line-height:rem(31*2);
-            @include leftTop(81*2,437*2);
-            font-size:rem(17*2);
+            width:rem(635);
+            height:rem(114);
+            line-height:rem(53);
+            @include leftTop(200,891);
+            font-size:rem(30.38);
             text-align:left;
             color:#fff;
         }
         &__title02 {
-            width:rem(390*2);
-            line-height:rem(36*2);
-            @include leftTop(56*2,552*2);
-            font-size:rem(17*2);
+            width:rem(799);
+            line-height:rem(53);
+            @include leftTop(102,1073+41);
+            font-size:rem(34);
             font-weight:bold;
             text-align:center;
             color:#fff;
         }
         &__text02 {
-            width:rem(390*2);
-            line-height:rem(30*2);
-            @include leftTop(102*2,588*2);
+            width:rem(626);
+            line-height:rem(60);
+            @include leftTop(204,1178);
             font-size:rem(17*2);
             text-align:left;
             color:#fff;
         }
+        &__arrowParent {
+            width:rem(92);
+            height:rem(50);
+            @include leftBottom(457,26);
+        }
         &__arrow {
-            width:rem(42*2);
-            height:rem(23*2);
-            background:url('../images/page3-card-arrow.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(231*2,714*2);
+            width:rem(92);
+            height:rem(50);
+            background-position:rem(-160) rem(-210);
         }
         &__star01 {
-            width:rem(17*2);
-            height:rem(19*2);
-            background:url('../images/page3-star01.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(67*2,157*2);
+            width:rem(52);
+            height:rem(58);
+            background-position:rem(-300) rem(-210);
+            @include leftTop(121,301);
         }
         &__star02 {
-            width:rem(22*2);
-            height:rem(28*2);
-            background:url('../images/page3-star02.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(125*2,100*2);
+            width:rem(65);
+            height:rem(78);
+            background-position:rem(-366) rem(-210);
+            @include leftTop(236,189);
         }
         &__star03 {
-            width:rem(17*2);
-            height:rem(19*2);
-            background:url('../images/page3-star03.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(301*2,78*2);
+            width:rem(54);
+            height:rem(64);
+            background-position:rem(-440) rem(-210);
+            @include leftTop(590,143);
         }
         &__star04 {
-            width:rem(19*2);
-            height:rem(23*2);
-            background:url('../images/page3-star04.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(383*2,89*2);
+            width:rem(55);
+            height:rem(68);
+            background-position:rem(-500) rem(-210);
+            @include leftTop(753,165);
         }
         &__star05 {
-            width:rem(17*2);
-            height:rem(18*2);
-            background:url('../images/page3-star05.png') no-repeat center top;
-            background-size:100% 100%;
-            @include leftTop(403*2,115*2);
+            width:rem(55);
+            height:rem(64);
+            background-position:rem(-560) rem(-210);
+            @include leftTop(794,217);
         }
+    }
+    .active-card {
+        opacity:1;
     }
     // page3__name
     &__name {
@@ -1980,19 +2191,43 @@ body {
     }
     // page3__btnbg
     &__btnbg {
-        width:rem(506*2);
-        height:rem(113*2);
+        width:rem(1006);
+        height:rem(223);
         background:url('../images/page3-btnbg.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(17*2,769*2);
+        @include center(36,1503);
+    }
+    &__btnbg02 {
+        background-image:url('../images/page3-btnbg02.png');
+    }
+    &__btnCenter {
+        width:rem(1006);
+        height:rem(223);
+        @include leftTop(0,0);
+        overflow:hidden;
+    }
+    &__btnContent {
+        width:rem(1006);
+        height:rem(223*2);
     }
     // page3__btn
     &__btn {
-        width:rem(506*2);
-        height:rem(113*2);
+        width:rem(1006);
+        height:rem(223);
         background:url('../images/page3-btn.png') no-repeat center top;
         background-size:100% 100%;
         @include leftTop(0,0);
+        &__btnnext {
+            background-image:url('../images/page3-btnactive.png');
+            transform:translate3d(0,rem(223),0);
+        }
+    }
+    &__btn02 {
+        background-image:url('../images/page3-btn02.png');
+        &__btnnext {
+            background-image:url('../images/page3-btnactive02.png');
+            transform:translate3d(0,rem(223),0);
+        }
     }
     &__btnline {
         width:rem(119);
@@ -2191,7 +2426,48 @@ body {
     }
 }
 
-
+.tvtextOpacityChange {
+    animation:tvtextOpacityChange 9s both linear infinite;
+}
+@keyframes tvtextOpacityChange {
+    0%,38.9%,66.7%,100% {
+        opacity:0;
+    }
+    5.5%,33.3% {
+        opacity:1;
+    }
+}
+.tvoldOpacityChange {
+    animation:tvoldOpacityChange 9s both linear infinite;
+}
+@keyframes tvoldOpacityChange {
+    0%,33.3%,66.7%,100% {
+        opacity:0;
+    }
+    5.5%,38.9%,72.2% {
+        opacity:1;
+    }
+    11.1%,44.4%,77.8% {
+        opacity:0;
+    }
+}
+.tviconRotateChange {
+    animation:tviconRotateChange 9s both linear infinite;
+}
+@keyframes tviconRotateChange {
+    0% {
+        transform:rotateZ(0);
+    }
+    5.5%,33.3%{
+        transform:rotateZ(120deg);
+    }
+    38.9%,66.7% {
+        transform:rotateZ(240deg);
+    }
+    72.2%,100% {
+        transform:rotateZ(360deg);
+    }
+}
 
 .content-scroll {
     animation:scrollContent 2.5s both linear;
@@ -2487,6 +2763,17 @@ body {
     animation:leftLittleMoveIn 0.5s both ease-in-out infinite alternate;
 }
 @keyframes leftLittleMoveIn {
+    0% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+.rightLittleMoveIn {
+    animation:rightLittleMoveIn 0.5s both ease-in-out infinite alternate;
+}
+@keyframes rightLittleMoveIn {
     0% {
         transform: translateX(5px);
     }
@@ -3634,6 +3921,50 @@ body {
         transform:translate3d(0,-100%,0);
     }
 }
+.blinkChange {
+    animation:blinkChange 1s both steps(1,end) infinite;
+}
+@keyframes blinkChange {
+    0%,100% {
+        transform:translate3d(0,0,0);
+    }
+    50% {
+        transform:translate3d(0,-50%,0);
+    }
+}
+.tvtextChange {
+    animation:tvtextChange 1.6s both steps(5,end) infinite;
+}
+@keyframes tvtextChange {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    100% {
+        transform:translate3d(-100%,0,0);
+    }
+}
+.page3BubbleDispear {
+    animation:page3BubbleDispear 5s both linear infinite;
+    transform-origin:0 100%;
+}
+@keyframes page3BubbleDispear {
+    0% {
+        opacity:1;
+        transform:scale3d(0,0,0);
+    }
+    40% {
+        opacity:1;
+        transform:scale3d(1,1,1);
+    }
+    70% {
+        transform:scale3d(1,1,1) translate3d(rem(100),rem(-50),0) rotateZ(-15deg);
+    }
+    80%,
+    100% {
+        transform:scale3d(1,1,1) translate3d(rem(100),rem(-50),0) rotateZ(-15deg);
+        opacity:0;
+    }
+}
 
 .origin100-0 {
     transform-origin:100% 0;
@@ -3833,6 +4164,9 @@ body {
 }
 .delay8-5 {
     animation-delay:8.5s;
+}
+.delay9-0 {
+    animation-delay:9.0s;
 }
 .delay9-5 {
     animation-delay:9.5s;

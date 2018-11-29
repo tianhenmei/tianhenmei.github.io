@@ -600,8 +600,88 @@
                 ]
             },
             page3:{
+                lastCard:0,
+                activeCard:0,
+                isMoving:false,
+                nomove:false,  // 如果点击了票根就不能滑动了
                 hidden:false,
-                classname:''
+                classname:'',
+                list:[
+                    {
+                        // 奇妙办公室
+                        content:[
+                            {
+                                title:'职场3D照相馆',
+                                img:'images/page3-card-tv01.png',
+                                info:'身临其境地来一场办公室大冒险。'
+                            },{
+                                title:'百万年薪屋',
+                                img:'images/page3-card-tv02.png',
+                                info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
+                            },{
+                                title:'倒着的办公会',
+                                img:'images/page3-card-tv03.png',
+                                info:'奇幻世界中，show出办公室里不一样的你'
+                            }
+                        ],
+                        title:'探秘奇幻的办公室场景',
+                        detail:'为什么职场必须沉闷枯燥？放开想象，<br/>会遇见意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
+                    },{ // 有情绪小卖部
+                        content:[
+                            {
+                                title:'情绪黑室',
+                                img:'images/page3-card-tv04.png',
+                                info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
+                            },{
+                                title:'有答案诊所',
+                                img:'images/page3-card-tv05.png',
+                                info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
+                            },{
+                                title:'12星座睡床',
+                                img:'images/page3-card-tv06.png',
+                                info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
+                            }
+                        ],
+                        title:'排解职场疑惑和情绪',
+                        detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
+                    },{ // 奇遇森林
+                        content:[
+                            {
+                                title:'世界慢递局',
+                                img:'images/page3-card-tv07.png',
+                                info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
+                            },{
+                                title:'猫王太空唱片计划',
+                                img:'images/page3-card-tv08.png',
+                                info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
+                            },{
+                                title:'So real VR乐园',
+                                img:'images/page3-card-tv09.png',
+                                info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
+                            }
+                        ],
+                        title:'当红品牌互动试验场',
+                        detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
+                    },{ // 奇物大赏
+                        content:[
+                            {
+                                title:'定制可乐',
+                                img:'images/page3-card-tv10.png',
+                                info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
+                            },{
+                                title:'拉勾黑市',
+                                img:'images/page3-card-tv11.png',
+                                info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
+                            },{
+                                title:'答案茶',
+                                img:'images/page3-card-tv12.png',
+                                info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
+                            }
+                        ],
+                        title:'拉勾尖货快闪店',
+                        detail:'吃也要吃出观点，<br/>买也要买出态度，<br/>一年到头，遇见吃喝玩乐的正确姿势。'
+                    }
+                ]
             }
         },
         computed:{
@@ -638,6 +718,7 @@
             this.initPage1PartAni();
             // 给page2 的卡片添加滑动翻事件
             this.initPage2FlipEvent();
+            this.initPage3FlipEvent();
             if(mode == 'development' && initialNow == 1){
                 self.animated = true;
                 setTimeout(function(){
@@ -972,6 +1053,154 @@
                     setTimeout(function(){
                         // one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = false;
+                    },1000);
+                    setTimeout(function(){
+                        self.toPage3();
+                    },500);
+                }
+            },
+            getPage3CardParentClass:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page3.lastCard == 0 && this.page3.activeCard == 0){
+                    
+                }else if(this.page3.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page3.lastCard < this.page3.activeCard){
+                        if(index == this.page3.lastCard){
+                            return 'cutCardParentShake';
+                        }else if(index < this.page3.lastCard){
+                            return 'hide';
+                        }
+                    }else{
+                        if(index == this.page3.lastCard){
+                            return 'cutCardParentShakeBack';
+                        }else if(index < this.page3.lastCard){
+                            return 'hide';
+                        }
+                    }
+                }
+                return '';
+            },
+            getPage3CardClass:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page3.lastCard == 0 && this.page3.activeCard == 0){
+                    return 'active-card';
+                }else if(this.page3.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page3.lastCard < this.page3.activeCard){
+                        if(index == this.page3.lastCard){
+                            return 'cutCardLast';//'flipCardLast';
+                        }else if(index == this.page3.activeCard){
+                            return '';// return 'flipCardNow';
+                        }
+                    }else{
+                        if(index == this.page3.lastCard){
+                            return 'cutCardBLast';// return 'flipCardBLast';
+                        }else if(index == this.page3.activeCard){
+                            return 'active-card';// return 'flipCardBNow';
+                        }
+                    }
+                }else if(index == this.page3.activeCard){
+                    // 当前显示的卡片
+                    return 'active-card';
+                }
+                return '';
+            },
+            getPage3CardTicketClass:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page3.lastCard == 0 && this.page3.activeCard == 0){
+                    
+                }else if(this.page3.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page3.lastCard < this.page3.activeCard){
+                        if(index == this.page3.lastCard){
+                            return 'cutCardTicketShake';
+                        }
+                    }else{
+                        if(index == this.page3.lastCard){
+                            return 'cutCardTicketShakeBack';
+                        }
+                    }
+                }
+                return '';
+            },
+            initPage3FlipEvent:function(){
+                var elem = this.$refs['page3'],
+                    self = this,
+                    isMoving = false,
+                    start = 0;
+                elem.addEventListener('touchstart', startMove, false);
+                elem.addEventListener('touchend', endMove, false);
+
+                function startMove(e){
+                    var touch = e.targetTouches[0];
+                    start = touch.clientX;
+                    isMoving = false;
+                }
+                function endMove(e){
+                    if(!self.page3.nomove){
+                        isMoving = true;
+                        var touch = e.changedTouches[0],
+                            direction = touch.clientX - start;
+                        if(Math.abs(direction) > 60){
+                            e.stopPropagation();
+                            direction = direction > 0 ? 1 : -1;
+                            if(direction > 0){
+                                // back
+                                self.page3CardMoveBack();
+                            }else{
+                                // next
+                                self.page3CardMoveNext();
+                            }
+                        }
+                    }
+                }
+            },
+            page3CardMoveBack:function(){
+                var self = this,
+                    one = null;
+                if(this.page3.activeCard > 0){
+                    one = this.$refs['page3__one--'+(this.page3.activeCard - 1)];
+                    one.className += ' hide';
+                    setTimeout(function(){
+                        self.page3.isMoving = true;
+                        self.page3.lastCard = self.page3.activeCard;
+                        self.page3.activeCard = self.page3.activeCard - 1;
+                        setTimeout(function(){
+                            one.className = one.className.replace(/( hide)/g,'');
+                            self.page3.isMoving = false;
+                        },1500);
+                    },200);
+                }
+            },
+            page3CardMoveNext:function(){
+                var self = this,
+                    len = 3,
+                    last = len - 1,
+                    one = null;
+                if(this.page3.activeCard < last){
+                    one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
+                    one.className += ' hide';
+                    setTimeout(function(){
+                        self.page3.isMoving = true;
+                        self.page3.lastCard = self.page3.activeCard;
+                        self.page3.activeCard = self.page3.activeCard + 1;
+                        setTimeout(function(){
+                            one.className = one.className.replace(/( hide)/g,'');
+                            self.page3.isMoving = false;
+                        },1000);
+                    },200);
+                }else if(this.page3.activeCard == last){
+                    this.page3.nomove = true;
+                    this.page3.isMoving = true;
+                    this.page3.lastCard = this.page3.activeCard;
+                    this.page3.activeCard = this.page3.activeCard + 1;
+                    setTimeout(function(){
+                        // one.className = one.className.replace(/( hide)/g,'');
+                        self.page3.isMoving = false;
                     },1000);
                     setTimeout(function(){
                         self.toPage3();

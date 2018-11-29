@@ -370,7 +370,7 @@
                                         </div>
                                     </div>
                                     <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
                                     </div>
                                 </div>
                             </div>
@@ -446,7 +446,7 @@
                                         </div>
                                     </div>
                                     <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
                                     </div>
                                 </div>
                             </div>
@@ -504,7 +504,7 @@
                                         </div>
                                     </div>
                                     <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow leftLittleMoveIn"></div>
+                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
                                     </div>
                                 </div>
                             </div>
@@ -530,44 +530,176 @@
         </div>
         <div class="page page3" :class="(activePage == 3 && !startMoving ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname)" ref="page3">
             <div class="page3__list">
-                <div class="page3__one">
-                    <div class="page3__card" :style="{height:getFitTop(771*2,1)}">
-                        <div class="page3__card__light"></div>
-                        <div class="page3__card__door">
-                            <div class="page3__card__tvbg"></div>
-                            <div class="page3__card__tv page3__card__tv01"></div>
-                            <div class="page3__card__tvicon"></div>
-                            <div class="page3__card__title page3__card__title01">世界慢递局</div>
-                            <div class="page3__card__titlestar"></div>
-                            <div class="page3__card__textbg01"></div>
-                            <div class="page3__card__textbg02"></div>
-                            <div class="page3__card__tail"></div>
-                            <div class="page3__card__text01">写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！</div>
-                            <div class="page3__card__title02">当红品牌互动试验场</div>
-                            <div class="page3__card__text02">
-                                最当红品牌热门玩儿法，<br/>
-                                一场前沿的互动装置体验展。<br/>
-                                拉勾带你遇见未曾有过的人生实验。
+                <div class="page3__one" ref="page3__one--0">
+                    <div class="page3__cardParent" :class="getPage3CardParentClass(0)">
+                        <div class="page3__card" :style="{height:getFitTop(771*2,1)}" :class="getPage3CardClass(0)">
+                            <div class="page3__card__light"></div>
+                            <div class="page3__card__door">
+                                <div class="page3__card__inner">
+                                    <div class="page3__card__inner--bg"></div>
+                                    <div class="page3__card__inner--border"></div>
+                                    <div class="page3__card__inner--light"></div>
+                                    <div class="page3__card__inner--content"></div>
+                                </div>
+                                <div class="page3__card__cover"></div>
+                                <div class="page3__card__textbg01 page3__card__textbg01-02"></div>
+                                <div class="page3__card__textbg02 page3__card__textbg02-02"></div>
+                                <div class="page3__card__tvbg page3__card__tvbg02"></div>
+                                <div class="page3__icon page3__card__tvicon01 tviconRotateChange"></div>
+                                <div class="page3__icon page3__card__tvicon02 tviconRotateChange"></div>
+                                <div class="page3__icon page3__card__tvicon03"></div>
+                                <div class="page3__icon page3__card__tvicon04"></div>
+
+                                <div class="page3__card__ul">
+                                    <div class="page3__card__li"
+                                        v-for="(one,index) in page3.list[1].content">
+                                        <div class="page3__card__tv page3__card__tvimg tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" :style="{
+                                            backgroundImage:'url('+one.img+')'
+                                        }"></div>
+                                        <div class="page3__icon02 page3__card__title01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)">{{one.title}}</div>
+                                        <div class="page3__card__text01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" v-html="one.info"></div>
+                                    </div>
+                                    <div class="page3__card__tvold tvoldOpacityChange"></div>
+                                </div>
+
+                                <div class="page3__card__title02">{{page3.list[1].title}}</div>
+                                <div class="page3__card__text02" v-html="page3.list[1].detail"></div>
+                                <div class="page3__card__tvicon page3__card__tvi02">
+                                    <div class="page3__card__tvicon--text tvtextChange"></div>
+                                </div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02"></div>
+                                <div class="page3__icon02 page3__card__bug"></div>
+                                <div class="page3__card__bubble02Parent">
+                                    <div class="page3__icon page3__card__bubble02 zoomInfinite"></div>
+                                </div>
+                                <div class="page3__icon page3__card__tail"></div>
+                                <div class="page3__icon page3__card__textstar01"></div>
+                                <div class="page3__icon page3__card__textstar02"></div>
+                                <div class="page3__icon page3__card__textstar03"></div>
+                                <div class="page3__icon page3__card__textstar04"></div>
+                                <div class="page3__icon page3__card__textstar05"></div>
+                                <div class="page3__icon page3__card__textstar06"></div>
+                                <div class="page3__icon page3__card__bubble page3BubbleDispear"></div>
+                                <div class="page3__icon page3__card__star01"></div>
+                                <div class="page3__icon page3__card__star02"></div>
+                                <div class="page3__icon page3__card__star03"></div>
+                                <div class="page3__icon page3__card__star04"></div>
+                                <div class="page3__icon page3__card__star05"></div>
+                                <div class="page3__card__arrowParent opacityChange delay2-0">
+                                    <div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>
+                                </div>
                             </div>
-                            <div class="page3__card__textstar"></div>
-                            <div class="page3__card__bubble"></div>
-                            <div class="page3__card__arrow"></div>
-                            <div class="page3__card__star01"></div>
-                            <div class="page3__card__star02"></div>
-                            <div class="page3__card__star03"></div>
-                            <div class="page3__card__star04"></div>
-                            <div class="page3__card__star05"></div>
+                            <div class="page3__card__nameLayer">
+                                <div class="page3__card__nameLayer__nameCenter blinkChange">
+                                    <div class="page3__card__nameLayer__name page3__card__nameLayer__name02"></div>
+                                    <div class="page3__card__nameLayer__name-active page3__card__nameLayer__name02-active"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__logo"></div>
+                        </div>
+                    </div>
+                    <div class="page3__btnbg page3__btnbg02 opacityChange" :style="{top:getFitTop(1535,1)}"
+                        :class="getPage3CardTicketClass(0)+(!page3.isMoving && page3.lastCard == 0 && page3.activeCard == 0 ? ' ' : '')+(page3.activeCard == 0 ? ' activeTop' : '')"
+                        v-show="(!page3.isMoving && page3.activeCard == 0) || (page3.isMoving && page3.lastCard == 0)">
+                        <div class="page3__btnCenter opacityChange delay1-0"
+                            :data-lg-tj-id="lg" 
+                            data-lg-tj-no="0020" 
+                            data-lg-tj-cid="null"
+                            @touchstart="toLoginIn">
+                            <div class="page3__btnContent blinkChange delay1-5">
+                                <div class="page3__btn page3__btn02"></div>
+                                <div class="page3__btn page3__btn02__btnnext"></div>
+                            </div>
+                            <div class="page3__btnline widthChange delay1-5"></div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="page3__name"></div>
-            <div class="page3__btnbg opacityChange" :style="{top:getFitTop(1535,1)}">
-                <div class="page3__btn opacityChange delay1-0"
-                    :data-lg-tj-id="lg" 
-                    data-lg-tj-no="0020" 
-                    data-lg-tj-cid="null"></div>
-                <div class="page3__btnline widthChange delay1-5"></div>
+                <div class="page3__one" ref="page3__one--1">
+                    <div class="page3__cardParent" :class="getPage3CardParentClass(1)">
+                        <div class="page3__card" :style="{height:getFitTop(771*2,1)}" :class="getPage3CardClass(1)">
+                            <div class="page3__card__light page3__card__light02"></div>
+                            <div class="page3__card__door">
+                                <div class="page3__card__inner">
+                                    <div class="page3__card__inner--bg"></div>
+                                    <div class="page3__card__inner--border"></div>
+                                    <div class="page3__card__inner--light"></div>
+                                    <div class="page3__card__inner--content"></div>
+                                </div>
+                                <div class="page3__card__cover"></div>
+                                <div class="page3__card__textbg01"></div>
+                                <div class="page3__card__textbg02"></div>
+                                <div class="page3__card__tvbg"></div>
+                                <div class="page3__icon page3__card__tvicon01 tviconRotateChange"></div>
+                                <div class="page3__icon page3__card__tvicon02 tviconRotateChange"></div>
+                                <div class="page3__icon page3__card__tvicon03"></div>
+                                <div class="page3__icon page3__card__tvicon04"></div>
+
+                                <div class="page3__card__ul">
+                                    <div class="page3__card__li"
+                                        v-for="(one,index) in page3.list[2].content">
+                                        <div class="page3__card__tv page3__card__tvimg tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" :style="{
+                                            backgroundImage:'url('+one.img+')'
+                                        }"></div>
+                                        <div class="page3__icon page3__card__title01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)">{{one.title}}</div>
+                                        <div class="page3__card__text01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" v-html="one.info"></div>
+                                    </div>
+                                    <div class="page3__card__tvold tvoldOpacityChange"></div>
+                                </div>
+
+                                <div class="page3__card__title02">{{page3.list[2].title}}</div>
+                                <div class="page3__card__text02" v-html="page3.list[2].detail"></div>
+                                <div class="page3__card__tvicon">
+                                    <div class="page3__card__tvicon--text tvtextChange"></div>
+                                </div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02"></div>
+                                <div class="page3__icon page3__card__bug"></div>
+                                <div class="page3__card__bubble02Parent">
+                                    <div class="page3__icon page3__card__bubble02 zoomInfinite"></div>
+                                </div>
+                                <div class="page3__icon page3__card__tail"></div>
+                                <div class="page3__icon page3__card__textstar01"></div>
+                                <div class="page3__icon page3__card__textstar02"></div>
+                                <div class="page3__icon page3__card__textstar03"></div>
+                                <div class="page3__icon page3__card__textstar04"></div>
+                                <div class="page3__icon page3__card__textstar05"></div>
+                                <div class="page3__icon page3__card__textstar06"></div>
+                                <div class="page3__icon page3__card__bubble page3BubbleDispear"></div>
+                                <div class="page3__icon page3__card__star01"></div>
+                                <div class="page3__icon page3__card__star02"></div>
+                                <div class="page3__icon page3__card__star03"></div>
+                                <div class="page3__icon page3__card__star04"></div>
+                                <div class="page3__icon page3__card__star05"></div>
+                                <div class="page3__card__arrowParent opacityChange delay2-0">
+                                    <div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__nameLayer">
+                                <div class="page3__card__nameLayer__nameCenter blinkChange">
+                                    <div class="page3__card__nameLayer__name"></div>
+                                    <div class="page3__card__nameLayer__name-active"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__logo"></div>
+                        </div>
+                    </div>
+                    <div class="page3__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
+                        :class="getPage3CardTicketClass(1)+(!page3.isMoving ? '' : '')+(page3.activeCard == 1 ? ' activeTop' : '')"
+                        v-show="(!page3.isMoving && page3.activeCard == 1) || (page3.isMoving && page3.lastCard == 1)">
+                        <div class="page3__btnCenter opacityChange delay1-0"
+                            :data-lg-tj-id="lg" 
+                            data-lg-tj-no="0021" 
+                            data-lg-tj-cid="null"
+                            @touchstart="toLoginIn">
+                            <div class="page3__btnContent blinkChange delay1-5">
+                                <div class="page3__btn"></div>
+                                <div class="page3__btn page3__btn__btnnext"></div>
+                            </div>
+                            <div class="page3__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="page page4" :class="activePage == 4 ? 'active' : ''">
