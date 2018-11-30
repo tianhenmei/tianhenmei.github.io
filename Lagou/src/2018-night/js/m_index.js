@@ -103,7 +103,7 @@
                     jQuery(".page" + self.data.now).addClass("hide");
                 }
                 if(self.data.last == 0 && self.data.last < self.data.now){
-                    delayTime = 5000;
+                    delayTime = 1000;
                     app.setPage0DownStatus(true);
                 }else{
                     app.$data.startMoving = true;
@@ -220,7 +220,6 @@
         return PageMove;
     }();
     
-    var app = null;
     var PM = new PageMove({ animation: "move" });  
     
     Vue.config.errorHandler = function (err, vm, info) {
@@ -259,15 +258,28 @@
                 end:0,
                 btnStyle:null,
                 words:[
-                    ['你','的','生','活','中'],
-                    ['已','经','多','久','没','有','奇','遇'],
-                    ['少','年','时','追','求','激','情'],
-                    ['成','熟','后','却','迷','恋','平','庸'],
-                    ['害','怕','不','确','定','的','未','来'],
-                    ['年','轻','是','热','烈','，','是','追','逐'],
-                    ['而','职','场','是','一','座','奇','幻','森','林'],
-                    ['当','你','拥','抱','所','有','“不确定”'],
-                    ['就','能','把','遇','见','变','为','奇','遇']
+                    {
+                        classname:'littleBottomIn duration1-0 delay0-5',
+                        line:['你','的','生','活','中','，','已','经','多','久','没','有','奇','遇','？']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay3-0',
+                        line:['少','年','时','追','求','激','情','，','成','熟','后','却','迷','恋','平','庸']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay5-5',
+                        line:['害','怕','不','确','定','的','未','来']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay8-0',
+                        line:['年','轻','是','热','烈','，','是','追','逐']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay10-5',
+                        line:['而','职','场','是','一','座','奇','幻','森','林']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay13-0',
+                        line:['当','你','拥','抱','所','有','“不确定”']
+                    },{
+                        classname:'littleBottomIn duration1-0 delay13-5',
+                        line:['就','能','把','遇','见','变','为','奇','遇']
+                    }
                 ],
                 style:[
                     {
@@ -610,6 +622,9 @@
                 list:[
                     {
                         // 奇妙办公室
+                        title01:'page3__icon',
+                        bug:'page3__icon',
+                        btnNext:'page3__btn__btnnext',
                         content:[
                             {
                                 title:'职场3D照相馆',
@@ -617,17 +632,30 @@
                                 info:'身临其境地来一场办公室大冒险。'
                             },{
                                 title:'百万年薪屋',
-                                img:'images/page3-card-tv11.png',
+                                img:'images/page3-card-tv12.png',
                                 info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
                             },{
                                 title:'倒着的办公会',
-                                img:'images/page3-card-tv12.png',
+                                img:'images/page3-card-tv11.png',
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
                         ],
                         title:'探秘奇幻的办公室场景',
-                        detail:'为什么职场必须沉闷枯燥？放开想象，<br/>会遇见意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
+                        detail:'为什么职场必须沉闷枯燥？放开想象，会遇见<br/>意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
                     },{ // 有情绪小卖部
+                        light:'page3__card__light02',
+                        textbg01:'page3__card__textbg01-02',
+                        textbg02:'page3__card__textbg02-02',
+                        tvbottom:'page3__card__tvbottom02',
+                        tvbg:'page3__card__tvbg02',
+                        tvicon:'page3__card__tvi02',
+                        title01:'page3__icon02',
+                        bug:'page3__icon02',
+                        name:'page3__card__nameLayer__name02',
+                        nameActive:'page3__card__nameLayer__name02-active',
+                        btnbg:'page3__btnbg02',
+                        btn:'page3__btn02',
+                        btnNext:'page3__btn02__btnnext',
                         content:[
                             {
                                 title:'情绪黑室',
@@ -646,6 +674,9 @@
                         title:'排解职场疑惑和情绪',
                         detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
                     },{ // 奇遇森林
+                        title01:'page3__icon',
+                        bug:'page3__icon',
+                        btnNext:'page3__btn__btnnext',
                         content:[
                             {
                                 title:'世界慢递局',
@@ -664,6 +695,23 @@
                         title:'当红品牌互动试验场',
                         detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
                     },{ // 奇物大赏
+                        light:'page3__card__light04',
+                        textbg01:'page3__card__textbg01-04',
+                        textbg02:'page3__card__textbg02-04',
+                        tvbottom:'page3__card__tvbottom04',
+                        tvbg:'page3__card__tvbg04',
+                        tvicon:'page3__card__tvi04',
+                        tvicon01:'page3__icon04',
+                        tvicon02:'page3__icon04',
+                        tvicon03:'page3__icon04',
+                        tvicon04:'page3__icon04',
+                        title01:'page3__icon04',
+                        bug:'page3__icon04',
+                        name:'page3__card__nameLayer__name04',
+                        nameActive:'page3__card__nameLayer__name04-active',
+                        btnbg:'page3__btnbg04',
+                        btn:'page3__btn04',
+                        btnNext:'page3__btn04__btnnext',
                         content:[
                             {
                                 title:'定制可乐',
@@ -680,7 +728,7 @@
                             }
                         ],
                         title:'拉勾尖货快闪店',
-                        detail:'吃也要吃出观点，<br/>买也要买出态度，<br/>一年到头，遇见吃喝玩乐的正确姿势。'
+                        detail:'吃也要吃出观点，买也要买出态度，<br/>一年到头，<br/>遇见吃喝玩乐的正确姿势。'
                     }
                 ]
             }
@@ -771,6 +819,8 @@
                 var words = this.page0.words,
                     style = { },
                     arr = [0,84,211,296,376,504,587,715,798],
+                    line = [],
+                    list = [],
                     sign = [1,-1],
                     len = 0,
                     dir = 1,
@@ -780,41 +830,51 @@
                     j = 0;
                 for(i = 0; i < words.length; i++){
                     height = GC.h/this.fontSize*(1080 / 16)+400;
-                    len = words[i].length;
+                    len = words[i].line.length;
+                    line = [];
+                    list = [];
                     for(j = 0; j < len; j++){
                         this.tempDelay = Math.floor(Math.random() * 8);
-                        transition = 'all '+(40 - 4 * i) / 10+'s '+(4 * i + this.tempDelay) / 10+'s linear';
+                        transition = 'all '+(40 - 4 * i) / 10+'s '+(25 * (i == words.length - 1 ? i : i + 1) + this.tempDelay) / 10+'s linear';
                         dir = j < len / 2 ? -1 : j > len / 2 ? 1 : 0;
-                        this.page0.style[i].line.push({ 
+                        line.push({ 
                             transition: transition,
                             textShadow: '0 0 '+this.setRem(20)+' #fff',
                             transform: 'translate3d('+(dir * Math.floor(Math.random() * 150))+'px,'+this.setRem(height / 15 * 12  - arr[i] + 140 + 75 * 3 + 30)+',0)'
                         });
-                        this.page0.style[i].list.push({
+                        list.push({
                             opacity:'0.'+(Math.floor(Math.random() * 100)),
                             transition: transition,
                             transform: 'rotate('+(Math.floor(Math.random() * 360))+'deg) '+
                                 'translate3d(0,0,0)'
                         });
                     }
+                    this.page0.style[i].line = line;
+                    this.page0.style[i].list = list;
                 }
+            },
+            setPage0Down:function(){
+                var self = this;
+                setTimeout(function(){
+                    self.page0.down = true;
+                },500);
             },
             page0TouchStart:function(e){
                 var touch = e.targetTouches[0];
                 if(this.page0.moveBtnStatus){
                     this.page0.moveBtnStatus = false;
-                    this.page0.start = touch.clientY;
+                    this.page0.start = touch.clientX;
                 }
             },
             page0TouchMove:function(e){
                 var touch = e.targetTouches[0],
                     top = this.getRem(216+73/2),
                     gap = this.page0.start - this.page0.end;
-                this.page0.end = touch.clientY;
+                this.page0.end = touch.clientX;
                 if(!this.page0.moveBtnStatus && this.page0.start && this.page0.end){
-                    if(gap > 0){
+                    if(gap < 0){
                         this.page0.btnStyle = {
-                            transform:'translate3d(0,'+(-(gap > top ? top : gap))+'px,0)'
+                            transform:'translate3d('+(-(Math.abs(gap) > top ? -top : gap))+'px,0,0)'
                         };
                     }else{
                         this.page0.btnStyle = {
@@ -827,13 +887,13 @@
                 var top = this.getRem(216+73/2),
                     gap = this.page0.start - this.page0.end;
                 if(this.page0.start && this.page0.end){
-                    if(gap > 0){
-                        if(gap < top * 0.6){
+                    if(gap < 0){
+                        if(Math.abs(gap) < top * 0.6){
                             this.page0.moveBtnStatus = true;
                             this.page0.btnStyle = null;
                         }else {
                             this.page0.btnStyle = {
-                                transform:'translate3d(0,'+(-top)+'px,0)'
+                                transform:'translate3d('+(top)+'px,0,0)'
                             };
                             this.page0.moveEndStatus = true;
                             PM.data.last = 0;
@@ -1213,7 +1273,7 @@
             },
             page3CardMoveNext:function(){
                 var self = this,
-                    len = 3,
+                    len = 4,
                     last = len - 1,
                     one = null;
                 if(this.page3.activeCard < last){
