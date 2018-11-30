@@ -369,6 +369,7 @@ body {
     }
 }
 .page1 {
+    // opacity:0.1;
     // page1__bg
     // &__bg {
     //     width:100%;
@@ -1104,17 +1105,26 @@ body {
         height:100%;
         @include leftTop(0,0);
     }
+    &__li--0 {
+        z-index:3;
+    }
+    &__li--1 {
+        z-index:2;
+    }
+    &__li--2 {
+        z-index:1;
+    }
     &__li--0move {
         z-index:3;
-        animation:liMoveAni0 0.6s both ease-in-out;
+        animation:liMoveAni0 0.9s both ease-in-out;
     }
     &__li--1move {
         z-index:2;
-        animation:liMoveAni1 0.4s both ease-in-out;
+        animation:liMoveAni1 0.6s both ease-in-out;
     }
     &__li--2move {
         z-index:1;
-        animation:liMoveAni2 0.2s both ease-in-out;
+        animation:liMoveAni2 0.3s both ease-in-out;
     }
     @keyframes liMoveAni0 {
         0% {
@@ -3819,9 +3829,27 @@ body {
     }
 }
 .cutCardParentShake {
-    animation:cutCardParentShake 0.15s both ease-in alternate 2;
+    animation:cutCardParentShake 0.8s both ease-in alternate 2;
 }
 @keyframes cutCardParentShake {
+    0%,37.49% {
+        transform:translate3d(0,0,0);
+    }
+    18.75% {
+        transform:translate3d(-20px,20px,0) rotateZ(0);
+    }
+    90% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(-1080px,1920px,0) rotateZ(30deg);
+        opacity:0;
+    }
+}
+.cutCardParentShake2 {
+    animation:cutCardParentShake2 0.15s both ease-in alternate 2;
+}
+@keyframes cutCardParentShake2 {
     0% {
         transform:translate3d(0,0,0);
     }

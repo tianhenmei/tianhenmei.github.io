@@ -97,7 +97,7 @@
                 //     app.$data['page'+self.data.last].status = 'back';
                 // }
                 var delayTime = 500;
-                if(self.data.now == 1 || self.data.now == 2){
+                if(self.data.now == 2){
 
                 }else {
                     jQuery(".page" + self.data.now).addClass("hide");
@@ -111,14 +111,10 @@
                 setTimeout(function(){
                     app.$data.activePage = self.data.now;
                     app.$data.startMoving = false;
-                    jQuery(".page").removeClass("pageCurrent").addClass("hide");
-                    jQuery(".page" + self.data.last).attr('style','');
+                    jQuery(".page" + self.data.last).removeClass("pageCurrent").addClass("hide");
                     jQuery(".page" + self.data.now).removeClass("hide").addClass("pageCurrent");
                     self.data.isMoving = false;
-                    app.$data.flipStatus = false;
                     app.setPage0DownStatus(false);
-                    // app.$data['page'+self.data.now].status = 'in';
-                    // app.$data['page'+self.data.last].status = 'in';
                 },delayTime);
             }
         }, {
@@ -925,6 +921,29 @@
                 }
                 return '';
             },
+            getPage2CardParentClass2:function(index){
+                // 初始状态，直接显示
+                if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
+                    
+                }else if(this.page2.isMoving){
+                    // 开始翻卡片
+                    // 如果是向后翻
+                    if(this.page2.lastCard < this.page2.activeCard){
+                        if(index == this.page2.lastCard){
+                            return 'cutCardParentShake';
+                        }else if(index < this.page2.lastCard){
+                            return 'hide';
+                        }
+                    }else{
+                        if(index == this.page2.lastCard){
+                            return 'cutCardParentShakeBack';
+                        }else if(index < this.page2.lastCard){
+                            return 'hide';
+                        }
+                    }
+                }
+                return '';
+            },
             getPage2CardClass:function(index){
                 // 初始状态，直接显示
                 if(index == 0 && this.page2.lastCard == 0 && this.page2.activeCard == 0){
@@ -971,22 +990,20 @@
                 return '';
             },
             page1ToPage2:function(){
-                // setTimeout(function(){
-                    PM.data.last = 1;
-                    PM.data.now = 2;
-                    PM.pageMove('down',PM);
-                // },1000);
-                var self = this,
-                    one = this.$refs['page2__li--0'];
-                one.className += ' hide';
+                var self = this;
+                PM.data.last = 1;
+                PM.data.now = 2;
+                PM.pageMove('down',PM);
+                // var one = this.$refs['page2__li--0'];
+                // one.className += ' hide';
                 this.page2.showForce = true;
                 setTimeout(function(){
                     self.page2.showForce = false;
-                },600);
-                setTimeout(function(){
-                    self.page1.hidden = true;
-                    one.className = one.className.replace(/( hide)/g,'');
-                },1000);
+                },1400);
+                // setTimeout(function(){
+                //     self.page1.hidden = true;
+                //     one.className = one.className.replace(/( hide)/g,'');
+                // },1000);
             },
             initPage2FlipEvent:function(){
                 var elem = this.$refs['page2'],
@@ -1011,7 +1028,7 @@
                             direction = direction > 0 ? 1 : -1;
                             if(direction > 0){
                                 // back
-                                self.page2CardMoveBack();
+                                // self.page2CardMoveBack();
                             }else{
                                 // next
                                 self.page2CardMoveNext();
@@ -1041,10 +1058,15 @@
                 var self = this,
                     len = 3,
                     last = len - 1,
-                    one = null;
+                    next = 0,
+                    one = null,
+                    btn = null;
                 if(this.page2.activeCard < last){
-                    one = this.$refs['page2__li--'+(this.page2.activeCard + 1)];
+                    next = this.page2.activeCard + 1;
+                    one = this.$refs['page2__cardLayer--'+next];
+                    btn = this.$refs['page2__card__btnCenter--'+next];
                     one.className += ' hide';
+                    btn.className += ' hide';
                     setTimeout(function(){
                         self.page2.isMoving = true;
                         self.page2.lastCard = self.page2.activeCard;
@@ -1054,6 +1076,7 @@
                         // },1000);
                         setTimeout(function(){
                             one.className = one.className.replace(/( hide)/g,'');
+                            btn.className = btn.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
                         },1000);
                     },200);
