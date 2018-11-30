@@ -135,12 +135,6 @@
         <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div>
     </div>
     <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
-    <div class="music-box">
-        <div class="music-icon open">
-            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
-            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv.mp3"></audio>
-        </div>
-    </div>
     <div class="wrapper pages hide" id="app">
         <div class="page-bg"></div>
         <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''"
@@ -617,25 +611,25 @@
                                     </div>
                                     <div class="page3__card__inner--borderLayer">
                                         <div class="page3__card__inner--bordertop"></div>
-                                        <div class="page3__card__inner--borderbottom" :style="{height:getCardHeight}"></div>
+                                        <div class="page3__card__inner--borderbottom" :style="{height:getFitTop(873,7/8)}"></div>
                                     </div>
                                     <div class="page3__card__inner--lightLayer">
                                         <div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>
-                                        <div class="page3__card__inner--lightback02 page3LightBlink delay0-5" :style="{height:getCardHeight}"></div>
+                                        <div class="page3__card__inner--lightback02 page3LightBlink delay0-5" :style="{height:getFitTop(873,7/8)}"></div>
                                         <div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>
-                                        <div class="page3__card__inner--light02 page3LightBlink" :style="{height:getCardHeight}"></div>
+                                        <div class="page3__card__inner--light02 page3LightBlink" :style="{height:getFitTop(873,7/8)}"></div>
                                     </div>
                                     <div class="page3__card__inner--contentLayer">
                                         <div class="page3__card__inner--content page3__card__inner--content01"></div>
                                         <div class="page3__card__inner--content page3__card__inner--content02"></div>
-                                        <!-- <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getDis0_1_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getDis0_13_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getDis0_5_32}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getDis0_30_32}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getDis0_0_1}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content08" :style="{top:getDis0_0_1}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getDis0_13_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content10" :style="{top:getDis0_13_16}"></div> -->
+                                        <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getFitTop(0,1/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getFitTop(0,5/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getFitTop(0,30/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content08" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content10" :style="{top:getFitTop(0,13/16)}"></div>
                                     </div>
                                 </div>
                                 <div class="page3__card__cover"></div>
@@ -726,10 +720,250 @@
                         </div>
                     </div>
                 </div>
+                <!--
+                <div class="page3__one" ref="page3__one--0">
+                    <div class="page3__cardParent" :class="getPage3CardParentClass(0)">
+                        <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="getPage3CardClass(0)">
+                            <div class="page3__card__light page3__card__light02"></div>
+                            <div class="page3__card__door" :style="{height:getFitTop(1502,7/8)}">
+                                <div class="page3__card__inner">
+                                    <div class="page3__card__inner--bgLayer">
+                                        <div class="page3__card__inner--bg page3__card__inner--bg01"></div>
+                                        <div class="page3__card__inner--bg02" :style="{height:getFitTop(1502-660-90+50,7/8)}"></div>
+                                        <div class="page3__card__inner--bg page3__card__inner--bg03"></div>
+                                    </div>
+                                    <div class="page3__card__inner--borderLayer">
+                                        <div class="page3__card__inner--bordertop"></div>
+                                        <div class="page3__card__inner--borderbottom" :style="{height:getFitTop(873,7/8)}"></div>
+                                    </div>
+                                    <div class="page3__card__inner--lightLayer">
+                                        <div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>
+                                        <div class="page3__card__inner--lightback02 page3LightBlink delay0-5" :style="{height:getFitTop(873,7/8)}"></div>
+                                        <div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>
+                                        <div class="page3__card__inner--light02 page3LightBlink" :style="{height:getFitTop(873,7/8)}"></div>
+                                    </div>
+                                    <div class="page3__card__inner--contentLayer">
+                                        <div class="page3__card__inner--content page3__card__inner--content01"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content02"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getFitTop(0,1/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getFitTop(0,5/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getFitTop(0,30/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content08" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content10" :style="{top:getFitTop(0,13/16)}"></div>
+                                    </div>
+                                </div>
+                                <div class="page3__card__cover"></div>
+                                <div class="page3__card__textbg01 page3__card__textbg01-02" :style="{top:getFitTop(841,1/8)}"></div>
+                                <div class="page3__card__textbg02 page3__card__textbg02-02" :style="{top:getFitTop(1073,2/4)}"></div>
+                                <div class="page3__card__tvbottom page3__card__tvbottom02" :style="{top:getFitTop(767,1/8)}"></div>
+                                <div class="page3__card__tvbg page3__card__tvbg02" :style="{top:getFitTop(70,1/8)}"></div>
+                                <div class="page3__card__tviconLayer" :style="{top:getFitTop(600,1/8)}">
+                                    <div class="page3__icon page3__card__tvicon01 tviconRotateChange"></div>
+                                    <div class="page3__icon page3__card__tvicon02 tviconRotateChange"></div>
+                                    <div class="page3__icon page3__card__tvicon03"></div>
+                                    <div class="page3__icon page3__card__tvicon04"></div>
+                                </div>
+
+                                <div class="page3__card__ul" :style="{top:getFitTop(0,1/8)}">
+                                    <div class="page3__card__li"
+                                        v-for="(one,index) in page3.list[1].content">
+                                        <div class="page3__card__tv page3__card__tvimg tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" :style="{
+                                            backgroundImage:'url('+one.img+')'
+                                        }"></div>
+                                        <div class="page3__icon02 page3__card__title01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)">{{one.title}}</div>
+                                        <div class="page3__card__text01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" v-html="one.info"></div>
+                                    </div>
+                                    <div class="page3__card__tvold tvoldOpacityChange"></div>
+                                </div>
+
+                                <div class="page3__card__title02" :style="{top:getFitTop(1073+41,2/4)}">{{page3.list[1].title}}</div>
+                                <div class="page3__card__text02" :style="{top:getFitTop(1178,2/4)}" v-html="page3.list[1].detail"></div>
+                                <div class="page3__card__tvicon page3__card__tvi02" :style="{top:getFitTop(215,1/8)}">
+                                    <div class="page3__card__tvicon--text tvtextChange"></div>
+                                </div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon02 page3__card__bug"></div>
+                                <div class="page3__card__bubble02Parent">
+                                    <div class="page3__icon page3__card__bubble02 zoomInfinite"></div>
+                                </div>
+                                <div class="page3__card__tailParent">
+                                    <div class="page3__icon page3__card__tail littleRotateInfinite"></div>
+                                </div>
+                                <div class="page3__card__textstarLayer" :style="{top:getFitTop(1120,2/4)}">
+                                    <div class="page3__icon page3__card__textstar01"></div>
+                                    <div class="page3__icon page3__card__textstar02"></div>
+                                    <div class="page3__icon page3__card__textstar03"></div>
+                                    <div class="page3__icon page3__card__textstar04"></div>
+                                    <div class="page3__icon page3__card__textstar05"></div>
+                                    <div class="page3__icon page3__card__textstar06"></div>
+                                </div>
+                                <div class="page3__card__bubbleParent page3BubbleDispear" :style="{bottom:getFitTop(38,1/16)}">
+                                    <div class="page3__icon page3__card__bubble"></div>
+                                </div>
+                                <div class="page3__icon page3__card__star01"></div>
+                                <div class="page3__icon page3__card__star02"></div>
+                                <div class="page3__icon page3__card__star03"></div>
+                                <div class="page3__icon page3__card__star04"></div>
+                                <div class="page3__icon page3__card__star05"></div>
+                                <div class="page3__card__arrowParent opacityChange delay2-0">
+                                    <div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__nameLayer">
+                                <div class="page3__card__nameLayer__nameCenter blinkChange">
+                                    <div class="page3__card__nameLayer__name page3__card__nameLayer__name02"></div>
+                                    <div class="page3__card__nameLayer__name-active page3__card__nameLayer__name02-active"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__logo"></div>
+                        </div>
+                    </div>
+                    <div class="page3__btnbg page3__btnbg02 opacityChange" :style="{top:getFitTop(1535,1)}"
+                        :class="getPage3CardTicketClass(0)+(!page3.isMoving && page3.lastCard == 0 && page3.activeCard == 0 ? ' ' : '')+(page3.activeCard == 0 ? ' activeTop' : '')"
+                        v-show="(!page3.isMoving && page3.activeCard == 0) || (page3.isMoving && page3.lastCard == 0)">
+                        <div class="page3__btnCenter opacityChange delay1-0"
+                            :data-lg-tj-id="lg" 
+                            data-lg-tj-no="0020" 
+                            data-lg-tj-cid="null"
+                            @touchstart="toLoginIn">
+                            <div class="page3__btnContent blinkChange delay1-5">
+                                <div class="page3__btn page3__btn02"></div>
+                                <div class="page3__btn page3__btn02__btnnext"></div>
+                            </div>
+                            <div class="page3__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page3__one" ref="page3__one--1">
+                    <div class="page3__cardParent" :class="getPage3CardParentClass(1)">
+                        <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="getPage3CardClass(1)">
+                            <div class="page3__card__light"></div>
+                            <div class="page3__card__door" :style="{height:getFitTop(1502,7/8)}">
+                                <div class="page3__card__inner">
+                                    <div class="page3__card__inner--bgLayer">
+                                        <div class="page3__card__inner--bg page3__card__inner--bg01"></div>
+                                        <div class="page3__card__inner--bg02" :style="{height:getFitTop(1502-660-90+50,7/8)}"></div>
+                                        <div class="page3__card__inner--bg page3__card__inner--bg03"></div>
+                                    </div>
+                                    <div class="page3__card__inner--borderLayer">
+                                        <div class="page3__card__inner--bordertop"></div>
+                                        <div class="page3__card__inner--borderbottom" :style="{height:getFitTop(873,7/8)}"></div>
+                                    </div>
+                                    <div class="page3__card__inner--lightLayer">
+                                        <div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>
+                                        <div class="page3__card__inner--lightback02 page3LightBlink delay0-5" :style="{height:getFitTop(873,7/8)}"></div>
+                                        <div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>
+                                        <div class="page3__card__inner--light02 page3LightBlink" :style="{height:getFitTop(873,7/8)}"></div>
+                                    </div>
+                                    <div class="page3__card__inner--contentLayer">
+                                        <div class="page3__card__inner--content page3__card__inner--content01"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content02"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getFitTop(0,1/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getFitTop(0,5/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getFitTop(0,30/32)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content08" :style="{top:getFitTop(0,1)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getFitTop(0,13/16)}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content10" :style="{top:getFitTop(0,13/16)}"></div>
+                                    </div>
+                                </div>
+                                <div class="page3__card__cover"></div>
+                                <div class="page3__card__textbg01" :style="{top:getFitTop(841,1/8)}"></div>
+                                <div class="page3__card__textbg02" :style="{top:getFitTop(1073,2/4)}"></div>
+                                <div class="page3__card__tvbottom" :style="{top:getFitTop(767,1/8)}"></div>
+                                <div class="page3__card__tvbg" :style="{top:getFitTop(70,1/8)}"></div>
+                                <div class="page3__card__tviconLayer" :style="{top:getFitTop(600,1/8)}">
+                                    <div class="page3__icon page3__card__tvicon01 tviconRotateChange"></div>
+                                    <div class="page3__icon page3__card__tvicon02 tviconRotateChange"></div>
+                                    <div class="page3__icon page3__card__tvicon03"></div>
+                                    <div class="page3__icon page3__card__tvicon04"></div>
+                                </div>
+
+                                <div class="page3__card__ul" :style="{top:getFitTop(0,1/8)}">
+                                    <div class="page3__card__li"
+                                        v-for="(one,index) in page3.list[2].content">
+                                        <div class="page3__card__tv page3__card__tvimg tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" :style="{
+                                            backgroundImage:'url('+one.img+')'
+                                        }"></div>
+                                        <div class="page3__icon page3__card__title01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)">{{one.title}}</div>
+                                        <div class="page3__card__text01 tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,index)" v-html="one.info"></div>
+                                    </div>
+                                    <div class="page3__card__tvold tvoldOpacityChange"></div>
+                                </div>
+
+                                <div class="page3__card__title02" :style="{top:getFitTop(1073+41,2/4)}">{{page3.list[2].title}}</div>
+                                <div class="page3__card__text02" :style="{top:getFitTop(1178,2/4)}" v-html="page3.list[2].detail"></div>
+                                <div class="page3__card__tvicon" :style="{top:getFitTop(215,1/8)}">
+                                    <div class="page3__card__tvicon--text tvtextChange"></div>
+                                </div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon page3__card__bug"></div>
+                                <div class="page3__card__bubble02Parent">
+                                    <div class="page3__icon page3__card__bubble02 zoomInfinite"></div>
+                                </div>
+                                <div class="page3__card__tailParent">
+                                    <div class="page3__icon page3__card__tail littleRotateInfinite"></div>
+                                </div>
+                                <div class="page3__card__textstarLayer" :style="{top:getFitTop(1120,2/4)}">
+                                    <div class="page3__icon page3__card__textstar01"></div>
+                                    <div class="page3__icon page3__card__textstar02"></div>
+                                    <div class="page3__icon page3__card__textstar03"></div>
+                                    <div class="page3__icon page3__card__textstar04"></div>
+                                    <div class="page3__icon page3__card__textstar05"></div>
+                                    <div class="page3__icon page3__card__textstar06"></div>
+                                </div>
+                                <div class="page3__card__bubbleParent page3BubbleDispear" :style="{bottom:getFitTop(38,1/16)}">
+                                    <div class="page3__icon page3__card__bubble"></div>
+                                </div>
+                                <div class="page3__icon page3__card__star01"></div>
+                                <div class="page3__icon page3__card__star02"></div>
+                                <div class="page3__icon page3__card__star03"></div>
+                                <div class="page3__icon page3__card__star04"></div>
+                                <div class="page3__icon page3__card__star05"></div>
+                                <div class="page3__card__arrowParent opacityChange delay2-0">
+                                    <div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__nameLayer">
+                                <div class="page3__card__nameLayer__nameCenter blinkChange">
+                                    <div class="page3__card__nameLayer__name"></div>
+                                    <div class="page3__card__nameLayer__name-active"></div>
+                                </div>
+                            </div>
+                            <div class="page3__card__logo"></div>
+                        </div>
+                    </div>
+                    <div class="page3__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
+                        :class="getPage3CardTicketClass(1)+(!page3.isMoving ? '' : '')+(page3.activeCard == 1 ? ' activeTop' : '')"
+                        v-show="(!page3.isMoving && page3.activeCard == 1) || (page3.isMoving && page3.lastCard == 1)">
+                        <div class="page3__btnCenter opacityChange delay1-0"
+                            :data-lg-tj-id="lg" 
+                            data-lg-tj-no="0021" 
+                            data-lg-tj-cid="null"
+                            @touchstart="toLoginIn">
+                            <div class="page3__btnContent blinkChange delay1-5">
+                                <div class="page3__btn"></div>
+                                <div class="page3__btn page3__btn__btnnext"></div>
+                            </div>
+                            <div class="page3__btnline widthChange delay1-5"></div>
+                        </div>
+                    </div>
+                </div>-->
             </div>
         </div>
         <div class="page page4" :class="activePage == 4 ? 'active' : ''">
            
+        </div>
+    </div>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
         </div>
     </div>
     <script type="text/javascript">

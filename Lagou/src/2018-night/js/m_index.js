@@ -48,9 +48,9 @@
         mode = "development";// "development",//"production",
     
     // 音乐
-    if(mode != "development"){
+    // if(mode != "development"){
         backgroundMusic(document.getElementById("music"));
-    }
+    // }
     var PageMove = function () {
         function PageMove(options) {
             _classCallCheck(this, PageMove);
@@ -111,7 +111,7 @@
                 setTimeout(function(){
                     app.$data.activePage = self.data.now;
                     app.$data.startMoving = false;
-                    jQuery(".page" + self.data.last).removeClass("pageCurrent").addClass("hide");
+                    jQuery(".page" + self.data.last).remove();//.removeClass("pageCurrent").addClass("hide");
                     jQuery(".page" + self.data.now).removeClass("hide").addClass("pageCurrent");
                     self.data.isMoving = false;
                     app.setPage0DownStatus(false);
@@ -741,6 +741,24 @@
                 }
                 return false;
             },
+            getCardHeight:function(){
+                return this.setRem(873 + this.heightStatus * 7/8);
+            },
+            getDis0_1_16:function(){
+                return this.setRem(this.heightStatus * 1/16);
+            },
+            getDis0_13_16:function(){
+                return this.setRem(this.heightStatus * 13/16);
+            },
+            getDis0_5_32:function(){
+                return this.setRem(this.heightStatus * 5/32);
+            },
+            getDis0_30_32:function(){
+                return this.setRem(this.heightStatus * 30/32);
+            },
+            getDis0_0_1:function(){
+                return this.setRem(this.heightStatus);
+            },
         },
         mounted:function(){
             var self = this;
@@ -1308,6 +1326,9 @@
                     page3 = this.$refs['page3'];
                 self.page2.hidden = true;
                 self.page3.hidden = true;
+                document.getElementById('music').pause();
+                // document.getElementById('music-tv').play();
+                this.playAudio(document.getElementById('music-tv'),function(){});
                 setTimeout(function(){
                     self.page3.hidden = false;
                     self.page3.classname = 'pageMoveU';
@@ -1317,6 +1338,17 @@
                         self.activePage = 3;
                     },500);
                 },500);
+            },
+            playAudio:function(elem,callback){
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                        elem.play();
+                        callback()
+                    }, false);
+                }else{
+                    elem.play();
+                    callback()
+                }
             },
             toLoginIn:function(){
 
