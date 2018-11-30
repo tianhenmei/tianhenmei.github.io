@@ -167,7 +167,15 @@
                 <div class="page1__item page1__item--left05" :style="{top:getFitTop(658-165,2/8)}"></div>
                 <div class="page1__item page1__item--center02" :style="{top:getFitTop(550-165,2/8)}"></div>
                 <div class="page1__item page1__item--center03" :style="{top:getFitTop(1026-165,2/8)}"></div>
+                <div class="page1__item--centerLine" :style="{top:getFitTop(1224-165,2/8)}">
+                    <div class="page1__item--line page1__item--line01 zoomIn origin100-0 delay1-0"></div>
+                    <div class="page1__item--line page1__item--line02 zoomIn origin100-0 delay1-2"></div>
+                    <div class="page1__item--line page1__item--line03 zoomIn origin100-0 delay1-4"></div>
+                    <div class="page1__item--line page1__item--line04 zoomIn origin100-0 delay1-6"></div>
+                    <div class="page1__item--line page1__item--line05 zoomIn delay1-8"></div>
+                </div>
                 <div class="page1__item page1__item--center04" :style="{top:getFitTop(556-165,2/8)}"></div>
+                <div class="page1__item page1__item--center05" :style="{top:getFitTop(999-165,2/8)}"></div>
                 <div class="page1__item page1__item--right04" :style="{top:getFitTop(759-165,2/8)}"></div>
                 <div class="page1__item page1__item--left06" :style="{top:getFitTop(661-165,2/8)}"></div>
                 <div class="icon page1__item23"
@@ -182,7 +190,7 @@
 
                 <!-- 水立方 -->
                 <div class="page1__item page1__item42"
-                    :style="{top:getFitTop(1072,2/8)}">
+                    :style="{top:getFitTop(1234-165,2/8)}">
                     <div class="page1__part page1PartChange" v-for="(one,index) in page1.building"
                         :class="'page1__part'+index"
                         :style="one.ani">
@@ -323,9 +331,9 @@
         <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : page2.hidden ? 'hide' : ''" ref="page2">
             <div class="page2__center">
                 <div class="page2__list">
-                    <div class="page2__li" ref="page2__li--0">
+                    <div class="page2__li" ref="page2__li--0" :class="page2.showForce ? ' page2__li--0move delay0-5' : ''">
                         <div class="page2__oneOuter" :class="getPage2CardParentClass(0)">
-                            <div class="page2__one" ref="page2__one--0" :class="getPage2CardClass(0)">
+                            <div class="page2__one" ref="page2__one--0" :class="getPage2CardClass(0)+(page2.showForce ? ' showForce' : '')">
                                 <!-- :class="page2.lastCard == 0 && page2.activeCard == 0 ? 'opacityChange delay0-5' : ''" -->
                                 <div class="page2__card__bg opacityChange"
                                     :style="{height:getFitTop(1535,1)}"></div>
@@ -391,9 +399,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li" ref="page2__li--1">
+                    <div class="page2__li" ref="page2__li--1" :class="page2.showForce ? ' page2__li--1move delay0-5' : ''">
                         <div class="page2__oneOuter" :class="getPage2CardParentClass(1)">
-                            <div class="page2__one" ref="page2__one--1" :class="getPage2CardClass(1)">
+                            <div class="page2__one" ref="page2__one--1" :class="getPage2CardClass(1)+(page2.showForce ? ' showForce' : '')">
                                 <div class="page2__card02__bg opacityChange" :style="{height:getFitTop(1652,1)}"></div>
                                 <div class="page2__card02__bg02 opacityChange delay0-5" :style="{height:getFitTop(1697,1)}"></div>
                                 <div class="page2__card02Layer" :style="{height:getFitTop(1535,1)}">
@@ -467,9 +475,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li" ref="page2__li--2">
+                    <div class="page2__li" ref="page2__li--2" :class="page2.showForce ? ' page2__li--2move delay0-5' : ''">
                         <div class="page2__oneOuter" :class="getPage2CardParentClass(2)">
-                            <div class="page2__one" ref="page2__one--2" :class="getPage2CardClass(2)">
+                            <div class="page2__one" ref="page2__one--2" :class="getPage2CardClass(2)+(page2.showForce ? ' showForce' : '')">
                                 <div class="page2__card__bg page2__card03__bg opacityChange delay0-5" :style="{height:getFitTop(1535,1)}"></div>
                                 <div class="page2__card__bg02 opacityChange delay1-0" :style="{height:getFitTop(1697,1)}"></div>
                                 <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}">
@@ -532,9 +540,9 @@
             <div class="page3__list">
                 <div class="page3__one" ref="page3__one--0">
                     <div class="page3__cardParent" :class="getPage3CardParentClass(0)">
-                        <div class="page3__card" :style="{height:getFitTop(771*2,1)}" :class="getPage3CardClass(0)">
-                            <div class="page3__card__light"></div>
-                            <div class="page3__card__door">
+                        <div class="page3__card" :style="{height:getFitTop(1502,1)}" :class="getPage3CardClass(0)">
+                            <div class="page3__card__light page3__card__light02"></div>
+                            <div class="page3__card__door"  :style="{height:setDoorHeight(1502,1)}">
                                 <div class="page3__card__inner">
                                     <div class="page3__card__inner--bg"></div>
                                     <div class="page3__card__inner--border"></div>
@@ -544,6 +552,7 @@
                                 <div class="page3__card__cover"></div>
                                 <div class="page3__card__textbg01 page3__card__textbg01-02"></div>
                                 <div class="page3__card__textbg02 page3__card__textbg02-02"></div>
+                                <div class="page3__card__tvbottom page3__card__tvbottom02"></div>
                                 <div class="page3__card__tvbg page3__card__tvbg02"></div>
                                 <div class="page3__icon page3__card__tvicon01 tviconRotateChange"></div>
                                 <div class="page3__icon page3__card__tvicon02 tviconRotateChange"></div>
@@ -618,7 +627,7 @@
                 <div class="page3__one" ref="page3__one--1">
                     <div class="page3__cardParent" :class="getPage3CardParentClass(1)">
                         <div class="page3__card" :style="{height:getFitTop(771*2,1)}" :class="getPage3CardClass(1)">
-                            <div class="page3__card__light page3__card__light02"></div>
+                            <div class="page3__card__light"></div>
                             <div class="page3__card__door">
                                 <div class="page3__card__inner">
                                     <div class="page3__card__inner--bg"></div>

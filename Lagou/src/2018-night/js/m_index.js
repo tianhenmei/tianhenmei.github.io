@@ -48,9 +48,9 @@
         mode = "development";// "development",//"production",
     
     // 音乐
-    // if(mode != "development"){
+    if(mode != "development"){
         backgroundMusic(document.getElementById("music"));
-    // }
+    }
     var PageMove = function () {
         function PageMove(options) {
             _classCallCheck(this, PageMove);
@@ -97,7 +97,11 @@
                 //     app.$data['page'+self.data.last].status = 'back';
                 // }
                 var delayTime = 500;
-                jQuery(".page" + self.data.now).addClass("hide");
+                if(self.data.now == 1 || self.data.now == 2){
+
+                }else {
+                    jQuery(".page" + self.data.now).addClass("hide");
+                }
                 if(self.data.last == 0 && self.data.last < self.data.now){
                     delayTime = 5000;
                     app.setPage0DownStatus(true);
@@ -478,6 +482,7 @@
                 nomove:false,  // 如果点击了票根就不能滑动了
                 cardActive:[false,false,false],
                 hidden:false,
+                showForce:false,  // 强制快速显示所有卡片
                 list:[
                     {
                         img:'images/page2-card-guest01.png',
@@ -612,15 +617,15 @@
                         content:[
                             {
                                 title:'职场3D照相馆',
-                                img:'images/page3-card-tv01.png',
+                                img:'images/page3-card-tv10.png',
                                 info:'身临其境地来一场办公室大冒险。'
                             },{
                                 title:'百万年薪屋',
-                                img:'images/page3-card-tv02.png',
+                                img:'images/page3-card-tv11.png',
                                 info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
                             },{
                                 title:'倒着的办公会',
-                                img:'images/page3-card-tv03.png',
+                                img:'images/page3-card-tv12.png',
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
                         ],
@@ -630,15 +635,15 @@
                         content:[
                             {
                                 title:'情绪黑室',
-                                img:'images/page3-card-tv04.png',
+                                img:'images/page3-card-tv01.png',
                                 info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
                             },{
                                 title:'有答案诊所',
-                                img:'images/page3-card-tv05.png',
+                                img:'images/page3-card-tv02.png',
                                 info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
                             },{
                                 title:'12星座睡床',
-                                img:'images/page3-card-tv06.png',
+                                img:'images/page3-card-tv03.png',
                                 info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
                             }
                         ],
@@ -648,15 +653,15 @@
                         content:[
                             {
                                 title:'世界慢递局',
-                                img:'images/page3-card-tv07.png',
+                                img:'images/page3-card-tv04.png',
                                 info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
                             },{
                                 title:'猫王太空唱片计划',
-                                img:'images/page3-card-tv08.png',
+                                img:'images/page3-card-tv05.png',
                                 info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
                             },{
                                 title:'So real VR乐园',
-                                img:'images/page3-card-tv09.png',
+                                img:'images/page3-card-tv06.png',
                                 info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
                             }
                         ],
@@ -666,15 +671,15 @@
                         content:[
                             {
                                 title:'定制可乐',
-                                img:'images/page3-card-tv10.png',
+                                img:'images/page3-card-tv07.png',
                                 info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
                             },{
                                 title:'拉勾黑市',
-                                img:'images/page3-card-tv11.png',
+                                img:'images/page3-card-tv08.png',
                                 info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
                             },{
                                 title:'答案茶',
-                                img:'images/page3-card-tv12.png',
+                                img:'images/page3-card-tv09.png',
                                 info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
                             }
                         ],
@@ -752,6 +757,9 @@
                     l = current[1];
                 }
                 return f+'-'+l;
+            },
+            setDoorHeight:function(def,ratio){
+
             },
             setPage0DownStatus:function(status){
                 var self = this;
@@ -971,6 +979,10 @@
                 var self = this,
                     one = this.$refs['page2__li--0'];
                 one.className += ' hide';
+                this.page2.showForce = true;
+                setTimeout(function(){
+                    self.page2.showForce = false;
+                },600);
                 setTimeout(function(){
                     self.page1.hidden = true;
                     one.className = one.className.replace(/( hide)/g,'');
