@@ -30,7 +30,10 @@
             checkStatus = false,
             initStatus = false,
             app = null,
-            currentCount = 0;
+            PM = null,
+            currentCount = 0,
+            heightStatus = 0,
+            fontSize = 16;
         
         function shareSuccess(){
             currentCount++
@@ -68,9 +71,15 @@
                     lastHTMLSize = lastHTMLSize + 2.5;
                 }
             }
+            var rightSize2 = parseFloat((RC.w / RC.h).toFixed(3)),
+                currentSize2 = parseFloat((GC.w / GC.h).toFixed(3));
+            if(rightSize2 > currentSize2){
+                heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+            }
             
             lastSize = lastHTMLSize;
-            html.style.fontSize=GC.w/lastHTMLSize+'px';
+            fontSize = GC.w / lastHTMLSize;
+            html.style.fontSize = fontSize+'px';
         }
 
         setFontSize();
@@ -81,13 +90,20 @@
             startTime = new Date().getTime(),
             firstTime = 0;
             loadingComplete = function(){
-                var appElement = document.getElementById('app');
+                var appElement = document.getElementById('app'),
+                    page0 = document.getElementById('page0'),
+                    music = document.getElementById('music');
                 document.getElementById('loading').className += ' opacityChange-out';
+                document.getElementById('music-loading').pause();
+                if(music.paused){
+                    playAudio(music,function(){});
+                }
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
-                    appElement.className = appElement.className.replace(' hide','');
+                    page0.className = page0.className.replace(/( hide)/g,'');
+                    appElement.className += ' hide'
                     firstTime = Date.now();
-                    app.setPage0Down();
+                    // app.setPage0Down();
                 },500);
             },
             loadingSuccess = function(){
@@ -104,6 +120,19 @@
                     loadingComplete();
                 // }
             };
+        function getDelayTime(start,gap,index){
+            var current = (start+gap * index)+''.split(''),
+                f = '',
+                l = '';
+            if(current.length == 1){
+                f = '0';
+                l = current[0];
+            }else {
+                f = current[0];
+                l = current[1];
+            }
+            return f+'-'+l;
+        }
     </script>
     <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
@@ -111,54 +140,262 @@
     <div class="page-bg"></div>
     <div class="loading" id="loading">
         <div class="loading__snakeLayer opacityChange">
-            <div class="loading__snakeList snakeChange delay0-5">
-                <div class="loading__snake loading__snake01"></div>
-                <div class="loading__snake loading__snake02"></div>
-                <div class="loading__snake loading__snake03"></div>
-                <div class="loading__snake loading__snake04"></div>
-                <div class="loading__snake loading__snake05"></div>
-                <div class="loading__snake loading__snake06"></div>
-                <div class="loading__snake loading__snake07"></div>
-                <div class="loading__snake loading__snake08"></div>
-                <div class="loading__snake loading__snake09"></div>
-                <div class="loading__snake loading__snake10"></div>
-                <div class="loading__snake loading__snake11"></div>
-                <div class="loading__snake loading__snake12"></div>
-                <div class="loading__snake loading__snake13"></div>
-                <div class="loading__snake loading__snake14"></div>
-                <div class="loading__snake loading__snake15"></div>
-                <div class="loading__snake loading__snake16"></div>
-                <div class="loading__snake loading__snake17"></div>
-                <div class="loading__snake loading__snake18"></div>
+            <div class="loading__snakeList"><!-- snakeChange delay0-5-->
             </div>
         </div>
         <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+    <div class="page page0 hide" id="page0"></div>
     <div class="music-box">
         <div class="music-icon open">
             <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
-            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv.mp3"></audio>
+            <audio style="opacity:0;" id="music-loading" loop="loop" preload="auto" src="images/loading.mp3"></audio>
+            <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3"></audio>
+            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-02.mp3"></audio>
+            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3"></audio>
         </div>
     </div>
-    <div class="wrapper pages hide" id="app">
-        <div class="page-bg"></div>
-        <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''"
-            @touchstart="page0TouchStart"
-            @touchmove="page0TouchMove"
-            @touchend="page0TouchEnd">
-            <!-- outTopMoveIn duration3-0 delay0-5-->
-            <div class="page0__text">
-                <div v-for="(one,index) in page0.words"
-                    :class="'page0__text--'+index+' '+one.classname">
-                    <span class="page0__text--one" v-for="(item,iindex) in one.line"
-                        :style="page0.down ? page0.style[index].line[iindex] : null">
-                        <span class="page0__text--oneCenter"
-                            :style="page0.down ? page0.style[index].list[iindex] : null">{{item}}</span>
-                    </span>
-                </div>
-            </div>
-            <!-- <div class="page0__text">
+    <script type="text/javascript">
+        var page0words = [
+                {
+                    classname:'littleTopIn duration1-0 delay0-5',
+                    line:['你','的','生','活','中','，','已','经','多','久','没','有','奇','遇','？']
+                },{
+                    classname:'littleTopIn duration1-0 delay2-5',
+                    line:['少','年','时','追','求','激','情','，','成','熟','后','却','迷','恋','平','庸']
+                },{
+                    classname:'littleTopIn duration1-0 delay4-5',
+                    line:['害','怕','不','确','定','的','未','来']
+                },{
+                    classname:'littleTopIn duration1-0 delay6-5',
+                    line:['年','轻','是','热','烈','，','是','追','逐']
+                },{
+                    classname:'littleTopIn duration1-0 delay8-5',
+                    line:['而','职','场','是','一','座','奇','幻','森','林']
+                },{
+                    classname:'littleTopIn duration1-0 delay10-5',
+                    line:['当','你','拥','抱','所','有','“不确定”']
+                },{
+                    classname:'littleTopIn duration1-0 delay11-0',
+                    line:['就','能','把','遇','见','变','为','奇','遇']
+                }
+            ],
+            page0Style = [
+                {
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },{  // 4
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },{  // 7
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },{
+                    line:[],
+                    list:[]
+                },
+            ];
+        function initPage0Ani(){
+            var words = page0words,
+                style = { },
+                line = [],
+                list = [],
+                sign = ['_p',''],
+                len = 0,
+                transition = '',
+                height = 0,
+                i = 0,
+                j = 0,
+                tempDelay = 0,
+                d = '',  // 方向
+                r = 0,  // 转动的值
+                m = 0,  // 移动的值
+                at = 0,  // 动画时间
+                dt = 0;  // 动画延迟时间
+            for(i = 0; i < words.length - 2; i++){
+                height = GC.h/this.fontSize*(1080 / 16)+400;
+                len = words[i].line.length;
+                line = [];
+                list = [];
+                for(j = 0; j < len; j++){
+                    tempDelay = Math.floor(Math.random() * 8);
+                    at = (40 - 4 * i) / 10;
+                    dt = (20 * (i == words.length - 1 ? i : i + 1) + tempDelay) / 10;
+                    m = Math.ceil(Math.random() * 15);
+                    m = m < 10 ? '0'+m : m;
+                    r = '0'+Math.ceil(Math.random() * 9);
+                    d = j < len*1/3 ? '' :  j > len*1/3 ? '_p' : sign[Math.floor(Math.random() * 2)];
+                    line.push(''+
+                        'animation-name: textMove'+(m+(d))+'; '+
+                        'animation-delay: '+dt+'s; '+
+                        'animation-duration: '+at+'s;'
+                    );
+                    list.push(''+
+                        'animation-name: textRotate'+(r+(sign[Math.floor(Math.random() * 2)]))+'; '+
+                        'animation-delay: '+dt+'s; '+
+                        'animation-duration: '+at+'s;'
+                    );
+                }
+                page0Style[i].line = line;
+                page0Style[i].list = list;
+            }
+        }
+        function setPage0Text(){
+            var words = page0words,
+                html = ''+
+                    '<div class="page page0 hide" id="page0">\n'+
+                        '<div class="page0__text">\n',
+                index = 0,iindex = 0,
+                one = null,item = null;
+            for(index = 0; index < words.length; index++){
+                one = words[index];
+                html += ''+
+                    '<div class="page0__text--'+index+' '+one.classname+'">\n';
+                for(iindex = 0; iindex < one.line.length; iindex++){
+                    html += '<span class="page0__text--one textMove" style="'+(page0Style[index].line[iindex])+'">\n'+
+                            '<span class="page0__text--oneCenter textMove" style="'+(page0Style[index].list[iindex])+'">'+one.line[iindex]+'</span>\n'+
+                        '</span>\n';
+                }
+                html += '</div>\n';
+            }
+                        
+            html += '</div>\n'+
+                '<div class="page0__line opacityChange delay2-0" id="page0__line"'+  //'class="'+(page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0')+'"'+   
+                    'style="top:'+getFitTop(1293,1)+';"></div>'+
+                '<div class="page0__btnParent opacityChange delay2-0" style="top:'+getFitTop(1267,1)+'">'+
+                    '<div class="page0__btn btnMoveStartRow delay3-0" id="page0__btn"'+ // class="'+(page0.moveBtnStatus ? 'btnMoveStartRow' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')+'"'+
+                        '></div>'+  // style="'+page0.btnStyle+'"
+                '</div>'+
+            '</div>';
+            document.getElementById('page0').outerHTML = html;
+        }
+        function initPage0Event(){
+            var page0 = document.getElementById('page0'),
+                btn = document.getElementById('page0__btn'),
+                line = document.getElementById('page0__line'),
+                top = getRem(216+73/2),
+                moveBtnStatus = true,
+                start = 0,
+                end = 0;
+            page0.addEventListener('touchstart',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var touch = e.targetTouches[0];
+                if(moveBtnStatus){
+                    moveBtnStatus = false;
+                    start = touch.clientX;
+                    btn.className = btn.className.replace(/( btnMoveStartRow| delay3-0)/g,'');
+                }
+            },false);
+            page0.addEventListener('touchmove',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var touch = e.targetTouches[0],
+                    gap = 0;
+                end = touch.clientX;
+                gap = start - end;
+                if(!moveBtnStatus && start && end){
+                    if(gap < 0){
+                        btn.style.cssText = ''+
+                            'transform:translate3d('+(-(Math.abs(gap) > top ? -top : gap))+'px,0,0)';
+                    }else{
+                        btn.style.cssText = '';
+                    }
+                }
+            },false);
+            page0.addEventListener('touchend',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+                var gap = start - end;
+                if(start && end){
+                    if(gap < 0){
+                        if(Math.abs(gap) < top * 0.6){
+                            moveBtnStatus = true;
+                            btn.style.cssText = '';
+                            btn.className += ' btnMoveStartRow';
+                        }else {
+                            var appElement = document.getElementById('app');
+                            btn.style.cssText = 'transform:translate3d('+(top)+'px,0,0)';
+                            moveEndStatus = true;
+                            btn.className += 'opacityChange-out';
+                            line.className = line.className.replace(/( opacityChange| delay2-0)/g,'')+' opacityChange-out';
+                            appElement.className = appElement.className.replace(/( hide)/g,'');
+                            PM.data.last = 0;
+                            PM.data.now = 1;
+                            PM.pageMove('down',PM);
+                            postEncodingID({
+                                "data-lg-tj-id":"1k68",
+                                "data-lg-tj-no":"0002" ,
+                                "data-lg-tj-cid":"idnull"
+                            });
+                        }
+                    }else{
+                        moveBtnStatus = true;
+                        btn.style.cssText = '';
+                        btn.className += ' btnMoveStartRow';
+                    }
+                }else{
+                    moveBtnStatus = true;
+                    btn.style.cssText = '';
+                    btn.className += ' btnMoveStartRow';
+                }   
+                firstMove = true;
+                start = 0;
+                end = 0;
+            },false);
+        }
+        function setRem(value){
+            return (value / (1080 / 16)).toFixed(5)+'rem';
+        }
+        function getRem(value) {
+            return value / (1080 / 16) * fontSize;
+        }
+        function getFitTop(def,ratio){
+            return setRem(def+heightStatus * ratio);
+        }
+        function playAudio(elem,callback){
+            if (window.WeixinJSBridge) {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    elem.currentTime = 0;
+                    elem.play();
+                    callback()
+                }, false);
+            }else{
+                elem.currentTime = 0;
+                elem.play();
+                callback()
+            }
+        }
+        // music-loading
+        function playLoadingAudio(){
+            playAudio(document.getElementById('music-loading'),function(){});
+        }
+        playLoadingAudio();
+        // 设置page0文字动画
+        initPage0Ani();
+        setPage0Text();
+        initPage0Event();
+    </script>
+    <!-- <div class="page-bg"></div> -->
+    <script type="text/javascript" src="js/loading.js?v=$version$"></script>
+    <div class="wrapper pages" id="app">
+        <!-- outTopMoveIn duration3-0 delay0-5-->
+        <!-- <div class="page0__text">
                 <div v-for="(one,index) in page0.words"
                     :class="'page0__text--0'+(index+1)+(' delay'+getDelayTime(5,34,index))+(page0.down ? '' : ' littleBottomIn duration2-0')">
                     <span class="page0__text--one" v-for="(item,iindex) in one"
@@ -168,6 +405,20 @@
                         </span>
                 </div>
             </div> -->
+        <!-- <div class="page page0" :class="activePage == 0 && !startMoving ? 'active' : ''"
+            @touchstart="page0TouchStart"
+            @touchmove="page0TouchMove"
+            @touchend="page0TouchEnd">
+            <div class="page0__text">
+                <div v-for="(one,index) in page0.words"
+                    :class="'page0__text--'+index+' '+one.classname">
+                    <span class="page0__text--one" v-for="(item,iindex) in one.line"
+                        :style="page0.down ? page0Style[index].line[iindex] : null">
+                        <span class="page0__text--oneCenter"
+                            :style="page0.down ? page0.style[index].list[iindex] : null">{{item}}</span>
+                    </span>
+                </div>
+            </div>
             <div class="page0__line opacityChange" 
                 :class="page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0'"
                 :style="{top:getFitTop(1293,1)}"></div>
@@ -175,7 +426,7 @@
                 <div class="page0__btn" :class="(page0.moveBtnStatus ? 'btnMoveStartRow' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')"
                     :style="page0.btnStyle"></div>
             </div>
-        </div>
+        </div> -->
         <div class="page page1" :class="activePage == 1 && !startMoving ? 'active' : page1.hidden ? 'hide' : ''"
             ref="page1">
             <div class="page1__itemLayer opacityChange delay0-5">
@@ -378,221 +629,226 @@
                         按钮层：page2__card__btnbg         撕开动画：getPage2CardTicketClass(0)
                     -->
                     <div class="page2__li page2__li--0" ref="page2__li--0"
-                        :class="page2.showForce ? 'page2__li--0move delay0-5' : ''">
-                        <div class="page2__oneOuter" :class="getPage2CardParentClass(0)">
+                        :class="showForce ? 'page2__li--0move' : ''">
+                        <div class="page2__oneOuter"><!--getPage2CardParentClass(0)-->
                             <div class="page2__one" ref="page2__one--0" 
-                                :class="page2.showForce ? 'showForce' : (page2.activeCard == 0 || (page2.lastCard == 0 && page2.isMoving) ? 'active-card' : '')">
-                                <div class="page2__card__bg"
-                                    :style="{height:getFitTop(1535,1)}"></div>
-                                <div class="page2__card__bg02"
-                                    :class="page2.showForce ? '' : 'opacityChange'" 
-                                    :style="{height:getFitTop(1697,1)}"></div>
-                                <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--0"
-                                    :class="page2.showForce ? 'hide' : (page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : '')">
-                                    <div class="page2__card__titleLayer" :style="{top:getFitTop(0,1/8)}">
-                                        <div class="page2__icon page2__card__titlebg opacityChange"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title01 opacityChange duration0-1 delay0-8"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title02 opacityChange duration0-1 delay0-9"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title03 opacityChange duration0-1 delay1-0"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title04 opacityChange duration0-1 delay1-1"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title05 opacityChange duration0-1 delay1-2"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title06 opacityChange duration0-1 delay1-3"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title07 opacityChange duration0-1 delay1-4"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title08 opacityChange duration0-1 delay1-5"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title09 opacityChange duration0-1 delay1-6"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title10 opacityChange duration0-1 delay1-7"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title11 opacityChange duration0-1 delay1-8"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title12 opacityChange duration0-1 delay1-9"></div>
-                                        <div class="page2__icon page2__card__title page2__card__title13 opacityChange duration0-1 delay2-0"></div>
-                                    </div>
-                                    <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
-                                    <div class="page2__icon page2__card__info littleBottomIn duration1-0 delay0-8" :style="{top:getFitTop(182,3/16)}"></div>
-                                    <div class="page2__card__list" :style="{top:getFitTop(329,2/8)}">
-                                        <div class="page2__card__one clearfix" v-for="(one,index) in page2.list"
-                                            :class="'page2__card__one--'+index+(index % 2 == 1 ? ' page2__card__one--odd' : '' )"
-                                            :style="{marginTop:getFitTop(-9,index == 0 ? 0 : 1/8)}">
-                                            <img class="page2__card__one--img" :src="one.img" :class="one.imgAni" />
-                                            <div class="page2__card__one--info" :class="one.infoAni">
-                                                <div class="page2__icon page2__card__one--arrow"></div>
-                                                <div class="page2__card__one--line"></div>
-                                                <div class="page2__card__one--title">{{one.title}}</div>
-                                                <div class="page2__card__one--name" :style="one.nameStyle">{{one.name}}</div>
-                                                <div class="page2__icon page2__card__one--icon"
-                                                    :style="one.icon"></div>
-                                                <div class="page2__card__one--theme">{{one.theme}}</div>
+                                :class="showForce ? 'showForce' : (page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0) ? 'active-card' : '')">
+                                <div class="page2__cut" :class="getPage2CardParentClass(0)" :style="{height:getFitTop(1535,1)}">
+                                    <div class="page2__card__bg"
+                                        :style="{height:getFitTop(1535,1)}"></div>
+                                    <div class="page2__card__bg02"
+                                        :style="{height:getFitTop(1697,1)}"></div><!--:class="showForce ? '' : 'opacityChange'" -->
+                                    <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--0"
+                                        :class="showForce ? 'hide' : (page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : '')">
+                                        <div class="page2__card__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                            <div class="page2__icon page2__card__titlebg opacityChange"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title01 opacityChange duration0-1 delay0-8"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title02 opacityChange duration0-1 delay0-9"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title03 opacityChange duration0-1 delay1-0"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title04 opacityChange duration0-1 delay1-1"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title05 opacityChange duration0-1 delay1-2"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title06 opacityChange duration0-1 delay1-3"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title07 opacityChange duration0-1 delay1-4"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title08 opacityChange duration0-1 delay1-5"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title09 opacityChange duration0-1 delay1-6"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title10 opacityChange duration0-1 delay1-7"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title11 opacityChange duration0-1 delay1-8"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title12 opacityChange duration0-1 delay1-9"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title13 opacityChange duration0-1 delay2-0"></div>
+                                        </div>
+                                        <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
+                                        <div class="page2__icon page2__card__info littleBottomIn duration1-0 delay0-8" :style="{top:getFitTop(182,3/16)}"></div>
+                                        <div class="page2__card__list" :style="{top:getFitTop(329,2/8)}">
+                                            <div class="page2__card__one clearfix" v-for="(one,index) in page2.list"
+                                                :class="'page2__card__one--'+index+(index % 2 == 1 ? ' page2__card__one--odd' : '' )"
+                                                :style="{marginTop:getFitTop(-9,index == 0 ? 0 : 1/8)}">
+                                                <img class="page2__card__one--img" :src="one.img" :class="one.imgAni" />
+                                                <div class="page2__card__one--info" :class="one.infoAni">
+                                                    <div class="page2__icon page2__card__one--arrow"></div>
+                                                    <div class="page2__card__one--line"></div>
+                                                    <div class="page2__card__one--title">{{one.title}}</div>
+                                                    <div class="page2__card__one--name" :style="one.nameStyle">{{one.name}}</div>
+                                                    <div class="page2__icon page2__card__one--icon"
+                                                        :style="one.icon"></div>
+                                                    <div class="page2__card__one--theme">{{one.theme}}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
+                                        <div class="page2__card__arrowParent opacityChange delay2-0">
+                                            <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="page2__card__btnbg" :style="{top:getFitTop(1535,1)}"
-                                :class="page2.showForce ? '' : (page2.activeCard == 0 ? 'activeTop' : '')"
-                                v-show="page2.showForce || page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0)">
+                                :class="showForce ? '' : (page2.activeCard == 0 ? 'activeTop' : '')"
+                                v-show="showForce || page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0)">
                                 <div class="page2__card__btnCenter"
-                                    :class="page2.showForce ? 'hide' : 'opacityChange delay0-5'"
+                                    :class="showForce ? 'hide' : 'opacityChange delay0-5'"
                                     ref="page2__card__btnCenter--0"
                                     :data-lg-tj-id="lg" 
                                     data-lg-tj-no="0010" 
                                     data-lg-tj-cid="null"
                                     @touchstart="toLoginIn">
                                     <div class="page2__card__btnContent"
-                                        :class="page2.showForce ? '' : 'cardBtnChange delay1-0'">
+                                        :class="showForce ? '' : 'cardBtnChange delay1-0'">
                                         <div class="page2__card__btn"></div>
                                         <div class="page2__card__btn page2__card__btnnext"></div>
                                     </div>
                                     <div class="page2__card__btnline"
-                                        :class="page2.showForce ? '' : 'widthChange delay1-0'"></div>
+                                        :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li page2__li--1" ref="page2__li--1" :class="page2.showForce ? ' page2__li--1move delay0-5' : ''">
-                        <div class="page2__oneOuter" :class="getPage2CardParentClass(1)">
-                            <div class="page2__one" ref="page2__one--1" :class="page2.showForce ? 'showForce' : (page2.activeCard == 1 || (page2.lastCard == 1 && page2.isMoving) ? 'active-card' : '')">
-                                <div class="page2__card02__bg" 
-                                    :style="{height:getFitTop(1652,1)}"></div>
-                                <div class="page2__card02__bg02" 
-                                    :class="page2.showForce ? '' : 'opacityChange'"  
-                                    :style="{height:getFitTop(1697,1)}"></div>
-                                <div class="page2__card02Layer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--1">
-                                    <div class="page2__card02__titleLayer" :style="{top:getFitTop(0,1/8)}">
-                                        <div class="page2__icon02 page2__card02__titlebg leftIn"></div>
-                                        <div class="page2__icon02 page2__card02__title opacityChange delay0-5"></div>
-                                    </div>
-                                    <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
-                                    <div class="page2__icon02 page2__card02__info leftIn duration1-0 delay0-5" :style="{top:getFitTop(181,3/16)}"></div>
-                                    <div class="page2__card02__list" :style="{top:getFitTop(398,4/16)}">
-                                        <div class="page2__card02__one clearfix" 
-                                            v-for="(one,index) in page2.party"
-                                            :class="'page2__card02__one--'+index"
-                                            :style="{height:getFitTop(index == 0 ? 246 : index == 1 ? 208 : 222,1/16)}">
-                                            <div class="page2__icon02 page2__card02__one--index leftIn duration1-0"
-                                                :class="'delay'+getDelayTime(15,10,index)"
-                                                :style="{
-                                                    backgroundPosition:one.indexPosition
-                                                }"></div>
-                                            <div class="page2__card02__one--info">
-                                                <div v-for="(item,iindex) in one.info"
-                                                    :class="'page2__card02__one--info'+iindex+(' littleBottomIn delay'+getDelayTime(23+iindex*2,10,index))">{{item}}</div>
-                                            </div>
-                                            <div class="page2__card02__one--moveParent opacityChange" :class="'delay'+getDelayTime(28,10,index)">
-                                                <div class="page2__icon02 page2__card02__one--move topLittleMoveIn"
+                    <div class="page2__li page2__li--1" ref="page2__li--1" :class="showForce ? ' page2__li--1move' : ''">
+                        <div class="page2__oneOuter">
+                            <div class="page2__one" ref="page2__one--1" :class="showForce ? 'showForce' : (page2.activeCard == 1 || (page2.lastCard == 1 && page2.isMoving) ? 'active-card' : '')">
+                                <div class="page2__cut" :class="getPage2CardParentClass(1)" :style="{height:getFitTop(1535,1)}">
+                                    <div class="page2__card02__bg" 
+                                        :style="{height:getFitTop(1652,1)}"></div>
+                                    <div class="page2__card02__bg02" 
+                                        :class="showForce ? '' : 'opacityChange'"  
+                                        :style="{height:getFitTop(1697,1)}"></div>
+                                    <div class="page2__card02Layer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--1">
+                                        <div class="page2__card02__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                            <div class="page2__icon02 page2__card02__titlebg leftIn"></div>
+                                            <div class="page2__icon02 page2__card02__title opacityChange delay0-5"></div>
+                                        </div>
+                                        <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
+                                        <div class="page2__icon02 page2__card02__info leftIn duration1-0 delay0-5" :style="{top:getFitTop(181,3/16)}"></div>
+                                        <div class="page2__card02__list" :style="{top:getFitTop(398,4/16)}">
+                                            <div class="page2__card02__one clearfix" 
+                                                v-for="(one,index) in page2.party"
+                                                :class="'page2__card02__one--'+index"
+                                                :style="{height:getFitTop(index == 0 ? 246 : index == 1 ? 208 : 222,1/16)}">
+                                                <div class="page2__icon02 page2__card02__one--index leftIn duration1-0"
+                                                    :class="'delay'+getDelayTime(15,10,index)"
                                                     :style="{
-                                                        backgroundPosition:one.movePosition
+                                                        backgroundPosition:one.indexPosition
                                                     }"></div>
+                                                <div class="page2__card02__one--info">
+                                                    <div v-for="(item,iindex) in one.info"
+                                                        :class="'page2__card02__one--info'+iindex+(' littleBottomIn delay'+getDelayTime(23+iindex*2,10,index))">{{item}}</div>
+                                                </div>
+                                                <div class="page2__card02__one--moveParent opacityChange" :class="'delay'+getDelayTime(28,10,index)">
+                                                    <div class="page2__icon02 page2__card02__one--move topLittleMoveIn"
+                                                        :style="{
+                                                            backgroundPosition:one.movePosition
+                                                        }"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="page2__card02__imgs" :style="{top:getFitTop(1099,8/16)}">
-                                        <div class="page2__card02__pic page2__card02__pic01 littleBottomIn delay5-2">
-                                            <div class="page2__card02__pic--img"></div>
-                                            <div class="page2__card02__pic--flowerParent">
-                                                <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay5-2"></div>
+                                        <div class="page2__card02__imgs" :style="{top:getFitTop(1099,8/16)}">
+                                            <div class="page2__card02__pic page2__card02__pic01 littleBottomIn delay5-2">
+                                                <div class="page2__card02__pic--img"></div>
+                                                <div class="page2__card02__pic--flowerParent">
+                                                    <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay5-2"></div>
+                                                </div>
+                                            </div>
+                                            <div class="page2__card02__pic page2__card02__pic02 littleBottomIn delay5-4">
+                                                <div class="page2__card02__pic--img"></div>
+                                                <div class="page2__card02__pic--flowerParent">
+                                                    <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay6-2"></div>
+                                                </div>
+                                            </div>
+                                            <div class="page2__card02__pic page2__card02__pic03 littleBottomIn delay5-6">
+                                                <div class="page2__card02__pic--img"></div>
+                                                <div class="page2__card02__pic--flowerParent">
+                                                    <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay7-2"></div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="page2__card02__pic page2__card02__pic02 littleBottomIn delay5-4">
-                                            <div class="page2__card02__pic--img"></div>
-                                            <div class="page2__card02__pic--flowerParent">
-                                                <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay6-2"></div>
-                                            </div>
+                                        <div class="page2__card__arrowParent opacityChange delay2-0">
+                                            <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
                                         </div>
-                                        <div class="page2__card02__pic page2__card02__pic03 littleBottomIn delay5-6">
-                                            <div class="page2__card02__pic--img"></div>
-                                            <div class="page2__card02__pic--flowerParent">
-                                                <div class="page2__icon02 page2__card02__pic--flower zoomInfinite-02 delay7-2"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="page2__card02__btnbg" :style="{top:getFitTop(1535,1)}"
-                                :class="page2.showForce ? '' : (page2.activeCard == 1 ? ' activeTop' : '')"
-                                v-show="page2.showForce || page2.activeCard == 1 || (page2.isMoving && page2.lastCard == 1)">
+                                :class="showForce ? '' : (page2.activeCard == 1 ? ' activeTop' : '')"
+                                v-show="showForce || page2.activeCard == 1 || (page2.isMoving && page2.lastCard == 1)">
                                 <div class="page2__card02__btnCenter"
-                                    :class="page2.showForce ? '' : 'opacityChange delay0-5'"
+                                    :class="showForce ? '' : 'opacityChange delay0-5'"
                                     ref="page2__card__btnCenter--1"
                                     :data-lg-tj-id="lg" 
                                     data-lg-tj-no="0011" 
                                     data-lg-tj-cid="null"
                                     @touchstart="toLoginIn">
                                     <div class="page2__card02__btnContent"
-                                        :class="page2.showForce ? '' : 'cardBtnChange delay1-0'">
+                                        :class="showForce ? '' : 'cardBtnChange delay1-0'">
                                         <div class="page2__card__btn page2__card02__btn"></div>
                                         <div class="page2__card__btn page2__card02__btnnext"></div>
                                     </div>
                                     <div class="page2__card02__btnline"
-                                        :class="page2.showForce ? '' : 'widthChange delay1-0'"></div>
+                                        :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li page2__li--2" ref="page2__li--2" :class="page2.showForce ? ' page2__li--2move delay0-5' : ''">
-                        <div class="page2__oneOuter" :class="getPage2CardParentClass(2)">
-                            <div class="page2__one" ref="page2__one--2" :class="page2.showForce ? 'showForce' : (page2.activeCard == 2 || (page2.lastCard == 2 && page2.isMoving) ? 'active-card' : '')">
-                                <div class="page2__card__bg page2__card03__bg" 
-                                    :style="{height:getFitTop(1535,1)}"></div>
-                                <div class="page2__card__bg02"
-                                    :class="page2.showForce ? '' : 'opacityChange'"  
-                                    :style="{height:getFitTop(1697,1)}"></div>
-                                <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--2">
-                                    <div class="page2__card03__titleLayer" :style="{top:getFitTop(0,1/8)}">
-                                        <div class="page2__icon02 page2__card03__titlebg opacityChange"></div>
-                                        <div class="page2__icon02 page2__card03__title opacityChange delay0-5"></div>
-                                    </div>
-                                    <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
-                                    <div class="page2__icon02 page2__card03__info littleBottomIn duration1-0 delay0-5" :style="{top:getFitTop(181,3/16)}"></div>
-                                    <div class="page2__card03__list" :style="{top:getFitTop(390,4/16)}">
-                                        <div class="page2__card03__one" v-for="(one,index) in page2.theater"
-                                            :class="'page2__card03__one--'+index"
-                                            :style="{height:getFitTop(529,2/16)}">
-                                            <div class="page2__icon03 page2__card03__one--titlebg littleBottomIn duration1-0" :class="'delay'+getDelayTime(12,16,index)"></div>
-                                            <div class="page2__icon03 page2__card03__one--titleline opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
-                                            <div class="page2__icon03 page2__card03__one--title opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star01 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star02 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star03 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star04 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star05 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
-                                            <div class="page2__icon02 page2__card03__one--star page2__card03__one--star06 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
-                                            <div class="page2__card03__one--content clearfix littleBottomIn duration1-0" :class="'delay'+getDelayTime(17,16,index)">
-                                                <div class="page2__icon03 page2__card03__one--infobg">
-                                                    <div class="page2__icon03 page2__card03__one--info"></div>
-                                                </div>
-                                                <div class="page2__card03__one--pic"></div>
-                                            </div>
-                                            <div class="page2__card03__one--arrow" :style="{top:getFitTop(index == 0 ? 416 : 424,1/16)}"
-                                                :class="(index == 0 ? 'card03MoveLeft' : 'card03MoveRight') + ' delay'+getDelayTime(33,16,index)"></div>
-                                            <div class="page2__icon03 page2__card03__one--line widthChange" :class="'delay'+getDelayTime(27,16,index)" :style="{top:getFitTop(index == 0 ? 435 : 443,1/16)}"></div>
+                    <div class="page2__li page2__li--2" ref="page2__li--2" :class="showForce ? ' page2__li--2move' : ''">
+                        <div class="page2__oneOuter">
+                            <div class="page2__one" ref="page2__one--2" :class="showForce ? 'showForce' : (page2.activeCard == 2 || (page2.lastCard == 2 && page2.isMoving) ? 'active-card' : '')">
+                                <div class="page2__cut" :class="getPage2CardParentClass(2)" :style="{height:getFitTop(1535,1)}">
+                                    <div class="page2__card__bg page2__card03__bg" 
+                                        :style="{height:getFitTop(1535,1)}"></div>
+                                    <div class="page2__card__bg02"
+                                        :class="showForce ? '' : 'opacityChange'"  
+                                        :style="{height:getFitTop(1697,1)}"></div>
+                                    <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--2">
+                                        <div class="page2__card03__titleLayer" :style="{top:getFitTop(0,1/8)}">
+                                            <div class="page2__icon02 page2__card03__titlebg opacityChange"></div>
+                                            <div class="page2__icon02 page2__card03__title opacityChange delay0-5"></div>
                                         </div>
-                                    </div>
-                                    <div class="page2__card__arrowParent opacityChange delay2-0">
-                                        <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
+                                        <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
+                                        <div class="page2__icon02 page2__card03__info littleBottomIn duration1-0 delay0-5" :style="{top:getFitTop(181,3/16)}"></div>
+                                        <div class="page2__card03__list" :style="{top:getFitTop(390,4/16)}">
+                                            <div class="page2__card03__one" v-for="(one,index) in page2.theater"
+                                                :class="'page2__card03__one--'+index"
+                                                :style="{height:getFitTop(529,2/16)}">
+                                                <div class="page2__icon03 page2__card03__one--titlebg littleBottomIn duration1-0" :class="'delay'+getDelayTime(12,16,index)"></div>
+                                                <div class="page2__icon03 page2__card03__one--titleline opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                                <div class="page2__icon03 page2__card03__one--title opacityChange" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star01 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star02 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star03 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star04 opacityChange duration0-1" :class="'delay'+getDelayTime(20,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star05 opacityChange duration0-1" :class="'delay'+getDelayTime(22,16,index)"></div>
+                                                <div class="page2__icon02 page2__card03__one--star page2__card03__one--star06 opacityChange duration0-1" :class="'delay'+getDelayTime(24,16,index)"></div>
+                                                <div class="page2__card03__one--content clearfix littleBottomIn duration1-0" :class="'delay'+getDelayTime(17,16,index)">
+                                                    <div class="page2__icon03 page2__card03__one--infobg">
+                                                        <div class="page2__icon03 page2__card03__one--info"></div>
+                                                    </div>
+                                                    <div class="page2__card03__one--pic"></div>
+                                                </div>
+                                                <div class="page2__card03__one--arrow" :style="{top:getFitTop(index == 0 ? 416 : 424,1/16)}"
+                                                    :class="(index == 0 ? 'card03MoveLeft' : 'card03MoveRight') + ' delay'+getDelayTime(33,16,index)"></div>
+                                                <div class="page2__icon03 page2__card03__one--line widthChange" :class="'delay'+getDelayTime(27,16,index)" :style="{top:getFitTop(index == 0 ? 435 : 443,1/16)}"></div>
+                                            </div>
+                                        </div>
+                                        <div class="page2__card__arrowParent opacityChange delay2-0">
+                                            <div class="page2__icon page2__card__arrow rightLittleMoveIn"></div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="page2__card__btnbg page2__card03__btnbg" :style="{top:getFitTop(1535,1)}"
-                                :class="page2.showForce ? '' : (page2.activeCard == 2 ? ' activeTop' : '')"
-                                v-show="page2.showForce || page2.activeCard == 2 || (page2.isMoving && page2.lastCard == 2)">
+                                :class="showForce ? '' : (page2.activeCard == 2 ? ' activeTop' : '')"
+                                v-show="showForce || page2.activeCard == 2 || (page2.isMoving && page2.lastCard == 2)">
                                 <div class="page2__card03__btnCenter"
-                                    :class="page2.showForce ? '' : 'opacityChange delay0-5'"
+                                    :class="showForce ? '' : 'opacityChange delay0-5'"
                                     ref="page2__card__btnCenter--2"
                                     :data-lg-tj-id="lg" 
                                     data-lg-tj-no="0012" 
                                     data-lg-tj-cid="null"
                                     @touchstart="toLoginIn">
                                     <div class="page2__card03__btnContent"
-                                        :class="page2.showForce ? '' : 'cardBtnChange delay1-0'">
+                                        :class="showForce ? '' : 'cardBtnChange delay1-0'">
                                         <div class="page2__card__btn page2__card03__btn"></div>
                                         <div class="page2__card__btn page2__card03__btnnext"></div>
                                     </div>
                                     <div class="page2__card__btnline"
-                                        :class="page2.showForce ? '' : 'widthChange delay1-0'"></div>
+                                        :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
                         </div>
@@ -600,109 +856,106 @@
                 </div>
             </div>
         </div>
-        <div class="page page3" :class="(activePage == 3 && !startMoving ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname)" ref="page3">
+        <div class="page page3" :class="(showForce || activePage == 2 ? 'active' : (activePage == 3 && !startMoving) ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname)" ref="page3">
             <div class="page3__list">
-                <div class="page3__one" 
+                <div class="page3__one"
                     v-for="(one,index) in page3.list" :ref="'page3__one--'+index"
-                    :class="'page3__one--'+index">
-                    <div class="page3__cardParent" :class="getPage3CardParentClass(index)">
-                        <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="getPage3CardClass(index)">
+                    :class="'page3__one--'+index+(showForce ? ' page3__one--'+index+'move' : '')">
+                    <div class="page3__cardParent" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : getPage3CardParentClass(index)">
+                        <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : (page3.activeCard == index || (page3.lastCard == index && page3.isMoving) ? 'active-card' : '')"><!--- :class="showForce ? 'showForce' : getPage3CardClass(index)"-->
                             <div class="page3__card__light" :class="one.light"></div>
                             <div class="page3__card__door" :style="{height:getFitTop(1502,7/8)}">
                                 <div class="page3__card__inner">
-                                    <div class="page3__card__inner--bgLayer">
-                                        <div class="page3__card__inner--bg page3__card__inner--bg01"></div>
-                                        <div class="page3__card__inner--bg02" :style="{height:getFitTop(1502-660-90+50,7/8)}"></div>
-                                        <div class="page3__card__inner--bg page3__card__inner--bg03"></div>
-                                    </div>
+                                    <div class="page3__card__inner--bg page3__card__inner--bg01"></div>
+                                    <div class="page3__card__inner--bg02" :style="{height:getFitTop(1502-660-90+50,7/8)}"></div>
+                                    <div class="page3__card__inner--bg page3__card__inner--bg03"></div>
                                     <div class="page3__card__inner--borderLayer">
                                         <div class="page3__card__inner--bordertop"></div>
                                         <div class="page3__card__inner--borderbottom" :style="{height:getCardHeight}"></div>
-                                    </div>
+                                    </div> 
                                     <div class="page3__card__inner--lightLayer">
-                                        <div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>
-                                        <div class="page3__card__inner--lightback02 page3LightBlink delay0-5" :style="{height:getCardHeight}"></div>
-                                        <div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>
-                                        <div class="page3__card__inner--light02 page3LightBlink" :style="{height:getCardHeight}"></div>
+                                        <!-- <div class="page3__card__inner--lightback01" :class="!showForce && page3.activeCard == index ? 'page3LightBlink delay0-5' : ''"></div>
+                                        <div class="page3__card__inner--lightback02" :class="!showForce && page3.activeCard == index ? 'page3LightBlink delay0-5' : ''" :style="{height:getCardHeight}"></div> -->
+                                        <div class="page3__card__inner--light page3__card__inner--light01" :class="!showForce && page3.activeCard == index ? 'page3LightBlink' : ''"></div>
+                                        <div class="page3__card__inner--light02" :class="!showForce && page3.activeCard == index ? 'page3LightBlinkBottom' : ''" :style="{height:getCardHeight}"></div>
                                     </div>
-                                    <div class="page3__card__inner--contentLayer">
+                                    <div class="page3__card__inner--contentLayer" :class="one.inner">
                                         <div class="page3__card__inner--content page3__card__inner--content01"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content02"></div>
-                                        <!-- <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getDis0_1_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getDis0_13_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getDis0_5_32}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getDis0_30_32}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getDis0_0_1}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content08" :style="{top:getDis0_0_1}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getDis0_13_16}"></div>
-                                        <div class="page3__card__inner--content page3__card__inner--content10" :style="{top:getDis0_13_16}"></div> -->
+                                        <div class="page3__card__inner--content page3__card__inner--content03" :style="{top:getDis809_1_16}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content04" :style="{top:getDis947_13_16}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content05" :style="{top:getDis1024_5_32}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content06" :style="{top:getDis997_30_32}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content07" :style="{top:getDis1035_0_1}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--content09" :style="{top:getDis1277_13_16}"></div>
+                                        <div class="page3__card__inner--content page3__card__inner--line"></div>
                                     </div>
                                 </div>
                                 <div class="page3__card__cover"></div>
-                                <div class="page3__card__textbg01" :class="one.textbg01" :style="{top:getFitTop(841,1/8)}"></div>
-                                <div class="page3__card__textbg02" :class="one.textbg02" :style="{top:getFitTop(1073,2/4)}"></div>
-                                <div class="page3__card__tvbottom" :class="one.tvbottom" :style="{top:getFitTop(767,1/8)}"></div>
+                                <!-- <div class="page3__card__textbg01" :class="one.textbg01" :style="{top:getFitTop(841,1/8)}"></div> -->
+                                <!-- <div class="page3__card__tvbottom" :class="one.tvbottom" :style="{top:getFitTop(767,1/8)}"></div> -->
                                 <div class="page3__card__tvbg" :class="one.tvbg" :style="{top:getFitTop(70,1/8)}"></div>
+                                <div class="page3__card__textbg02" :class="one.textbg02" :style="{top:getFitTop(1073,2/4)}"></div>
                                 <div class="page3__card__tviconLayer" :style="{top:getFitTop(600,1/8)}">
-                                    <div class="page3__icon page3__card__tvicon01 tviconRotateChange" :class="one.tvicon01"></div>
-                                    <div class="page3__icon page3__card__tvicon02 tviconRotateChange" :class="one.tvicon02"></div>
-                                    <div class="page3__icon page3__card__tvicon03" :class="one.tvicon03"></div>
-                                    <div class="page3__icon page3__card__tvicon04" :class="one.tvicon04"></div>
+                                    <div class="page3__icon page3__card__tvicon01 " :class="one.tvicon01+(!showForce && page3.activeCard == index ? ' tviconRotateChange' : '')"></div>
+                                    <div class="page3__icon page3__card__tvicon02" :class="one.tvicon02+(!showForce && page3.activeCard == index ? ' tviconRotateChange' : '')"></div>
+                                    <!-- <div class="page3__icon page3__card__tvicon03" :class="one.tvicon03"></div> -->
+                                    <!-- <div class="page3__icon page3__card__tvicon04" :class="one.tvicon04"></div> -->
                                 </div>
-
+                                <div class="page3__card__title01bg" :class="one.title01" :style="{top:getFitTop(777,1/8)}"></div>
                                 <div class="page3__card__ul" :style="{top:getFitTop(0,1/8)}">
                                     <div class="page3__card__li"
                                         v-for="(item,iindex) in page3.list[index].content">
-                                        <div class="page3__card__tv page3__card__tvimg tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,iindex)" :style="{
+                                        <div class="page3__card__tv page3__card__tvimg" :class="showForce ? iindex == 0 ? '' : 'hide' : (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''" :style="{
                                             backgroundImage:'url('+item.img+')'
                                         }"></div>
-                                        <div class="page3__card__title01 tvtextOpacityChange" 
-                                            :class="one.title01+' delay'+getDelayTime(0,30,iindex)">{{item.title}}</div>
-                                        <div class="page3__card__text01Parent tvtextOpacityChange" :class="'delay'+getDelayTime(0,30,iindex)">
+                                        <div class="page3__card__title01" 
+                                            :class="showForce ? iindex == 0 ? '' : 'hide' :  (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''">{{item.title}}</div>
+                                        <div class="page3__card__text01Parent" :class="showForce ? iindex == 0 ? '' : 'hide' :  (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''">
                                             <div class="page3__card__text01" v-html="item.info"></div>
                                         </div>
                                     </div>
-                                    <div class="page3__card__tvold tvoldOpacityChange"></div>
+                                    <div class="page3__card__tvold" :class="!showForce && page3.activeCard == index ? 'tvoldOpacityChange delay3-5' : 'hide'"></div>
                                 </div>
 
                                 <div class="page3__card__title02" :style="{top:getFitTop(1073+41,2/4)}">{{page3.list[index].title}}</div>
-                                <div class="page3__card__text02Parent" :style="{top:getFitTop(1073,2/4)}">
+                                <div class="page3__card__text02Parent" :class="one.text02" :style="{top:getFitTop(1073,2/4)}">
                                     <div class="page3__card__text02" v-html="page3.list[index].detail"></div>
                                 </div>
                                 <div class="page3__card__tvicon" :class="one.tvicon" :style="{top:getFitTop(215,1/8)}">
-                                    <div class="page3__card__tvicon--text tvtextChange"></div>
+                                    <div class="page3__card__tvicon--text" :class="!showForce && page3.activeCard == index ? 'tvtextChange' : ''"></div>
                                 </div>
-                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01" :style="{top:getFitTop(789,1/8)}"></div>
-                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar01" :class="one.titlestar" :style="{top:getFitTop(789,1/8)}"></div>
+                                <div class="page3__icon page3__card__titlestar page3__card__titlestar02" :class="one.titlestar" :style="{top:getFitTop(789,1/8)}"></div>
                                 <div class="page3__card__bug" :class="one.bug"></div>
                                 <div class="page3__card__bubble02Parent">
-                                    <div class="page3__icon page3__card__bubble02 zoomInfinite"></div>
+                                    <div class="page3__icon page3__card__bubble02" :class="!showForce && page3.activeCard == index ? 'zoomInfinite' : ''"></div>
                                 </div>
                                 <div class="page3__card__tailParent">
-                                    <div class="page3__icon page3__card__tail littleRotateInfinite"></div>
+                                    <div class="page3__icon page3__card__tail" :class="!showForce && page3.activeCard == index ? 'littleRotateInfinite' : ''"></div>
                                 </div>
-                                <div class="page3__card__textstarLayer" :style="{top:getFitTop(1120,2/4)}">
+                                <div class="page3__icon page3__card__textstar01" :style="{top:getFitTop(1125,2/4)}"></div>
+                                <!-- <div class="page3__card__textstarLayer" :style="{top:getFitTop(1120,2/4)}">
                                     <div class="page3__icon page3__card__textstar01"></div>
                                     <div class="page3__icon page3__card__textstar02"></div>
                                     <div class="page3__icon page3__card__textstar03"></div>
                                     <div class="page3__icon page3__card__textstar04"></div>
                                     <div class="page3__icon page3__card__textstar05"></div>
                                     <div class="page3__icon page3__card__textstar06"></div>
-                                </div>
-                                <div class="page3__card__bubbleParent page3BubbleDispear" :style="{bottom:getFitTop(38,1/16)}">
-                                    <div class="page3__icon page3__card__bubble"></div>
+                                </div> -->
+                                <div class="page3__card__bubbleParent" :class="!showForce && page3.activeCard == index ? 'page3BubbleMove' : ''" :style="{bottom:getFitTop(38,1/16)}">
+                                    <div class="page3__icon page3__card__bubble" :class="!showForce && page3.activeCard == index ? 'page3BubbleDispear' : ''"></div>
                                 </div>
                                 <div class="page3__icon page3__card__star01"></div>
                                 <div class="page3__icon page3__card__star02"></div>
                                 <div class="page3__icon page3__card__star03"></div>
                                 <div class="page3__icon page3__card__star04"></div>
                                 <div class="page3__icon page3__card__star05"></div>
-                                <div class="page3__card__arrowParent opacityChange delay2-0">
+                                <div class="page3__card__arrowParent opacityChange delay2-0" v-show="index < 3">
                                     <div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>
                                 </div>
                             </div>
                             <div class="page3__card__nameLayer">
-                                <div class="page3__card__nameLayer__nameCenter blinkChange">
+                                <div class="page3__card__nameLayer__nameCenter" :class="!showForce && page3.activeCard == index ? 'blinkChange' : ''">
                                     <div class="page3__card__nameLayer__name" :class="one.name"></div>
                                     <div class="page3__card__nameLayer__name-active" :class="one.nameActive"></div>
                                 </div>
@@ -710,28 +963,26 @@
                             <div class="page3__card__logo"></div>
                         </div>
                     </div>
-                    <div class="page3__btnbg opacityChange" :style="{top:getFitTop(1535,1)}"
-                        :class="one.btnbg+' '+getPage3CardTicketClass(index)+(page3.activeCard == index ? ' activeTop' : '')"
-                        v-show="(!page3.isMoving && page3.activeCard == index) || (page3.isMoving && page3.lastCard == index)">
-                        <div class="page3__btnCenter opacityChange delay1-0"
+                    <div class="page3__btnbg" :style="{top:getFitTop(1535,1)}"
+                        :class="one.btnbg+' '+(showForce ? '' : page3.activeCard == index ? ' activeTop' : '')"
+                        v-show="showForce || page3.activeCard == index || (page3.isMoving && page3.lastCard == index)">
+                        <div class="page3__btnCenter opacityChange delay0-5"
                             :data-lg-tj-id="lg" 
                             data-lg-tj-no="0020" 
                             data-lg-tj-cid="null"
                             @touchstart="toLoginIn">
-                            <div class="page3__btnContent blinkChange delay1-5">
+                            <div class="page3__btnContent" :class="page3.activeCard == index ? 'blinkChange delay1-0' : ''">
                                 <div class="page3__btn" :class="one.btn"></div>
                                 <div class="page3__btn" :class="one.btnNext"></div>
                             </div>
-                            <div class="page3__btnline widthChange delay1-5"></div>
+                            <div class="page3__btnline" :class="page3.activeCard == index ? 'widthChange delay1-0' : ''"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page page4" :class="activePage == 4 ? 'active' : ''">
-           
-        </div>
     </div>
+    <!-- <div class="page page3" id="page3"></div> -->
     <script type="text/javascript">
         pageStatus = true;
         if(loadingStatus){

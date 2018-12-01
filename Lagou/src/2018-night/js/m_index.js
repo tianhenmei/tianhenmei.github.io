@@ -3,9 +3,6 @@
     var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
     function noop(){}
-    function setRem(value){
-        return value / (1080 / 16)+'rem';
-    }
     // 音乐播放
     function backgroundMusic(audio){
         // 自动播放音乐效果，解决浏览器或者APP自动播放问题
@@ -48,9 +45,9 @@
         mode = "development";// "development",//"production",
     
     // 音乐
-    // if(mode != "development"){
+    if(mode != "development"){
         backgroundMusic(document.getElementById("music"));
-    // }
+    }
     var PageMove = function () {
         function PageMove(options) {
             _classCallCheck(this, PageMove);
@@ -100,11 +97,12 @@
                 if(self.data.now == 2){
 
                 }else {
+                    jQuery(".page" + self.data.last).addClass("opacityChange-out");
                     jQuery(".page" + self.data.now).addClass("hide");
                 }
                 if(self.data.last == 0 && self.data.last < self.data.now){
-                    delayTime = 1000;
-                    app.setPage0DownStatus(true);
+                    delayTime = 500;
+                    // app.setPage0DownStatus(true);
                 }else{
                     app.$data.startMoving = true;
                 }
@@ -220,7 +218,7 @@
         return PageMove;
     }();
     
-    var PM = new PageMove({ animation: "move" });  
+    PM = new PageMove({ animation: "move" });  
     
     Vue.config.errorHandler = function (err, vm, info) {
         console.log(err);
@@ -483,6 +481,7 @@
                     }
                 ]
             },
+            showForce:false,  // 强制快速显示所有卡片
             page2:{
                 lastCard:0,
                 activeCard:0,
@@ -490,7 +489,6 @@
                 nomove:false,  // 如果点击了票根就不能滑动了
                 cardActive:[false,false,false],
                 hidden:false,
-                showForce:false,  // 强制快速显示所有卡片
                 list:[
                     {
                         img:'images/page2-card-guest01.png',
@@ -622,9 +620,25 @@
                 list:[
                     {
                         // 奇妙办公室
-                        title01:'page3__icon',
-                        bug:'page3__icon',
-                        btnNext:'page3__btn__btnnext',
+                        light:'page3__card__light01',
+                        textbg01:'page3__card__textbg01-01',
+                        textbg02:'page3__card__textbg02-01',
+                        tvbottom:'page3__card__tvbottom01',
+                        tvbg:'page3__card__tvbg01',
+                        tvicon:'page3__card__tvi01',
+                        tvicon01:'page3__icon01',
+                        tvicon02:'page3__icon01',
+                        tvicon03:'page3__icon01',
+                        tvicon04:'page3__icon01',
+                        title01:'page3__icon01',
+                        bug:'page3__icon01',
+                        name:'page3__card__nameLayer__name01',
+                        nameActive:'page3__card__nameLayer__name01-active',
+                        btnbg:'page3__btnbg01',
+                        btn:'page3__btn01',
+                        btnNext:'page3__btn01__btnnext',
+                        titlestar:'middle',
+                        text02:'stay-left',
                         content:[
                             {
                                 title:'职场3D照相馆',
@@ -641,7 +655,7 @@
                             }
                         ],
                         title:'探秘奇幻的办公室场景',
-                        detail:'为什么职场必须沉闷枯燥？放开想象，会遇见<br/>意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
+                        detail:'为什么职场必须沉闷枯燥？<br/>放开想象，拉勾帮你解锁<br/>意想不到的个性Pose。'
                     },{ // 有情绪小卖部
                         light:'page3__card__light02',
                         textbg01:'page3__card__textbg01-02',
@@ -674,9 +688,10 @@
                         title:'排解职场疑惑和情绪',
                         detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
                     },{ // 奇遇森林
-                        title01:'page3__icon',
+                        title01:'page3__icon page3__card__title01bg--long',
                         bug:'page3__icon',
                         btnNext:'page3__btn__btnnext',
+                        titlestar:'long',
                         content:[
                             {
                                 title:'世界慢递局',
@@ -695,6 +710,7 @@
                         title:'当红品牌互动试验场',
                         detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
                     },{ // 奇物大赏
+                        inner:'page3__card04__inner--contentLayer',
                         light:'page3__card__light04',
                         textbg01:'page3__card__textbg01-04',
                         textbg02:'page3__card__textbg02-04',
@@ -744,20 +760,23 @@
             getCardHeight:function(){
                 return this.setRem(873 + this.heightStatus * 7/8);
             },
-            getDis0_1_16:function(){
-                return this.setRem(this.heightStatus * 1/16);
+            getDis809_1_16:function(){
+                return this.setRem(809+this.heightStatus * 1/16);
             },
-            getDis0_13_16:function(){
-                return this.setRem(this.heightStatus * 13/16);
+            getDis947_13_16:function(){
+                return this.setRem(947+this.heightStatus * 13/16);
             },
-            getDis0_5_32:function(){
-                return this.setRem(this.heightStatus * 5/32);
+            getDis1024_5_32:function(){
+                return this.setRem(1024+this.heightStatus * 5/32);
             },
-            getDis0_30_32:function(){
-                return this.setRem(this.heightStatus * 30/32);
+            getDis997_30_32:function(){
+                return this.setRem(997+this.heightStatus * 30/32);
             },
-            getDis0_0_1:function(){
-                return this.setRem(this.heightStatus);
+            getDis1035_0_1:function(){
+                return this.setRem(1035+this.heightStatus);
+            },
+            getDis1277_13_16:function(){
+                return this.setRem(1277+this.heightStatus * 13/16);
             },
         },
         mounted:function(){
@@ -802,36 +821,23 @@
                 return '0000'.slice((count+'').length)+count
             },
             setRem:setRem,
-            getRem:function(value) {
-                var fontSize = parseFloat(document.documentElement.style.fontSize) || 16;
-                
-                return value / (1080 / 16) * fontSize;
-            },
-            getDelayTime:function(start,gap,index){
-                var current = (start+gap * index)+''.split(''),
-                    f = '',
-                    l = '';
-                if(current.length == 1){
-                    f = '0';
-                    l = current[0];
-                }else {
-                    f = current[0];
-                    l = current[1];
-                }
-                return f+'-'+l;
-            },
+            getRem:getRem,
+            getDelayTime:getDelayTime,
             setDoorHeight:function(def,ratio){
 
             },
             setPage0DownStatus:function(status){
-                var self = this;
-                this.page0.down = status;
-                if(!self.animated){
-                    self.animated = true;
-                    setTimeout(function(){
-                        self.updateNum();
-                    },5000);
+                if(this.activePage == 1){
+                    this.updateNum();
                 }
+                // var self = this;
+                // this.page0.down = status;
+                // if(!self.animated){
+                //     self.animated = true;
+                //     setTimeout(function(){
+                //     self.updateNum();
+                    // },5000);
+                // }
             },
             initPage0Ani:function(){
                 var words = this.page0.words,
@@ -846,7 +852,7 @@
                     height = 0,
                     i = 0,
                     j = 0;
-                for(i = 0; i < words.length; i++){
+                for(i = 0; i < words.length - 2; i++){
                     height = GC.h/this.fontSize*(1080 / 16)+400;
                     len = words[i].line.length;
                     line = [];
@@ -985,7 +991,7 @@
                     // 如果是向后翻
                     if(this.page2.lastCard < this.page2.activeCard){
                         if(index == this.page2.lastCard){
-                            return 'cutCardParentShake';
+                            return 'cutCardParentFlip';  // cutCardParentShake
                         }else if(index < this.page2.lastCard){
                             return 'hide';
                         }
@@ -1068,16 +1074,23 @@
                 return '';
             },
             page1ToPage2:function(){
-                var self = this;
+                var self = this,
+                    out = document.getElementById('music-out');
                 PM.data.last = 1;
                 PM.data.now = 2;
                 PM.pageMove('down',PM);
                 // var one = this.$refs['page2__li--0'];
                 // one.className += ' hide';
-                this.page2.showForce = true;
                 setTimeout(function(){
-                    self.page2.showForce = false;
-                },1400);
+                    self.showForce = true;
+                    setTimeout(function(){
+                        playAudio(out,function(){});
+                    },500);
+                    setTimeout(function(){
+                        self.showForce = false;
+                        out.pause();
+                    },4000);
+                },500);
                 // setTimeout(function(){
                 //     self.page1.hidden = true;
                 //     one.className = one.className.replace(/( hide)/g,'');
@@ -1138,7 +1151,8 @@
                     last = len - 1,
                     next = 0,
                     one = null,
-                    btn = null;
+                    btn = null,
+                    musicin = document.getElementById('music-in');
                 if(this.page2.activeCard < last){
                     next = this.page2.activeCard + 1;
                     one = this.$refs['page2__cardLayer--'+next];
@@ -1149,20 +1163,25 @@
                         self.page2.isMoving = true;
                         self.page2.lastCard = self.page2.activeCard;
                         self.page2.activeCard = self.page2.activeCard + 1;
+                        playAudio(musicin,function(){});
                         // setTimeout(function(){
                         //      one.className = one.className.replace(/( hide)/g,'');
                         // },1000);
                         setTimeout(function(){
+                            musicin.pause();
                             one.className = one.className.replace(/( hide)/g,'');
                             btn.className = btn.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
-                        },1000);
+                        },500);
                     },200);
                 }else if(this.page2.activeCard == last){
                     this.page2.nomove = true;
                     this.page2.isMoving = true;
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
+                    setTimeout(function(){
+                        self.playAudio(document.getElementById('music-tv'),function(){});
+                    },3000);
                     setTimeout(function(){
                         // one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = false;
@@ -1181,16 +1200,16 @@
                     // 如果是向后翻
                     if(this.page3.lastCard < this.page3.activeCard){
                         if(index == this.page3.lastCard){
-                            return 'cutCardParentShake';
+                            return 'cutCardParentFlip';
                         }else if(index < this.page3.lastCard){
                             return 'hide';
                         }
                     }else{
-                        if(index == this.page3.lastCard){
-                            return 'cutCardParentShakeBack';
-                        }else if(index < this.page3.lastCard){
-                            return 'hide';
-                        }
+                        // if(index == this.page3.lastCard){
+                        //     return 'cutCardParentShakeBack';
+                        // }else if(index < this.page3.lastCard){
+                        //     return 'hide';
+                        // }
                     }
                 }
                 return '';
@@ -1209,11 +1228,11 @@
                             return '';// return 'flipCardNow';
                         }
                     }else{
-                        if(index == this.page3.lastCard){
-                            return 'cutCardBLast';// return 'flipCardBLast';
-                        }else if(index == this.page3.activeCard){
-                            return 'active-card';// return 'flipCardBNow';
-                        }
+                        // if(index == this.page3.lastCard){
+                        //     return 'cutCardBLast';// return 'flipCardBLast';
+                        // }else if(index == this.page3.activeCard){
+                        //     return 'active-card';// return 'flipCardBNow';
+                        // }
                     }
                 }else if(index == this.page3.activeCard){
                     // 当前显示的卡片
@@ -1263,7 +1282,7 @@
                             direction = direction > 0 ? 1 : -1;
                             if(direction > 0){
                                 // back
-                                self.page3CardMoveBack();
+                                // self.page3CardMoveBack();
                             }else{
                                 // next
                                 self.page3CardMoveNext();
@@ -1293,31 +1312,38 @@
                 var self = this,
                     len = 4,
                     last = len - 1,
-                    one = null;
+                    one = null,
+                    musictv = document.getElementById('music-tv'),
+                    musicin = document.getElementById('music-in');
                 if(this.page3.activeCard < last){
-                    one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
-                    one.className += ' hide';
-                    setTimeout(function(){
+                    // one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
+                    // one.className += ' hide';
+                    playAudio(musicin,function(){});
+                    // setTimeout(function(){
                         self.page3.isMoving = true;
                         self.page3.lastCard = self.page3.activeCard;
                         self.page3.activeCard = self.page3.activeCard + 1;
                         setTimeout(function(){
-                            one.className = one.className.replace(/( hide)/g,'');
+                            playAudio(musictv,function(){});
+                        },2800);
+                        setTimeout(function(){
+                            // one.className = one.className.replace(/( hide)/g,'');
                             self.page3.isMoving = false;
-                        },1000);
-                    },200);
+                            musicin.pause();
+                        },500);
+                    // },200);
                 }else if(this.page3.activeCard == last){
-                    this.page3.nomove = true;
-                    this.page3.isMoving = true;
-                    this.page3.lastCard = this.page3.activeCard;
-                    this.page3.activeCard = this.page3.activeCard + 1;
-                    setTimeout(function(){
-                        // one.className = one.className.replace(/( hide)/g,'');
-                        self.page3.isMoving = false;
-                    },1000);
-                    setTimeout(function(){
-                        self.toPage3();
-                    },500);
+                    // this.page3.nomove = true;
+                    // this.page3.isMoving = true;
+                    // this.page3.lastCard = this.page3.activeCard;
+                    // this.page3.activeCard = this.page3.activeCard + 1;
+                    // setTimeout(function(){
+                    //     // one.className = one.className.replace(/( hide)/g,'');
+                    //     self.page3.isMoving = false;
+                    // },1000);
+                    // setTimeout(function(){
+                    //     self.toPage3();
+                    // },500);
                 }
             },
             toPage3:function(index){
@@ -1325,36 +1351,276 @@
                     page2 = this.$refs['page2'],
                     page3 = this.$refs['page3'];
                 self.page2.hidden = true;
-                self.page3.hidden = true;
+                // self.page3.hidden = true;
                 document.getElementById('music').pause();
                 // document.getElementById('music-tv').play();
-                this.playAudio(document.getElementById('music-tv'),function(){});
                 setTimeout(function(){
+                    jQuery(".page2").remove();
                     self.page3.hidden = false;
-                    self.page3.classname = 'pageMoveU';
-                    setTimeout(function(){
-                        PM.data.last = 2;
-                        PM.data.now = 3;
-                        self.activePage = 3;
-                    },500);
+                    PM.data.last = 2;
+                    PM.data.now = 3;
+                    self.activePage = 3;
+                    // self.page3.classname = 'pageMoveU';
+                    // setTimeout(function(){
+                        
+                    // },500);
                 },500);
             },
-            playAudio:function(elem,callback){
-                if (window.WeixinJSBridge) {
-                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                        elem.play();
-                        callback()
-                    }, false);
-                }else{
-                    elem.play();
-                    callback()
-                }
-            },
+            playAudio:playAudio,
             toLoginIn:function(){
 
             },
         }
     })
+
+    var page3List = [
+        {
+            // 奇妙办公室
+            title01:'page3__icon',
+            bug:'page3__icon',
+            btnNext:'page3__btn__btnnext',
+            content:[
+                {
+                    title:'职场3D照相馆',
+                    img:'images/page3-card-tv10.png',
+                    info:'身临其境地来一场办公室大冒险。'
+                },{
+                    title:'百万年薪屋',
+                    img:'images/page3-card-tv12.png',
+                    info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
+                },{
+                    title:'倒着的办公会',
+                    img:'images/page3-card-tv11.png',
+                    info:'奇幻世界中，show出办公室里不一样的你'
+                }
+            ],
+            title:'探秘奇幻的办公室场景',
+            detail:'为什么职场必须沉闷枯燥？放开想象，会遇见<br/>意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
+        },{ // 有情绪小卖部
+            light:'page3__card__light02',
+            textbg01:'page3__card__textbg01-02',
+            textbg02:'page3__card__textbg02-02',
+            tvbottom:'page3__card__tvbottom02',
+            tvbg:'page3__card__tvbg02',
+            tvicon:'page3__card__tvi02',
+            title01:'page3__icon02',
+            bug:'page3__icon02',
+            name:'page3__card__nameLayer__name02',
+            nameActive:'page3__card__nameLayer__name02-active',
+            btnbg:'page3__btnbg02',
+            btn:'page3__btn02',
+            btnNext:'page3__btn02__btnnext',
+            content:[
+                {
+                    title:'情绪黑室',
+                    img:'images/page3-card-tv01.png',
+                    info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
+                },{
+                    title:'有答案诊所',
+                    img:'images/page3-card-tv02.png',
+                    info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
+                },{
+                    title:'12星座睡床',
+                    img:'images/page3-card-tv03.png',
+                    info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
+                }
+            ],
+            title:'排解职场疑惑和情绪',
+            detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
+        },{ // 奇遇森林
+            title01:'page3__icon',
+            bug:'page3__icon',
+            btnNext:'page3__btn__btnnext',
+            content:[
+                {
+                    title:'世界慢递局',
+                    img:'images/page3-card-tv04.png',
+                    info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
+                },{
+                    title:'猫王太空唱片计划',
+                    img:'images/page3-card-tv05.png',
+                    info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
+                },{
+                    title:'So real VR乐园',
+                    img:'images/page3-card-tv06.png',
+                    info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
+                }
+            ],
+            title:'当红品牌互动试验场',
+            detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
+        },{ // 奇物大赏
+            light:'page3__card__light04',
+            textbg01:'page3__card__textbg01-04',
+            textbg02:'page3__card__textbg02-04',
+            tvbottom:'page3__card__tvbottom04',
+            tvbg:'page3__card__tvbg04',
+            tvicon:'page3__card__tvi04',
+            tvicon01:'page3__icon04',
+            tvicon02:'page3__icon04',
+            tvicon03:'page3__icon04',
+            tvicon04:'page3__icon04',
+            title01:'page3__icon04',
+            bug:'page3__icon04',
+            name:'page3__card__nameLayer__name04',
+            nameActive:'page3__card__nameLayer__name04-active',
+            btnbg:'page3__btnbg04',
+            btn:'page3__btn04',
+            btnNext:'page3__btn04__btnnext',
+            content:[
+                {
+                    title:'定制可乐',
+                    img:'images/page3-card-tv07.png',
+                    info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
+                },{
+                    title:'拉勾黑市',
+                    img:'images/page3-card-tv08.png',
+                    info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
+                },{
+                    title:'答案茶',
+                    img:'images/page3-card-tv09.png',
+                    info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
+                }
+            ],
+            title:'拉勾尖货快闪店',
+            detail:'吃也要吃出观点，买也要买出态度，<br/>一年到头，<br/>遇见吃喝玩乐的正确姿势。'
+        }
+    ];
+    // 设置第三页内容
+    function setPage3Content(){
+        var page3 = document.getElementById('page3'),
+            html = '<div class="page page3">'+
+                        '<div class="page3__list">',
+            one = null,
+            item = null,
+            index = 0,
+            iindex = 0;
+        for(index = 0; index < page3List.length; index++){
+            one = page3List[index];
+            html += '<div class="page3__one page3__one--'+index+'"'+
+                    '<div class="page3__cardParent"">'+  //  :class="getPage3CardParentClass(index)
+                        '<div class="page3__card" style="height:'+getFitTop(1502+33,1)+';">'+  //  :class="getPage3CardClass(index)"
+                            '<div class="page3__card__light '+one.light+'"></div>'+
+                            '<div class="page3__card__door" style="height:'+getFitTop(1502,7/8)+';">'+
+                                '<div class="page3__card__inner">'+
+                                    '<div class="page3__card__inner--bgLayer">'+
+                                        '<div class="page3__card__inner--bg page3__card__inner--bg01"></div>'+
+                                        '<div class="page3__card__inner--bg02" style="height:'+getFitTop(1502-660-90+50,7/8)+';"></div>'+
+                                        '<div class="page3__card__inner--bg page3__card__inner--bg03"></div>'+
+                                    '</div>'+
+                                    '<div class="page3__card__inner--borderLayer">'+
+                                        '<div class="page3__card__inner--bordertop"></div>'+
+                                        '<div class="page3__card__inner--borderbottom" style="height:'+getFitTop(873,7/8)+';"></div>'+
+                                    '</div>'+
+                                    '<div class="page3__card__inner--lightLayer">'+
+                                        '<div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>'+
+                                        '<div class="page3__card__inner--lightback02 page3LightBlink delay0-5" style="height:'+getFitTop(873,7/8)+';"></div>'+
+                                        '<div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>'+
+                                        '<div class="page3__card__inner--light02 page3LightBlink" style="height:'+getFitTop(873,7/8)+';"></div>'+
+                                    '</div>'+
+                                    '<div class="page3__card__inner--contentLayer">'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content01"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content02"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content03" style="top:'+getFitTop(0,1/16)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content04" style="top:'+getFitTop(0,13/16)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content05" style="top:'+getFitTop(0,5/32)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content06" style="top:'+getFitTop(0,30/32)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content07" style="top:'+getFitTop(0,1)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content08" style="top:'+getFitTop(0,1)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content09" style="top:'+getFitTop(0,13/16)+';"></div>'+
+                                        '<div class="page3__card__inner--content page3__card__inner--content10" style="top:'+getFitTop(0,13/16)+';"></div>'+
+                                    '</div>'+
+                                '</div>'+
+                                '<div class="page3__card__cover"></div>'+
+                                '<div class="page3__card__textbg01 '+one.textbg01+'" style="top:'+getFitTop(841,1/8)+';"></div>'+
+                                '<div class="page3__card__textbg02 '+one.textbg02+'"  style="top:'+getFitTop(1073,2/4)+';"></div>'+
+                                '<div class="page3__card__tvbottom '+one.tvbottom+'" style="top:'+getFitTop(767,1/8)+';"></div>'+
+                                '<div class="page3__card__tvbg '+one.tvbg+'" style="top:'+getFitTop(70,1/8)+';"></div>'+
+                                '<div class="page3__card__tviconLayer" style="top:'+getFitTop(600,1/8)+';">'+
+                                    '<div class="page3__icon page3__card__tvicon01 tviconRotateChange '+one.tvicon01+'"></div>'+
+                                    '<div class="page3__icon page3__card__tvicon02 tviconRotateChange '+one.tvicon02+'"></div>'+
+                                    '<div class="page3__icon page3__card__tvicon03 '+one.tvicon03+'"></div>'+
+                                    '<div class="page3__icon page3__card__tvicon04 '+one.tvicon04+'"></div>'+
+                                '</div>'+
+
+                                '<div class="page3__card__ul" style="top:'+getFitTop(0,1/8)+';">';
+                                for(iindex = 0; iindex < one.content.length; iindex++){
+                                    item = one.content[iindex];
+                                    html += '<div class="page3__card__li">'+
+                                                '<div class="page3__card__tv page3__card__tvimg tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'"'+
+                                                    'style="backgroundImage:url('+item.img+');"></div>'+
+                                                '<div class="page3__card__title01 tvtextOpacityChange '+one.title01+' delay'+getDelayTime(0,30,iindex)+'">'+item.title+'</div>'+
+                                                '<div class="page3__card__text01Parent tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'">'+
+                                                    '<div class="page3__card__text01">'+item.info+'</div>'+
+                                                '</div>'+
+                                            '</div>';
+                                }
+                                html += '<div class="page3__card__tvold tvoldOpacityChange"></div>'+
+                                '</div>'+
+
+                                '<div class="page3__card__title02" style="top:'+getFitTop(1073+41,2/4)+';">'+one.title+'</div>'+
+                                '<div class="page3__card__text02Parent" style="top:'+getFitTop(1073,2/4)+';">'+
+                                    '<div class="page3__card__text02">'+one.detail+'</div>'+
+                                '</div>'+
+                                '<div class="page3__card__tvicon '+one.tvicon+'" :style="top:'+getFitTop(215,1/8)+';">'+
+                                    '<div class="page3__card__tvicon--text tvtextChange"></div>'+
+                                '</div>'+
+                                '<div class="page3__icon page3__card__titlestar page3__card__titlestar01" style="top:'+getFitTop(789,1/8)+';"></div>'+
+                                '<div class="page3__icon page3__card__titlestar page3__card__titlestar02" style="top:'+getFitTop(789,1/8)+';"></div>'+
+                                '<div class="page3__card__bug '+one.bug+'"></div>'+
+                                '<div class="page3__card__bubble02Parent">'+
+                                    '<div class="page3__icon page3__card__bubble02 zoomInfinite"></div>'+
+                                '</div>'+
+                                '<div class="page3__card__tailParent">'+
+                                    '<div class="page3__icon page3__card__tail littleRotateInfinite"></div>'+
+                                '</div>'+
+                                '<div class="page3__card__textstarLayer" style="top:'+getFitTop(1120,2/4)+';">'+
+                                    '<div class="page3__icon page3__card__textstar01"></div>'+
+                                    '<div class="page3__icon page3__card__textstar02"></div>'+
+                                    '<div class="page3__icon page3__card__textstar03"></div>'+
+                                    '<div class="page3__icon page3__card__textstar04"></div>'+
+                                    '<div class="page3__icon page3__card__textstar05"></div>'+
+                                    '<div class="page3__icon page3__card__textstar06"></div>'+
+                                '</div>'+
+                                '<div class="page3__card__bubbleParent page3BubbleDispear" style="bottom:'+getFitTop(38,1/16)+';">'+
+                                    '<div class="page3__icon page3__card__bubble"></div>'+
+                                '</div>'+
+                                '<div class="page3__icon page3__card__star01"></div>'+
+                                '<div class="page3__icon page3__card__star02"></div>'+
+                                '<div class="page3__icon page3__card__star03"></div>'+
+                                '<div class="page3__icon page3__card__star04"></div>'+
+                                '<div class="page3__icon page3__card__star05"></div>'+
+                                '<div class="page3__card__arrowParent opacityChange delay2-0">'+
+                                    '<div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="page3__card__nameLayer">'+
+                                '<div class="page3__card__nameLayer__nameCenter blinkChange">'+
+                                    '<div class="page3__card__nameLayer__name '+one.name+'"></div>'+
+                                    '<div class="page3__card__nameLayer__name-active '+one.nameActive+'"></div>'+
+                                '</div>'+
+                            '</div>'+
+                            '<div class="page3__card__logo"></div>'+
+                        '</div>'+
+                    '</div>'+
+                    '<div class="page3__btnbg opacityChange '+one.btnbg+' " style="top:'+getFitTop(1535,1)+';"'+ // :class="getPage3CardTicketClass(index)+(page3.activeCard == index ? ' activeTop' : '')"
+                        // v-show="(!page3.isMoving && page3.activeCard == index) || (page3.isMoving && page3.lastCard == index)">
+                        '<div class="page3__btnCenter opacityChange delay1-0"'+
+                            ':data-lg-tj-id="lg" '+
+                            'data-lg-tj-no="002'+index+'"'+
+                            'data-lg-tj-cid="null"'+
+                            // @touchstart="toLoginIn">
+                            '<div class="page3__btnContent blinkChange delay1-5">'+
+                                '<div class="page3__btn '+one.btn+'"></div>'+
+                                '<div class="page3__btn '+one.btnNext+'"></div>'+
+                            '</div>'+
+                            '<div class="page3__btnline widthChange delay1-5"></div>'+
+                        '</div>'+
+                    '</div>'+
+                '</div>';
+        }
+        page3.outerHTML = html;
+    }
+    // setPage3Content();
     },{}]},{},[1]);
     
     function postEncodingID(data) {
