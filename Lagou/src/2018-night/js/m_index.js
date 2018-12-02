@@ -3,38 +3,6 @@
     var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
     function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
     function noop(){}
-    // 音乐播放
-    function backgroundMusic(audio){
-        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-        if(audio.paused){
-            audio.load();
-            audio.play();
-        }
-        function musicInBrowserHandler() {
-            if(audio.paused){
-                audio.load();
-                audio.play();
-            }
-            document.body.removeEventListener('touchstart', musicInBrowserHandler);
-        }
-        document.body.addEventListener('touchstart', musicInBrowserHandler);
-    
-        // 自动播放音乐效果，解决微信自动播放问题
-        function musicInWeixinHandler() {
-            if(audio.paused){
-                audio.load();
-                audio.play();
-            }
-            document.addEventListener("WeixinJSBridgeReady", function () {
-                if(audio.paused){
-                    audio.load();
-                    audio.play();
-                }
-            }, false);
-            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-        }
-        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-    }
     // Vue.config.errorHandler = function(err, vm, info){
     //     alert(err);
     // }
@@ -42,12 +10,13 @@
     // test
     var initialNow = 0,
         initialLast = 0,
-        mode = "development";// "development",//"production",
+        mode = "development",// "development",//"production",
+        music = document.getElementById("music");
     
     // 音乐
-    if(mode != "development"){
-        backgroundMusic(document.getElementById("music"));
-    }
+    // if(mode != "development"){
+    //     backgroundMusic(document.getElementById("music"));
+    // }
     var PageMove = function () {
         function PageMove(options) {
             _classCallCheck(this, PageMove);
@@ -492,9 +461,9 @@
                 list:[
                     {
                         img:'images/page2-card-guest01.png',
-                        title:'拉勾·奇葩之王',
+                        title:'拉勾·辩论之王',
                         icon:{
-                            width:setRem(330),
+                            width:setRem(330+50),
                             height:setRem(72),
                             right:setRem(-17),
                             top:setRem(97-8),
@@ -502,7 +471,7 @@
                         },
                         name:'黄执中',
                         nameStyle:{
-                            paddingRight:setRem(314)
+                            paddingRight:setRem(314+50)
                         },
                         theme:'《世界上没有哪个方向是一定对的》',
                         imgAni:'littleBottomIn duration1-0 delay1-5',
@@ -617,6 +586,9 @@
                 nomove:false,  // 如果点击了票根就不能滑动了
                 hidden:false,
                 classname:'',
+                tvtimer:null,
+                loopCard:[0,0,0,0],
+                showNoise:false,
                 list:[
                     {
                         // 奇妙办公室
@@ -638,7 +610,7 @@
                         btn:'page3__btn01',
                         btnNext:'page3__btn01__btnnext',
                         titlestar:'middle',
-                        text02:'stay-left',
+                        // text02:'stay-left',
                         content:[
                             {
                                 title:'职场3D照相馆',
@@ -649,7 +621,7 @@
                                 img:'images/page3-card-tv12.png',
                                 info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
                             },{
-                                title:'倒着的办公会',
+                                title:'倒着的办公室',
                                 img:'images/page3-card-tv11.png',
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
@@ -702,7 +674,7 @@
                                 img:'images/page3-card-tv05.png',
                                 info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
                             },{
-                                title:'So real VR乐园',
+                                title:'VR乐园',
                                 img:'images/page3-card-tv06.png',
                                 info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
                             }
@@ -1084,11 +1056,21 @@
                 setTimeout(function(){
                     self.showForce = true;
                     setTimeout(function(){
-                        playAudio(out,function(){});
+                        playAudio(out,function(){
+                            music.volume = 0.2;
+                            if(music.volume != 0.2) {
+                                music.pause();
+                            }
+                        });
                     },500);
                     setTimeout(function(){
                         self.showForce = false;
                         out.pause();
+                        if(music.paused){
+                            playAudio(music,function(){},true);
+                        }else{
+                            music.volume = 1;
+                        }
                     },4000);
                 },500);
                 // setTimeout(function(){
@@ -1163,12 +1145,22 @@
                         self.page2.isMoving = true;
                         self.page2.lastCard = self.page2.activeCard;
                         self.page2.activeCard = self.page2.activeCard + 1;
-                        playAudio(musicin,function(){});
+                        playAudio(musicin,function(){
+                            music.volume = 0.2;
+                            if(music.volume != 0.2) {
+                                music.pause();
+                            }
+                        });
                         // setTimeout(function(){
                         //      one.className = one.className.replace(/( hide)/g,'');
                         // },1000);
                         setTimeout(function(){
                             musicin.pause();
+                            if(music.paused){
+                                playAudio(music,function(){},true);
+                            }else{
+                                music.volume = 1;
+                            }
                             one.className = one.className.replace(/( hide)/g,'');
                             btn.className = btn.className.replace(/( hide)/g,'');
                             self.page2.isMoving = false;
@@ -1179,14 +1171,17 @@
                     this.page2.isMoving = true;
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
-                    setTimeout(function(){
-                        self.playAudio(document.getElementById('music-tv'),function(){});
-                    },3000);
+                    // setTimeout(function(){
+                    //     self.playAudio(document.getElementById('music-tv'),function(){
+                    //         music.volume = 0.2;
+                    //     });
+                    // },3000);
                     setTimeout(function(){
                         // one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = false;
                     },1000);
                     setTimeout(function(){
+                        self.loopMusictvPlay();
                         self.toPage3();
                     },500);
                 }
@@ -1200,7 +1195,7 @@
                     // 如果是向后翻
                     if(this.page3.lastCard < this.page3.activeCard){
                         if(index == this.page3.lastCard){
-                            return 'cutCardParentFlip';
+                            return 'opacityChange-out';//'cutCardParentFlip';
                         }else if(index < this.page3.lastCard){
                             return 'hide';
                         }
@@ -1318,18 +1313,35 @@
                 if(this.page3.activeCard < last){
                     // one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
                     // one.className += ' hide';
-                    playAudio(musicin,function(){});
+                    playAudio(musicin,function(){
+                        music.volume = 0.2;
+                        if(music.volume != 0.2) {
+                            music.pause();
+                        }
+                    });
                     // setTimeout(function(){
                         self.page3.isMoving = true;
                         self.page3.lastCard = self.page3.activeCard;
                         self.page3.activeCard = self.page3.activeCard + 1;
-                        setTimeout(function(){
-                            playAudio(musictv,function(){});
-                        },2800);
+                        // setTimeout(function(){
+                        //     playAudio(musictv,function(){
+                        //         music.volume = 0.2;
+                        //         if(music.volume != 0.2) {
+                        //             music.pause();
+                        //         }
+                        //     });
+                        // },2800);
+                        self.cancelMusictvPlay();
                         setTimeout(function(){
                             // one.className = one.className.replace(/( hide)/g,'');
                             self.page3.isMoving = false;
                             musicin.pause();
+                            if(music.paused){
+                                playAudio(music,function(){},true);
+                            }else{
+                                music.volume = 1;
+                            }
+                            self.loopMusictvPlay();
                         },500);
                     // },200);
                 }else if(this.page3.activeCard == last){
@@ -1352,7 +1364,7 @@
                     page3 = this.$refs['page3'];
                 self.page2.hidden = true;
                 // self.page3.hidden = true;
-                document.getElementById('music').pause();
+                // document.getElementById('music').pause();
                 // document.getElementById('music-tv').play();
                 setTimeout(function(){
                     jQuery(".page2").remove();
@@ -1367,6 +1379,50 @@
                 },500);
             },
             playAudio:playAudio,
+            loopMusictvPlay:function(){
+                var self = this,
+                    musictv = document.getElementById('music-tv'),
+                    current = 0,
+                    arr = [0,0,0,0],
+                    now = 0;
+ 
+                clearTimeout(this.page3.tvtimer);
+                this.page3.tvtimer = null;
+                this.page3.tvtimer = setTimeout(function(){
+                    current = self.page3.activeCard;
+                    now = self.page3.loopCard[current];
+                    if(now == 2){
+                        now = 0;
+                    }else{
+                        now++;
+                    }
+                    arr[current] = now;
+                    self.page3.loopCard = arr; 
+                    self.page3.showNoise = true;
+                    playAudio(musictv,function(){
+                        music.volume = 0.2;
+                        if(music.volume != 0.2) {
+                            music.pause();
+                        }
+                    });
+                    setTimeout(function(){
+                        musictv.pause();
+                        if(music.paused){
+                            playAudio(music,function(){},true);
+                        }else{
+                            music.volume = 1;
+                        }
+                    },600);
+                    setTimeout(function(){
+                        self.page3.showNoise = false;
+                    },1500);
+                    self.loopMusictvPlay();
+                },3000);
+            },
+            cancelMusictvPlay:function(){
+                clearTimeout(this.page3.tvtimer);
+                this.page3.tvtimer = null;
+            },
             toLoginIn:function(){
 
             },

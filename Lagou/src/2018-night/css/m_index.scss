@@ -249,7 +249,7 @@ body {
         height:rem(471);
         background:no-repeat 0 0;
         background-size:100% 100%;
-        background-image:url('../images/loading.gif');
+        background-image:url('../images/loading-03.gif');
         // height:rem(471*19);
     }
     // loading__snake
@@ -391,22 +391,28 @@ body {
             @include leftTop(133,330-268);
         }
         &--1 {
-            @include leftTop(294,412-268);
+            @include leftTop(133+50,412-268);
         }
         &--2 {
-            @include leftTop(700,500-268);
+            @include leftTop(294,412-268);
         }
         &--3 {
-            @include leftTop(203,551-268);
+            @include leftTop(294+50,412-268+82);
         }
         &--4 {
-            @include leftTop(516,517-268);
+            @include leftTop(700,500-268);
         }
         &--5 {
-            @include leftTop(258,476-268);
+            @include leftTop(203,517-268);
         }
         &--6 {
-            @include leftTop(339,607-268);
+            @include leftTop(516,551-268+50);
+        }
+        &--7 {
+            @include leftTop(258+20,476-268);
+        }
+        &--8 {
+            @include leftTop(339+20,607-268);
         }
     }
     &__text--oneCenter,
@@ -2008,11 +2014,11 @@ body {
         opacity:0;
         // page3__card__light
         &__light {
-            width:rem(1011);
+            width:rem(1011-6);
             height:rem(1705-166);
             background:url('../images/page3-card-light.png') no-repeat center rem(-166);
-            background-size:100% 100%;
-            @include leftTop(-1,0);
+            background-size:rem(1011) rem(1705);
+            @include leftTop(1,0);
         }
         &__light01 {
             background-image:url('../images/page3-card01-light.png');
@@ -2065,7 +2071,9 @@ body {
                 bottom:auto;
             }
             &--bg02 {
+                width:rem(1005);
                 background-color:#9b4500;
+                left:rem(1);
                 top:rem(650);
                 bottom:auto;
             }
@@ -2532,7 +2540,7 @@ body {
         &__tailParent {
             width:rem(180);
             height:rem(318);
-            @include leftTop(18,634-10);
+            @include leftTop(18+4,634-10);
             overflow:hidden;
         }
         // page3__card__tail 
@@ -2540,7 +2548,7 @@ body {
             width:rem(180);
             height:rem(318);
             background-position:0 rem(-340);
-            @include leftTop(-10,0);
+            @include leftTop(-14,0);
         }
         &__bubbleParent {
             width:rem(132);
@@ -2919,29 +2927,41 @@ body {
 }
 
 .tvtextOpacityChange {
-    animation:tvtextOpacityChange 9s both linear infinite;
+    animation:tvtextOpacityChange 3s both linear;
 }
 @keyframes tvtextOpacityChange {
-    0%,38.9%,100% {
+    0% {
         opacity:0;
     }
-    5.5%,33.3% {
+    16.67%,100% {
         opacity:1;
     }
+    // 0%,38.9%,100% {
+    //     opacity:0;
+    // }
+    // 5.5%,33.3% {
+    //     opacity:1;
+    // }
 }
 .tvoldOpacityChange {
-    animation:tvoldOpacityChange 9s both linear infinite;
+    animation:tvoldOpacityChange 3s both linear;
 }
 @keyframes tvoldOpacityChange {
-    0%,33.3%,66.7%,100% {
+    0%,33.3%,100% {
         opacity:0;
     }
-    5.5%,38.9%,72.2% {
+    16.67% {
         opacity:1;
     }
-    11.1%,44.4%,77.8% {
-        opacity:0;
-    }
+    // 0%,33.3%,66.7%,100% {
+    //     opacity:0;
+    // }
+    // 5.5%,38.9%,72.2% {
+    //     opacity:1;
+    // }
+    // 11.1%,44.4%,77.8% {
+    //     opacity:0;
+    // }
 }
 .tviconRotateChange {
     animation:tviconRotateChange 9s both linear infinite;
@@ -4903,6 +4923,9 @@ body {
 .delay6-0 {
     animation-delay:6.0s;
 }
+.delay7-0 {
+    animation-delay:7.0s;
+}
 .delay6-1 {
     animation-delay:6.1s;
 }
@@ -4929,6 +4952,9 @@ body {
 }
 .delay9-5 {
     animation-delay:9.5s;
+}
+.delay10-0 {
+    animation-delay:10.0s;
 }
 .delay10-5 {
     animation-delay:10.5s;

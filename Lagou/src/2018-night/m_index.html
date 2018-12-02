@@ -88,13 +88,15 @@
         var loadingStatus = false,
             pageStatus = false,
             startTime = new Date().getTime(),
-            firstTime = 0;
+            firstTime = 0,
+            loadingMusicClose = false;
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     page0 = document.getElementById('page0'),
                     music = document.getElementById('music');
                 document.getElementById('loading').className += ' opacityChange-out';
                 document.getElementById('music-loading').pause();
+                loadingMusicClose = true;
                 if(music.paused){
                     playAudio(music,function(){});
                 }
@@ -159,25 +161,43 @@
         var page0words = [
                 {
                     classname:'littleTopIn duration1-0 delay0-5',
-                    line:['你','的','生','活','中','，','已','经','多','久','没','有','奇','遇','？']
+                    line:['你','的','生','活','中','，'],
+                    start:20
                 },{
-                    classname:'littleTopIn duration1-0 delay2-5',
-                    line:['少','年','时','追','求','激','情','，','成','熟','后','却','迷','恋','平','庸']
+                    classname:'littleTopIn duration1-0 delay1-0',
+                    line:['已','经','多','久','没','有','奇','遇','？'],
+                    start:25,
+                    aslast:true
                 },{
-                    classname:'littleTopIn duration1-0 delay4-5',
-                    line:['害','怕','不','确','定','的','未','来']
+                    classname:'littleTopIn duration1-0 delay3-0',
+                    line:['少','年','时','追','求','激','情','，'],
+                    start:50
                 },{
-                    classname:'littleTopIn duration1-0 delay6-5',
-                    line:['年','轻','是','热','烈','，','是','追','逐']
+                    classname:'littleTopIn duration1-0 delay3-5',
+                    line:['成','熟','后','却','迷','恋','平','庸'],
+                    start:55,
+                    aslast:true
                 },{
-                    classname:'littleTopIn duration1-0 delay8-5',
-                    line:['而','职','场','是','一','座','奇','幻','森','林']
+                    classname:'littleTopIn duration1-0 delay5-4',
+                    line:['害','怕','不','确','定','的','未','来','！'],
+                    start:70,
+                    newone:true
+                },{  // 5
+                    classname:'littleTopIn duration1-0 delay7-0',
+                    line:['年','轻','是','热','烈','，','是','追','逐','，'],
+                    start:90
+                },{  // 6
+                    classname:'littleTopIn duration1-0 delay7-5',
+                    line:['而','职','场','是','一','座','奇','幻','森','林','！'],
+                    start:95,
+                    aslast:true
                 },{
-                    classname:'littleTopIn duration1-0 delay10-5',
-                    line:['当','你','拥','抱','所','有','“不确定”']
+                    classname:'littleTopIn duration1-0 delay9-5',
+                    line:['当','你','拥','抱','所','有','“不确定”','，']
                 },{
-                    classname:'littleTopIn duration1-0 delay11-0',
-                    line:['就','能','把','遇','见','变','为','奇','遇']
+                    classname:'littleTopIn duration1-0 delay10-0',
+                    line:['就','能','把','遇','见','变','为','奇','遇','！'],
+                    aslast:true
                 }
             ],
             page0Style = [
@@ -222,6 +242,8 @@
                 i = 0,
                 j = 0,
                 tempDelay = 0,
+                status = false,
+                total = 0,  // 拥有的并行数量
                 d = '',  // 方向
                 r = 0,  // 转动的值
                 m = 0,  // 移动的值
@@ -232,10 +254,12 @@
                 len = words[i].line.length;
                 line = [];
                 list = [];
+                // status = words[i].aslast;
                 for(j = 0; j < len; j++){
                     tempDelay = Math.floor(Math.random() * 8);
                     at = (40 - 4 * i) / 10;
-                    dt = (20 * (i == words.length - 1 ? i : i + 1) + tempDelay) / 10;
+                    dt = (words[i].start + tempDelay) / 10;
+                    // dt = (20 * (total+1) + (status ? 5 : 0) + tempDelay) / 10;
                     m = Math.ceil(Math.random() * 15);
                     m = m < 10 ? '0'+m : m;
                     r = '0'+Math.ceil(Math.random() * 9);
@@ -251,6 +275,7 @@
                         'animation-duration: '+at+'s;'
                     );
                 }
+                // total = status || words[i].newone ? total + 1 : total;
                 page0Style[i].line = line;
                 page0Style[i].list = list;
             }
@@ -368,22 +393,60 @@
         function getFitTop(def,ratio){
             return setRem(def+heightStatus * ratio);
         }
-        function playAudio(elem,callback){
+        function playAudio(elem,callback,status){
             if (window.WeixinJSBridge) {
                 WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                    elem.currentTime = 0;
+                    if(!status){
+                        elem.currentTime = 0;
+                    }
                     elem.play();
                     callback()
                 }, false);
             }else{
-                elem.currentTime = 0;
+                if(!status){
+                    elem.currentTime = 0;
+                }
                 elem.play();
                 callback()
             }
         }
+        // 音乐播放
+        function backgroundMusic(audio){
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            if(audio.paused && !loadingMusicClose){
+                audio.load();
+                audio.play();
+            }
+            function musicInBrowserHandler() {
+                if(audio.paused && !loadingMusicClose){
+                    audio.load();
+                    audio.play();
+                }
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+        
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                if(audio.paused && !loadingMusicClose){
+                    audio.load();
+                    audio.play();
+                }
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    if(audio.paused && !loadingMusicClose){
+                        audio.load();
+                        audio.play();
+                    }
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
         // music-loading
         function playLoadingAudio(){
-            playAudio(document.getElementById('music-loading'),function(){});
+            var loadingMusic = document.getElementById('music-loading');
+            backgroundMusic(loadingMusic);
+            playAudio(loadingMusic,function(){});
         }
         playLoadingAudio();
         // 设置page0文字动画
@@ -486,6 +549,12 @@
                         :style="one.ani">
                     </div>
                 </div>
+                <div class="page1__icon01 page1__item63"
+                    :style="{top:getFitTop(1088-3,2/8)}"></div>
+                <!-- <div class="page1__item62Parent"> -->
+                    <div class="page1__icon01 page1__item62 rotateInfinite delay0-3"
+                        :style="{top:getFitTop(1158-3,2/8)}"></div>
+                <!-- </div> -->
                 <div class="page1__item page1__item43"
                     :style="{top:getFitTop(1149,2/8)}"></div>
                 <div class="page1__icon01 page1__item44 zoomIn origin100-0 duration1-0 delay1-5"
@@ -498,12 +567,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="page1__item62Parent"> -->
-                    <div class="page1__icon01 page1__item62 rotateInfinite delay0-3"
-                        :style="{top:getFitTop(1158-3,2/8)}"></div>
-                <!-- </div> -->
-                <div class="page1__icon01 page1__item63"
-                    :style="{top:getFitTop(1088-3,2/8)}"></div>
                     <!-- 底边 -->
                 <div class="page1__icon01 page1__item46 littleBottomIn duration1-0 delay1-4"
                     :style="{bottom:getFitTop(408-3,3/8)}"></div>
@@ -905,16 +968,19 @@
                                 <div class="page3__card__ul" :style="{top:getFitTop(0,1/8)}">
                                     <div class="page3__card__li"
                                         v-for="(item,iindex) in page3.list[index].content">
-                                        <div class="page3__card__tv page3__card__tvimg" :class="showForce ? iindex == 0 ? '' : 'hide' : (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''" :style="{
-                                            backgroundImage:'url('+item.img+')'
-                                        }"></div>
+                                        <!-- :class="showForce ? iindex == 0 ? '' : 'hide' : (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''" -->
+                                        <div class="page3__card__tv page3__card__tvimg" 
+                                            :class="showForce ? iindex == 0 ? '' : 'hide' : ((page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) && page3.loopCard[page3.activeCard] == iindex) ? 'tvtextOpacityChange' : 'opacityChange-out'" 
+                                            :style="{
+                                                backgroundImage:'url('+item.img+')'
+                                            }"></div>
                                         <div class="page3__card__title01" 
-                                            :class="showForce ? iindex == 0 ? '' : 'hide' :  (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''">{{item.title}}</div>
-                                        <div class="page3__card__text01Parent" :class="showForce ? iindex == 0 ? '' : 'hide' :  (page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) ? 'tvtextOpacityChange delay'+getDelayTime(5,30,iindex) : ''">
+                                            :class="showForce ? iindex == 0 ? '' : 'hide' :  ((page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) && page3.loopCard[page3.activeCard] == iindex) ? 'tvtextOpacityChange' : 'opacityChange-out'">{{item.title}}</div>
+                                        <div class="page3__card__text01Parent" :class="showForce ? iindex == 0 ? '' : 'hide' :  ((page3.activeCard == index || (page3.isMoving && page3.lastCard == index)) && page3.loopCard[page3.activeCard] == iindex) ? 'tvtextOpacityChange' : 'opacityChange-out'">
                                             <div class="page3__card__text01" v-html="item.info"></div>
                                         </div>
                                     </div>
-                                    <div class="page3__card__tvold" :class="!showForce && page3.activeCard == index ? 'tvoldOpacityChange delay3-5' : 'hide'"></div>
+                                    <div class="page3__card__tvold" :class="!showForce && page3.activeCard == index && page3.showNoise ? 'tvoldOpacityChange' : 'hide'"></div>
                                 </div>
 
                                 <div class="page3__card__title02" :style="{top:getFitTop(1073+41,2/4)}">{{page3.list[index].title}}</div>

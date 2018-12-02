@@ -151,7 +151,7 @@ body {
     height: 6.97778rem;
     background: no-repeat 0 0;
     background-size: 100% 100%;
-    background-image: url("../images/loading.gif"); }
+    background-image: url("../images/loading-03.gif"); }
   .loading__num {
     width: 100%;
     line-height: 0.48889rem;
@@ -266,27 +266,35 @@ body {
       top: 0.91852rem; }
     .page0__text--1 {
       position: absolute;
-      left: 4.35556rem;
+      left: 2.71111rem;
       top: 2.13333rem; }
     .page0__text--2 {
       position: absolute;
-      left: 10.37037rem;
-      top: 3.43704rem; }
+      left: 4.35556rem;
+      top: 2.13333rem; }
     .page0__text--3 {
       position: absolute;
-      left: 3.00741rem;
-      top: 4.19259rem; }
+      left: 5.0963rem;
+      top: 3.34815rem; }
     .page0__text--4 {
       position: absolute;
-      left: 7.64444rem;
-      top: 3.68889rem; }
+      left: 10.37037rem;
+      top: 3.43704rem; }
     .page0__text--5 {
       position: absolute;
-      left: 3.82222rem;
-      top: 3.08148rem; }
+      left: 3.00741rem;
+      top: 3.68889rem; }
     .page0__text--6 {
       position: absolute;
-      left: 5.02222rem;
+      left: 7.64444rem;
+      top: 4.93333rem; }
+    .page0__text--7 {
+      position: absolute;
+      left: 4.11852rem;
+      top: 3.08148rem; }
+    .page0__text--8 {
+      position: absolute;
+      left: 5.31852rem;
       top: 5.02222rem; }
   .page0__text--oneCenter, .page0__text--one {
     display: inline-block; }
@@ -2136,12 +2144,12 @@ body {
   top: 0rem;
   opacity: 0; }
   .page3__card__light {
-    width: 14.97778rem;
+    width: 14.88889rem;
     height: 22.8rem;
     background: url("../images/page3-card-light.png") no-repeat center -2.45926rem;
-    background-size: 100% 100%;
+    background-size: 14.97778rem 25.25926rem;
     position: absolute;
-    left: -0.01481rem;
+    left: 0.01481rem;
     top: 0rem; }
   .page3__card__light01 {
     background-image: url("../images/page3-card01-light.png"); }
@@ -2187,7 +2195,9 @@ body {
       top: 0;
       bottom: auto; }
     .page3__card__inner--bg02 {
+      width: 14.88889rem;
       background-color: #9b4500;
+      left: 0.01481rem;
       top: 9.62963rem;
       bottom: auto; }
     .page3__card__inner--bg03 {
@@ -2549,7 +2559,7 @@ body {
     width: 2.66667rem;
     height: 4.71111rem;
     position: absolute;
-    left: 0.26667rem;
+    left: 0.32593rem;
     top: 9.24444rem;
     overflow: hidden; }
   .page3__card__tail {
@@ -2557,7 +2567,7 @@ body {
     height: 4.71111rem;
     background-position: 0 -5.03704rem;
     position: absolute;
-    left: -0.14815rem;
+    left: -0.20741rem;
     top: 0rem; }
   .page3__card__bubbleParent {
     width: 1.95556rem;
@@ -2974,40 +2984,36 @@ body {
             transform: scale3d(0.2526, 0.2526, 0.2526); } }
 
 .tvtextOpacityChange {
-  -webkit-animation: tvtextOpacityChange 9s both linear infinite;
-          animation: tvtextOpacityChange 9s both linear infinite; }
+  -webkit-animation: tvtextOpacityChange 3s both linear;
+          animation: tvtextOpacityChange 3s both linear; }
 
 @-webkit-keyframes tvtextOpacityChange {
-  0%, 38.9%, 100% {
+  0% {
     opacity: 0; }
-  5.5%, 33.3% {
+  16.67%, 100% {
     opacity: 1; } }
 
 @keyframes tvtextOpacityChange {
-  0%, 38.9%, 100% {
+  0% {
     opacity: 0; }
-  5.5%, 33.3% {
+  16.67%, 100% {
     opacity: 1; } }
 
 .tvoldOpacityChange {
-  -webkit-animation: tvoldOpacityChange 9s both linear infinite;
-          animation: tvoldOpacityChange 9s both linear infinite; }
+  -webkit-animation: tvoldOpacityChange 3s both linear;
+          animation: tvoldOpacityChange 3s both linear; }
 
 @-webkit-keyframes tvoldOpacityChange {
-  0%, 33.3%, 66.7%, 100% {
+  0%, 33.3%, 100% {
     opacity: 0; }
-  5.5%, 38.9%, 72.2% {
-    opacity: 1; }
-  11.1%, 44.4%, 77.8% {
-    opacity: 0; } }
+  16.67% {
+    opacity: 1; } }
 
 @keyframes tvoldOpacityChange {
-  0%, 33.3%, 66.7%, 100% {
+  0%, 33.3%, 100% {
     opacity: 0; }
-  5.5%, 38.9%, 72.2% {
-    opacity: 1; }
-  11.1%, 44.4%, 77.8% {
-    opacity: 0; } }
+  16.67% {
+    opacity: 1; } }
 
 .tviconRotateChange {
   -webkit-animation: tviconRotateChange 9s both linear infinite;
@@ -6717,6 +6723,10 @@ body {
   -webkit-animation-delay: 6.0s;
           animation-delay: 6.0s; }
 
+.delay7-0 {
+  -webkit-animation-delay: 7.0s;
+          animation-delay: 7.0s; }
+
 .delay6-1 {
   -webkit-animation-delay: 6.1s;
           animation-delay: 6.1s; }
@@ -6752,6 +6762,10 @@ body {
 .delay9-5 {
   -webkit-animation-delay: 9.5s;
           animation-delay: 9.5s; }
+
+.delay10-0 {
+  -webkit-animation-delay: 10.0s;
+          animation-delay: 10.0s; }
 
 .delay10-5 {
   -webkit-animation-delay: 10.5s;
