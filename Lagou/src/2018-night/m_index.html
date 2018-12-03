@@ -461,6 +461,11 @@
         // music-loading
         function playLoadingAudio(){
             var loadingMusic = document.getElementById('music-loading');
+            loadingMusic.oncanplay = function(){
+                if(loadingMusic.paused){
+                    playAudio(loadingMusic,function(){});
+                }
+            };
             backgroundMusic(loadingMusic);
             playAudio(loadingMusic,function(){});
         }

@@ -5,61 +5,71 @@ function loadAudio(){
 	var i = 0;
 	for(i = 0; i < audiosLen; i++){
 		(function(i){
-			audios[i].oncanplaythrough = function(){
-				if(audiosArr.indexOf(i) == -1){
-					// console.log(i);
-					audiosArr.push(i);
-					loader.addLoaded();
-				}
-				// console.log(audioLoaded);
-				// if(audioLoaded == audiosLen){
-				// 	audioPrepared = true;
-				// 	if(imgPrepared){
-				// 		imgPrepared = false;
-				// 		audioPrepared = false;
-				// 		loadingComplete();
-				// 	}
-				// }
+			var img = new Image();
+			img.onload = function(){
+				audiosArr.push(i);
+				loader.addLoaded();
 			};
-			audios[i].onprogress = function(){
-				// alert("Starting to load video");
+			img.onerror = function(){
+				audiosArr.push(i);
+				loader.addLoaded();
 			};
-			audios[i].onloadeddata = function(){
-				// alert("Browser has loaded the current frame");
-				if(audiosArr.indexOf(i) == -1){
-					// console.log(i);
-					audiosArr.push(i);
-					loader.addLoaded();
-				}
-			};
-			audios[i].onabort = function() {
-				if(audiosArr.indexOf(i) == -1){
-					audiosArr.push(i);
-					loader.addLoaded();  
-					// alert("视频终止加载");
-				}
-			};
-			audios[i].onerror = function() {
-				if(audiosArr.indexOf(i) == -1){
-					audiosArr.push(i);
-					loader.addLoaded();  
-					// alert("Error! 出错了");
-				}
-			};
-			audios[i].onstalled = function() {
-				if(audiosArr.indexOf(i) == -1){
-					audiosArr.push(i);
-					loader.addLoaded(); 
-					// alert("媒体数据不可用");
-				}
-			};
-			audios[i].onsuspend = function() {
-				if(audiosArr.indexOf(i) == -1){
-					audiosArr.push(i);
-					loader.addLoaded(); 
-					// alert("媒体数据加载被阻止");
-				}
-			};
+			img.src = audios[i].src;
+			// audios[i].oncanplaythrough = function(){
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		// console.log(i);
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded();
+			// 	}
+			// 	// console.log(audioLoaded);
+			// 	// if(audioLoaded == audiosLen){
+			// 	// 	audioPrepared = true;
+			// 	// 	if(imgPrepared){
+			// 	// 		imgPrepared = false;
+			// 	// 		audioPrepared = false;
+			// 	// 		loadingComplete();
+			// 	// 	}
+			// 	// }
+			// };
+			// audios[i].onprogress = function(){
+			// 	// alert("Starting to load video: "+i);
+			// };
+			// audios[i].onloadeddata = function(){
+			// 	// alert("Browser has loaded the current frame");
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		// console.log(i);
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded();
+			// 	}
+			// };
+			// audios[i].onabort = function() {
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded();  
+			// 		// alert("视频终止加载");
+			// 	}
+			// };
+			// audios[i].onerror = function() {
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded();  
+			// 		// alert("Error! 出错了");
+			// 	}
+			// };
+			// audios[i].onstalled = function() {
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded(); 
+			// 		// alert("媒体数据不可用");
+			// 	}
+			// };
+			// audios[i].onsuspend = function() {
+			// 	if(audiosArr.indexOf(i) == -1){
+			// 		audiosArr.push(i);
+			// 		loader.addLoaded(); 
+			// 		// alert("媒体数据加载被阻止");
+			// 	}
+			// };
 		})(i);
 	}
 }
