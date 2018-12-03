@@ -11,6 +11,11 @@
     <meta name="format-detection" content="telphone=no, email=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="prefetch" href="images/music.mp3?v=$version$" />
+    <link rel="prefetch" href="images/loading.mp3?v=$version$" />
+    <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
+    <link rel="prefetch" href="images/out-02.mp3?v=$version$" />
+    <link rel="prefetch" href="images/tv-05.mp3?v=$version$" />
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <!---上线之后加-->
     <title>2018拉勾之夜</title>
@@ -150,11 +155,11 @@
     <div class="page page0 hide" id="page0"></div>
     <div class="music-box">
         <div class="music-icon open">
-            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
-            <audio style="opacity:0;" id="music-loading" loop="loop" preload="auto" src="images/loading.mp3"></audio>
-            <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3"></audio>
-            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-02.mp3"></audio>
-            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3"></audio>
+            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-02.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
         </div>
     </div>
     <script type="text/javascript">
@@ -290,7 +295,7 @@
             for(index = 0; index < words.length; index++){
                 one = words[index];
                 html += ''+
-                    '<div class="page0__text--'+index+' '+one.classname+'">\n';
+                    '<div class="page0__text--row page0__text--'+index+' '+one.classname+'">\n';
                 for(iindex = 0; iindex < one.line.length; iindex++){
                     html += '<span class="page0__text--one textMove" style="'+(page0Style[index].line[iindex])+'">\n'+
                             '<span class="page0__text--oneCenter textMove" style="'+(page0Style[index].list[iindex])+'">'+one.line[iindex]+'</span>\n'+
@@ -681,8 +686,9 @@
                 <div class="icon page1__in leftLittleMoveIn"></div>
             </div>
         </div>
-        <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : page2.hidden ? 'hide' : ''" ref="page2">
-            <div class="page2__center">
+        <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : page2.hidden ? 'hide' : ''" ref="page2"
+            >
+        <div class="page2__center">
                 <div class="page2__list">
                     <!-- 
                         卡片内容：page2__cardLayer 
@@ -692,7 +698,8 @@
                         按钮层：page2__card__btnbg         撕开动画：getPage2CardTicketClass(0)
                     -->
                     <div class="page2__li page2__li--0" ref="page2__li--0"
-                        :class="showForce ? 'page2__li--0move' : ''">
+                        :class="showForce ? 'page2__li--0move' : ''"
+                        :style="{zIndex:showForce ? null : 10}">
                         <div class="page2__oneOuter"><!--getPage2CardParentClass(0)-->
                             <div class="page2__one" ref="page2__one--0" 
                                 :class="showForce ? 'showForce' : (page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0) ? 'active-card' : '')">
@@ -702,31 +709,31 @@
                                     <div class="page2__card__bg02"
                                         :style="{height:getFitTop(1697,1)}"></div><!--:class="showForce ? '' : 'opacityChange'" -->
                                     <div class="page2__cardLayer" :style="{height:getFitTop(1535,1)}" ref="page2__cardLayer--0"
-                                        :class="showForce ? 'hide' : (page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : '')">
+                                        :class="showForce ? 'hideChange' : (page2.isMoving && page2.activeCard == 0 ? 'page2__cardLayer--opacity0' : '')">
                                         <div class="page2__card__titleLayer" :style="{top:getFitTop(0,1/8)}">
-                                            <div class="page2__icon page2__card__titlebg opacityChange"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title01 opacityChange duration0-1 delay0-8"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title02 opacityChange duration0-1 delay0-9"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title03 opacityChange duration0-1 delay1-0"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title04 opacityChange duration0-1 delay1-1"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title05 opacityChange duration0-1 delay1-2"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title06 opacityChange duration0-1 delay1-3"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title07 opacityChange duration0-1 delay1-4"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title08 opacityChange duration0-1 delay1-5"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title09 opacityChange duration0-1 delay1-6"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title10 opacityChange duration0-1 delay1-7"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title11 opacityChange duration0-1 delay1-8"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title12 opacityChange duration0-1 delay1-9"></div>
-                                            <div class="page2__icon page2__card__title page2__card__title13 opacityChange duration0-1 delay2-0"></div>
+                                            <div class="page2__icon page2__card__titlebg" :class="showForce ? '' : 'opacityChange'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title01" :class="showForce ? '' : 'opacityChange duration0-1 delay0-8'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title02" :class="showForce ? '' : 'opacityChange duration0-1 delay0-9'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title03" :class="showForce ? '' : 'opacityChange duration0-1 delay1-0'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title04" :class="showForce ? '' : 'opacityChange duration0-1 delay1-1'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title05" :class="showForce ? '' : 'opacityChange duration0-1 delay1-2'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title06" :class="showForce ? '' : 'opacityChange duration0-1 delay1-3'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title07" :class="showForce ? '' : 'opacityChange duration0-1 delay1-4'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title08" :class="showForce ? '' : 'opacityChange duration0-1 delay1-5'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title09" :class="showForce ? '' : 'opacityChange duration0-1 delay1-6'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title10" :class="showForce ? '' : 'opacityChange duration0-1 delay1-7'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title11" :class="showForce ? '' : 'opacityChange duration0-1 delay1-8'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title12" :class="showForce ? '' : 'opacityChange duration0-1 delay1-9'"></div>
+                                            <div class="page2__icon page2__card__title page2__card__title13" :class="showForce ? '' : 'opacityChange duration0-1 delay2-0'"></div>
                                         </div>
-                                        <div class="page2__icon page2__card__logo littleTopIn duration1-0"></div>
-                                        <div class="page2__icon page2__card__info littleBottomIn duration1-0 delay0-8" :style="{top:getFitTop(182,3/16)}"></div>
+                                        <div class="page2__icon page2__card__logo" :class="showForce ? '' : 'littleTopIn duration1-0'"></div>
+                                        <div class="page2__icon page2__card__info" :class="showForce ? '' : 'littleBottomIn duration1-0 delay0-8'" :style="{top:getFitTop(182,3/16)}"></div>
                                         <div class="page2__card__list" :style="{top:getFitTop(329,2/8)}">
                                             <div class="page2__card__one clearfix" v-for="(one,index) in page2.list"
                                                 :class="'page2__card__one--'+index+(index % 2 == 1 ? ' page2__card__one--odd' : '' )"
                                                 :style="{marginTop:getFitTop(-9,index == 0 ? 0 : 1/8)}">
-                                                <img class="page2__card__one--img" :src="one.img" :class="one.imgAni" />
-                                                <div class="page2__card__one--info" :class="one.infoAni">
+                                                <img class="page2__card__one--img" :src="one.img" :class="showForce ? '' : one.imgAni" />
+                                                <div class="page2__card__one--info" :class="showForce ? '' : one.infoAni">
                                                     <div class="page2__icon page2__card__one--arrow"></div>
                                                     <div class="page2__card__one--line"></div>
                                                     <div class="page2__card__one--title">{{one.title}}</div>
@@ -747,7 +754,7 @@
                                 :class="showForce ? '' : (page2.activeCard == 0 ? 'activeTop' : '')"
                                 v-show="showForce || page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0)">
                                 <div class="page2__card__btnCenter"
-                                    :class="showForce ? 'hide' : 'opacityChange delay0-5'"
+                                    :class="showForce ? 'hideChange' : 'opacityChange delay0-5'"
                                     ref="page2__card__btnCenter--0"
                                     :data-lg-tj-id="lg" 
                                     data-lg-tj-no="0010" 
@@ -764,7 +771,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li page2__li--1" ref="page2__li--1" :class="showForce ? ' page2__li--1move' : ''">
+                    <div class="page2__li page2__li--1" ref="page2__li--1" 
+                        :class="showForce ? ' page2__li--1move' : ''"
+                        :style="{zIndex:showForce ? null : 9}">
                         <div class="page2__oneOuter">
                             <div class="page2__one" ref="page2__one--1" :class="showForce ? 'showForce' : (page2.activeCard == 1 || (page2.lastCard == 1 && page2.isMoving) ? 'active-card' : '')">
                                 <div class="page2__cut" :class="getPage2CardParentClass(1)" :style="{height:getFitTop(1535,1)}">
@@ -849,7 +858,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="page2__li page2__li--2" ref="page2__li--2" :class="showForce ? ' page2__li--2move' : ''">
+                    <div class="page2__li page2__li--2" ref="page2__li--2" 
+                        :class="showForce ? ' page2__li--2move' : ''"
+                        :style="{zIndex:showForce ? null : 8}">
                         <div class="page2__oneOuter">
                             <div class="page2__one" ref="page2__one--2" :class="showForce ? 'showForce' : (page2.activeCard == 2 || (page2.lastCard == 2 && page2.isMoving) ? 'active-card' : '')">
                                 <div class="page2__cut" :class="getPage2CardParentClass(2)" :style="{height:getFitTop(1535,1)}">
@@ -923,7 +934,8 @@
             <div class="page3__list">
                 <div class="page3__one"
                     v-for="(one,index) in page3.list" :ref="'page3__one--'+index"
-                    :class="'page3__one--'+index+(showForce ? ' page3__one--'+index+'move' : '')">
+                    :class="'page3__one--'+index+(showForce ? ' page3__one--'+index+'move' : '')"
+                    >
                     <div class="page3__cardParent" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : getPage3CardParentClass(index)">
                         <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : (page3.activeCard == index || (page3.lastCard == index && page3.isMoving) ? 'active-card' : '')"><!--- :class="showForce ? 'showForce' : getPage3CardClass(index)"-->
                             <div class="page3__card__light" :class="one.light"></div>
@@ -1045,6 +1057,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="page3__share" v-show="shareStatus" @touchstart="hideShareEvent">
+                <div class="page-bg opacityChange"></div>
+                <div class="page3__share__bug shareBugIn delay0-5"></div>
+                <div class="page3__share__bubble zoomIn delay1-0"></div>
             </div>
         </div>
     </div>

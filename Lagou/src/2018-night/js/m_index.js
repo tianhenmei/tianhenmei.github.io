@@ -10,9 +10,10 @@
     // test
     var initialNow = 0,
         initialLast = 0,
-        mode = "development",// "development",//"production",
+        mode = "production",// "development",//"production",
         music = document.getElementById("music");
-    
+    var loadingHost = '';
+    // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
     // 音乐
     // if(mode != "development"){
     //     backgroundMusic(document.getElementById("music"));
@@ -204,6 +205,8 @@
             heightStatus:0,
             tempDelay:0,
             fontSize:16,
+            shareStatus:false,
+            hasShowedShare:false,
             page0:{
                 status:'in',
                 in:{
@@ -460,7 +463,7 @@
                 hidden:false,
                 list:[
                     {
-                        img:'images/page2-card-guest01.png',
+                        img:loadingHost+'images/page2-card-guest01.png',
                         title:'拉勾·辩论之王',
                         icon:{
                             width:setRem(330+50),
@@ -477,7 +480,7 @@
                         imgAni:'littleBottomIn duration1-0 delay1-5',
                         infoAni:'littleBottomIn duration1-0 delay1-5'
                     },{
-                        img:'images/page2-card-guest04.png',
+                        img:loadingHost+'images/page2-card-guest04.png',
                         title:'拉勾·超级CEO',
                         icon:{
                             width:setRem(466),
@@ -494,7 +497,7 @@
                         imgAni:'littleBottomIn duration1-0 delay1-7',
                         infoAni:'littleBottomIn duration1-0 delay1-7'
                     },{
-                        img:'images/page2-card-guest02.png',
+                        img:loadingHost+'images/page2-card-guest02.png',
                         title:'拉勾·运营之光',
                         icon:{
                             width:setRem(460),
@@ -511,7 +514,7 @@
                         imgAni:'littleBottomIn duration1-0 delay1-9',
                         infoAni:'littleBottomIn duration1-0 delay1-9'
                     },{
-                        img:'images/page2-card-guest05.png',
+                        img:loadingHost+'images/page2-card-guest05.png',
                         title:'拉勾·心理大师',
                         icon:{
                             width:setRem(466),
@@ -528,7 +531,7 @@
                         imgAni:'littleBottomIn duration1-0 delay2-1',
                         infoAni:'littleBottomIn duration1-0 delay2-1'
                     },{
-                        img:'images/page2-card-guest03.png',
+                        img:loadingHost+'images/page2-card-guest03.png',
                         title:'拉勾·人才发展专家',
                         icon:{
                             width:setRem(330),
@@ -573,9 +576,9 @@
                 ],
                 theater:[
                     {
-                        pic:'images/page2-card03-img01.png'
+                        pic:loadingHost+'images/page2-card03-img01.png'
                     },{
-                        pic:'images/page2-card03-img02.png'
+                        pic:loadingHost+'images/page2-card03-img02.png'
                     }
                 ]
             },
@@ -614,15 +617,15 @@
                         content:[
                             {
                                 title:'职场3D照相馆',
-                                img:'images/page3-card-tv10.png',
+                                img:loadingHost+'images/page3-card-tv10.png',
                                 info:'身临其境地来一场办公室大冒险。'
                             },{
                                 title:'百万年薪屋',
-                                img:'images/page3-card-tv12.png',
+                                img:loadingHost+'images/page3-card-tv12.png',
                                 info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
                             },{
                                 title:'倒着的办公室',
-                                img:'images/page3-card-tv11.png',
+                                img:loadingHost+'images/page3-card-tv11.png',
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
                         ],
@@ -645,15 +648,15 @@
                         content:[
                             {
                                 title:'情绪黑室',
-                                img:'images/page3-card-tv01.png',
+                                img:loadingHost+'images/page3-card-tv01.png',
                                 info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
                             },{
                                 title:'有答案诊所',
-                                img:'images/page3-card-tv02.png',
+                                img:loadingHost+'images/page3-card-tv02.png',
                                 info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
                             },{
                                 title:'12星座睡床',
-                                img:'images/page3-card-tv03.png',
+                                img:loadingHost+'images/page3-card-tv03.png',
                                 info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
                             }
                         ],
@@ -667,15 +670,15 @@
                         content:[
                             {
                                 title:'世界慢递局',
-                                img:'images/page3-card-tv04.png',
+                                img:loadingHost+'images/page3-card-tv04.png',
                                 info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
                             },{
                                 title:'猫王太空唱片计划',
-                                img:'images/page3-card-tv05.png',
+                                img:loadingHost+'images/page3-card-tv05.png',
                                 info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
                             },{
                                 title:'VR乐园',
-                                img:'images/page3-card-tv06.png',
+                                img:loadingHost+'images/page3-card-tv06.png',
                                 info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
                             }
                         ],
@@ -703,15 +706,15 @@
                         content:[
                             {
                                 title:'定制可乐',
-                                img:'images/page3-card-tv07.png',
+                                img:loadingHost+'images/page3-card-tv07.png',
                                 info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
                             },{
                                 title:'拉勾黑市',
-                                img:'images/page3-card-tv08.png',
+                                img:loadingHost+'images/page3-card-tv08.png',
                                 info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
                             },{
                                 title:'答案茶',
-                                img:'images/page3-card-tv09.png',
+                                img:loadingHost+'images/page3-card-tv09.png',
                                 info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
                             }
                         ],
@@ -1063,6 +1066,14 @@
                             }
                         });
                     },500);
+                    // var page3__one3 = self.$refs['page3__one--3'][0],
+                    //     start3 = Date.now();
+	
+                    // page3__one3.addEventListener("animationend", function() {
+                    //     console.log('css3运动结束！');
+                    //     console.log(start3+' , '+Date.now());
+                    // },false);
+
                     setTimeout(function(){
                         self.showForce = false;
                         out.pause();
@@ -1071,7 +1082,7 @@
                         }else{
                             music.volume = 1;
                         }
-                    },4000);
+                    },3500);
                 },500);
                 // setTimeout(function(){
                 //     self.page1.hidden = true;
@@ -1393,6 +1404,10 @@
                     now = self.page3.loopCard[current];
                     if(now == 2){
                         now = 0;
+                        if(current == 3 && !self.shareStatus && !self.hasShowedShare){
+                            self.shareStatus = true;
+                            self.hasShowedShare = true;
+                        }
                     }else{
                         now++;
                     }
@@ -1400,17 +1415,17 @@
                     self.page3.loopCard = arr; 
                     self.page3.showNoise = true;
                     playAudio(musictv,function(){
-                        music.volume = 0.2;
-                        if(music.volume != 0.2) {
-                            music.pause();
-                        }
+                        // music.volume = 0.2;
+                        // if(music.volume != 0.2) {
+                        //     music.pause();
+                        // }
                     });
                     setTimeout(function(){
                         musictv.pause();
                         if(music.paused){
                             playAudio(music,function(){},true);
                         }else{
-                            music.volume = 1;
+                            // music.volume = 1;
                         }
                     },600);
                     setTimeout(function(){
@@ -1423,259 +1438,262 @@
                 clearTimeout(this.page3.tvtimer);
                 this.page3.tvtimer = null;
             },
+            hideShareEvent:function(){
+                this.shareStatus = false;
+            },
             toLoginIn:function(){
 
             },
         }
     })
 
-    var page3List = [
-        {
-            // 奇妙办公室
-            title01:'page3__icon',
-            bug:'page3__icon',
-            btnNext:'page3__btn__btnnext',
-            content:[
-                {
-                    title:'职场3D照相馆',
-                    img:'images/page3-card-tv10.png',
-                    info:'身临其境地来一场办公室大冒险。'
-                },{
-                    title:'百万年薪屋',
-                    img:'images/page3-card-tv12.png',
-                    info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
-                },{
-                    title:'倒着的办公会',
-                    img:'images/page3-card-tv11.png',
-                    info:'奇幻世界中，show出办公室里不一样的你'
-                }
-            ],
-            title:'探秘奇幻的办公室场景',
-            detail:'为什么职场必须沉闷枯燥？放开想象，会遇见<br/>意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
-        },{ // 有情绪小卖部
-            light:'page3__card__light02',
-            textbg01:'page3__card__textbg01-02',
-            textbg02:'page3__card__textbg02-02',
-            tvbottom:'page3__card__tvbottom02',
-            tvbg:'page3__card__tvbg02',
-            tvicon:'page3__card__tvi02',
-            title01:'page3__icon02',
-            bug:'page3__icon02',
-            name:'page3__card__nameLayer__name02',
-            nameActive:'page3__card__nameLayer__name02-active',
-            btnbg:'page3__btnbg02',
-            btn:'page3__btn02',
-            btnNext:'page3__btn02__btnnext',
-            content:[
-                {
-                    title:'情绪黑室',
-                    img:'images/page3-card-tv01.png',
-                    info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
-                },{
-                    title:'有答案诊所',
-                    img:'images/page3-card-tv02.png',
-                    info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
-                },{
-                    title:'12星座睡床',
-                    img:'images/page3-card-tv03.png',
-                    info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
-                }
-            ],
-            title:'排解职场疑惑和情绪',
-            detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
-        },{ // 奇遇森林
-            title01:'page3__icon',
-            bug:'page3__icon',
-            btnNext:'page3__btn__btnnext',
-            content:[
-                {
-                    title:'世界慢递局',
-                    img:'images/page3-card-tv04.png',
-                    info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
-                },{
-                    title:'猫王太空唱片计划',
-                    img:'images/page3-card-tv05.png',
-                    info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
-                },{
-                    title:'So real VR乐园',
-                    img:'images/page3-card-tv06.png',
-                    info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
-                }
-            ],
-            title:'当红品牌互动试验场',
-            detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
-        },{ // 奇物大赏
-            light:'page3__card__light04',
-            textbg01:'page3__card__textbg01-04',
-            textbg02:'page3__card__textbg02-04',
-            tvbottom:'page3__card__tvbottom04',
-            tvbg:'page3__card__tvbg04',
-            tvicon:'page3__card__tvi04',
-            tvicon01:'page3__icon04',
-            tvicon02:'page3__icon04',
-            tvicon03:'page3__icon04',
-            tvicon04:'page3__icon04',
-            title01:'page3__icon04',
-            bug:'page3__icon04',
-            name:'page3__card__nameLayer__name04',
-            nameActive:'page3__card__nameLayer__name04-active',
-            btnbg:'page3__btnbg04',
-            btn:'page3__btn04',
-            btnNext:'page3__btn04__btnnext',
-            content:[
-                {
-                    title:'定制可乐',
-                    img:'images/page3-card-tv07.png',
-                    info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
-                },{
-                    title:'拉勾黑市',
-                    img:'images/page3-card-tv08.png',
-                    info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
-                },{
-                    title:'答案茶',
-                    img:'images/page3-card-tv09.png',
-                    info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
-                }
-            ],
-            title:'拉勾尖货快闪店',
-            detail:'吃也要吃出观点，买也要买出态度，<br/>一年到头，<br/>遇见吃喝玩乐的正确姿势。'
-        }
-    ];
-    // 设置第三页内容
-    function setPage3Content(){
-        var page3 = document.getElementById('page3'),
-            html = '<div class="page page3">'+
-                        '<div class="page3__list">',
-            one = null,
-            item = null,
-            index = 0,
-            iindex = 0;
-        for(index = 0; index < page3List.length; index++){
-            one = page3List[index];
-            html += '<div class="page3__one page3__one--'+index+'"'+
-                    '<div class="page3__cardParent"">'+  //  :class="getPage3CardParentClass(index)
-                        '<div class="page3__card" style="height:'+getFitTop(1502+33,1)+';">'+  //  :class="getPage3CardClass(index)"
-                            '<div class="page3__card__light '+one.light+'"></div>'+
-                            '<div class="page3__card__door" style="height:'+getFitTop(1502,7/8)+';">'+
-                                '<div class="page3__card__inner">'+
-                                    '<div class="page3__card__inner--bgLayer">'+
-                                        '<div class="page3__card__inner--bg page3__card__inner--bg01"></div>'+
-                                        '<div class="page3__card__inner--bg02" style="height:'+getFitTop(1502-660-90+50,7/8)+';"></div>'+
-                                        '<div class="page3__card__inner--bg page3__card__inner--bg03"></div>'+
-                                    '</div>'+
-                                    '<div class="page3__card__inner--borderLayer">'+
-                                        '<div class="page3__card__inner--bordertop"></div>'+
-                                        '<div class="page3__card__inner--borderbottom" style="height:'+getFitTop(873,7/8)+';"></div>'+
-                                    '</div>'+
-                                    '<div class="page3__card__inner--lightLayer">'+
-                                        '<div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>'+
-                                        '<div class="page3__card__inner--lightback02 page3LightBlink delay0-5" style="height:'+getFitTop(873,7/8)+';"></div>'+
-                                        '<div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>'+
-                                        '<div class="page3__card__inner--light02 page3LightBlink" style="height:'+getFitTop(873,7/8)+';"></div>'+
-                                    '</div>'+
-                                    '<div class="page3__card__inner--contentLayer">'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content01"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content02"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content03" style="top:'+getFitTop(0,1/16)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content04" style="top:'+getFitTop(0,13/16)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content05" style="top:'+getFitTop(0,5/32)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content06" style="top:'+getFitTop(0,30/32)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content07" style="top:'+getFitTop(0,1)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content08" style="top:'+getFitTop(0,1)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content09" style="top:'+getFitTop(0,13/16)+';"></div>'+
-                                        '<div class="page3__card__inner--content page3__card__inner--content10" style="top:'+getFitTop(0,13/16)+';"></div>'+
-                                    '</div>'+
-                                '</div>'+
-                                '<div class="page3__card__cover"></div>'+
-                                '<div class="page3__card__textbg01 '+one.textbg01+'" style="top:'+getFitTop(841,1/8)+';"></div>'+
-                                '<div class="page3__card__textbg02 '+one.textbg02+'"  style="top:'+getFitTop(1073,2/4)+';"></div>'+
-                                '<div class="page3__card__tvbottom '+one.tvbottom+'" style="top:'+getFitTop(767,1/8)+';"></div>'+
-                                '<div class="page3__card__tvbg '+one.tvbg+'" style="top:'+getFitTop(70,1/8)+';"></div>'+
-                                '<div class="page3__card__tviconLayer" style="top:'+getFitTop(600,1/8)+';">'+
-                                    '<div class="page3__icon page3__card__tvicon01 tviconRotateChange '+one.tvicon01+'"></div>'+
-                                    '<div class="page3__icon page3__card__tvicon02 tviconRotateChange '+one.tvicon02+'"></div>'+
-                                    '<div class="page3__icon page3__card__tvicon03 '+one.tvicon03+'"></div>'+
-                                    '<div class="page3__icon page3__card__tvicon04 '+one.tvicon04+'"></div>'+
-                                '</div>'+
+    // var page3List = [
+    //     {
+    //         // 奇妙办公室
+    //         title01:'page3__icon',
+    //         bug:'page3__icon',
+    //         btnNext:'page3__btn__btnnext',
+    //         content:[
+    //             {
+    //                 title:'职场3D照相馆',
+    //                 img:loadingHost+'images/page3-card-tv10.png',
+    //                 info:'身临其境地来一场办公室大冒险。'
+    //             },{
+    //                 title:'百万年薪屋',
+    //                 img:loadingHost+'images/page3-card-tv12.png',
+    //                 info:'过把富豪瘾，在满地钞票中寻找神秘大礼'
+    //             },{
+    //                 title:'倒着的办公会',
+    //                 img:loadingHost+'images/page3-card-tv11.png',
+    //                 info:'奇幻世界中，show出办公室里不一样的你'
+    //             }
+    //         ],
+    //         title:'探秘奇幻的办公室场景',
+    //         detail:'为什么职场必须沉闷枯燥？放开想象，会遇见<br/>意外惊喜。拉勾帮你解锁意想不到的个性Pose，<br/>Show出办公室里不一样的你！'
+    //     },{ // 有情绪小卖部
+    //         light:'page3__card__light02',
+    //         textbg01:'page3__card__textbg01-02',
+    //         textbg02:'page3__card__textbg02-02',
+    //         tvbottom:'page3__card__tvbottom02',
+    //         tvbg:'page3__card__tvbg02',
+    //         tvicon:'page3__card__tvi02',
+    //         title01:'page3__icon02',
+    //         bug:'page3__icon02',
+    //         name:'page3__card__nameLayer__name02',
+    //         nameActive:'page3__card__nameLayer__name02-active',
+    //         btnbg:'page3__btnbg02',
+    //         btn:'page3__btn02',
+    //         btnNext:'page3__btn02__btnnext',
+    //         content:[
+    //             {
+    //                 title:'情绪黑室',
+    //                 img:loadingHost+'images/page3-card-tv01.png',
+    //                 info:'你可以伪装成任意角色，将那些职场上<br/>无处安放的小情绪，在这个房间里肆意宣泄！'
+    //             },{
+    //                 title:'有答案诊所',
+    //                 img:loadingHost+'images/page3-card-tv02.png',
+    //                 info:'有问必答，拉勾给你行业知识和面试技巧，<br/>填满你的装备包！'
+    //             },{
+    //                 title:'12星座睡床',
+    //                 img:loadingHost+'images/page3-card-tv03.png',
+    //                 info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
+    //             }
+    //         ],
+    //         title:'排解职场疑惑和情绪',
+    //         detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
+    //     },{ // 奇遇森林
+    //         title01:'page3__icon',
+    //         bug:'page3__icon',
+    //         btnNext:'page3__btn__btnnext',
+    //         content:[
+    //             {
+    //                 title:'世界慢递局',
+    //                 img:loadingHost+'images/page3-card-tv04.png',
+    //                 info:'写下你的职业困惑，这封信将绕地球一圈，<br/>盖上500多个国家的邮戳，回到你身边！'
+    //             },{
+    //                 title:'猫王太空唱片计划',
+    //                 img:loadingHost+'images/page3-card-tv05.png',
+    //                 info:'现场录制你的声音，将你的声音送上太空！<br/>什么加班什么焦虑，把它抛到宇宙中吧！'
+    //             },{
+    //                 title:'So real VR乐园',
+    //                 img:loadingHost+'images/page3-card-tv06.png',
+    //                 info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
+    //             }
+    //         ],
+    //         title:'当红品牌互动试验场',
+    //         detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
+    //     },{ // 奇物大赏
+    //         light:'page3__card__light04',
+    //         textbg01:'page3__card__textbg01-04',
+    //         textbg02:'page3__card__textbg02-04',
+    //         tvbottom:'page3__card__tvbottom04',
+    //         tvbg:'page3__card__tvbg04',
+    //         tvicon:'page3__card__tvi04',
+    //         tvicon01:'page3__icon04',
+    //         tvicon02:'page3__icon04',
+    //         tvicon03:'page3__icon04',
+    //         tvicon04:'page3__icon04',
+    //         title01:'page3__icon04',
+    //         bug:'page3__icon04',
+    //         name:'page3__card__nameLayer__name04',
+    //         nameActive:'page3__card__nameLayer__name04-active',
+    //         btnbg:'page3__btnbg04',
+    //         btn:'page3__btn04',
+    //         btnNext:'page3__btn04__btnnext',
+    //         content:[
+    //             {
+    //                 title:'定制可乐',
+    //                 img:loadingHost+'images/page3-card-tv07.png',
+    //                 info:'上百个可乐瓶，Pick出你的姓氏，<br/>拉勾送给你！'
+    //             },{
+    //                 title:'拉勾黑市',
+    //                 img:loadingHost+'images/page3-card-tv08.png',
+    //                 info:'互联网首场艺术展，<br/>只在今晚开门，过时不候。'
+    //             },{
+    //                 title:'答案茶',
+    //                 img:loadingHost+'images/page3-card-tv09.png',
+    //                 info:'你敢问，它就敢答。来喝茶的人，将职场困惑<br/>写在茶杯腰封上，奶盖上会出现问题的答案......'
+    //             }
+    //         ],
+    //         title:'拉勾尖货快闪店',
+    //         detail:'吃也要吃出观点，买也要买出态度，<br/>一年到头，<br/>遇见吃喝玩乐的正确姿势。'
+    //     }
+    // ];
+    // // 设置第三页内容
+    // function setPage3Content(){
+    //     var page3 = document.getElementById('page3'),
+    //         html = '<div class="page page3">'+
+    //                     '<div class="page3__list">',
+    //         one = null,
+    //         item = null,
+    //         index = 0,
+    //         iindex = 0;
+    //     for(index = 0; index < page3List.length; index++){
+    //         one = page3List[index];
+    //         html += '<div class="page3__one page3__one--'+index+'"'+
+    //                 '<div class="page3__cardParent"">'+  //  :class="getPage3CardParentClass(index)
+    //                     '<div class="page3__card" style="height:'+getFitTop(1502+33,1)+';">'+  //  :class="getPage3CardClass(index)"
+    //                         '<div class="page3__card__light '+one.light+'"></div>'+
+    //                         '<div class="page3__card__door" style="height:'+getFitTop(1502,7/8)+';">'+
+    //                             '<div class="page3__card__inner">'+
+    //                                 '<div class="page3__card__inner--bgLayer">'+
+    //                                     '<div class="page3__card__inner--bg page3__card__inner--bg01"></div>'+
+    //                                     '<div class="page3__card__inner--bg02" style="height:'+getFitTop(1502-660-90+50,7/8)+';"></div>'+
+    //                                     '<div class="page3__card__inner--bg page3__card__inner--bg03"></div>'+
+    //                                 '</div>'+
+    //                                 '<div class="page3__card__inner--borderLayer">'+
+    //                                     '<div class="page3__card__inner--bordertop"></div>'+
+    //                                     '<div class="page3__card__inner--borderbottom" style="height:'+getFitTop(873,7/8)+';"></div>'+
+    //                                 '</div>'+
+    //                                 '<div class="page3__card__inner--lightLayer">'+
+    //                                     '<div class="page3__card__inner--lightback01 page3LightBlink delay0-5"></div>'+
+    //                                     '<div class="page3__card__inner--lightback02 page3LightBlink delay0-5" style="height:'+getFitTop(873,7/8)+';"></div>'+
+    //                                     '<div class="page3__card__inner--light page3__card__inner--light01 page3LightBlink"></div>'+
+    //                                     '<div class="page3__card__inner--light02 page3LightBlink" style="height:'+getFitTop(873,7/8)+';"></div>'+
+    //                                 '</div>'+
+    //                                 '<div class="page3__card__inner--contentLayer">'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content01"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content02"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content03" style="top:'+getFitTop(0,1/16)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content04" style="top:'+getFitTop(0,13/16)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content05" style="top:'+getFitTop(0,5/32)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content06" style="top:'+getFitTop(0,30/32)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content07" style="top:'+getFitTop(0,1)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content08" style="top:'+getFitTop(0,1)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content09" style="top:'+getFitTop(0,13/16)+';"></div>'+
+    //                                     '<div class="page3__card__inner--content page3__card__inner--content10" style="top:'+getFitTop(0,13/16)+';"></div>'+
+    //                                 '</div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__card__cover"></div>'+
+    //                             '<div class="page3__card__textbg01 '+one.textbg01+'" style="top:'+getFitTop(841,1/8)+';"></div>'+
+    //                             '<div class="page3__card__textbg02 '+one.textbg02+'"  style="top:'+getFitTop(1073,2/4)+';"></div>'+
+    //                             '<div class="page3__card__tvbottom '+one.tvbottom+'" style="top:'+getFitTop(767,1/8)+';"></div>'+
+    //                             '<div class="page3__card__tvbg '+one.tvbg+'" style="top:'+getFitTop(70,1/8)+';"></div>'+
+    //                             '<div class="page3__card__tviconLayer" style="top:'+getFitTop(600,1/8)+';">'+
+    //                                 '<div class="page3__icon page3__card__tvicon01 tviconRotateChange '+one.tvicon01+'"></div>'+
+    //                                 '<div class="page3__icon page3__card__tvicon02 tviconRotateChange '+one.tvicon02+'"></div>'+
+    //                                 '<div class="page3__icon page3__card__tvicon03 '+one.tvicon03+'"></div>'+
+    //                                 '<div class="page3__icon page3__card__tvicon04 '+one.tvicon04+'"></div>'+
+    //                             '</div>'+
 
-                                '<div class="page3__card__ul" style="top:'+getFitTop(0,1/8)+';">';
-                                for(iindex = 0; iindex < one.content.length; iindex++){
-                                    item = one.content[iindex];
-                                    html += '<div class="page3__card__li">'+
-                                                '<div class="page3__card__tv page3__card__tvimg tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'"'+
-                                                    'style="backgroundImage:url('+item.img+');"></div>'+
-                                                '<div class="page3__card__title01 tvtextOpacityChange '+one.title01+' delay'+getDelayTime(0,30,iindex)+'">'+item.title+'</div>'+
-                                                '<div class="page3__card__text01Parent tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'">'+
-                                                    '<div class="page3__card__text01">'+item.info+'</div>'+
-                                                '</div>'+
-                                            '</div>';
-                                }
-                                html += '<div class="page3__card__tvold tvoldOpacityChange"></div>'+
-                                '</div>'+
+    //                             '<div class="page3__card__ul" style="top:'+getFitTop(0,1/8)+';">';
+    //                             for(iindex = 0; iindex < one.content.length; iindex++){
+    //                                 item = one.content[iindex];
+    //                                 html += '<div class="page3__card__li">'+
+    //                                             '<div class="page3__card__tv page3__card__tvimg tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'"'+
+    //                                                 'style="backgroundImage:url('+item.img+');"></div>'+
+    //                                             '<div class="page3__card__title01 tvtextOpacityChange '+one.title01+' delay'+getDelayTime(0,30,iindex)+'">'+item.title+'</div>'+
+    //                                             '<div class="page3__card__text01Parent tvtextOpacityChange delay'+getDelayTime(0,30,iindex)+'">'+
+    //                                                 '<div class="page3__card__text01">'+item.info+'</div>'+
+    //                                             '</div>'+
+    //                                         '</div>';
+    //                             }
+    //                             html += '<div class="page3__card__tvold tvoldOpacityChange"></div>'+
+    //                             '</div>'+
 
-                                '<div class="page3__card__title02" style="top:'+getFitTop(1073+41,2/4)+';">'+one.title+'</div>'+
-                                '<div class="page3__card__text02Parent" style="top:'+getFitTop(1073,2/4)+';">'+
-                                    '<div class="page3__card__text02">'+one.detail+'</div>'+
-                                '</div>'+
-                                '<div class="page3__card__tvicon '+one.tvicon+'" :style="top:'+getFitTop(215,1/8)+';">'+
-                                    '<div class="page3__card__tvicon--text tvtextChange"></div>'+
-                                '</div>'+
-                                '<div class="page3__icon page3__card__titlestar page3__card__titlestar01" style="top:'+getFitTop(789,1/8)+';"></div>'+
-                                '<div class="page3__icon page3__card__titlestar page3__card__titlestar02" style="top:'+getFitTop(789,1/8)+';"></div>'+
-                                '<div class="page3__card__bug '+one.bug+'"></div>'+
-                                '<div class="page3__card__bubble02Parent">'+
-                                    '<div class="page3__icon page3__card__bubble02 zoomInfinite"></div>'+
-                                '</div>'+
-                                '<div class="page3__card__tailParent">'+
-                                    '<div class="page3__icon page3__card__tail littleRotateInfinite"></div>'+
-                                '</div>'+
-                                '<div class="page3__card__textstarLayer" style="top:'+getFitTop(1120,2/4)+';">'+
-                                    '<div class="page3__icon page3__card__textstar01"></div>'+
-                                    '<div class="page3__icon page3__card__textstar02"></div>'+
-                                    '<div class="page3__icon page3__card__textstar03"></div>'+
-                                    '<div class="page3__icon page3__card__textstar04"></div>'+
-                                    '<div class="page3__icon page3__card__textstar05"></div>'+
-                                    '<div class="page3__icon page3__card__textstar06"></div>'+
-                                '</div>'+
-                                '<div class="page3__card__bubbleParent page3BubbleDispear" style="bottom:'+getFitTop(38,1/16)+';">'+
-                                    '<div class="page3__icon page3__card__bubble"></div>'+
-                                '</div>'+
-                                '<div class="page3__icon page3__card__star01"></div>'+
-                                '<div class="page3__icon page3__card__star02"></div>'+
-                                '<div class="page3__icon page3__card__star03"></div>'+
-                                '<div class="page3__icon page3__card__star04"></div>'+
-                                '<div class="page3__icon page3__card__star05"></div>'+
-                                '<div class="page3__card__arrowParent opacityChange delay2-0">'+
-                                    '<div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>'+
-                                '</div>'+
-                            '</div>'+
-                            '<div class="page3__card__nameLayer">'+
-                                '<div class="page3__card__nameLayer__nameCenter blinkChange">'+
-                                    '<div class="page3__card__nameLayer__name '+one.name+'"></div>'+
-                                    '<div class="page3__card__nameLayer__name-active '+one.nameActive+'"></div>'+
-                                '</div>'+
-                            '</div>'+
-                            '<div class="page3__card__logo"></div>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="page3__btnbg opacityChange '+one.btnbg+' " style="top:'+getFitTop(1535,1)+';"'+ // :class="getPage3CardTicketClass(index)+(page3.activeCard == index ? ' activeTop' : '')"
-                        // v-show="(!page3.isMoving && page3.activeCard == index) || (page3.isMoving && page3.lastCard == index)">
-                        '<div class="page3__btnCenter opacityChange delay1-0"'+
-                            ':data-lg-tj-id="lg" '+
-                            'data-lg-tj-no="002'+index+'"'+
-                            'data-lg-tj-cid="null"'+
-                            // @touchstart="toLoginIn">
-                            '<div class="page3__btnContent blinkChange delay1-5">'+
-                                '<div class="page3__btn '+one.btn+'"></div>'+
-                                '<div class="page3__btn '+one.btnNext+'"></div>'+
-                            '</div>'+
-                            '<div class="page3__btnline widthChange delay1-5"></div>'+
-                        '</div>'+
-                    '</div>'+
-                '</div>';
-        }
-        page3.outerHTML = html;
-    }
+    //                             '<div class="page3__card__title02" style="top:'+getFitTop(1073+41,2/4)+';">'+one.title+'</div>'+
+    //                             '<div class="page3__card__text02Parent" style="top:'+getFitTop(1073,2/4)+';">'+
+    //                                 '<div class="page3__card__text02">'+one.detail+'</div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__card__tvicon '+one.tvicon+'" :style="top:'+getFitTop(215,1/8)+';">'+
+    //                                 '<div class="page3__card__tvicon--text tvtextChange"></div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__icon page3__card__titlestar page3__card__titlestar01" style="top:'+getFitTop(789,1/8)+';"></div>'+
+    //                             '<div class="page3__icon page3__card__titlestar page3__card__titlestar02" style="top:'+getFitTop(789,1/8)+';"></div>'+
+    //                             '<div class="page3__card__bug '+one.bug+'"></div>'+
+    //                             '<div class="page3__card__bubble02Parent">'+
+    //                                 '<div class="page3__icon page3__card__bubble02 zoomInfinite"></div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__card__tailParent">'+
+    //                                 '<div class="page3__icon page3__card__tail littleRotateInfinite"></div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__card__textstarLayer" style="top:'+getFitTop(1120,2/4)+';">'+
+    //                                 '<div class="page3__icon page3__card__textstar01"></div>'+
+    //                                 '<div class="page3__icon page3__card__textstar02"></div>'+
+    //                                 '<div class="page3__icon page3__card__textstar03"></div>'+
+    //                                 '<div class="page3__icon page3__card__textstar04"></div>'+
+    //                                 '<div class="page3__icon page3__card__textstar05"></div>'+
+    //                                 '<div class="page3__icon page3__card__textstar06"></div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__card__bubbleParent page3BubbleDispear" style="bottom:'+getFitTop(38,1/16)+';">'+
+    //                                 '<div class="page3__icon page3__card__bubble"></div>'+
+    //                             '</div>'+
+    //                             '<div class="page3__icon page3__card__star01"></div>'+
+    //                             '<div class="page3__icon page3__card__star02"></div>'+
+    //                             '<div class="page3__icon page3__card__star03"></div>'+
+    //                             '<div class="page3__icon page3__card__star04"></div>'+
+    //                             '<div class="page3__icon page3__card__star05"></div>'+
+    //                             '<div class="page3__card__arrowParent opacityChange delay2-0">'+
+    //                                 '<div class="page3__icon page3__card__arrow rightLittleMoveIn"></div>'+
+    //                             '</div>'+
+    //                         '</div>'+
+    //                         '<div class="page3__card__nameLayer">'+
+    //                             '<div class="page3__card__nameLayer__nameCenter blinkChange">'+
+    //                                 '<div class="page3__card__nameLayer__name '+one.name+'"></div>'+
+    //                                 '<div class="page3__card__nameLayer__name-active '+one.nameActive+'"></div>'+
+    //                             '</div>'+
+    //                         '</div>'+
+    //                         '<div class="page3__card__logo"></div>'+
+    //                     '</div>'+
+    //                 '</div>'+
+    //                 '<div class="page3__btnbg opacityChange '+one.btnbg+' " style="top:'+getFitTop(1535,1)+';"'+ // :class="getPage3CardTicketClass(index)+(page3.activeCard == index ? ' activeTop' : '')"
+    //                     // v-show="(!page3.isMoving && page3.activeCard == index) || (page3.isMoving && page3.lastCard == index)">
+    //                     '<div class="page3__btnCenter opacityChange delay1-0"'+
+    //                         ':data-lg-tj-id="lg" '+
+    //                         'data-lg-tj-no="002'+index+'"'+
+    //                         'data-lg-tj-cid="null"'+
+    //                         // @touchstart="toLoginIn">
+    //                         '<div class="page3__btnContent blinkChange delay1-5">'+
+    //                             '<div class="page3__btn '+one.btn+'"></div>'+
+    //                             '<div class="page3__btn '+one.btnNext+'"></div>'+
+    //                         '</div>'+
+    //                         '<div class="page3__btnline widthChange delay1-5"></div>'+
+    //                     '</div>'+
+    //                 '</div>'+
+    //             '</div>';
+    //     }
+    //     page3.outerHTML = html;
+    // }
     // setPage3Content();
     },{}]},{},[1]);
     

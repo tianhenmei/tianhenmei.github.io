@@ -20,6 +20,7 @@ var imgArray = [
 	// loadingHost+"images/loading-16.png",
 	// loadingHost+"images/loading-17.png",
 	// loadingHost+"images/loading-18.png",
+	loadingHost+"images/loading-03.gif",
 
 	loadingHost+"images/icon.png",
 
@@ -184,7 +185,9 @@ var imgArray = [
 	loadingHost+"images/page3-name02.png",
 	loadingHost+"images/page3-name02-active.png",
 	loadingHost+"images/page3-name04.png",
-	loadingHost+"images/page3-name04-active.png"
+	loadingHost+"images/page3-name04-active.png",
+	loadingHost+"images/page3-share-bubble.png",
+	loadingHost+"images/page3-share-bug.png",
 ];
 var now = 0;
 // jQuery.ajax({
