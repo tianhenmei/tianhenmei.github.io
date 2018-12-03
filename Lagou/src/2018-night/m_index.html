@@ -98,7 +98,8 @@
             loadingMusicClose = false,
             audioLoaded = 0,
             audioPrepared = false,
-            imgPrepared= false;
+            imgPrepared= false,
+            alreadyLoaded = false;
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     page0 = document.getElementById('page0'),
@@ -123,6 +124,7 @@
                     // pro = document.getElementById('loading__progress'),
                     number = document.getElementById('loading__num');
                 number.innerHTML = "100%";
+                alreadyLoaded = true;
                 // imgPrepared = true;
                 // if(audioPrepared){
                 //     imgPrepared = false;
@@ -462,7 +464,7 @@
         function playLoadingAudio(){
             var loadingMusic = document.getElementById('music-loading');
             loadingMusic.oncanplay = function(){
-                if(loadingMusic.paused){
+                if(loadingMusic.paused && !alreadyLoaded){
                     playAudio(loadingMusic,function(){});
                 }
             };
