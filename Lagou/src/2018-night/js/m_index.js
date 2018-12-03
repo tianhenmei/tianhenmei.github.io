@@ -931,7 +931,7 @@
                     .delay(2000)
                     .to({
                         x:18,
-                        y:30
+                        y:0
                     }, 1000)
                     .start();
 
@@ -1182,16 +1182,23 @@
                     this.page2.isMoving = true;
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
-                    // setTimeout(function(){
-                    //     self.playAudio(document.getElementById('music-tv'),function(){
-                    //         music.volume = 0.2;
-                    //     });
-                    // },3000);
+                    playAudio(musicin,function(){
+                        music.volume = 0.2;
+                        if(music.volume != 0.2) {
+                            music.pause();
+                        }
+                    });
                     setTimeout(function(){
                         // one.className = one.className.replace(/( hide)/g,'');
                         self.page2.isMoving = false;
                     },1000);
                     setTimeout(function(){
+                        musicin.pause();
+                        if(music.paused){
+                            playAudio(music,function(){},true);
+                        }else{
+                            music.volume = 1;
+                        }
                         self.loopMusictvPlay();
                         self.toPage3();
                     },500);

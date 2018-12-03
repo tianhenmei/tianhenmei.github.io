@@ -14,7 +14,7 @@
     <link rel="prefetch" href="images/music.mp3?v=$version$" />
     <link rel="prefetch" href="images/loading.mp3?v=$version$" />
     <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
-    <link rel="prefetch" href="images/out-02.mp3?v=$version$" />
+    <link rel="prefetch" href="images/out-03.mp3?v=$version$" />
     <link rel="prefetch" href="images/tv-05.mp3?v=$version$" />
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <!---上线之后加-->
@@ -158,7 +158,7 @@
             <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-02.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-03.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
         </div>
     </div>
@@ -166,42 +166,42 @@
         var page0words = [
                 {
                     classname:'littleTopIn duration1-0 delay0-5',
-                    line:['你','的','生','活','中','，'],
-                    start:20
+                    line:['你','的','生','活','中'],
+                    start:25
                 },{
                     classname:'littleTopIn duration1-0 delay1-0',
-                    line:['已','经','多','久','没','有','奇','遇','？'],
-                    start:25,
+                    line:['已','经','多','久','没','有','奇','遇'],
+                    start:30,
                     aslast:true
-                },{
-                    classname:'littleTopIn duration1-0 delay3-0',
-                    line:['少','年','时','追','求','激','情','，'],
-                    start:50
                 },{
                     classname:'littleTopIn duration1-0 delay3-5',
+                    line:['少','年','时','追','求','激','情'],
+                    start:55
+                },{
+                    classname:'littleTopIn duration1-0 delay4-0',
                     line:['成','熟','后','却','迷','恋','平','庸'],
-                    start:55,
+                    start:60,
                     aslast:true
                 },{
-                    classname:'littleTopIn duration1-0 delay5-4',
-                    line:['害','怕','不','确','定','的','未','来','！'],
-                    start:70,
+                    classname:'littleTopIn duration1-0 delay6-0',
+                    line:['害','怕','不','确','定','的','未','来'],
+                    start:80,
                     newone:true
                 },{  // 5
-                    classname:'littleTopIn duration1-0 delay7-0',
-                    line:['年','轻','是','热','烈','，','是','追','逐','，'],
-                    start:90
+                    classname:'littleTopIn duration1-0 delay8-0',
+                    line:['年','轻','是','热','烈','，','是','追','逐'],
+                    start:100
                 },{  // 6
-                    classname:'littleTopIn duration1-0 delay7-5',
-                    line:['而','职','场','是','一','座','奇','幻','森','林','！'],
-                    start:95,
+                    classname:'littleTopIn duration1-0 delay8-5',
+                    line:['而','职','场','是','一','座','奇','幻','森','林'],
+                    start:105,
                     aslast:true
                 },{
-                    classname:'littleTopIn duration1-0 delay9-5',
-                    line:['当','你','拥','抱','所','有','“不确定”','，']
+                    classname:'littleTopIn duration1-0 delay10-5',
+                    line:['当','你','拥','抱','所','有','“不确定”']
                 },{
-                    classname:'littleTopIn duration1-0 delay10-0',
-                    line:['就','能','把','遇','见','变','为','奇','遇','！'],
+                    classname:'littleTopIn duration1-0 delay11-0',
+                    line:['就','能','把','遇','见','变','为','奇','遇'],
                     aslast:true
                 }
             ],
@@ -594,11 +594,12 @@
                     :style="{bottom:getFitTop(-121,2/16)}"></div>
 
                 <div class="page1__icon02 page1__item54"></div>
-                <div class="page1__icon01 page1__item55"
-                    :style="{bottom:getFitTop(136,1/8)}"></div>
+                <div class="page1__item55Parent page3BubbleMove delay2-0" :style="{bottom:getFitTop(136,1/8)}">
+                    <div class="page1__icon01 page1__item55 page3BubbleDispear delay2-0"></div>
+                </div>
                 <div class="page1__icon02 page1__item56"></div>
                 <div class="page1__icon02 page1__item57"></div>
-                <div class="page1__item page1__item58 leftIn duration2-0 delay1-0"></div>
+                <div class="page1__item page1__item58 leftIn duration2-0 delay0-0"></div>
                 <div class="page1__icon01 page1__item59"></div>
                 <div class="page1__icon01 page1__item60 zoomInfiniteC delay1-5"></div>
                 <div class="page1__icon01 page1__item61"></div>
@@ -655,7 +656,7 @@
                     :style="{top:getFitTop(522,2/8)}"></div>
             </div>
             <div class="page1__text littleBottomIn duration1-0 delay0-7" 
-                :style="{bottom:getFitTop(554,2/8)}">{{page1.time.x.toFixed(0)}}:{{page1.time.y.toFixed(0)}}</div>
+                :style="{bottom:getFitTop(554,2/8)}">{{page1.time.x.toFixed(0)}}:00</div>
             <div class="page1__title zoomIn delay0-5"
                 :style="{top:getFitTop(644,2/8)}">
                 <div class="page1__title__center">
@@ -699,7 +700,7 @@
                     -->
                     <div class="page2__li page2__li--0" ref="page2__li--0"
                         :class="showForce ? 'page2__li--0move' : ''"
-                        :style="{zIndex:showForce ? null : 10}">
+                        :style="{zIndex:showForce ? null : (page2.activeCard == 0 || (page2.lastCard == 0 && page2.isMoving)) ? 10 : null}">
                         <div class="page2__oneOuter"><!--getPage2CardParentClass(0)-->
                             <div class="page2__one" ref="page2__one--0" 
                                 :class="showForce ? 'showForce' : (page2.activeCard == 0 || (page2.isMoving && page2.lastCard == 0) ? 'active-card' : '')">
@@ -773,7 +774,7 @@
                     </div>
                     <div class="page2__li page2__li--1" ref="page2__li--1" 
                         :class="showForce ? ' page2__li--1move' : ''"
-                        :style="{zIndex:showForce ? null : 9}">
+                        :style="{zIndex:showForce ? null : (page2.activeCard == 1 || (page2.lastCard == 1 && page2.isMoving)) ? 9 : null}">
                         <div class="page2__oneOuter">
                             <div class="page2__one" ref="page2__one--1" :class="showForce ? 'showForce' : (page2.activeCard == 1 || (page2.lastCard == 1 && page2.isMoving) ? 'active-card' : '')">
                                 <div class="page2__cut" :class="getPage2CardParentClass(1)" :style="{height:getFitTop(1535,1)}">
@@ -860,7 +861,7 @@
                     </div>
                     <div class="page2__li page2__li--2" ref="page2__li--2" 
                         :class="showForce ? ' page2__li--2move' : ''"
-                        :style="{zIndex:showForce ? null : 8}">
+                        :style="{zIndex:showForce ? null : (page2.activeCard == 2 || (page2.lastCard == 2 && page2.isMoving)) ? 8 : null}">
                         <div class="page2__oneOuter">
                             <div class="page2__one" ref="page2__one--2" :class="showForce ? 'showForce' : (page2.activeCard == 2 || (page2.lastCard == 2 && page2.isMoving) ? 'active-card' : '')">
                                 <div class="page2__cut" :class="getPage2CardParentClass(2)" :style="{height:getFitTop(1535,1)}">
@@ -935,6 +936,7 @@
                 <div class="page3__one"
                     v-for="(one,index) in page3.list" :ref="'page3__one--'+index"
                     :class="'page3__one--'+index+(showForce ? ' page3__one--'+index+'move' : '')"
+                    :style="{zIndex:!showForce ? (page3.activeCard == index || (page3.lastCard == index && page3.isMoving)) ? 7 : null : null}"
                     >
                     <div class="page3__cardParent" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : getPage3CardParentClass(index)">
                         <div class="page3__card" :style="{height:getFitTop(1502+33,1)}" :class="showForce ? 'showForce' : (page3.activeCard == index || (page3.lastCard == index && page3.isMoving) ? 'active-card' : '')"><!--- :class="showForce ? 'showForce' : getPage3CardClass(index)"-->
@@ -1046,7 +1048,7 @@
                         v-show="showForce || page3.activeCard == index || (page3.isMoving && page3.lastCard == index)">
                         <div class="page3__btnCenter opacityChange delay0-5"
                             :data-lg-tj-id="lg" 
-                            data-lg-tj-no="0020" 
+                            :data-lg-tj-no="'002'+index" 
                             data-lg-tj-cid="null"
                             @touchstart="toLoginIn">
                             <div class="page3__btnContent" :class="page3.activeCard == index ? 'blinkChange delay1-0' : ''">
@@ -1058,8 +1060,8 @@
                     </div>
                 </div>
             </div>
-            <div class="page3__share" v-show="shareStatus" @touchstart="hideShareEvent">
-                <div class="page-bg opacityChange"></div>
+            <div class="page3__share" v-show="shareStatus" @touchstart="hideShareEvent" :style="{height:getFitTop(1535,1)}">
+                <div class="page-bg opacityChange" :style="{height:getFitTop(1535,1)}"></div>
                 <div class="page3__share__bug shareBugIn delay0-5"></div>
                 <div class="page3__share__bubble zoomIn delay1-0"></div>
             </div>
