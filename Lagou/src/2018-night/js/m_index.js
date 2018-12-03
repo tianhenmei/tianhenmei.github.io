@@ -1183,6 +1183,7 @@
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
                     music.pause();
+                    music.parentNode.removeChild(music);
                     playAudio(musicin,function(){
                         // music.volume = 0.2;
                         // if(music.volume != 0.2) {
@@ -1330,14 +1331,15 @@
                     last = len - 1,
                     one = null,
                     musictv = document.getElementById('music-tv'),
-                    musicin = document.getElementById('music-in');
+                    musicin = document.getElementById('music-in'),
+                    tvbg = document.getElementById('music-bg');
                 if(this.page3.activeCard < last){
                     // one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
                     // one.className += ' hide';
                     playAudio(musicin,function(){
-                        music.volume = 0.2;
-                        if(music.volume != 0.2) {
-                            music.pause();
+                        tvbg.volume = 0.2;
+                        if(tvbg.volume != 0.2) {
+                            tvbg.pause();
                         }
                     });
                     // setTimeout(function(){
@@ -1357,10 +1359,10 @@
                             // one.className = one.className.replace(/( hide)/g,'');
                             self.page3.isMoving = false;
                             musicin.pause();
-                            if(music.paused){
-                                playAudio(music,function(){},true);
+                            if(tvbg.paused){
+                                playAudio(tvbg,function(){},true);
                             }else{
-                                music.volume = 1;
+                                tvbg.volume = 1;
                             }
                             self.loopMusictvPlay();
                         },500);
