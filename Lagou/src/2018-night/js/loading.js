@@ -1,3 +1,69 @@
+var audios = document.getElementsByTagName('audio'),
+	audiosArr = [],
+	audiosLen = audios.length;
+function loadAudio(){
+	var i = 0;
+	for(i = 0; i < audiosLen; i++){
+		(function(i){
+			audios[i].oncanplaythrough = function(){
+				if(audiosArr.indexOf(i) == -1){
+					// console.log(i);
+					audiosArr.push(i);
+					loader.addLoaded();
+				}
+				// console.log(audioLoaded);
+				// if(audioLoaded == audiosLen){
+				// 	audioPrepared = true;
+				// 	if(imgPrepared){
+				// 		imgPrepared = false;
+				// 		audioPrepared = false;
+				// 		loadingComplete();
+				// 	}
+				// }
+			};
+			audios[i].onprogress = function(){
+				// alert("Starting to load video");
+			};
+			audios[i].onloadeddata = function(){
+				// alert("Browser has loaded the current frame");
+				if(audiosArr.indexOf(i) == -1){
+					// console.log(i);
+					audiosArr.push(i);
+					loader.addLoaded();
+				}
+			};
+			audios[i].onabort = function() {
+				if(audiosArr.indexOf(i) == -1){
+					audiosArr.push(i);
+					loader.addLoaded();  
+					// alert("视频终止加载");
+				}
+			};
+			audios[i].onerror = function() {
+				if(audiosArr.indexOf(i) == -1){
+					audiosArr.push(i);
+					loader.addLoaded();  
+					// alert("Error! 出错了");
+				}
+			};
+			audios[i].onstalled = function() {
+				if(audiosArr.indexOf(i) == -1){
+					audiosArr.push(i);
+					loader.addLoaded(); 
+					// alert("媒体数据不可用");
+				}
+			};
+			audios[i].onsuspend = function() {
+				if(audiosArr.indexOf(i) == -1){
+					audiosArr.push(i);
+					loader.addLoaded(); 
+					// alert("媒体数据加载被阻止");
+				}
+			};
+		})(i);
+	}
+}
+
 // JavaScript Document
 var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
@@ -203,16 +269,17 @@ var Loader = function(){
 	this.isCompleted = false; // 判断是否加载完毕
 	this.total = 100;  // 最大值100
 
+	var self = this;
 	var loaded = 0;
 
 	var loading = document.getElementById('loading'),
-		number = document.getElementById('loading__num');//,
+		number = document.getElementById('loading__num'),
+		all = imgArray.length + audiosLen;//,
 		// progress_bg = document.getElementById('loading__progress'),
 		// progress = document.getElementById('progress'),
 		// w = progress_bg.offsetWidth;// / imgArray.length;//20;
 	// alert(w)
 	this.Loading = function(imgArray,success){
-		var self = this;
 		try{
 			for( var i = 0 ; i < imgArray.length; i++ ){
 				var ext = imgArray[i].substring(imgArray[i].lastIndexOf('.')).toLowerCase();
@@ -220,25 +287,12 @@ var Loader = function(){
 					(function(path){
 						var img = new Image();
 						img.onload = function(){
-							loaded ++;
-							// alert('success: '+path);
-							self.currProgress = Math.floor(loaded / imgArray.length * 100)
-							// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
-							var n = (self.currProgress).toFixed(1),
-								arr = n.split('.'),
-								l = n;
-							if(arr[1] == '0'){
-								l = arr[0];
-							}
-							number.innerHTML = l+"%";
-							if( loaded == imgArray.length ){
-								success();  // 回调函数
-							}
+							self.addLoaded();
 						};
 						img.onerror = function(){
 							// alert('error: '+path);
 							loaded ++;
-							if( loaded == imgArray.length ){
+							if( loaded == all ){
 								success();  // 回调函数
 							}
 						};
@@ -276,6 +330,23 @@ var Loader = function(){
 				//console.log('error');
 			}
 		})
+	};
+	this.addLoaded = function(){
+		loaded++;
+		// alert('success: '+path);
+		self.currProgress = Math.floor(loaded / all * 100)
+		// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
+		var n = (self.currProgress).toFixed(1),
+			arr = n.split('.'),
+			l = n;
+		if(arr[1] == '0'){
+			l = arr[0];
+		}
+		number.innerHTML = l+"%";
+		if( loaded >= all ){
+			number.innerHTML = "100%";
+			self.success();  // 回调函数
+		}
 	};
 	this.success = function(){
 		// progress.style.width = w+"px";
@@ -326,5 +397,6 @@ var Loader = function(){
 };
 //window.onload = function(){
 var loader = new Loader();
+loadAudio();
 loader.loadLoading(imgArray,loader);
 //};

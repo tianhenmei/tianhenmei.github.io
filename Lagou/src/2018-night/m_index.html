@@ -123,12 +123,12 @@
                     // pro = document.getElementById('loading__progress'),
                     number = document.getElementById('loading__num');
                 number.innerHTML = "100%";
-                imgPrepared = true;
-                if(audioPrepared){
-                    imgPrepared = false;
-                    audioPrepared = false;
+                // imgPrepared = true;
+                // if(audioPrepared){
+                //     imgPrepared = false;
+                //     audioPrepared = false;
                     loadingComplete();
-                }
+                // }
                 // if(space < 3500){
                 //     setTimeout(function(){
                 //         loadingComplete();
@@ -464,26 +464,6 @@
             backgroundMusic(loadingMusic);
             playAudio(loadingMusic,function(){});
         }
-        function loadAudio(){
-            var audios = document.getElementsByTagName('audio'),
-                len = audios.length,
-                i = 0;
-            for(i = 0; i < len; i++){
-                audios[i].oncanplaythrough = function(){
-                    audioLoaded++;
-                    // console.log(audioLoaded);
-                    if(audioLoaded == len){
-                        audioPrepared = true;
-                        if(imgPrepared){
-                            imgPrepared = false;
-                            audioPrepared = false;
-                            loadingComplete();
-                        }
-                    }
-                }
-            }
-        }
-        loadAudio();
         playLoadingAudio();
         // 设置page0文字动画
         initPage0Ani();
