@@ -1442,7 +1442,7 @@
                 this.shareStatus = false;
             },
             toLoginIn:function(){
-
+                window.location.href = "https://activity.lagou.com/topic/qimiaoyebaoming.html"
             },
         }
     })
