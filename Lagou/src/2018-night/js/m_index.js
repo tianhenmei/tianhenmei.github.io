@@ -1182,11 +1182,12 @@
                     this.page2.isMoving = true;
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
+                    music.pause();
                     playAudio(musicin,function(){
-                        music.volume = 0.2;
-                        if(music.volume != 0.2) {
-                            music.pause();
-                        }
+                        // music.volume = 0.2;
+                        // if(music.volume != 0.2) {
+                        //     music.pause();
+                        // }
                     });
                     setTimeout(function(){
                         // one.className = one.className.replace(/( hide)/g,'');
@@ -1194,11 +1195,13 @@
                     },1000);
                     setTimeout(function(){
                         musicin.pause();
-                        if(music.paused){
-                            playAudio(music,function(){},true);
-                        }else{
-                            music.volume = 1;
-                        }
+                        var tvbg = document.getElementById('music-bg');
+                        playAudio(tvbg,function(){});
+                        // if(music.paused){
+                        //     playAudio(music,function(){},true);
+                        // }else{
+                        //     music.volume = 1;
+                        // }
                         self.loopMusictvPlay();
                         self.toPage3();
                     },500);
@@ -1400,6 +1403,7 @@
             loopMusictvPlay:function(){
                 var self = this,
                     musictv = document.getElementById('music-tv'),
+                    tvbg = document.getElementById('music-bg'),
                     current = 0,
                     arr = [0,0,0,0],
                     now = 0;
@@ -1429,8 +1433,8 @@
                     });
                     setTimeout(function(){
                         musictv.pause();
-                        if(music.paused){
-                            playAudio(music,function(){},true);
+                        if(tvbg.paused){
+                            playAudio(tvbg,function(){},true);
                         }else{
                             // music.volume = 1;
                         }
