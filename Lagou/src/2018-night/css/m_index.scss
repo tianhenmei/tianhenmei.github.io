@@ -2784,20 +2784,20 @@ body {
             }
             &--left {
                 width:rem(300);
-                @include leftTop(0,0);
+                @include leftTop(0-40,0);
             }
             &--right {
                 width:rem(303);
                 background-position:rem(-300) 0;
-                @include leftTop(300,0);
+                @include leftTop(300+40,0);
             }
         }
         &__textstar01--wider {
             .page3__card__textstar01--left {
-                left:rem(-40);
+                left:rem(-70);
             }
             .page3__card__textstar01--right {
-                left:rem(340);
+                left:rem(303+70);
             }
         }
         // page3__card__textstar
