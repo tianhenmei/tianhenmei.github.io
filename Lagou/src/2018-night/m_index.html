@@ -14,7 +14,7 @@
     <link rel="prefetch" href="images/music.mp3?v=$version$" />
     <link rel="prefetch" href="images/loading.mp3?v=$version$" />
     <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
-    <link rel="prefetch" href="images/out-05.mp3?v=$version$" />
+    <!-- <link rel="prefetch" href="images/out-05.mp3?v=$version$" /> -->
     <link rel="prefetch" href="images/tv-05.mp3?v=$version$" />
     <!-- <link rel="prefetch" href="images/tv-bg.mp3?v=$version$" /> -->
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
@@ -170,7 +170,7 @@
             <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-05.mp3?v=$version$"></audio>
+            <!-- <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-05.mp3?v=$version$"></audio> -->
             <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
             <!-- <audio style="opacity:0;" id="music-bg" loop="loop" preload="auto" src="images/tv-bg.mp3?v=$version$"></audio> -->
         </div>
@@ -787,9 +787,9 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
-                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 0 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                            <!-- <div class="handParent" :class="page2.isMoving && page2.lastCard == 0 ? 'opacityChange-out' : 'opacityChange delay0-5'">
                                 <div class="hand handHit delay0-5"></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="page2__li page2__li--1" ref="page2__li--1" 
@@ -877,9 +877,9 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
-                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 1 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                            <!-- <div class="handParent" :class="page2.isMoving && page2.lastCard == 1 ? 'opacityChange-out' : 'opacityChange delay0-5'">
                                 <div class="hand handHit delay0-5"></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="page2__li page2__li--2" ref="page2__li--2" 
@@ -949,9 +949,9 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
-                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 2 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                            <!-- <div class="handParent" :class="page2.isMoving && page2.lastCard == 2 ? 'opacityChange-out' : 'opacityChange delay0-5'">
                                 <div class="hand handHit delay0-5"></div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -1095,7 +1095,7 @@
                 <div class="page3__share__bug shareBugIn delay0-5"></div>
                 <div class="page3__share__bubble zoomIn delay1-0"></div>
             </div>
-            <div class="handParent" :class="'opacityChange delay0-5'">
+            <div class="handParent" :class="'opacityChange delay0-5'" v-show="page3.activeCard == 3">
                 <div class="hand handHit delay0-5"></div>
             </div>
         </div>

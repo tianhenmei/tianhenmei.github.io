@@ -1050,8 +1050,8 @@
                 return '';
             },
             page1ToPage2:function(){
-                var self = this,
-                    out = document.getElementById('music-out');
+                var self = this;//,
+                    // out = document.getElementById('music-out');
                 PM.data.last = 1;
                 PM.data.now = 2;
                 PM.pageMove('down',PM);
