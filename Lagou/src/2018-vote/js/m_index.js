@@ -1655,9 +1655,11 @@ app = new Vue({
                 $(".music-icon").removeClass('open').addClass('close');
             }
         });
+        this.page3.confirmSuccess = true;
+        this.page3.confirmWords = '活动已结束！';
         if(this.selectedId){
             // 扫码进入页面
-            this.initDragVote();
+            // this.initDragVote();
             this.getUserVoteStatus();
             this.getCompanyInfo(true);
             this.activePage = 3;
@@ -2513,7 +2515,7 @@ app = new Vue({
             },500);
         },
         showPage3VoteEvent:function(){
-            this.initDragVote();
+            // this.initDragVote();
             this.drawStatus = true;
             if(this.loaded == this.loadingArray.length){
                 this.startDraw();
