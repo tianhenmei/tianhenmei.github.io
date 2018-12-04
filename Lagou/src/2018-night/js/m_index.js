@@ -534,7 +534,7 @@
                         img:loadingHost+'images/page2-card-guest03.png',
                         title:'拉勾·人才发展专家',
                         icon:{
-                            width:setRem(330),
+                            width:setRem(330+100),
                             height:setRem(72),
                             right:setRem(7-24),
                             top:setRem(96-8),
@@ -542,7 +542,7 @@
                         },
                         name:'李银飞',
                         nameStyle:{
-                            paddingRight:setRem(262)
+                            paddingRight:setRem(262+100)
                         },
                         theme:'《如何在不确定中成就自己》',
                         imgAni:'littleBottomIn duration1-0 delay2-3',
@@ -1082,7 +1082,7 @@
                         }else{
                             music.volume = 1;
                         }
-                    },3500);
+                    },6300);  // 6100
                 },500);
                 // setTimeout(function(){
                 //     self.page1.hidden = true;
@@ -1157,10 +1157,10 @@
                         self.page2.lastCard = self.page2.activeCard;
                         self.page2.activeCard = self.page2.activeCard + 1;
                         playAudio(musicin,function(){
-                            music.volume = 0.2;
-                            if(music.volume != 0.2) {
-                                music.pause();
-                            }
+                            // music.volume = 0.2;
+                            // if(music.volume != 0.2) {
+                            //     music.pause();
+                            // }
                         });
                         // setTimeout(function(){
                         //      one.className = one.className.replace(/( hide)/g,'');
@@ -1170,7 +1170,7 @@
                             if(music.paused){
                                 playAudio(music,function(){},true);
                             }else{
-                                music.volume = 1;
+                                // music.volume = 1;
                             }
                             one.className = one.className.replace(/( hide)/g,'');
                             btn.className = btn.className.replace(/( hide)/g,'');
@@ -1337,10 +1337,10 @@
                     // one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
                     // one.className += ' hide';
                     playAudio(musicin,function(){
-                        tvbg.volume = 0.2;
-                        if(tvbg.volume != 0.2) {
-                            tvbg.pause();
-                        }
+                        // tvbg.volume = 0.2;
+                        // if(tvbg.volume != 0.2) {
+                        //     tvbg.pause();
+                        // }
                     });
                     // setTimeout(function(){
                         self.page3.isMoving = true;
@@ -1362,7 +1362,7 @@
                             if(tvbg.paused){
                                 playAudio(tvbg,function(){},true);
                             }else{
-                                tvbg.volume = 1;
+                                // tvbg.volume = 1;
                             }
                             self.loopMusictvPlay();
                         },500);

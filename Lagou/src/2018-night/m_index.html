@@ -14,7 +14,7 @@
     <link rel="prefetch" href="images/music.mp3?v=$version$" />
     <link rel="prefetch" href="images/loading.mp3?v=$version$" />
     <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
-    <link rel="prefetch" href="images/out-03.mp3?v=$version$" />
+    <link rel="prefetch" href="images/out-05.mp3?v=$version$" />
     <link rel="prefetch" href="images/tv-05.mp3?v=$version$" />
     <link rel="prefetch" href="images/tv-bg.mp3?v=$version$" />
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
@@ -170,7 +170,7 @@
             <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-03.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-05.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-bg" loop="loop" preload="auto" src="images/tv-bg.mp3?v=$version$"></audio>
         </div>
@@ -705,9 +705,8 @@
                 <div class="icon page1__in leftLittleMoveIn"></div>
             </div>
         </div>
-        <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : page2.hidden ? 'hide' : ''" ref="page2"
-            >
-        <div class="page2__center">
+        <div class="page page2" :class="activePage == 2 && !startMoving ? 'active' : page2.hidden ? 'hide' : ''" ref="page2">
+            <div class="page2__center">
                 <div class="page2__list">
                     <!-- 
                         卡片内容：page2__cardLayer 
