@@ -1825,6 +1825,8 @@ app = new Vue({
             this.page2.dirActive = index;
         },
         showPage2RankEvent:function(){
+            window.location.href = "https://activity.lagou.com/topic/guzhupingxuanpc.html";
+            return;
             this.page2.rankStatus = true;
             this.page2.rankActive = 0;
             this.page2.rankLastActive = 0;
