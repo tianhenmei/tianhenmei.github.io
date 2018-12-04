@@ -1080,7 +1080,7 @@
                         if(music.paused){
                             playAudio(music,function(){},true);
                         }else{
-                            music.volume = 1;
+                            // music.volume = 1;
                         }
                     },6300);  // 6100
                 },500);
@@ -1182,8 +1182,8 @@
                     this.page2.isMoving = true;
                     this.page2.lastCard = this.page2.activeCard;
                     this.page2.activeCard = this.page2.activeCard + 1;
-                    music.pause();
-                    music.parentNode.removeChild(music);
+                    // music.pause();
+                    // music.parentNode.removeChild(music);
                     playAudio(musicin,function(){
                         // music.volume = 0.2;
                         // if(music.volume != 0.2) {
@@ -1196,13 +1196,13 @@
                     },1000);
                     setTimeout(function(){
                         musicin.pause();
-                        var tvbg = document.getElementById('music-bg');
-                        playAudio(tvbg,function(){});
-                        // if(music.paused){
-                        //     playAudio(music,function(){},true);
-                        // }else{
-                        //     music.volume = 1;
-                        // }
+                        // var tvbg = document.getElementById('music-bg');
+                        // playAudio(tvbg,function(){});
+                        if(music.paused){
+                            playAudio(music,function(){},true);
+                        }else{
+                            // music.volume = 1;
+                        }
                         self.loopMusictvPlay();
                         self.toPage3();
                     },500);
@@ -1331,8 +1331,8 @@
                     last = len - 1,
                     one = null,
                     musictv = document.getElementById('music-tv'),
-                    musicin = document.getElementById('music-in'),
-                    tvbg = document.getElementById('music-bg');
+                    musicin = document.getElementById('music-in');//,
+                    // tvbg = document.getElementById('music-bg');
                 if(this.page3.activeCard < last){
                     // one = this.$refs['page3__one--'+(this.page3.activeCard + 1)];
                     // one.className += ' hide';
@@ -1359,10 +1359,10 @@
                             // one.className = one.className.replace(/( hide)/g,'');
                             self.page3.isMoving = false;
                             musicin.pause();
-                            if(tvbg.paused){
-                                playAudio(tvbg,function(){},true);
+                            if(music.paused){
+                                playAudio(music,function(){},true);
                             }else{
-                                // tvbg.volume = 1;
+                                // music.volume = 1;
                             }
                             self.loopMusictvPlay();
                         },500);
@@ -1405,7 +1405,7 @@
             loopMusictvPlay:function(){
                 var self = this,
                     musictv = document.getElementById('music-tv'),
-                    tvbg = document.getElementById('music-bg'),
+                    // tvbg = document.getElementById('music-bg'),
                     current = 0,
                     arr = [0,0,0,0],
                     now = 0;
@@ -1435,8 +1435,8 @@
                     });
                     setTimeout(function(){
                         musictv.pause();
-                        if(tvbg.paused){
-                            playAudio(tvbg,function(){},true);
+                        if(music.paused){
+                            playAudio(music,function(){},true);
                         }else{
                             // music.volume = 1;
                         }
