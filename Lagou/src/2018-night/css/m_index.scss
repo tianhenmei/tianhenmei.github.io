@@ -1222,6 +1222,29 @@ body {
 .page1__part52 { left:rem(22-10); top:rem(243-10); width:rem(50+93); height:rem(36); background-position:0 rem(-5195); }
 
 
+.handParent {
+    width:rem(152);
+    height:rem(134);
+    @include centerb(178,143);
+    z-index: 2;
+}
+.hand {
+    width:rem(152);
+    height:rem(134);
+    background:url('../images/hand.png') no-repeat center top;
+    background-size:100% 100%;
+}
+.handHit {
+    animation:handHit 1s both linear infinite;
+}
+@keyframes handHit {
+    0%,80%,100% {
+        transform:translate3d(0,0,0);
+    }
+    40% {
+        transform:translate3d(10px,10px,0);
+    }
+}
 .page2 {
     // z-index:3;
     // page2__center
@@ -2087,6 +2110,9 @@ body {
 }
 
 .page3 {
+    .handParent {
+        z-index: 1000;
+    }
     &__list,
     &__one{
         width:100%;
@@ -2247,7 +2273,7 @@ body {
         width:rem(1006);
         height:rem(1502);
         @include center(36,0);
-        overflow: hidden;
+        // overflow: hidden;
     }
     // page3__card
     &__card {
@@ -2468,11 +2494,14 @@ body {
         //     background-size:100% 100%;
         //     @include leftBottom(-17,-17);
         // }
+        // page3__card__nameLayer
         &__nameLayer {
             width:rem(281);
             height:rem(368);
-            @include leftTop(-13,-16);
+            @include leftTop(-16,-16);  // -13 -16
             overflow:hidden;
+            transform-origin:0 0;
+            transform:scale3d(1.16,1.16,1.16);
             &__nameCenter,
             &__name,
             &__name-active {
@@ -2747,9 +2776,29 @@ body {
         &__textstar01 {
             width:rem(603);
             height:rem(27);
-            background:url('../images/page3-card-textstar.png') no-repeat center top;
-            background-size:100% 100%;
             @include leftTop(204,1125);
+            &--star {
+                height:rem(27);
+                background:url('../images/page3-card-textstar.png') no-repeat 0 0;
+                background-size:rem(603) rem(27);
+            }
+            &--left {
+                width:rem(300);
+                @include leftTop(0,0);
+            }
+            &--right {
+                width:rem(303);
+                background-position:rem(-300) 0;
+                @include leftTop(300,0);
+            }
+        }
+        &__textstar01--wider {
+            .page3__card__textstar01--left {
+                left:rem(-40);
+            }
+            .page3__card__textstar01--right {
+                left:rem(340);
+            }
         }
         // page3__card__textstar
         // &__textstar01,
@@ -2830,7 +2879,7 @@ body {
             width:rem(799);
             line-height:rem(53);
             @include leftTop(102,1073+41);
-            font-size:rem(34);
+            font-size:rem(34+8);
             font-weight:bold;
             text-align:center;
             color:#fff;

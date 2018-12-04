@@ -787,6 +787,9 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
+                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 0 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                                <div class="hand handHit delay0-5"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="page2__li page2__li--1" ref="page2__li--1" 
@@ -874,6 +877,9 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
+                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 1 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                                <div class="hand handHit delay0-5"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="page2__li page2__li--2" ref="page2__li--2" 
@@ -943,12 +949,16 @@
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
                             </div>
+                            <div class="handParent" :class="page2.isMoving && page2.lastCard == 2 ? 'opacityChange-out' : 'opacityChange delay0-5'">
+                                <div class="hand handHit delay0-5"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page page3" :class="(showForce || activePage == 2 ? 'active' : (activePage == 3 && !startMoving) ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname)" ref="page3">
+        <!-- (showForce || activePage == 2 ? 'active' : (activePage == 3 && !startMoving) ? 'active' : page3.hidden ? 'hide' : '')+(' '+page3.classname) -->
+        <div class="page page3" :class="page2.activeCard >= 2 || activePage == 3 ? 'active' : ''" ref="page3">
             <div class="page3__list">
                 <div class="page3__one"
                     v-for="(one,index) in page3.list" :ref="'page3__one--'+index"
@@ -1030,7 +1040,10 @@
                                 <div class="page3__card__tailParent">
                                     <div class="page3__icon page3__card__tail" :class="!showForce && page3.activeCard == index ? 'littleRotateInfinite' : ''"></div>
                                 </div>
-                                <div class="page3__icon page3__card__textstar01" :style="{top:getFitTop(1125,2/4)}"></div>
+                                <div class="page3__card__textstar01" :class="one.textstar01" :style="{top:getFitTop(1125,2/4)}">
+                                    <div class="page3__card__textstar01--star page3__card__textstar01--left"></div>
+                                    <div class="page3__card__textstar01--star page3__card__textstar01--right"></div>
+                                </div>
                                 <!-- <div class="page3__card__textstarLayer" :style="{top:getFitTop(1120,2/4)}">
                                     <div class="page3__icon page3__card__textstar01"></div>
                                     <div class="page3__icon page3__card__textstar02"></div>
@@ -1081,6 +1094,9 @@
                 <div class="page-bg opacityChange" :style="{height:getFitTop(1535,1)}"></div>
                 <div class="page3__share__bug shareBugIn delay0-5"></div>
                 <div class="page3__share__bubble zoomIn delay1-0"></div>
+            </div>
+            <div class="handParent" :class="'opacityChange delay0-5'">
+                <div class="hand handHit delay0-5"></div>
             </div>
         </div>
     </div>

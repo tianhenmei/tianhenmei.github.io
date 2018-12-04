@@ -1439,6 +1439,41 @@ body {
   height: 0.53333rem;
   background-position: 0 -76.96296rem; }
 
+.handParent {
+  width: 2.25185rem;
+  height: 1.98519rem;
+  position: absolute;
+  left: 50%;
+  bottom: 2.11852rem;
+  margin: 0 0 0 -5.36296rem;
+  z-index: 2; }
+
+.hand {
+  width: 2.25185rem;
+  height: 1.98519rem;
+  background: url("../images/hand.png") no-repeat center top;
+  background-size: 100% 100%; }
+
+.handHit {
+  -webkit-animation: handHit 1s both linear infinite;
+          animation: handHit 1s both linear infinite; }
+
+@-webkit-keyframes handHit {
+  0%, 80%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  40% {
+    -webkit-transform: translate3d(10px, 10px, 0);
+            transform: translate3d(10px, 10px, 0); } }
+
+@keyframes handHit {
+  0%, 80%, 100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  40% {
+    -webkit-transform: translate3d(10px, 10px, 0);
+            transform: translate3d(10px, 10px, 0); } }
+
 .page2__list, .page2__li, .page2__oneOuter, .page2__one, .page2__center {
   width: 100%;
   height: 100%;
@@ -2340,6 +2375,9 @@ body {
 .page2 .activeTop {
   z-index: 2; }
 
+.page3 .handParent {
+  z-index: 1000; }
+
 .page3__list, .page3__one {
   width: 100%;
   height: 100%;
@@ -2629,8 +2667,7 @@ body {
   position: absolute;
   left: 50%;
   top: 0rem;
-  margin: 0 0 0 -7.46667rem;
-  overflow: hidden; }
+  margin: 0 0 0 -7.46667rem; }
 
 .page3__card {
   width: 14.9037rem;
@@ -2825,9 +2862,13 @@ body {
     width: 4.16296rem;
     height: 5.45185rem;
     position: absolute;
-    left: -0.19259rem;
+    left: -0.23704rem;
     top: -0.23704rem;
-    overflow: hidden; }
+    overflow: hidden;
+    -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+    -webkit-transform: scale3d(1.16, 1.16, 1.16);
+            transform: scale3d(1.16, 1.16, 1.16); }
     .page3__card__nameLayer__nameCenter, .page3__card__nameLayer__name, .page3__card__nameLayer__name-active {
       width: 4.16296rem;
       height: 5.45185rem; }
@@ -3048,11 +3089,28 @@ body {
   .page3__card__textstar01 {
     width: 8.93333rem;
     height: 0.4rem;
-    background: url("../images/page3-card-textstar.png") no-repeat center top;
-    background-size: 100% 100%;
     position: absolute;
     left: 3.02222rem;
     top: 16.66667rem; }
+    .page3__card__textstar01--star {
+      height: 0.4rem;
+      background: url("../images/page3-card-textstar.png") no-repeat 0 0;
+      background-size: 8.93333rem 0.4rem; }
+    .page3__card__textstar01--left {
+      width: 4.44444rem;
+      position: absolute;
+      left: 0rem;
+      top: 0rem; }
+    .page3__card__textstar01--right {
+      width: 4.48889rem;
+      background-position: -4.44444rem 0;
+      position: absolute;
+      left: 4.44444rem;
+      top: 0rem; }
+  .page3__card__textstar01--wider .page3__card__textstar01--left {
+    left: -0.59259rem; }
+  .page3__card__textstar01--wider .page3__card__textstar01--right {
+    left: 5.03704rem; }
   .page3__card__tailParent {
     width: 2.66667rem;
     height: 4.71111rem;
@@ -3099,7 +3157,7 @@ body {
     position: absolute;
     left: 1.51111rem;
     top: 16.5037rem;
-    font-size: 0.5037rem;
+    font-size: 0.62222rem;
     font-weight: bold;
     text-align: center;
     color: #fff; }

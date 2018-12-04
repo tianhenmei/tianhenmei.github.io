@@ -531,7 +531,7 @@
                         imgAni:'littleBottomIn duration1-0 delay2-1',
                         infoAni:'littleBottomIn duration1-0 delay2-1'
                     },{
-                        img:loadingHost+'images/page2-card-guest03.png',
+                        img:loadingHost+'images/page2-card-guest03-02.png',
                         title:'拉勾·人才发展专家',
                         icon:{
                             width:setRem(330+100),
@@ -613,6 +613,7 @@
                         btn:'page3__btn01',
                         btnNext:'page3__btn01__btnnext',
                         titlestar:'middle',
+                        textstar01:'page3__card__textstar01--wider',
                         // text02:'stay-left',
                         content:[
                             {
@@ -1054,36 +1055,41 @@
                 PM.data.last = 1;
                 PM.data.now = 2;
                 PM.pageMove('down',PM);
-                // var one = this.$refs['page2__li--0'];
-                // one.className += ' hide';
+                var one = this.$refs['page2__li--0'];
+                one.className += ' hide';
                 setTimeout(function(){
-                    self.showForce = true;
-                    setTimeout(function(){
-                        playAudio(out,function(){
-                            music.volume = 0.2;
-                            if(music.volume != 0.2) {
-                                music.pause();
-                            }
-                        });
-                    },500);
-                    // var page3__one3 = self.$refs['page3__one--3'][0],
-                    //     start3 = Date.now();
-	
-                    // page3__one3.addEventListener("animationend", function() {
-                    //     console.log('css3运动结束！');
-                    //     console.log(start3+' , '+Date.now());
-                    // },false);
-
-                    setTimeout(function(){
-                        self.showForce = false;
-                        out.pause();
-                        if(music.paused){
-                            playAudio(music,function(){},true);
-                        }else{
-                            // music.volume = 1;
-                        }
-                    },6300);  // 6100
+                    one.className = one.className.replace(/( hide)/g,'');
                 },500);
+                // 去掉轮播 start
+                // setTimeout(function(){
+                //     self.showForce = true;
+                //     setTimeout(function(){
+                //         playAudio(out,function(){
+                //             music.volume = 0.2;
+                //             if(music.volume != 0.2) {
+                //                 music.pause();
+                //             }
+                //         });
+                //     },500);
+                //     // var page3__one3 = self.$refs['page3__one--3'][0],
+                //     //     start3 = Date.now();
+	
+                //     // page3__one3.addEventListener("animationend", function() {
+                //     //     console.log('css3运动结束！');
+                //     //     console.log(start3+' , '+Date.now());
+                //     // },false);
+
+                //     setTimeout(function(){
+                //         self.showForce = false;
+                //         out.pause();
+                //         if(music.paused){
+                //             playAudio(music,function(){},true);
+                //         }else{
+                //             // music.volume = 1;
+                //         }
+                //     },6300);  // 6100
+                // },500);
+                // 去掉轮播 end
                 // setTimeout(function(){
                 //     self.page1.hidden = true;
                 //     one.className = one.className.replace(/( hide)/g,'');
