@@ -464,87 +464,110 @@
                 list:[
                     {
                         img:loadingHost+'images/page2-card-guest01.png',
-                        title:'拉勾·辩论之王',
+                        // title:'拉勾·辩论之王',
                         icon:{
-                            width:setRem(330+50),
-                            height:setRem(72),
-                            right:setRem(-17),
-                            top:setRem(97-8),
+                            width:setRem(520),
+                            height:setRem(75),
+                            right:setRem(47-25),
+                            top:setRem(21-4),
                             backgroundPosition:'0 '+setRem(-150)
                         },
                         name:'黄执中',
                         nameStyle:{
-                            paddingRight:setRem(314+50)
+                            top:setRem(91),
+                            right:setRem(341)
                         },
-                        theme:'《世界上没有哪个方向是一定对的》',
+                        theme:'米果文化课程总监',//'《世界上没有哪个方向是一定对的》',
                         imgAni:'littleBottomIn duration1-0 delay1-5',
                         infoAni:'littleBottomIn duration1-0 delay1-5'
-                    },{
+                    },{  // 2
                         img:loadingHost+'images/page2-card-guest04.png',
-                        title:'拉勾·超级CEO',
+                        // title:'拉勾·超级CEO',
                         icon:{
-                            width:setRem(466),
-                            height:setRem(72),
-                            left:0,
-                            top:setRem(88+9-8-3),
+                            width:setRem(520),
+                            height:setRem(75),
+                            left:setRem(63-3),
+                            top:setRem(10-3),
                             backgroundPosition:'0 '+setRem(-230)
                         },
                         name:'许单单',
                         nameStyle:{
-                            paddingLeft:setRem(396)
+                            left:setRem(374),
+                            right:'auto',
+                            top:setRem(82)
                         },
-                        theme:'《拥抱变化，职场会有奇遇》',
+                        theme:'拉勾董事长&创始人',//'《拥抱变化，职场会有奇遇》',
+                        themeStyle:{
+                            left:setRem(62),
+                            top:setRem(92)
+                        },
                         imgAni:'littleBottomIn duration1-0 delay1-7',
                         infoAni:'littleBottomIn duration1-0 delay1-7'
-                    },{
+                    },{  // 3
                         img:loadingHost+'images/page2-card-guest02.png',
-                        title:'拉勾·运营之光',
+                        // title:'拉勾·运营之光',
                         icon:{
-                            width:setRem(460),
-                            height:setRem(72),
-                            right:setRem(6-13),
-                            top:setRem(87+9-8),
+                            width:setRem(626),
+                            height:setRem(75),
+                            right:setRem(113-25),
+                            top:setRem(33-4),
                             backgroundPosition:'0 '+setRem(-310)
                         },
                         name:'黄有璨',
                         nameStyle:{
-                            paddingRight:setRem(365)
+                            right:setRem(424),
+                            top:setRem(105)
                         },
-                        theme:'《如何在不确定中成就自己》',
+                        theme:'三节课联合创始人',//'《如何在不确定中成就自己》',
+                        themeStyle:{
+                            right:setRem(116),
+                            top:setRem(115)
+                        },
                         imgAni:'littleBottomIn duration1-0 delay1-9',
                         infoAni:'littleBottomIn duration1-0 delay1-9'
-                    },{
+                    },{  // 4
                         img:loadingHost+'images/page2-card-guest05.png',
-                        title:'拉勾·心理大师',
+                        // title:'拉勾·心理大师',
                         icon:{
-                            width:setRem(466),
-                            height:setRem(72),
-                            left:setRem(-1),
-                            top:setRem(88),
+                            width:setRem(520),
+                            height:setRem(75),
+                            left:setRem(69-4),
+                            top:setRem(24-8),
                             backgroundPosition:'0 '+setRem(-390)
                         },
                         name:'李松蔚',
                         nameStyle:{
-                            paddingLeft:setRem(335)
+                            left:setRem(384),
+                            right:'auto',
+                            top:setRem(93)
                         },
-                        theme:'《不要让自己成为你的屏障》',
+                        theme:'著名心理学博士',//'《不要让自己成为你的屏障》',
+                        themeStyle:{
+                            left:setRem(124),
+                            top:setRem(103)
+                        },
                         imgAni:'littleBottomIn duration1-0 delay2-1',
                         infoAni:'littleBottomIn duration1-0 delay2-1'
                     },{
                         img:loadingHost+'images/page2-card-guest03-02.png',
-                        title:'拉勾·人才发展专家',
+                        // title:'拉勾·人才发展专家',
                         icon:{
-                            width:setRem(330+100),
-                            height:setRem(72),
-                            right:setRem(7-24),
-                            top:setRem(96-8),
+                            width:setRem(670),
+                            height:setRem(75),
+                            right:setRem(32-25),
+                            top:setRem(32-4),
                             backgroundPosition:'0 '+setRem(-470)
                         },
                         name:'李银飞',
                         nameStyle:{
-                            paddingRight:setRem(262+100)
+                            right:setRem(425),
+                            top:setRem(106)
                         },
-                        theme:'《如何在不确定中成就自己》',
+                        theme:'Keep HRBP总监',//'《如何在不确定中成就自己》',
+                        themeStyle:{
+                            right:setRem(113),
+                            top:setRem(112)
+                        },
                         imgAni:'littleBottomIn duration1-0 delay2-3',
                         infoAni:'littleBottomIn duration1-0 delay2-3'
                     }
@@ -630,7 +653,7 @@
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
                         ],
-                        title:'探秘奇幻的办公室场景',
+                        title:'探秘奇幻办公室场景',
                         detail:'为什么职场必须沉闷枯燥？<br/>放开想象，拉勾帮你解锁<br/>意想不到的个性Pose。'
                     },{ // 有情绪小卖部
                         light:'page3__card__light02',
@@ -661,7 +684,7 @@
                                 info:'一个星座一张“床”，<br/>12星座睡姿大比拼！'
                             }
                         ],
-                        title:'排解职场疑惑和情绪',
+                        title:'排解职场疑惑',
                         detail:'365天，1000个我们，1000种情绪；<br/>拉勾帮你遇见与自己相似的模样，<br/>给所有职场疑惑一个答案。'
                     },{ // 奇遇森林
                         title01:'page3__icon page3__card__title01bg--long',
@@ -683,7 +706,7 @@
                                 info:'你可以与巨型机器人、生化尸潮、<br/>甚至是古老神灵对战。'
                             }
                         ],
-                        title:'当红品牌互动试验场',
+                        title:'当红品牌试验场',
                         detail:'最当红品牌热门玩儿法，<br/>一场前沿的互动装置体验展。<br/>拉勾带你遇见未曾有过的人生实验。'
                     },{ // 奇物大赏
                         inner:'page3__card04__inner--contentLayer',

@@ -217,7 +217,7 @@ body {
   position: absolute; }
 
 .page2__icon {
-  background: url("../images/page2-icon.png") no-repeat 0 0;
+  background: url("../images/page2-icon-02.png") no-repeat 0 0;
   background-size: 15.17037rem 15.17037rem; }
 
 .page2__icon02 {
@@ -1833,27 +1833,38 @@ body {
   top: 4.87407rem; }
 
 .page2__card__one {
+  width: 12.97778rem;
+  height: 3.39259rem;
   margin-top: -0.13333rem;
   position: relative; }
   .page2__card__one--img {
-    width: 2.75556rem;
-    height: 3.45185rem;
+    width: 2.38519rem;
+    height: 2.97778rem;
     margin-left: 0.14815rem;
     float: left; }
   .page2__card__one--arrow {
     width: 0.88889rem;
     height: 0.71111rem;
-    background-position: -8.14815rem -2.22222rem;
+    background-position: -9.33333rem -2.22222rem;
     position: absolute;
-    right: 4.97778rem;
-    top: 0.41481rem; }
+    left: 5.03704rem;
+    top: 1.43704rem; }
   .page2__card__one--line {
-    width: 4.25185rem;
-    height: 0.04444rem;
-    background-color: #d5d4dc;
+    width: 10.8rem;
+    height: 1.37778rem;
+    background: url("../images/page2-card-line.png") no-repeat center top;
+    background-size: 10.8rem 1.37778rem;
     position: absolute;
-    right: 5.52593rem;
-    top: 0.60741rem; }
+    right: 0.05926rem;
+    top: 1.43704rem; }
+  .page2__card__one--circle {
+    width: 0.14815rem;
+    height: 0.14815rem;
+    border-radius: 0.2963rem;
+    background-color: #06c9ff;
+    position: absolute;
+    right: 0.07407rem;
+    top: 1.45185rem; }
   .page2__card__one--title {
     line-height: 0.9037rem;
     padding-top: 0.45926rem;
@@ -1861,18 +1872,23 @@ body {
     color: #11366e;
     text-align: right; }
   .page2__card__one--name {
-    line-height: 0.88889rem;
-    font-size: 0.53333rem;
+    line-height: 0.87407rem;
+    font-size: 0.59259rem;
     color: #203a5f;
-    text-align: right; }
+    text-align: right;
+    position: absolute;
+    right: 5.12593rem;
+    top: 1.61481rem; }
   .page2__card__one--icon {
     position: absolute; }
   .page2__card__one--theme {
-    line-height: 0.84444rem;
-    margin-right: -0.14815rem;
-    font-size: 0.47407rem;
+    line-height: 0.71111rem;
+    font-size: 0.44444rem;
     color: #203a5f;
-    text-align: right; }
+    text-align: right;
+    position: absolute;
+    right: 0.78519rem;
+    top: 1.4963rem; }
 
 .page2__card__one--odd .page2__card__one--img {
   margin-left: 0;
@@ -1880,13 +1896,20 @@ body {
   float: right; }
 
 .page2__card__one--odd .page2__card__one--arrow {
-  background-position: -9.33333rem -2.22222rem;
+  background-position: -8.14815rem -2.22222rem;
   right: auto;
   left: 5.3037rem; }
 
 .page2__card__one--odd .page2__card__one--line {
+  left: 0.07407rem;
   right: auto;
-  left: 5.76296rem; }
+  top: 1.34815rem;
+  background-image: url("../images/page2-card-line-02.png"); }
+
+.page2__card__one--odd .page2__card__one--circle {
+  left: 0.08889rem;
+  right: auto;
+  top: 1.36296rem; }
 
 .page2__card__one--odd .page2__card__one--title {
   text-align: left; }
@@ -1899,12 +1922,54 @@ body {
   margin-right: 0;
   text-align: left; }
 
+.page2__card__one--1 {
+  height: 3.15556rem; }
+  .page2__card__one--1 .page2__card__one--arrow {
+    left: 7.6rem;
+    top: 1.45185rem; }
+  .page2__card__one--1 .page2__card__one--circle {
+    background-color: #df32ff; }
+
+.page2__card__one--2 {
+  height: 3.57037rem; }
+  .page2__card__one--2 .page2__card__one--arrow {
+    left: 3.82222rem;
+    top: 1.79259rem; }
+  .page2__card__one--2 .page2__card__one--line {
+    right: 0.07407rem;
+    top: 1.64444rem; }
+  .page2__card__one--2 .page2__card__one--circle {
+    right: 0.08889rem;
+    top: 1.65926rem;
+    background-color: #00a5b4; }
+
+.page2__card__one--3 {
+  height: 3.3037rem; }
+  .page2__card__one--3 .page2__card__one--arrow {
+    left: 7.68889rem;
+    top: 1.61481rem; }
+  .page2__card__one--3 .page2__card__one--line {
+    left: 0.07407rem;
+    right: auto;
+    top: 1.43704rem; }
+  .page2__card__one--3 .page2__card__one--circle {
+    left: 0.08889rem;
+    right: auto;
+    top: 1.45185rem;
+    background-color: #103cff; }
+
 .page2__card__one--4 .page2__card__one--arrow {
-  right: 6.51852rem; }
+  left: 3.82222rem;
+  top: 1.77778rem; }
 
 .page2__card__one--4 .page2__card__one--line {
-  width: 2.6963rem;
-  right: 7.00741rem; }
+  right: 0.05926rem;
+  top: 1.52593rem; }
+
+.page2__card__one--4 .page2__card__one--circle {
+  right: 0.07407rem;
+  top: 1.54074rem;
+  background-color: #9a00f1; }
 
 .page2__card__arrowParent {
   width: 1.36296rem;

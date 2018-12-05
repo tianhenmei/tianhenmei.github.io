@@ -318,10 +318,10 @@
             }
                         
             html += '</div>\n'+
-                '<div class="page0__line opacityChange delay2-0" id="page0__line"'+  //'class="'+(page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0')+'"'+   
+                '<div class="page0__line opacityChange delay10-5" id="page0__line"'+  //'class="'+(page0.moveEndStatus ? 'opacityChange-out' : ' delay2-0')+'"'+   
                     'style="top:'+getFitTop(1293,1)+';"></div>'+
-                '<div class="page0__btnParent opacityChange delay2-0" style="top:'+getFitTop(1267,1)+'">'+
-                    '<div class="page0__btn btnMoveStartRow delay3-0" id="page0__btn"'+ // class="'+(page0.moveBtnStatus ? 'btnMoveStartRow' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')+'"'+
+                '<div class="page0__btnParent opacityChange delay10-5" style="top:'+getFitTop(1267,1)+'">'+
+                    '<div class="page0__btn btnMoveStartRow dela11-0" id="page0__btn"'+ // class="'+(page0.moveBtnStatus ? 'btnMoveStartRow' : page0.moveEndStatus ? 'opacityChange-out' : '')+(page0.firstMove ? '' : ' delay3-0')+'"'+
                         '></div>'+  // style="'+page0.btnStyle+'"
                 '</div>'+
             '</div>';
@@ -754,11 +754,12 @@
                                                 <div class="page2__card__one--info" :class="showForce ? '' : one.infoAni">
                                                     <div class="page2__icon page2__card__one--arrow"></div>
                                                     <div class="page2__card__one--line"></div>
-                                                    <div class="page2__card__one--title">{{one.title}}</div>
+                                                    <div class="page2__card__one--circle"></div>
+                                                    <!-- <div class="page2__card__one--title">{{one.title}}</div> -->
                                                     <div class="page2__card__one--name" :style="one.nameStyle">{{one.name}}</div>
                                                     <div class="page2__icon page2__card__one--icon"
                                                         :style="one.icon"></div>
-                                                    <div class="page2__card__one--theme">{{one.theme}}</div>
+                                                    <div class="page2__card__one--theme" :style="one.themeStyle">{{one.theme}}</div>
                                                 </div>
                                             </div>
                                         </div>
