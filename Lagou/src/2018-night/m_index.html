@@ -753,8 +753,8 @@
                                                 <img class="page2__card__one--img" :src="one.img" :class="showForce ? '' : one.imgAni" />
                                                 <div class="page2__card__one--info" :class="showForce ? '' : one.infoAni">
                                                     <div class="page2__icon page2__card__one--arrow"></div>
-                                                    <div class="page2__card__one--line"></div>
-                                                    <div class="page2__card__one--circle"></div>
+                                                    <div class="page2__card__one--line" :class="one.lineAni"></div>
+                                                    <div class="page2__card__one--circle" :class="one.circleAni"></div>
                                                     <!-- <div class="page2__card__one--title">{{one.title}}</div> -->
                                                     <div class="page2__card__one--name" :style="one.nameStyle">{{one.name}}</div>
                                                     <div class="page2__icon page2__card__one--icon"

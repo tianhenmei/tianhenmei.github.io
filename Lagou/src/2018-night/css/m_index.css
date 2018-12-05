@@ -1852,7 +1852,7 @@ body {
   .page2__card__one--line {
     width: 10.8rem;
     height: 1.37778rem;
-    background: url("../images/page2-card-line.png") no-repeat center top;
+    background: url("../images/page2-card-line.png") no-repeat right top;
     background-size: 10.8rem 1.37778rem;
     position: absolute;
     right: 0.05926rem;
@@ -1904,7 +1904,8 @@ body {
   left: 0.07407rem;
   right: auto;
   top: 1.34815rem;
-  background-image: url("../images/page2-card-line-02.png"); }
+  background-image: url("../images/page2-card-line-02.png");
+  background-position: left top; }
 
 .page2__card__one--odd .page2__card__one--circle {
   left: 0.08889rem;
@@ -6608,6 +6609,32 @@ body {
     background-image: url("../images/loading-17.png"); }
   94.44% {
     background-image: url("../images/loading-18.png"); } }
+
+.lineAni {
+  -webkit-animation: lineAni 1s both linear;
+          animation: lineAni 1s both linear; }
+
+@-webkit-keyframes lineAni {
+  0% {
+    width: 0.11852rem;
+    height: 0; }
+  11.31% {
+    width: 0.11852rem;
+    height: 1.37778rem; }
+  100% {
+    width: 10.8rem;
+    height: 1.37778rem; } }
+
+@keyframes lineAni {
+  0% {
+    width: 0.11852rem;
+    height: 0; }
+  11.31% {
+    width: 0.11852rem;
+    height: 1.37778rem; }
+  100% {
+    width: 10.8rem;
+    height: 1.37778rem; } }
 
 /*page0**********/
 .textMove {

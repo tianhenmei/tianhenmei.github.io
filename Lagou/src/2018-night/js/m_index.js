@@ -479,7 +479,9 @@
                         },
                         theme:'米果文化课程总监',//'《世界上没有哪个方向是一定对的》',
                         imgAni:'littleBottomIn duration1-0 delay1-5',
-                        infoAni:'littleBottomIn duration1-0 delay1-5'
+                        infoAni:'littleBottomIn duration1-0 delay1-5',
+                        lineAni:'lineAni delay2-0',
+                        circleAni:'opacityChange delay1-9'
                     },{  // 2
                         img:loadingHost+'images/page2-card-guest04.png',
                         // title:'拉勾·超级CEO',
@@ -496,13 +498,15 @@
                             right:'auto',
                             top:setRem(82)
                         },
-                        theme:'拉勾董事长&创始人',//'《拥抱变化，职场会有奇遇》',
+                        theme:'拉勾招聘创始人',//'《拥抱变化，职场会有奇遇》',
                         themeStyle:{
                             left:setRem(62),
                             top:setRem(92)
                         },
                         imgAni:'littleBottomIn duration1-0 delay1-7',
-                        infoAni:'littleBottomIn duration1-0 delay1-7'
+                        infoAni:'littleBottomIn duration1-0 delay1-7',
+                        lineAni:'lineAni delay2-2',
+                        circleAni:'opacityChange delay2-1'
                     },{  // 3
                         img:loadingHost+'images/page2-card-guest02.png',
                         // title:'拉勾·运营之光',
@@ -524,7 +528,9 @@
                             top:setRem(115)
                         },
                         imgAni:'littleBottomIn duration1-0 delay1-9',
-                        infoAni:'littleBottomIn duration1-0 delay1-9'
+                        infoAni:'littleBottomIn duration1-0 delay1-9',
+                        lineAni:'lineAni delay2-4',
+                        circleAni:'opacityChange delay2-3'
                     },{  // 4
                         img:loadingHost+'images/page2-card-guest05.png',
                         // title:'拉勾·心理大师',
@@ -547,7 +553,9 @@
                             top:setRem(103)
                         },
                         imgAni:'littleBottomIn duration1-0 delay2-1',
-                        infoAni:'littleBottomIn duration1-0 delay2-1'
+                        infoAni:'littleBottomIn duration1-0 delay2-1',
+                        lineAni:'lineAni delay2-6',
+                        circleAni:'opacityChange delay2-5'
                     },{
                         img:loadingHost+'images/page2-card-guest03-02.png',
                         // title:'拉勾·人才发展专家',
@@ -569,7 +577,9 @@
                             top:setRem(112)
                         },
                         imgAni:'littleBottomIn duration1-0 delay2-3',
-                        infoAni:'littleBottomIn duration1-0 delay2-3'
+                        infoAni:'littleBottomIn duration1-0 delay2-3',
+                        lineAni:'lineAni delay2-8',
+                        circleAni:'opacityChange delay2-7'
                     }
                 ],
                 party:[

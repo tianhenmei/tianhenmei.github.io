@@ -1547,7 +1547,7 @@ body {
             &--line {
                 width:rem(729);
                 height:rem(93);
-                background:url('../images/page2-card-line.png') no-repeat center top;
+                background:url('../images/page2-card-line.png') no-repeat right top;
                 background-size:rem(729) rem(93);
                 // background-color:#d5d4dc;
                 @include rightTop(4,97);
@@ -1609,6 +1609,7 @@ body {
                 right:auto;
                 top:rem(91);
                 background-image:url('../images/page2-card-line-02.png');
+                background-position:left top;
                 // right:auto;
                 // left:rem(389);
             }
@@ -5117,6 +5118,24 @@ body {
     83.33% { background-image:url('../images/loading-16.png'); }
     88.88% { background-image:url('../images/loading-17.png'); }
     94.44% { background-image:url('../images/loading-18.png'); }
+}
+
+.lineAni {
+    animation:lineAni 1s both linear;
+}
+@keyframes lineAni {
+    0% {
+        width:rem(8);
+        height:0;
+    }
+    11.31% {
+        width:rem(8);
+        height:rem(93);
+    }
+    100% {
+        width:rem(729);
+        height:rem(93);
+    }
 }
 
 /*page0**********/
