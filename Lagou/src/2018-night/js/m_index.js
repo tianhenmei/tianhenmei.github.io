@@ -478,8 +478,8 @@
                             right:setRem(341)
                         },
                         theme:'米果文化课程总监',//'《世界上没有哪个方向是一定对的》',
-                        imgAni:'littleBottomIn duration1-0 delay1-5',
-                        infoAni:'littleBottomIn duration1-0 delay1-5',
+                        imgAni:'rotateIn duration1-0 delay1-5',
+                        infoAni:'littleLeftIn duration1-0 delay1-5',
                         lineAni:'lineAni delay2-0',
                         circleAni:'opacityChange delay1-9'
                     },{  // 2
@@ -494,7 +494,7 @@
                         },
                         name:'许单单',
                         nameStyle:{
-                            left:setRem(374),
+                            left:setRem(374-50),
                             right:'auto',
                             top:setRem(82)
                         },
@@ -503,8 +503,8 @@
                             left:setRem(62),
                             top:setRem(92)
                         },
-                        imgAni:'littleBottomIn duration1-0 delay1-7',
-                        infoAni:'littleBottomIn duration1-0 delay1-7',
+                        imgAni:'rotateIn duration1-0 delay1-7',
+                        infoAni:'littleRightIn duration1-0 delay1-7',
                         lineAni:'lineAni delay2-2',
                         circleAni:'opacityChange delay2-1'
                     },{  // 3
@@ -527,8 +527,8 @@
                             right:setRem(116),
                             top:setRem(115)
                         },
-                        imgAni:'littleBottomIn duration1-0 delay1-9',
-                        infoAni:'littleBottomIn duration1-0 delay1-9',
+                        imgAni:'rotateIn duration1-0 delay1-9',
+                        infoAni:'littleLeftIn duration1-0 delay1-9',
                         lineAni:'lineAni delay2-4',
                         circleAni:'opacityChange delay2-3'
                     },{  // 4
@@ -552,8 +552,8 @@
                             left:setRem(124),
                             top:setRem(103)
                         },
-                        imgAni:'littleBottomIn duration1-0 delay2-1',
-                        infoAni:'littleBottomIn duration1-0 delay2-1',
+                        imgAni:'rotateIn duration1-0 delay2-1',
+                        infoAni:'littleRightIn duration1-0 delay2-1',
                         lineAni:'lineAni delay2-6',
                         circleAni:'opacityChange delay2-5'
                     },{
@@ -576,8 +576,8 @@
                             right:setRem(113),
                             top:setRem(112)
                         },
-                        imgAni:'littleBottomIn duration1-0 delay2-3',
-                        infoAni:'littleBottomIn duration1-0 delay2-3',
+                        imgAni:'rotateIn duration1-0 delay2-3',
+                        infoAni:'littleLeftIn duration1-0 delay2-3',
                         lineAni:'lineAni delay2-8',
                         circleAni:'opacityChange delay2-7'
                     }

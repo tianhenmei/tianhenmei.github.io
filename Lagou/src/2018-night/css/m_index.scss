@@ -3838,6 +3838,32 @@ body {
         transform: translateY(0);
     }
 }
+.littleLeftIn {
+    animation:littleLeftIn 0.5s both ease-in-out;
+}
+@keyframes littleLeftIn {
+    0% {
+        opacity:0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0);
+    }
+}
+.littleRightIn {
+    animation:littleRightIn 0.5s both ease-in-out;
+}
+@keyframes littleRightIn {
+    0% {
+        opacity:0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0);
+    }
+}
 .littleBottomOut {
     animation:littleBottomOut 0.5s both ease-in-out;
 }
