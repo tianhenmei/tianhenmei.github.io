@@ -568,6 +568,7 @@ body {
             @include leftTop(3,183);
         }
     }
+    // page2__btn02
     &__btn {
         width:rem(614);
         height:rem(77);
@@ -575,6 +576,9 @@ body {
         background-size:100% 100%;
         @include center(69,1135-128);
         z-index:10;
+    }
+    &__btn02 {
+        background-image:url("../images/page2-btn-02.png");
     }
     &__go-rank {
         width:rem(240);
@@ -1766,7 +1770,7 @@ body {
             color:#5a5241;
             font-size:rem(26);
             text-align:center;
-            @include center(0,596);//784);
+            @include leftTop(0,596);//784);
             .green {
                 padding-left:rem(14);
                 padding-right:rem(14);

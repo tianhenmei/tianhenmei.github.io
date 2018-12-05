@@ -207,14 +207,22 @@
                         data-link="1" :data-lg-tj-id="lg" :data-lg-tj-no="setDataCount(2001+index)" data-lg-tj-cid="null"></div>
                 </div>
             </div>-->
-            <div class="page2__btn" :style="{ top:getFitTop(1135-128,1)}"
+            <div class="page2__btn page2__btn02" :style="{ top:getFitTop(1135-128,1)}"
+                :class="page2[page2.status].btn"
+                @click.stop.prevent="showPage2RankEvent"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="F001" data-lg-tj-cid="null"></div>
+            <div class="icon page2__go-rank" :style="{ top:getFitTop(1235-128,1) }"
+                :class="page2[page2.status].go"
+                @click.stop.prevent="showPage2SearchRankEvent"
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2011" data-lg-tj-cid="null"></div>
+            <!-- <div class="page2__btn" :style="{ top:getFitTop(1135-128,1)}"
                 :class="page2[page2.status].btn"
                 @click.stop.prevent="showSignupEvent"
                 data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2010" data-lg-tj-cid="null"></div>
             <div class="icon page2__go-rank" :style="{ top:getFitTop(1235-128,1) }"
                 :class="page2[page2.status].go"
                 @click.stop.prevent="showPage2SearchRankEvent"
-                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2011" data-lg-tj-cid="null"></div>
+                data-link="1" :data-lg-tj-id="lg" data-lg-tj-no="2011" data-lg-tj-cid="null"></div> -->
             
             <!--介绍-->
             <div class="page2__introLayer" :style="{ top:getFitTop(413-128,10 / 16)}" :class="page2[page2.status].list">
@@ -594,7 +602,7 @@
             <p class="search_tips" v-show="search_tips" :style="{top:getFitTop(490,2/4)}">{{search_tips}}</p>
             <div class="signup-tips clearfix" v-show="showSignupStatus" :style="{top:getFitTop(619-128,2/4)}">
                 <div class="signup-tips__text">* 您查询的企业还未报名参选</div>
-                <div class="signup-tips__btn" @click.stop.prevent="toSignupEvent"></div>
+                <!-- <div class="signup-tips__btn" @click.stop.prevent="toSignupEvent"></div> -->
             </div>
             <div class="none-selected" v-show="noneSelected">
                 <div class="none-selected__center">
