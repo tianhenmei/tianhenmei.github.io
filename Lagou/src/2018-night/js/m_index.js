@@ -477,7 +477,7 @@
                             top:setRem(91),
                             right:setRem(341)
                         },
-                        theme:'米果文化课程总监',//'《世界上没有哪个方向是一定对的》',
+                        theme:'著名脱口秀表演家',//'《世界上没有哪个方向是一定对的》',
                         imgAni:'rotateIn duration1-0 delay1-5',
                         infoAni:'littleLeftIn duration1-0 delay1-5',
                         lineAni:'lineAni delay2-0',
@@ -494,7 +494,7 @@
                         },
                         name:'许单单',
                         nameStyle:{
-                            left:setRem(374-50),
+                            left:setRem(374), // -50
                             right:'auto',
                             top:setRem(82)
                         },
@@ -522,7 +522,7 @@
                             right:setRem(424),
                             top:setRem(105)
                         },
-                        theme:'三节课联合创始人',//'《如何在不确定中成就自己》',
+                        theme:'《运营之光》作者',//'《如何在不确定中成就自己》',
                         themeStyle:{
                             right:setRem(116),
                             top:setRem(115)
@@ -557,7 +557,7 @@
                         lineAni:'lineAni delay2-6',
                         circleAni:'opacityChange delay2-5'
                     },{
-                        img:loadingHost+'images/page2-card-guest03-02.png',
+                        img:loadingHost+'images/page2-card-guest03-03.png',
                         // title:'拉勾·人才发展专家',
                         icon:{
                             width:setRem(670),
@@ -566,12 +566,12 @@
                             top:setRem(32-4),
                             backgroundPosition:'0 '+setRem(-470)
                         },
-                        name:'李银飞',
+                        name:'马悦舒',
                         nameStyle:{
                             right:setRem(425),
                             top:setRem(106)
                         },
-                        theme:'Keep HRBP总监',//'《如何在不确定中成就自己》',
+                        theme:'麻花即兴制作人',//'《如何在不确定中成就自己》',
                         themeStyle:{
                             right:setRem(113),
                             top:setRem(112)

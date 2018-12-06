@@ -140,7 +140,7 @@ var imgArray = [
 	loadingHost+"images/page1-right-shrink.png",
 	loadingHost+"images/page1-titlegif.png",
 
-	loadingHost+"images/page2-icon.png",
+	loadingHost+"images/page2-icon-03.png",
 	loadingHost+"images/page2-icon02.png",
 	loadingHost+"images/page2-icon03.png",
 	loadingHost+"images/page2-card-bg-02.png",
