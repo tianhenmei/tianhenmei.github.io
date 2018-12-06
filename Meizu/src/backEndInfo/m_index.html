@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>合集</title>
+    <meta name="screen-orientation" content="portrait">
+    <meta name="viewport" content="width=device-width,init-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no;">
+	<style type="text/css">
+		html{-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;-webkit-overflow-scrolling:touch}
+		body{background-color:#fff;font-family:\\601D\6E90\9ED1\4F53,Microsoft Yahei,Arial,Helvetica,sans-serif;letter-spacing:1px;width:100%;height:100%;overflow-x:hidden}
+		body,dd,div,dl,dt,form,h1,h2,h3,h4,img,input,label,li,ol,p,span,table,tbody,td,textarea,tfoot,th,thead,tr,ul{margin:0;padding:0;border:0;list-style:none;letter-spacing:0}
+		a{text-decoration:none;cursor:pointer;outline:none;color:inherit}
+		.none{display:none}
+		.left{float:left}
+		.right{float:right}
+		.bolder{font-weight:600}
+		.marg_b5{margin-bottom:5px!important}
+		.marg_b10{margin-bottom:10px!important}
+		.marg_l5{margin-left:5px!important}
+		.marg_neg_l5{margin-left:-5px!important}
+		.marg_r5{margin-right:5px!important}
+		.fz_18{font-size:18px!important}
+		.fz_16{font-size:16px!important}
+		.fz_14{font-size:14px!important}
+		.fz_12{font-size:12px!important}
+		.fz_13{font-size:13px!important}
+		.txt_left{text-align:left}
+		.txt_right{text-align:right}
+		.ver_alg_b{vertical-align:bottom}
+		.ver_alg_m{vertical-align:middle}
+		button{border:0;outline:0}
+		em{font-style:normal}
+		.opacity_hide{opacity:0}
+		.opacity_show{-webkit-transition:opacity .4s;opacity:1}
+		.nowrap{white-space:nowrap}
+		.hide{display:none}.block{display:block}
+		.inline_block{display:inline-block}
+		.ellipsis{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+		/* .multi_ellipsis(@r:\2){display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden} */
+		.clearfix:after{content:" ";width:0;height:0;display:block;font-size:0;clear:both}
+		.modal-dialog{border-radius:.1875rem;text-align:center;width:90%;margin:0 auto;z-index:9000;position:fixed}
+		.modal-dialog .dialog-mask{display:block}
+		.modal-dialog .modal-dialog-main{position:relative;z-index:9000;background:#fafafa}
+		.modal-dialog .dialog-title{color:#000;font-size:1rem}
+		.modal-dialog .dialog-content{color:#000}
+		.modal-dialog header{height:1.25rem;line-height:1.25rem}
+		.modal-dialog section{text-align:center;width:83%;margin:0 auto;max-height:12.5rem;overflow:hidden;position:relative}
+		.modal-dialog footer{border-top:1px solid #ccc;height:2.875rem;line-height:2.875rem;margin-top:1.25rem;overflow:hidden}
+		.modal-dialog footer button{outline:none;border:0;padding:0;background:none;font-size:1rem;height:2.875rem}
+		.modal-dialog footer button.modal-dialog-onebtn{width:100%}
+		.modal-dialog footer button:after{content:"";border-right:1px solid #ccc;position:absolute;top:0;display:block;height:100%;right:0}
+		.modal-dialog footer button.last:after{display:none}
+		.modal-dialog footer .cancle-btn,.modal-dialog footer .sure-btn{width:50%;float:left;position:relative}
+		.modal-dialog footer .cancle-btn{color:#000}.modal-dialog footer .sure-btn{color:#65bd6a}
+		.modal-dialog.alert-dialog footer{text-align:center}.modal-dialog.alert-dialog footer .sure-btn{float:none;margin:0 auto}
+		.modal-dialog .dlg-animation{-webkit-transform-origin:center center;-webkit-animation:dialogAnimate .15s ease-in}
+		@-webkit-keyframes dialogAnimate{0%{-webkit-transform:rotate(0)}20%{-webkit-transform:rotate(3deg)}40%{-webkit-transform:rotate(0)}60%{-webkit-transform:rotate(-3deg)}70%{-webkit-transform:rotate(0deg)}80%{-webkit-transform:rotate(1deg)}90%{-webkit-transform:rotate(0deg)}95%{-webkit-transform:rotate(-1deg)}to{-webkit-transform:rotate(0)}}.dialog-mask{position:fixed;top:0;bottom:0;left:0;width:100%;z-index:8999;background:rgba(0,0,0,.5);display:none}#loading-box{background-color:rgba(40,40,40,.2)}#loading-box .load-contain{position:fixed;width:2.5rem;height:2.5rem;top:50%;left:45%;-webkit-animation:rotate 2s infinite linear}#loading-box .load1,#loading-box .load2{position:absolute;width:60%;height:60%;display:inline-block;top:0;background-color:rgba(0,203,254,.8);border-radius:100%;-webkit-animation:bounce 2s infinite ease-in-out}#loading-box .load2{top:auto;bottom:0;-webkit-animation-delay:-1s}@-webkit-keyframes rotate{to{-webkit-transform:rotate(1turn)}}@-webkit-keyframes bounce{0%,to{-webkit-transform:scale(0)}50%{-webkit-transform:scale(1)}}
+		.dlg-animation{-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both}
+		html{font-size:16px}body{font-size:14px;-webkit-text-size-adjust:100%;background:#fff;color:#000}img{vertical-align:bottom}
+		.article-detail{position:relative}
+		.art-tle{font-size:24px;margin-top:36px}.art-info{margin-top:14px;font-size:12px;color:#b2b2b2}.art-info em{margin-right:6px}
+		.art-content{margin-top:22px;font-size:16px;line-height:1.5;word-break:break-all}.art-content img{width:100%;margin:25px 0}
+		.art-content img+img{margin-top:0}section{margin-bottom:12px;padding:0 16px}#artFrame{width:100%}
+		.to-originurl{padding:32px 16px 28px;font-size:14px;text-align:right;color:#7f7f7f}
+		.circle-heart{position:relative;display:inline-block;width:49px;height:49px}
+		.circle-heart:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:#f0561c;border-radius:50%}
+		.heart{display:inline-block;position:relative;-webkit-transform:rotate(45deg);transform:rotate(45deg);top:50%;margin-top:-6px}
+		.heart,.heart:after,.heart:before{width:12px;height:12px;background-color:#fff}
+		.heart:after,.heart:before{position:absolute;content:"";display:block;border-radius:50%}.heart:before{left:-6px;bottom:0}
+		.heart:after{top:-6px;right:0}
+		.like-count{display:block;font-weight:300;font-size:12px;color:#7f7f7f;padding:8px 0 58px}
+		.light-color{color:#b2b2b2}.light-color-2{color:#7f7f7f}
+	</style>	
+	<link rel="stylesheet" type="text/css" href="http://browser-res.in.meizu.com/resources/promote-cnt/css/cnt.css" />
+	<script>
+		var imgStatus = ${(c.headImgStatus)!0};
+		var headImgDate = ${(c.headImgDate)!0};
+		var headImgUrl = ${(c.headImgUrl)!0};
+		var sponsorCount = ${(c.sponsorCount)!0};
+		var sponsorStatus = ${(c.sponsorStatus)!0};
+	</script>
+</head>
+<body>
+  <div class="main">
+  <h3>合集基本信息</h3>
+   <section class="article-detail">
+      <div class="art-info">
+        <em class="art-author">${(c.author)!}</em>
+        <em class="art-time">${(c.ct?datetime)!}</em>
+        <em class="art-time">${(c.ut?datetime)!}</em>
+      </div>
+    </section>
+  <h3>文章列表</h3>
+  <#if articles??>
+   <#list articles as article>
+    <h4>文章 ${article_index}信息</h4>
+    <section class="article-detail">
+      <h1 class="art-tle">${(article.title)!}</h1>
+      <h1 class="art-tle">${(article.link)!}</h1>
+      <article class="art-content">${(article.content)!}</article>
+    </section>
+   </#list>
+  </#if>
+  </div>
+  <script charset="utf-8" src="http://browser-res.in.meizu.com/resources/promote-cnt/js/cnt.js"></script>   
+</body>
+</html>

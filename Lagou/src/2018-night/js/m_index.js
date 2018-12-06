@@ -646,7 +646,7 @@
                         btn:'page3__btn01',
                         btnNext:'page3__btn01__btnnext',
                         titlestar:'middle',
-                        textstar01:'page3__card__textstar01--wider',
+                        // textstar01:'page3__card__textstar01--wider',
                         // text02:'stay-left',
                         content:[
                             {
@@ -663,7 +663,7 @@
                                 info:'奇幻世界中，show出办公室里不一样的你'
                             }
                         ],
-                        title:'探秘奇幻办公室场景',
+                        title:'探秘奇幻办公室',
                         detail:'为什么职场必须沉闷枯燥？<br/>放开想象，拉勾帮你解锁<br/>意想不到的个性Pose。'
                     },{ // 有情绪小卖部
                         light:'page3__card__light02',
