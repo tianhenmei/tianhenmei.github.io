@@ -786,6 +786,7 @@
                                         <div class="page2__card__btn"></div>
                                         <div class="page2__card__btn page2__card__btnnext"></div>
                                     </div>
+                                    <div class="page2__card__text">{{price_txt}}</div>
                                     <div class="page2__card__btnline"
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
@@ -876,6 +877,7 @@
                                         <div class="page2__card__btn page2__card02__btn"></div>
                                         <div class="page2__card__btn page2__card02__btnnext"></div>
                                     </div>
+                                    <div class="page2__card02__text page2__card__text">{{price_txt}}</div>
                                     <div class="page2__card02__btnline"
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
@@ -948,6 +950,7 @@
                                         <div class="page2__card__btn page2__card03__btn"></div>
                                         <div class="page2__card__btn page2__card03__btnnext"></div>
                                     </div>
+                                    <div class="page2__card03__text page2__card__text">{{price_txt}}</div>
                                     <div class="page2__card__btnline"
                                         :class="showForce ? '' : 'widthChange delay1-0'"></div>
                                 </div>
@@ -1088,6 +1091,7 @@
                                 <div class="page3__btn" :class="one.btn"></div>
                                 <div class="page3__btn" :class="one.btnNext"></div>
                             </div>
+                            <div class="page2__card__text" :class="'page3__btntext'+index">{{price_txt}}</div>
                             <div class="page3__btnline" :class="page3.activeCard == index ? 'widthChange delay1-0' : ''"></div>
                         </div>
                     </div>

@@ -1737,15 +1737,24 @@ body {
         &__btn {
             width:rem(1005);
             height:rem(220);
-            background:url('../images/page2-card-btn-02.png') no-repeat center top;
+            background:url('../images/page2-card-btn-03.png') no-repeat center top;
             background-size:100% 100%;
         }
         &__btn.active {
-            background-image:url('../images/page2-card-btnactive-02.png');
+            background-image:url('../images/page2-card-btnactive-03.png');
         }
         &__btnnext {
-            background-image:url('../images/page2-card-btnactive-02.png');
+            background-image:url('../images/page2-card-btnactive-03.png');
             transform:translate3d(0,rem(220),0);
+        }
+        &__text {
+            width:rem(499);
+            line-height:rem(76);
+            text-align:left;
+            font-size:rem(48);
+            color:#796c71;
+            font-weight:bold;
+            @include leftTop(506,71);
         }
         // page2__card__btnline
         &__btnline {
@@ -1967,15 +1976,18 @@ body {
         &__btn {
             width:rem(1010);
             height:rem(232);
-            background:url('../images/page2-card02-btn-02.png') no-repeat center top;
+            background:url('../images/page2-card02-btn-03.png') no-repeat center top;
             background-size:100% 100%;
         }
         &__btn.active {
-            background-image:url('../images/page2-card02-btnactive-02.png');
+            background-image:url('../images/page2-card02-btnactive-03.png');
         }
         &__btnnext {
-            background-image:url('../images/page2-card02-btnactive-02.png');
+            background-image:url('../images/page2-card02-btnactive-03.png');
             transform:translate3d(0,rem(232),0);
+        }
+        &__text {
+            color:#007c8c;
         }
         // page2__card02__btnline
         &__btnline {
@@ -2007,14 +2019,17 @@ body {
         }
         // page2__card03__btn
         &__btn {
-            background-image:url('../images/page2-card03-btn-02.png');
+            background-image:url('../images/page2-card03-btn-03.png');
         }
         &__btn.active {
-            background-image:url('../images/page2-card03-btnactive-02.png');
+            background-image:url('../images/page2-card03-btnactive-03.png');
         }
         &__btnnext {
-            background-image:url('../images/page2-card03-btnactive-02.png');
+            background-image:url('../images/page2-card03-btnactive-03.png');
             transform:translate3d(0,rem(220),0);
+        }
+        &__text {
+            color:#323cb1;
         }
         // page2__card03__titleLayer
         &__titleLayer {
@@ -3083,34 +3098,46 @@ body {
     &__btn {
         width:rem(1006);
         height:rem(223);
-        background:url('../images/page3-btn-02.png') no-repeat center top;
+        background:url('../images/page3-btn-03.png') no-repeat center top;
         background-size:100% 100%;
         @include leftTop(0,0);
         &__btnnext {
-            background-image:url('../images/page3-btnactive-02.png');
+            background-image:url('../images/page3-btnactive-03.png');
             transform:translate3d(0,rem(223),0);
         }
+    }
+    &__btntext0 {
+        color:#6f004e;
     }
     &__btn01 {
-        background-image:url('../images/page3-btn01-02.png');
+        background-image:url('../images/page3-btn01-03.png');
         &__btnnext {
-            background-image:url('../images/page3-btnactive01-02.png');
+            background-image:url('../images/page3-btnactive01-03.png');
             transform:translate3d(0,rem(223),0);
         }
+    }
+    &__btntext1 {
+        color:#780a13;
     }
     &__btn02 {
-        background-image:url('../images/page3-btn02-02.png');
+        background-image:url('../images/page3-btn02-03.png');
         &__btnnext {
-            background-image:url('../images/page3-btnactive02-02.png');
+            background-image:url('../images/page3-btnactive02-03.png');
             transform:translate3d(0,rem(223),0);
         }
     }
+    &__btntext2 {
+        color:#371700;
+    }
     &__btn04 {
-        background-image:url('../images/page3-btn04-02.png');
+        background-image:url('../images/page3-btn04-03.png');
         &__btnnext {
-            background-image:url('../images/page3-btnactive04-02.png');
+            background-image:url('../images/page3-btnactive04-03.png');
             transform:translate3d(0,rem(223),0);
         }
+    }
+    &__btntext3 {
+        color:#1e00b4;
     }
     &__btnline {
         width:rem(119);

@@ -207,6 +207,7 @@
             fontSize:16,
             shareStatus:false,
             hasShowedShare:false,
+            price_txt:"¥ ? 9 限时抢票",
             page0:{
                 status:'in',
                 in:{
