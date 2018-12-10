@@ -11,12 +11,10 @@
     <meta name="format-detection" content="telphone=no, email=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="prefetch" href="images/music.mp3?v=$version$" />
+    <!-- <link rel="prefetch" href="images/music.mp3?v=$version$" />
     <link rel="prefetch" href="images/loading.mp3?v=$version$" />
     <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
-    <!-- <link rel="prefetch" href="images/out-05.mp3?v=$version$" /> -->
-    <link rel="prefetch" href="images/tv-05.mp3?v=$version$" />
-    <!-- <link rel="prefetch" href="images/tv-bg.mp3?v=$version$" /> -->
+    <link rel="prefetch" href="images/tv-05.mp3?v=$version$" /> -->
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <!---上线之后加-->
     <title>2018拉勾奇妙夜</title>
@@ -156,6 +154,14 @@
     <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
 <body>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
+        </div>
+    </div>
     <div class="page-bg"></div>
     <div class="loading" id="loading">
         <div class="loading__snakeLayer opacityChange">
@@ -165,16 +171,6 @@
         <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div>
     </div>
     <div class="page page0 hide" id="page0"></div>
-    <div class="music-box">
-        <div class="music-icon open">
-            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
-            <!-- <audio style="opacity:0;" id="music-out" loop="loop" preload="auto" src="images/out-05.mp3?v=$version$"></audio> -->
-            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
-            <!-- <audio style="opacity:0;" id="music-bg" loop="loop" preload="auto" src="images/tv-bg.mp3?v=$version$"></audio> -->
-        </div>
-    </div>
     <script type="text/javascript">
         var page0words = [
                 {

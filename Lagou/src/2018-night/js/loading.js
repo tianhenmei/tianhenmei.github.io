@@ -1,6 +1,6 @@
 var audios = document.getElementsByTagName('audio'),
 	audiosArr = [],
-	audiosLen = audios.length;
+	audiosLen = 0;//audios.length;
 function loadAudio(){
 	var i = 0;
 	for(i = 0; i < audiosLen; i++){
@@ -406,6 +406,6 @@ var Loader = function(){
 };
 //window.onload = function(){
 var loader = new Loader();
-loadAudio();
+// loadAudio();
 loader.loadLoading(imgArray,loader);
 //};
