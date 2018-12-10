@@ -1406,6 +1406,14 @@
                             }
                             self.loopMusictvPlay();
                         },500);
+                        if(self.page3.activeCard == last){
+                            setTimeout(function(){
+                                if(!self.hasShowedShare && !self.shareStatus){
+                                    self.shareStatus = true;
+                                    self.hasShowedShare = true;
+                                }
+                            },5000);
+                        }
                     // },200);
                 }else if(this.page3.activeCard == last){
                     // this.page3.nomove = true;
@@ -1457,12 +1465,12 @@
                     now = self.page3.loopCard[current];
                     if(now == 2){
                         now = 0;
-                        if(current == 3 && !self.shareStatus && !self.hasShowedShare){
-                            self.shareStatus = true;
-                            self.hasShowedShare = true;
-                        }
                     }else{
                         now++;
+                        // if(!self.hasShowedShare && now == 2 && current == 3 && !self.shareStatus){
+                        //     self.shareStatus = true;
+                        //     self.hasShowedShare = true;
+                        // }
                     }
                     arr[current] = now;
                     self.page3.loopCard = arr; 
@@ -1495,7 +1503,7 @@
                 this.shareStatus = false;
             },
             toLoginIn:function(){
-                window.location.href = "https://activity.lagou.com/topic/qimiaoyebaoming.html"
+                window.location.href = "https://wx20c9876c0cecee4d.h5.xiaoe-tech.com/content_page/eyJ0eXBlIjoyLCJyZXNvdXJjZV90eXBlIjo1LCJyZXNvdXJjZV9pZCI6ImFjdGl2aXR5XzIwMTgxMjA2MTgyMVJTcmJFTDNvMTkwNyIsInByb2R1Y3RfaWQiOiIiLCJhcHBfaWQiOiJhcHBjQ3J3TVlCeDYyMzIifQ"; //"https://activity.lagou.com/topic/qimiaoyebaoming.html"
             },
         }
     })
