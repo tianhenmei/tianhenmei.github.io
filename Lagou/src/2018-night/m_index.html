@@ -159,7 +159,7 @@
             <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-loading" loop="loop" autoplay="autoplay" preload="auto" src="images/loading.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="music-in" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="music-tv" loop="loop" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music-tv" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
         </div>
     </div>
     <div class="page-bg"></div>
@@ -439,34 +439,24 @@
                 document.body.removeEventListener('touchstart', musicInBrowserHandler);
             }
             document.body.addEventListener('touchstart', musicInBrowserHandler);
-        
-            // 自动播放音乐效果，解决微信自动播放问题
-            function musicInWeixinHandler() {
-                if(audio.paused && !loadingMusicClose){
-                    audio.load();
-                    audio.play();
+        }
+        function initWeixinEvent(){
+            var loadingMusic = document.getElementById('music-loading'),
+                bgMusic = document.getElementById('music');
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                if(loadingMusic.paused && !loadingMusicClose){
+                    loadingMusic.play();
+                }else if(loadingMusicClose && bgMusic.paused){
+                    bgMusic.play();
                 }
-                document.addEventListener("WeixinJSBridgeReady", function () {
-                    if(audio.paused && !loadingMusicClose){
-                        audio.load();
-                        audio.play();
-                    }
-                }, false);
-                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-            }
-            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }, false);
         }
         // music-loading
         function playLoadingAudio(){
             var loadingMusic = document.getElementById('music-loading');
-            loadingMusic.oncanplay = function(){
-                if(loadingMusic.paused && !alreadyLoaded){
-                    playAudio(loadingMusic,function(){});
-                }
-            };
             backgroundMusic(loadingMusic);
-            playAudio(loadingMusic,function(){});
         }
+        initWeixinEvent();
         playLoadingAudio();
         // 设置page0文字动画
         initPage0Ani();
@@ -1226,7 +1216,13 @@
     <script src="js/tween.min.js?v=$version$"></script> 
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/m_index.js?v=$version$"></script>
-    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <script>
+        var analytics = document.createElement("script");
+        analytics.type = "text/javascript";
+        analytics.src = "https://www.lgstatic.com/activity/js/analytics.js";
+        document.body.appendChild(analytics);
+    </script>
+    <!-- <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script> -->
     <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
     <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
 </body>

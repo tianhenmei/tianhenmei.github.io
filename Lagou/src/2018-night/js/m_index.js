@@ -12,8 +12,8 @@
         initialLast = 0,
         mode = "production",// "development",//"production",
         music = document.getElementById("music");
-    var loadingHost = '';
-    // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
+    // var loadingHost = '';
+    var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
     // 音乐
     // if(mode != "development"){
     //     backgroundMusic(document.getElementById("music"));
