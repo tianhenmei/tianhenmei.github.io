@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+        <meta charset="utf-8">
+        <meta name="keywords" content="2019脉脉豪门大厂测试">
+        <meta name="description" content="2019脉脉豪门大厂测试">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<link rel="Shortcut Icon" href="http://img.digoo.cn/h5/002/images/share.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>2019脉脉豪门大厂测试</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 750,
+                    h: 1206
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            // test
+            // alert(GC.w+", "+GC.h)
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+            setFontSize();
+            var loadingStatus = false,
+                pageStatus = false,
+                startTime = Date.now(),
+                app = null,
+                pload = {
+                    status:'in',
+                    in:{
+                        outer:"",
+                        bg:"opacityChange delay1-5",
+                        logo:"opacityChange delay0-5",
+                        title:"downToCenter delay0-7",
+                        detail:"opacityChange delay1-2",
+                        num:"opacityChange delay2-0",
+                        layer:"zoomIn",
+                        choose:"opacityChange delay0-5",
+                        boy:"bounceInLeft delay1-0",
+                        girl:"bounceInRight delay1-0"
+                    },
+                    out:{
+                        outer:"opacityChange-out delay0-2 duration0-3",
+                        bg:"",
+                        logo:"",
+                        title:"",
+                        detail:"",
+                        num:"",
+                        layer:"zoomIn-out duration0-2",
+                        choose:"",
+                        boy:"",
+                        girl:""
+                    },
+                },
+                loadingComplete = function(){
+                    var loading = document.getElementById('loading')
+                    var appElement = document.getElementById('app');
+                    appElement.className = appElement.className.replace(' hide','');
+
+                    pload.status = 'out';
+                    loading.className += ' opacityChange-out duration0-3'
+                    setTimeout(() => {
+                        document.getElementById('loading').className += ' hide';
+                    }, 500);
+                },
+                loadingSuccess = function(){
+                    var now = Date.now(),
+                        space = now - startTime;
+                    if(space < 2000){
+                        setTimeout(function(){
+                            loadingComplete()
+                        },2000 - space)
+                    }else{
+                        loadingComplete()
+                    }
+                }
+		</script>
+	</head>
+<body>
+    <audio style="display:none;" id="btn" preload="auto" src="images/music/btn.mp3"></audio>
+    <audio style="display:none;" id="q1" preload="auto" src="images/music/q1.mp3"></audio>
+    <audio style="display:none;" id="q2" loop="loop" preload="auto" src="images/music/q2.mp3"></audio>
+    <audio style="display:none;" id="q3" preload="auto" src="images/music/q3.mp3"></audio>
+    <audio style="display:none;" id="q4" loop="loop" preload="auto" src="images/music/q4.mp3"></audio>
+    <audio style="display:none;" id="q5" loop="loop" preload="auto" src="images/music/q5.mp3"></audio>
+    <audio style="display:none;" id="q6" loop="loop" preload="auto" src="images/music/q6.mp3"></audio>
+    <audio style="display:none;" id="q7" loop="loop" preload="auto" src="images/music/q7.mp3"></audio>
+    <audio style="display:none;" id="q8" preload="auto" src="images/music/q8.mp3"></audio>
+    <audio style="display:none;" id="q9" loop="loop" preload="auto" src="images/music/q9.mp3"></audio>
+
+    <div class="loading" id="loading">
+        <div class="loading__num opacityChange delay0-5" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript">
+        var loading = document.getElementById('loading');
+        loading.addEventListener('touchmove',function(e){
+            e.stopPropagation();
+            e.preventDefault();
+        },{passive:false});
+    </script>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="page0.moveStatus ? 'moveStatus '+page0[page0.status] : activePage == 0 ? 'active' : 'hide'">
+            <div class="page0__center" :style="{
+                    'top':getFitTop(0,1,132)
+                }">
+                <div class="page0__bg"></div>
+                <div class="page0__logoParent zoomIn origin-bubble delay1-0">
+                    <div class="icon page0__bubble"></div>
+                    <div class="icon page0__logo"></div>
+                </div>
+                <div class="page0___titleParent bounceInDown delay0-5">
+                    <div class="icon page0__title littleZoom delay1-5"></div>
+                </div>
+                <div class="page0__words">
+                    <div class="page0__wlist--01Parent littleTopIn duration1-5 delay2-0">
+                        <div class="page0__wlist page0__wlist--01">
+                            兢兢业业敲代码 vs 喜欢<br/>
+                            表现自己成绩<br/>
+                            豪门大厂更想要谁？
+                        </div>
+                    </div>
+                    <div class="page0__wlist--02Parent littleTopIn duration1-5 delay2-3">
+                        <div class="page0__wlist page0__wlist--02">
+                            性格好但没业绩 vs 有能力但怼天怼地<br/>
+                            豪门大厂更青睐谁？
+                        </div>
+                    </div>
+                    <div class="page0__wlist--03Parent littleTopIn duration1-5 delay2-6">
+                        <div class="page0__wlist page0__wlist--03">
+                            闷头苦干 vs 方法论至上<br/>
+                            豪门大厂更看好谁？
+                        </div>
+                    </div>
+                    <div class="page0__wlist--04Parent littleTopIn duration1-5 delay2-9">
+                        <div class="page0__wlist page0__wlist--04"> 
+                            豪门到底喜欢什么样的人<br/>
+                            此生你有没有豪门命<br/>
+                            来未来规划局测一测
+                        </div>
+                    </div>
+                </div>
+                <div class="page0__person page0__person--left bounceInLeft delay3-4"></div>
+                <div class="page0__person page0__person--right bounceInRight delay3-4"></div>
+                <div class="page0__btn zoomIn delay3-9" @click.stop.prevent="startTest">
+                    <div class="icon page0__btn--top page0BtnMove delay4-4"></div>
+                    <div class="icon page0__btn--bottom"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page page1" :class="page0.moveStatus ? 'active' : page1.moveStatus ? 'moveStatus '+page1[page1.status] : activePage == 1 ? 'active' : 'hide'">
+            <div class="page1__bg"></div>
+            <div class="page1__employee" :class="activePage == 1 ? 'page1PersonMove duration1-0' : 'hide'">
+                <div class="page1__employee--body"></div>
+                <div class="page1__employee--head headMove delay0-5"></div>
+            </div>
+            <div class="page0__center" :class="activePage == 1 ? '' : 'hide'" :style="{
+                'top':getFitTop(0,1/2,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 littleTopIn delay1-8 duration1-0"></div>
+                    <div class="icon page__question--dot page__question--dot2 littleTopIn delay1-8 duration1-0"></div>
+                    <div class="page__question--title littleTopIn delay1-8 duration1-0">
+                        <div class="icon page__question--titleTop"></div>
+                        <div class="icon page__question--titleBottom"></div>
+                        <div class="question page__question--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page1.answers"
+                        :class="'page__question--one'+one+' opacityChange delay'+getDelayTime(40,index,5)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(0,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+(page1.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page2" :class="page1.moveStatus ? 'active' : page2.moveStatus ? 'moveStatus' : activePage == 2 ? 'active' : 'hide'">
+            <div class="page2__main" :class="page2.moveStatus ? page2[page2.status] : ''">
+                <div class="page2__bg"></div>
+                <div class="page2__person">
+                    <div class="icon page2__person--mark1 zoomIn delay1-0 origin-lb"></div>
+                    <div class="icon page2__person--mark2 zoomIn delay1-3 origin-lb"></div>
+                </div>
+                <div class="page2__colleague"></div>
+                <div class="page0__center" :style="{
+                    'top':getFitTop(0,1/4,132)
+                }">
+                    <div class="page__question">
+                        <div class="icon page__question--dot page__question--dot1 opacityChange delay1-8"></div>
+                        <div class="icon page__question--dot page__question--dot2 opacityChange delay1-8"></div>
+                        <div class="page__question--title littleBottomIn delay1-8">
+                            <div class="icon page__question--titleTop"></div>
+                            <div class="icon page__question--titleBottom"></div>
+                            <div class="question page__question--titleText page__question1--titleText"></div>
+                        </div>
+                        <div class="page__question--one" v-for="(one,index) in page2.answers"
+                            :class="'page__question--one'+one+' '+page2.in[one]"
+                            @click.stop.prevent="activeChooseEvent(1,index)">
+                            <div class="question page__question--text" 
+                                :class="'page__question--text'+one+' page__question1--text'+one+(page2.active == index ? ' page__question--active' : '')"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page3" :class="page2.moveStatus ? 'active' : page3.moveStatus ? 'moveStatus '+page3[page3.status] : activePage == 3 ? 'active' : 'hide'">
+            <div class="page3__bg"></div>
+            <div class="page3__top"></div>
+            <div class="page3__colleague"></div>
+            <div class="page3__boss bossChange delay1-0"></div>
+            <div class="page3__light zoomIn delay0-5 duration0-2 origin-ct" :style="{'height':getDynamicHeight(1176-132,1,undefined)}"></div>
+            <div class="page3__person"></div>
+            <div class="page0__center page3__center">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 leftIn delay2-0 duration1-0"></div>
+                    <div class="icon page__question--dot page__question--dot2 leftIn delay2-0 duration1-0"></div>
+                    <div class="page__question--title leftIn delay1-5 duration1-0">
+                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
+                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="page__question--titleText page__question2--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page3.answers"
+                        :class="'page__question--one'+one+' page__question2--one'+one+' leftIn delay'+getDelayTime(30,index,3)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(2,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question2--text'+one+(page3.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog" :class="page3.dialogStatus ? '' : 'hide'">
+                <div class="dialog__center zoomIn">
+                    <div class="dialog__line dialog__line01"></div>
+                    <div class="dialog__line dialog__line02"></div>
+                    <div class="dialog__line dialog__line03"></div>
+                    <div class="answer dialog__title"></div>
+                    <div class="dialog__content">
+                            「车好多」之职场锦囊<br/>
+                            职场中的挑战不可避免，要有包容的心<br/>
+                            和不懈的迎接挑战的精神。<br/>
+                            不怕问题，只怕没有解决问题的决心和<br/>
+                            能力。
+                    </div>
+                    <div class="icon dialog__btn" @click.stop.prevent="question3TryAgain"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page page4" :class="page3.moveStatus ? 'active' : page4.moveStatus ? 'moveStatus rotateZoomOut' : activePage == 4 ? 'active' : 'hide'">
+            <div class="page4__bg"></div>
+            <div class="page4__bottom"></div>
+            <div class="page4__colleague"></div>
+            <div class="page4__hand handChange delay0-5"></div>
+            <div class="page4__person"></div>
+            <div class="page4__sweatParent">
+                <div class="page4__sweat sweatChange"></div>
+            </div>
+            <!-- <div class="page4__canvasParent">
+                <canvas id="page4__canvas" class="page4__canvas"></canvas>
+            </div> -->
+            <div class="page0__center" :style="{
+                'top':getFitTop(0,1/4,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-2"></div>
+                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-2"></div>
+                    <div class="page__question--title zoomIn delay1-0">
+                        <div class="icon page__question--titleTop"></div>
+                        <div class="icon page__question--titleBottom"></div>
+                        <div class="question page__question--titleText page__question3--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page4.answers"
+                        :class="'page__question--one'+one+' zoomIn delay'+getDelayTime(25,index,5)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(3,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question3--text'+one+(page4.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page5" :class="page4.moveStatus ? 'active' : page5.moveStatus ? 'moveStatus zoomIn-out origin-lt' : activePage == 5 ? 'active' : 'hide'">
+            <div class="page5__bg"></div>
+            <div class="page5__person"></div>
+            <div class="page5__arrow zoomIn delay1-0 origin-lb"></div>
+            <div class="page5__messageParent messageMove delay1-0">
+                <div class="icon page5__message zoomIn delay1-0"></div>
+            </div>
+            <div class="page0__center" :style="{
+                'top':getFitTop(0,1/4,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-8"></div>
+                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-8"></div>
+                    <div class="page__question--title zoomIn delay1-5">
+                        <div class="icon page__question--titleTop"></div>
+                        <div class="icon page__question--titleBottom"></div>
+                        <div class="question page__question--titleText page__question4--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page5.answers"
+                        :class="'page__question--one'+one+' zoomIn delay'+getDelayTime(25,index,2)"
+                        @click.stop.prevent="activeChooseEvent(4,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question4--text'+one+(page5.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="dialog" :class="page5.dialogStatus ? '' : 'hide'">
+                <div class="dialog__center zoomIn">
+                    <div class="dialog__line dialog__line01"></div>
+                    <div class="dialog__line dialog__line02"></div>
+                    <div class="answer dialog__title"></div>
+                    <div class="dialog__content">
+                        「车好多」之职场锦囊<br/>
+                        逃避不能解决问题，主人翁意识和<br/>
+                        解决问题的精神不可缺少。<br/>
+                        说好的创新呢？说好的用技术改变<br/>
+                        世界的志向呢？
+                    </div>
+                    <div class="icon dialog__btn" @click.stop.prevent="question5TryAgain"></div>
+                </div>
+            </div>
+        </div>
+        <div class="page page6" :class="page5.moveStatus ? 'active' : page6.moveStatus ? 'moveStatus topIn-out duration0-7' : activePage == 6 ? 'active' : 'hide'">
+            <div class="page6__bg"></div>
+            <div class="page6__bottom"></div>
+            <div class="page6__colleague"></div>
+            <div class="page6__mouth mouthChange"></div>
+            <div class="page6__computer"></div>
+            <div class="page6__codeParent">
+                <div class="page6__code codeMove"></div>
+            </div>
+            <div class="page6__person"></div>
+            <div class="page6__flower"></div>
+            <div class="page6__ppt pptChange"></div>
+            <div class="page0__center" :style="{
+                'top':getFitTop(0,1/4,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 leftIn delay1-0 duration1-0"></div>
+                    <div class="icon page__question--dot page__question--dot2 leftIn delay1-0 duration1-0"></div>
+                    <div class="page__question--title leftIn delay1-0 duration1-0">
+                        <div class="icon page__question--titleTop"></div>
+                        <div class="icon page__question--titleBottom"></div>
+                        <div class="question page__question--titleText page__question5--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page6.answers"
+                        :class="'page__question--one'+one+'  leftIn delay'+getDelayTime(25,index,2)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(5,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question5--text'+one+(page6.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page7" :class="page6.moveStatus ? 'active' : page7.moveStatus ? 'moveStatus bounceOutDown' : activePage == 7 ? 'active' : 'hide'">
+            <div class="page7__main">
+                <div class="page7__bg"></div>
+                <div class="page7__celebrate">
+                    <div class="page7__celebrate--word page7__celebrate--word01 page7MoveW01"></div>
+                    <div class="page7__celebrate--word page7__celebrate--word02 page7MoveW02 delay0-3"></div>
+                    <div class="page7__celebrate--word page7__celebrate--word03 page7MoveW03 delay0-6"></div>
+                </div>
+                <div class="page7__bottom"></div>
+                <div class="page7__colleague"></div>
+                <div class="page7__person"></div>
+                <div class="page0__center" :style="{
+                    'top':getFitTop(0,1/4,132)
+                }">
+                    <div class="page__question">
+                        <div class="icon page__question--dot page__question--dot1 opacityChange delay1-5"></div>
+                        <div class="icon page__question--dot page__question--dot2 opacityChange delay1-5"></div>
+                        <div class="page__question--title scaleY delay1-5">
+                            <div class="icon page__question--titleTop"></div>
+                            <div class="icon page__question--titleBottom"></div>
+                            <div class="question page__question--titleText page__question6--titleText"></div>
+                        </div>
+                        <div class="page__question--one" v-for="(one,index) in page7.answers"
+                            :class="'page__question--one'+one+' page__question6--one'+one+' scaleY delay'+getDelayTime(25,index,2)"
+                            @click.stop.prevent="activeChooseEvent(6,index)">
+                            <div class="question page__question--text" 
+                                :class="'page__question--text'+one+' page__question6--text'+one+(page7.active == index ? ' page__question--active' : '')"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog" :class="page7.dialogStatus ? '' : 'hide'">
+                    <div class="dialog__center zoomIn">
+                        <div class="dialog__line dialog__line01"></div>
+                        <div class="answer dialog__title"></div>
+                        <div class="dialog__content">
+                            「车好多」之职场锦囊<br/>
+                            职场玻璃心不可取，遇事先把心态摆正<br/>
+                            每个现象都有根源，你要做的是理性分<br/>
+                            析解决问题，<br/>
+                            而不是一味逃避，或许你缺少的，只是<br/>
+                            一份求变创新的精神
+                        </div>
+                        <div class="icon dialog__btn" @click.stop.prevent="question7TryAgain"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page8" :class="page7.moveStatus ? 'active' : page8.moveStatus ? 'moveStatus rollOut' : activePage == 8 ? 'active' : 'hide'">
+            <div class="page8__bg"></div>
+            <div class="page8__bottom"></div>
+            <div class="page8__colleague">
+                <div class="icon page8__colleague--eye01 littleZoomInfinite delay0-2"></div>
+                <div class="icon page8__colleague--eye02 littleZoomInfinite delay0-2"></div>
+                <div class="icon page8__colleague--eye03 littleZoomInfinite delay0-3"></div>
+                <div class="icon page8__colleague--eye04 littleZoomInfinite delay0-3"></div>
+            </div>
+            <div class="page8__person"></div>
+            <div class="page0__center" :style="{
+                'top':getFitTop(0,1/4,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-0"></div>
+                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-0"></div>
+                    <div class="page__question--title jackInTheBox delay1-0">
+                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
+                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="question page__question--titleText page__question7--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page8.answers"
+                        :class="'page__question--one'+one+' page__question2--one'+one+' jackInTheBox delay'+getDelayTime(20,index,3)"
+                        @click.stop.prevent="activeChooseEvent(7,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question7--text'+one+(page8.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page9" :class="page8.moveStatus ? 'active' : page9.moveStatus ? 'active' : activePage == 9 ? 'active' : 'hide'">
+            <div class="page9__bg"></div>
+            <div class="page9__words"></div>
+            <div class="page9__person page9PersonChange"></div>
+            <div class="page9__colleague"></div>
+            <div class="page0__center" :style="{
+                'top':getFitTop(0,1/4,132)
+            }">
+                <div class="page__question">
+                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-5"></div>
+                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-5"></div>
+                    <div class="page__question--title centerZoomIn delay1-0">
+                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
+                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="question page__question--titleText page__question8--titleText"></div>
+                    </div>
+                    <div class="page__question--one" v-for="(one,index) in page9.answers"
+                        :class="'page__question--one'+one+' page__question2--one'+one+' centerZoomIn delay'+getDelayTime(25,index,2)"
+                        @click.stop.prevent="activeChooseEvent(8,index)">
+                        <div class="question page__question--text" 
+                            :class="'page__question--text'+one+' page__question8--text'+one+(page9.active == index ? ' page__question--active' : '')"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page10" :class="page9.moveStatus ? 'zoomIn' : activePage == 10 ? 'active' : 'hide'">
+            <div class="page10__bg"></div>
+            <div class="answer page10__logo"></div>
+            <div class="page10__result0" v-if="lastResult == 0">
+                <div class="meat-move" :class="'meatChange-'+one" v-for="one in page10.meat">
+                    <div class="icon page10__result0--meat page10__meat" :class="'meat-'+one"></div>
+                </div>
+                <div class="answer page10__basketball moveDownInfinite" :style="{top:getFitTop(53-132,1/3,0)}"></div>
+                <div class="answer page10__hearset littleRightTopInfinite" :style="{top:getFitTop(594-132,1/3,0)}"></div>
+                <div class="answer page10__game littleTopInfinite" :style="{top:getFitTop(763-132,1,0)}"></div>
+                <div class="page10__top" :style="{top:getFitTop(0,1/3,0)}">
+                    <div class="result page10__result--shadow"></div>
+                    <div class="result page10__result--rich"></div>
+                    <div class="result page10__result0--title"></div>
+                    <div class="icon page10__result0--dot"></div>
+                    <div class="icon page10__result0--bun"></div>
+                    <div class="icon page10__result0--meat"></div>
+                </div>
+                <div class="page10__top" :style="{top:getFitTop(0,2/3,0)}">
+                    <div class="answer page10__wordsBg"></div>
+                    <div class="answer page10__wordsTitle"></div>
+                    <div class="result page10__result0--wordsContent"></div>
+                </div>
+            </div>
+            <div class="page10__result1" v-else-if="lastResult == 1">
+                <div class="words page10__cloud littleLeftInfinite" :style="{top:getFitTop(105-3-132,1/3,0)}"></div>
+                <div class="words page10__glass littleTopInfinite" :style="{top:getFitTop(673-3-132,1/3,0)}"></div>
+                <div class="words page10__mouse littleRightTopInfinite" :style="{top:getFitTop(776-3-132,1,0)}"></div>
+                <div class="page10__top" :style="{top:getFitTop(0,1/3,0)}">
+                    <div class="result page10__result--shadow"></div>
+                    <div class="result page10__result--rich"></div>
+                    <div class="result page10__result1--title"></div>
+                    <div class="icon page10__result1--line"></div>
+                    <div class="icon page10__result1--light zoomInfinite"></div>
+                    <div class="icon page10__result1--fou"></div>
+                    <div class="icon page10__result1--flower"></div>
+                </div>
+                <div class="page10__top" :style="{top:getFitTop(0,2/3,0)}">
+                    <div class="words page10__wordsBg page10__result1--wordsBg"></div>
+                    <div class="answer page10__wordsTitle page10__result1--wordsTitle"></div>
+                    <div class="result page10__result1--wordsContent"></div>
+                </div>
+            </div>
+            <div class="page10__result2" v-else-if="lastResult == 2">
+                <div class="words page10__dec01 littleTopInfinite" :style="{top:getFitTop(117-3-132,1/3,0)}"></div>
+                <div class="words page10__dec02 moveDownInfinite" :style="{top:getFitTop(603-3-132,1/3,0)}"></div>
+                <div class="words page10__dec03 littleLeftInfinite" :style="{top:getFitTop(763-3-132,1,0)}"></div>
+                <div class="page10__top" :style="{top:getFitTop(0,1/3,0)}">
+                    <div class="result page10__result--shadow page10__result2--shadow"></div>
+                    <div class="result page10__result--rich"></div>
+                    <div class="result page10__result2--title"></div>
+                    <div class="icon page10__result2--search"></div>
+                    <div class="icon page10__result2--book"></div>
+                    <div class="icon page10__result2--heart heartChange delay1-0"></div>
+                    <div class="icon page10__result2--flower"></div>
+                </div>
+                <div class="page10__top" :style="{top:getFitTop(0,2/3,0)}">
+                    <div class="words page10__wordsBg page10__result2--wordsBg"></div>
+                    <div class="answer page10__wordsTitle page10__result2--wordsTitle"></div>
+                    <div class="words page10__result2--wordsContent"></div>
+                </div>
+            </div>
+            <div class="page10__result3" v-else-if="lastResult == 3">
+                <div class="words page10__cos littleLeftInfinite" :style="{top:getFitTop(107-3-132,1/3,0)}"></div>
+                <div class="words page10__match littleTopInfinite" :style="{top:getFitTop(598-3-132,1/3,0)}"></div>
+                <div class="words page10__fire littleTopInfinite" :style="{top:getFitTop(764-3-132,1,0)}"></div>
+                <div class="page10__top" :style="{top:getFitTop(0,1/3,0)}">
+                    <div class="result page10__result--shadow page10__result3--shadow"></div>
+                    <div class="result page10__result--rich"></div>
+                    <div class="result page10__result3--title"></div>
+                    <div class="words page10__result3--face"></div>
+                    <div class="words page10__result3--award"></div>
+                    <div class="words page10__result3--en"></div>
+                    <div class="words page10__result3--flower"></div>
+                </div>
+                <div class="page10__top" :style="{top:getFitTop(0,2/3,0)}">
+                    <div class="words page10__wordsBg page10__result3--wordsBg"></div>
+                    <div class="answer page10__wordsTitle page10__result3--wordsTitle"></div>
+                    <div class="words page10__result3--wordsContent"></div>
+                </div>
+            </div>
+            <div class="answer page10__again rubberBand delay0-5" :style="{top:getFitTop(1115-3-132,1,0)}"
+                @click.stop.prevent="tryAgainEvent"></div>
+            <div class="answer page10__showmore rubberBand delay0-5" :style="{top:getFitTop(1114-3-132,1,0)}">
+                <a class="page10__showmore--a" href="https://maimai.cn/company?webcid=fEfKNpxC" target="_blank"></a>
+            </div>
+        </div>
+        <div class="mmlogo"></div>
+    </div>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music/bg.mp3"></audio>
+        </div>
+    </div>
+    <script src="js/jquery.1.10.1.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        if(isWeiXin()){
+            ShareWeChat();
+        }
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true
+            } else {
+                return false
+            }
+        }
+        function ShareWeChat(){
+            var url = location.href.split('#')[0];
+            url = encodeURIComponent(url);
+            $.ajax({  
+                type : "get",  
+                url : "http://a2.digoo.cn/wx/jssdk.php?url="+url,
+                dataType : "jsonp",  
+                jsonp: "callback",  
+                jsonpCallback:"success_jsonpCallback",  
+                success : function(data){
+                    wx.config({ 
+                        debug:false, 
+                        appId: data.appId,  
+                        timestamp: data.timestamp,  
+                        nonceStr: data.nonceStr,  
+                        signature: data.signature,  
+                        jsApiList: [
+                            "onMenuShareTimeline",
+                            "onMenuShareAppMessage",   
+                            "onMenuShareQQ",  
+                            "onMenuShareWeibo",
+                        ]  
+                    });  
+                },  
+                error:function(data){  }  
+            });
+            wx.ready(function (){
+                var shareTimeline = {  
+                    "imgUrl": "images/share.jpeg",
+                    "desc": "11/30-12/1 北京，TOP100名企、行业大咖、权威媒体都在现场，等你来",//$fxtext[Math.floor(Math.random()*10)],
+                    "title": '2018脉脉年度雇主评选盛典报名中',
+                    "link": window.location.href  //"http://a2.digoo.cn/h5/002/",
+                }; 
+                wx.onMenuShareAppMessage(shareTimeline);  
+                wx.onMenuShareTimeline(shareTimeline);  
+                wx.onMenuShareQQ(shareTimeline);  
+                wx.onMenuShareWeibo(shareTimeline);  	
+            }); 
+        }
+    </script>
+</body>
+</html>

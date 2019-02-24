@@ -14,33 +14,38 @@ function multiply(a,b){
 	for(i = 0; i < arr.length; i++){
 		tens = 0;
 		units = 0;
-        res[i] = [];
+		res[i] = [];
+		// 如果当前为0，则乘积为0，直接放置0
         if(arr[i] == 0){
             res[i].push(0);
             continue;
-        }
+		}
+		// 当前第i位相乘时，应该将前i位都置为0
 		for(p = 0; p < i; p++){
 			res[i].push(0);
 		}
+		// 挨个相乘
 		for(j = 0; j < brr.length; j++){
-			temp = arr[i] * brr[j] + tens;
-			tens = Math.floor(temp / 10);
-			units = temp % 10;
+			temp = arr[i] * brr[j] + tens;  // 当前结果+上次的进位
+			tens = Math.floor(temp / 10);  // 这次进位
+			units = temp % 10;  // 当前结果
 			res[i].push(units);
 		}
-		if(tens > 0){
+		if(tens > 0){  // 如果最后一位相乘还有值，则将进位也放入数组中
 			res[i].push(tens);
 		}
-		if(res[i].length > len){
+		if(res[i].length > len){  // 保存结果中最长的数组长度
 			len = res[i].length;
 		}
     }
     // for(i = 0; i < res.length; i++){
     //     res[i] = res[i].reverse();
-    // }
+	// }
+	// 循环乘积数组，将结果加起来
     tens = 0;
 	for(i = 0; i < len; i++){
 		temp = 0;
+		// 按列相加，没有值取0
 		for(j = 0; j < res.length; j++){
 			temp += +res[j][i] || 0
 		}
