@@ -26,7 +26,7 @@ var imgArray = [
 	"images/page4-bottom.png",
 	"images/page4-colleague.png",
 	"images/page4-hand01.png",
-	"images/page4-person-sweat.png",
+	"images/page4-sweat-01.png",
 	"images/page5-bg.png",
 	"images/page6-bg.png",
 	"images/page6-bottom.png",

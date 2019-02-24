@@ -421,19 +421,29 @@ app = new Vue({
             },700)
         },
         playAudio:function(index){
-            var audio = document.getElementById('q'+index);
+            var audio = document.getElementById('q'+index),
+                self = this;
             if(index == 1){
                 setTimeout(function(){
-                    audio.play();
-                },1500);
+                    self.startPlay(audio);
+                },1000);
             }else if(index == 3){
                 setTimeout(function(){
-                    audio.play();
+                    self.startPlay(audio);
                 },2500);
             }else if(index == 10){
 
             }else{
-                audio.play();
+                self.startPlay(audio);
+            }
+        },
+        startPlay:function(elem){
+            if (window.WeixinJSBridge) {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    elem.play();
+                }, false);
+            }else{
+                elem.play();
             }
         },
         closeEvent:function(pindex){
