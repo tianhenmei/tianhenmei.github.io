@@ -523,6 +523,11 @@ app = new Vue({
             })
         },
         question3TryAgain:function(){
+            var audio = document.getElementById('q1'),
+                self = this;
+            setTimeout(function(){
+                self.startPlay(audio);
+            },1000);
             this.page1.active = -1;
             this.page2.active = -1;
             this.page3.active = -1;
