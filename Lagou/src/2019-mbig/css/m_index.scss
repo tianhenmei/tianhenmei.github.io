@@ -90,7 +90,7 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#loading__num,#loading__layer,#loading__boy,#loading__girl,#canvas),
+[id]:not(#app,#loading,#loading__num,#loading__layer,#loading__boy,#loading__girl,#canvas,#music-box),
 iframe {
     width:0!important;
     height:0!important;
@@ -212,37 +212,46 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color:#000000;
+    background-color:#384862;
 }
 .loading {
     width:100%;
     height:100%;
     position:relative;
+    background-color:#384862;
     // background:#000;
     // background:#000 url('../images/loading-bg.png') no-repeat center bottom;
     // background-size:100%;
+    &__computer {
+        width:rem(173);
+        height:rem(146);
+        background:url('../images/loading-computer.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(288,476-132);
+    }
     .loading__num {
-        width:rem(200);
+        width:rem(750);
         line-height:rem(36);
-        @include center(250,551);
-        font-size:rem(34.3);
-        color:#bfa983;
+        @include center(0,650 - 132);
+        font-size:rem(26.6);
+        color:#fff;
         text-align:center;
-        font-family: 'DINItalic';  
+        // font-family:'DINCondBlack';
+        // font-family: 'DINItalic';  
     }
 }
 .music-box {
-    width: rem(49);
-    height: rem(49);
+    width: rem(55);
+    height: rem(55);
     @include centerr(25,11);
 }
 .music-icon {
     z-index: 99;
-    width: rem(49);
-    height: rem(49);
+    width: rem(55);
+    height: rem(55);
     // @include centerr(25, 11);
-    // background: url('../images/music-icon.png') no-repeat center top;
-    // background-size:100% 100%;
+    background: url('../images/music-icon.png') no-repeat center top;
+    background-size:100% 100%;
 }
 .music-icon.open{
     animation:musicRotateInfinite 2s both linear infinite;
@@ -439,7 +448,7 @@ body {
     &__center {
         width:100%;
         height:100%;
-        @include leftTop(0,0);
+        @include leftTop(0,50);
     }
     &__bg {
         width:100%;
@@ -477,23 +486,30 @@ body {
     }
     &__words {
         width:100%;
-        @include center(0,527-132);
+        @include center(0,527-132-30);  // 527-132
     }
     &__wlist {
-        line-height:rem(30);
-        font-size:rem(24);
+        line-height:rem(30/0.8);
+        font-size:rem(30);
         text-align:center;
         color:#fff;
         &--01,
         &--02,
         &--03 {
-            padding-bottom:rem(31);
-            transform:scale(0.75,0.75);
+            // padding-bottom:rem(31);
+            transform:scale(0.6,0.6);  // 18
+            font-weight:bold;
+        }
+        &--02,
+        &--03 {
+            margin-top:rem(-24);
         }
         &--04 {
+            margin-top:rem(-14);
             // font-size:rem(20);
             font-weight:bold;
-            transform:scale(0.833,0.833);
+            transform:scale(0.6,0.6);  // 18
+            // transform:scale(0.666,0.666);
         }
     }
     &__person {
@@ -628,7 +644,7 @@ body {
         @include leftTop(0,0);
     }
     &__center {
-        top:rem(132);
+        // top:rem(132);
     }
     &__top {
         width:rem(750);
@@ -2150,6 +2166,17 @@ body {
         transform: scale3d(1,1,1);
     }
 }
+.zoomBig {
+    animation:zoomBig 1s both ease-in-out;
+}
+@keyframes zoomBig {
+    0%,100% {
+        transform: scale3d(1,1,1);
+    }
+    50% {
+        transform: scale3d(1.2,1.2,1.2);
+    }
+}
 .zoomBigShake {
     animation:zoomBigShake 0.5s both linear;
 }
@@ -2814,6 +2841,17 @@ body {
     }
     100% {
         transform:translate3d(0,-100%,0);
+    }
+}
+.movePageLLast {
+    animation:movePageLLast 0.5s both linear;
+}
+@keyframes movePageLLast {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    100% {
+        transform:translate3d(-100%,0,0);
     }
 }
 .movePageUNow {

@@ -223,7 +223,9 @@ app = new Vue({
             moveStatus:false,
             status:'in',
             in:'',
-            out:'cutCardParentShake',
+            out:'movePageLLast',//'cutCardParentShake',
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C"],
             active:-1
         },
@@ -234,7 +236,9 @@ app = new Vue({
                 A:"littleBottomIn delay2-5 duration1-0",
                 B:"littleBottomIn delay2-8 duration1-0"
             },
-            out:'flipLeft',
+            out:'movePageLLast',//'flipLeft',
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B"],
             active:-1
         },
@@ -242,7 +246,9 @@ app = new Vue({
             moveStatus:false,
             status:'in',
             in:'',
-            out:'leftIn-out duration0-7',
+            out:'movePageLLast',//'leftIn-out duration0-7',
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             dialogStatus:false,
             answers:["A","B","C","D"],
             active:-1
@@ -253,13 +259,19 @@ app = new Vue({
             img:null,
             moveStatus:false,
             status:'in',
+            out:'movePageLLast',//'rotateZoomOut',
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C"],
             active:-1
         },
         page5:{
             moveStatus:false,
             status:'in',
+            out:'movePageLLast',//'zoomIn-out origin-lt',
             dialogStatus:false,
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C"],
             active:-1
         },
@@ -267,23 +279,37 @@ app = new Vue({
             moveStatus:false,
             status:'in',
             in:'',
-            out:'',
+            out:'movePageLLast',// topIn-out duration0-7
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C"],
             active:-1
         },
         page7:{
             moveStatus:false,
             dialogStatus:false,
+            status:'in',
+            out:'movePageLLast',//'bounceOutDown',
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C","D"],
             active:-1
         },
         page8:{
             moveStatus:false,
+            status:'in',
+            out:'movePageLLast', // rollOut
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B"],
             active:-1
         },
         page9:{
             moveStatus:false,
+            status:'in',
+            out:'movePageLLast', // active
+            questionAni:'littleTopIn',
+            answerAni:'opacityChange',
             answers:["A","B","C"],
             active:-1
         },
@@ -481,12 +507,16 @@ app = new Vue({
                 this.lastResult = 0;
                 this.toNextPage(pindex,index);
             }else if(pindex == 6){ // 第七题
-                if(index == 0){ // A
-                    this.lastResult = 3;
-                }else if(index == 1){  // B 
-                    this.lastResult = 2;
-                }else if(index == 2){  // C
-                    this.lastResult = 1;
+                if(this.lastResult == -1 && index < 3){
+                    if(index == 0){ // A
+                        this.lastResult = 3;
+                    }else if(index == 1){  // B 
+                        this.lastResult = 2;
+                    }else if(index == 2){  // C
+                        this.lastResult = 1;
+                    }
+                }else if(index < 3){
+
                 }else{// 第七题 D
                     this.page7.dialogStatus = true;
                     return;

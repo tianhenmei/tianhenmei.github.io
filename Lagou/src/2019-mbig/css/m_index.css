@@ -3,7 +3,7 @@
   font-family: "DINCondBlack";
   src: url("../images/DINCond-Black.otf"); }
 
-[id]:not(#app, #loading, #loading__num, #loading__layer, #loading__boy, #loading__girl, #canvas),
+[id]:not(#app, #loading, #loading__num, #loading__layer, #loading__boy, #loading__girl, #canvas, #music-box),
 iframe {
   width: 0 !important;
   height: 0 !important;
@@ -105,27 +105,36 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background-color: #000000; }
+  background-color: #384862; }
 
 .loading {
   width: 100%;
   height: 100%;
-  position: relative; }
+  position: relative;
+  background-color: #384862; }
+  .loading__computer {
+    width: 3.69067rem;
+    height: 3.11467rem;
+    background: url("../images/loading-computer.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    top: 7.33867rem;
+    margin: 0 0 0 -1.856rem; }
   .loading .loading__num {
-    width: 4.26667rem;
+    width: 16rem;
     line-height: 0.768rem;
     position: absolute;
     left: 50%;
-    top: 11.75467rem;
-    margin: 0 0 0 -2.66667rem;
-    font-size: 0.73173rem;
-    color: #bfa983;
-    text-align: center;
-    font-family: 'DINItalic'; }
+    top: 11.05067rem;
+    margin: 0 0 0 -8rem;
+    font-size: 0.56747rem;
+    color: #fff;
+    text-align: center; }
 
 .music-box {
-  width: 1.04533rem;
-  height: 1.04533rem;
+  width: 1.17333rem;
+  height: 1.17333rem;
   position: absolute;
   right: 50%;
   top: 0.23467rem;
@@ -133,8 +142,10 @@ body {
 
 .music-icon {
   z-index: 99;
-  width: 1.04533rem;
-  height: 1.04533rem; }
+  width: 1.17333rem;
+  height: 1.17333rem;
+  background: url("../images/music-icon.png") no-repeat center top;
+  background-size: 100% 100%; }
 
 .music-icon.open {
   -webkit-animation: musicRotateInfinite 2s both linear infinite;
@@ -326,7 +337,7 @@ body {
     height: 100%;
     position: absolute;
     left: 0rem;
-    top: 0rem; }
+    top: 1.06667rem; }
   .page0__bg {
     width: 100%;
     height: 100%;
@@ -372,21 +383,24 @@ body {
     width: 100%;
     position: absolute;
     left: 50%;
-    top: 8.42667rem;
+    top: 7.78667rem;
     margin: 0 0 0 -8rem; }
   .page0__wlist {
-    line-height: 0.64rem;
-    font-size: 0.512rem;
+    line-height: 0.8rem;
+    font-size: 0.64rem;
     text-align: center;
     color: #fff; }
     .page0__wlist--01, .page0__wlist--02, .page0__wlist--03 {
-      padding-bottom: 0.66133rem;
-      -webkit-transform: scale(0.75, 0.75);
-              transform: scale(0.75, 0.75); }
+      -webkit-transform: scale(0.6, 0.6);
+              transform: scale(0.6, 0.6);
+      font-weight: bold; }
+    .page0__wlist--02, .page0__wlist--03 {
+      margin-top: -0.512rem; }
     .page0__wlist--04 {
+      margin-top: -0.29867rem;
       font-weight: bold;
-      -webkit-transform: scale(0.833, 0.833);
-              transform: scale(0.833, 0.833); }
+      -webkit-transform: scale(0.6, 0.6);
+              transform: scale(0.6, 0.6); }
   .page0__person {
     background-repeat: no-repeat;
     background-position: center top;
@@ -530,9 +544,6 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem; }
-
-.page3__center {
-  top: 2.816rem; }
 
 .page3__top {
   width: 16rem;
@@ -2727,6 +2738,26 @@ body {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); } }
 
+.zoomBig {
+  -webkit-animation: zoomBig 1s both ease-in-out;
+          animation: zoomBig 1s both ease-in-out; }
+
+@-webkit-keyframes zoomBig {
+  0%, 100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); }
+  50% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2); } }
+
+@keyframes zoomBig {
+  0%, 100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1); }
+  50% {
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+            transform: scale3d(1.2, 1.2, 1.2); } }
+
 .zoomBigShake {
   -webkit-animation: zoomBigShake 0.5s both linear;
           animation: zoomBigShake 0.5s both linear; }
@@ -3916,6 +3947,26 @@ body {
   100% {
     -webkit-transform: translate3d(0, -100%, 0);
             transform: translate3d(0, -100%, 0); } }
+
+.movePageLLast {
+  -webkit-animation: movePageLLast 0.5s both linear;
+          animation: movePageLLast 0.5s both linear; }
+
+@-webkit-keyframes movePageLLast {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0); } }
+
+@keyframes movePageLLast {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+            transform: translate3d(-100%, 0, 0); } }
 
 .movePageUNow {
   -webkit-animation: movePageUNow 0.5s both linear;

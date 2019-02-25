@@ -114,7 +114,9 @@
                     pload.status = 'out';
                     loading.className += ' opacityChange-out duration0-3'
                     setTimeout(() => {
+                        var box = document.getElementById('music-box');
                         document.getElementById('loading').className += ' hide';
+                        box.className = box.className.replace(/ hide/g,'');
                     }, 500);
                 },
                 loadingSuccess = function(){
@@ -143,6 +145,7 @@
     <audio style="display:none;" id="q9" loop="loop" preload="auto" src="images/music/q9.mp3"></audio>
 
     <div class="loading" id="loading">
+        <div class="loading__computer opacityChange"></div>
         <div class="loading__num opacityChange delay0-5" id="loading__num">0%</div>
     </div>
     <script type="text/javascript">
@@ -156,7 +159,7 @@
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="page0.moveStatus ? 'moveStatus '+page0[page0.status] : activePage == 0 ? 'active' : 'hide'">
             <div class="page0__center" :style="{
-                    'top':getFitTop(0,1,132)
+                    'top':getFitTop(50,1,132)
                 }">
                 <div class="page0__bg"></div>
                 <div class="page0__logoParent zoomIn origin-bubble delay1-0">
@@ -167,37 +170,42 @@
                     <div class="icon page0__title littleZoom delay1-5"></div>
                 </div>
                 <div class="page0__words">
-                    <div class="page0__wlist--01Parent littleTopIn duration1-5 delay2-0">
+                    <div class="page0__wlist--01Parent opacityChange duration1-0 delay2-0"> <!--littleTopIn duration1-5 delay2-0-->
                         <div class="page0__wlist page0__wlist--01">
-                            兢兢业业敲代码 vs 喜欢<br/>
-                            表现自己成绩<br/>
-                            豪门大厂更想要谁？
+                            兢兢业业敲代码<br/>
+                            vs<br/>
+                            喜欢表现自己成绩<br/>
+                            豪门大厂更想要谁？                                
                         </div>
                     </div>
-                    <div class="page0__wlist--02Parent littleTopIn duration1-5 delay2-3">
+                    <div class="page0__wlist--02Parent opacityChange duration1-0 delay2-0"> <!--littleTopIn duration1-5 delay2-3-->
                         <div class="page0__wlist page0__wlist--02">
-                            性格好但没业绩 vs 有能力但怼天怼地<br/>
-                            豪门大厂更青睐谁？
+                            性格好但没业绩<br/>
+                            vs<br/>
+                            有能力但怼天怼地<br/>
+                            豪门大厂更青睐谁？                                
                         </div>
                     </div>
-                    <div class="page0__wlist--03Parent littleTopIn duration1-5 delay2-6">
+                    <div class="page0__wlist--03Parent opacityChange duration1-0 delay2-0">
                         <div class="page0__wlist page0__wlist--03">
-                            闷头苦干 vs 方法论至上<br/>
-                            豪门大厂更看好谁？
+                            闷头苦干<br/>
+                            Vs<br/>
+                            方法论至上<br/>
+                            豪门大厂更看好谁？                                
                         </div>
                     </div>
-                    <div class="page0__wlist--04Parent littleTopIn duration1-5 delay2-9">
+                    <div class="page0__wlist--04Parent opacityChange duration1-0 delay2-0">
                         <div class="page0__wlist page0__wlist--04"> 
                             豪门到底喜欢什么样的人<br/>
                             此生你有没有豪门命<br/>
-                            来未来规划局测一测
+                            来未来规划局测一测                                
                         </div>
                     </div>
                 </div>
-                <div class="page0__person page0__person--left bounceInLeft delay3-4"></div>
-                <div class="page0__person page0__person--right bounceInRight delay3-4"></div>
-                <div class="page0__btn zoomIn delay3-9" @click.stop.prevent="startTest">
-                    <div class="icon page0__btn--top page0BtnMove delay4-4"></div>
+                <div class="page0__person page0__person--left bounceInLeft delay2-4"></div>
+                <div class="page0__person page0__person--right bounceInRight delay2-4"></div>
+                <div class="page0__btn zoomIn delay2-9" @click.stop.prevent="startTest">
+                    <div class="icon page0__btn--top page0BtnMove delay3-4"></div>
                     <div class="icon page0__btn--bottom"></div>
                 </div>
             </div>
@@ -209,18 +217,18 @@
                 <div class="page1__employee--head headMove delay0-5"></div>
             </div>
             <div class="page0__center" :class="activePage == 1 ? '' : 'hide'" :style="{
-                'top':getFitTop(0,1/2,132)
+                'top':getFitTop(50,1/2,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 littleTopIn delay1-8 duration1-0"></div>
-                    <div class="icon page__question--dot page__question--dot2 littleTopIn delay1-8 duration1-0"></div>
-                    <div class="page__question--title littleTopIn delay1-8 duration1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay1-2 duration1-0" :class="page1.questionAni"></div>
+                    <div class="icon page__question--dot page__question--dot2 delay1-2 duration1-0" :class="page1.questionAni"></div>
+                    <div class="page__question--title delay1-2 duration1-0" :class="page1.questionAni">
                         <div class="icon page__question--titleTop"></div>
                         <div class="icon page__question--titleBottom"></div>
                         <div class="question page__question--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page1.answers"
-                        :class="'page__question--one'+one+' opacityChange delay'+getDelayTime(40,index,5)+' duration1-0'"
+                        :class="'page__question--one'+one+' '+page1.answerAni+' delay'+getDelayTime(22,index,5)+' duration1-0'"
                         @click.stop.prevent="activeChooseEvent(0,index)">
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+(page1.active == index ? ' page__question--active' : '')"></div>
@@ -237,19 +245,19 @@
                 </div>
                 <div class="page2__colleague"></div>
                 <div class="page0__center" :style="{
-                    'top':getFitTop(0,1/4,132)
+                    'top':getFitTop(50,1/4,132)
                 }">
                     <div class="page__question">
-                        <div class="icon page__question--dot page__question--dot1 opacityChange delay1-8"></div>
-                        <div class="icon page__question--dot page__question--dot2 opacityChange delay1-8"></div>
-                        <div class="page__question--title littleBottomIn delay1-8">
+                        <div class="icon page__question--dot page__question--dot1 delay1-8" :class="page2.questionAni"></div><!--opacityChange-->
+                        <div class="icon page__question--dot page__question--dot2 delay1-8" :class="page2.questionAni"></div>
+                        <div class="page__question--title delay1-8" :class="page2.questionAni"><!--littleBottomIn-->
                             <div class="icon page__question--titleTop"></div>
                             <div class="icon page__question--titleBottom"></div>
                             <div class="question page__question--titleText page__question1--titleText"></div>
                         </div>
                         <div class="page__question--one" v-for="(one,index) in page2.answers"
-                            :class="'page__question--one'+one+' '+page2.in[one]"
-                            @click.stop.prevent="activeChooseEvent(1,index)">
+                            :class="'page__question--one'+one+' '+page2.answerAni+' delay'+getDelayTime(25,index,3)+' duration1-0'"
+                            @click.stop.prevent="activeChooseEvent(1,index)"><!--page2.in[one]-->
                             <div class="question page__question--text" 
                                 :class="'page__question--text'+one+' page__question1--text'+one+(page2.active == index ? ' page__question--active' : '')"></div>
                         </div>
@@ -264,18 +272,20 @@
             <div class="page3__boss bossChange delay1-0"></div>
             <div class="page3__light zoomIn delay0-5 duration0-2 origin-ct" :style="{'height':getDynamicHeight(1176-132,1,undefined)}"></div>
             <div class="page3__person"></div>
-            <div class="page0__center page3__center">
+            <div class="page0__center page3__center" :style="{
+                'top':getFitTop(50,1/4,132)
+            }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 leftIn delay2-0 duration1-0"></div>
-                    <div class="icon page__question--dot page__question--dot2 leftIn delay2-0 duration1-0"></div>
-                    <div class="page__question--title leftIn delay1-5 duration1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay2-0 duration1-0" :class="page3.questionAni"></div><!--leftIn-->
+                    <div class="icon page__question--dot page__question--dot2 delay2-0 duration1-0":class="page3.questionAni"></div>
+                    <div class="page__question--title delay1-5 duration1-0" :class="page3.questionAni"><!--leftIn-->
                         <div class="icon page__question--titleTop page__question2--titleTop"></div>
                         <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
                         <div class="page__question--titleText page__question2--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page3.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' leftIn delay'+getDelayTime(30,index,3)+' duration1-0'"
-                        @click.stop.prevent="activeChooseEvent(2,index)">
+                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page3.answerAni+' delay'+getDelayTime(30,index,3)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(2,index)"><!--leftIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question2--text'+one+(page3.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -298,7 +308,7 @@
                 </div>
             </div>
         </div>
-        <div class="page page4" :class="page3.moveStatus ? 'active' : page4.moveStatus ? 'moveStatus rotateZoomOut' : activePage == 4 ? 'active' : 'hide'">
+        <div class="page page4" :class="page3.moveStatus ? 'active' : page4.moveStatus ? 'moveStatus '+page4[page4.status] : activePage == 4 ? 'active' : 'hide'">
             <div class="page4__bg"></div>
             <div class="page4__bottom"></div>
             <div class="page4__colleague"></div>
@@ -311,26 +321,26 @@
                 <canvas id="page4__canvas" class="page4__canvas"></canvas>
             </div> -->
             <div class="page0__center" :style="{
-                'top':getFitTop(0,1/4,132)
+                'top':getFitTop(50,1/4,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-2"></div>
-                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-2"></div>
-                    <div class="page__question--title zoomIn delay1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay1-2" :class="page4.questionAni"></div><!--opacityChange-->
+                    <div class="icon page__question--dot page__question--dot2 delay1-2" :class="page4.questionAni"></div>
+                    <div class="page__question--title delay1-0" :class="page4.questionAni"><!--zoomIn-->
                         <div class="icon page__question--titleTop"></div>
                         <div class="icon page__question--titleBottom"></div>
                         <div class="question page__question--titleText page__question3--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page4.answers"
-                        :class="'page__question--one'+one+' zoomIn delay'+getDelayTime(25,index,5)+' duration1-0'"
-                        @click.stop.prevent="activeChooseEvent(3,index)">
+                        :class="'page__question--one'+one+' '+page4.answerAni+' delay'+getDelayTime(25,index,5)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(3,index)"><!--zoomIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question3--text'+one+(page4.active == index ? ' page__question--active' : '')"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page page5" :class="page4.moveStatus ? 'active' : page5.moveStatus ? 'moveStatus zoomIn-out origin-lt' : activePage == 5 ? 'active' : 'hide'">
+        <div class="page page5" :class="page4.moveStatus ? 'active' : page5.moveStatus ? 'moveStatus '+page5[page5.status] : activePage == 5 ? 'active' : 'hide'">
             <div class="page5__bg"></div>
             <div class="page5__person"></div>
             <div class="page5__arrow zoomIn delay1-0 origin-lb"></div>
@@ -338,19 +348,19 @@
                 <div class="icon page5__message zoomIn delay1-0"></div>
             </div>
             <div class="page0__center" :style="{
-                'top':getFitTop(0,1/4,132)
+                'top':getFitTop(50,1/4,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-8"></div>
-                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-8"></div>
-                    <div class="page__question--title zoomIn delay1-5">
+                    <div class="icon page__question--dot page__question--dot1 delay1-8" :class="page5.questionAni"></div><!--opacityChange-->
+                    <div class="icon page__question--dot page__question--dot2 delay1-8" :class="page5.questionAni"></div>
+                    <div class="page__question--title delay1-5" :class="page5.questionAni"><!--zoomIn-->
                         <div class="icon page__question--titleTop"></div>
                         <div class="icon page__question--titleBottom"></div>
                         <div class="question page__question--titleText page__question4--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page5.answers"
-                        :class="'page__question--one'+one+' zoomIn delay'+getDelayTime(25,index,2)"
-                        @click.stop.prevent="activeChooseEvent(4,index)">
+                        :class="'page__question--one'+one+' '+page5.answerAni+' delay'+getDelayTime(25,index,2)"
+                        @click.stop.prevent="activeChooseEvent(4,index)"> <!--zoomIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question4--text'+one+(page5.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -372,7 +382,7 @@
                 </div>
             </div>
         </div>
-        <div class="page page6" :class="page5.moveStatus ? 'active' : page6.moveStatus ? 'moveStatus topIn-out duration0-7' : activePage == 6 ? 'active' : 'hide'">
+        <div class="page page6" :class="page5.moveStatus ? 'active' : page6.moveStatus ? 'moveStatus '+page6[page6.status] : activePage == 6 ? 'active' : 'hide'">
             <div class="page6__bg"></div>
             <div class="page6__bottom"></div>
             <div class="page6__colleague"></div>
@@ -385,50 +395,50 @@
             <div class="page6__flower"></div>
             <div class="page6__ppt pptChange"></div>
             <div class="page0__center" :style="{
-                'top':getFitTop(0,1/4,132)
+                'top':getFitTop(50,1/4,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 leftIn delay1-0 duration1-0"></div>
-                    <div class="icon page__question--dot page__question--dot2 leftIn delay1-0 duration1-0"></div>
-                    <div class="page__question--title leftIn delay1-0 duration1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay1-0 duration1-0" :class="page6.questionAni"></div><!--leftIn-->
+                    <div class="icon page__question--dot page__question--dot2 delay1-0 duration1-0" :class="page6.questionAni"></div>
+                    <div class="page__question--title delay1-0 duration1-0" :class="page6.questionAni"><!--leftIn-->
                         <div class="icon page__question--titleTop"></div>
                         <div class="icon page__question--titleBottom"></div>
                         <div class="question page__question--titleText page__question5--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page6.answers"
-                        :class="'page__question--one'+one+'  leftIn delay'+getDelayTime(25,index,2)+' duration1-0'"
-                        @click.stop.prevent="activeChooseEvent(5,index)">
+                        :class="'page__question--one'+one+' '+page6.answerAni+' delay'+getDelayTime(25,index,2)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(5,index)"><!--leftIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question5--text'+one+(page6.active == index ? ' page__question--active' : '')"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="page page7" :class="page6.moveStatus ? 'active' : page7.moveStatus ? 'moveStatus bounceOutDown' : activePage == 7 ? 'active' : 'hide'">
+        <div class="page page7" :class="page6.moveStatus ? 'active' : page7.moveStatus ? 'moveStatus '+page7[page7.status] : activePage == 7 ? 'active' : 'hide'">
             <div class="page7__main">
                 <div class="page7__bg"></div>
-                <div class="page7__celebrate">
-                    <div class="page7__celebrate--word page7__celebrate--word01 page7MoveW01"></div>
-                    <div class="page7__celebrate--word page7__celebrate--word02 page7MoveW02 delay0-3"></div>
-                    <div class="page7__celebrate--word page7__celebrate--word03 page7MoveW03 delay0-6"></div>
+                <div class="page7__celebrate zoomBig">
+                    <div class="page7__celebrate--word page7__celebrate--word01"></div><!-- page7MoveW01-->
+                    <div class="page7__celebrate--word page7__celebrate--word02"></div><!-- page7MoveW02 delay0-3-->
+                    <div class="page7__celebrate--word page7__celebrate--word03"></div><!-- page7MoveW03 delay0-6-->
                 </div>
                 <div class="page7__bottom"></div>
                 <div class="page7__colleague"></div>
                 <div class="page7__person"></div>
                 <div class="page0__center" :style="{
-                    'top':getFitTop(0,1/4,132)
+                    'top':getFitTop(50,1/4,132)
                 }">
                     <div class="page__question">
-                        <div class="icon page__question--dot page__question--dot1 opacityChange delay1-5"></div>
-                        <div class="icon page__question--dot page__question--dot2 opacityChange delay1-5"></div>
-                        <div class="page__question--title scaleY delay1-5">
+                        <div class="icon page__question--dot page__question--dot1 delay1-0" :class="page7.questionAni"></div><!--opacityChange delay1-5-->
+                        <div class="icon page__question--dot page__question--dot2 delay1-0" :class="page7.questionAni"></div><!-- delay1-5-->
+                        <div class="page__question--title delay1-0" :class="page7.questionAni"><!--scaleY-->
                             <div class="icon page__question--titleTop"></div>
                             <div class="icon page__question--titleBottom"></div>
                             <div class="question page__question--titleText page__question6--titleText"></div>
                         </div>
                         <div class="page__question--one" v-for="(one,index) in page7.answers"
-                            :class="'page__question--one'+one+' page__question6--one'+one+' scaleY delay'+getDelayTime(25,index,2)"
-                            @click.stop.prevent="activeChooseEvent(6,index)">
+                            :class="'page__question--one'+one+' page__question6--one'+one+' '+page7.answerAni+' delay'+getDelayTime(20,index,2)"
+                            @click.stop.prevent="activeChooseEvent(6,index)"><!--scaleY-->
                             <div class="question page__question--text" 
                                 :class="'page__question--text'+one+' page__question6--text'+one+(page7.active == index ? ' page__question--active' : '')"></div>
                         </div>
@@ -451,7 +461,7 @@
                 </div>
             </div>
         </div>
-        <div class="page page8" :class="page7.moveStatus ? 'active' : page8.moveStatus ? 'moveStatus rollOut' : activePage == 8 ? 'active' : 'hide'">
+        <div class="page page8" :class="page7.moveStatus ? 'active' : page8.moveStatus ? 'moveStatus '+page8[page8.status] : activePage == 8 ? 'active' : 'hide'">
             <div class="page8__bg"></div>
             <div class="page8__bottom"></div>
             <div class="page8__colleague">
@@ -462,19 +472,19 @@
             </div>
             <div class="page8__person"></div>
             <div class="page0__center" :style="{
-                'top':getFitTop(0,1/4,132)
+                'top':getFitTop(50,1/4,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-0"></div>
-                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-0"></div>
-                    <div class="page__question--title jackInTheBox delay1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay1-0" :class="page8.questionAni"></div><!--opacityChange-->
+                    <div class="icon page__question--dot page__question--dot2 delay1-0" :class="page8.questionAni"></div>
+                    <div class="page__question--title delay1-0" :class="page8.questionAni"><!--jackInTheBox-->
                         <div class="icon page__question--titleTop page__question2--titleTop"></div>
                         <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
                         <div class="question page__question--titleText page__question7--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page8.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' jackInTheBox delay'+getDelayTime(20,index,3)"
-                        @click.stop.prevent="activeChooseEvent(7,index)">
+                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page8.answerAni+' delay'+getDelayTime(20,index,3)"
+                        @click.stop.prevent="activeChooseEvent(7,index)"><!--jackInTheBox-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question7--text'+one+(page8.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -487,19 +497,19 @@
             <div class="page9__person page9PersonChange"></div>
             <div class="page9__colleague"></div>
             <div class="page0__center" :style="{
-                'top':getFitTop(0,1/4,132)
+                'top':getFitTop(50,1/4,132)
             }">
                 <div class="page__question">
-                    <div class="icon page__question--dot page__question--dot1 opacityChange delay1-5"></div>
-                    <div class="icon page__question--dot page__question--dot2 opacityChange delay1-5"></div>
-                    <div class="page__question--title centerZoomIn delay1-0">
+                    <div class="icon page__question--dot page__question--dot1 delay1-5" :class="page9.questionAni"></div><!--opacityChange-->
+                    <div class="icon page__question--dot page__question--dot2 delay1-5" :class="page9.questionAni"></div>
+                    <div class="page__question--title delay1-0" :class="page9.questionAni"><!--centerZoomIn-->
                         <div class="icon page__question--titleTop page__question2--titleTop"></div>
                         <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
                         <div class="question page__question--titleText page__question8--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page9.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' centerZoomIn delay'+getDelayTime(25,index,2)"
-                        @click.stop.prevent="activeChooseEvent(8,index)">
+                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page9.answerAni+' delay'+getDelayTime(25,index,2)"
+                        @click.stop.prevent="activeChooseEvent(8,index)"><!--centerZoomIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question8--text'+one+(page9.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -595,7 +605,7 @@
         </div>
         <div class="mmlogo"></div>
     </div>
-    <div class="music-box">
+    <div class="music-box hide" id="music-box">
         <div class="music-icon open">
             <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music/bg.mp3"></audio>
         </div>
