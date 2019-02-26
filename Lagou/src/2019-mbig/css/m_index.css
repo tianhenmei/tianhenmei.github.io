@@ -121,6 +121,19 @@ body {
     left: 50%;
     top: 7.33867rem;
     margin: 0 0 0 -1.856rem; }
+  .loading__computerContent {
+    width: 3.22133rem;
+    height: 1.92rem;
+    position: absolute;
+    left: 50%;
+    top: 7.57333rem;
+    margin: 0 0 0 -1.62133rem;
+    overflow: hidden; }
+    .loading__computerContent--code {
+      width: 3.22133rem;
+      height: 3.84rem;
+      background: url("../images/loading-code.png") no-repeat center top;
+      background-size: 100% 100%; }
   .loading .loading__num {
     width: 16rem;
     line-height: 0.768rem;
@@ -380,11 +393,12 @@ body {
     height: 4.928rem;
     background-position: 0 -3.84rem; }
   .page0__words {
-    width: 100%;
+    width: 8.61867rem;
+    height: 10.98667rem;
+    overflow: hidden;
     position: absolute;
-    left: 50%;
-    top: 7.78667rem;
-    margin: 0 0 0 -8rem; }
+    left: 3.75467rem;
+    top: 7.78667rem; }
   .page0__wlist {
     line-height: 0.8rem;
     font-size: 0.64rem;
@@ -401,6 +415,25 @@ body {
       font-weight: bold;
       -webkit-transform: scale(0.6, 0.6);
               transform: scale(0.6, 0.6); }
+  .page0__wlistParent {
+    width: 5.44rem;
+    background: url("../images/page1-words.png") no-repeat 0 0;
+    background-size: 5.44rem 9.04533rem;
+    position: absolute;
+    left: 50%;
+    top: 3.392rem;
+    margin: 0 0 0 -2.56rem; }
+  .page0__wlist--01Parent {
+    height: 2.66667rem;
+    top: 0.576rem; }
+  .page0__wlist--02Parent {
+    height: 2.752rem;
+    background-position: 0 -2.66667rem;
+    top: 3.24267rem; }
+  .page0__wlist--04Parent {
+    height: 3.62667rem;
+    background-position: 0 -5.41867rem;
+    top: 5.99467rem; }
   .page0__person {
     background-repeat: no-repeat;
     background-position: center top;
@@ -1620,6 +1653,68 @@ body {
   background-size: 100% 100%;
   -webkit-animation: shareChange 0.3s 0s linear infinite forwards;
   animation: shareChange 0.3s 0s linear infinite forwards; }
+
+.loopMove {
+  -webkit-animation: loopMove 6s both ease-in-out infinite;
+          animation: loopMove 6s both ease-in-out infinite; }
+
+@-webkit-keyframes loopMove {
+  0% {
+    -webkit-transform: translate3d(7.46667rem, 0, 0);
+            transform: translate3d(7.46667rem, 0, 0); }
+  40%, 60% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(-7.12533rem, 0, 0);
+            transform: translate3d(-7.12533rem, 0, 0); } }
+
+@keyframes loopMove {
+  0% {
+    -webkit-transform: translate3d(7.46667rem, 0, 0);
+            transform: translate3d(7.46667rem, 0, 0); }
+  40%, 60% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(-7.12533rem, 0, 0);
+            transform: translate3d(-7.12533rem, 0, 0); } }
+
+.lastWordsMove {
+  -webkit-animation: lastWordsMove 2.5s both ease-in-out;
+          animation: lastWordsMove 2.5s both ease-in-out; }
+
+@-webkit-keyframes lastWordsMove {
+  0% {
+    -webkit-transform: translate3d(7.46667rem, 0, 0);
+            transform: translate3d(7.46667rem, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+@keyframes lastWordsMove {
+  0% {
+    -webkit-transform: translate3d(7.46667rem, 0, 0);
+            transform: translate3d(7.46667rem, 0, 0); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+.loadingCodeMove {
+  -webkit-animation: loadingCodeMove 1s both linear infinite;
+          animation: loadingCodeMove 1s both linear infinite; }
+
+@-webkit-keyframes loadingCodeMove {
+  0% {
+    background-position: 0 0; }
+  100% {
+    background-position: 0 -1.92rem; } }
+
+@keyframes loadingCodeMove {
+  0% {
+    background-position: 0 0; }
+  100% {
+    background-position: 0 -1.92rem; } }
 
 .headMove {
   -webkit-animation: headMove 5s both steps(4, end) infinite;

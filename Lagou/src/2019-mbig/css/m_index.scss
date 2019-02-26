@@ -229,6 +229,18 @@ body {
         background-size:100% 100%;
         @include center(288,476-132);
     }
+    &__computerContent {
+        width:rem(151);
+        height:rem(90);
+        @include center(299,487-132);
+        overflow:hidden;
+        &--code {
+            width:rem(151);
+            height:rem(180);
+            background:url('../images/loading-code.png') no-repeat center top;
+            background-size:100% 100%;
+        }
+    }
     .loading__num {
         width:rem(750);
         line-height:rem(36);
@@ -485,8 +497,13 @@ body {
         background-position:0 rem(-180);
     }
     &__words {
-        width:100%;
-        @include center(0,527-132-30);  // 527-132
+        width:rem(404);
+        height:rem(515);
+        overflow:hidden;
+        @include leftTop(176,527-132-30);
+        // width:100%;
+        // height:100%;
+        // @include leftTop(0,527-132-30);  // 527-132
     }
     &__wlist {
         line-height:rem(30/0.8);
@@ -511,6 +528,26 @@ body {
             transform:scale(0.6,0.6);  // 18
             // transform:scale(0.666,0.666);
         }
+    }
+    &__wlistParent {
+        width:rem(255);
+        background:url('../images/page1-words.png') no-repeat 0 0;
+        background-size:rem(255) rem(424);
+        @include center(265-10,534-10-(527-132-30));
+    }
+    &__wlist--01Parent {
+        height:rem(125);
+        top:rem(27);
+    }
+    &__wlist--02Parent {
+        height:rem(129);
+        background-position:0 rem(-125);
+        top:rem(27+125);
+    }
+    &__wlist--04Parent {
+        height:rem(170);
+        background-position:0 rem(-254);
+        top:rem(27+125+129);
     }
     &__person {
         background-repeat:no-repeat;
@@ -1526,7 +1563,42 @@ body {
 
 
 
-
+.loopMove {
+    animation:loopMove 6s both ease-in-out infinite;
+}
+@keyframes loopMove {
+    0% {
+        transform:translate3d(rem(350),0,0);
+    }
+    40%,60% {
+        transform:translate3d(0,0,0);
+    }
+    100% {
+        transform:translate3d(rem(-334),0,0);
+    }
+}
+.lastWordsMove {
+    animation:lastWordsMove 2.5s both ease-in-out;
+}
+@keyframes lastWordsMove {
+    0% {
+        transform:translate3d(rem(350),0,0);
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.loadingCodeMove {
+    animation:loadingCodeMove 1s both linear infinite;
+}
+@keyframes loadingCodeMove {
+    0% {
+        background-position:0 0;
+    }
+    100% {
+        background-position:0 rem(-90);
+    }
+}
 .headMove {
     animation:headMove 5s both steps(4,end) infinite;
 }
