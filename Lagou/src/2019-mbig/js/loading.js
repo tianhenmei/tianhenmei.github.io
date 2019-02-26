@@ -1,6 +1,8 @@
 // JavaScript Document
 var loadingHost = '';
 var imgArray = [
+	"images/loading-computer.png",
+	"images/loading-code.png",
 	"images/answer.png",
 	"images/dialog-bg.png",
 	"images/icon.png",
