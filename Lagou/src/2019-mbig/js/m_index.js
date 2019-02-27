@@ -76,7 +76,13 @@ var PageMove = function () {
             isMoving: false,
             clickStatus: false
         };
-        this._initPageMoveEvent();
+        // this._initPageMoveEvent();
+        document.addEventListener("touchmove", function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        },{
+            passive:false
+        });
     }
     
     _createClass(PageMove, [{

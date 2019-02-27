@@ -60,7 +60,7 @@ var imgArray = [
 	"images/page9-words.png",
 	"images/page10-bg.png",
 	"images/page10-heart.png",
-	"images/question.png",
+	"images/question-02.png",
 	"images/result.png",
 	"images/words.png"
 ];

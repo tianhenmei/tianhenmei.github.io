@@ -541,12 +541,13 @@ gulp.task('remove', function() {
 
 /** 上传编译好的文件到999测试服务器 */
 gulp.task('upload', function(cb) {
-    var dir = path.join(distDir, params.upload && params.upload.dir || '.');
+    console.log(params.upload);
+    var dir = path.join(srcDir, params.upload && params.upload.dir || '.');  // distDir
     gulp.src(dir + '/**/*.*')
         .pipe(through2.obj(function(file, encoding, done) {
             var filePath = path.relative(__dirname, file.path)
-            var toPath = path.join('/data/static/activity/', filePath)
-            var cmd = `curl -F "to=${toPath}" -F "file=@${filePath}" http://receiver1.lagou.com/upload`,
+            var toPath = path.join('/usr/local/src/h5/', filePath)  // /data/static/activity/
+            var cmd = `curl -F "to=${toPath}" -F "file=@${filePath}" http://120.78.185.177/`,  // http://receiver1.lagou.com/upload
                 extname = path.extname(file.path)
             if(extname == '.psd'){
                 console.log('NoSending: ' + filePath);
