@@ -552,7 +552,9 @@ app = new Vue({
         toNextPage:function(pindex,index){
             var self = this;
             this['page'+(pindex+1)].moveStatus = true;
-            this['page'+(pindex+1)].active = index;
+            if(this['page'+(pindex+1)].active == -1){
+                this['page'+(pindex+1)].active = index;
+            }
             this.answers[index] = index;
             this.$nextTick(function(){
                 self.toNext(pindex+1);
