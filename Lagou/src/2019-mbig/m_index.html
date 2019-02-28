@@ -282,13 +282,13 @@
                     <div class="icon page__question--dot page__question--dot1 delay2-0 duration1-0" :class="page3.questionAni"></div><!--leftIn-->
                     <div class="icon page__question--dot page__question--dot2 delay2-0 duration1-0":class="page3.questionAni"></div>
                     <div class="page__question--title delay1-5 duration1-0" :class="page3.questionAni"><!--leftIn-->
-                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
-                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="icon page__question--titleTop"></div><!-- page__question2--titleTop-->
+                        <div class="icon page__question--titleBottom"></div><!-- page__question2--titleBottom-->
                         <div class="page__question--titleText page__question2--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page3.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page3.answerAni+' delay'+getDelayTime(30,index,3)+' duration1-0'"
-                        @click.stop.prevent="activeChooseEvent(2,index)"><!--leftIn-->
+                        :class="'page__question--one'+one+' '+page3.answerAni+' delay'+getDelayTime(30,index,3)+' duration1-0'"
+                        @click.stop.prevent="activeChooseEvent(2,index)"><!--+' page__question2--one'+one  leftIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question2--text'+one+(page3.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -481,13 +481,13 @@
                     <div class="icon page__question--dot page__question--dot1 delay1-0" :class="page8.questionAni"></div><!--opacityChange-->
                     <div class="icon page__question--dot page__question--dot2 delay1-0" :class="page8.questionAni"></div>
                     <div class="page__question--title delay1-0" :class="page8.questionAni"><!--jackInTheBox-->
-                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
-                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="icon page__question--titleTop"></div><!-- page__question2--titleTop-->
+                        <div class="icon page__question--titleBottom"></div><!-- page__question2--titleBottom-->
                         <div class="question page__question--titleText page__question7--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page8.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page8.answerAni+' delay'+getDelayTime(20,index,3)"
-                        @click.stop.prevent="activeChooseEvent(7,index)"><!--jackInTheBox-->
+                        :class="'page__question--one'+one+' '+page8.answerAni+' delay'+getDelayTime(20,index,3)"
+                        @click.stop.prevent="activeChooseEvent(7,index)"><!--+' page__question2--one'+one    jackInTheBox-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question7--text'+one+(page8.active == index ? ' page__question--active' : '')"></div>
                     </div>
@@ -506,13 +506,13 @@
                     <div class="icon page__question--dot page__question--dot1 delay1-5" :class="page9.questionAni"></div><!--opacityChange-->
                     <div class="icon page__question--dot page__question--dot2 delay1-5" :class="page9.questionAni"></div>
                     <div class="page__question--title delay1-0" :class="page9.questionAni"><!--centerZoomIn-->
-                        <div class="icon page__question--titleTop page__question2--titleTop"></div>
-                        <div class="icon page__question--titleBottom page__question2--titleBottom"></div>
+                        <div class="icon page__question--titleTop"></div><!-- page__question2--titleTop-->
+                        <div class="icon page__question--titleBottom"></div><!-- page__question2--titleBottom-->
                         <div class="question page__question--titleText page__question8--titleText"></div>
                     </div>
                     <div class="page__question--one" v-for="(one,index) in page9.answers"
-                        :class="'page__question--one'+one+' page__question2--one'+one+' '+page9.answerAni+' delay'+getDelayTime(25,index,2)"
-                        @click.stop.prevent="activeChooseEvent(8,index)"><!--centerZoomIn-->
+                        :class="'page__question--one'+one+' '+page9.answerAni+' delay'+getDelayTime(25,index,2)"
+                        @click.stop.prevent="activeChooseEvent(8,index)"><!--+' page__question2--one'+one   centerZoomIn-->
                         <div class="question page__question--text" 
                             :class="'page__question--text'+one+' page__question8--text'+one+(page9.active == index ? ' page__question--active' : '')"></div>
                     </div>
