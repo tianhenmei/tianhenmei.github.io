@@ -165,6 +165,11 @@
                     'top':getFitTop(0,1,132)
                 }">
                 <div class="page0__bg"></div>
+                <div class="page0__bottom" :style="{
+                    'height':getFitTop(213,1,0,132)
+                }"></div>
+                <div class="page0__centerContent"></div>
+                <div class="page0__centerBg"></div>
                 <div class="page0__logoParent zoomIn origin-bubble delay1-0">
                     <div class="icon page0__bubble"></div>
                     <div class="icon page0__logo"></div>
@@ -172,7 +177,7 @@
                 <div class="page0___titleParent bounceInDown delay0-5">
                     <div class="icon page0__title littleZoom delay1-5"></div>
                 </div>
-                <div class="page0__words">
+                <div class="page0__words" :style="getWordsRatio()">
                     <div class="page0__wlistParent page0__wlist--01Parent loopMove"><!-- opacityChange duration1-0 delay2-0--> <!--littleTopIn duration1-5 delay2-0-->
                         <div class="page0__wlist page0__wlist--01">
                             <!-- 兢兢业业敲代码<br/>
@@ -242,11 +247,11 @@
         <div class="page page2" :class="page1.moveStatus ? 'active' : page2.moveStatus ? 'moveStatus' : activePage == 2 ? 'active' : 'hide'">
             <div class="page2__main" :class="page2.moveStatus ? page2[page2.status] : ''">
                 <div class="page2__bg"></div>
+                <div class="page2__colleague"></div>
                 <div class="page2__person">
                     <div class="icon page2__person--mark1 zoomIn delay1-0 origin-lb"></div>
                     <div class="icon page2__person--mark2 zoomIn delay1-3 origin-lb"></div>
                 </div>
-                <div class="page2__colleague"></div>
                 <div class="page0__center" :style="{
                     'top':getFitTop(50,1/4,132)
                 }">
@@ -314,6 +319,7 @@
         <div class="page page4" :class="page3.moveStatus ? 'active' : page4.moveStatus ? 'moveStatus '+page4[page4.status] : activePage == 4 ? 'active' : 'hide'">
             <div class="page4__bg"></div>
             <div class="page4__bottom"></div>
+            <div class="page4__bottomShadow"></div>
             <div class="page4__colleague"></div>
             <div class="page4__hand handChange delay0-5"></div>
             <div class="page4__person"></div>
@@ -387,7 +393,10 @@
         </div>
         <div class="page page6" :class="page5.moveStatus ? 'active' : page6.moveStatus ? 'moveStatus '+page6[page6.status] : activePage == 6 ? 'active' : 'hide'">
             <div class="page6__bg"></div>
-            <div class="page6__bottom"></div>
+            <div class="page6__bottom">
+                <div class="page6__bottom--t"></div>
+                <div class="page6__bottom--b"></div>
+            </div>
             <div class="page6__colleague"></div>
             <div class="page6__mouth mouthChange"></div>
             <div class="page6__computer"></div>
@@ -496,9 +505,16 @@
         </div>
         <div class="page page9" :class="page8.moveStatus ? 'active' : page9.moveStatus ? 'active' : activePage == 9 ? 'active' : 'hide'">
             <div class="page9__bg"></div>
+            <div class="page9__contentBg"></div>
+            <div class="page9__box">
+                <div class="page9__box--top"></div>
+                <div class="page9__box--center"></div>
+                <div class="page9__box--bottom"></div>
+                <div class="page9__box--logo"></div>
+            </div>
             <div class="page9__words"></div>
             <div class="page9__person page9PersonChange"></div>
-            <div class="page9__colleague"></div>
+            <div class="page9__colleague"></div><!-- :style="{bottom:getShortTop(0,-1,132)}"-->
             <div class="page0__center" :style="{
                 'top':getFitTop(50,1/4,132)
             }">

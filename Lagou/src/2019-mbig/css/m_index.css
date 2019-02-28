@@ -344,7 +344,7 @@ body {
     color: #000; }
 
 .page0 {
-  background-color: #ead7b9; }
+  background-color: #b3cfec; }
   .page0__center {
     width: 100%;
     height: 100%;
@@ -354,12 +354,36 @@ body {
   .page0__bg {
     width: 100%;
     height: 100%;
-    background: url("../images/page0-bg.png") no-repeat center 0;
+    background-color: #b3cfec;
+    position: absolute;
+    left: 0rem;
+    top: -2.816rem; }
+  .page0__bottom {
+    width: 100%;
+    height: 4.544rem;
+    background: #ead7b9 url("../images/page0-bottom.png") no-repeat center 0;
     background-size: 100%;
     position: absolute;
+    left: 0rem;
+    top: 21.09867rem; }
+  .page0__centerContent {
+    width: 100%;
+    height: 18.64533rem;
+    background: #b9bbea;
+    border-top: 0.128rem solid #000;
+    border-bottom: 0.128rem solid #000;
+    position: absolute;
+    left: 0rem;
+    top: 2.19733rem; }
+  .page0__centerBg {
+    width: 11.09333rem;
+    height: 17.06667rem;
+    background: url("../images/page0-center.png") no-repeat center 0;
+    background-size: 100% 100%;
+    position: absolute;
     left: 50%;
-    top: -2.816rem;
-    margin: 0 0 0 -8rem; }
+    top: 2.32533rem;
+    margin: 0 0 0 -5.46133rem; }
   .page0__logoParent {
     width: 6.22933rem;
     height: 3.11467rem;
@@ -397,8 +421,9 @@ body {
     height: 10.98667rem;
     overflow: hidden;
     position: absolute;
-    left: 3.75467rem;
-    top: 7.78667rem; }
+    left: 50%;
+    top: 7.78667rem;
+    margin: 0 0 0 -4.24533rem; }
   .page0__wlist {
     line-height: 0.8rem;
     font-size: 0.64rem;
@@ -543,15 +568,17 @@ body {
       height: 1.10933rem;
       background-position: -17.06667rem -3.84rem;
       position: absolute;
-      left: 7.424rem;
-      bottom: 12.62933rem; }
+      left: 50%;
+      bottom: 12.62933rem;
+      margin: 0 0 0 -0.576rem; }
     .page2__person--mark2 {
       width: 0.68267rem;
       height: 1.00267rem;
       background-position: -18.13333rem -3.84rem;
       position: absolute;
-      left: 8.34133rem;
-      bottom: 12.544rem; }
+      left: 50%;
+      bottom: 12.544rem;
+      margin: 0 0 0 0.34133rem; }
   .page2__colleague {
     width: 100%;
     height: 15.85067rem;
@@ -601,8 +628,9 @@ body {
   background: url("../images/page3-boss.png") no-repeat 0 0;
   background-size: 12.8rem 19.2rem;
   position: absolute;
-  right: -0.85333rem;
-  bottom: -0.512rem; }
+  right: 50%;
+  bottom: -0.512rem;
+  margin: 0 -8.42667rem 0 0; }
 
 .page3__light {
   width: 12.33067rem;
@@ -687,7 +715,7 @@ body {
 .page4__bg {
   width: 100%;
   height: 100%;
-  background: #bdd5ed url("../images/page4-bg.png") no-repeat center top;
+  background: #93b8dc url("../images/page4-bg-02.png") no-repeat center top;
   background-size: 100%;
   position: absolute;
   left: 0rem;
@@ -701,6 +729,16 @@ body {
   position: absolute;
   left: 0rem;
   bottom: 0rem; }
+
+.page4__bottomShadow {
+  width: 11.49867rem;
+  height: 2.38933rem;
+  background: url("../images/page4-bottom-shadow.png") no-repeat center bottom;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 5.33333rem;
+  margin: 0 0 0 -5.09867rem; }
 
 .page4__center {
   top: 2.816rem; }
@@ -873,11 +911,26 @@ body {
 .page6__bottom {
   width: 100%;
   height: 21.61067rem;
-  background: url("../images/page6-bottom.png") no-repeat center top;
-  background-size: 100%;
   position: absolute;
   left: 0rem;
   bottom: 0rem; }
+  .page6__bottom--t {
+    width: 16rem;
+    height: 18.13333rem;
+    background: url("../images/page6-bottom-t.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    bottom: 3.47733rem;
+    margin: 0 0 0 -8rem; }
+  .page6__bottom--b {
+    width: 100%;
+    height: 3.47733rem;
+    background: url("../images/page6-bottom-b.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0rem;
+    bottom: 0rem; }
 
 .page6__colleague {
   width: 14.912rem;
@@ -976,7 +1029,7 @@ body {
 .page7__bg {
   width: 100%;
   height: 100%;
-  background: #a7c4e4 url("../images/page7-bg.png") no-repeat center top;
+  background: #a7bccc url("../images/page7-bg.png") no-repeat center top;
   background-size: 100%;
   position: absolute;
   left: 0rem;
@@ -1161,11 +1214,59 @@ body {
 .page9__bg {
   width: 100%;
   height: 100%;
-  background: #b4c0d2 url("../images/page9-bg-02.png") no-repeat center top;
-  background-size: 100%;
+  background-color: #bfd4f3;
   position: absolute;
   left: 0rem;
   top: 0rem; }
+
+.page9__contentBg {
+  width: 100%;
+  height: 100%;
+  background-color: #b4c0d2;
+  border-top: 0.128rem solid #000;
+  position: absolute;
+  left: 0rem;
+  top: 4.20267rem; }
+
+.page9__box {
+  width: 750px;
+  height: 100%;
+  position: absolute;
+  left: 50%;
+  top: 5.248rem;
+  margin: 0 0 0 -4.75733rem; }
+  .page9__box--top {
+    width: 100%;
+    height: 0.36267rem;
+    border: 0.128rem solid #000;
+    background-color: #838383;
+    position: absolute;
+    left: 0rem;
+    top: 0rem; }
+  .page9__box--center {
+    width: 100%;
+    height: 11.05067rem;
+    border-left: 0.128rem solid #000;
+    background-color: #dddddd;
+    position: absolute;
+    left: 1.36533rem;
+    top: 0.61867rem; }
+  .page9__box--bottom {
+    width: 100%;
+    height: 0.36267rem;
+    border: 0.128rem solid #000;
+    background-color: #838383;
+    position: absolute;
+    left: 0rem;
+    top: 11.66933rem; }
+  .page9__box--logo {
+    width: 1.32267rem;
+    height: 2.83733rem;
+    background: url("../images/page9-logo.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 11.136rem;
+    top: 7.82933rem; }
 
 .page9__words {
   width: 9.408rem;

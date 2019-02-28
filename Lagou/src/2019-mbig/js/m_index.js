@@ -217,6 +217,7 @@ app = new Vue({
         clickStatus:false,
         heightStatus:0,
         shortHeight:0,
+        moreWidth:0,
         fontSize:16,
         page0:{
             moveStatus:false,
@@ -377,7 +378,8 @@ app = new Vue({
         if(rightSize > currentSize){
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
         }else{
-            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h)
+            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
+            this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
         }
         // test 注释
         // if(this.isWeiXin()){
@@ -396,10 +398,21 @@ app = new Vue({
         });
     },
     methods:{
-        getFitTop:function(def,ratio,max){
+        getFitTop:function(def,ratio,max,limit){
             var n = this.heightStatus * ratio;
-            n = max && n > max ? max : n;
+            n = (max && n > max ? max : n) + (limit ? limit : 0);
             return this.setRem(def+n);
+        },
+        getShortTop:function(def,ratio,max,limit){
+            if(this.shortHeight){
+                var n = this.shortHeight * ratio;
+                n = (max && n > max ? max : n) + (limit ? limit : 0);
+                return this.setRem(def+n);
+            }
+        },
+        getWordsRatio:function(){
+            // console.log(this.moreWidth);
+            // return this.setRem(404+this.moreWidth);
         },
         getDynamicHeight:function(def,ratio,max){
             var n;
