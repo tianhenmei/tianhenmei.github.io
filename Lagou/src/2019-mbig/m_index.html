@@ -11,7 +11,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
 		<link rel="Shortcut Icon" href="http://img.digoo.cn/h5/002/images/share.png">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!-- <link rel="preload" href="http://mov.digoo.cn/2019/h5/05/music/bg-02.mp3" as="audio" crossorigin> -->
 		<meta name="format-detection" content="telphone=no, email=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -133,16 +134,21 @@
 		</script>
 	</head>
 <body>
-    <audio style="display:none;" id="btn" preload="auto" src="images/music/btn.mp3"></audio>
-    <audio style="display:none;" id="q1" preload="auto" src="images/music/q1.mp3"></audio>
-    <audio style="display:none;" id="q2" loop="loop" preload="auto" src="images/music/q2.mp3"></audio>
-    <audio style="display:none;" id="q3" preload="auto" src="images/music/q3.mp3"></audio>
-    <audio style="display:none;" id="q4" loop="loop" preload="auto" src="images/music/q4.mp3"></audio>
-    <audio style="display:none;" id="q5" loop="loop" preload="auto" src="images/music/q5-02.mp3"></audio>
-    <audio style="display:none;" id="q6" loop="loop" preload="auto" src="images/music/q6.mp3"></audio>
-    <audio style="display:none;" id="q7" loop="loop" preload="auto" src="images/music/q7.mp3"></audio>
-    <audio style="display:none;" id="q8" preload="auto" src="images/music/q8.mp3"></audio>
-    <audio style="display:none;" id="q9" loop="loop" preload="auto" src="images/music/q9.mp3"></audio>
+    <div class="music-box hide" id="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" autoplay="autoplay" src="http://mov.digoo.cn/2019/h5/05/music/bg-02.mp3"></audio>
+        </div>
+    </div>
+    <audio style="display:none;" id="btn" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/btn.mp3"></audio>
+    <audio style="display:none;" id="q1" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q1.mp3"></audio>
+    <audio style="display:none;" id="q2" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q2.mp3"></audio>
+    <audio style="display:none;" id="q3" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q3.mp3"></audio>
+    <audio style="display:none;" id="q4" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q4.mp3"></audio>
+    <audio style="display:none;" id="q5" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q5-02.mp3"></audio>
+    <audio style="display:none;" id="q6" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q6.mp3"></audio>
+    <audio style="display:none;" id="q7" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q7.mp3"></audio>
+    <audio style="display:none;" id="q8" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q8.mp3"></audio>
+    <audio style="display:none;" id="q9" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q9.mp3"></audio>
 
     <div class="loading" id="loading">
         <div class="loading__computer opacityChange"></div>
@@ -623,11 +629,6 @@
             </div>
         </div>
         <div class="mmlogo"></div>
-    </div>
-    <div class="music-box hide" id="music-box">
-        <div class="music-icon open">
-            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music/bg-02.mp3"></audio>
-        </div>
     </div>
     <script src="js/jquery.1.10.1.min.js"></script>
     <script src="js/vue.js?v=$version$"></script> 

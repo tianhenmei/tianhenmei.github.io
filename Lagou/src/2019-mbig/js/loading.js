@@ -1,5 +1,5 @@
 // JavaScript Document
-var loadingHost = '';
+var loadingHost = 'http://img.digoo.cn/2019/h5/05/';
 var imgArray = [
 	"images/loading-computer.png",
 	"images/loading-code.png",
@@ -121,9 +121,9 @@ var Loader = function(){
 					}
 				};
 				// img.src = ctx + "/template/1024/" + imgArray[i];
-                img.src = imgArray[i]; // loadingHost + imgArray[i];
+                img.src = loadingHost+imgArray[i]; // loadingHost + imgArray[i];
 			}else{
-				this.loadMusic(imgArray[i]);  // loadingHost + imgArray[i]
+				this.loadMusic(loadingHost+imgArray[i]);  // loadingHost + imgArray[i]
 			}
 		}
 	};
