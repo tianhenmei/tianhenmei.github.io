@@ -461,6 +461,15 @@ body {
         font-size:rem(30);
         color:#000;
     }
+    &__back {
+        width:rem(267);
+        height:rem(80);
+        background:url('../images/dialog-back.png') no-repeat center top;
+        background-size:100% 100%;
+        @include leftTop(323,541);
+        display:block;
+        -webkit-tap-highlight-color: transparent;
+    }
 }
 
 .page0{
@@ -799,7 +808,7 @@ body {
             width:rem(228+3);
             height:rem(81+3);
             background-position:rem(-700) rem(-670);
-            @include leftTop(211,540);
+            @include leftTop(61,540);
         }
     }
 }
@@ -955,7 +964,8 @@ body {
             width:rem(228+3);
             height:rem(81+3);
             background-position:rem(-700) rem(-670);
-            @include leftTop(211,540);
+            // @include leftTop(211,540);
+            @include leftTop(61,540);
         }
     }
 }
@@ -1162,7 +1172,8 @@ body {
             width:rem(228+3);
             height:rem(81+3);
             background-position:rem(-700) rem(-670);
-            @include leftTop(211,540);
+            // @include leftTop(211,540);
+            @include leftTop(61,540);
         }
     }
 }
@@ -1633,6 +1644,15 @@ body {
             display:block;
             -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         }
+    }
+    &__back {
+        width:rem(222);
+        height:rem(38);
+        background:url('../images/page10-back.png') no-repeat center top;
+        background-size:100%;
+        display:block;
+        @include center(264,1226-132);
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     }
 }   
 .share-float{
