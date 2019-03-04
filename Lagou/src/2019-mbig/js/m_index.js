@@ -5,7 +5,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function noop(){}
 // test
 var initialNow = 0,
-    initialLast = 0;
+    initialLast = 0,
+    initialToggleMusic = false;
 
 // 音乐
 backgroundMusic(document.getElementById("music"));
@@ -387,6 +388,7 @@ app = new Vue({
         // }
         //音乐
         $('.music-icon').on('click',function(){
+            initialToggleMusic = true;
             if($('#music')[0].paused){
                 $('#music')[0].play();
                 $(".music-icon").removeClass('close').addClass('open');
@@ -510,6 +512,10 @@ app = new Vue({
             this.showStatus = true
         },
         startTest:function(){
+            var bgMusic = document.getElementById("music");
+            if(!initialToggleMusic && bgMusic.paused){
+                audio.play();
+            }
             this.page0.moveStatus = true;
             this.toNext(0);
         },
