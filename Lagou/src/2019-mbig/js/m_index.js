@@ -43,6 +43,16 @@ function backgroundMusic(audio){
     document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
 }
 
+// var bgMusic = document.getElementById("music");
+// bgMusic.addEventListener('click',function(){
+//     console.log('click');
+//     bgMusic.load();
+//     bgMusic.play();
+// },false);
+// var bgMusicEvent = document.createEvent("HTMLEvents");
+// bgMusicEvent.initEvent('click',true,true);
+// bgMusic.dispatchEvent(bgMusicEvent);
+
 
 var PageMove = function () {
     function PageMove(options) {
@@ -514,7 +524,7 @@ app = new Vue({
         startTest:function(){
             var bgMusic = document.getElementById("music");
             if(!initialToggleMusic && bgMusic.paused){
-                audio.play();
+                bgMusic.play();
             }
             this.page0.moveStatus = true;
             this.toNext(0);

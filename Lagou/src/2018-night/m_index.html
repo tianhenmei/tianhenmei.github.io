@@ -1216,6 +1216,21 @@
     <script src="js/tween.min.js?v=$version$"></script> 
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/m_index.js?v=$version$"></script>
+    <script>
+        // register
+        if("serviceWorker" in navigator){
+            alert("serviceWorker");
+            window.addEventListener('load',function(){
+                navigator.serviceWorker.register('./sw.js')
+                    .then(function(registration){
+                        console.log("Register success: ",registration.scope);
+                    })
+                    .catch(function(err){
+                        console.log("Register failed: ",err);
+                    });
+            },false);
+        }
+    </script>
     <!-- <script>
         var analytics = document.createElement("script");
         analytics.type = "text/javascript";
