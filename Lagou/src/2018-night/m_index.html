@@ -1223,10 +1223,10 @@
             window.addEventListener('load',function(){
                 navigator.serviceWorker.register('./js/sw.js')
                     .then(function(registration){
-                        console.log("Register success: ",registration.scope);
+                        alert("Register success: ",registration.scope);
                     })
                     .catch(function(err){
-                        console.log("Register failed: ",err);
+                        alert("Register failed: ",err);
                     });
             },false);
         }
