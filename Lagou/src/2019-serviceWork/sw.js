@@ -9,10 +9,10 @@ this.addEventListener('install', function (event) {
             // 通过 cache 缓存对象的 addAll 方法添加 precache 缓存
             return cache.addAll([
                 '',
-                '/m_index.html',
-                '/images/loading-03.gif',
-                '/images/hand.png',
-                '/images/page2-card02-btn.png'//,
+                'm_index.html',
+                'images/loading-03.gif',
+                'images/hand.png',
+                'images/page2-card02-btn.png'//,
                 // '/images/*.png',
                 // '/images/*.gif',
                 // '/images/*.jpg',
