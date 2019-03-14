@@ -1224,6 +1224,7 @@
             // if(localStorage.getItem('sw_version') !== version){
                 // localStorage.setItem('sw_version',version);
                 window.addEventListener('load',function(){  // DOMContentLoaded
+                    console.log('loaded');
                     navigator.serviceWorker.register('./sw.js')
                         .then(function(registration){
                             console.log("Register success: ",registration.scope);
