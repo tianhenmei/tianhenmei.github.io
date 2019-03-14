@@ -1223,7 +1223,7 @@
             console.log("serviceWorker");
             if(localStorage.getItem('sw_version') !== version){
                 localStorage.setItem('sw_version',version);
-                window.addEventListener('DOMContentLoaded',function(){
+                window.addEventListener('load',function(){  // DOMContentLoaded
                     navigator.serviceWorker.register('./sw.js')
                         .then(function(registration){
                             console.log("Register success: ",registration.scope);
