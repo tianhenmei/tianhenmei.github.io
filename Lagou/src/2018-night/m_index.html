@@ -1221,8 +1221,8 @@
         if("serviceWorker" in navigator){
             var version = '1.0.1';
             console.log("serviceWorker");
-            if(localStorage.getItem('sw_version') !== version){
-                localStorage.setItem('sw_version',version);
+            // if(localStorage.getItem('sw_version') !== version){
+                // localStorage.setItem('sw_version',version);
                 window.addEventListener('load',function(){  // DOMContentLoaded
                     navigator.serviceWorker.register('./sw.js')
                         .then(function(registration){
@@ -1232,7 +1232,7 @@
                             console.log("Register failed: ",err);
                         });
                 },false);
-            }
+            // }
         }
     </script>
     <!-- <script>
