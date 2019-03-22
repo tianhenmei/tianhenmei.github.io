@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="UTF-8" />
+    <title>Service Worker</title>
+<body>
+    <div class="main">
+        
+    </div>
+    <script>
+        // register
+        if("serviceWorker" in navigator){
+            // var version = '1.0.1';
+            // console.log("serviceWorker");
+            // // if(localStorage.getItem('sw_version') !== version){
+            //     // localStorage.setItem('sw_version',version);
+            //     window.addEventListener('load',function(){  // DOMContentLoaded
+            //         console.log('loaded');
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(function(registration){
+                            console.log("Register success: ",registration.scope);
+                            var serviceWorker;
+                            if(registration.installing){
+                                serviceWorker = registration.installing;
+                            }else if(registration.waiting){
+                                serviceWorker = registration.waiting;
+                            }else if(registration.active){
+                                serviceWorker = registration.active;
+                            }
+                            if(serviceWorker){
+                                serviceWorker.addEventListener('stateChange',function(event){
+                                    console.log('stateChange: '+e.target.state);
+                                });
+                            }
+                            registration.addEventListener('updatefound',function(){
+                                var installingWorker = registration.installing;
+                                console.log("A new worker is being installed: ",installingWorker);
+                            });
+                        })
+                        .catch(function(err){
+                            console.log("Register failed: ",err);
+                        });
+                    setTimeout(function(){
+                        var img = new Image();
+                        img.src = 'images/dog.jpg';
+                        document.body.appendChild(img);
+                    },3000);
+                // },false);
+            // }
+        }
+    </script>
+</body>
+</html>
