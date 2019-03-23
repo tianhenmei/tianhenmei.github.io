@@ -9,11 +9,7 @@ var initialNow = 0,
     initialToggleMusic = false;
 
 // 音乐
-try{
-    backgroundMusic(document.getElementById("music"));
-}catch(e){
-    console.log(e);
-}
+backgroundMusic(document.getElementById("music"));
 // 音乐播放
 function backgroundMusic(audio){
     // 自动播放音乐效果，解决浏览器或者APP自动播放问题
@@ -387,6 +383,11 @@ app = new Vue({
     },
     mounted:function(){
         pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
         var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
             currentSize = parseFloat((GC.w / GC.h).toFixed(1));
         this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
