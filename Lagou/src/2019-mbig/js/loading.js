@@ -1,5 +1,5 @@
 // JavaScript Document
-var loadingHost = 'http://img.digoo.cn/2019/h5/05/';
+var loadingHost = 'https://img.digoo.cn/2019/h5/05/';
 var imgArray = [
 	"images/loading-computer.png",
 	"images/loading-code.png",

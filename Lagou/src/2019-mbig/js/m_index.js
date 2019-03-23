@@ -9,7 +9,11 @@ var initialNow = 0,
     initialToggleMusic = false;
 
 // 音乐
-backgroundMusic(document.getElementById("music"));
+try{
+    backgroundMusic(document.getElementById("music"));
+}catch(e){
+    console.log(e);
+}
 // 音乐播放
 function backgroundMusic(audio){
     // 自动播放音乐效果，解决浏览器或者APP自动播放问题
