@@ -12,7 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
 		<link rel="Shortcut Icon" href="https://maimai.cn/favicon.ico">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <!-- <link rel="preload" href="http://mov.digoo.cn/2019/h5/05/music/bg-02.mp3" as="audio" crossorigin> -->
+        <!-- <link rel="preload" href="https://mov.digoo.cn/2019/h5/05/music/bg-02.mp3" as="audio" crossorigin> -->
 		<meta name="format-detection" content="telphone=no, email=no" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
@@ -136,19 +136,19 @@
 <body>
     <div class="music-box hide" id="music-box">
         <div class="music-icon open">
-            <audio style="display:none;" id="music" loop="loop" preload="auto" autoplay="autoplay" src="http://mov.digoo.cn/2019/h5/05/music/bg-02.mp3"></audio>
+            <audio style="display:none;" id="music" loop="loop" preload="auto" autoplay="autoplay" src="https://mov.digoo.cn/2019/h5/05/music/bg-02.mp3"></audio>
         </div>
     </div>
-    <audio style="display:none;" id="btn" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/btn.mp3"></audio>
-    <audio style="display:none;" id="q1" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q1.mp3"></audio>
-    <audio style="display:none;" id="q2" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q2.mp3"></audio>
-    <audio style="display:none;" id="q3" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q3.mp3"></audio>
-    <audio style="display:none;" id="q4" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q4.mp3"></audio>
-    <audio style="display:none;" id="q5" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q5-02.mp3"></audio>
-    <audio style="display:none;" id="q6" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q6.mp3"></audio>
-    <audio style="display:none;" id="q7" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q7.mp3"></audio>
-    <audio style="display:none;" id="q8" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q8.mp3"></audio>
-    <audio style="display:none;" id="q9" loop="loop" preload="auto" src="http://mov.digoo.cn/2019/h5/05/music/q9.mp3"></audio>
+    <audio style="display:none;" id="btn" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/btn.mp3"></audio>
+    <audio style="display:none;" id="q1" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q1.mp3"></audio>
+    <audio style="display:none;" id="q2" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q2.mp3"></audio>
+    <audio style="display:none;" id="q3" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q3.mp3"></audio>
+    <audio style="display:none;" id="q4" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q4.mp3"></audio>
+    <audio style="display:none;" id="q5" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q5-02.mp3"></audio>
+    <audio style="display:none;" id="q6" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q6.mp3"></audio>
+    <audio style="display:none;" id="q7" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q7.mp3"></audio>
+    <audio style="display:none;" id="q8" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q8.mp3"></audio>
+    <audio style="display:none;" id="q9" loop="loop" preload="auto" src="https://mov.digoo.cn/2019/h5/05/music/q9.mp3"></audio>
 
     <div class="loading" id="loading">
         <div class="loading__computer opacityChange"></div>
@@ -638,7 +638,7 @@
     <script src="js/vue.js?v=$version$"></script> 
     <!-- <script src="js/jquery.qrcode.min.js?v=$version$"></script> -->
     <script src="js/m_index.js?v=$version$"></script>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script src="//res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript">
         if(isWeiXin()){
             ShareWeChat();
@@ -656,7 +656,7 @@
             url = encodeURIComponent(url);
             $.ajax({  
                 type : "get",  
-                url : "http://a2.digoo.cn/wx/jssdk.php?url="+url,
+                url : "//a2.digoo.cn/wx/jssdk.php?url="+url,
                 dataType : "jsonp",  
                 jsonp: "callback",  
                 jsonpCallback:"success_jsonpCallback",  
@@ -679,10 +679,10 @@
             });
             wx.ready(function (){
                 var shareTimeline = {  
-                    "imgUrl": "images/share.jpg",
-                    "desc": "这……",//$fxtext[Math.floor(Math.random()*10)],
-                    "title": '刚坐上午夜出租车，他让我快下来……',
-                    "link": window.location.href  //"http://a2.digoo.cn/h5/002/",
+                    "imgUrl": "https://a2.digoo.cn/2019/h5/05/images/share.jpg?v=$version$20190",
+                    "desc": "此生是否有职场豪门命，未来规划局神准预测！",//$fxtext[Math.floor(Math.random()*10)],
+                    "title": '为什么豪门大厂要选Ta？',
+                    "link": window.location.href  //"https://a2.digoo.cn/h5/002/",
                 }; 
                 wx.onMenuShareAppMessage(shareTimeline);  
                 wx.onMenuShareTimeline(shareTimeline);  
@@ -691,5 +691,17 @@
             }); 
         }
     </script>
+<div style="display: none;">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?90a571ccf420eac26e8d45b0467c286d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type="text/javascript" src="https://js.users.51.la/19903765.js"></script>
+</div>
 </body>
 </html>
