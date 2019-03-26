@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Picture-in-Picture</title>
+    <style type="text/css">
+        .video {
+            width:100%;
+        }
+        .btn {
+            padding:20px;
+            border-radius:12px;
+            background-color:#ff0084;
+            color:#fff;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="pip">
+        <video id="video" class="video" src="short.mp4" controls playsinline></video>
+        <div id="btn" class="btn">切换画中画</div>
+    </div>
+    <script>
+        var video = document.getElementById('video');
+        console.log("Support: "+document.pictureInPictureEnabled);
+        async function openPip(video){
+            try{
+                // alert(video.requestPictureInPicture)
+                var pipWindow = await video.requestPictureInPicture();
+                console.log(pipWindow.width,pipWindow.height);
+                video.addEventListener('enterpictureinpicture',function(pipWindow){
+                    console.log("进入画中画模式");
+                });
+                video.addEventListener('leavepictureinpicture',function(pipWindow){
+                    console.log("退出画中画模式");
+                });
+                pipWindow.addEventListener('resize',function(){
+                    console.log(pipWindow.width,pipWindow.height);
+                });
+            }catch(e){
+                console.log(e);
+            }
+        }
+        document.getElementById('btn').addEventListener('click',function(e){
+            if(video != document.pictureInPictureElement){
+                openPip(video);
+            }else{
+                document.exitPictureInPicture();
+            }
+        },false);
+    </script>
+</body>
+</html>
