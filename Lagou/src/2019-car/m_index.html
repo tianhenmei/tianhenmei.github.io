@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!-- <link rel="prefetch" href="images/music.mp3?v=$version$" />
+    <link rel="prefetch" href="images/loading.mp3?v=$version$" />
+    <link rel="prefetch" href="images/in-02.mp3?v=$version$" />
+    <link rel="prefetch" href="images/tv-05.mp3?v=$version$" /> -->
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <!---上线之后加-->
+    <title>爱卡汽车</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 1080,
+                h: 1755
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            PM = null,
+            currentCount = 0,
+            heightStatus = 0,
+            fontSize = 16;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app && app.shareSuccessCallback){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var landscape =  false;
+            try{
+                landscape = window.matchMedia("(orientation: landscape)").matches;
+            } catch(e){}
+            // if(landscape){
+            //     ff = RC.w * document.documentElement.clientWidth / document.documentElement.clientHeight
+            // }
+            // var html = html.documentElement,
+            //     c = function(){b.clientWidth;b.style.fontSize=a.innerWidth/ff*100+"px"};c();};
+            // cal(document,window);
+            // try{
+            //     var mql = window.matchMedia('(orientation: portrait)');
+            //     handleOrientationChange(mql);
+            //     function handleOrientationChange(){
+            //         cal()
+            //     }
+            //     mql.addListener(handleOrientationChange);
+            // } catch(e){}
+
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                lastHTMLSize = 16;
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            }
+            lastSize = lastHTMLSize;
+            fontSize = (landscape ? GC.h : GC.w) / lastHTMLSize;
+            html.style.fontSize = fontSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            firstTime = 0,
+            loadingMusicClose = false,
+            audioLoaded = 0,
+            audioPrepared = false,
+            imgPrepared= false,
+            alreadyLoaded = false;
+            loadingComplete = function(){
+                var appElement = document.getElementById('app'),
+                    music = document.getElementById('music');
+                document.getElementById('loading').className += ' opacityChange-out';
+                // if(music.paused){
+                //     playAudio(music,function(){});
+                // }
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                    appElement.className = appElement.className.replace(/( hide)/g,'');
+                    firstTime = Date.now();
+                },500);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                alreadyLoaded = true;
+                // imgPrepared = true;
+                // if(audioPrepared){
+                //     imgPrepared = false;
+                //     audioPrepared = false;
+                    loadingComplete();
+                // }
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    // loadingComplete();
+                // }
+            };
+        function getDelayTime(start,gap,index){
+            var current = (start+gap * index)+''.split(''),
+                f = '',
+                l = '';
+            if(current.length == 1){
+                f = '0';
+                l = current[0];
+            }else {
+                f = current[0];
+                l = current[1];
+            }
+            return f+'-'+l;
+        }
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="audio0" loop="loop" preload="auto" src="images/loading.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="audio1" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="audio2" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="audio3" preload="auto" src="images/out-05.mp3?v=$version$"></audio>
+        </div>
+    </div>
+    <div class="page-bg"></div>
+    <div class="loading" id="loading">
+        <div class="loading__snakeLayer opacityChange">
+            <div class="loading__snakeList"><!-- snakeChange delay0-5-->
+            </div>
+        </div>
+        <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div>
+    </div>
+    <script type="text/javascript">
+        function setRem(value){
+            return (value / (1080 / 16)).toFixed(5)+'rem';
+        }
+        function getRem(value) {
+            return value / (1080 / 16) * fontSize;
+        }
+        function getFitTop(def,ratio){
+            return setRem(def+heightStatus * ratio);
+        }
+        function playAudio(elem,callback,status){
+            if (window.WeixinJSBridge) {
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    if(!status){
+                        elem.currentTime = 0;
+                    }
+                    elem.play();
+                    callback()
+                }, false);
+            }else{
+                if(!status){
+                    elem.currentTime = 0;
+                }
+                elem.play();
+                callback()
+            }
+        }
+        // 音乐播放
+        function backgroundMusic(audio){
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            if(audio.paused && !loadingMusicClose){
+                audio.load();
+                audio.play();
+            }
+            function musicInBrowserHandler() {
+                if(audio.paused && !loadingMusicClose){
+                    audio.load();
+                    audio.play();
+                }
+                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+            }
+            document.body.addEventListener('touchstart', musicInBrowserHandler);
+        }
+        function initWeixinEvent(){
+            var bgMusic = document.getElementById('music');
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                if(bgMusic.paused){
+                    bgMusic.play();
+                }
+            }, false);
+        }
+        // initWeixinEvent();
+        // playLoadingAudio();
+    </script>
+    <!-- <div class="page-bg"></div> -->
+    <script type="text/javascript" src="js/loading.js?v=$version$"></script>
+    <div class="wrapper pages" id="app">
+        <div class="pages__outer" id="pages__outer">
+            <div class="pages__center" id="pages__center">
+                <div class="page page0" id="page0" :class="activePage == 0 ? 'active' : ''" 
+                    ref="page0">
+                    <div class="page0__louter page0__louter--01">
+                        <img class="page0__l page0__l01"  src="images/page0-l01.png?v=$version$"/>
+                        <div class="page0__l__top page0__l01__text"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--02">
+                        <img class="page0__l page0__l02"  src="images/page0-l02.png?v=$version$"/>
+                        <div class="page0__l__top page0__l02__text"></div>
+                        <div class="page0__l__top page0__l02__person"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--03">
+                        <img class="page0__l page0__l03"  src="images/page0-l03.png?v=$version$"/>
+                        <div class="page0__l__top page0__l03__text"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--04 page0__question01">
+                        <img class="page0__l page0__l04"  src="images/page0-l04.png?v=$version$"/>
+                        <div class="page0__l__top page0__l04__text"></div>
+                        <div class="page0__anwser01">
+                            <div class="anwser01 page0__anwser01--01" :class="answers[0] == 0 ? 'anwser-up' : ''">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,0)"></div>
+                            </div>
+                            <div class="anwser01 page0__anwser01--02" :class="{'anwser-up': answers[0] == 1}">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,1)"></div>
+                            </div>
+                            <div class="anwser01 page0__anwser01--03" :class="{'anwser-up': answers[0] == 2}">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page0__louter page0__louter--05">
+                        <div class="page0__l__top page0__l05__bg"></div>
+                        <img class="page0__l page0__l05"  src="images/page0-l05.png?v=$version$"/>
+                        <div class="page0__l__top page0__l05__text01"></div>
+                        <div class="page0__l__top page0__l05__text02"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--06">
+                        <img class="page0__l page0__l06"  src="images/page0-l06.png?v=$version$"/>
+                        <div class="page0__l__top page0__l06__text"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--07">
+                        <img class="page0__l page0__l07"  src="images/page0-l07.png?v=$version$"/>
+                        <div class="page0__l__top page0__l07__text page0__question02"></div>
+                        <div class="page0__anwser01 page0__anwser02">
+                            <div class="anwser02 page0__anwser01--01" :class="answers[1] == 0 ? 'anwser-up' : ''">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,0)"></div>
+                            </div>
+                            <div class="anwser02 page0__anwser01--02" :class="{'anwser-up': answers[1] == 1}">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,1)"></div>
+                            </div>
+                            <div class="anwser02 page0__anwser01--03" :class="{'anwser-up': answers[1] == 2}">
+                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page0__louter page0__louter--08">
+                        <img class="page0__l page0__l08"  src="images/page0-l08.png?v=$version$"/>
+                        <div class="page0__l__top page0__l08__text"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--09  page0__question03">
+                        <img class="page0__l page0__l09" src="images/page0-l09.png?v=$version$"/>
+                        <div class="page0__anwser01 page0__anwser03">
+                            <div class="anwser03 page0__anwser01--01" :class="answers[2] == 0 ? 'anwser-up' : ''">
+                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,0)"></div>
+                            </div>
+                            <div class="anwser03 page0__anwser01--02" :class="{'anwser-up': answers[2] == 1}">
+                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,1)"></div>
+                            </div>
+                            <div class="anwser03 page0__anwser01--03" :class="{'anwser-up': answers[2] == 2}">
+                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page0__louter page0__louter--10  page0__question03">
+                        <img class="page0__l page0__l10" src="images/page0-l10.png?v=$version$"/>
+                        <div class="page0__l__top page0__l10__text"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--11  page0__question04">
+                        <img class="page0__l page0__l11" src="images/page0-l11.png?v=$version$"/>
+                        <div class="page0__l__top page0__l11__text"></div>
+                        <div class="page0__l__top page0__l11__light"></div>
+                        <div class="page0__l__top page0__l11__dialog"></div>
+                        <div class="page0__anwser01 page0__anwser04">
+                            <div class="anwser04 page0__anwser01--01" :class="answers[3] == 0 ? 'anwser-up' : ''">
+                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,0)"></div>
+                            </div>
+                            <div class="anwser04 page0__anwser01--02" :class="{'anwser-up': answers[3] == 1}">
+                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,1)"></div>
+                            </div>
+                            <div class="anwser04 page0__anwser01--03" :class="{'anwser-up': answers[3] == 2}">
+                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,2)"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page0__louter page0__louter--12  page0__question05">
+                        <img class="page0__l page0__l12" src="images/page0-l12.png?v=$version$"/>
+                        <div class="page0__l__top page0__l12__text"></div>
+                        <div class="page0__l__top page0__l12__question"></div>
+                        <div class="page0__anwser01 page0__anwser05">
+                            <div class="anwser05 page0__anwser01--01" :class="answers[4] == 0 ? 'anwser-up' : ''">
+                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,0)"></div>
+                            </div>
+                            <div class="anwser05 page0__anwser01--02" :class="{'anwser-up': answers[4] == 1}">
+                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,1)"></div>
+                            </div>
+                            <div class="anwser05 page0__anwser01--03" :class="{'anwser-up': answers[4] == 2}">
+                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,2)"></div>
+                            </div>
+                        </div>
+                        <div class="page0__submit" @click.stop.prevent="submitEvent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="page page3" id="page3"></div> -->
+    <script type="text/javascript">
+        function setBody(){
+            var dbody = document.getElementsByTagName('body')[0];
+            var app = document.getElementById('pages__center');
+            // app.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';
+            app.style.height = (GC.h < GC.w ? GC.h : GC.w) +'px';
+            // dbody.style.width = (GC.h < GC.w ? GC.h : GC.w )+'px';
+            // dbody.style.height = (GC.h < GC.w ? GC.w : GC.h) +'px';
+            // dbody.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';
+            // dbody.style.height = (GC.h < GC.w ? GC.h : GC.w) +'px';
+        }
+        window.addEventListener('resize',function(){
+            setFontSize();
+            setBody();
+            app && app.resetData && app.resetData();
+        })
+        // window.addEventListener("orientationchange", function() {
+        //     alert("orientationchange")
+        //     setFontSize();
+        //     setBody();
+        // });
+        setBody()
+        
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script>
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2019-car/m_index.html';
+        //微信分享
+        var datas = {
+            title: "爱奇艺、京东、360...互联网人水立方派对抢票中，仅限一晚 | 拉勾奇妙夜",
+            desc: "黄执中职场talk show，200+大厂HR直聊，限时抢票",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2019-car/images/share.png",
+            activityType: 'ACTIVITY_H5_CAR_2019',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+    <script src="js/tween.min.js?v=$version$"></script> 
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    <script>
+        // register
+        if("serviceWorker" in navigator){
+            var version = '1.0.1';
+            console.log("serviceWorker");
+            // if(localStorage.getItem('sw_version') !== version){
+                // localStorage.setItem('sw_version',version);
+                window.addEventListener('load',function(){  // DOMContentLoaded
+                    console.log('loaded');
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(function(registration){
+                            console.log("Register success: ",registration.scope);
+                        })
+                        .catch(function(err){
+                            console.log("Register failed: ",err);
+                        });
+                },false);
+            // }
+        }
+    </script>
+    <!-- <script>
+        var analytics = document.createElement("script");
+        analytics.type = "text/javascript";
+        analytics.src = "https://www.lgstatic.com/activity/js/analytics.js";
+        document.body.appendChild(analytics);
+    </script> -->
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+</body>
+</html>

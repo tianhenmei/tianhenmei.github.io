@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>CSS 火焰</title>
+    <link rel="stylesheet" href="css/m_index.css"/>
+</head>
+<body>
+    <div class="app" id="app">
+        <div class="mode__list clearfix">
+            <div class="mode__one" v-for="one in modeList"
+                :class="'mode__one--'+one.mode">
+                <div class="mode__one__outer">
+                    <div class="mode__one__inner" :style="{
+                        'mix-blend-mode':one.mode
+                    }"></div>
+                </div>
+                <div class="mode__one__name">{{one.cn}}</div>
+            </div>
+        </div>
+
+        <div class="mode__screen">
+            <div class="mode__title">screen 滤色模式制作loading效果</div>
+            <div class="mode__container">
+                <div class="mode__screen__circle"></div>
+                <div class="mode__screen__circle"></div>
+                <div class="mode__screen__circle"></div>
+            </div>
+        </div>
+
+        <div class="mode__difference">
+            <div class="mode__title">difference 差值</div>
+            <div class="mode__container">
+                <div class="mode__difference__circle"></div>
+                <div class="mode__difference__circle"></div>
+                <div class="mode__difference__circle"></div>
+                <div class="mode__difference__circle"></div>
+                <div class="mode__difference__circle"></div>
+                <div class="mode__difference__circle"></div>
+            </div>
+        </div>
+
+        <div class="mode__title">box-shadow</div>
+        <div class="mode__circle"></div>
+
+        <div class="mode__text">
+            <div class="mode__title">多混合模式制作文字故障效果</div>
+            <div class="text-magic" data-word="SUNZONGYU">
+                SUNZONGYU
+                <div class="white"></div>
+            </div>
+        </div>
+
+        <div class="g-outer">
+            <div class="g-layer">
+                <div class="g-btn">
+                    <div class="g-ball" v-for="one in count"></div>
+                </div>
+            </div>
+        </div>
+        <div class="mode__test">
+            <img class="mode__test__bg" src="images/bg.JPG" />
+            <div class="mode__test__words" :style="{
+                'mix-blend-mode':selectedMode
+            }"><span class="red">请</span>选择下面各个mix-blend-mode属性值：</div>
+            <select class="mode__test__select" v-model="selectedMode">
+                <option v-for="one in modeList" class="mode__test__option" :value="one.mode">{{one.cn}}</option>
+            </select>
+        </div>
+
+
+
+        <img class="filter-tv" src="images/tv.png" />
+    </div>
+    <script src="../2019-mbig/js/vue.js"></script> 
+    <script src="js/m_index.js"></script>
+</body>
+</html>
