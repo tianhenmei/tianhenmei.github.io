@@ -16,7 +16,7 @@
     var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
     // 音乐
     // if(mode != "development"){
-    //     backgroundMusic(document.getElementById("music"));
+        backgroundMusic(document.getElementById("music"));
     // }
     
     Vue.config.errorHandler = function (err, vm, info) {
@@ -56,12 +56,28 @@
                 [5,3,4]
             ],
             results:[0,0,0,0,0],
-            questions:[4008, 9551, 14890, 19960, 25320],
-            submitStatus:false
+            questions:[0, 4320, 9500, 14880, 19920],
+            submitStatus:false,
+            submitClass:'',
+            isclick: false,
+            myresult: -1,
+            // 绘制
+            loaded:0,
+            loadedImgs:[],
+            imgs:[
+                "images/test.jpeg"
+            ],
+            drawStatus:false,
+            canvas:null,
+            ctx:null,
+            url:'',
+            changeStatus: false
         },
         mounted:function(){
             this.resetData();
             this.initScrollEvent()
+            this.initCanvas()
+            this.loadImages();
             // document.addEventListener('touchstart',function(e){
             //     e.stopPropagation();
             //     e.preventDefault();
@@ -76,10 +92,11 @@
             //     capture:false,
             //     passive:false
             // })
-            document.getElementById('app').addEventListener('touchstart',this.pageScroll,{
-                capture:false,
-                passive:false
-            });
+            // 播放音乐
+            // document.getElementById('app').addEventListener('touchstart',this.pageScroll,{
+            //     capture:false,
+            //     passive:false
+            // });
         },
         methods:{
             noop:function(){},
@@ -92,9 +109,9 @@
             resetData:function(){
                 var i = 0;
                 // 重置audio位置
-                for(i = 0; i < this.audioPosition.length; i++){
-                    this.audioPosition[i] = this.getRem(this.audioPosition[i])
-                }
+                // for(i = 0; i < this.audioPosition.length; i++){
+                //     this.audioPosition[i] = this.getRem(this.audioPosition[i])
+                // }
                 this.fontSize = parseFloat(document.documentElement.style.fontSize) || 16;
                 var landscape =  false;
                 try{
@@ -103,7 +120,8 @@
                 this.landscape = landscape;
             },
             setAnswerEvent:function(pindex,index){
-                var arr = this.answers.slice(0);
+                var arr = this.answers.slice(0),
+                    obj = {};
                 arr[pindex] = index;
                 this.results[pindex] = this.all[pindex][index]
                 this.answers = arr;
@@ -112,21 +130,37 @@
                     var status = this.getNoneSelect();
                     if(status == -1){
                         this.showResult();
+                    }else {
+                        obj[this.landscape ? 'scrollLeft' : 'scrollTop'] = this.getRem(this.questions[status])
+                        $('#pages__outer').animate(obj,500);
                     }
                 }
             },
             submitEvent:function(){
-                var len = this.answers.length,
-                    obj = {},
-                    status = this.getNoneSelect(),
-                    i = 0;
-                this.submitStatus = true;
-                if(status != -1){
-                    obj[this.landscape ? 'scrollLeft' : 'scrollTop'] = this.getRem(this.questions[status])
-                    $('#pages__outer').animate(obj,500);
-                }else{
-                    // 都已选择，提交
-                    this.showResult();
+                if(!this.isclick){
+                    var len = this.answers.length,
+                        _this = this,
+                        obj = {},
+                        status = this.getNoneSelect(),
+                        i = 0;
+                    this.submitStatus = true;
+                    this.submitClass = 'submit-zoom'
+                    this.isclick = true;
+                    if(status == -1){
+                        // 都已选择，提交
+                        _this.showResult();
+                    } 
+                    setTimeout(function(){
+                        _this.submitClass = ''
+                        if(status == -1){
+                            // 都已选择，提交
+                            _this.changeStatus = true;
+                        }else{
+                            obj[_this.landscape ? 'scrollLeft' : 'scrollTop'] = _this.getRem(_this.questions[status])
+                            $('#pages__outer').animate(obj,500);
+                        }
+                        _this.isclick = false;
+                    },500)
                 }
             },
             getNoneSelect:function(){
@@ -185,7 +219,69 @@
                 }else {
                     res = 14;
                 }
-                alert("结果："+res);
+                this.myresult = res;
+                this.drawResult();
+            },
+            drawResult:function(){
+                this.drawStatus = true;
+                if(this.loaded == this.imgs.length) {
+                    this.startDraw();
+                }
+            },
+            startDraw:function(){
+                var self = this;
+                this.ctx.fillStyle = "#333"
+                this.ctx.font = "40px normal"
+                this.ctx.fillText('稳'+this.myresult,0,40+10)
+                
+                this.ctx.fillStyle = "#666"
+                this.ctx.font = "30px normal"
+                this.ctx.fillText('你喜欢专业领域内的挑战',0,50+30+7)
+                this.ctx.fillText('挫折越大，',0,50+45+30+7)
+                this.ctx.fillText('越能激发你的潜能',0,50+45*2+30+7)
+
+                this.ctx.drawImage(this.loadedImgs[0],0,195);
+                // 绘制完毕，导出图片地址
+                setTimeout(function(){
+                    self.url = self.canvas.toDataURL("image/png");
+                    setTimeout(function(){
+                        self.activePage = 1;
+                    },500)
+                },500)
+            },
+            initCanvas:function(){
+                var width = 1080,
+                    height = 1920,
+                    self = this
+
+                this.canvas = document.getElementById("canvas") 
+                this.ctx = this.canvas.getContext("2d")
+                this.canvas.width = width
+                this.canvas.height = height
+
+                this.ctx.fillStyle = "#321f8f"
+                this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
+                this.ctx.fill()
+            },
+            loadImages:function(){
+                var self = this;
+                this.imgs.forEach(function(url){
+                    var img = new Image()
+                    img.onload = function(){
+                        self.loaded++
+                        if(self.loaded == self.imgs.length){
+                            // self.ctx.drawImage(self.loadedImgs[0],0,195);
+                            // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0,750,1493,-48,-110,662,1317);
+                            // self.ctx.drawImage(self.loadedImgs[1],1,838);
+                            if(self.drawStatus){
+                                self.startDraw()
+                                self.drawStatus = false
+                            }
+                        }
+                    }
+                    img.src = url,
+                    self.loadedImgs.push(img)
+                })
             },
             initScrollEvent:function(){
 

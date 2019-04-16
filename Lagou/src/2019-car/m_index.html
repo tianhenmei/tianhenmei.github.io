@@ -100,9 +100,9 @@
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
                 document.getElementById('loading').className += ' opacityChange-out';
-                // if(music.paused){
-                //     playAudio(music,function(){});
-                // }
+                if(music.paused){
+                    playAudio(music,function(){});
+                }
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
                     appElement.className = appElement.className.replace(/( hide)/g,'');
@@ -191,21 +191,31 @@
                 callback()
             }
         }
+        
         // 音乐播放
         function backgroundMusic(audio){
-            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-            if(audio.paused && !loadingMusicClose){
-                audio.load();
-                audio.play();
-            }
-            function musicInBrowserHandler() {
-                if(audio.paused && !loadingMusicClose){
+            function musicPlay(audio,status){
+                if(audio.paused){
                     audio.load();
                     audio.play();
                 }
+            }
+            // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+            musicPlay(audio)
+            function musicInBrowserHandler() {
+                musicPlay(audio)
                 document.body.removeEventListener('touchstart', musicInBrowserHandler);
             }
             document.body.addEventListener('touchstart', musicInBrowserHandler);
+            // 自动播放音乐效果，解决微信自动播放问题
+            function musicInWeixinHandler() {
+                musicPlay(audio,true);
+                document.addEventListener("WeixinJSBridgeReady", function () {
+                    musicPlay(audio,true);
+                }, false);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
         }
         function initWeixinEvent(){
             var bgMusic = document.getElementById('music');
@@ -215,126 +225,111 @@
                 }
             }, false);
         }
+        // backgroundMusic(document.getElementById('music'));
         // initWeixinEvent();
         // playLoadingAudio();
     </script>
     <!-- <div class="page-bg"></div> -->
     <script type="text/javascript" src="js/loading.js?v=$version$"></script>
-    <div class="wrapper pages" id="app">
-        <div class="pages__outer" id="pages__outer">
+    <div class="canvas">
+        <canvas id="canvas"></canvas>
+    </div>
+    <div class="wrapper pages hide" id="app">
+        <div class="pages__outer" id="pages__outer"
+            :class="changeStatus ? (landscape ? 'moveLeftOut' : 'moveTopOut') : ''">
             <div class="pages__center" id="pages__center">
                 <div class="page page0" id="page0" :class="activePage == 0 ? 'active' : ''" 
                     ref="page0">
+                    <img class="page0__img" src="images/page-q01.png?v=$version$" />
                     <div class="page0__louter page0__louter--01">
-                        <img class="page0__l page0__l01"  src="images/page0-l01.png?v=$version$"/>
-                        <div class="page0__l__top page0__l01__text"></div>
+                        <img class="page0__img" src="images/page-q01-s01-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l01__text" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)"></div>
                     </div>
                     <div class="page0__louter page0__louter--02">
-                        <img class="page0__l page0__l02"  src="images/page0-l02.png?v=$version$"/>
-                        <div class="page0__l__top page0__l02__text"></div>
-                        <div class="page0__l__top page0__l02__person"></div>
+                        <img class="page0__img" src="images/page-q01-s02-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l02__text" :class="{'text__moveup': answers[0] == 1}" @click.stop.prevent="setAnswerEvent(0,1)"></div>
                     </div>
                     <div class="page0__louter page0__louter--03">
-                        <img class="page0__l page0__l03"  src="images/page0-l03.png?v=$version$"/>
-                        <div class="page0__l__top page0__l03__text"></div>
+                        <img class="page0__img" src="images/page-q01-s03-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l03__text" :class="{'text__moveup': answers[0] == 2}" @click.stop.prevent="setAnswerEvent(0,2)"></div>
                     </div>
-                    <div class="page0__louter page0__louter--04 page0__question01">
-                        <img class="page0__l page0__l04"  src="images/page0-l04.png?v=$version$"/>
-                        <div class="page0__l__top page0__l04__text"></div>
-                        <div class="page0__anwser01">
-                            <div class="anwser01 page0__anwser01--01" :class="answers[0] == 0 ? 'anwser-up' : ''">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,0)"></div>
-                            </div>
-                            <div class="anwser01 page0__anwser01--02" :class="{'anwser-up': answers[0] == 1}">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,1)"></div>
-                            </div>
-                            <div class="anwser01 page0__anwser01--03" :class="{'anwser-up': answers[0] == 2}">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(0,2)"></div>
-                            </div>
-                        </div>
+                    <img class="page0__img" src="images/page-q02.png?v=$version$" />
+                    <img class="page0__img" src="images/page-q02-e01.png?v=$version$" />
+                    <div class="page0__louter page0__louter--04">
+                        <img class="page0__img" src="images/page-q02-s01-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l04__text" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)"></div>
                     </div>
                     <div class="page0__louter page0__louter--05">
-                        <div class="page0__l__top page0__l05__bg"></div>
-                        <img class="page0__l page0__l05"  src="images/page0-l05.png?v=$version$"/>
-                        <div class="page0__l__top page0__l05__text01"></div>
-                        <div class="page0__l__top page0__l05__text02"></div>
+                        <img class="page0__img" src="images/page-q02-s02-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l05__text" :class="{'text__moveup': answers[1] == 1}" @click.stop.prevent="setAnswerEvent(1,1)"></div>
                     </div>
                     <div class="page0__louter page0__louter--06">
-                        <img class="page0__l page0__l06"  src="images/page0-l06.png?v=$version$"/>
-                        <div class="page0__l__top page0__l06__text"></div>
+                        <img class="page0__img" src="images/page-q02-s03-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l06__text" :class="{'text__moveup': answers[1] == 2}" @click.stop.prevent="setAnswerEvent(1,2)"></div>
                     </div>
+                    <img class="page0__img" src="images/page-q03.png?v=$version$" />
                     <div class="page0__louter page0__louter--07">
-                        <img class="page0__l page0__l07"  src="images/page0-l07.png?v=$version$"/>
-                        <div class="page0__l__top page0__l07__text page0__question02"></div>
-                        <div class="page0__anwser01 page0__anwser02">
-                            <div class="anwser02 page0__anwser01--01" :class="answers[1] == 0 ? 'anwser-up' : ''">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,0)"></div>
-                            </div>
-                            <div class="anwser02 page0__anwser01--02" :class="{'anwser-up': answers[1] == 1}">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,1)"></div>
-                            </div>
-                            <div class="anwser02 page0__anwser01--03" :class="{'anwser-up': answers[1] == 2}">
-                                <div class="page0__anwser01--center" @click.stop.prevent="setAnswerEvent(1,2)"></div>
-                            </div>
-                        </div>
+                        <img class="page0__img" src="images/page-q03-s01-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l07__text" :class="{'text__moveup': answers[2] == 0}" @click.stop.prevent="setAnswerEvent(2,0)"></div>
                     </div>
                     <div class="page0__louter page0__louter--08">
-                        <img class="page0__l page0__l08"  src="images/page0-l08.png?v=$version$"/>
-                        <div class="page0__l__top page0__l08__text"></div>
+                        <img class="page0__img" src="images/page-q03-s02-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l08__text" :class="{'text__moveup': answers[2] == 1}" @click.stop.prevent="setAnswerEvent(2,1)"></div>
                     </div>
-                    <div class="page0__louter page0__louter--09  page0__question03">
-                        <img class="page0__l page0__l09" src="images/page0-l09.png?v=$version$"/>
-                        <div class="page0__anwser01 page0__anwser03">
-                            <div class="anwser03 page0__anwser01--01" :class="answers[2] == 0 ? 'anwser-up' : ''">
-                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,0)"></div>
-                            </div>
-                            <div class="anwser03 page0__anwser01--02" :class="{'anwser-up': answers[2] == 1}">
-                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,1)"></div>
-                            </div>
-                            <div class="anwser03 page0__anwser01--03" :class="{'anwser-up': answers[2] == 2}">
-                                <div class="page0__anwser01--center page0__anwser03--center" @click.stop.prevent="setAnswerEvent(2,2)"></div>
-                            </div>
-                        </div>
+                    <div class="page0__louter page0__louter--09">
+                        <img class="page0__img" src="images/page-q03-s03-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l09__text" :class="{'text__moveup': answers[2] == 2}" @click.stop.prevent="setAnswerEvent(2,2)"></div>
                     </div>
-                    <div class="page0__louter page0__louter--10  page0__question03">
-                        <img class="page0__l page0__l10" src="images/page0-l10.png?v=$version$"/>
-                        <div class="page0__l__top page0__l10__text"></div>
+                    <img class="page0__img" src="images/page-q04.png?v=$version$" />
+                    <div class="page0__louter page0__louter--10">
+                        <img class="page0__img" src="images/page-q04-s01-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l10__text" :class="{'text__moveup': answers[3] == 0}" @click.stop.prevent="setAnswerEvent(3,0)"></div>
                     </div>
-                    <div class="page0__louter page0__louter--11  page0__question04">
-                        <img class="page0__l page0__l11" src="images/page0-l11.png?v=$version$"/>
-                        <div class="page0__l__top page0__l11__text"></div>
-                        <div class="page0__l__top page0__l11__light"></div>
-                        <div class="page0__l__top page0__l11__dialog"></div>
-                        <div class="page0__anwser01 page0__anwser04">
-                            <div class="anwser04 page0__anwser01--01" :class="answers[3] == 0 ? 'anwser-up' : ''">
-                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,0)"></div>
-                            </div>
-                            <div class="anwser04 page0__anwser01--02" :class="{'anwser-up': answers[3] == 1}">
-                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,1)"></div>
-                            </div>
-                            <div class="anwser04 page0__anwser01--03" :class="{'anwser-up': answers[3] == 2}">
-                                <div class="page0__anwser01--center page0__anwser04--center" @click.stop.prevent="setAnswerEvent(3,2)"></div>
-                            </div>
-                        </div>
+                    <div class="page0__louter page0__louter--11">
+                        <img class="page0__img" src="images/page-q04-s02-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l11__text" :class="{'text__moveup': answers[3] == 1}" @click.stop.prevent="setAnswerEvent(3,1)"></div>
                     </div>
-                    <div class="page0__louter page0__louter--12  page0__question05">
-                        <img class="page0__l page0__l12" src="images/page0-l12.png?v=$version$"/>
-                        <div class="page0__l__top page0__l12__text"></div>
-                        <div class="page0__l__top page0__l12__question"></div>
-                        <div class="page0__anwser01 page0__anwser05">
-                            <div class="anwser05 page0__anwser01--01" :class="answers[4] == 0 ? 'anwser-up' : ''">
-                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,0)"></div>
-                            </div>
-                            <div class="anwser05 page0__anwser01--02" :class="{'anwser-up': answers[4] == 1}">
-                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,1)"></div>
-                            </div>
-                            <div class="anwser05 page0__anwser01--03" :class="{'anwser-up': answers[4] == 2}">
-                                <div class="page0__anwser01--center page0__anwser05__center" @click.stop.prevent="setAnswerEvent(4,2)"></div>
-                            </div>
-                        </div>
-                        <div class="page0__submit" @click.stop.prevent="submitEvent"></div>
+                    <div class="page0__louter page0__louter--12">
+                        <img class="page0__img" src="images/page-q04-s03-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l12__text" :class="{'text__moveup': answers[3] == 2}" @click.stop.prevent="setAnswerEvent(3,2)"></div>
+                    </div>
+                    <img class="page0__img" src="images/page-q05.png?v=$version$" />
+                    <div class="page0__louter page0__louter--13">
+                        <img class="page0__img" src="images/page-q05-s01-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l13__text" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--14">
+                        <img class="page0__img" src="images/page-q05-s02-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l14__text" :class="{'text__moveup': answers[4] == 1}" @click.stop.prevent="setAnswerEvent(4,1)"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--15">
+                        <img class="page0__img" src="images/page-q05-s03-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l15__text" :class="{'text__moveup': answers[4] == 2}" @click.stop.prevent="setAnswerEvent(4,2)"></div>
+                    </div>
+                    <div class="page0__louter page0__louter--16">
+                        <img class="page0__img" src="images/page-submit-bg.png?v=$version$" />
+                        <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"></div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="page page1" id="page1" 
+            :class="changeStatus ? (landscape ? 'moveLeftIn' : 'moveTopIn')+' active' : activePage == 1 ? 'active' : ''" ref="page1">
+            <div class="page1__title">稳{{myresult}}</div>
+            <div class="page1__detail">
+                你喜欢专业领域内的挑战<br/>
+                挫折越大，<br/>
+                越能激发你的潜能
+            </div>
+            <div class="page1__ratio"></div>
+            <div class="page1__car">
+                <div class="page1__car__top"></div>
+                <div class="page1__car__center">
+                    <div class="page1__car__content movedownShow delay1-0"></div>
+                </div>
+            </div>
+            <div class="page1__canvas">
+                <img class="page1__canvas" :src="url" />
             </div>
         </div>
     </div>

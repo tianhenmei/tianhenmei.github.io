@@ -1,4 +1,4 @@
-const CACHE_NAME = '2019-car-cache-v1';
+const CACHE_NAME = '2019-car-cache-v2';
 // 监听 service worker 的 install 事件
 this.addEventListener('install', function (event) {
     this.skipWaiting();
@@ -28,6 +28,15 @@ this.addEventListener('install', function (event) {
 });
 this.addEventListener('activate', function (event) {
     this.clients.claim()
+    event.waitUntil(caches.keys().then(function(keys){
+        Promise.all(keys.map(function(key){
+            if(/(2019-car-cache)/g.test(key) && key !== CACHE_NAME){
+                return caches.delete(key);
+            }
+        }));
+    }).then(function(){
+        console.log('2019-car-cache-02: ready to handle fetches');
+    }))
 });
 this.addEventListener('fetch', function(event) {
     event.respondWith(
