@@ -86,6 +86,9 @@ var imgArray = [
 	loadingHost+"images/page-q01-s03-bg.png",
 	loadingHost+"images/page-q01-s03.png",
 	loadingHost+"images/page-q01.png",
+	loadingHost+"images/page-q01-s01-active.png",
+	loadingHost+"images/page-q01-s02-active.png",
+	loadingHost+"images/page-q01-s03-active.png",
 
 	loadingHost+"images/page-q02-e01.png",
 	loadingHost+"images/page-q02-s01-bg.png",
@@ -95,6 +98,9 @@ var imgArray = [
 	loadingHost+"images/page-q02-s03-bg.png",
 	loadingHost+"images/page-q02-s03.png",
 	loadingHost+"images/page-q02.png",
+	loadingHost+"images/page-q02-s01-active.png",
+	loadingHost+"images/page-q02-s02-active.png",
+	loadingHost+"images/page-q02-s03-active.png",
 
 	loadingHost+"images/page-q03-s01-bg.png",
 	loadingHost+"images/page-q03-s01.png",
@@ -103,6 +109,9 @@ var imgArray = [
 	loadingHost+"images/page-q03-s03-bg.png",
 	loadingHost+"images/page-q03-s03.png",
 	loadingHost+"images/page-q03.png",
+	loadingHost+"images/page-q03-s01-active.png",
+	loadingHost+"images/page-q03-s02-active.png",
+	loadingHost+"images/page-q03-s03-active.png",
 
 	loadingHost+"images/page-q04-s01-bg.png",
 	loadingHost+"images/page-q04-s01.png",
@@ -111,6 +120,9 @@ var imgArray = [
 	loadingHost+"images/page-q04-s03-bg.png",
 	loadingHost+"images/page-q04-s03.png",
 	loadingHost+"images/page-q04.png",
+	loadingHost+"images/page-q04-s01-active.png",
+	loadingHost+"images/page-q04-s02-active.png",
+	loadingHost+"images/page-q04-s03-active.png",
 
 	loadingHost+"images/page-q05-s01-bg.png",
 	loadingHost+"images/page-q05-s01.png",
@@ -119,6 +131,9 @@ var imgArray = [
 	loadingHost+"images/page-q05-s03-bg.png",
 	loadingHost+"images/page-q05-s03.png",
 	loadingHost+"images/page-q05.png",
+	loadingHost+"images/page-q05-s01-active.png",
+	loadingHost+"images/page-q05-s02-active.png",
+	loadingHost+"images/page-q05-s03-active.png",
 
 	loadingHost+"images/page-submit-bg.png",
 	loadingHost+"images/page-submit.png"
@@ -142,7 +157,7 @@ var Loader = function(){
 	var loaded = 0;
 
 	var loading = document.getElementById('loading'),
-		number = document.getElementById('loading__num'),
+		// number = document.getElementById('loading__num'),
 		all = imgArray.length + audiosLen;//,
 		// progress_bg = document.getElementById('loading__progress'),
 		// progress = document.getElementById('progress'),
@@ -211,9 +226,9 @@ var Loader = function(){
 		if(arr[1] == '0'){
 			l = arr[0];
 		}
-		number.innerHTML = l+"%";
+		// number.innerHTML = l+"%";
 		if( loaded >= all ){
-			number.innerHTML = "100%";
+			// number.innerHTML = "100%";
 			self.success();  // 回调函数
 		}
 	};
@@ -237,14 +252,14 @@ var Loader = function(){
 	};
 	this.loadLoading = function(imgArray,obj){
 		var loading = document.getElementById('loading');
-		loading.addEventListener('touchstart',function(e){
-			e.stopPropagation();
-			e.preventDefault();
-		},false);
-		loading.addEventListener('touchmove',function(e){
-			e.stopPropagation();
-			e.preventDefault();
-		},false);
+		// loading.addEventListener('touchstart',function(e){
+		// 	e.stopPropagation();
+		// 	e.preventDefault();
+		// },false);
+		// loading.addEventListener('touchmove',function(e){
+		// 	e.stopPropagation();
+		// 	e.preventDefault();
+		// },false);
 		// var img = new Image();
 		// img.onload = function(){
 			obj.Loading(imgArray,obj.success);

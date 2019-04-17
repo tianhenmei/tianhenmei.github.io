@@ -17,8 +17,9 @@
     <link rel="prefetch" href="images/tv-05.mp3?v=$version$" /> -->
     <link rel="stylesheet" href="css/m_index.css?v=$version$">
     <!---上线之后加-->
-    <title>爱卡汽车</title>
+    <title>测测你的职场气质配开什么车</title>
     <script>
+        // 埋点ID：1k69
         var lastSize = 16,
             bodyElement = document.documentElement || document.body,
             html = document.getElementsByTagName("html")[0],
@@ -38,6 +39,7 @@
             currentCount = 0,
             heightStatus = 0,
             fontSize = 16;
+        var landscape =  false;
         
         function shareSuccess(){
             currentCount++
@@ -53,7 +55,6 @@
             return null;
         }
         function setFontSize() {
-            var landscape =  false;
             try{
                 landscape = window.matchMedia("(orientation: landscape)").matches;
             } catch(e){}
@@ -99,36 +100,27 @@
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
-                document.getElementById('loading').className += ' opacityChange-out';
+                document.getElementById('loading').className += (landscape ? ' moveLeftOut' : 'moveTopOut');
+                appElement.className = appElement.className.replace(/( hide)/g,'');
                 if(music.paused){
                     playAudio(music,function(){});
                 }
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
-                    appElement.className = appElement.className.replace(/( hide)/g,'');
                     firstTime = Date.now();
                 },500);
             },
             loadingSuccess = function(){
                 var now = Date.now(),
-                    space = now - startTime,
+                    space = now - startTime//,
                     // pro = document.getElementById('loading__progress'),
-                    number = document.getElementById('loading__num');
-                number.innerHTML = "100%";
+                    // number = document.getElementById('loading__num');
+                // number.innerHTML = "100%";
                 alreadyLoaded = true;
-                // imgPrepared = true;
-                // if(audioPrepared){
-                //     imgPrepared = false;
-                //     audioPrepared = false;
-                    loadingComplete();
-                // }
-                // if(space < 3500){
-                //     setTimeout(function(){
-                //         loadingComplete();
-                //     },3500 - space)
-                // }else{
-                    // loadingComplete();
-                // }
+
+                loadingComplete()
+                // var inputParent = document.getElementsByClassName('loading__inputParent')[0];
+                // inputParent.className = inputParent.className.replace(/( hide)/g,'');
             };
         function getDelayTime(start,gap,index){
             var current = (start+gap * index)+''.split(''),
@@ -149,20 +141,36 @@
 <body>
     <div class="music-box">
         <div class="music-icon open">
-            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="audio0" loop="loop" preload="auto" src="images/loading.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="music" loop="loop" preload="auto" src="images/music-02.mp3?v=$version$"></audio>
+            <!-- <audio style="opacity:0;" id="audio0" loop="loop" preload="auto" src="images/loading.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="audio1" preload="auto" src="images/in-02.mp3?v=$version$"></audio>
             <audio style="opacity:0;" id="audio2" preload="auto" src="images/tv-05.mp3?v=$version$"></audio>
-            <audio style="opacity:0;" id="audio3" preload="auto" src="images/out-05.mp3?v=$version$"></audio>
+            <audio style="opacity:0;" id="audio3" preload="auto" src="images/out-05.mp3?v=$version$"></audio> -->
         </div>
+    </div>
+    <div class="canvas">
+        <canvas id="canvas"></canvas>
     </div>
     <div class="page-bg"></div>
     <div class="loading" id="loading">
-        <div class="loading__snakeLayer opacityChange">
-            <div class="loading__snakeList"><!-- snakeChange delay0-5-->
+        <div class="loading__outer">
+            <div class="loading__center">
+                <div class="loading__content">
+                    <div class="loading__bg"></div>
+                    <div class="loading__title"></div>
+                    <div class="loading__pillow"></div>
+                    <div class="loading__person personChange"></div>
+                    <div class="loading__text"></div>
+                    <div class="loading__dotParent">
+                        <div class="loading__dot loading__dot--01 dotMove"></div>
+                        <div class="loading__dot loading__dot--02 dotMove delay0-2"></div>
+                        <div class="loading__dot loading__dot--03 dotMove delay0-4"></div>
+                    </div>
+                    <div class="loading__more"></div>
+                    <!-- <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div> -->
+                </div>
             </div>
         </div>
-        <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div>
     </div>
     <script type="text/javascript">
         function setRem(value){
@@ -228,87 +236,151 @@
         // backgroundMusic(document.getElementById('music'));
         // initWeixinEvent();
         // playLoadingAudio();
+        // var linput = document.getElementsByClassName('loading__input')[0],
+        //     tipsBox = document.getElementsByClassName('loading__tips')[0],
+        //     tipsLayer = document.getElementsByClassName('loading__tipsParent')[0];
+        // document.getElementsByClassName('loading__btn')[0].addEventListener('click',function(e){
+        //     e.stopPropagation();
+        //     e.preventDefault();
+        //     if(linput.value){
+        //         loadingComplete();
+        //     }else {
+        //         tipsBox.innerText = '大佬请留名'
+        //         tipsLayer.className = tipsLayer.className.replace(/( hide)/g,'');
+        //     }
+        // },false)
+        // document.getElementsByClassName('loading__tips__btn')[0].addEventListener('click',function(e){
+        //     e.stopPropagation();
+        //     e.preventDefault();
+
+        //     tipsLayer.className += ' hide'
+        // },false)
     </script>
     <!-- <div class="page-bg"></div> -->
     <script type="text/javascript" src="js/loading.js?v=$version$"></script>
-    <div class="canvas">
-        <canvas id="canvas"></canvas>
-    </div>
     <div class="wrapper pages hide" id="app">
+        <div class="pages__input">
+            <div class="loading__inputParent hide">
+                <input type="text" class="loading__input" placeholder="输入昵称" autofocus="autofocus" />
+                <div class="loading__btn"></div>
+            </div>
+            <div class="loading__tipsParent hide">
+                <div class="loading__tips">大佬请留名</div>
+                <div class="loading__tips__btn">确定</div>
+            </div>
+        </div>
         <div class="pages__outer" id="pages__outer"
-            :class="changeStatus ? (landscape ? 'moveLeftOut' : 'moveTopOut') : ''">
+            :class="changeStatus ? (landscape ? 'moveLeftOut' : 'moveTopOut') : ''"
+            @scroll="pageMoveEvent"><!--@scroll="pageMoveEvent"-->
             <div class="pages__center" id="pages__center">
                 <div class="page page0" id="page0" :class="activePage == 0 ? 'active' : ''" 
                     ref="page0">
                     <img class="page0__img" src="images/page-q01.png?v=$version$" />
                     <div class="page0__louter page0__louter--01">
                         <img class="page0__img" src="images/page-q01-s01-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l01__text" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)">
+                            <div class="page0__l__top page0__l01__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--02">
                         <img class="page0__img" src="images/page-q01-s02-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l02__text" :class="{'text__moveup': answers[0] == 1}" @click.stop.prevent="setAnswerEvent(0,1)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 1}" @click.stop.prevent="setAnswerEvent(0,1)">
+                        <div class="page0__l__top page0__l02__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--03">
                         <img class="page0__img" src="images/page-q01-s03-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l03__text" :class="{'text__moveup': answers[0] == 2}" @click.stop.prevent="setAnswerEvent(0,2)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 2}" @click.stop.prevent="setAnswerEvent(0,2)">
+                            <div class="page0__l__top page0__l03__text"></div>
+                        </div>
                     </div>
                     <img class="page0__img" src="images/page-q02.png?v=$version$" />
                     <img class="page0__img" src="images/page-q02-e01.png?v=$version$" />
                     <div class="page0__louter page0__louter--04">
                         <img class="page0__img" src="images/page-q02-s01-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l04__text" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)">
+                            <div class="page0__l__top page0__l04__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--05">
                         <img class="page0__img" src="images/page-q02-s02-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l05__text" :class="{'text__moveup': answers[1] == 1}" @click.stop.prevent="setAnswerEvent(1,1)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 1}" @click.stop.prevent="setAnswerEvent(1,1)">
+                            <div class="page0__l__top page0__l05__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--06">
                         <img class="page0__img" src="images/page-q02-s03-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l06__text" :class="{'text__moveup': answers[1] == 2}" @click.stop.prevent="setAnswerEvent(1,2)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 2}" @click.stop.prevent="setAnswerEvent(1,2)">
+                            <div class="page0__l__top page0__l06__text"></div>
+                        </div>
                     </div>
                     <img class="page0__img" src="images/page-q03.png?v=$version$" />
                     <div class="page0__louter page0__louter--07">
                         <img class="page0__img" src="images/page-q03-s01-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l07__text" :class="{'text__moveup': answers[2] == 0}" @click.stop.prevent="setAnswerEvent(2,0)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 0}" @click.stop.prevent="setAnswerEvent(2,0)">
+                            <div class="page0__l__top page0__l07__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--08">
                         <img class="page0__img" src="images/page-q03-s02-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l08__text" :class="{'text__moveup': answers[2] == 1}" @click.stop.prevent="setAnswerEvent(2,1)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 1}" @click.stop.prevent="setAnswerEvent(2,1)">
+                            <div class="page0__l__top page0__l08__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--09">
                         <img class="page0__img" src="images/page-q03-s03-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l09__text" :class="{'text__moveup': answers[2] == 2}" @click.stop.prevent="setAnswerEvent(2,2)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 2}" @click.stop.prevent="setAnswerEvent(2,2)">
+                            <div class="page0__l__top page0__l09__text"></div>
+                        </div>
                     </div>
                     <img class="page0__img" src="images/page-q04.png?v=$version$" />
                     <div class="page0__louter page0__louter--10">
                         <img class="page0__img" src="images/page-q04-s01-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l10__text" :class="{'text__moveup': answers[3] == 0}" @click.stop.prevent="setAnswerEvent(3,0)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 0}" @click.stop.prevent="setAnswerEvent(3,0)">
+                            <div class="page0__l__top page0__l10__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--11">
                         <img class="page0__img" src="images/page-q04-s02-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l11__text" :class="{'text__moveup': answers[3] == 1}" @click.stop.prevent="setAnswerEvent(3,1)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 1}" @click.stop.prevent="setAnswerEvent(3,1)">
+                            <div class="page0__l__top page0__l11__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--12">
                         <img class="page0__img" src="images/page-q04-s03-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l12__text" :class="{'text__moveup': answers[3] == 2}" @click.stop.prevent="setAnswerEvent(3,2)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 2}" @click.stop.prevent="setAnswerEvent(3,2)">
+                            <div class="page0__l__top page0__l12__text"></div>
+                        </div>
                     </div>
                     <img class="page0__img" src="images/page-q05.png?v=$version$" />
                     <div class="page0__louter page0__louter--13">
                         <img class="page0__img" src="images/page-q05-s01-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l13__text" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)">
+                            <div class="page0__l__top page0__l13__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--14">
                         <img class="page0__img" src="images/page-q05-s02-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l14__text" :class="{'text__moveup': answers[4] == 1}" @click.stop.prevent="setAnswerEvent(4,1)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 1}" @click.stop.prevent="setAnswerEvent(4,1)">
+                            <div class="page0__l__top page0__l14__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--15">
                         <img class="page0__img" src="images/page-q05-s03-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l15__text" :class="{'text__moveup': answers[4] == 2}" @click.stop.prevent="setAnswerEvent(4,2)"></div>
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 2}" @click.stop.prevent="setAnswerEvent(4,2)">
+                            <div class="page0__l__top page0__l15__text"></div>
+                        </div>
                     </div>
                     <div class="page0__louter page0__louter--16">
                         <img class="page0__img" src="images/page-submit-bg.png?v=$version$" />
                         <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"></div>
+                    </div>
+                    <div class="page0__move">
+                        <div class="page0__move__center clearfix"
+                            ><!--:style="{left:getMoveLeft}"-->
+                            <div class="page0__move__text"></div>
+                            <div class="page0__move__icon"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -338,8 +410,15 @@
         function setBody(){
             var dbody = document.getElementsByTagName('body')[0];
             var app = document.getElementById('pages__center');
+            var loading = document.getElementsByClassName('loading__center')[0];
+            var loading__content = document.getElementsByClassName('loading__content')[0];
+            var height = (GC.h < GC.w ? GC.h : GC.w) +'px';
+            var width = (GC.h < GC.w ? GC.w : GC.h) +'px';
             // app.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';
-            app.style.height = (GC.h < GC.w ? GC.h : GC.w) +'px';
+            app.style.height = height
+            loading.style.height = height
+            loading__content.style.width = width;
+            loading__content.style.height = height;
             // dbody.style.width = (GC.h < GC.w ? GC.h : GC.w )+'px';
             // dbody.style.height = (GC.h < GC.w ? GC.w : GC.h) +'px';
             // dbody.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';

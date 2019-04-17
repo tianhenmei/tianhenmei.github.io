@@ -41,8 +41,7 @@
                 status:'in',
                 in:{
                     
-                },
-                
+                }
             },
             audioPosition:[2000,5000,8000,10000],
             landscape:false,
@@ -71,7 +70,16 @@
             canvas:null,
             ctx:null,
             url:'',
-            changeStatus: false
+            changeStatus: false,
+            moveLeft: 0
+        },
+        computed: {
+            getMoveLeft (){
+                var page0 = document.getElementById('page0');
+                var total = this.landscape ? page0.offsetWidth : page0.offsetHeight;
+                var one = this.landscape ? GC.w : GC.h;
+                return (this.moveLeft + (one * 2 / 3) * this.moveLeft / total) + 'px'
+            }
         },
         mounted:function(){
             this.resetData();
@@ -118,6 +126,10 @@
                     landscape = window.matchMedia("(orientation: landscape)").matches;
                 } catch(e){}
                 this.landscape = landscape;
+            },
+            pageMoveEvent: function(){
+                var outer = document.getElementById('pages__outer');
+                this.moveLeft = this.landscape ? outer.scrollLeft : outer.scrollTop;
             },
             setAnswerEvent:function(pindex,index){
                 var arr = this.answers.slice(0),
