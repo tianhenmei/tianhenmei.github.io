@@ -46,6 +46,7 @@
             audioPosition:[2000,5000,8000,10000],
             landscape:false,
             lastAudio:null,
+            // answers:[0,1,2,0,1],
             answers:[-1,-1,-1,-1,-1],
             all:[
                 [2,4,1],
@@ -64,14 +65,51 @@
             loaded:0,
             loadedImgs:[],
             imgs:[
-                "images/test.jpeg"
+                "images/canvas-bg.png",
+                "images/canvas-01.png",
+                "images/canvas-02.png",
+                "images/canvas-03.png",
+                "images/canvas-04.png",
+                "images/canvas-05.png",
+                "images/canvas-06.png",
+                "images/canvas-07.png" //, // 7
+
+                // "images/result-car-01.png", // 8
+                // "images/result-keywords-01.png",
+                // "images/result-ratio-01.png"
+
+                // "images/result-car-02.png",
+                // "images/result-keywords-02.png",
+                // "images/result-ratio-02.png"
             ],
             drawStatus:false,
             canvas:null,
             ctx:null,
             url:'',
             changeStatus: false,
-            moveLeft: 0
+            moveLeft: 0,
+            showInput: false,
+            showTips: false,
+            nickname:'1244',
+            tipsContent:'大佬请留名',
+            ratioSize:[
+                {w:422,h:399,l:555},
+                {w:451,h:390,l:576},
+                {w:422,h:399,l:555},
+                {w:433,h:409,l:576},
+                {w:461,h:409,l:576},
+                {w:431,h:424,l:576},
+                {w:461,h:409,l:576},
+                {w:464,h:443,l:576},
+                {w:426,h:429,l:576},
+                {w:457,h:412,l:576}, // 9
+                {w:418,h:424,l:576},
+                {w:423,h:425,l:576},
+                {w:457,h:419,l:576},
+                {w:422,h:399,l:555},
+                {w:422,h:399,l:555},
+                {w:463,h:361,l:576}  // 15
+            ]
         },
         computed: {
             getMoveLeft (){
@@ -79,7 +117,10 @@
                 var total = this.landscape ? page0.offsetWidth : page0.offsetHeight;
                 var one = this.landscape ? GC.w : GC.h;
                 return (this.moveLeft + (one * 2 / 3) * this.moveLeft / total) + 'px'
-            }
+            },
+            getIndex(){
+                return '00'.slice(0,2-(this.myresult+'').length)+this.myresult
+            },
         },
         mounted:function(){
             this.resetData();
@@ -128,8 +169,8 @@
                 this.landscape = landscape;
             },
             pageMoveEvent: function(){
-                var outer = document.getElementById('pages__outer');
-                this.moveLeft = this.landscape ? outer.scrollLeft : outer.scrollTop;
+                // var outer = document.getElementById('pages__outer');
+                // this.moveLeft = this.landscape ? outer.scrollLeft : outer.scrollTop;
             },
             setAnswerEvent:function(pindex,index){
                 var arr = this.answers.slice(0),
@@ -158,15 +199,12 @@
                     this.submitStatus = true;
                     this.submitClass = 'submit-zoom'
                     this.isclick = true;
-                    if(status == -1){
-                        // 都已选择，提交
-                        _this.showResult();
-                    } 
                     setTimeout(function(){
                         _this.submitClass = ''
                         if(status == -1){
                             // 都已选择，提交
-                            _this.changeStatus = true;
+                            _this.showResult();
+                            // _this.changeStatus = true;
                         }else{
                             obj[_this.landscape ? 'scrollLeft' : 'scrollTop'] = _this.getRem(_this.questions[status])
                             $('#pages__outer').animate(obj,500);
@@ -195,10 +233,13 @@
                     res = 0,
                     i = 0;
                 // 两个 两个相同
-                for(i = 0; i < arr.length; i++){
+                for(i = 1; i <= 5; i++){
                     temp = str.match(new RegExp('('+i+')','g'));
                     if(temp){
-                        if(temp.length >= 2){
+                        if(temp.length > 2){
+                            brr.splice(i,1,i)
+                            break
+                        }else if(temp.length == 2){
                             brr.push(i)
                         }
                     }
@@ -213,13 +254,13 @@
                         }else if(brr[1] == 4){
                             res = 11
                         }else if(brr[1] == 5){
-                            res = 2
+                            res = [2, 15][Math.floor(Math.random() * 2)]
                         }
                     } else if(brr[0] == 3){
                         if(brr[1] == 4){
                             res = 12
                         }else if(brr[1] == 5){
-                            res = 3;
+                            res = [2, 16][Math.floor(Math.random() * 2)]
                         }
                     }else if(brr[0] == 4){
                         if(brr[1] == 5){
@@ -232,7 +273,25 @@
                     res = 14;
                 }
                 this.myresult = res;
-                this.drawResult();
+                this.showInput = true;
+            },
+            checkInputEvent:function(){
+                if(this.nickname){
+                    var re = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
+                        tempStr = this.nickname.replace(re,"çç");
+                    if(tempStr.length > 12){
+                        this.showTips = true;  
+                        this.tipsContent =  '最多六个字哦'
+                    }else {
+                        this.drawResult();    
+                    }
+                }else {
+                    this.showTips = true;  
+                    this.tipsContent =  '大佬请留名'
+                }
+            },
+            closeTipBox:function(){
+                this.showTips = false;  
             },
             drawResult:function(){
                 this.drawStatus = true;
@@ -242,24 +301,56 @@
             },
             startDraw:function(){
                 var self = this;
-                this.ctx.fillStyle = "#333"
-                this.ctx.font = "40px normal"
-                this.ctx.fillText('稳'+this.myresult,0,40+10)
+                // this.ctx.fillStyle = "#333"
+                // this.ctx.font = "40px normal"
+                // this.ctx.fillText('稳'+this.myresult,0,40+10)
                 
-                this.ctx.fillStyle = "#666"
-                this.ctx.font = "30px normal"
-                this.ctx.fillText('你喜欢专业领域内的挑战',0,50+30+7)
-                this.ctx.fillText('挫折越大，',0,50+45+30+7)
-                this.ctx.fillText('越能激发你的潜能',0,50+45*2+30+7)
-
-                this.ctx.drawImage(this.loadedImgs[0],0,195);
-                // 绘制完毕，导出图片地址
-                setTimeout(function(){
-                    self.url = self.canvas.toDataURL("image/png");
+                // this.ctx.fillStyle = "#666"
+                // this.ctx.font = "30px normal"
+                // this.ctx.fillText('你喜欢专业领域内的挑战',0,50+30+7)
+                // this.ctx.fillText('挫折越大，',0,50+45+30+7)
+                // this.ctx.fillText('越能激发你的潜能',0,50+45*2+30+7)
+                self.activePage = 1;
+                this.loadDynamicImage(function(resultList){
+                    self.ctx.fillStyle = "#000"
+                    self.ctx.font = "50px normal"
+                    self.ctx.textAlign="center";
+                    self.ctx.fillText(self.nickname,320,118+50)
+                    self.ctx.drawImage(resultList[0],0,0);
+                    self.ctx.drawImage(resultList[1],118,266);
+                    self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);
+                    // 绘制完毕，导出图片地址
                     setTimeout(function(){
-                        self.activePage = 1;
+                        self.url = self.canvas.toDataURL("image/png");
                     },500)
-                },500)
+                })
+            },
+            nicknameChange:function(){
+                alert('nickname: '+this.nickname)
+            },
+            loadDynamicImage:function(callback){
+                var index = this.getIndex
+                var imgList = [
+                    "images/result-car-"+index+".png",
+                    "images/result-keywords-"+index+".png",
+                    "images/result-ratio-"+index+".png"
+                ]
+                var resultList = [],
+                    dload = 0
+                var i = 0
+                for(i = 0; i < imgList.length; i++){
+                    (function(){
+                        var img = new Image();
+                        img.onload = function(){
+                            dload++
+                            if(dload == imgList.length){
+                                callback(resultList)
+                            }
+                        }
+                        img.src = imgList[i]
+                        resultList.push(img)
+                    })(i);
+                }
             },
             initCanvas:function(){
                 var width = 1080,
@@ -271,7 +362,7 @@
                 this.canvas.width = width
                 this.canvas.height = height
 
-                this.ctx.fillStyle = "#321f8f"
+                this.ctx.fillStyle = "#fff"
                 this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
                 this.ctx.fill()
             },
@@ -282,9 +373,14 @@
                     img.onload = function(){
                         self.loaded++
                         if(self.loaded == self.imgs.length){
-                            // self.ctx.drawImage(self.loadedImgs[0],0,195);
-                            // self.ctx.drawImage(self.loadedImgs[self.starActive+2],0,0,750,1493,-48,-110,662,1317);
-                            // self.ctx.drawImage(self.loadedImgs[1],1,838);
+                            self.ctx.drawImage(self.loadedImgs[0],0,0);
+                            self.ctx.drawImage(self.loadedImgs[1],112,108);
+                            self.ctx.drawImage(self.loadedImgs[2],0,0);
+                            self.ctx.drawImage(self.loadedImgs[3],-44,1790);
+                            self.ctx.drawImage(self.loadedImgs[4],635,1702);
+                            self.ctx.drawImage(self.loadedImgs[5],990,1436);
+                            self.ctx.drawImage(self.loadedImgs[6],7,523);
+                            self.ctx.drawImage(self.loadedImgs[7],714,45);
                             if(self.drawStatus){
                                 self.startDraw()
                                 self.drawStatus = false

@@ -212,18 +212,18 @@
             musicPlay(audio)
             function musicInBrowserHandler() {
                 musicPlay(audio)
-                document.body.removeEventListener('touchstart', musicInBrowserHandler);
+                document.body.removeEventListener('touchstart', musicInBrowserHandler,false);
             }
-            document.body.addEventListener('touchstart', musicInBrowserHandler);
+            document.body.addEventListener('touchstart', musicInBrowserHandler,false);
             // 自动播放音乐效果，解决微信自动播放问题
             function musicInWeixinHandler() {
                 musicPlay(audio,true);
                 document.addEventListener("WeixinJSBridgeReady", function () {
                     musicPlay(audio,true);
                 }, false);
-                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+                document.removeEventListener('DOMContentLoaded', musicInWeixinHandler,false);
             }
-            document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler,false);
         }
         function initWeixinEvent(){
             var bgMusic = document.getElementById('music');
@@ -259,23 +259,21 @@
     <!-- <div class="page-bg"></div> -->
     <script type="text/javascript" src="js/loading.js?v=$version$"></script>
     <div class="wrapper pages hide" id="app">
-        <div class="pages__input">
-            <div class="loading__inputParent hide">
-                <input type="text" class="loading__input" placeholder="输入昵称" autofocus="autofocus" />
-                <div class="loading__btn"></div>
-            </div>
-            <div class="loading__tipsParent hide">
-                <div class="loading__tips">大佬请留名</div>
-                <div class="loading__tips__btn">确定</div>
-            </div>
-        </div>
         <div class="pages__outer" id="pages__outer"
             :class="changeStatus ? (landscape ? 'moveLeftOut' : 'moveTopOut') : ''"
-            @scroll="pageMoveEvent"><!--@scroll="pageMoveEvent"-->
+            ><!--@scroll="pageMoveEvent"-->
             <div class="pages__center" id="pages__center">
                 <div class="page page0" id="page0" :class="activePage == 0 ? 'active' : ''" 
                     ref="page0">
-                    <img class="page0__img" src="images/page-q01.png?v=$version$" />
+                    <div class="page0__question">
+                        <img class="page0__img" src="images/page-q01.png?v=$version$" />
+                        <div class="page0__l01__move littleMoveInfinite">
+                            <div class="page0__l01__move__center clearfix">
+                                <div class="page0__l01__move__text">选项在此</div>
+                                <div class="page0__move__icon"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="page0__louter page0__louter--01">
                         <img class="page0__img" src="images/page-q01-s01-bg.png?v=$version$" />
                         <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)">
@@ -295,7 +293,15 @@
                         </div>
                     </div>
                     <img class="page0__img" src="images/page-q02.png?v=$version$" />
-                    <img class="page0__img" src="images/page-q02-e01.png?v=$version$" />
+                    <div class="page0__question">
+                        <img class="page0__img" src="images/page-q02-e01.png?v=$version$" />
+                        <div class="page0__l01__move page0__l02__move littleMoveInfinite">
+                            <div class="page0__l01__move__center clearfix">
+                                <div class="page0__l01__move__text">滑动继续测试</div>
+                                <div class="page0__move__icon"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="page0__louter page0__louter--04">
                         <img class="page0__img" src="images/page-q02-s01-bg.png?v=$version$" />
                         <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)">
@@ -352,7 +358,15 @@
                             <div class="page0__l__top page0__l12__text"></div>
                         </div>
                     </div>
-                    <img class="page0__img" src="images/page-q05.png?v=$version$" />
+                    <div class="page0__question">
+                        <img class="page0__img" src="images/page-q05.png?v=$version$" />
+                        <div class="page0__l01__move page0__l13__move littleMoveInfinite">
+                            <div class="page0__l01__move__center clearfix">
+                                <div class="page0__l01__move__text page0__l13__move__text">最后一道题啦</div>
+                                <div class="page0__move__icon page0__l13__move__icon"></div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="page0__louter page0__louter--13">
                         <img class="page0__img" src="images/page-q05-s01-bg.png?v=$version$" />
                         <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)">
@@ -375,7 +389,7 @@
                         <img class="page0__img" src="images/page-submit-bg.png?v=$version$" />
                         <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"></div>
                     </div>
-                    <div class="page0__move">
+                    <div class="page0__move littleMoveInfinite delay0-2">
                         <div class="page0__move__center clearfix"
                             ><!--:style="{left:getMoveLeft}"-->
                             <div class="page0__move__text"></div>
@@ -387,21 +401,45 @@
         </div>
         <div class="page page1" id="page1" 
             :class="changeStatus ? (landscape ? 'moveLeftIn' : 'moveTopIn')+' active' : activePage == 1 ? 'active' : ''" ref="page1">
-            <div class="page1__title">稳{{myresult}}</div>
-            <div class="page1__detail">
-                你喜欢专业领域内的挑战<br/>
-                挫折越大，<br/>
-                越能激发你的潜能
-            </div>
-            <div class="page1__ratio"></div>
-            <div class="page1__car">
-                <div class="page1__car__top"></div>
-                <div class="page1__car__center">
-                    <div class="page1__car__content movedownShow delay1-0"></div>
+            <div class="page1__center" v-if="myresult != -1">
+                <div class="page1__bg"></div>
+                <div class="page1__top"></div>
+                <div class="page1__light"></div>
+                <div class="page1__box"></div>
+                <div class="page1__logo"></div>
+                <div class="page1__ercode"></div>
+                <div class="page1__line"></div>
+                <div class="page1__tips"></div>
+
+                <div class="page1__name">{{nickname}}</div>
+                
+                <img class="page1__keywords" :src="'images/result-keywords-'+getIndex+'.png'" />
+                <img class="page1__ratio" :src="'images/result-ratio-'+getIndex+'.png'"
+                    :style="{
+                        width:setRem(ratioSize[myresult-1].w),
+                        left:setRem(ratioSize[myresult-1].l)
+                    }" />
+                <div class="page1__ratio"></div>
+                <div class="page1__car">
+                    <div class="page1__car__top"></div>
+                    <div class="page1__car__center">
+                        <img class="page1__car__content movedownShow delay0-5" :src="'images/result-car-'+getIndex+'.png'" />
+                    </div>
                 </div>
             </div>
             <div class="page1__canvas">
-                <img class="page1__canvas" :src="url" />
+                <img class="page1__img" :src="url" />
+            </div>
+        </div>
+        <div class="pages__input" v-show="showInput">
+            <div class="loading__inputParent">
+                <input type="text" class="loading__input" placeholder="输入昵称" v-model="nickname" @input="nicknameChange" />
+                <div class="loading__btn" @click.stop="checkInputEvent"></div>
+            </div>
+            <div class="loading__tipsMask" v-show="showTips"></div>
+            <div class="loading__tipsParent" v-show="showTips">
+                <div class="loading__tips">{{tipsContent}}</div>
+                <div class="loading__tips__btn" @click.stop="closeTipBox">确定</div>
             </div>
         </div>
     </div>
@@ -428,7 +466,7 @@
             setFontSize();
             setBody();
             app && app.resetData && app.resetData();
-        })
+        },false)
         // window.addEventListener("orientationchange", function() {
         //     alert("orientationchange")
         //     setFontSize();

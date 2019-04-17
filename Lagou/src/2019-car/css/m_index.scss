@@ -354,15 +354,25 @@ body {
         bottom:rem(43);
     }
     &__inputParent {
-        width:rem(474);
+        // width:rem(474);
+        width:rem(800);
+        height:rem(600);
         // @include center(723,691);
         position: absolute;
         left:50%;
-        top:rem(691);
-        margin-left:rem(-474/2);
+        // top:rem(691);
+        top:50%;
+        margin-left:rem(-800/2);
+        margin-top:rem(-600/2);
+        background-color: #fff;
+        border-radius: rem(12);
+        overflow: hidden;
+        padding: rem(160) rem(30) rem(30) rem(30);
+        box-sizing:border-box;
     }
     &__input {
         width:rem(474);
+        margin:0 auto;
         font-size:rem(66.7);
         text-align:left;
         color:#565656;
@@ -376,7 +386,7 @@ body {
     &__btn {
         width:rem(283);
         height:rem(118);
-        margin:rem(59) auto 0;
+        margin:rem(59+50) auto 0;
         background:url('../images/loading-btn.png') no-repeat center top;
         background-size:100% 100%;
     }
@@ -389,6 +399,17 @@ body {
     //     text-align:center;
     //     @include leftTop(0,1085);
     // }
+    &__tipsMask {
+        width:100%;
+        height:100%;
+        position:absolute;
+        left:0;
+        top:0;
+        background: #000;
+        background-color: rgba(0,0,0,0.5);
+        filter: Alpha(opacity=50);
+        *zoom: 1;
+    }
     &__tipsParent {
         min-width:rem(500);
         height:rem(320);
@@ -448,6 +469,9 @@ body {
     height: 100%;
     overflow:scroll;
     z-index:2;
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
 .page {
@@ -561,6 +585,9 @@ body {
     flex-wrap: nowrap;
     flex-direction: row;
     overflow: hidden;
+    &__question {
+        height:100%;
+    }
     &__img {
         height:100%;
     }
@@ -603,11 +630,33 @@ body {
             width:rem(794);
             background-image:url('../images/page-q01-s01.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q01-s01-active.png');
+        &__move {
+            position:absolute;
+            left:rem(100);
+            bottom:rem(20);
+            &__center {
+                height:rem(35);
+                transition:all 0.2s;
+            }
+            &__text {
+                line-height:rem(48);
+                padding-right:rem(20);
+                font-size:rem(37.5);
+                text-align:left;
+                color:#494949;
+                float:left;
+            }
         }
     }
+    .text__moveup .page0__l01__text {
+        background-image:url('../images/page-q01-s01-active.png');
+    }
     &__l02 {
+        &__move {
+            left:rem(700);
+            top:rem(46);
+            bottom: auto;
+        }
         &__textParent {
             left:rem(-40+104);
         }
@@ -615,9 +664,9 @@ body {
             width:rem(748);
             background-image:url('../images/page-q01-s02.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q01-s02-active.png');
-        }
+    }
+    .text__moveup .page0__l02__text {
+        background-image:url('../images/page-q01-s02-active.png');
     }
     &__l03 {
         &__textParent {
@@ -627,9 +676,9 @@ body {
             width:rem(374);
             background-image:url('../images/page-q01-s03.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q01-s03-active.png');
-        }
+    }
+    .text__moveup .page0__l03__text {
+        background-image:url('../images/page-q01-s03-active.png');
     }
     &__l04 {
         &__textParent {
@@ -639,9 +688,9 @@ body {
             width:rem(439);
             background-image:url('../images/page-q02-s01.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q02-s01-active.png');
-        }
+    }
+    .text__moveup .page0__l04__text {
+        background-image:url('../images/page-q02-s01-active.png');
     }
     &__l05 {
         &__textParent {
@@ -651,9 +700,9 @@ body {
             width:rem(398);
             background-image:url('../images/page-q02-s02.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q02-s02-active.png');
-        }
+    }
+    .text__moveup .page0__l05__text {
+        background-image:url('../images/page-q02-s02-active.png');
     }
     &__l06 {
         &__textParent {
@@ -663,9 +712,9 @@ body {
             width:rem(643);
             background-image:url('../images/page-q02-s03.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q02-s03-active.png');
-        }
+    }
+    .text__moveup .page0__l06__text {
+        background-image:url('../images/page-q02-s03-active.png');
     }
     &__l07 {
         &__textParent {
@@ -675,9 +724,9 @@ body {
             width:rem(413);
             background-image:url('../images/page-q03-s01.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q03-s01-active.png');
-        }
+    }
+    .text__moveup .page0__l07__text {
+        background-image:url('../images/page-q03-s01-active.png');
     }
     &__l08 {
         &__textParent {
@@ -687,9 +736,9 @@ body {
             width:rem(424);
             background-image:url('../images/page-q03-s02.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q03-s02-active.png');
-        }
+    }
+    .text__moveup .page0__l08__text {
+        background-image:url('../images/page-q03-s02-active.png');
     }
     &__l09 {
         &__textParent {
@@ -699,9 +748,9 @@ body {
             width:rem(526);
             background-image:url('../images/page-q03-s03.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q03-s03-active.png');
-        }
+    }
+    .text__moveup .page0__l09__text {
+        background-image:url('../images/page-q03-s03-active.png');
     }
     &__l10 {
         &__textParent {
@@ -711,9 +760,9 @@ body {
             width:rem(525);
             background-image:url('../images/page-q04-s01.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q04-s01-active.png');
-        }
+    }
+    .text__moveup .page0__l10__text {
+        background-image:url('../images/page-q04-s01-active.png');
     }
     &__l11 {
         &__textParent {
@@ -723,9 +772,9 @@ body {
             width:rem(361);
             background-image:url('../images/page-q04-s02.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q04-s02-active.png');
-        }
+    }
+    .text__moveup .page0__l11__text {
+        background-image:url('../images/page-q04-s02-active.png');
     }
     &__l12 {
         &__textParent {
@@ -735,11 +784,22 @@ body {
             width:rem(360);
             background-image:url('../images/page-q04-s03.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q04-s03-active.png');
-        }
+    }
+    .text__moveup .page0__l12__text {
+        background-image:url('../images/page-q04-s03-active.png');
     }
     &__l13 {
+        &__move {
+            left:rem(20);
+            top:rem(46);
+            bottom: auto;
+            &__text {
+                color:#cccc;
+            }
+            &__icon.page0__move__icon {
+                background-image: url('../images/page-move-bright.png');
+            }
+        }
         &__textParent {
             left:rem(-40+4);
         }
@@ -747,9 +807,12 @@ body {
             width:rem(480);
             background-image:url('../images/page-q05-s01.png');
         }
-        &__text.text__moveup {
+        .text__moveup .page0__l__top {
             background-image:url('../images/page-q05-s01-active.png');
         }
+    }
+    .text__moveup .page0__l13__text {
+        background-image:url('../images/page-q05-s01-active.png');
     }
     &__l14 {
         &__textParent {
@@ -759,9 +822,9 @@ body {
             width:rem(317);
             background-image:url('../images/page-q05-s02.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q05-s02-active.png');
-        }
+    }
+    .text__moveup .page0__l14__text {
+        background-image:url('../images/page-q05-s02-active.png');
     }
     &__l15 {
         &__textParent {
@@ -771,9 +834,9 @@ body {
             width:rem(362);
             background-image:url('../images/page-q05-s03.png');
         }
-        &__text.text__moveup {
-            background-image:url('../images/page-q05-s03-active.png');
-        }
+    }
+    .text__moveup .page0__l15__text {
+        background-image:url('../images/page-q05-s03-active.png');
     }
     &__l16 {
         &__text {
@@ -819,6 +882,21 @@ body {
         }
     }
 }
+
+.pages__input {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background: #000;
+    background-color: rgba(0,0,0,0.5);
+    filter: Alpha(opacity=50);
+    *zoom: 1;
+    -webkit-user-select:auto!important;
+}
+
 .submit-zoom {
     animation:submitZoom 0.5s both linear;
 }
@@ -836,30 +914,101 @@ body {
     overflow:hidden;
     z-index:99;
     background-color:#fff;
-    &__title {
-        line-height:rem(60);
-        font-size:rem(40);
-        color:#333;
+    &__center {
+        width:100%;
+        height:100%;
     }
-    &__detail {
-        line-height:rem(45);
-        font-size:rem(30);
-        color:#666;
+    &__bg {
+        width:100%;
+        height:100%;
+        background:url('../images/canvas-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        position: absolute;
+        left:0;
+        top:0;
+    }
+    &__top {
+        width:rem(864);
+        height:rem(159);
+        background:url('../images/canvas-01.png') no-repeat center top;
+        background-size:100% 100%;
+        position: absolute;
+        @include center(112,108);
+    }
+    &__light {
+        width:rem(366);
+        height:rem(94);
+        background:url('../images/canvas-07.png') no-repeat center top;
+        background-size:100% 100%;
+        position: absolute;
+        @include center(714,45);
+    }
+    &__box {
+        width:rem(1080);
+        height:rem(1920);
+        background:url('../images/canvas-02.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(0,0);
+    }
+    &__logo {
+        width:rem(1016);
+        height:rem(216);
+        background:url('../images/canvas-03.png') no-repeat center top;
+        background-size:100% 100%;
+        @include centerb(-44,-86);
+    }
+    &__ercode {
+        width:rem(290);
+        height:rem(288);
+        background:url('../images/canvas-04.png') no-repeat center top;
+        background-size:100% 100%;
+        @include centerb(635,-70);
+    }
+    &__line {
+        width:rem(1129);
+        height:rem(1255);
+        background:url('../images/canvas-06.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(7,523);
+    }
+    &__tips {
+        width:rem(63);
+        height:rem(450);
+        background:url('../images/canvas-05.png') no-repeat center top;
+        background-size:100% 100%;
+        @include centerrb(27,34);
+    }
+    &__name {
+        width:rem(392+10);
+        height:rem(94);
+        line-height:rem(94);
+        font-size:rem(50);
+        color:#000000;
+        text-align:center;
+        @include center(120,118);
+    }
+    &__keywords {
+        height:rem(493);
+        @include center(118,266);
+    }
+    &__ratio {
+        @include center(555,290);
     }
     &__car {
+        width:100%;
+        @include center(0,0);
         &__top {
 
         }
         &__center {
-            width:rem(750);
-            height:rem(500);
+            width:rem(1080);
+            height:rem(1920-978);
+            @include leftTop(0,978);
             overflow:hidden;
         }
         &__content {
-            width:rem(750);
-            height:rem(500);
-            background:url('../images/test.jpeg') no-repeat center top;
-            background-size:100% 100%;
+            width:rem(1080);
+            height:rem(1920);
         }
     }
     &__canvas {
@@ -899,7 +1048,7 @@ body {
         transform:translate3d(0,-100%,0);
     }
     100% {
-        transform:translate3d(0,0,0);
+        transform:translate3d(0,rem(-978),0);
     }
 }
 .moveTopOut {
@@ -969,6 +1118,17 @@ body {
     }
     20% {
         transform:translate3d(0,rem(-10),0);
+    }
+}
+.littleMoveInfinite {
+    animation:littleMoveInfinite 1s both infinite;
+}
+@keyframes littleMoveInfinite {
+    0%,80%,100% {
+        transform:translate3d(0,0,0);
+    }
+    40% {
+        transform:translate3d(rem(30),0,0);
     }
 }
 

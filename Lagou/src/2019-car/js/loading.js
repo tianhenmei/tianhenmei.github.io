@@ -78,7 +78,23 @@ function loadAudio(){
 var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
 var imgArray = [
-	loadingHost+"images/loading-03.gif",
+	loadingHost+"images/loading-bg.png",
+	loadingHost+"images/loading-title.png",
+	loadingHost+"images/loading-btn.png",
+	loadingHost+"images/loading-more.png",
+	loadingHost+"images/loading-person.png",
+	loadingHost+"images/loading-pillow.png",
+	loadingHost+"images/loading-text.png",
+	
+	"images/canvas-bg.png",
+	"images/canvas-01.png",
+	"images/canvas-02.png",
+	"images/canvas-03.png",
+	"images/canvas-04.png",
+	"images/canvas-05.png",
+	"images/canvas-06.png",
+	"images/canvas-07.png",
+
 	loadingHost+"images/page-q01-s01-bg.png",
 	loadingHost+"images/page-q01-s01.png",
 	loadingHost+"images/page-q01-s02-bg.png",
