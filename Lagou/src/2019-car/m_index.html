@@ -85,6 +85,41 @@
             html.style.fontSize = fontSize+'px';
         }
 
+        function setPortraitFontSize(){
+            var sh = 1920
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / sh).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (sh / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            var rightSize2 = parseFloat((RC.w / sh).toFixed(3)),
+                currentSize2 = parseFloat((GC.w / GC.h).toFixed(3));
+            if(rightSize2 > currentSize2){
+                heightStatus = Math.floor(RC.w / GC.w * GC.h - sh);
+            }
+            
+            lastSize = lastHTMLSize;
+            fontSize = GC.w / lastHTMLSize;
+            html.style.fontSize = fontSize+'px';
+        }
+
         setFontSize();
         // 随机文案索引
         var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
@@ -100,7 +135,7 @@
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
-                document.getElementById('loading').className += (landscape ? ' moveLeftOut' : 'moveTopOut');
+                document.getElementById('loading').className += (landscape ? ' moveLeftOut' : ' moveTopOut');
                 appElement.className = appElement.className.replace(/( hide)/g,'');
                 if(music.paused){
                     playAudio(music,function(){});
@@ -117,8 +152,13 @@
                     // number = document.getElementById('loading__num');
                 // number.innerHTML = "100%";
                 alreadyLoaded = true;
-
-                loadingComplete()
+                if(space < 3000){
+                    setTimeout(function(){
+                        loadingComplete();
+                    },3000 - space)
+                }else{
+                    loadingComplete();
+                }
                 // var inputParent = document.getElementsByClassName('loading__inputParent')[0];
                 // inputParent.className = inputParent.className.replace(/( hide)/g,'');
             };
@@ -276,19 +316,22 @@
                     </div>
                     <div class="page0__louter page0__louter--01">
                         <img class="page0__img" src="images/page-q01-s01-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 0}" @click.stop.prevent="setAnswerEvent(0,0)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0001" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l01__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--02">
                         <img class="page0__img" src="images/page-q01-s02-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 1}" @click.stop.prevent="setAnswerEvent(0,1)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 1}" @click.stop.prevent="setAnswerEvent(0,1)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0002" data-lg-tj-cid="null">
                         <div class="page0__l__top page0__l02__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--03">
                         <img class="page0__img" src="images/page-q01-s03-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 2}" @click.stop.prevent="setAnswerEvent(0,2)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[0] == 2}" @click.stop.prevent="setAnswerEvent(0,2)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0003" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l03__text"></div>
                         </div>
                     </div>
@@ -304,57 +347,66 @@
                     </div>
                     <div class="page0__louter page0__louter--04">
                         <img class="page0__img" src="images/page-q02-s01-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 0}" @click.stop.prevent="setAnswerEvent(1,0)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0004" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l04__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--05">
                         <img class="page0__img" src="images/page-q02-s02-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 1}" @click.stop.prevent="setAnswerEvent(1,1)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 1}" @click.stop.prevent="setAnswerEvent(1,1)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0005" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l05__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--06">
                         <img class="page0__img" src="images/page-q02-s03-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 2}" @click.stop.prevent="setAnswerEvent(1,2)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[1] == 2}" @click.stop.prevent="setAnswerEvent(1,2)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0006" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l06__text"></div>
                         </div>
                     </div>
                     <img class="page0__img" src="images/page-q03.png?v=$version$" />
                     <div class="page0__louter page0__louter--07">
                         <img class="page0__img" src="images/page-q03-s01-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 0}" @click.stop.prevent="setAnswerEvent(2,0)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 0}" @click.stop.prevent="setAnswerEvent(2,0)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0007" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l07__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--08">
                         <img class="page0__img" src="images/page-q03-s02-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 1}" @click.stop.prevent="setAnswerEvent(2,1)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 1}" @click.stop.prevent="setAnswerEvent(2,1)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0008" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l08__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--09">
                         <img class="page0__img" src="images/page-q03-s03-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 2}" @click.stop.prevent="setAnswerEvent(2,2)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[2] == 2}" @click.stop.prevent="setAnswerEvent(2,2)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0009" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l09__text"></div>
                         </div>
                     </div>
                     <img class="page0__img" src="images/page-q04.png?v=$version$" />
                     <div class="page0__louter page0__louter--10">
                         <img class="page0__img" src="images/page-q04-s01-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 0}" @click.stop.prevent="setAnswerEvent(3,0)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 0}" @click.stop.prevent="setAnswerEvent(3,0)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0010" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l10__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--11">
                         <img class="page0__img" src="images/page-q04-s02-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 1}" @click.stop.prevent="setAnswerEvent(3,1)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 1}" @click.stop.prevent="setAnswerEvent(3,1)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0011" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l11__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--12">
                         <img class="page0__img" src="images/page-q04-s03-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 2}" @click.stop.prevent="setAnswerEvent(3,2)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[3] == 2}" @click.stop.prevent="setAnswerEvent(3,2)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0012" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l12__text"></div>
                         </div>
                     </div>
@@ -369,25 +421,29 @@
                     </div>
                     <div class="page0__louter page0__louter--13">
                         <img class="page0__img" src="images/page-q05-s01-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 0}" @click.stop.prevent="setAnswerEvent(4,0)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0013" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l13__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--14">
                         <img class="page0__img" src="images/page-q05-s02-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 1}" @click.stop.prevent="setAnswerEvent(4,1)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 1}" @click.stop.prevent="setAnswerEvent(4,1)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0014" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l14__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--15">
                         <img class="page0__img" src="images/page-q05-s03-bg.png?v=$version$" />
-                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 2}" @click.stop.prevent="setAnswerEvent(4,2)">
+                        <div class="page0__l__textParent page0__l01__textParent" :class="{'text__moveup': answers[4] == 2}" @click.stop.prevent="setAnswerEvent(4,2)"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0015" data-lg-tj-cid="null">
                             <div class="page0__l__top page0__l15__text"></div>
                         </div>
                     </div>
                     <div class="page0__louter page0__louter--16">
                         <img class="page0__img" src="images/page-submit-bg.png?v=$version$" />
-                        <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"></div>
+                        <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"
+                            data-lg-tj-id="1k69" data-lg-tj-no="0016" data-lg-tj-cid="null"></div>
                     </div>
                     <div class="page0__move littleMoveInfinite delay0-2">
                         <div class="page0__move__center clearfix"
@@ -408,7 +464,6 @@
                 <div class="page1__box"></div>
                 <div class="page1__logo"></div>
                 <div class="page1__ercode"></div>
-                <div class="page1__line"></div>
                 <div class="page1__tips"></div>
 
                 <div class="page1__name">{{nickname}}</div>
@@ -417,7 +472,7 @@
                 <img class="page1__ratio" :src="'images/result-ratio-'+getIndex+'.png'"
                     :style="{
                         width:setRem(ratioSize[myresult-1].w),
-                        left:setRem(ratioSize[myresult-1].l)
+                        marginLeft:setRem(ratioSize[myresult-1].l - 1080 / 2)
                     }" />
                 <div class="page1__ratio"></div>
                 <div class="page1__car">
@@ -426,15 +481,16 @@
                         <img class="page1__car__content movedownShow delay0-5" :src="'images/result-car-'+getIndex+'.png'" />
                     </div>
                 </div>
+                <div class="page1__line"></div>
             </div>
             <div class="page1__canvas">
-                <img class="page1__img" :src="url" />
+                <img class="page1__img" :src="url" @touchstart="noop" data-lg-tj-id="1k69" data-lg-tj-no="0020" data-lg-tj-cid="null" />
             </div>
         </div>
         <div class="pages__input" v-show="showInput">
             <div class="loading__inputParent">
-                <input type="text" class="loading__input" placeholder="输入昵称" v-model="nickname" @input="nicknameChange" />
-                <div class="loading__btn" @click.stop="checkInputEvent"></div>
+                <input type="text" class="loading__input" placeholder="输入昵称" v-model="nickname" />
+                <div class="loading__btn" @click.stop="checkInputEvent" data-lg-tj-id="1k69" data-lg-tj-no="0017" data-lg-tj-cid="null"></div>
             </div>
             <div class="loading__tipsMask" v-show="showTips"></div>
             <div class="loading__tipsParent" v-show="showTips">

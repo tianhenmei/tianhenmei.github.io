@@ -90,7 +90,7 @@
             moveLeft: 0,
             showInput: false,
             showTips: false,
-            nickname:'1244',
+            nickname:'',
             tipsContent:'大佬请留名',
             ratioSize:[
                 {w:422,h:399,l:555},
@@ -123,6 +123,7 @@
             },
         },
         mounted:function(){
+            // setPortraitFontSize();
             this.resetData();
             this.initScrollEvent()
             this.initCanvas()
@@ -146,6 +147,9 @@
             //     capture:false,
             //     passive:false
             // });
+            document.body.addEventListener('focusout', function () { 
+                window.scrollTo(0,0);
+            });
         },
         methods:{
             noop:function(){},
@@ -283,6 +287,7 @@
                         this.showTips = true;  
                         this.tipsContent =  '最多六个字哦'
                     }else {
+                        this.showInput = false;
                         this.drawResult();    
                     }
                 }else {
@@ -310,12 +315,21 @@
                 // this.ctx.fillText('你喜欢专业领域内的挑战',0,50+30+7)
                 // this.ctx.fillText('挫折越大，',0,50+45+30+7)
                 // this.ctx.fillText('越能激发你的潜能',0,50+45*2+30+7)
-                self.activePage = 1;
+                
+                setTimeout(function(){
+                    $('html,body,.page1__center,.page1,.pages').css({
+                        'scrollTop':'0'
+                    });
+                    window.scrollTo(0,0);
+                },100);
+                setPortraitFontSize();
+                this.resetData();
+                this.activePage = 1;
                 this.loadDynamicImage(function(resultList){
                     self.ctx.fillStyle = "#000"
                     self.ctx.font = "50px normal"
                     self.ctx.textAlign="center";
-                    self.ctx.fillText(self.nickname,320,118+50)
+                    self.ctx.fillText(self.nickname,320,118+50+22)
                     self.ctx.drawImage(resultList[0],0,0);
                     self.ctx.drawImage(resultList[1],118,266);
                     self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);
@@ -324,9 +338,6 @@
                         self.url = self.canvas.toDataURL("image/png");
                     },500)
                 })
-            },
-            nicknameChange:function(){
-                alert('nickname: '+this.nickname)
             },
             loadDynamicImage:function(callback){
                 var index = this.getIndex
@@ -342,6 +353,12 @@
                     (function(){
                         var img = new Image();
                         img.onload = function(){
+                            dload++
+                            if(dload == imgList.length){
+                                callback(resultList)
+                            }
+                        }
+                        img.onerror = function(){
                             dload++
                             if(dload == imgList.length){
                                 callback(resultList)
