@@ -161,7 +161,6 @@
             document.body.appendChild(script);
         },
         mounted:function(){
-            // setPortraitFontSize();
             this.resetData();
             this.initScrollEvent()
             this.initCanvas()
@@ -396,7 +395,7 @@
                     self.ctx.textAlign="center";
                     self.ctx.fillText(self.nickname,320,118+fs+(fs == 50 ? 18 : 0))
                     console.log(" start draw img");
-                    self.ctx.drawImage(resultList[0],0,0);
+                    self.ctx.drawImage(resultList[0],0,0,1080,1920,0,0,1080,1920);  // car
                     self.ctx.drawImage(resultList[1],118,266);
                     self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);
                     // 绘制完毕，导出图片地址
@@ -460,13 +459,13 @@
                     img.onload = function(){
                         self.loaded++
                         if(self.loaded == self.imgs.length){
-                            self.ctx.drawImage(self.loadedImgs[0],0,0);
+                            self.ctx.drawImage(self.loadedImgs[0],0,0,1080,1920,0,0,1080,1920); // bg
                             self.ctx.drawImage(self.loadedImgs[1],112,108);
-                            self.ctx.drawImage(self.loadedImgs[2],0,0);
+                            self.ctx.drawImage(self.loadedImgs[2],0,0,1080,1920,0,0,1080,1920); // box
                             self.ctx.drawImage(self.loadedImgs[3],-44,1790);
                             self.ctx.drawImage(self.loadedImgs[4],635,1702);
                             self.ctx.drawImage(self.loadedImgs[5],990,1436);
-                            self.ctx.drawImage(self.loadedImgs[6],7,523);
+                            self.ctx.drawImage(self.loadedImgs[6],0,0,1129,1255,7,523,1129,1255);  // line
                             self.ctx.drawImage(self.loadedImgs[7],714,45);
                             if(self.drawStatus){
                                 self.startDraw()

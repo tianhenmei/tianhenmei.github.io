@@ -80,9 +80,9 @@ var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-car/';
 var imgArray = [
 	// loadingHost+"images/loading-bg.png",
 	loadingHost+"images/loading-title.png",
-	loadingHost+"images/loading-btn-01.png",
 	loadingHost+"images/loading-more.png",
-	loadingHost+"images/loading-person.png",
+	// loadingHost+"images/loading-person.png",
+	loadingHost+"images/loading-person.gif",
 	loadingHost+"images/loading-pillow.png",
 	loadingHost+"images/loading-text.png",
 	
@@ -95,6 +95,7 @@ var imgArray = [
 	"images/canvas-06.png",
 	"images/canvas-07.png",
 
+	loadingHost+"images/loading-btn-01.png",
 	loadingHost+"images/page-q01-s01-bg.png",
 	loadingHost+"images/page-q01-s01.png",
 	loadingHost+"images/page-q01-s02-bg.png",

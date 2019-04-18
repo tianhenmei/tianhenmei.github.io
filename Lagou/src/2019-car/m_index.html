@@ -97,15 +97,16 @@
             var sh = 1920
             var portrait = false,
                 resize = "orientationchange" in window ? window.orientationchange : window.resize,
-                rightSize = parseFloat((RC.w / sh).toFixed(1)),
-                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                rightSize = parseFloat((RC.w / sh).toFixed(3)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(3)),
                 lastHTMLSize = 16;
-
             try {
                 //横屏： "(orientation: landscape)"
                 //竖屏： "(orientation: portrait)"
                 portrait = window.matchMedia("(orientation: portrait)").matches;
             } catch (e) { }
+            console.log(GC.w +' , '+GC.h);
+            console.log(rightSize+' , '+currentSize)
             if(rightSize > currentSize){  // 长屏
                 console.log("长屏: "+16);
                 lastHTMLSize = 16;
@@ -150,7 +151,7 @@
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
-                console.log("document",document);
+                console.log("appElement",appElement);
                 document.getElementById('loading').className += (landscape ? ' moveLeftOut' : ' moveTopOut');
                 appElement.className = appElement.className.replace(/( hide)/g,'');
                 if(music.paused){
@@ -219,7 +220,8 @@
                     <div class="loading__title"></div>
                     <div class="loading__pillow"></div>
                     <div class="loading__personParent">
-                        <div class="loading__person personChange"></div>
+                        <div class="loading__person"></div>
+                        <!-- <div class="loading__person personChange"></div> -->
                     </div>
                     <div class="loading__text"></div>
                     <div class="loading__dotParent">
@@ -512,6 +514,9 @@
             </div>
         </div>
         <div class="extra-rotate extra-rotate-center page0__tips" v-show="forgot" :class="forgot ? 'opacityChange' : 'opacityChange-out'">老铁，这题漏选了</div>
+        <!-- <div class="page__creating">
+            <div class="page__creating__center"></div>
+        </div> -->
         <div class="page page1" id="page1" 
             :class="changeStatus ? (landscape ? 'moveLeftIn' : 'moveTopIn')+' active' : activePage == 1 ? 'active' : ''" ref="page1">
             <div class="page1__center" v-if="myresult != -1">
@@ -558,7 +563,6 @@
             </div>
         </div>
     </div>
-    <!-- <div class="page page3" id="page3"></div> -->
     <script type="text/javascript">
         function setBody(){
             var dbody = document.getElementsByTagName('body')[0];
@@ -567,26 +571,16 @@
             var loading__content = document.getElementsByClassName('loading__content')[0];
             var height = (GC.h < GC.w ? GC.h : GC.w) +'px';
             var width = (GC.h < GC.w ? GC.w : GC.h) +'px';
-            // app.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';
             app.style.height = height
             loading.style.height = height
             loading__content.style.width = width;
             loading__content.style.height = height;
-            // dbody.style.width = (GC.h < GC.w ? GC.h : GC.w )+'px';
-            // dbody.style.height = (GC.h < GC.w ? GC.w : GC.h) +'px';
-            // dbody.style.width = (GC.h < GC.w ? GC.w : GC.h )+'px';
-            // dbody.style.height = (GC.h < GC.w ? GC.h : GC.w) +'px';
         }
         window.addEventListener('resize',function(){
             // setFontSize();
             setBody();
             app && app.resetData && app.resetData();
         },false)
-        // window.addEventListener("orientationchange", function() {
-        //     alert("orientationchange")
-        //     setFontSize();
-        //     setBody();
-        // });
         setBody()
         
         pageStatus = true;

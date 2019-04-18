@@ -90,7 +90,7 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#loading,#music,#loading-num,#loading__num,#canvas,#page0,#page1,#page0__btn,#page0__line,#pages__center,#pages__outer){
+[id]:not(#app,#loading,#music,#loading-num,#loading__num,#canvas,#page0,#page1,#page0__btn,#page0__line,#pages__center,#pages__outer,#__vconsole,#__vconsole [id]){
     width:0!important;
     height:0!important;
     opacity:0!important;
@@ -296,7 +296,8 @@ body {
         margin-left:rem(-1920/2);
     }
     &__personParent  {
-        width:rem(160);
+        // width:rem(160);
+        width:rem(129);
         height:rem(254);
         overflow:hidden;
         // @include center(899+82.5,329);
@@ -304,15 +305,19 @@ body {
         left:50%;  // 899
         top:rem(439);
         // top:rem(329);
-        margin-left:rem(-160/2);
+        margin-left:rem(-129/2);
     }
     &__person {
-        width:rem(512);
+        width:rem(129);
         height:rem(254);
-        // width:rem(160);
+        background:url('../images/loading-person.gif') no-repeat center top;
+        background-size:100% 100%;
+        // width:rem(512);
         // height:rem(254);
-        background:url('../images/loading-person.png') no-repeat 0 0;
-        background-size:rem(512) rem(254);
+        // // width:rem(160);
+        // // height:rem(254);
+        // background:#f00 url('../images/loading-person.png') no-repeat 0 0;
+        // background-size:rem(512) rem(254);
     }
     &__text {
         width:rem(145);
@@ -633,9 +638,9 @@ body {
         height:100%;
     }
     &__tips {
-        width:rem(560);
+        width:rem(460);
         line-height:rem(66);
-        padding:rem(60);
+        padding:rem(30);
         font-size:rem(36);
         color:#fff;
         text-align:center;

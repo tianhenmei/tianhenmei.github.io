@@ -3,7 +3,7 @@
   font-family: "DINRegular";
   src: url("../images/DIN-Regular.otf"); }
 
-[id]:not(#app, #loading, #music, #loading-num, #loading__num, #canvas, #page0, #page1, #page0__btn, #page0__line, #pages__center, #pages__outer) {
+[id]:not(#app, #loading, #music, #loading-num, #loading__num, #canvas, #page0, #page1, #page0__btn, #page0__line, #pages__center, #pages__outer, #__vconsole, #__vconsole [id]) {
   width: 0 !important;
   height: 0 !important;
   opacity: 0 !important;
@@ -168,18 +168,18 @@ body {
     top: 0rem;
     margin-left: -14.22222rem; }
   .loading__personParent {
-    width: 2.37037rem;
+    width: 1.91111rem;
     height: 3.76296rem;
     overflow: hidden;
     position: absolute;
     left: 50%;
     top: 6.5037rem;
-    margin-left: -1.18519rem; }
+    margin-left: -0.95556rem; }
   .loading__person {
-    width: 7.58519rem;
+    width: 1.91111rem;
     height: 3.76296rem;
-    background: url("../images/loading-person.png") no-repeat 0 0;
-    background-size: 7.58519rem 3.76296rem; }
+    background: url("../images/loading-person.gif") no-repeat center top;
+    background-size: 100% 100%; }
   .loading__text {
     width: 2.14815rem;
     height: 0.45926rem;
@@ -458,9 +458,9 @@ body {
   .page0__img {
     height: 100%; }
   .page0__tips {
-    width: 8.2963rem;
+    width: 6.81481rem;
     line-height: 0.97778rem;
-    padding: 0.88889rem;
+    padding: 0.44444rem;
     font-size: 0.53333rem;
     color: #fff;
     text-align: center;
