@@ -153,12 +153,12 @@
             }
         },
         created:function(){
-            // var script = document.createElement('script');
-            // script.onload = function(){
-            //     new VConsole()
-            // }
-            // script.src = 'https://cdn.jsdelivr.net/npm/vconsole'
-            // document.body.appendChild(script);
+            var script = document.createElement('script');
+            script.onload = function(){
+                new VConsole()
+            }
+            script.src = 'https://cdn.jsdelivr.net/npm/vconsole'
+            document.body.appendChild(script);
         },
         mounted:function(){
             // setPortraitFontSize();
