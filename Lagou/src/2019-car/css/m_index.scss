@@ -295,17 +295,24 @@ body {
         top:rem(0);
         margin-left:rem(-1920/2);
     }
-    &__person {
+    &__personParent  {
         width:rem(160);
         height:rem(254);
-        background:url('../images/loading-person.png') no-repeat 0 0;
-        background-size:rem(512) rem(254);
+        overflow:hidden;
         // @include center(899+82.5,329);
         position: absolute;
         left:50%;  // 899
         top:rem(439);
         // top:rem(329);
         margin-left:rem(-160/2);
+    }
+    &__person {
+        width:rem(512);
+        height:rem(254);
+        // width:rem(160);
+        // height:rem(254);
+        background:url('../images/loading-person.png') no-repeat 0 0;
+        background-size:rem(512) rem(254);
     }
     &__text {
         width:rem(145);
@@ -351,25 +358,29 @@ body {
     &__more {
         width:rem(385);
         height:rem(31);
-        background:url('../images/loading-text-01.png') no-repeat 0 0;
+        background:url('../images/loading-more-01.png') no-repeat 0 0;
         background-size:100% 100%;
         // @include center(872+82.5,598);
         left:50%;
         // top:rem(989);
         bottom:rem(59);
         position: absolute;
-        margin-left:rem(385/2);
+        margin-left:rem(-385/2);
         // right:rem(62);
         // bottom:rem(43);
+    }
+    &__moveParent {
+        width:rem(132);
+        height:rem(31);
+        position: absolute;
+        right:rem(80);
+        bottom:rem(59);
     }
     &__move {
         width:rem(132);
         height:rem(31);
         background:url('../images/loading-move.png') no-repeat 0 0;
         background-size:100% 100%;
-        position: absolute;
-        right:rem(80);
-        bottom:rem(59);
     }
     &__inputParent {
         // width:rem(474);
@@ -608,6 +619,21 @@ body {
     }
     &__img {
         height:100%;
+    }
+    &__tips {
+        line-height:rem(66);
+        padding:rem(60);
+        font-size:rem(36);
+        color:#fff;
+        text-align:center;
+        position:absolute;
+        left:50%;
+        top:50%;
+        transform:translate(-50%,-50%);
+        z-index: 9;
+        background:#000;
+        background-color:rgba(0,0,0,0.7);
+        border-radius:rem(12);
     }
     .green {
         color:#00e18a;
@@ -869,14 +895,16 @@ body {
         }
     }
     &__move {
-        width:rem(204);
+        // width:rem(204);
         height:rem(35);
-        position:absolute;
+        position:fixed;
+        // position:absolute;
         left:rem(131);
         top:rem(46);
         z-index: 999;
         &__center {
-            width:rem(204);
+            width:rem(520);
+            // width:rem(204);
             height:rem(35);
             position:absolute;
             left:0;
@@ -884,11 +912,12 @@ body {
             transition:all 0.2s;
         }
         &__text {
-            width:rem(128);
+            // width:rem(128);
             height:rem(35);
-            margin-right:rem(10);
-            background:url('../images/page-move.png') no-repeat 0 0;
-            background-size:rem(194) rem(35);
+            // color:#ccc;
+            // margin-right:rem(10);
+            // background:url('../images/page-move.png') no-repeat 0 0;
+            // background-size:rem(194) rem(35);
             float:left;
         }
         &__icon {
@@ -1119,14 +1148,13 @@ body {
     animation:personChange 0.5s both steps(1,end) infinite;
 }
 @keyframes personChange {
-    0% {
-        background-position:0 0;
+    0%,100% {
+        transform:translate3d(0,0,0);
+        // background-position:0 0;
     }
     50% {
-        background-position:rem(-200) 0;
-    }
-    100% {
-        background-position:0 0;
+        transform:translate3d(rem(-200),0,0);
+        // background-position:rem(-200) 0;
     }
 }
 .dotMove {
@@ -1151,6 +1179,28 @@ body {
         transform:translate3d(rem(30),0,0);
     }
 }
+.opacityChange {
+    animation:opacityChange 0.5s both linear;
+}
+@keyframes opacityChange {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+.opacityChange-out {
+    animation:opacityChange-out 0.5s both linear;
+}
+@keyframes opacityChange-out {
+    0% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
 
 .delay0-2 {
     animation-delay: 0.2s;
@@ -1163,4 +1213,13 @@ body {
 }
 .delay1-0 {
     animation-delay: 1.0s;
+}
+.delay1-5 {
+    animation-delay: 1.5s;
+}
+.delay2-5 {
+    animation-delay: 2.5s;
+}
+.delay3-0 {
+    animation-delay: 3.0s;
 }

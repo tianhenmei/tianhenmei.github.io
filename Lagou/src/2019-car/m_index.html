@@ -144,7 +144,8 @@
             audioLoaded = 0,
             audioPrepared = false,
             imgPrepared= false,
-            alreadyLoaded = false;
+            alreadyLoaded = false,
+            alreadyIn = false;
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
@@ -168,15 +169,15 @@
                 // number.innerHTML = "100%";
                 alreadyLoaded = true;
                 console.log("loadingSuccess: "+space);
-                if(space < 3000){
-                    setTimeout(function(){
+                if(!alreadyIn){
+                    if(space < 3000){
+                        setTimeout(function(){
+                            loadingComplete();
+                        },3000 - space)
+                    }else{
                         loadingComplete();
-                    },3000 - space)
-                }else{
-                    loadingComplete();
+                    }
                 }
-                // var inputParent = document.getElementsByClassName('loading__inputParent')[0];
-                // inputParent.className = inputParent.className.replace(/( hide)/g,'');
             };
         function getDelayTime(start,gap,index){
             var current = (start+gap * index)+''.split(''),
@@ -215,7 +216,9 @@
                     <div class="loading__bg"></div>
                     <div class="loading__title"></div>
                     <div class="loading__pillow"></div>
-                    <div class="loading__person personChange"></div>
+                    <div class="loading__personParent">
+                        <div class="loading__person personChange"></div>
+                    </div>
                     <div class="loading__text"></div>
                     <div class="loading__dotParent">
                         <div class="loading__dot loading__dot--01 dotMove"></div>
@@ -223,7 +226,9 @@
                         <div class="loading__dot loading__dot--03 dotMove delay0-4"></div>
                     </div>
                     <div class="loading__more"></div>
-                    <div class="loading__move littleMoveInfinite"></div>
+                    <div class="loading__moveParent opacityChange delay0-5">
+                        <div class="loading__move littleMoveInfinite"></div>
+                    </div>
                     <!-- <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div> -->
                 </div>
             </div>
@@ -293,32 +298,55 @@
         // backgroundMusic(document.getElementById('music'));
         // initWeixinEvent();
         // playLoadingAudio();
-        // var linput = document.getElementsByClassName('loading__input')[0],
-        //     tipsBox = document.getElementsByClassName('loading__tips')[0],
-        //     tipsLayer = document.getElementsByClassName('loading__tipsParent')[0];
-        // document.getElementsByClassName('loading__btn')[0].addEventListener('click',function(e){
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        //     if(linput.value){
-        //         loadingComplete();
-        //     }else {
-        //         tipsBox.innerText = '大佬请留名'
-        //         tipsLayer.className = tipsLayer.className.replace(/( hide)/g,'');
-        //     }
-        // },false)
-        // document.getElementsByClassName('loading__tips__btn')[0].addEventListener('click',function(e){
-        //     e.stopPropagation();
-        //     e.preventDefault();
+        function initLoadingMove(){
+            var loading = document.getElementById('loading');
+            var start = {
+                    x:0,
+                    y:0
+                },
+                end = {
+                    x:0,
+                    y:0
+                };
+            loading.addEventListener('touchstart',function(e){
+                e.stopPropagation();
+                var touch = e.targetTouches[0]
+                start.x = touch.clientX;
+                start.y = touch.clientY;
+            },false)
+            loading.addEventListener('touchmove',function(e){
+                e.stopPropagation();
+                var touch = e.targetTouches[0]
+                end.x = touch.clientX;
+                end.y = touch.clientY;
+            },false)
+            loading.addEventListener('touchstart',function(e){
+                e.stopPropagation();
 
-        //     tipsLayer.className += ' hide'
-        // },false)
+                if(start.x > 0 && end.x > 0){
+                    if((start.x - end.x) > 20) {  // 向左滑动
+                        if(!alreadyLoaded && (now - startTime) > 3000){
+                            // 3s还未加载完成，支持用户滑动
+                            console.log('3s还未加载完成，支持用户滑动');
+                            alreadyIn = true
+                            loadingComplete();
+                        }
+                    }
+                }
+                start.x = 0;
+                start.y = 0;
+                end.x = 0;
+                end.y = 0;
+            },false)
+        }
+        initLoadingMove();
     </script>
     <!-- <div class="page-bg"></div> -->
     <script type="text/javascript" src="js/loading.js?v=$version$"></script>
     <div class="wrapper pages hide" id="app">
         <div class="pages__outer" id="pages__outer"
             :class="changeStatus ? (landscape ? 'moveLeftOut' : 'moveTopOut') : ''"
-            ><!--@scroll="pageMoveEvent"-->
+            @scroll="pageMoveEvent">
             <div class="pages__center" id="pages__center">
                 <div class="page page0" id="page0" :class="activePage == 0 ? 'active' : ''" 
                     ref="page0">
@@ -355,12 +383,12 @@
                     <img class="page0__img" src="images/page-q02.png?v=$version$" />
                     <div class="page0__question">
                         <img class="page0__img" src="images/page-q02-e01.png?v=$version$" />
-                        <div class="page0__l01__move page0__l02__move littleMoveInfinite">
+                        <!-- <div class="page0__l01__move page0__l02__move littleMoveInfinite">
                             <div class="page0__l01__move__center clearfix">
                                 <div class="page0__l01__move__text">滑动继续测试</div>
                                 <div class="page0__move__icon"></div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="page0__louter page0__louter--04">
                         <img class="page0__img" src="images/page-q02-s01-bg.png?v=$version$" />
@@ -462,16 +490,26 @@
                         <div class="page0__l__top page0__l16__text" :class="submitClass" @click.stop.prevent="submitEvent"
                             data-lg-tj-id="1k69" data-lg-tj-no="0016" data-lg-tj-cid="null"></div>
                     </div>
-                    <div class="page0__move littleMoveInfinite delay0-2">
-                        <div class="page0__move__center clearfix"
-                            ><!--:style="{left:getMoveLeft}"-->
+                    <!-- <div class="page0__move littleMoveInfinite delay0-2">
+                        <div class="page0__move__center clearfix">
                             <div class="page0__move__text"></div>
                             <div class="page0__move__icon"></div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+        <div class="page0__move littleMoveInfinite delay0-2" 
+            :class="activePage == 0 ? 'active' : 'hide'"
+            :style="{
+                left:getMoveLeft
+            }">
+            <div class="page0__move__center clearfix" :class="moveStatus ? 'opacityChange' : 'opacityChange-out'">
+                <div class="page0__move__text page0__l01__move__text">{{moveText}}</div>
+                <div class="page0__move__icon"></div>
+            </div>
+        </div>
+        <div class="page0__tips" v-show="forgot" :class="forgot ? 'opacityChange' : 'opacityChange-out'">老铁，这题漏选了</div>
         <div class="page page1" id="page1" 
             :class="changeStatus ? (landscape ? 'moveLeftIn' : 'moveTopIn')+' active' : activePage == 1 ? 'active' : ''" ref="page1">
             <div class="page1__center" v-if="myresult != -1">

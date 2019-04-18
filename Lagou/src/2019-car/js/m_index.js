@@ -109,14 +109,29 @@
                 {w:422,h:399,l:555},
                 {w:422,h:399,l:555},
                 {w:463,h:361,l:576}  // 15
-            ]
+            ],
+            moveText:'滑动测试',
+            moveStatus:true,
+            forgot: false
         },
         computed: {
             getMoveLeft (){
                 var page0 = document.getElementById('page0');
-                var total = this.landscape ? page0.offsetWidth : page0.offsetHeight;
-                var one = this.landscape ? GC.w : GC.h;
-                return (this.moveLeft + (one * 2 / 3) * this.moveLeft / total) + 'px'
+                var total = getRem(27100)
+                var one = Math.max(GC.w, GC.h)
+
+                if(this.moveLeft > getRem(19912) - one){  // 隐藏
+                    this.moveStatus = false
+                }else{
+                    this.moveStatus = true
+                }
+                if(this.moveLeft > getRem(5700)) {
+                    this.moveText = '滑动继续测试'
+                }else {
+                    this.moveText = '滑动测试'
+                }
+                // 19912 - one
+                return (getRem(131)+ one * this.moveLeft / total) + 'px'
             },
             getIndex(){
                 return '00'.slice(0,2-(this.myresult+'').length)+this.myresult
@@ -132,12 +147,12 @@
             }
         },
         created:function(){
-            var script = document.createElement('script');
-            script.onload = function(){
-                new VConsole()
-            }
-            script.src = 'https://cdn.jsdelivr.net/npm/vconsole'
-            document.body.appendChild(script);
+            // var script = document.createElement('script');
+            // script.onload = function(){
+            //     new VConsole()
+            // }
+            // script.src = 'https://cdn.jsdelivr.net/npm/vconsole'
+            // document.body.appendChild(script);
         },
         mounted:function(){
             // setPortraitFontSize();
@@ -190,8 +205,8 @@
                 this.landscape = landscape;
             },
             pageMoveEvent: function(){
-                // var outer = document.getElementById('pages__outer');
-                // this.moveLeft = this.landscape ? outer.scrollLeft : outer.scrollTop;
+                var outer = document.getElementById('pages__outer');
+                this.moveLeft = this.landscape ? outer.scrollLeft : outer.scrollTop;
             },
             setAnswerEvent:function(pindex,index){
                 var arr = this.answers.slice(0),
@@ -205,8 +220,7 @@
                     if(status == -1){
                         this.showResult();
                     }else {
-                        obj[this.landscape ? 'scrollLeft' : 'scrollTop'] = this.getRem(this.questions[status])
-                        $('#pages__outer').animate(obj,500);
+                        this.showForgotTips(status);
                     }
                 }
             },
@@ -232,12 +246,22 @@
                             _this.showResult();
                             // _this.changeStatus = true;
                         }else{
-                            obj[_this.landscape ? 'scrollLeft' : 'scrollTop'] = _this.getRem(_this.questions[status])
-                            $('#pages__outer').animate(obj,500);
+                            _this.showForgotTips(status);
                         }
                         _this.isclick = false;
                     },500)
                 }
+            },
+            showForgotTips:function(status){
+                var obj = {},
+                    _this = this;
+                obj[this.landscape ? 'scrollLeft' : 'scrollTop'] = this.getRem(this.questions[status])
+                $('#pages__outer').animate(obj,500,function(){
+                    _this.forgot = true;
+                    setTimeout(function(){
+                        _this.forgot = false;
+                    },2000)
+                });
             },
             getNoneSelect:function(){
                 var len = this.answers.length,
