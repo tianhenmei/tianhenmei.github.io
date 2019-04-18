@@ -168,13 +168,13 @@
                 // number.innerHTML = "100%";
                 alreadyLoaded = true;
                 console.log("loadingSuccess: "+space);
-                if(space < 3000){
-                    setTimeout(function(){
-                        loadingComplete();
-                    },3000 - space)
-                }else{
-                    loadingComplete();
-                }
+                // if(space < 3000){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3000 - space)
+                // }else{
+                //     loadingComplete();
+                // }
                 // var inputParent = document.getElementsByClassName('loading__inputParent')[0];
                 // inputParent.className = inputParent.className.replace(/( hide)/g,'');
             };
@@ -223,6 +223,7 @@
                         <div class="loading__dot loading__dot--03 dotMove delay0-4"></div>
                     </div>
                     <div class="loading__more"></div>
+                    <div class="loading__move littleMoveInfinite"></div>
                     <!-- <div class="loading__num opacityChange delay0-5 clearfix" id="loading__num">0%</div> -->
                 </div>
             </div>

@@ -78,7 +78,7 @@ function loadAudio(){
 var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
 var imgArray = [
-	loadingHost+"images/loading-bg.png",
+	// loadingHost+"images/loading-bg.png",
 	loadingHost+"images/loading-title.png",
 	loadingHost+"images/loading-btn-01.png",
 	loadingHost+"images/loading-more.png",

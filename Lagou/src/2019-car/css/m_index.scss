@@ -264,8 +264,9 @@ body {
     &__bg {
         width:100%;
         height:100%;
-        background:url('../images/loading-bg.png') no-repeat center top;
-        background-size:100% 100%;
+        background-color:#4cb9b5;
+        // background:url('../images/loading-bg.png') no-repeat center top;
+        // background-size:100% 100%;
         position:absolute;
         left:0;
         top:0;
@@ -278,7 +279,8 @@ body {
         // @include center(336+82.5,111);
         position: absolute;
         left:50%;
-        top:rem(111);
+        // top:rem(111);
+        top:rem(221);
         margin-left:rem(-1260/2);
         // transform:translate(-50%,0);
     }
@@ -300,8 +302,9 @@ body {
         background-size:rem(512) rem(254);
         // @include center(899+82.5,329);
         position: absolute;
-        left:50%;
-        top:rem(329);
+        left:50%;  // 899
+        top:rem(439);
+        // top:rem(329);
         margin-left:rem(-160/2);
     }
     &__text {
@@ -312,7 +315,8 @@ body {
         // @include center(872+82.5,598);
         position: absolute;
         left:50%;
-        top:rem(598);
+        // top:rem(598);
+        top:rem(704);
         margin-left:rem(-145/2);
     }
     &__dotParent {
@@ -321,7 +325,8 @@ body {
         // @include center(872+145+82.5,598+19);
         position: absolute;
         left:50%;
-        top:rem(598+19);
+        // top:rem(598+19);
+        top:rem(704+19);
         margin-left:rem(145/2);
     }
     &__dot {
@@ -346,12 +351,25 @@ body {
     &__more {
         width:rem(385);
         height:rem(31);
-        background:url('../images/loading-more.png') no-repeat 0 0;
+        background:url('../images/loading-text-01.png') no-repeat 0 0;
         background-size:100% 100%;
         // @include center(872+82.5,598);
+        left:50%;
+        // top:rem(989);
+        bottom:rem(59);
         position: absolute;
-        right:rem(62);
-        bottom:rem(43);
+        margin-left:rem(385/2);
+        // right:rem(62);
+        // bottom:rem(43);
+    }
+    &__move {
+        width:rem(132);
+        height:rem(31);
+        background:url('../images/loading-move.png') no-repeat 0 0;
+        background-size:100% 100%;
+        position: absolute;
+        right:rem(80);
+        bottom:rem(59);
     }
     &__inputParent {
         // width:rem(474);
