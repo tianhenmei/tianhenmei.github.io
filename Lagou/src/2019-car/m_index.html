@@ -150,6 +150,7 @@
             loadingComplete = function(){
                 var appElement = document.getElementById('app'),
                     music = document.getElementById('music');
+                console.log("document",document);
                 document.getElementById('loading').className += (landscape ? ' moveLeftOut' : ' moveTopOut');
                 appElement.className = appElement.className.replace(/( hide)/g,'');
                 if(music.paused){

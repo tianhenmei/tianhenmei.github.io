@@ -65,7 +65,7 @@
             loaded:0,
             loadedImgs:[],
             imgs:[
-                "images/canvas-bg.png",
+                "images/canvas-bg.jpeg",
                 "images/canvas-01.png",
                 "images/canvas-02.png",
                 "images/canvas-03.png",
@@ -115,7 +115,7 @@
             forgot: false
         },
         computed: {
-            getMoveLeft (){
+            getMoveLeft:function(){
                 var page0 = document.getElementById('page0');
                 var total = getRem(27100)
                 var one = Math.max(GC.w, GC.h)
@@ -139,10 +139,10 @@
                 obj[name] = (getRem(131)+ one * this.moveLeft / total) + 'px'
                 return obj
             },
-            getIndex(){
+            getIndex:function(){
                 return '00'.slice(0,2-(this.myresult+'').length)+this.myresult
             },
-            getNameSize() {
+            getNameSize:function() {
                 var re = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
                     tempStr = this.nickname.replace(re,"çç"),
                     fs = 66.5;
@@ -189,7 +189,7 @@
             //     capture:false,
             //     passive:false
             // });
-            document.body.addEventListener('focusout', function () { 
+            document.body.addEventListener('focusout', function() { 
                 window.scrollTo(0,0);
             });
         },

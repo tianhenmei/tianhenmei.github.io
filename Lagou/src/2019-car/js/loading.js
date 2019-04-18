@@ -86,7 +86,7 @@ var imgArray = [
 	loadingHost+"images/loading-pillow.png",
 	loadingHost+"images/loading-text.png",
 	
-	"images/canvas-bg.png",
+	"images/canvas-bg.jpeg",
 	"images/canvas-01.png",
 	"images/canvas-02.png",
 	"images/canvas-03.png",
