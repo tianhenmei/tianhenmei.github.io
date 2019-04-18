@@ -166,6 +166,10 @@
             this.initScrollEvent()
             this.initCanvas()
             this.loadImages();
+
+            // this.myresult = 1
+            // this.nickname = '习近平'
+            // this.checkInputEvent();
             // document.addEventListener('touchstart',function(e){
             //     e.stopPropagation();
             //     e.preventDefault();
@@ -341,8 +345,7 @@
                         this.showTips = true;  
                         this.tipsContent =  '最多六个字哦'
                     }else {
-                        this.showInput = false;
-                        this.drawResult();    
+                        this.checkNickname()
                     }
                 }else {
                     this.showTips = true;  
@@ -545,6 +548,39 @@
             cancelMusictvPlay:function(){
                 clearTimeout(this.page3.tvtimer);
                 this.page3.tvtimer = null;
+            },
+            checkNickname:function(){
+                var self = this,
+                    key = 'qEA9Tc3UmzzO60KUFMa7vvhfIqBkAYZQ';
+                $.ajax({
+                    url:'https://api.lagou.com/sensitive/check',
+                    type:'get',
+                    data:{
+                        key:key,
+                        securityCode:hex_md5(key+this.nickname),//key+ word  MD5计算结果
+                        word:this.nickname
+                    },
+                    success:function(data){
+                        if(data.code == 1){ // 成功
+                            // true--包含敏感词  false--不包含敏感词
+                            if(data.content){
+                                self.showTips = true;
+                                self.tipsContent = '这好像不是你的名字哦，换一个吧'
+                            }else {
+                                self.showInput = false;
+                                self.drawResult(); 
+                            }
+                        }else {
+                            self.showTips = true;
+                            self.tipsContent = '网络错误，请重试'
+                        }
+                    },
+                    error:function(error){
+                        console.log(error)
+                        self.showInput = false;
+                        self.drawResult(); 
+                    }
+                })
             }
         }
     })
