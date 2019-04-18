@@ -594,6 +594,11 @@ body {
             left: 100%;
             top: 0;
         }
+        .extra-rotate-center {
+            top: 50%;
+            left: 50%;
+            transform: rotate(90deg) translate(-50%,-50%);
+        }
         .page0 {
             width:auto;
             transform: rotate(90deg);
@@ -628,6 +633,7 @@ body {
         height:100%;
     }
     &__tips {
+        width:rem(560);
         line-height:rem(66);
         padding:rem(60);
         font-size:rem(36);
