@@ -80,7 +80,7 @@ var loadingHost = '';
 var imgArray = [
 	loadingHost+"images/loading-bg.png",
 	loadingHost+"images/loading-title.png",
-	loadingHost+"images/loading-btn.png",
+	loadingHost+"images/loading-btn-01.png",
 	loadingHost+"images/loading-more.png",
 	loadingHost+"images/loading-person.png",
 	loadingHost+"images/loading-pillow.png",

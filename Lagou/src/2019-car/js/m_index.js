@@ -121,6 +121,15 @@
             getIndex(){
                 return '00'.slice(0,2-(this.myresult+'').length)+this.myresult
             },
+            getNameSize() {
+                var re = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
+                    tempStr = self.nickname.replace(re,"çç"),
+                    fs = 66.5;
+                if(tempStr.length > 9) {
+                    fs = 50
+                }
+                return fs+'px'
+            }
         },
         mounted:function(){
             // setPortraitFontSize();
@@ -324,12 +333,15 @@
                 },100);
                 setPortraitFontSize();
                 this.resetData();
-                this.activePage = 1;
+                setTimeout(function(){
+                    self.activePage = 1;
+                },500)
                 this.loadDynamicImage(function(resultList){
+                    var fs = this.getNameSize
                     self.ctx.fillStyle = "#000"
-                    self.ctx.font = "50px normal"
+                    self.ctx.font = fs + "px normal"
                     self.ctx.textAlign="center";
-                    self.ctx.fillText(self.nickname,320,118+50+22)
+                    self.ctx.fillText(self.nickname,320,118+fs+((94 - fs) / 2))
                     self.ctx.drawImage(resultList[0],0,0);
                     self.ctx.drawImage(resultList[1],118,266);
                     self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);

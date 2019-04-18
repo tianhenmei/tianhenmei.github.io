@@ -466,7 +466,9 @@
                 <div class="page1__ercode"></div>
                 <div class="page1__tips"></div>
 
-                <div class="page1__name">{{nickname}}</div>
+                <div class="page1__name" :style="{
+                    fontSize:getNameSize
+                }">{{nickname}}</div>
                 
                 <img class="page1__keywords" :src="'images/result-keywords-'+getIndex+'.png'" />
                 <img class="page1__ratio" :src="'images/result-ratio-'+getIndex+'.png'"
@@ -489,7 +491,7 @@
         </div>
         <div class="pages__input" v-show="showInput">
             <div class="loading__inputParent">
-                <input type="text" class="loading__input" placeholder="输入昵称" v-model="nickname" />
+                <input type="text" class="loading__input" placeholder="输入姓名或昵称" v-model="nickname" />
                 <div class="loading__btn" @click.stop="checkInputEvent" data-lg-tj-id="1k69" data-lg-tj-no="0017" data-lg-tj-cid="null"></div>
             </div>
             <div class="loading__tipsMask" v-show="showTips"></div>
