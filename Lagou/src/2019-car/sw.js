@@ -1,4 +1,4 @@
-const CACHE_NAME = '2019-car-cache-v4';
+const CACHE_NAME = '2019-car-cache-v5';
 // 监听 service worker 的 install 事件
 this.addEventListener('install', function (event) {
     this.skipWaiting();
