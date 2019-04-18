@@ -467,7 +467,7 @@
                 <div class="page1__tips"></div>
 
                 <div class="page1__name" :style="{
-                    fontSize:getNameSize
+                    fontSize:setRem(getNameSize)
                 }">{{nickname}}</div>
                 
                 <img class="page1__keywords" :src="'images/result-keywords-'+getIndex+'.png'" />
@@ -486,7 +486,7 @@
                 <div class="page1__line"></div>
             </div>
             <div class="page1__canvas">
-                <img class="page1__img" :src="url" @touchstart="noop" data-lg-tj-id="1k69" data-lg-tj-no="0020" data-lg-tj-cid="null" />
+                <img class="page1__canvas__img" :src="url" @touchstart="noop" data-lg-tj-id="1k69" data-lg-tj-no="0020" data-lg-tj-cid="null" />
             </div>
         </div>
         <div class="pages__input" v-show="showInput">

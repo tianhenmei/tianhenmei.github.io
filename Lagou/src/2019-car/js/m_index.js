@@ -123,12 +123,12 @@
             },
             getNameSize() {
                 var re = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
-                    tempStr = self.nickname.replace(re,"çç"),
+                    tempStr = this.nickname.replace(re,"çç"),
                     fs = 66.5;
                 if(tempStr.length > 9) {
                     fs = 50
                 }
-                return fs+'px'
+                return fs
             }
         },
         mounted:function(){
@@ -337,11 +337,11 @@
                     self.activePage = 1;
                 },500)
                 this.loadDynamicImage(function(resultList){
-                    var fs = this.getNameSize
+                    var fs = self.getNameSize
                     self.ctx.fillStyle = "#000"
                     self.ctx.font = fs + "px normal"
                     self.ctx.textAlign="center";
-                    self.ctx.fillText(self.nickname,320,118+fs+((94 - fs) / 2))
+                    self.ctx.fillText(self.nickname,320,118+fs+(fs == 50 ? 18 : 0))
                     self.ctx.drawImage(resultList[0],0,0);
                     self.ctx.drawImage(resultList[1],118,266);
                     self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);
