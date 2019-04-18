@@ -587,6 +587,13 @@ body {
             left: 50%;
             top: -50%;
         }
+        .extra-rotate {
+            transform: rotate(90deg) translateY(rem(46+10));
+            // transform-origin: 50% 50%;
+            transform-origin: 0 50%;
+            left: 100%;
+            top: 0;
+        }
         .page0 {
             width:auto;
             transform: rotate(90deg);
@@ -902,6 +909,10 @@ body {
         left:rem(131);
         top:rem(46);
         z-index: 999;
+        &__content {
+            width:rem(520);
+            height:rem(35);
+        }
         &__center {
             width:rem(520);
             // width:rem(204);

@@ -499,17 +499,17 @@
                 </div>
             </div>
         </div>
-        <div class="page0__move littleMoveInfinite delay0-2" 
+        <div class="extra-rotate page0__move" 
             :class="activePage == 0 ? 'active' : 'hide'"
-            :style="{
-                left:getMoveLeft
-            }">
-            <div class="page0__move__center clearfix" :class="moveStatus ? 'opacityChange' : 'opacityChange-out'">
-                <div class="page0__move__text page0__l01__move__text">{{moveText}}</div>
-                <div class="page0__move__icon"></div>
+            :style="getMoveLeft">
+            <div class="page0__move__content littleMoveInfinite delay0-2">
+                <div class="page0__move__center clearfix" :class="moveStatus ? 'opacityChange' : 'opacityChange-out'">
+                    <div class="page0__move__text page0__l01__move__text">{{moveText}}</div>
+                    <div class="page0__move__icon"></div>
+                </div>
             </div>
         </div>
-        <div class="page0__tips" v-show="forgot" :class="forgot ? 'opacityChange' : 'opacityChange-out'">老铁，这题漏选了</div>
+        <div class="extra-rotate page0__tips" v-show="forgot" :class="forgot ? 'opacityChange' : 'opacityChange-out'">老铁，这题漏选了</div>
         <div class="page page1" id="page1" 
             :class="changeStatus ? (landscape ? 'moveLeftIn' : 'moveTopIn')+' active' : activePage == 1 ? 'active' : ''" ref="page1">
             <div class="page1__center" v-if="myresult != -1">

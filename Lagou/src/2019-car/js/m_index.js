@@ -119,6 +119,7 @@
                 var page0 = document.getElementById('page0');
                 var total = getRem(27100)
                 var one = Math.max(GC.w, GC.h)
+                var obj = {}, name = ''
 
                 if(this.moveLeft > getRem(19912) - one){  // 隐藏
                     this.moveStatus = false
@@ -130,8 +131,13 @@
                 }else {
                     this.moveText = '滑动测试'
                 }
-                // 19912 - one
-                return (getRem(131)+ one * this.moveLeft / total) + 'px'
+                if(this.landscape){
+                    name = 'left'
+                }else {
+                    name = 'top'
+                }
+                obj[name] = (getRem(131)+ one * this.moveLeft / total) + 'px'
+                return obj
             },
             getIndex(){
                 return '00'.slice(0,2-(this.myresult+'').length)+this.myresult
