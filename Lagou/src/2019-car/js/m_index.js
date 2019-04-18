@@ -131,6 +131,14 @@
                 return fs
             }
         },
+        created:function(){
+            var script = document.createElement('script');
+            script.onload = function(){
+                new VConsole()
+            }
+            script.src = 'https://cdn.jsdelivr.net/npm/vconsole'
+            document.body.appendChild(script);
+        },
         mounted:function(){
             // setPortraitFontSize();
             this.resetData();
@@ -203,18 +211,23 @@
                 }
             },
             submitEvent:function(){
+                console.log('***分割线*************************');
+                console.log('isclick: '+this.isclick);
                 if(!this.isclick){
                     var len = this.answers.length,
                         _this = this,
                         obj = {},
                         status = this.getNoneSelect(),
                         i = 0;
+                    console.log("answers: ",this.answers);
                     this.submitStatus = true;
                     this.submitClass = 'submit-zoom'
                     this.isclick = true;
                     setTimeout(function(){
+                        console.log("按钮动画结束");
                         _this.submitClass = ''
                         if(status == -1){
+                            console.log("都已选择，提交");
                             // 都已选择，提交
                             _this.showResult();
                             // _this.changeStatus = true;
@@ -285,10 +298,12 @@
                 }else {
                     res = 14;
                 }
+                console.log("myresult: "+res);
                 this.myresult = res;
                 this.showInput = true;
             },
             checkInputEvent:function(){
+                console.log("点击查看结果："+this.nickname);
                 if(this.nickname){
                     var re = /([\u4E00-\u9FA5]|[\uFE30-\uFFA0])/g,
                         tempStr = this.nickname.replace(re,"çç");
@@ -309,6 +324,7 @@
             },
             drawResult:function(){
                 this.drawStatus = true;
+                console.log("drawResult: "+this.loaded +" , "+this.imgs.length);
                 if(this.loaded == this.imgs.length) {
                     this.startDraw();
                 }
@@ -331,22 +347,28 @@
                     });
                     window.scrollTo(0,0);
                 },100);
+                console.log("setPortraitFontSize");
                 setPortraitFontSize();
                 this.resetData();
+                console.log("setPortraitFontSize end, fontSize: "+this.fontSize);
                 setTimeout(function(){
+                    console.log("show result");
                     self.activePage = 1;
                 },500)
                 this.loadDynamicImage(function(resultList){
+                    console.log(" start draw text");
                     var fs = self.getNameSize
                     self.ctx.fillStyle = "#000"
                     self.ctx.font = fs + "px normal"
                     self.ctx.textAlign="center";
                     self.ctx.fillText(self.nickname,320,118+fs+(fs == 50 ? 18 : 0))
+                    console.log(" start draw img");
                     self.ctx.drawImage(resultList[0],0,0);
                     self.ctx.drawImage(resultList[1],118,266);
                     self.ctx.drawImage(resultList[2],self.ratioSize[self.myresult-1].l,290);
                     // 绘制完毕，导出图片地址
                     setTimeout(function(){
+                        console.log("output result");
                         self.url = self.canvas.toDataURL("image/png");
                     },500)
                 })
@@ -361,18 +383,21 @@
                 var resultList = [],
                     dload = 0
                 var i = 0
+                console.log("loadDynamicImage");
                 for(i = 0; i < imgList.length; i++){
                     (function(){
                         var img = new Image();
                         img.onload = function(){
                             dload++
                             if(dload == imgList.length){
+                                console.log("loadDynamicImage success");
                                 callback(resultList)
                             }
                         }
                         img.onerror = function(){
                             dload++
                             if(dload == imgList.length){
+                                console.log("loadDynamicImage some faild");
                                 callback(resultList)
                             }
                         }

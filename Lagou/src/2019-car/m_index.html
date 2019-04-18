@@ -83,6 +83,13 @@
             lastSize = lastHTMLSize;
             fontSize = (landscape ? GC.h : GC.w) / lastHTMLSize;
             html.style.fontSize = fontSize+'px';
+            console.log("setFontSize: ", {
+                width:GC.w,
+                height:GC.h,
+                landscape:landscape,
+                lastHTMLSize:16,
+                fontSize: fontSize
+            });
         }
 
         function setPortraitFontSize(){
@@ -99,15 +106,19 @@
                 portrait = window.matchMedia("(orientation: portrait)").matches;
             } catch (e) { }
             if(rightSize > currentSize){  // 长屏
+                console.log("长屏: "+16);
                 lastHTMLSize = 16;
             }else if(rightSize < currentSize){  //宽屏
                 lastHTMLSize = (sh / GC.h * GC.w) / RC.w * 16;// + 4;
+                console.log("宽屏: "+lastHTMLSize);
             }else if(/(Mi-4c)/g.test(navigator.userAgent)){
                 lastHTMLSize = lastHTMLSize + 2;
+                console.log("Mi-4c: "+lastHTMLSize);
             }else if(/(MI 5s)/gi.test(navigator.userAgent)){
                 if(lagoufrom == 'ios' || lagoufrom == 'android'){
                     lastHTMLSize = lastHTMLSize + 2.5;
                 }
+                console.log("MI 5s: "+lastHTMLSize);
             }
             var rightSize2 = parseFloat((RC.w / sh).toFixed(3)),
                 currentSize2 = parseFloat((GC.w / GC.h).toFixed(3));
@@ -117,6 +128,8 @@
             
             lastSize = lastHTMLSize;
             fontSize = GC.w / lastHTMLSize;
+            console.log("width,height: "+GC.w+" , "+GC.h);
+            console.log("setPortraitFontSize fontSize: "+fontSize);
             html.style.fontSize = fontSize+'px';
         }
 
@@ -140,7 +153,9 @@
                 if(music.paused){
                     playAudio(music,function(){});
                 }
+                console.log("loadingComplete: show app");
                 setTimeout(function(){
+                    console.log("hide loading");
                     document.getElementById('loading').className += ' hide';
                     firstTime = Date.now();
                 },500);
@@ -152,6 +167,7 @@
                     // number = document.getElementById('loading__num');
                 // number.innerHTML = "100%";
                 alreadyLoaded = true;
+                console.log("loadingSuccess: "+space);
                 if(space < 3000){
                     setTimeout(function(){
                         loadingComplete();
