@@ -75,8 +75,8 @@ function loadAudio(){
 }
 
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-night/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-car/';
 var imgArray = [
 	// loadingHost+"images/loading-bg.png",
 	loadingHost+"images/loading-title.png",
