@@ -168,13 +168,13 @@
                 // number.innerHTML = "100%";
                 alreadyLoaded = true;
                 console.log("loadingSuccess: "+space);
-                // if(space < 3000){
-                //     setTimeout(function(){
-                //         loadingComplete();
-                //     },3000 - space)
-                // }else{
-                //     loadingComplete();
-                // }
+                if(space < 3000){
+                    setTimeout(function(){
+                        loadingComplete();
+                    },3000 - space)
+                }else{
+                    loadingComplete();
+                }
                 // var inputParent = document.getElementsByClassName('loading__inputParent')[0];
                 // inputParent.className = inputParent.className.replace(/( hide)/g,'');
             };
