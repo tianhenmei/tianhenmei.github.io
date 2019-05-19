@@ -397,12 +397,16 @@ html,body {
             float:right;
             text-align:center;
             color:#fff;
-            font-size:rem(30);
+            // font-size:rem(30);
+            font-size:rem(28);
             font-weight:bold;
             font-family: "loveloBlank";
             background:#10d66f;
             background: -webkit-linear-gradient(0deg,#0fc073 0%,#10d66f 100%);
             background: linear-gradient(90deg,#0fc073 0%,#10d66f 100%);
+            &--long {
+                font-size:rem(24);
+            }
         }
     }
     .employer__pagination {
@@ -657,12 +661,16 @@ html,body {
             float:right;
             text-align:center;
             color:#fff;
-            font-size:rem(30);
+            // font-size:rem(30);
+            font-size:rem(28);
             font-weight:bold;
             font-family: "loveloBlank";
             background:#10d66f;
             background: -webkit-linear-gradient(0deg,#0fc073 0%,#10d66f 100%);
             background: linear-gradient(90deg,#0fc073 0%,#10d66f 100%);
+            &--long {
+                font-size:rem(24);
+            }
         }
     }
     .B__pagination__swiper {
@@ -949,16 +957,20 @@ html,body {
             float:left;
         }
         .position__salary {
-            width:rem(112+10);
+            width:rem(112+20);
             height:rem(76);
             line-height:rem(82);
             border-radius:rem(10);
             float:left;
             text-align:left;
             color:#10c971;
-            font-size:rem(30);
+            // font-size:rem(30);
+            font-size:rem(28);
             font-weight:bold;
             font-family: "loveloBlank";
+            &--long {
+                font-size:rem(24);
+            }
         }
         .position__more {
             text-align:center;
@@ -1231,14 +1243,14 @@ html,body {
             float:left;
         }
         .position__salary {
-            width:rem(110+16);
+            width:rem(110+16+10);
             height:rem(70);
             line-height:rem(76);
             border-radius:rem(10);
             float:left;
             text-align:left;
             color:#10c971;
-            font-size:rem(29);
+            font-size:rem(26);
             font-weight:bold;
             font-family: "loveloBlank";
             &--long {
@@ -1279,7 +1291,7 @@ html,body {
             background-size:rem(32) rem(19);
             display:inline-block;
             position:relative;
-            top:rem(2);
+            top:0;
         }
     }
     .D__pagination {
