@@ -2,9 +2,14 @@
 <html>
     <meta charset="UTF-8" />
     <title>Service Worker</title>
+    <link rel="stylesheet" href="css/m_index.css">
 <body>
-    <div class="main">
-        
+    <div id="app">
+        <div class="yh__center">
+            <ul class="yh__list clearfix">
+                <li class="yh__li" v-for="(one, index) in list"></li>
+            </ul>
+        </div>
     </div>
     <script>
         // register
@@ -48,5 +53,7 @@
             // }
         }
     </script>
+    <script src="js/vue.js"></script> 
+    <script src="js/m_index.js"></script> 
 </body>
 </html>
