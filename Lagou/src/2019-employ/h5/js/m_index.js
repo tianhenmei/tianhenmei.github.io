@@ -64,7 +64,7 @@ var app = new Vue({
         // // this.loadedJSCSS();
         // this.initWindowScrollEvent();
         // Star雇主
-        this.getEmployerData('2018STAR101_STAR_EMPLOYER_beijing')
+        this.getEmployerData('20190221PROMOTION_MAIN_POWER')
         // 超级雇主
         this.getBData('2018STAR101_STAR_EMPLOYER_beijing')
         // 本地实力首选
@@ -121,12 +121,12 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                autoplay: {
-                    delay: 3000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false,
-                },
-                // autoplay: false,
+                // autoplay: {
+                //     delay: 3000,
+                //     stopOnLastSlide: false,
+                //     disableOnInteraction: false,
+                // },
+                autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
@@ -658,7 +658,12 @@ var app = new Vue({
         },
         getEmployerData:function(templateId){
             var self = this
-            this.getAjaxData('activityapi/star101/starEmployer',function(content){
+            this.getAjaxData('activityapi/promotion/companyList',function(content){
+                if (content.companyLabel) {
+                    content.map(function(current){
+                        current.companyLabel = self.labelList(current.companyLabel)
+                    })
+                }
                 self.employerList = content
                 self.$nextTick(function(){
                     self.addEmployerAnimation()
@@ -684,6 +689,11 @@ var app = new Vue({
             this.getAjaxData('activityapi/star101/companyList',function(content){
                 var arr = [],
                     i = 0;
+                if (content.companyLabel) {
+                    content.map(function(current){
+                        current.companyLabel = self.labelList(current.companyLabel)
+                    })
+                }
                 content.forEach(function(current,index){
                     i = Math.floor(index/2);
                     if (index % 2 === 0) {
@@ -708,6 +718,11 @@ var app = new Vue({
                 var arr = [],
                     i = 0
                     length = Math.ceil(content.length / 4)
+                if (content.companyLabel) {
+                    content.map(function(current){
+                        current.companyLabel = self.labelList(current.companyLabel)
+                    })
+                }
                 for(i = 0; i < length; i++){
                     arr.push(content.slice(i*4,(i+1)*4))
                 }
