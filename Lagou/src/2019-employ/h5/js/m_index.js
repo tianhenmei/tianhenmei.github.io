@@ -121,25 +121,25 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                // autoplay: {
-                //     delay: 3000,
-                //     stopOnLastSlide: false,
-                //     disableOnInteraction: false,
-                // },
-                autoplay: false,
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                // autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
-                effect : 'coverflow',
+                // effect : 'coverflow',
                 slidesPerView: 1.21,
                 centeredSlides: true,
-                coverflowEffect: {
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 0,
-                    modifier: 2,
-                    slideShadows : false
-                },
+                // coverflowEffect: {
+                //     rotate: 0,
+                //     stretch: 0,
+                //     depth: 0,
+                //     modifier: 2,
+                //     slideShadows : false
+                // },
                 // pagination:'.employer-pagination',
                 // paginationType:'custom',
                 // paginationElement:'div',
@@ -215,12 +215,12 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                autoplay: {
-                    delay: 3000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false,
-                },
-                // autoplay: false,
+                // autoplay: {
+                //     delay: 2000,
+                //     stopOnLastSlide: false,
+                //     disableOnInteraction: false,
+                // },
+                autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
@@ -235,12 +235,12 @@ var app = new Vue({
         addDAnimation:function(){
             var self = this
             this.employerAnimation.D = new Swiper('#DSwiper', {
-                 // autoplay: {
-                //     delay: 3000,
-                //     stopOnLastSlide: false,
-                //     disableOnInteraction: false,
-                // },
-                autoplay: false,
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                // autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,

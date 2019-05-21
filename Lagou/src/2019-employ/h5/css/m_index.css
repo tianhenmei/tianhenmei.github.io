@@ -38,7 +38,7 @@ html, body {
 
 @font-face {
   font-family: "loveloBlank";
-  src: url("../images/Lovelo Black.otf"); }
+  src: url("../images/lovelo_black-webfont.ttf"); }
 
 #app {
   width: 100%;
@@ -135,12 +135,25 @@ html, body {
     height: 13.184rem;
     position: relative;
     background: url("../images/employer-bg.png") no-repeat center top;
-    background-size: 13.35467rem 13.184rem; }
+    background-size: 13.35467rem 13.184rem;
+    opacity: 0.8; }
+  .yh-center__employer .swiper-slide-active {
+    opacity: 1; }
   .yh-center__employer .employer__bottom {
     width: 13.35467rem;
     padding: 0.98133rem 0 0 0;
     margin: 0 auto;
     position: relative; }
+  .yh-center__employer .employer__mask {
+    width: 12.75733rem;
+    height: 12.94933rem;
+    border-radius: 0.64rem;
+    background-color: #000;
+    opacity: 0.5;
+    position: absolute;
+    left: 0.27733rem;
+    top: 0;
+    z-index: 2; }
   .yh-center__employer .employer__btop .employer__left {
     padding: 0.768rem 0 0 0.832rem;
     float: left; }
@@ -809,7 +822,8 @@ html, body {
       color: #10c971;
       font-size: 0.59733rem;
       font-weight: bold;
-      font-family: "loveloBlank"; }
+      font-family: "loveloBlank";
+      background: transparent; }
       .yh-center__C .C__position .position__salary--long {
         font-size: 0.512rem; }
     .yh-center__C .C__position .position__more {
@@ -1053,14 +1067,16 @@ html, body {
     .yh-center__D .D__position .position__salary {
       width: 2.90133rem;
       height: 1.49333rem;
-      line-height: 1.62133rem;
+      line-height: 1.49333rem;
       border-radius: 0.21333rem;
       float: left;
       text-align: left;
-      color: #10c971;
-      font-size: 0.55467rem;
       font-weight: bold;
-      font-family: "loveloBlank"; }
+      font-family: "loveloBlank";
+      background: transparent; }
+      .yh-center__D .D__position .position__salary .salary {
+        color: #10c971;
+        font-size: 0.576rem; }
       .yh-center__D .D__position .position__salary--long {
         font-size: 0.512rem; }
     .yh-center__D .D__position .position__more {

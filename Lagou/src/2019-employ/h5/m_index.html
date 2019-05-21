@@ -177,12 +177,13 @@
                                                 :data-lg-tj-cid="ione.positionId">
                                                 <span class="position__center" :class="{'position__center--last': index == 3}">
                                                     <span class="position__name">{{ione.positionName}}</span>
-                                                    <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary}}</span>
+                                                    <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary.replace(/k/i,'')}}</span>
                                                 </span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- <div class="employer__mask" v-show="oindex !== employerActiveIndex"></div> -->
                             </div>
                         </div>
                     </div>
@@ -266,7 +267,7 @@
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 2}">
                                                         <span class="position__name">{{ione.positionName}}</span>
-                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary}}</span>
+                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary.replace(/k/i,'')}}</span>
                                                     </span>
                                                 </a>
                                             </div>
@@ -344,7 +345,7 @@
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 2}">
                                                         <span class="position__name">{{ione.positionName}}</span>
-                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary}}</span>
+                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary.replace(/k/i,'')}}</span>
                                                     </span>
                                                 </a>
                                                 <a class="one one--more clearfix"
@@ -437,7 +438,7 @@
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 1}">
                                                         <span class="position__name">{{ione.positionName}}</span>
-                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary}}</span>
+                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}"><span class="salary">{{ione.salary.replace(/k/i,'')}}</span></span>
                                                     </span>
                                                 </a>
                                             </div>

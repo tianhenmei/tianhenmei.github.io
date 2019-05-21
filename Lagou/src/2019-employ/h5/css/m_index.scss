@@ -105,7 +105,7 @@ html,body {
 }
 @font-face {
     font-family: "loveloBlank";
-    src: url('../images/Lovelo Black.otf');
+    src: url('../images/lovelo_black-webfont.ttf');
 }
 #app {
     width:100%;
@@ -207,12 +207,27 @@ html,body {
         position:relative;
         background:url('../images/employer-bg.png') no-repeat center top;
         background-size:rem(626) rem(618);
+        opacity:0.8;
+    }
+    .swiper-slide-active {
+        opacity:1;
     }
     .employer__bottom {
         width:rem(626);
         padding:rem(46) 0 0 0;
         margin:0 auto;
         position:relative;
+    }
+    .employer__mask {
+        width:rem(598);
+        height:rem(607);
+        border-radius:rem(30);
+        background-color:#000;
+        opacity:0.5;
+        position:absolute;
+        left:rem(13);
+        top:0;
+        z-index:2;
     }
     .employer__btop {
         .employer__left {
@@ -401,6 +416,7 @@ html,body {
         .position__salary {
             width:rem(127);
             height:rem(47);
+            // line-height:rem(47);
             line-height:rem(54);
             margin-top:rem(13);
             border-radius:rem(10);
@@ -665,6 +681,7 @@ html,body {
         .position__salary {
             width:rem(127);
             height:rem(47);
+            // line-height:rem(47);
             line-height:rem(54);
             margin-top:rem(13);
             border-radius:rem(10);
@@ -979,6 +996,7 @@ html,body {
         .position__salary {
             width:rem(112+20);
             height:rem(76);
+            // line-height:rem(76);
             line-height:rem(82);
             border-radius:rem(10);
             float:left;
@@ -988,6 +1006,7 @@ html,body {
             font-size:rem(28);
             font-weight:bold;
             font-family: "loveloBlank";
+            background:transparent;
             &--long {
                 font-size:rem(24);
             }
@@ -1275,14 +1294,18 @@ html,body {
         .position__salary {
             width:rem(110+16+10);
             height:rem(70);
-            line-height:rem(76);
+            line-height:rem(70);
+            // line-height:rem(76);
             border-radius:rem(10);
             float:left;
             text-align:left;
-            color:#10c971;
-            font-size:rem(26);
             font-weight:bold;
             font-family: "loveloBlank";
+            background:transparent;
+            .salary {
+                color:#10c971;
+                font-size:rem(27);
+            }
             &--long {
                 font-size:rem(24);
             }
