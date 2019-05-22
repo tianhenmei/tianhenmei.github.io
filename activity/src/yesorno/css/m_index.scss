@@ -1,0 +1,177 @@
+@charset "UTF-8";
+@function rem($n){
+    @return $n / (750 / 16) + rem;
+}
+@function rem1080($n){
+    @return $n * (750 / 1080) / (750 / 16) + rem;
+}
+@function v1080($n){
+    @return $n * (750 / 1080);
+}
+@function getTop($n) {
+	@return ($n - 1206 / 2) / (750 / 16) + rem;
+}
+@function getLeft($n) {
+	@return ($n - 750 / 2) / (750 / 16) + rem;
+}
+@function getRight($n) {
+	@return (($n - 750) / 2) / (750 / 16) + rem;
+}
+@mixin center($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: rem($top);
+	margin:0 0 0 getLeft($left);
+}
+@mixin centerlt($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: 50%;
+	margin:getTop($top) 0 0 getLeft($left);
+}
+@mixin centerr($right,$top) {	
+	position:absolute;
+	right:50%;
+	top: rem($top);
+	margin:0 getRight($right) 0 0;
+}
+@mixin centerb($left,$bottom) {	
+	position:absolute;
+	left:50%;
+	bottom: rem($bottom);
+	margin:0 0 0 getLeft($left);
+}
+@mixin centerrb($right,$bottom) {	
+	position:absolute;
+	right:50%;
+	bottom: rem($bottom);
+	margin:0 getRight($right) 0 0;
+}
+@mixin leftTop($left,$top) {	
+	position:absolute;
+    left:rem($left);
+	top: rem($top);
+}
+@mixin rightTop($right,$top) {	
+	position:absolute;
+    right:rem($right);
+	top: rem($top);
+}
+@mixin leftBottom($left,$bottom) {	
+	position:absolute;
+    left:rem($left);
+	bottom: rem($bottom);
+}
+
+.clearfix:after{
+    content: "020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+ul,ol,li {
+    list-style:none;
+}
+img {
+    display:block;
+}
+a:hover,
+a {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:none;
+}
+html,body {
+    width:100%;
+    height:auto;
+    min-height:100%;
+    font-family: Hiragino Sans GB,Microsoft Yahei,SimSun,Arial,Helvetica Neue,Helvetica;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    background:#eab14f;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility:hidden;
+}
+@font-face {
+    font-family: "loveloBlank";
+    src: url('../images/lovelo_black-webfont.ttf');
+}
+#app {
+    width:100%;
+    height:auto;
+    position:relative;
+}
+.yh-center {
+    width:100%;
+    background-repeat:repeat-y;
+    background-position:center top;
+    background-image:url('../images/bg.png');
+    background-size:100%;
+}
+.yh-center__bg {
+    background-repeat:no-repeat;
+    background-position:center center;
+    background-size:100% 100%;
+}
+/***page-banner start***************************************************/
+.yh-center__banner {
+    width:100%;
+    height:rem(1238-119);
+    padding-top:rem(119);
+    background-image:url('../images/banner-top.png');
+    background-position:center top;
+    background-size:rem(750) rem(925);
+    position: relative;
+    .banner__logo {
+        width:rem(528);
+        height:rem(42);
+        margin:0 auto;
+        background-image:url('../images/logo.png');
+    }
+}
+.yh-center__intro {
+    width:rem(641);
+    height:rem(174);
+    margin:0 auto;
+    margin-top:rem(925-1238);
+    padding-left:rem(10);
+    padding-bottom:rem(139);
+    background-image:url('../images/intro.png');
+    background-position:rem(10) top;
+    background-size:rem(641) rem(174);
+}
+.yh-center {
+    &__card--01 { height:rem(784); background-image:url('../images/card-01.jpg'); }
+    &__card--02 { height:rem(928); background-image:url('../images/card-02.jpg'); }
+    &__card--03 { height:rem(914); background-image:url('../images/card-03.jpg'); }
+    &__card--04 { height:rem(1254); background-image:url('../images/card-04.jpg'); }
+    &__card--05 { height:rem(1148); background-image:url('../images/card-05.jpg'); }
+    &__card--06 { height:rem(1100); background-image:url('../images/card-06.jpg'); }
+    &__card--07 { height:rem(1558); background-image:url('../images/card-07.jpg'); }
+    &__card--08 { height:rem(481); background-image:url('../images/card-08.jpg'); }
+    &__card--09 { height:rem(332); background-image:url('../images/card-09.jpg'); }
+    &__card--10 { height:rem(372); background-image:url('../images/card-10.jpg'); }
+    &__card--11 { height:rem(370); background-image:url('../images/card-11.jpg'); }
+    &__card--12 { height:rem(319); background-image:url('../images/card-12.jpg'); }
+    &__card--13 { height:rem(401); background-image:url('../images/card-13.png'); }
+    &__a {
+        width:rem(556);
+        height:rem(319);
+        margin:0 auto;
+        outline: none;
+        display:block;
+    }
+}
+/***page-bottom start***************************************************/
+
