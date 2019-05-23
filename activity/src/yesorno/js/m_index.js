@@ -21,8 +21,9 @@ var app = new Vue({
             console.log(123455)
             if(WBAPP && WBAPP.action && WBAPP.action.share){
                 WBAPP.action.share(shareConfigAry, function(){
-                console.log('分享成功！')
-            })
+                    console.log('分享成功！')
+                })
+            }
         }
     }
 })
