@@ -3,7 +3,7 @@ var app = new Vue({
     el:"#app",
     // mixins:[commonMixin],
     data:{
-        
+        shareBtnStatus: false
     },
     created: function(){
         var script = document.createElement('script')
@@ -20,6 +20,7 @@ var app = new Vue({
         toShare: function(){
             console.log('调用分享组件')
             if(WBAPP && WBAPP.action && WBAPP.action.share){
+                this.shareBtnStatus = true;
                 WBAPP.action.share(shareConfigAry, function(state, source){
                     console.log('调用成功！')
                     console.log('state', state)

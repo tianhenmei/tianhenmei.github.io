@@ -97,7 +97,7 @@
             <a class="yh-center__a" href="https://m.ctrip.com/tangram/MTI0NA==?isHideNavBar=YES&ctm_ref=vactang_page_1244" target="_blank"></a>
         </div>
         <div class="yh-center__bg yh-center__card--14">
-            <div class="yh-center__share" @click.stop.prevent="toShare">我要分享</div>
+            <div class="yh-center__share" id="yh-center__share" v-show="shareBtnStatus" @click.stop.prevent="toShare">我要分享</div>
         </div>
     </div>
 </div>
