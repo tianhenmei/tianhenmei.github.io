@@ -94,6 +94,7 @@
             <a class="yh-center__a" href="https://www.taobao.com" target="_blank"></a>
         </div>
         <div class="yh-center__bg yh-center__card--14"></div>
+        <div class="yh-center__share" @click.stop.prevent="toShare">我要去分享我要分享</div>
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
@@ -135,11 +136,6 @@ function addItem(){
   }
 }
 addItem()
-if(WBAPP && WBAPP.action && WBAPP.action.share){
-  WBAPP.action.share(shareConfigAry, function(){
-    console.log('分享成功！')
-  })
-}
 </script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/m_index.js"></script>
