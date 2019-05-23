@@ -18,10 +18,16 @@ var app = new Vue({
     },
     methods:{
         toShare: function(){
-            console.log(123455)
+            console.log('调用分享组件')
             if(WBAPP && WBAPP.action && WBAPP.action.share){
                 WBAPP.action.share(shareConfigAry, function(){
-                    console.log('分享成功！')
+                    console.log('调用成功！')
+                })
+                var rdata = data.params
+                delete rdata.shareto
+                WBAPP.extend.share.to('WEIXIN,FRIENDS,FLIPCHAT,!FLIPCHAT,CHART,FACETOFACE,SINA,QQ',rdata,function(state, source){
+                    console.log('state', state)
+                    console.log('source', source)
                 })
             }
         }
