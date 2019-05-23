@@ -97,6 +97,50 @@
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="http://apptest.58.com/static/js/js-sdk/dev/app.js"></script>
+<script type="text/javascript">
+var data = {
+  action: 'share',
+  params: {
+    shareto: [
+      'FLIPCHAT',
+      '!FLIPCHAT',
+      'CHART',
+      'FACETOFACE',
+      'WEIXIN',
+      'FRIENDS',
+      'SINA',
+      'QQ'
+    ],
+    img_url: 'images/share.jpg',
+    url: window.location.href,
+    title: '这届毕业生，到底行不行？',
+    content: '2019毕业生求职避坑指南，还有毕业求职福利包，点击领取哦！',
+    placeholder: '这届毕业生，到底行不行？',
+    type: 'imgshare'
+  }
+}
+var shareConfigAry = []
+function addItem(){
+  var i = ''
+  var p = 0
+  var obj = null
+  for(p=0; p<data.params.shareto.length; p++
+    obj = {}
+    for(i in data.params){
+      obj[i] = data.params[i]
+    }
+    obj.shareto = data.params.shareto[p]
+    shareConfigAry.push(obj))
+  }
+}
+addItem()
+if(WBAPP && WBAPP.action && WBAPP.action.share){
+  WBAPP.action.share(shareConfigAry, function(){
+    console.log('分享成功！')
+  })
+}
+</script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/m_index.js"></script>
 </body>
