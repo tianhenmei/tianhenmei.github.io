@@ -165,13 +165,27 @@ html,body {
     &__card--11 { height:rem(372); background-image:url('../images/card-11.jpg'); }
     &__card--12 { height:rem(370); background-image:url('../images/card-12.jpg'); }
     &__card--13 { height:rem(319); background-image:url('../images/card-13.jpg'); }
-    &__card--14 { height:rem(401); background-image:url('../images/card-14.jpg'); }
+    &__card--14 { 
+        height:rem(401-100); background-image:url('../images/card-14.jpg'); 
+        padding-top:rem(100);
+    }
     &__a {
         width:rem(556);
         height:rem(319);
         margin:0 auto;
         outline: none;
         display:block;
+    }
+    &__share {
+        width:rem(500);
+        height:rem(80);
+        line-height:rem(80);
+        margin:0 auto;
+        border-radius:rem(80);
+        background-color:#fd5701;
+        color:#fff;
+        font-size:rem(28);
+        text-align:center;
     }
 }
 /***page-bottom start***************************************************/

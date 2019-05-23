@@ -85,20 +85,24 @@
         <!-- <div class="yh-center__bg yh-center__card--09"></div> -->
         <div class="yh-center__bg yh-center__card--10"></div>
         <div class="yh-center__bg yh-center__card--11">
-            <a class="yh-center__a" href="https://www.qq.com" target="_blank"></a>
+            <!-- 58 -->
+            <a class="yh-center__a" href="https://cvip.58.com/view/tycard/seven?from=school2" target="_blank"></a>
         </div>
         <div class="yh-center__bg yh-center__card--12">
-            <a class="yh-center__a" href="https://www.baidu.com" target="_blank"></a>
+            <!-- 有道 -->
+            <a class="yh-center__a" href="http://shared.youdao.com/dict/market/dict-translate/index.html?keyfrom=1" target="_blank"></a>
         </div>
         <div class="yh-center__bg yh-center__card--13">
-            <a class="yh-center__a" href="https://www.taobao.com" target="_blank"></a>
+            <!-- 360 -->
+            <a class="yh-center__a" href="https://m.ctrip.com/tangram/MTI0NA==?isHideNavBar=YES&ctm_ref=vactang_page_1244" target="_blank"></a>
         </div>
-        <div class="yh-center__bg yh-center__card--14"></div>
-        <div class="yh-center__share" @click.stop.prevent="toShare">我要去分享我要分享</div>
+        <div class="yh-center__bg yh-center__card--14">
+            <div class="yh-center__share" @click.stop.prevent="toShare">我要分享</div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
-<script type="text/javascript" src="http://apptest.58.com/static/js/js-sdk/dev/app.js"></script>
+<script type="text/javascript" src="http://a.58cdn.com.cn/app58/rms/app/js/app_30805.js"></script>
 <script type="text/javascript">
 var data = {
   action: 'share',
@@ -113,7 +117,7 @@ var data = {
       'SINA',
       'QQ'
     ],
-    img_url: 'images/share.jpg',
+    img_url: 'images/share.png',
     url: window.location.href,
     title: '这届毕业生，到底行不行？',
     content: '2019毕业生求职避坑指南，还有毕业求职福利包，点击领取哦！',
@@ -139,5 +143,30 @@ addItem()
 </script>
 <script type="text/javascript" src="js/vue.js"></script>
 <script type="text/javascript" src="js/m_index.js"></script>
+<script type=text/javascript src=//tracklog.58.com/referrer_m.js async></script>
+<script type=text/javascript src=//j1.58cdn.com.cn/js/login/passportMobileLogin.js></script>
+<script type=text/javascript src=//j1.58cdn.com.cn/m58/m3/js/weixin/wxjs-0.0.3.js></script>
+<script type="text/javascript">
+    var t = {
+        title: data.params.title,
+        desc: data.params.content,
+        link: window.location.href,
+        imgUrl: data.params.img_url
+    };
+    // wxShare(t)
+    // function wxShare(t) {
+    //     var e = window.wxjs;
+    //     e && e.ready(function(e) {
+    //         e.share.set("appMessage", K()({}, t, {
+    //             success: function() {},
+    //             cancel: function() {}
+    //         })),
+    //         e.share.set("timeline", K()({}, t, {
+    //             success: function() {},
+    //             cancel: function() {}
+    //         }))
+    //     })
+    // }
+</script>
 </body>
 </html>
