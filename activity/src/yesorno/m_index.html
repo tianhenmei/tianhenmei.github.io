@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>这届毕业生到底行不行</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
-    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <link rel="stylesheet" href="css/m_index.css">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -56,6 +56,15 @@
     
         setFontSize();
     </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?3bf107da724597312e86011c077c7512";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <div id="app">
@@ -87,31 +96,8 @@
         <div class="yh-center__bg yh-center__card--14"></div>
     </div>
 </div>
-<script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>
-<script type="text/javascript" src="js/vue.js?v=$version$"></script>
-<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
-
-<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
-<script type="text/javascript">
-    //微信分享
-    var datas = {
-        title: "这届毕业生到底行不行",
-        desc: "这届毕业生到底行不行",
-        imgUrl: '',
-        shareUrl: ''
-    };
-    share(datas);
-    //app 分享
-    function getShareInfo(){
-        var share={
-            share_title:datas.title,
-            share_desc:datas.desc,
-            share_url:datas.shareUrl,
-            share_imgUrl:datas.imgUrl
-        };
-        return share;
-    }
-</script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript" src="js/m_index.js"></script>
 </body>
 </html>
