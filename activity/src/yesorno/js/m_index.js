@@ -5,6 +5,14 @@ var app = new Vue({
     data:{
         
     },
+    created: function(){
+        var script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        script.onload = function(){
+            new VConsole()
+        }
+        document.body.appendChild(script)
+    },
     mounted:function(){
         
     },
