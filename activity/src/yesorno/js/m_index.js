@@ -15,7 +15,10 @@ var app = new Vue({
     },
     mounted:function(){
         if(WBAPP && WBAPP.action && WBAPP.action.share){
-            this.shareBtnStatus = true;
+            var from = getQueryString('from')
+            if(from === '58'){
+                this.shareBtnStatus = true;
+            }
         }
     },
     methods:{
