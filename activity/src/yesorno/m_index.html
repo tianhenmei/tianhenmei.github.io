@@ -151,16 +151,16 @@ addItem()
         title: data.params.title,
         desc: data.params.content,
         link: window.location.href,
-        imgUrl: data.params.img_url,
-        success: function() {},
-        cancel: function() {}
+        imgUrl: data.params.img_url
     };
     wxShare(t)
     function wxShare(t) {
         var e = window.wxjs;
         e && e.ready(function(e) {
-            e.share.set("appMessage", t),
-            e.share.set("timeline", t)
+            console.log('share data: ', t)
+            e.share.set(t)
+            // e.share.set("appMessage", t),
+            // e.share.set("timeline", t)
         })
     }
 </script>
