@@ -125,12 +125,12 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                // autoplay: {
-                //     delay: 2000,
-                //     stopOnLastSlide: false,
-                //     disableOnInteraction: false,
-                // },
-                autoplay: false,
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                // autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
