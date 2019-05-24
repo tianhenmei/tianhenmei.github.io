@@ -158,9 +158,13 @@
                                                 <span class="info__span info__last">{{one.companySize}}</span>
                                             </div>
                                             <div class="employer__label clearfix">
-                                                <span v-for="(lone,lindex) in one.companyLabel" 
-                                                    v-if="lindex < 3"
-                                                    :class="(lindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(lindex == one.companyLabel.length-1 || lindex == 2 ? ' label__span--last' : '')">{{lone}}</span>
+                                                <div class="employer__spanOuter clearfix" v-for="(lone,lindex) in one.companyLabel"
+                                                    :class="(' employer__spanOuter--'+lone.length)+(lindex == one.companyLabel.length-1 || lindex == 2 ? ' employer__spanOuter--last' : '') + getSpanClass(lone)"
+                                                    v-if="lindex < 3">
+                                                    <!-- <i class="span__keep">{{lone}}</i> -->
+                                                    <span
+                                                        :class="(lindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(lindex == one.companyLabel.length-1 || lindex == 2 ? ' label__span--last' : '')">{{lone}}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

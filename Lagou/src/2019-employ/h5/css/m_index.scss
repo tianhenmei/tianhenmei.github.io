@@ -323,29 +323,57 @@ html,body {
             width:rem(628);
             height:rem(66);
             overflow:hidden;
+            .employer__spanOuter {
+                height:rem(35);
+                position:relative;
+                float:left;
+                // transform:translateX(-72.5%);
+                margin-right:-25%;
+            }
+            .employer__spanOuter--3 { margin-right:-20%; }
+            .employer__spanOuter--5 { margin-right:-30.2%; }
+            .employer__spanOuter--6 { margin-right:-33%; }
+            .employer__spanOuter--6-0 { margin-right: -34.5%;}
+            .employer__spanOuter--7 { margin-right:-39.5%; }
+            .span__keep {
+                // height:rem(35);
+                // line-height:rem(35);
+                // // padding:0 rem(14);
+                // padding-right:rem(14);
+                // color:#f1f0f8;
+                // font-size:rem(24);
+                // text-align:center;
+                // font-style: normal;
+                // opacity: 0;
+                // display:block;
+            }
             span {
-                height:rem(31 / 18 * 24);
-                line-height:rem(31 / 18 * 24);
-                padding:0 rem(14 / 18 * 24);
+                height:rem(31 * 2 / 18 * 24);
+                line-height:rem(31 * 2 / 18 * 24);
+                padding:0 rem(14 * 2 / 18 * 24);
                 border:rem(2 / 18 * 24) solid #fff;
                 border-radius:rem(100);
                 color:#f1f0f8;
-                font-size:rem(24);
+                font-size:rem(48);
+                white-space:nowrap;
                 text-align:center;
                 float:left;
                 transform-origin:0 0;
-                transform:scale(0.75,0.75);
+                transform:scale(0.375,0.375);
+                // position: absolute;
+                // left:0;
+                // top:0;
             }
-            .label__span {
-                margin-left:rem(-18);
-            }
-            .label__span--5 { margin-right:rem(-18/4 * 1); }
-            .label__span--6 { margin-right:rem(-18/4 * 2); }
-            .label__span--7 { margin-right:rem(-18/4 * 3); }
-            .label__span--8 { margin-right:rem(-18/4 * 4); }
-            .label__span--9 { margin-right:rem(-18/4 * 5); }
-            .label__span--10 { margin-right:rem(-18/4 * 6); }
-            .label__span--11 { margin-right:rem(-18/4 * 7); }
+            // .label__span {
+            //     margin-right:-24.5%;
+            // }
+            // .label__span--5 { margin-right:-5%; }
+            // .label__span--6 { margin-right:-31.95%; }
+            // .label__span--7 { margin-right:rem(-82 * 2/4 * 3); }
+            // .label__span--8 { margin-right:rem(-82 * 2/4 * 4); }
+            // .label__span--9 { margin-right:rem(-82 * 2/4 * 5); }
+            // .label__span--10 { margin-right:rem(-82 * 2/4 * 6); }
+            // .label__span--11 { margin-right:rem(-82 * 2/4 * 7); }
             .label__span--last {
                 margin-right: 0;
             }
@@ -404,7 +432,7 @@ html,body {
             }
         }
         .position__name {
-            width:rem(325);
+            width:rem(325-20);
             overflow:hidden;
             text-overflow:ellipsis;
             white-space:nowrap;
@@ -491,7 +519,7 @@ html,body {
     .B__center {
         width:rem(750);
         margin:0 auto;
-        padding-top:rem(26);
+        padding-top:rem(26*2);
     }
     .B__title {
         width:100%;
@@ -1083,6 +1111,7 @@ html,body {
     .D__center {
         width:rem(750);
         margin:0 auto;
+        padding-top:rem(23*2);
     }
     .D__title {
         width:100%;
@@ -1401,6 +1430,8 @@ html,body {
     width:100%;
     height:auto;
     margin-top:rem(-74);
+    position:relative;
+    z-index:2;
     .bottom__center {
         width:rem(750);
         margin:0 auto;
@@ -1424,6 +1455,8 @@ html,body {
         position:relative;
         background:url('../images/corperate-content.png') no-repeat center top;
         background-size:rem(715) rem(420);
+        position:relative;
+        z-index:2;
     }
     .corperate__one {
         width:rem(169);

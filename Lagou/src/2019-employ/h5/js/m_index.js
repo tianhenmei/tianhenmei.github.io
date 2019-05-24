@@ -73,6 +73,10 @@ var app = new Vue({
         this.getDData('2018STAR101_TOP_EMPLOYER_beijing','')
     },
     methods:{
+        getSpanClass(val){
+            var arr = val.match(/[a-zA-z\d-]/g) || ''
+            return ' employer__spanOuter--'+(val.length || 0)+'-'+arr.length
+        },
         /***********************************
          **  基础函数
          */
@@ -121,12 +125,12 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                autoplay: {
-                    delay: 2000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false,
-                },
-                // autoplay: false,
+                // autoplay: {
+                //     delay: 2000,
+                //     stopOnLastSlide: false,
+                //     disableOnInteraction: false,
+                // },
+                autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,

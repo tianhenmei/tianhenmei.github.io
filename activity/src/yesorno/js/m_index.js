@@ -6,21 +6,23 @@ var app = new Vue({
         shareBtnStatus: false
     },
     created: function(){
-        var script = document.createElement('script')
-        script.src = '//cdn.jsdelivr.net/npm/vconsole'
-        script.onload = function(){
-            new VConsole()
-        }
-        document.body.appendChild(script)
+        // var script = document.createElement('script')
+        // script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        // script.onload = function(){
+        //     new VConsole()
+        // }
+        // document.body.appendChild(script)
     },
     mounted:function(){
-        
+        if(WBAPP && WBAPP.action && WBAPP.action.share){
+            this.shareBtnStatus = true;
+        }
     },
     methods:{
         toShare: function(){
             console.log('调用分享组件')
             if(WBAPP && WBAPP.action && WBAPP.action.share){
-                this.shareBtnStatus = true;
+                // this.shareBtnStatus = true;
                 WBAPP.action.share(shareConfigAry, function(state, source){
                     console.log('调用成功！')
                     console.log('state', state)

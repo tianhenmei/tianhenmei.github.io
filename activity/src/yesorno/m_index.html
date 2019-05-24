@@ -92,7 +92,7 @@
         </div>
         <div class="yh-center__bg yh-center__card--13">
             <!-- 360 -->
-            <a class="yh-center__a" href="https://m.ctrip.com/tangram/MTI0NA==?isHideNavBar=YES&ctm_ref=vactang_page_1244" target="_blank"></a>
+            <a class="yh-center__a" href="https://mp.weixin.qq.com/s/68RbY0olV0O6CKko2C4hSQ" target="_blank"></a>
         </div>
         <div class="yh-center__bg yh-center__card--14">
             <div class="yh-center__share" id="yh-center__share" v-show="shareBtnStatus" @click.stop.prevent="toShare">我要分享</div>
@@ -100,7 +100,7 @@
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
-<script type="text/javascript" src="http://a.58cdn.com.cn/app58/rms/app/js/app_30805.js"></script>
+<script type="text/javascript" src="https://a.58cdn.com.cn/app58/rms/app/js/app_30805.js"></script>
 <script type="text/javascript">
 var data = {
   action: 'share',
@@ -115,8 +115,8 @@ var data = {
       'SINA',
       'QQ'
     ],
-    img_url: 'images/share.png',
-    url: window.location.href,
+    img_url: 'https://c.58cdn.com.cn/crop/baseteam/yunying/yesorno/images/share.png',
+    url: 'https://c.58cdn.com.cn/crop/baseteam/yunying/yesorno/m_index.html' || window.location.href,
     title: '这届毕业生，到底行不行？',
     content: '2019毕业生求职避坑指南，还有毕业求职福利包，点击领取哦！',
     placeholder: '这届毕业生，到底行不行？',
@@ -140,7 +140,7 @@ function addItem(){
 addItem()
 </script>
 <script type="text/javascript" src="js/vue.js"></script>
-<script type="text/javascript" src="js/m_index.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=2"></script>
 <script type=text/javascript src=//tracklog.58.com/referrer_m.js async></script>
 <script type=text/javascript src=//j1.58cdn.com.cn/js/login/passportMobileLogin.js></script>
 <script type=text/javascript src=//j1.58cdn.com.cn/m58/m3/js/weixin/wxjs-0.0.3.js></script>
@@ -148,7 +148,7 @@ addItem()
     var t = {
         title: data.params.title,
         desc: data.params.content,
-        link: window.location.href,
+        link: data.params.url,
         imgUrl: data.params.img_url
     };
     wxShare(t)
