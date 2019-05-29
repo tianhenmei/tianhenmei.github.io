@@ -161,7 +161,6 @@
                                                 <div class="employer__spanOuter clearfix" v-for="(lone,lindex) in one.companyLabel"
                                                     :class="(' employer__spanOuter--'+lone.length)+(lindex == one.companyLabel.length-1 || lindex == 2 ? ' employer__spanOuter--last' : '') + getSpanClass(lone)"
                                                     v-if="lindex < 3">
-                                                    <!-- <i class="span__keep">{{lone}}</i> -->
                                                     <span
                                                         :class="(lindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(lindex == one.companyLabel.length-1 || lindex == 2 ? ' label__span--last' : '')">{{lone}}</span>
                                                 </div>
@@ -329,10 +328,18 @@
                                                     <span class="info__span">{{cone.financeStage}}</span>
                                                     <span class="info__span info__last">{{cone.companySize}}</span>
                                                 </div>
-                                                <div class="C__label clearfix">
+                                                <!-- <div class="C__label clearfix">
                                                     <span v-for="(lone,iindex) in cone.companyLabel" 
                                                         v-if="iindex < 3"
                                                         :class="(iindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 2 ? ' label__span--last' : '')">{{lone}}</span>
+                                                </div> -->
+                                                <div class="C__label clearfix">
+                                                    <div class="employer__spanOuter clearfix" v-for="(lone,iindex) in cone.companyLabel"
+                                                        :class="(' employer__spanOuter--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 2 ? ' employer__spanOuter--last' : '') + getSpanClass(lone)"
+                                                        v-if="iindex < 3">
+                                                        <span
+                                                            :class="(iindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 2 ? ' label__span--last' : '')">{{lone}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -349,7 +356,10 @@
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 2}">
                                                         <span class="position__name">{{ione.positionName}}</span>
-                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary.replace(/k/i,'')}}</span>
+                                                        <span class="position__salary clearfix" :class="{'position__salary--long': ione.salary.length > 7}">
+                                                            <i class="icon-font icon-font--c" v-for="(so, si) in splitSalary(ione.salary.replace(/k/i,''))"
+                                                                :class="'icon-font--'+so"></i>
+                                                        </span>
                                                     </span>
                                                 </a>
                                                 <a class="one one--more clearfix"
@@ -422,10 +432,18 @@
                                                     <span class="info__span info__first">{{cone.city}}</span>
                                                     <span class="info__span info__last">{{cone.financeStage}}</span>
                                                 </div>
-                                                <div class="D__label clearfix">
+                                                <!-- <div class="D__label clearfix">
                                                     <span v-for="(lone,iindex) in cone.companyLabel" 
                                                         v-if="iindex < 2"
                                                         :class="(iindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 1 ? ' label__span--last' : '')">{{lone}}</span>
+                                                </div> -->
+                                                <div class="D__label clearfix">
+                                                    <div class="employer__spanOuter clearfix" v-for="(lone,iindex) in cone.companyLabel"
+                                                        :class="(' employer__spanOuter--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 2 ? ' employer__spanOuter--last' : '') + getSpanClass(lone)"
+                                                        v-if="iindex < 2">
+                                                        <span
+                                                            :class="(iindex > 0 ? 'label__span' : '')+(' label__span--'+lone.length)+(iindex == cone.companyLabel.length-1 || iindex == 1 ? ' label__span--last' : '')">{{lone}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -442,7 +460,12 @@
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 1}">
                                                         <span class="position__name">{{ione.positionName}}</span>
-                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}"><span class="salary">{{ione.salary.replace(/k/i,'')}}</span></span>
+                                                        <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">
+                                                            <span class="salary clearfix">
+                                                                <i class="icon-font icon-font--c" v-for="(so, si) in splitSalary(ione.salary.replace(/k/i,''))"
+                                                                    :class="'icon-font--'+so"></i>
+                                                            </span>
+                                                        </span>
                                                     </span>
                                                 </a>
                                             </div>

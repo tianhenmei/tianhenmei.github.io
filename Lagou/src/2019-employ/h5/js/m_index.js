@@ -83,6 +83,11 @@ var app = new Vue({
         getCount:function(num){
             return '0000'.slice((num+'').length)+num
         },
+        splitSalary:function(salary){
+            var arr = salary.replace(/ /g, '').toLowerCase().split(''),
+                i = 0;
+            return arr
+        },
         addJSCSS:function(){
             switch (this.browserType) {
                 case 0:  // Opera浏览器
@@ -219,12 +224,12 @@ var app = new Vue({
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
                 // autoplay:true,//等同于以下设置
-                // autoplay: {
-                //     delay: 2000,
-                //     stopOnLastSlide: false,
-                //     disableOnInteraction: false,
-                // },
-                autoplay: false,
+                autoplay: {
+                    delay: 2000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false,
+                },
+                // autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
@@ -239,12 +244,12 @@ var app = new Vue({
         addDAnimation:function(){
             var self = this
             this.employerAnimation.D = new Swiper('#DSwiper', {
-                autoplay: {
-                    delay: 2000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false,
-                },
-                // autoplay: false,
+                // autoplay: {
+                //     delay: 2000,
+                //     stopOnLastSlide: false,
+                //     disableOnInteraction: false,
+                // },
+                autoplay: false,
                 speed:500,
                 loop:true,
                 initialSlide:0,
