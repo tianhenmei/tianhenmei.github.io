@@ -227,6 +227,15 @@
                                                         <span class="position__salary" :class="{'position__salary--long': ione.salary.length > 7}">{{ione.salary.replace(/k/i,'')}}</span>
                                                     </span>
                                                 </a>
+                                                <a class="one one--more clearfix"
+                                                    :href="'https://www.lagou.com/gongsi/j'+one.companyId+'.html'"
+                                                    target="_blank"
+                                                    data-link="1"
+                                                    :data-lg-tj-id="countId" 
+                                                    :data-lg-tj-no="getCount(BCount+oindex*10+7)" 
+                                                    :data-lg-tj-cid="one.companyId">
+                                                    <div class="position__more">查看更多职位<i class="icon-more"></i></div>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
