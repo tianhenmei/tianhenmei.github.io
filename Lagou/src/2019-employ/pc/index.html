@@ -30,7 +30,17 @@
 <div id="app">
     <div class="yh-center">
         <div class="yh-center__bg yh-center__banner">
-            <div class="yh-center__bg employer__title-bg"></div>
+            <!-- <div class="yh-center__bg employer__title-bg"></div> -->
+            <div class="yh-center__combg">
+                <div class="yh-center__com" v-for="(one, index) in employerList"
+                    :style="employerActiveIndex == index ? {opacity: 1} : ''">
+                    <div class="yh-center__com--purebg" :class="[
+                        'yh-center__com--purebg--'+combg[index%4],
+                        'yh-center__com--purebg--'+index % 4
+                        ]"></div>
+                    <div class="yh-center__bg yh-center__com--bg" :class="'yh-center__com--'+combg[index%4]"></div>
+                </div>
+            </div>
             <div class="yh-center__bg banner__center">
                 <div class="yh-center__bg banner__title">
                     <div class="yh-center__bg employer__title"></div>
@@ -79,6 +89,12 @@
                         <div class="swiper-wrapper employer__swiper">
                             <div v-for="(one,oindex) in employerList"
                                 class="swiper-slide employer__one clearfix">
+                                <div class="employer__bg" :class="[
+                                    'employer__bg--'+one.companyId,
+                                    'employer__bg--'+oindex % 4
+                                ]">
+                                    <div class="employer__bg--dot"></div>
+                                </div>
                                 <div class="employer__bottom">
                                     <div class="employer__btop clearfix">
                                         <div class="employer__left">
@@ -86,7 +102,7 @@
                                                 :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                 target="_blank"
                                                 data-link="1"
-                                                :data-lg-tj-id="countId" 
+                                                data-lg-tj-id="1mak" 
                                                 :data-lg-tj-no="getCount(employerCount+oindex*10)" 
                                                 :data-lg-tj-cid="one.companyId">
                                                 <img :src="setLogoHref(one.logo)" />
@@ -98,7 +114,7 @@
                                                     :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1mak" 
                                                     :data-lg-tj-no="getCount(employerCount+oindex*10+1)" 
                                                     :data-lg-tj-cid="one.companyId">{{one.companyShortName}}</a>
                                             </div>
@@ -124,7 +140,7 @@
                                                 :href="'https://www.lagou.com/jobs/'+ione.positionId+'.html?source=pl&i=pl-0'"
                                                 target="_blank"
                                                 data-link="1"
-                                                :data-lg-tj-id="countId" 
+                                                data-lg-tj-id="1mak" 
                                                 :data-lg-tj-no="getCount(employerCount+oindex*10+3+index)" 
                                                 :data-lg-tj-cid="ione.positionId">
                                                 <span class="position__center" :class="{'position__center--last': index == 3}">
@@ -186,7 +202,7 @@
                                                     :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1mam" 
                                                     :data-lg-tj-no="getCount(BCount+oindex*10)" 
                                                     :data-lg-tj-cid="one.companyId">
                                                     <img :src="setLogoHref(one.logo)" />
@@ -198,7 +214,7 @@
                                                         :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                         target="_blank"
                                                         data-link="1"
-                                                        :data-lg-tj-id="countId" 
+                                                        data-lg-tj-id="1mam" 
                                                         :data-lg-tj-no="getCount(BCount+oindex*10+1)" 
                                                         :data-lg-tj-cid="one.companyId">{{one.companyShortName}}</a>
                                                 </div>
@@ -219,7 +235,7 @@
                                                     :href="'https://www.lagou.com/jobs/'+ione.positionId+'.html?source=pl&i=pl-0'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1mam" 
                                                     :data-lg-tj-no="getCount(BCount+oindex*10+3+index)" 
                                                     :data-lg-tj-cid="ione.positionId">
                                                     <span class="position__center" :class="{'position__center--last': index == 2}">
@@ -231,7 +247,7 @@
                                                     :href="'https://www.lagou.com/gongsi/j'+one.companyId+'.html'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1mam" 
                                                     :data-lg-tj-no="getCount(BCount+oindex*10+7)" 
                                                     :data-lg-tj-cid="one.companyId">
                                                     <div class="position__more">查看更多职位<i class="icon-more"></i></div>
@@ -270,7 +286,7 @@
                                                         :href="'https://www.lagou.com/gongsi/'+cone.companyId+'.html'"
                                                         target="_blank"
                                                         data-link="1"
-                                                        :data-lg-tj-id="countId" 
+                                                        data-lg-tj-id="1man" 
                                                         :data-lg-tj-no="getCount(CCount+oindex*20+cindex*10)" 
                                                         :data-lg-tj-cid="cone.companyId">
                                                         <img :src="setLogoHref(cone.logo)" />
@@ -282,7 +298,7 @@
                                                             :href="'https://www.lagou.com/gongsi/'+cone.companyId+'.html'"
                                                             target="_blank"
                                                             data-link="1"
-                                                            :data-lg-tj-id="countId" 
+                                                            data-lg-tj-id="1man" 
                                                             :data-lg-tj-no="getCount(CCount+oindex*20+1+cindex*10)" 
                                                             :data-lg-tj-cid="cone.companyId">{{cone.companyShortName}}</a>
                                                     </div>
@@ -315,7 +331,7 @@
                                                         :href="'https://www.lagou.com/jobs/'+ione.positionId+'.html?source=pl&i=pl-0'"
                                                         target="_blank"
                                                         data-link="1"
-                                                        :data-lg-tj-id="countId" 
+                                                        data-lg-tj-id="1man" 
                                                         :data-lg-tj-no="getCount(CCount+oindex*20+4+index+cindex*10)" 
                                                         :data-lg-tj-cid="ione.positionId">
                                                         <span class="position__center" :class="{'position__center--last': index == 2}">
@@ -329,7 +345,7 @@
                                                         :href="'https://www.lagou.com/gongsi/j'+cone.companyId+'.html'"
                                                         target="_blank"
                                                         data-link="1"
-                                                        :data-lg-tj-id="countId" 
+                                                        data-lg-tj-id="1man" 
                                                         :data-lg-tj-no="getCount(CCount+oindex*20+7+cindex*10)" 
                                                         :data-lg-tj-cid="cone.companyId">
                                                         <div class="position__more">查看更多职位<i class="icon-more"></i></div>
@@ -378,7 +394,7 @@
                                                     :href="'https://www.lagou.com/gongsi/'+cone.companyId+'.html'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1map" 
                                                     :data-lg-tj-no="getCount(DCount+cindex*10)" 
                                                     :data-lg-tj-cid="cone.companyId"><!--:data-lg-tj-no="getCount(DCount+oindex*40+cindex*10)" -->
                                                     <img :src="setLogoHref(cone.logo)" />
@@ -390,7 +406,7 @@
                                                         :href="'https://www.lagou.com/gongsi/'+cone.companyId+'.html'"
                                                         target="_blank"
                                                         data-link="1"
-                                                        :data-lg-tj-id="countId" 
+                                                        data-lg-tj-id="1map" 
                                                         :data-lg-tj-no="getCount(DCount+1+cindex*10)" 
                                                         :data-lg-tj-cid="cone.companyId">{{cone.companyShortName}}</a><!--:data-lg-tj-no="getCount(DCount+oindex*40+1+cindex*10)" -->
                                                 </div>
@@ -422,7 +438,7 @@
                                                     :href="'https://www.lagou.com/jobs/'+ione.positionId+'.html?source=pl&i=pl-0'"
                                                     target="_blank"
                                                     data-link="1"
-                                                    :data-lg-tj-id="countId" 
+                                                    data-lg-tj-id="1map" 
                                                     :data-lg-tj-no="getCount(DCount+4+index+cindex*10)" 
                                                     :data-lg-tj-cid="ione.positionId"><!--:data-lg-tj-no="getCount(DCount+oindex*40+4+index+cindex*10)" -->
                                                     <span class="position__center clearfix" :class="{'position__center--last': index == 1}">
@@ -438,7 +454,7 @@
                                             :href="'https://www.lagou.com/gongsi/j'+cone.companyId+'.html'"
                                             target="_blank"
                                             data-link="1"
-                                            :data-lg-tj-id="countId" 
+                                            data-lg-tj-id="1map" 
                                             :data-lg-tj-no="getCount(DCount+7+cindex*10)" 
                                             :data-lg-tj-cid="cone.companyId"><!--:data-lg-tj-no="getCount(DCount+oindex*40+7+cindex*10)" -->
                                             <div class="position__more">查看更多职位<i class="icon-more--02"></i></div>

@@ -16,6 +16,12 @@ var app = new Vue({
             one:"self.location=\'https://www.lagou.com/center/job_",
             two:".html\';"
         },
+        combg: [
+            '22666',
+            '13171',
+            '263043',
+            '356010'
+        ],
         employerActiveIndex:0,
         employerCount:50,
         employerList:[],

@@ -151,8 +151,36 @@ html,body {
 /***page-banner start***************************************************/
 .yh-center__banner {
     width:100%;
-    background-image:url('../images/banner-bg.png');
+    // background-image:url('../images/banner-bg.png');
     position: relative;
+    .yh-center__com {
+        width:100%;
+        height:574px;
+        position:absolute;
+        left:0;
+        top:0;
+        transition:all 0.5s linear;
+        opacity:0;
+        &--purebg {
+            width:100%;
+            height:495px;
+            &--0, &--22666 { background-color:#0000c4; }
+            &--1, &--13171 { background-color:#10193a; }
+            &--2, &--263043 { background-color:#104879; }
+            &--3, &--356010 { background-color:#212774; }
+        }
+        &--bg {
+            width:100%;
+            height:574px;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        &--22666 { background-image:url('../images/banner-22666.png'); }
+        &--13171 { background-image:url('../images/banner-13171.png'); }
+        &--263043 { background-image:url('../images/banner-263043.png'); }
+        &--356010 { background-image:url('../images/banner-356010.png'); }
+    }
     .employer__title-bg {
         width:310px;
         height:178px;
@@ -166,7 +194,7 @@ html,body {
         width:1246px;
         height:588px;
         margin:0 auto;
-        background-image:url('../images/banner-center.png');
+        // background-image:url('../images/banner-center.png');
         position:relative;
         z-index:2;
     }
@@ -233,11 +261,32 @@ html,body {
     .swiper-slide-active {
         opacity:1;
     }
+    .employer__bg {
+        width:811px;
+        height:314px;
+        border-radius:0 0 18px 18px;
+        position:absolute;
+        left:64px;
+        top:39px;
+        &--0, &--22666 { background-color:#0000c4; }
+        &--1, &--13171 { background-color:#10193a; }
+        &--2, &--263043 { background-color:#104879; }
+        &--3, &--356010 { background-color:#212774; }
+        &--dot {
+            width:259px;
+            height:288px;
+            background:url('../images/employer-bg-dot.png') no-repeat right top;
+            position:absolute;
+            right:6px;
+            top:8px;
+        }
+    }
     .employer__bottom {
         width:807px;
         padding:58px 0 0 131px;
         margin:0 auto;
         position:relative;
+        z-index:2;
     }
     .employer__mask {
         width:rem(598);
