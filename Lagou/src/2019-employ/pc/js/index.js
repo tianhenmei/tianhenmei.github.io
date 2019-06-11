@@ -4,7 +4,7 @@ var app = new Vue({
     el:"#app",
     // mixins:[commonMixin],
     data:{
-        countId:'1k6b',
+        countId:'1maj',
         loadedCount: 0,
         logoHref:'https://www.lgstatic.com/thumbnail_100x100/',
         logoHrefO:'https://www.lgstatic.com/',
@@ -616,10 +616,12 @@ var app = new Vue({
             // }
         },
         changeBActiveIndex:function(index) {
+            // test
+            var len = 3 // this.BList.length
             if(index == 0){
-                this.BActiveIndex = this.BList.length - 1
+                this.BActiveIndex = len - 1
             }else{
-                this.BActiveIndex = (index-1) % this.BList.length
+                this.BActiveIndex = (index-1) % len
             }
             this.$refs['BPaginationSwiper'].swiper.slideTo(this.BActiveIndex)
         },

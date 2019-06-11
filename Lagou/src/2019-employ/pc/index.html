@@ -176,9 +176,10 @@
             <div class="yh-center__green yh-center__green--02"></div>
             <div class="B__center">
                 <div class="yh-center__bg B__title"></div>
-                <div class="swiper-container B__pagination__swiper" ref="BPaginationSwiper" id="BPaginationSwiper">
+                <div class="swiper-container B__pagination__swiper" ref="BPaginationSwiper" id="BPaginationSwiper"
+                    :style="{width: (3 >= 6 ? 570 : 95 * 3 )+ 'px'}">
                     <div class="swiper-wrapper B__pagination clearfix">
-                        <div class="swiper-slide pagination__span" v-for="(one, oindex) in BList"
+                        <div class="swiper-slide pagination__span" v-for="(one, oindex) in BList.slice(0,3)"
                             :class="{
                                 'pagination__span--last': oindex === BList.length - 1,
                                 'pagination__span--active': oindex == BActiveIndex
@@ -193,7 +194,7 @@
                     <div class="B__listParent">
                         <div class="swiper-container B__list clearfix" ref="BSwiper" id="BSwiper"> 
                             <div class="swiper-wrapper B__swiper">
-                                <div v-for="(one,oindex) in BList"
+                                <div v-for="(one,oindex) in BList.slice(0,3)"
                                     class="swiper-slide B__one clearfix">
                                     <div class="B__bottom">
                                         <div class="B__btop clearfix">

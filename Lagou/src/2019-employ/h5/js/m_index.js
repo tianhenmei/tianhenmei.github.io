@@ -4,7 +4,7 @@ var app = new Vue({
     el:"#app",
     // mixins:[commonMixin],
     data:{
-        countId:'1k6a',
+        countId:'1mhz',
         fontSize:16,
         from:'',
         isAPP:false,
