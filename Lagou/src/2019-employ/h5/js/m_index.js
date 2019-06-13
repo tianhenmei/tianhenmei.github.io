@@ -19,6 +19,12 @@ var app = new Vue({
             one:"self.location=\'https://www.lagou.com/center/job_",
             two:".html\';"
         },
+        combg: [
+            '22666',
+            '13171',
+            '263043',
+            '356010'
+        ],
         employerActiveIndex:0,
         employerCount:50,
         employerList:[],
@@ -64,11 +70,11 @@ var app = new Vue({
         // // this.loadedJSCSS();
         // this.initWindowScrollEvent();
         // Star雇主
-        this.getEmployerData('20190221PROMOTION_MAIN_POWER')
+        this.getEmployerData('20190612EMPOLY_FIRST') // 20190221PROMOTION_MAIN_POWER
         // 超级雇主
-        this.getBData('2018STAR101_STAR_EMPLOYER_beijing')
+        this.getBData('20190612EMPOLY_SECOND')
         // 本地实力首选
-        this.getCData('2018STAR101_STAR_EMPLOYER_beijing','')
+        this.getCData('20190612EMPOLY_THIRD','')
         // 潜力公司TOP榜
         this.getDData('2018STAR101_TOP_EMPLOYER_beijing','')
     },
@@ -683,7 +689,7 @@ var app = new Vue({
         },
         getBData:function(templateId){
             var self = this
-            this.getAjaxData('activityapi/star101/starEmployer',function(content){
+            this.getAjaxData('activityapi/promotion/companyList',function(content){
                 self.BList = content
                 self.$nextTick(function(){
                     self.addBPaginationAnimation()
@@ -695,7 +701,7 @@ var app = new Vue({
         },
         getCData:function(templateId,city){
             var self = this
-            this.getAjaxData('activityapi/star101/companyList',function(content){
+            this.getAjaxData('activityapi/promotion/companyList',function(content){
                 var arr = [],
                     i = 0;
                 if (content.companyLabel) {

@@ -35,10 +35,10 @@
                 <div class="yh-center__com" v-for="(one, index) in employerList"
                     :style="employerActiveIndex == index ? {opacity: 1} : ''">
                     <div class="yh-center__com--purebg" :class="[
-                        'yh-center__com--purebg--'+combg[index%4],
+                        'yh-center__com--purebg--'+one.companyId,
                         'yh-center__com--purebg--'+index % 4
                         ]"></div>
-                    <div class="yh-center__bg yh-center__com--bg" :class="'yh-center__com--'+combg[index%4]"></div>
+                    <div class="yh-center__bg yh-center__com--bg" :class="'yh-center__com--'+one.companyId"></div>
                 </div>
             </div>
             <div class="yh-center__bg banner__center">
@@ -99,13 +99,15 @@
                                     <div class="employer__btop clearfix">
                                         <div class="employer__left">
                                             <a class="logo" 
+                                                :class="{'logo--no-bg': one.companyId == 263043}" 
                                                 :href="'https://www.lagou.com/gongsi/'+one.companyId+'.html'"
                                                 target="_blank"
                                                 data-link="1"
                                                 data-lg-tj-id="1mak" 
                                                 :data-lg-tj-no="getCount(employerCount+oindex*10)" 
                                                 :data-lg-tj-cid="one.companyId">
-                                                <img :src="setLogoHref(one.logo)" />
+                                                <img
+                                                    :src="one.companyId == 263043 ? 'images/shidi.png' : setLogoHref(one.logo)" />
                                             </a>
                                         </div>
                                         <div class="info">
@@ -177,9 +179,9 @@
             <div class="B__center">
                 <div class="yh-center__bg B__title"></div>
                 <div class="swiper-container B__pagination__swiper" ref="BPaginationSwiper" id="BPaginationSwiper"
-                    :style="{width: (3 >= 6 ? 570 : 95 * 3 )+ 'px'}">
+                    :style="{width: (BList.length >= 6 ? 570 : 95 * BList.length )+ 'px'}">
                     <div class="swiper-wrapper B__pagination clearfix">
-                        <div class="swiper-slide pagination__span" v-for="(one, oindex) in BList.slice(0,3)"
+                        <div class="swiper-slide pagination__span" v-for="(one, oindex) in BList"
                             :class="{
                                 'pagination__span--last': oindex === BList.length - 1,
                                 'pagination__span--active': oindex == BActiveIndex
@@ -194,7 +196,7 @@
                     <div class="B__listParent">
                         <div class="swiper-container B__list clearfix" ref="BSwiper" id="BSwiper"> 
                             <div class="swiper-wrapper B__swiper">
-                                <div v-for="(one,oindex) in BList.slice(0,3)"
+                                <div v-for="(one,oindex) in BList"
                                     class="swiper-slide B__one clearfix">
                                     <div class="B__bottom">
                                         <div class="B__btop clearfix">

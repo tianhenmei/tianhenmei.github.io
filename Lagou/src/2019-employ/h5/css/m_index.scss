@@ -229,8 +229,36 @@ html,body {
 /***page-banner start***************************************************/
 .yh-center__banner {
     width:100%;
-    height:rem(614);
+    height:rem(686);
     position: relative;
+    .yh-center__com {
+        width:100%;
+        height:rem(1373);
+        position:absolute;
+        left:0;
+        top:0;
+        transition:all 0.5s linear;
+        opacity:0;
+        &--purebg {
+            width:100%;
+            height:rem(1373);
+            // &--0, &--22666 { background-color:#0000c4; }
+            // &--1, &--13171 { background-color:#10193a; }
+            // &--2, &--263043 { background-color:#104879; }
+            // &--3, &--356010 { background-color:#212774; }
+        }
+        &--bg {
+            width:100%;
+            height:rem(1373);
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        &--22666 { background-image:url('../images/banner-22666.png'); }
+        &--13171 { background-image:url('../images/banner-13171.png'); }
+        &--263043 { background-image:url('../images/banner-263043.png'); }
+        &--356010 { background-image:url('../images/banner-356010.png'); }
+    }
     .banner__center {
         width:rem(750);
         height:rem(765);
@@ -243,14 +271,14 @@ html,body {
         height:rem(374);
         background-image:url('../images/banner-title.png');
         background-size:100% 100%;
-        @include center(134,26+59);
+        @include center(134,160);
     }
     .employer__title {
         width:rem(333);
         height:rem(184);
         background-image:url('../images/employer-title.png');
         background-size:100% 100%;
-        @include center(207,425);
+        @include center(207,334);
     }
 }
 .yh-center__green {
@@ -307,12 +335,43 @@ html,body {
         width:rem(626);
         height:rem(618);
         position:relative;
-        background:url('../images/employer-bg.png') no-repeat center top;
-        background-size:rem(626) rem(618);
+        // background:url('../images/employer-bg.png') no-repeat center top;
+        // background-size:rem(626) rem(618);
         opacity:0.8;
     }
     .swiper-slide-active {
         opacity:1;
+    }
+    .employer__bgborder {
+        width:rem(626);
+        height:rem(618);
+        position:relative;
+        background:url('../images/employer-bg-transparent.png') no-repeat center top;
+        background-size:rem(626) rem(618);
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .employer__bg {
+        width:rem(595-1);
+        height:rem(560);
+        border-radius:0 0 rem(22) rem(22);
+        position:absolute;
+        left:rem(16);
+        top:rem(45);
+        &--0, &--22666 { background-color:#0000c4; }
+        &--1, &--13171 { background-color:#10193a; }
+        &--2, &--263043 { background-color:#104879; }
+        &--3, &--356010 { background-color:#212774; }
+        &--dot {
+            width:rem(207);
+            height:rem(212);
+            background:url('../images/employer-bg-dot.png') no-repeat right top;
+            background-size:100% 100%;
+            position:absolute;
+            right:rem(8);
+            top:rem(0);
+        }
     }
     .employer__bottom {
         width:rem(626);
@@ -344,6 +403,9 @@ html,body {
             background-color:#fff;
             display:block;
             overflow:hidden;
+            &--no-bg {
+                background-color:transparent;
+            }
         }
         .logo img {
             width:rem(128);

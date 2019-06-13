@@ -210,8 +210,34 @@ html, body {
 /***page-banner start***************************************************/
 .yh-center__banner {
   width: 100%;
-  height: 13.09867rem;
+  height: 14.63467rem;
   position: relative; }
+  .yh-center__banner .yh-center__com {
+    width: 100%;
+    height: 29.29067rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+    opacity: 0; }
+    .yh-center__banner .yh-center__com--purebg {
+      width: 100%;
+      height: 29.29067rem; }
+    .yh-center__banner .yh-center__com--bg {
+      width: 100%;
+      height: 29.29067rem;
+      position: absolute;
+      left: 0;
+      top: 0; }
+    .yh-center__banner .yh-center__com--22666 {
+      background-image: url("../images/banner-22666.png"); }
+    .yh-center__banner .yh-center__com--13171 {
+      background-image: url("../images/banner-13171.png"); }
+    .yh-center__banner .yh-center__com--263043 {
+      background-image: url("../images/banner-263043.png"); }
+    .yh-center__banner .yh-center__com--356010 {
+      background-image: url("../images/banner-356010.png"); }
   .yh-center__banner .banner__center {
     width: 16rem;
     height: 16.32rem;
@@ -225,7 +251,7 @@ html, body {
     background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 1.81333rem;
+    top: 3.41333rem;
     margin: 0 0 0 -5.14133rem; }
   .yh-center__banner .employer__title {
     width: 7.104rem;
@@ -234,7 +260,7 @@ html, body {
     background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 9.06667rem;
+    top: 7.12533rem;
     margin: 0 0 0 -3.584rem; }
 
 .yh-center__green {
@@ -284,11 +310,41 @@ html, body {
     width: 13.35467rem;
     height: 13.184rem;
     position: relative;
-    background: url("../images/employer-bg.png") no-repeat center top;
-    background-size: 13.35467rem 13.184rem;
     opacity: 0.8; }
   .yh-center__employer .swiper-slide-active {
     opacity: 1; }
+  .yh-center__employer .employer__bgborder {
+    width: 13.35467rem;
+    height: 13.184rem;
+    position: relative;
+    background: url("../images/employer-bg-transparent.png") no-repeat center top;
+    background-size: 13.35467rem 13.184rem;
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .yh-center__employer .employer__bg {
+    width: 12.672rem;
+    height: 11.94667rem;
+    border-radius: 0 0 0.46933rem 0.46933rem;
+    position: absolute;
+    left: 0.34133rem;
+    top: 0.96rem; }
+    .yh-center__employer .employer__bg--0, .yh-center__employer .employer__bg--22666 {
+      background-color: #0000c4; }
+    .yh-center__employer .employer__bg--1, .yh-center__employer .employer__bg--13171 {
+      background-color: #10193a; }
+    .yh-center__employer .employer__bg--2, .yh-center__employer .employer__bg--263043 {
+      background-color: #104879; }
+    .yh-center__employer .employer__bg--3, .yh-center__employer .employer__bg--356010 {
+      background-color: #212774; }
+    .yh-center__employer .employer__bg--dot {
+      width: 4.416rem;
+      height: 4.52267rem;
+      background: url("../images/employer-bg-dot.png") no-repeat right top;
+      background-size: 100% 100%;
+      position: absolute;
+      right: 0.17067rem;
+      top: 0rem; }
   .yh-center__employer .employer__bottom {
     width: 13.35467rem;
     padding: 0.98133rem 0 0 0;
@@ -315,6 +371,8 @@ html, body {
     background-color: #fff;
     display: block;
     overflow: hidden; }
+    .yh-center__employer .employer__btop .logo--no-bg {
+      background-color: transparent; }
   .yh-center__employer .employer__btop .logo img {
     width: 2.73067rem;
     height: 2.73067rem; }
