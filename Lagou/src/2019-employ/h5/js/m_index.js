@@ -48,7 +48,9 @@ var app = new Vue({
             D:null
         },
         corperate:[
-            29946,36272,175199,43775,14491
+            13171,395588,22666,263043,
+            '',96822,60630,'',
+            '',113416,''
         ]
     },
     mounted:function(){
@@ -76,7 +78,7 @@ var app = new Vue({
         // 本地实力首选
         this.getCData('20190612EMPOLY_THIRD','')
         // 潜力公司TOP榜
-        this.getDData('2018STAR101_TOP_EMPLOYER_beijing','')
+        this.getDData('20190612EMPOLY_FOURTH','')
     },
     methods:{
         getSpanClass(val){
@@ -563,7 +565,7 @@ var app = new Vue({
 
 
         getCorperateRow:function(index){
-            return Math.floor(index / 5)
+            return Math.floor(index / 4)
         },
         setLogoHref:function(logo){
             if(logo){
@@ -729,7 +731,7 @@ var app = new Vue({
         },
         getDData:function(templateId,city){
             var self = this
-            this.getAjaxData('activityapi/star101/companyList',function(content){
+            this.getAjaxData('activityapi/promotion/companyList',function(content){
                 var arr = [],
                     i = 0
                     length = Math.ceil(content.length / 4)
@@ -742,12 +744,14 @@ var app = new Vue({
                     arr.push(content.slice(i*4,(i+1)*4))
                 }
                 self.DList = arr.slice(0,3)
-                self.$nextTick(function(){
-                    self.addDAnimation()
-                })
+                if (content.length > 4) {
+                    self.$nextTick(function(){
+                        self.addDAnimation()
+                    })
+                } 
             },{
-                templateId:templateId,
-                city:city
+                templateId:templateId // ,
+                // city:city
             })
         }
     }

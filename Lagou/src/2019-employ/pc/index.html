@@ -388,7 +388,7 @@
                             <div v-for="(one,oindex) in DList"
                                 class="swiper-slide D__one clearfix"> -->
                                 <!-- <div class="D__ctop" v-for="(cone, cindex) in one"> -->
-                            <div class="D__list clearfix">
+                            <div class="D__list clearfix" :class="DList.length < 4 ? 'D__list--less-'+DList.length : ''">
                                 <div class="D__ctop" v-for="(cone, cindex) in DList">
                                     <div class="D__bottom">
                                         <div class="D__btop clearfix">
@@ -486,7 +486,7 @@
                             class="corperate__one"
                             :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%5)"
                             target="_blank"
-                            :href="'https://www.lagou.com/gongsi/'+one+'.html'"
+                            :href="one ? 'https://www.lagou.com/gongsi/'+one+'.html' : 'javascript:void(0)'"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(corperateCount+index)" 
                             :data-lg-tj-cid="one"></a>

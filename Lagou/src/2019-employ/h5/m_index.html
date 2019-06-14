@@ -426,7 +426,8 @@
                     <div class="swiper-container D__list clearfix" ref="DSwiper" id="DSwiper"> 
                         <div class="swiper-wrapper D__swiper">
                             <div v-for="(one,oindex) in DList"
-                                class="swiper-slide D__one clearfix">
+                                class="swiper-slide D__one clearfix"
+                                :class="{'D__one--single': DList.length == 1 && one.length <= 2}">
                                 <div class="D__ctop" v-for="(cone, cindex) in one">
                                     <div class="D__bottom">
                                         <div class="D__btop clearfix">
@@ -509,6 +510,7 @@
                         </div>
                     </div>
                     <div class="D__pagination clearfix"
+                        v-if="DList.length > 1"
                         :style="{
                             width: getRem(47 + (DList.length - 1) * 22 + 11 + 2)
                         }">
@@ -526,9 +528,10 @@
                     <div class="corperate__content">
                         <a v-for="(one,index) in corperate"
                             class="corperate__one"
-                            :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%5)"
+                            :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%4)"
                             target="_blank"
-                            href="javascript:void(0);" :onclick="companyHref.one+one+companyHref.two"
+                            href="javascript:void(0);"
+                            :onclick="one ? companyHref.one+one+companyHref.two : ''"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(corperateCount+index)" 
                             :data-lg-tj-cid="one"></a>

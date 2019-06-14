@@ -45,7 +45,8 @@ var app = new Vue({
             D:null
         },
         corperate:[
-            29946,36272,175199,43775,14491
+            13171,395588,22666,263043,113416,
+            '',96822,60630,'','',
         ]
     },
     mounted:function(){
@@ -106,7 +107,7 @@ var app = new Vue({
             // 本地实力首选
             this.getCData('20190612EMPOLY_THIRD','')
             // 潜力公司TOP榜
-            this.getDData('2018STAR101_TOP_EMPLOYER_beijing','')
+            this.getDData('20190612EMPOLY_FOURTH  ','')
             // }
         },
         addCssByLink:function(url, callback) {
@@ -730,7 +731,7 @@ var app = new Vue({
         },
         getDData:function(templateId,city){
             var self = this
-            this.getAjaxData('activityapi/star101/companyList',function(content){
+            this.getAjaxData('activityapi/promotion/companyList',function(content){
                 self.DList = content
                 // var arr = [],
                 //     i = 0
@@ -748,8 +749,8 @@ var app = new Vue({
                 //     self.addDAnimation()
                 // })
             },{
-                templateId:templateId,
-                city:city
+                templateId:templateId // ,
+                // city:city
             })
         }
     }
