@@ -155,7 +155,7 @@
                                         <div class="employer__left">
                                             <a class="logo" 
                                                 :class="{'logo--no-bg': one.companyId == 263043}"
-                                                href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" 
+                                                href="javascript:void(0);" @click="toCompany(one.companyId)" 
                                                 target="_blank"
                                                 data-link="1"
                                                 data-lg-tj-id="1mi1" 
@@ -168,7 +168,7 @@
                                         <div class="info">
                                             <div class="info__top clearfix">
                                                 <a class="info__name"
-                                                    href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" 
+                                                    href="javascript:void(0);" @click="toCompany(one.companyId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi1" 
@@ -196,7 +196,7 @@
                                             <a class="one clearfix" 
                                                 v-for="(ione,index) in one.positionVo"
                                                 v-if="index < 4"
-                                                href="javascript:void(0);" :onclick="positionHref.one+ione.positionId+positionHref.two" 
+                                                href="javascript:void(0);" @click="toPosition(ione.positionId)" 
                                                 target="_blank"
                                                 data-link="1"
                                                 data-lg-tj-id="1mi1" 
@@ -253,7 +253,7 @@
                                         <div class="B__btop clearfix">
                                             <div class="B__left">
                                                 <a class="logo" 
-                                                    href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" 
+                                                    href="javascript:void(0);" @click="toCompany(one.companyId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi2" 
@@ -265,7 +265,7 @@
                                             <div class="info">
                                                 <div class="info__top clearfix">
                                                     <a class="info__name"
-                                                        href="javascript:void(0);" :onclick="companyHref.one+one.companyId+companyHref.two" 
+                                                        href="javascript:void(0);" @click="toCompany(one.companyId)" 
                                                         target="_blank"
                                                         data-link="1"
                                                         data-lg-tj-id="1mi2" 
@@ -286,7 +286,7 @@
                                                 <a class="one clearfix" 
                                                     v-for="(ione,index) in one.positionVo"
                                                     v-if="index < 3"
-                                                    href="javascript:void(0);" :onclick="positionHref.one+ione.positionId+positionHref.two" 
+                                                    href="javascript:void(0);" @click="toPosition(ione.positionId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi2" 
@@ -327,7 +327,7 @@
                                         <div class="C__btop clearfix">
                                             <div class="C__left">
                                                 <a class="logo" 
-                                                    href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                                    href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi3" 
@@ -339,7 +339,7 @@
                                             <div class="info">
                                                 <div class="info__top clearfix">
                                                     <a class="info__name"
-                                                        href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                                        href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                                         target="_blank"
                                                         data-link="1"
                                                         data-lg-tj-id="1mi3" 
@@ -372,7 +372,7 @@
                                                 <a class="one clearfix" 
                                                     v-for="(ione,index) in cone.positionVo"
                                                     v-if="index < 3"
-                                                    href="javascript:void(0);" :onclick="positionHref.one+ione.positionId+positionHref.two" 
+                                                    href="javascript:void(0);" @click="toPosition(ione.positionId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi3" 
@@ -387,7 +387,7 @@
                                                     </span>
                                                 </a>
                                                 <a class="one one--more clearfix"
-                                                    href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                                    href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi3" 
@@ -433,7 +433,7 @@
                                         <div class="D__btop clearfix">
                                             <div class="D__left">
                                                 <a class="logo" 
-                                                    href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                                    href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi4" 
@@ -445,7 +445,7 @@
                                             <div class="info">
                                                 <div class="info__top clearfix">
                                                     <a class="info__name"
-                                                        href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                                        href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                                         target="_blank"
                                                         data-link="1"
                                                         data-lg-tj-id="1mi4" 
@@ -477,7 +477,7 @@
                                                 <a class="one clearfix" 
                                                     v-for="(ione,index) in cone.positionVo"
                                                     v-if="index < 2"
-                                                    href="javascript:void(0);" :onclick="positionHref.one+ione.positionId+positionHref.two" 
+                                                    href="javascript:void(0);" @click="toPosition(ione.positionId)" 
                                                     target="_blank"
                                                     data-link="1"
                                                     data-lg-tj-id="1mi4" 
@@ -496,7 +496,7 @@
                                             </div>
                                         </div>
                                         <a class="one--more clearfix"
-                                            href="javascript:void(0);" :onclick="companyHref.one+cone.companyId+companyHref.two" 
+                                            href="javascript:void(0);" @click="toCompany(cone.companyId)" 
                                             target="_blank"
                                             data-link="1"
                                             data-lg-tj-id="1mi4" 
@@ -531,7 +531,7 @@
                             :class="'corperate__one--'+getCorperateRow(index)+' corperate__one--c'+(index%4)"
                             target="_blank"
                             href="javascript:void(0);"
-                            :onclick="one ? companyHref.one+one+companyHref.two : ''"
+                            @click="toCompany(one)"
                             :data-lg-tj-id="countId" 
                             :data-lg-tj-no="getCount(corperateCount+index)" 
                             :data-lg-tj-cid="one"></a>

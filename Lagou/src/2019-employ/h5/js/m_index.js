@@ -1,5 +1,83 @@
 "use strict";
 Vue.use(VueAwesomeSwiper)
+
+var _isWxMini;
+var from = (getQueryString('lagoufrom')+'').toLocaleLowerCase();
+var isApp = from == 'ios' || from == 'android';
+
+function isWx() {
+    var ua = window.navigator.userAgent.toLowerCase()
+    if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+        return true
+    } else {
+        return false
+    }
+}
+
+
+function isWxMini(callback) {
+    if (typeof _isWxMini !== 'undefined') {
+        callback(_isWxMini)
+        return
+    }
+    if (!isWx() || !wx.miniProgram) {
+        _isWxMini = false;
+        callback(false)
+        return
+    }
+    wx.miniProgram.getEnv(function(res) {
+        if (res.miniprogram) {
+            _isWxMini = true;
+            callback(true)
+        } else {
+            _isWxMini = false;
+            callback(false)
+        }
+    })
+
+}
+
+function toPosition(id) {
+    isWxMini(function(res){
+        if (res) {
+            // 小程序环境
+            wx.miniProgram.navigateTo({
+                url: `/pages/job/job?id=${id}&from=STORM2018`,
+                fail(res) {
+                    console.log(JSON.stringify(res))
+                }
+            })
+            return;
+        }
+        window.open(`https://www.lagou.com/center/job_${id}.html`, '_blank')
+    })
+    
+}
+
+function toCompany(id, type) {
+    if (!id) {
+        return;
+    }
+    isWxMini(function(res){
+        if (res) {
+            // 小程序环境
+            wx.miniProgram.navigateTo({
+                url: `/pages/company/company?id=${id}&from=STORM2018`,
+                fail(res) {
+                    console.log(JSON.stringify(res))
+                }
+            })
+            return;
+        }
+        if (isApp) {
+            window.location.href = `lagou://lagou.com/company?id=${id}&page=${type ? type : 'detail'}`
+            return
+        }
+        window.open(`https://www.lagou.com/center/company_${id}.html`, '_blank')
+    })
+    
+}
+
 var app = new Vue({
     el:"#app",
     // mixins:[commonMixin],
@@ -85,6 +163,8 @@ var app = new Vue({
             var arr = val.match(/[a-zA-z\d-]/g) || ''
             return ' employer__spanOuter--'+(val.length || 0)+'-'+arr.length
         },
+        toPosition: toPosition,
+        toCompany: toCompany,
         /***********************************
          **  基础函数
          */
