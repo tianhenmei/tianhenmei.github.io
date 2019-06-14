@@ -725,8 +725,8 @@ var app = new Vue({
                     })
                 }
             },{
-                templateId:templateId,
-                city:city
+                templateId:templateId // ,
+                // city:city
             })
         },
         getDData:function(templateId,city){

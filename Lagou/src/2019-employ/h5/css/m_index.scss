@@ -233,7 +233,7 @@ html,body {
     position: relative;
     .yh-center__com {
         width:100%;
-        height:rem(1373);
+        height:rem(1373-60);
         position:absolute;
         left:0;
         top:0;
@@ -241,7 +241,7 @@ html,body {
         opacity:0;
         &--purebg {
             width:100%;
-            height:rem(1373);
+            height:rem(1373-60);
             // &--0, &--22666 { background-color:#0000c4; }
             // &--1, &--13171 { background-color:#10193a; }
             // &--2, &--263043 { background-color:#104879; }
@@ -252,7 +252,7 @@ html,body {
             height:rem(1373);
             position:absolute;
             left:0;
-            top:0;
+            top:rem(-60);
         }
         &--22666 { background-image:url('../images/banner-22666.png'); }
         &--13171 { background-image:url('../images/banner-13171.png'); }
@@ -271,7 +271,7 @@ html,body {
         height:rem(374);
         background-image:url('../images/banner-title.png');
         background-size:100% 100%;
-        @include center(134,160);
+        @include center(134,160-60);
     }
     .employer__title {
         width:rem(333);
@@ -285,7 +285,7 @@ html,body {
     width:100%;
     height:rem(1236);
     margin-top:rem(-95);
-    background:url('../images/green-shadow.png') no-repeat center top;
+    background:url('../images/green-shadow.png') no-repeat center rem(-60);
     background-size:100% 100%;
     &--02 {
         height:rem(1199);
@@ -312,7 +312,7 @@ html,body {
 .yh-center__employer {
     width:100%;
     height:auto;
-    margin-top:rem(-1104-37);
+    margin-top:rem(-1104-37-60);
     .employer__center {
         width:rem(750);
         margin:0 auto;
