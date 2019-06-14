@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="css/swiper.min.css?v=$version$"/>
     <link rel="stylesheet" href="css/index.css?v=111$version$">
     <script type="text/javascript">
+        if (document.documentElement.clientWidth < 1080) {
+            window.location.href = 'https://activity.lagou.com/activity/dist/2019-employ/h5/m_index.html'
+        }
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
             var r = window.location.search.substr(1).match(reg);
