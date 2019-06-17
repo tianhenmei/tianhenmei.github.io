@@ -686,10 +686,20 @@ var app = new Vue({
             this.$refs['employerSwiper'].swiper.slideNext()
         },
         BSlidePrev:function(){
-            this.$refs['BSwiper'].swiper.slidePrev()
+            if (this.BActiveIndex == 0) {
+                this.$refs['BSwiper'].swiper.slideTo(this.BList.length-1)
+            } else {
+                this.$refs['BSwiper'].swiper.slideTo(this.BActiveIndex-1)
+            }
+            // this.$refs['BSwiper'].swiper.slidePrev()
         },
         BSlideNext:function(){
-            this.$refs['BSwiper'].swiper.slideNext()
+            if (this.BActiveIndex == this.BList.length - 1) {
+                this.$refs['BSwiper'].swiper.slideTo(0)
+            } else {
+                this.$refs['BSwiper'].swiper.slideTo(this.BActiveIndex+1)
+            }
+            // this.$refs['BSwiper'].swiper.slideNext()
         },
         changeEmployerActiveIndex:function(index){
             this.employerActiveIndex = index % this.employerList.length
