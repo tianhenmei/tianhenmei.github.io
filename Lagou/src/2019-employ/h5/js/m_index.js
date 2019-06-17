@@ -225,7 +225,7 @@ var app = new Vue({
                 },
                 // autoplay: false,
                 speed:500,
-                loop:true,
+                loop:false,
                 initialSlide:0,
                 // effect : 'coverflow',
                 slidesPerView: 1.21,
@@ -269,7 +269,7 @@ var app = new Vue({
                 },
                 // autoplay: false,
                 speed:500,
-                loop:true,
+                loop:false,
                 initialSlide:0,
                 on:{
                     slideChangeTransitionStart:function(){
@@ -319,7 +319,7 @@ var app = new Vue({
                 },
                 // autoplay: false,
                 speed:500,
-                loop:true,
+                loop:false,
                 initialSlide:0,
                 on:{
                     slideChangeTransitionStart:function(){
@@ -339,7 +339,7 @@ var app = new Vue({
                 // },
                 autoplay: false,
                 speed:500,
-                loop:true,
+                loop:false,
                 initialSlide:0,
                 on:{
                     slideChangeTransitionStart:function(){
@@ -692,43 +692,49 @@ var app = new Vue({
             this.$refs['BSwiper'].swiper.slideNext()
         },
         changeEmployerActiveIndex:function(index){
-            if(index == 0){
-                this.employerActiveIndex = this.employerList.length - 1
-            }else{
-                this.employerActiveIndex = (index-1) % this.employerList.length
-            }
+            this.employerActiveIndex = index % this.employerList.length
+            // if(index == 0){
+            //     this.employerActiveIndex = this.employerList.length - 1
+            // }else{
+            //     this.employerActiveIndex = (index-1) % this.employerList.length
+            // }
         },
         changeBActiveIndex:function(index) {
-            if(index == 0){
-                this.BActiveIndex = this.BList.length - 1
-            }else{
-                this.BActiveIndex = (index-1) % this.BList.length
-            }
+            this.BActiveIndex = index % this.BList.length
+            // if(index == 0){
+            //     this.BActiveIndex = this.BList.length - 1
+            // }else{
+            //     this.BActiveIndex = (index-1) % this.BList.length
+            // }
             this.$refs['BPaginationSwiper'].swiper.slideTo(this.BActiveIndex)
         },
         changeCActiveIndex:function(index) {
-            if(index == 0){
-                this.CActiveIndex = this.CList.length - 1
-            }else{
-                this.CActiveIndex = (index-1) % this.CList.length
-            }
+            this.CActiveIndex = index % this.CList.length
+            // if(index == 0){
+            //     this.CActiveIndex = this.CList.length - 1
+            // }else{
+            //     this.CActiveIndex = (index-1) % this.CList.length
+            // }
         },
         changeBPaginationActiveIndex:function(index){
-            if(index == 0){
-                this.BActiveIndex = this.BList.length - 1
-            }else{
-                this.BActiveIndex = (index-1) % this.BList.length
-            }
+            this.BActiveIndex = index % this.BList.length
+            // if(index == 0){
+            //     this.BActiveIndex = this.BList.length - 1
+            // }else{
+            //     this.BActiveIndex = (index-1) % this.BList.length
+            // }
         },
         BPaginationTo:function(index){
-            this.$refs['BSwiper'].swiper.slideTo(index+1)
+            this.$refs['BSwiper'].swiper.slideTo(index)
+            // this.$refs['BSwiper'].swiper.slideTo(index+1)
         },
         changeDActiveIndex:function(index){
-            if(index == 0){
-                this.DActiveIndex = this.DList.length - 1
-            }else{
-                this.DActiveIndex = (index-1) % this.DList.length
-            }
+            this.DActiveIndex = index % this.DList.length
+            // if(index == 0){
+            //     this.DActiveIndex = this.DList.length - 1
+            // }else{
+            //     this.DActiveIndex = (index-1) % this.DList.length
+            // }
         },
 
 
