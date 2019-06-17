@@ -1,5 +1,5 @@
 "use strict";
-Vue.use(VueAwesomeSwiper)
+// Vue.use(VueAwesomeSwiper)
 var app = new Vue({
     el:"#app",
     // mixins:[commonMixin],
