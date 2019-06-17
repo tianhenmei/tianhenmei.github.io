@@ -59,7 +59,7 @@ var app = new Vue({
         // this.initWindowScrollEvent();
     },
     methods:{
-        getSpanClass(val){
+        getSpanClass:function(val){
             var arr = val.match(/[a-zA-z\d-]/g) || ''
             return ' employer__spanOuter--'+(val.length || 0)+'-'+arr.length
         },
