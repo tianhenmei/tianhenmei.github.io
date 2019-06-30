@@ -1,7 +1,7 @@
 "use strict";
 Vue.use(VueAwesomeSwiper)
 
-var initialNow = 1,
+var initialNow = 0,
     initialLast = 0;
 
 // // 音乐
