@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+		<!-- 忽略电话号码和邮箱识别 -->
+		<!-- iOS隐藏工具栏和菜单栏 -->
+		<!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+        <meta charset="utf-8">
+        <meta name="keywords" content="工作中的你最美">
+        <meta name="description" content="工作中的你最美">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+		<link rel="Shortcut Icon" href="http://img.digoo.cn/h5/002/images/share.png">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="format-detection" content="telphone=no, email=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet" href="css/swiper.min.css"/>
+		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<!---上线之后加-->
+		<title>工作中的你最美</title>
+		<script>
+			var lastSize = 16,
+                bodyElement = document.documentElement || document.body,
+                html = document.getElementsByTagName("html")[0],
+                RC = {
+                    w: 750,
+                    h: 1206
+                },
+                GC = {
+                    w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                    h: document.documentElement.clientHeight || window.innerHeight || screen.height
+                },
+                checkStatus = false,
+                initStatus = false,
+                app = null,
+                currentCount = 0;
+            function shareSuccess(){
+                currentCount++
+                if(app){
+                    app.shareSuccessCallback()
+                }
+            }
+            function getQueryString(parm) {
+                var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+                var r = window.location.search.substr(1).match(reg);
+
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+            function setFontSize() {
+                var portrait = false,
+                    resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                    rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                    lastHTMLSize = 16;
+
+                try {
+                    //横屏： "(orientation: landscape)"
+                    //竖屏： "(orientation: portrait)"
+                    portrait = window.matchMedia("(orientation: portrait)").matches;
+                } catch (e) { }
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                    
+                }
+                
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            }
+            setFontSize();
+            var loadingStatus = false,
+                pageStatus = false,
+                startTime = Date.now(),
+                app = null,
+                loadingComplete = function(){
+                    var loading = document.getElementById('loading')
+                    var appElement = document.getElementById('app');
+                    appElement.className = appElement.className.replace(' hide','');
+
+                    loading.className += ' opacityChange-out duration0-3'
+                    setTimeout(() => {
+                        var page0Center = document.getElementById('page0__center')
+                        document.getElementById('loading').className += ' hide';
+                        page0Center.className = page0Center.className.replace(' hide', '');
+                    }, 500);
+                },
+                loadingSuccess = function(){
+                    var now = Date.now(),
+                        space = now - startTime;
+                    if(space < 3500){
+                        setTimeout(function(){
+                            loadingComplete()
+                        },3500 - space)
+                    }else{
+                        loadingComplete()
+                    }
+                }
+		</script>
+	</head>
+<body>
+    <div class="loading" id="loading">
+        <div class="loading__icon opacityChange delay0-5" id="loading__icon"></div>
+        <div class="loading__words" id="loading__words">
+            <div class="words words-0-0 opacityChange-half duration0-4 delay0-8"></div>
+            <div class="words words-0-1 opacityChange-half duration0-4 delay0-9"></div>
+            <div class="words words-0-2 opacityChange-half duration0-4 delay1-0"></div>
+            <div class="words words-0-3 opacityChange-half duration0-4 delay1-1"></div>
+            <div class="words words-0-4 opacityChange-half duration0-4 delay1-2"></div>
+            <div class="words words-0-5 opacityChange-half duration0-4 delay1-3"></div>
+            <div class="words words-0-6 opacityChange-half duration0-4 delay1-4"></div>
+            <div class="words words-0-7 opacityChange-half duration0-4 delay1-5"></div>
+            <div class="words words-1-0 opacityChange-half duration0-4 delay1-6"></div>
+            <div class="words words-1-1 opacityChange-half duration0-4 delay1-7"></div>
+            <div class="words words-1-2 opacityChange-half duration0-4 delay1-8"></div>
+            <div class="words words-1-3 opacityChange-half duration0-4 delay1-9"></div>
+            <div class="words words-1-4 opacityChange-half duration0-4 delay2-0"></div>
+            <div class="words words-1-5 opacityChange-half duration0-4 delay2-1"></div>
+            <div class="words words-1-6 opacityChange-half duration0-4 delay2-2"></div>
+            <div class="words words-1-7 opacityChange-half duration0-4 delay2-3"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
+            <div class="page0__center hide" id="page0__center">
+                <div class="page0__main zoomBigIn-out duration1-0 delay5-0">
+                    <div class="page0__line opacityChange duration0-3 delay0-3"></div>
+                    <div class="page0__content opacityChange delay0-6"></div>
+                    <div class="page0__shadow opacityChange delay0-6"></div>
+                    <div class="page0__moon opacityChange duration0-3 delay0-3">
+                        <div class="page0__moon__center opacityChange delay0-6"></div>
+                    </div>
+                    <div class="page0__words">
+                        <div class="words words-0-0 opacityChange-half duration0-4 delay2-4"></div>
+                        <div class="words words-0-1 opacityChange-half duration0-4 delay2-6"></div>
+                        <div class="words words-0-2 opacityChange-half duration0-4 delay2-8"></div>
+                        <div class="words words-0-3 opacityChange-half duration0-4 delay3-0"></div>
+                        <div class="words words-0-4 opacityChange-half duration0-4 delay3-2"></div>
+                        <div class="words words-0-5 opacityChange-half duration0-4 delay3-4"></div>
+                        <div class="words words-0-6 opacityChange-half duration0-4 delay3-6"></div>
+                        <div class="words words-0-7 opacityChange-half duration0-4 delay3-8"></div>
+
+                        <div class="words words-1-0 opacityChange-half duration0-4 delay0-8"></div>
+                        <div class="words words-1-1 opacityChange-half duration0-4 delay1-0"></div>
+                        <div class="words words-1-2 opacityChange-half duration0-4 delay1-2"></div>
+                        <div class="words words-1-3 opacityChange-half duration0-4 delay1-4"></div>
+                        <div class="words words-1-4 opacityChange-half duration0-4 delay1-6"></div>
+                        <div class="words words-1-5 opacityChange-half duration0-4 delay1-8"></div>
+                        <div class="words words-1-6 opacityChange-half duration0-4 delay2-0"></div>
+                        <div class="words words-1-7 opacityChange-half duration0-4 delay2-2"></div>
+                    </div>
+                </div>
+                <div class="page0__building" :class="page0.buildingAnimate">
+                    <div class="page0__building__words">
+                        <div class="building__words building__words--01 littleTopIn duration1-0 delay7-0"></div>
+                        <div class="building__words building__words--02 littleTopIn duration1-0 delay6-5"></div>
+                        <div class="building__words building__words--03 littleTopIn duration1-0 delay6-0"></div>
+                    </div>
+                    <div class="page0__door opacityChange delay8-0" @click.stop.prevent="openDoorEvent">
+                        <div class="page0__door__icon"></div>
+                        <div class="page0__door__text doorTextHeightChange"></div>
+                    </div>
+                </div>
+                <div class="page0__video rightIn" v-show="page0.videoStatus">
+                    <div class="page0__video__content">
+                        <swiper :options="swiperOption" ref="mySwiper">
+                            <!-- slides -->
+                            <swiper-slide class="page0__video__one page0__video__one--1">
+                                <div class="page0__video__shadow"></div>
+                                <div class="icon page0__video__playbtn"></div>
+                            </swiper-slide>
+                            <swiper-slide class="page0__video__one page0__video__one--2">
+                                <div class="page0__video__shadow"></div>
+                                <div class="icon page0__video__playbtn"></div>
+                            </swiper-slide>
+                            <swiper-slide class="page0__video__one page0__video__one--3">
+                                <div class="page0__video__shadow"></div>
+                                <div class="icon page0__video__playbtn"></div>
+                            </swiper-slide>
+                        </swiper>
+                        <div class="page0__video__btn" @click.stop.prevent="startPlayVideo"></div>
+                        <div class="icon page0__video__prev" @click.stop.prevent="swiperToPrev"></div>
+                        <div class="icon page0__video__next" @click.stop.prevent="swiperToNext"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+            <div class="page1__first firstZoom delay5-5">
+                <div class="page1__bg"></div>
+                <div class="page1__text textChangeAni"></div>
+                <div class="page1__light"></div>
+            </div>
+            <div class="page1__second opacityChange delay6-0">
+                <div class="page1__second__bg"></div>
+                <div class="page1__second__phone" v-show="secondPhoneStatus"></div>
+                <div class="page1__second__text secondTextChange" v-show="secondPhoneStatus"></div>
+
+                <div class="page1__third__phone" v-show="thirdPhoneStatus"></div>
+                <div class="page1__fourth__phone" v-show="fourthPhoneStatus"></div>
+
+                <div class="page1__five" v-show="fivePhoneStatus">
+                    <div class="page1__five__mom momSpeaking"></div>
+                    <div class="page1__five__bubbleParent bubblePopupMove delay1-0">
+                        <div class="icon page1__five__bubble bubblePopup delay1-0"></div>
+                    </div>
+                    <div class="icon page1__five__sigh littleBottomIn duration1-0 delay4-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="music-box">
+        <div class="music-icon open">
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music04.mp3"></audio>
+        </div>
+    </div>
+    <script src="js/jquery.1.10.1.min.js"></script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/swiper.min.js"></script>
+    <script src="js/vue-awesome-swiper.js"></script>
+    <script src="js/m_index.js?v=$version$"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+        if(isWeiXin()){
+            ShareWeChat();
+        }
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true
+            } else {
+                return false
+            }
+        }
+        function ShareWeChat(){
+            var url = location.href.split('#')[0];
+            url = encodeURIComponent(url);
+            $.ajax({  
+                type : "get",  
+                url : "http://a2.digoo.cn/wx/jssdk.php?url="+url,
+                dataType : "jsonp",  
+                jsonp: "callback",  
+                jsonpCallback:"success_jsonpCallback",  
+                success : function(data){
+                    wx.config({ 
+                        debug:false, 
+                        appId: data.appId,  
+                        timestamp: data.timestamp,  
+                        nonceStr: data.nonceStr,  
+                        signature: data.signature,  
+                        jsApiList: [
+                            "onMenuShareTimeline",
+                            "onMenuShareAppMessage",   
+                            "onMenuShareQQ",  
+                            "onMenuShareWeibo",
+                        ]  
+                    });  
+                },  
+                error:function(data){  }  
+            });
+            wx.ready(function (){
+                var shareTimeline = {  
+                    "imgUrl": "images/share.jpeg",
+                    "desc": "11/30-12/1 北京，TOP100名企、行业大咖、权威媒体都在现场，等你来",//$fxtext[Math.floor(Math.random()*10)],
+                    "title": '2018脉脉年度雇主评选盛典报名中',
+                    "link": window.location.href  //"http://a2.digoo.cn/h5/002/",
+                }; 
+                wx.onMenuShareAppMessage(shareTimeline);  
+                wx.onMenuShareTimeline(shareTimeline);  
+                wx.onMenuShareQQ(shareTimeline);  
+                wx.onMenuShareWeibo(shareTimeline);  	
+            }); 
+        }
+    </script>
+</body>
+</html>
