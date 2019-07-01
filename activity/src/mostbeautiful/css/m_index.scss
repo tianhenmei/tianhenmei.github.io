@@ -312,6 +312,10 @@ body {
     background:url('../images/icon.png') no-repeat 0 0;
     background-size:rem(1024) rem(1024);
 }
+.icon2 {
+    background:url('../images/icon2.png') no-repeat 0 0;
+    background-size:rem(1024) rem(1024);
+}
 .page0{
     &__center,
     &__main {
@@ -591,7 +595,7 @@ body {
         &__bubble {
             width:rem(325);
             height:rem(162);
-            background-position: rem(-250) rem(-60);
+            background-position: rem(-540) rem(-140);
         }
         &__sigh {
             width:rem(465);
@@ -600,214 +604,239 @@ body {
             @include centerb(144,137);
         }
     }
+    // page1__dark
+    &__dark {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        &__bg {
+            width:100%;
+            height:100%;
+            background-color:#1b1b1b;
+            @include leftTop(0,0);
+        }
+        &__dialogLayer,
+        &__textLayer,
+        &__exist,
+        &__message {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
+        }
+        &__dialog {
+            width:rem(526);
+            height:rem(110);
+            &--01 {
+                background-position:0 rem(-340);
+                @include center(81,464);
+            }
+            &--02 {
+                width:rem(557);
+                background-position:0 rem(-460);
+                @include center(141,613);
+            }
+        }
+        &__text {
+            width:rem(606);
+            height:rem(46);
+            &--01 {
+                background-position:0 rem(-580);
+                @include center(74,577);
+            }
+            &--02 {
+                background-position:0 rem(-642);
+                @include center(74,577+62);
+            }
+        }
+        .exist {
+            &__img {
+                width:rem(639);
+                height:rem(271);
+                background:url('../images/page1-anut.png') no-repeat center top;
+                background-size:100% 100%;
+                @include center(61,341);
+            }
+            &__text {
+                width:rem(219);
+                height:rem(112);
+                background-position:0 rem(-700);
+                &--01 {
+                    @include center(112, 647);
+                }
+                &--02 {
+                    @include center(431, 698);
+                }
+                &--03 {
+                    @include center(219, 845);
+                }
+            }
+        }
+        .message {
+            &__time {
+                width:rem(308);
+                height:rem(110);
+                background-position:rem(-540) rem(-830);
+                @include center(222,351);
+            }
+            &__text {
+                width:rem(518);
+                height:rem(122);
+                &--01 {
+                    background-position:rem(-250) rem(-700);
+                    @include center(121,501);
+                }
+                &--02 {
+                    background-position:0 rem(-830);
+                    @include center(121,628);
+                }
+                &--03 {
+                    background-position:rem(-420) 0;
+                    @include center(121,754);
+                }
+            }
+        }
+    }
 }
 
 // page2
 .page2{
-    &__bg {
-        width:100%;
-        height:100%;
-        background:url('../images/page2-bg.png') no-repeat center bottom;
-        background-size:100% 100%;
-        @include leftTop(0,0);
-    }
-
-    &__piece1Parent {
-        width:rem(60);
-        height:rem(60);
-        @include center(-28,543-123);
-        transform-origin:0 0;
-        transform:scale3d(0.7,0.7,0.7);
-    }
-    &__piece1 {
-        width:rem(60);
-        height:rem(60);
-        background-position:rem(-675) rem(-840);
-    }
-    &__piece2Parent {
-        width:rem(72);
-        height:rem(76);
-        @include center(25,439-123);
-        // transform-origin:0 0;
-        // transform:scale3d(0.6,0.6,0.6);
-    }
-    &__piece2 {
-        width:rem(72);
-        height:rem(76);
-        background-position:rem(-590) rem(-840);
-    }
-    &__piece3Parent {
-        width:rem(74);
-        height:rem(82);
-        @include center(557,854-123);
-    }
-    &__piece3 {
-        width:rem(74);
-        height:rem(82);
-        background-position:rem(-365) rem(-840);
-    }
-    &__piece4Parent {
-        width:rem(25);
-        height:rem(28);
-        @include center(561,1077-123);
-    }
-    &__piece4 {
-        width:rem(25);
-        height:rem(28);
-        background-position:rem(-480) rem(-840);
-    }
-    &__title {
-        width: rem(576);
-        height: rem(70);
-        @include center(32, 199-123);
-        background: url('../images/page2-title.png') no-repeat center top;
-        background-size:100% 100%;
-    }
-    &__info {
-        width: rem(467);
-        height: rem(74);
-        @include center(86, 275-123);
-        background: url('../images/page2-info.png') no-repeat center top;
-        background-size:100% 100%;
-    }
+    background-color:#21354d;
     &__first {
         width:100%;
         height:100%;
-        @include leftTop(0,0);
-        &__picture {
-            width:rem(114);
-            height:rem(114);
-        }
-        &__keyword {
-            width:1000px;
-            line-height:rem(39);
-            color:#e1c38f;
-            text-align:left;
-            font-size:rem(24);
-            font-weight:bold;
-        }
-        &__company {
-            line-height:rem(31);
-            color:#e1c38f;
-            text-align:left;
-            font-size:rem(20);
-        }
-        &__name {
-            line-height:rem(33);
-            color:#e1c38f;
-            text-align:left;
-            font-size:rem(22);
-        }
-    }
-    &__first01 {
-        width: rem(598);
-        height: rem(155);
-        @include center(-18,358-123);
-        background: url('../images/page2-talent-bg01.png') no-repeat center top;
+        background:url('../images/page2-first.png') no-repeat center bottom;
         background-size:100% 100%;
-        .page2__first__picture {
-            @include leftTop(81,9);
-        }
-        .page2__first__info {
-            @include leftTop(215,23);
-        }
-    }
-    &__first02 {
-        width: rem(536);
-        height: rem(269);
-        @include center(94,496-123);
-        background: url('../images/page2-talent-bg02.png') no-repeat center top;
-        background-size:100% 100%;
-        .page2__first__picture {
-            @include leftTop(361,22);
-        }
-        .page2__first__info {
-            @include rightTop(196,40);
-        }
-        .page2__first__keyword {
-            text-align:right;
-        }
-        .page2__first__company {
-            text-align:right;
-        }
-        .page2__first__name {
-            text-align:right;
-        }
-        .page2__first__name--minus {
-            margin-right:rem(-12);
-        }
-    }
-    &__first03 {
-        width: rem(545);
-        height: rem(209);
-        @include center(48,657-123);
-        background: url('../images/page2-talent-bg03.png') no-repeat center top;
-        background-size:100% 100%;
-        .page2__first__picture {
-            @include leftTop(15,10);
-        }
-        .page2__first__info {
-            @include leftTop(149,27);
-        }
-    }
-    &__text {
-        width:100%;
-        line-height:rem(43);
-        text-align:center;
-        font-size:rem(24);
-        color:#bfa983;
-        @include center(0,808-123);
-    }
-    &__secondLayer {
-        width:100%;
-        height:100%;
         @include leftTop(0,0);
     }
     &__second {
-        width: rem(114);
-        height: rem(213);
-        background: url('../images/page2-second-bg.png') no-repeat center top;
-        background-size:100% 100%;
-        &__pictrue {
-            width:rem(112);
-            height:rem(112);
-            @include leftTop(1,1);
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        &__phone {
+            width:rem(715);
+            height:rem(1118);
+            @include leftBottom(0,0);
+            background:url('../images/page2-phone.png') no-repeat left bottom;
+            background-size:100% 100%;
         }
-        &__info {
-            width:100%;
-            color:#bfa983;
-            font-size:rem(20);
-            text-align:center;
+        &__fringe {
+            width:rem(207);
+            height:rem(43);
+            background:url('../images/page2-fringe.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftBottom(287,1055);
+        }
+        &__pageLayer {
+            width:rem(509);
+            height:rem(1014);
+            border-radius:rem(40) rem(40) rem(30) rem(30);
             overflow:hidden;
-            text-overflow:ellipsis;
-            white-space: nowrap;
-            @include leftTop(0,124);
+            @include leftBottom(122,82);
         }
-        &__info1 {
-            line-height:rem(27);
-            top:rem(124);
+        &__title {
+            width:rem(509);
+            height:rem(509 / 750 * 107+10);
+            border-radius:rem(40) rem(40) 0 0;
+            background:#eeeeee url('../images/page2-wechat-title.png') no-repeat center rem(10);
+            background-size:rem(509) rem(509 / 750 * 107);
+            @include leftTop(0,0);
         }
-        &__info2 {
-            line-height:rem(25);
-            top:rem(151);
+        &__page {
+            width:rem(509);
+            height:rem(509 / 750 * 1706);
+            background:url('../images/page2-page.png') no-repeat center top;
+            background-size:100%;
+            @include leftTop(0,509 / 750 * 107+10);
         }
-        &__info3 {
-            line-height:rem(31);
-            font-size:rem(22);
-            top:rem(176);
+        &__finger {
+            width:rem(269);
+            height:rem(355);
+            background:url('../images/page2-finger.png') no-repeat right bottom;
+            background-size:100%;
+            @include rightBottom(0,0);
+            transform-origin: 100% 100%;
+        }
+        &__bubbleParent {
+            width:rem(380);
+            height:rem(162);
+            @include leftBottom(312,936);
+        }
+        &__bubble {
+            width:rem(380);
+            height:rem(162);
+            background-position:rem(-570) rem(-340);
+        }
+        &__text {
+            width:rem(270);
+            height:rem(38);
+            &--01 {
+                background-position:rem(-630) rem(-520);
+                @include leftBottom(438,417-38);
+            }
+            &--02 {
+                background-position:rem(-630) rem(-570);
+                @include leftBottom(16,342-38);
+            }
+            &--03 {
+                background-position:rem(-630) rem(-620);
+                @include leftBottom(244,204-38);
+            }
         }
     }
-    &__second01 {
-        @include center(54, 861-123);
-    }
-    &__second02 {
-        @include center(193, 861-123);
-    }
-    &__second03 {
-        @include center(331, 861-123);
-    }
-    &__second04 {
-        @include center(470, 861-123);
+    &__third {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#1b1b1b;
+        &__textLayer {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
+        }
+        .text {
+            &__01 {
+                width:rem(357);
+                height:rem(48);
+                background-position:0 0;
+                @include center(197,575);
+            }
+            &__02 {
+                width:rem(357);
+                height:rem(48);
+                background-position:0 rem(-68);
+                @include center(197,575+68);
+            }
+        }
+        &__wechat {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
+        }
+        .wechat {
+            width:rem(584);
+            height:rem(555);
+            background:url('../images/page2-third-wechat.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(85,338);
+            &__logo {
+                width:rem(120);
+                height:rem(72);
+                background-position:0 rem(-140);
+                @include center(586,138);
+            }
+            &__leftbtn {
+                width:rem(268);
+                height:rem(115);
+                background-position:0 rem(-230);
+                @include center(94,1097);
+            }
+            &__rightbtn {
+                width:rem(268);
+                height:rem(115);
+                background-position:rem(-300) rem(-230);
+                @include center(424,1097);
+            }
+        }
     }
 }
 
@@ -1795,9 +1824,14 @@ body {
 }
 @keyframes rightIn {
     0% {
+        opacity:0;
         transform: translateX(100%);
     }
+    1% {
+        opacity:1;
+    }
     100% {
+        opacity:1;
         transform: translateX(0);
     }
 }
@@ -2354,6 +2388,30 @@ body {
         transform: none
     }
 }
+.bounceInTop {
+    animation:bounceInTop 0.5s both linear;
+    transform-origin: center bottom
+}
+@keyframes bounceInTop {
+    0%,20%,53%,80%,to {
+        animation-timing-function: cubic-bezier(.215,.61,.355,1);
+        transform: translateZ(0)
+    }
+
+    40%,43% {
+        animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+        transform: translate3d(0,-30px,0)
+    }
+
+    70% {
+        animation-timing-function: cubic-bezier(.755,.05,.855,.06);
+        transform: translate3d(0,-15px,0)
+    }
+
+    90% {
+        transform: translate3d(0,-4px,0)
+    }
+}
 .littleZoom {
     animation:littleZoom 0.3s both ease-in-out;
 }
@@ -2604,7 +2662,102 @@ body {
         transform:scale3d(1,1,1);
     }
 }
-
+.flipToBack {
+    animation: flipToBack 0.5s both linear;
+    backface-visibility:hidden;
+}
+@keyframes flipToBack {
+    0% {
+        transform:rotateY(0);
+    }
+    100% {
+        transform:rotateY(-180deg)
+    }
+}
+.flipToFront {
+    animation: flipToFront 0.5s both linear;
+    backface-visibility:hidden;
+}
+@keyframes flipToFront {
+    0% {
+        transform:rotateY(-180deg);
+    }
+    100% {
+        transform:rotateY(0)
+    }
+}
+.fingerMove {
+    animation:fingerMove 5s both linear;
+}
+@keyframes fingerMove {
+    0%,30%,70% {
+        transform:translate3d(0,rem(100),0);
+    }
+    25%,65%,95%,100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.page2PageMove {
+    animation:page2PageMove 5s both linear;
+}
+@keyframes page2PageMove {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    25%, 30% {
+        transform:translate3d(0,rem(-75.4),0);
+    }
+    65%, 70% {
+        transform:translate3d(0,rem(-75.4 * 2),0);
+    }
+    95%, 100% {
+        transform:translate3d(0,rem(-75.4 * 3),0);
+    }
+}
+.page2BubbleMoveAni {
+    animation:page2BubbleMoveAni 0.5s both linear;
+}
+@keyframes page2BubbleMoveAni {
+    0% {
+        transform:translate3d(rem(-100),rem(420),0);
+    }
+    100% {
+        transform:translate3d(0,0,0)
+    }
+}
+.page2BubbleAni {
+    animation:page2BubbleAni 0.5s both linear;
+}
+@keyframes page2BubbleAni {
+    0% {
+        transform:scale3d(0,0,0);
+    }
+    100% {
+        transform:scale3d(1,1,1);
+    }
+}
+.topOutAni {
+    animation:topOutAni 0.5s both linear;
+}
+@keyframes topOutAni {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    100% {
+        transform: translate3d(0,-100%,0);
+    }
+}
+.bottomInAni {
+    animation:bottomInAni 0.5s both linear;
+}
+@keyframes bottomInAni {
+    0% {
+        transform:translate3d(0,100%,0);
+    }
+    100% {
+        transform: translate3d(0,0,0);
+    }
+}
 
 
 
@@ -2758,17 +2911,38 @@ body {
 .delay6-5 {
     animation-delay:6.5s;
 }
+.delay6-8 {
+    animation-delay:6.8s;
+}
 .delay7-0 {
     animation-delay:7.0s;
+}
+.delay7-5 {
+    animation-delay:7.5s;
 }
 .delay8-0 {
     animation-delay:8.0s;
 }
+.delay8-5 {
+    animation-delay:8.5s;
+}
 .delay10-0 {
     animation-delay:10.0s;
 }
+.delay10-5 {
+    animation-delay:10.5s;
+}
+.delay11-0 {
+    animation-delay:11.0s;
+}
+.delay11-5 {
+    animation-delay:11.5s;
+}
 .delay12-0 {
     animation-delay:12.0s;
+}
+.delay12-5 {
+    animation-delay:12.5s;
 }
 .delay0-0 {
     animation-delay:0s;

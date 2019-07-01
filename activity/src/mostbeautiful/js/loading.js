@@ -2,7 +2,42 @@
 var loadingHost = '';
 var imgArray = [
 	"images/loading-icon.png",
-	"images/loading-words.png"
+	"images/loading-words.png",
+	"images/icon.png",
+	"images/icon2.png",
+	"images/page0-building-words.png",
+	"images/page0-building.png",
+	"images/page0-content.png",
+	"images/page0-door.png",
+	"images/page0-line.png",
+	"images/page0-moon-line.png",
+	"images/page0-moon.png",
+	"images/page0-shadow.png",
+	"images/page0-video-1.png",
+	"images/page0-video-2.png",
+	"images/page0-video-3.png",
+	"images/page0-video-bg.png",
+	"images/page0-video-shadow.png",
+	"images/page0-words.png",
+
+	"images/page1-anut.png",
+	"images/page1-bg.png",
+	"images/page1-five-mom.png",
+	"images/page1-fourth-phone.png",
+	"images/page1-light.png",
+	"images/page1-second-bg.png",
+	"images/page1-second-phone.png",
+	"images/page1-second-text.png",
+	"images/page1-text.png",
+	"images/page1-third-phone.png",
+
+	"images/page2-finger.png",
+	"images/page2-first.png",
+	"images/page2-fringe.png",
+	"images/page2-page.png",
+	"images/page2-phone.png",
+	"images/page2-third-wechat.png",
+	"images/page2-wechat-title.png",
 ];
 var now = 0;
 // jQuery.ajax({

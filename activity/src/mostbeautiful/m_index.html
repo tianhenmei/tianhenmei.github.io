@@ -212,6 +212,59 @@
                     </div>
                     <div class="icon page1__five__sigh littleBottomIn duration1-0 delay4-5"></div>
                 </div>
+                <div class="page1__dark" v-show="fivePhoneStatus">
+                    <div class="page1__dark__bg opacityChange1 delay7-5"></div>
+                    <div class="page1__dark__dialogLayer" :class="dialogStatus ? 'topIn-out' : ''">
+                        <div class="icon page1__dark__dialog page1__dark__dialog--01 littleBottomIn delay8-0"></div>
+                        <div class="icon page1__dark__dialog page1__dark__dialog--02 littleBottomIn delay8-5"></div>
+                    </div>
+                    <div class="page1__dark__textLayer opacityChange-out delay2-5" v-show="darkTextStatus">
+                        <div class="icon page1__dark__text page1__dark__text--01 littleBottomIn duration1-0"></div>
+                        <div class="icon page1__dark__text page1__dark__text--02 littleBottomIn duration1-0 delay1-0"></div>
+                    </div>
+                    <div class="page1__dark__exist flipToBack duration1-0 delay3-0" v-show="darkExistStatus">
+                        <div class="exist__img bounceInRight"></div>
+                        <div class="icon exist__text exist__text--01 opacityChange-half duration0-3 delay0-5"></div>
+                        <div class="icon exist__text exist__text--02 opacityChange-half duration0-3 delay0-7"></div>
+                        <div class="icon exist__text exist__text--03 opacityChange-half duration0-3 delay1-0"></div>
+                    </div>
+                    <div class="page1__dark__message flipToFront duration1-0 delay3-0" v-show="darkExistStatus">
+                        <div class="icon message__time"></div>
+                        <div class="icon message__text message__text--01"></div>
+                        <div class="icon message__text message__text--02"></div>
+                        <div class="icon message__text message__text--03"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+            <div class="page2__first firstZoom delay1-0"></div>
+            <div class="page2__second opacityChange delay1-5">
+                <div class="page2__second__phone"></div>
+                <div class="page2__second__pageLayer">
+                    <div class="page2__second__page page2PageMove delay1-0"></div>
+                    <div class="page2__second__title"></div>
+                </div>
+                <div class="page2__second__fringe"></div>
+                <div class="page2__second__finger fingerMove delay1-0"></div>
+                <div class="page2__second__bubbleParent page2BubbleMoveAni delay3-0">
+                    <div class="icon page2__second__bubble page2BubbleAni delay3-0"></div>
+                </div>
+                <div class="icon page2__second__text page2__second__text--01 littleRightBottomIn delay4-0"></div>
+                <div class="icon page2__second__text page2__second__text--02 littleLeftBottomIn delay4-5"></div>
+                <div class="icon page2__second__text page2__second__text--03 littleBottomIn delay5-0"></div>
+            </div>
+            <div class="page2__third opacityChange delay6-0">
+                <div class="page2__third__textLayer topOutAni duration2-0 delay8-0">
+                    <div class="icon2 text__01 littleBottomIn delay6-5"></div>
+                    <div class="icon2 text__02 littleBottomIn delay6-8"></div>
+                </div>
+                <div class="page2__third__wechat bottomInAni duration2-0 delay8-0">
+                    <div class="wechat"></div>
+                    <div class="icon2 wechat__logo rightIn duration1-0 delay10-5"></div>
+                    <div class="icon2 wechat__leftbtn littleBottomIn duration1-0 delay10-5"></div>
+                    <div class="icon2 wechat__rightbtn littleBottomIn duration1-0 delay10-5"></div>
+                </div>
             </div>
         </div>
     </div>
