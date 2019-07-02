@@ -168,6 +168,7 @@
                     </div>
                 </div>
                 <div class="page0__video rightIn" v-show="page0.videoStatus">
+                    <div class="page0__video__frame"></div>
                     <div class="page0__video__content">
                         <swiper :options="swiperOption" ref="mySwiper">
                             <!-- slides -->
@@ -265,6 +266,51 @@
                     <div class="icon2 wechat__leftbtn littleBottomIn duration1-0 delay10-5"></div>
                     <div class="icon2 wechat__rightbtn littleBottomIn duration1-0 delay10-5"></div>
                 </div>
+            </div>
+        </div>
+        <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
+            <div class="page3__first opacityChange-out delay5-0">
+                <div class="page3__bg"></div>
+                <div class="page3__phone"></div>
+                <div class="page3__screen">
+                    <div class="icon2 page3__screen__time opacityChange delay0-5"></div>
+                    <div class="icon2 page3__screen__message1 zoomIn function-linear delay2-0"></div>
+                    <div class="page3__screen__message2Parent page3Message2MoveAni delay2-0">
+                        <div class="icon2 page3__screen__message2 zoomIn function-linear delay1-0"></div>
+                    </div>
+                </div>
+                <div class="page3__light opacityChange duration0-3 delay3-5"></div>
+            </div>
+            <div class="page3__second opacityChange delay5-0">
+                <div class="page3__second__window"></div>
+                <div class="page3__second__shadow"></div>
+                <div class="page3__second__man" v-show="!manStandStatus"></div>
+                <div class="page3__second__manturn" v-show="manStandStatus"></div>
+                <div class="page3__second__desk"></div>
+                <div class="page3__second__bottom">
+                    <div class="bottom-01"></div>
+                    <div class="bottom-02"></div>
+                    <div class="bottom-03"></div>
+                    <div class="bottom-04"></div>
+                    <div class="bottom-05"></div>
+                    <div class="bottom-06"></div>
+                </div>
+                <div class="page3__second__baby">
+                    <div class="baby__face--01" v-show="!babyCryStatus"></div>
+                    <div class="baby__face--02" v-show="babyCryStatus"></div>
+                </div>
+                <div class="page3__second__bubbleParent">
+                    <div class="icon2 page3__second__bubble page3BubbleZoomAni duration0-3 delay6-0"></div>
+                </div>
+            </div>
+            <div class="page3__third opacityChange" v-show="page3ThirdStatus">
+                <div class="page3__third__bg"></div>
+                <div class="icon2 page3__third__dialog1" :class="!page3Dialog1 ? 'page3zoomIn1 duration0-3 delay1-0' : 'zoomIn-out'"></div>
+                <div class="icon2 page3__third__dialog2" :class="page3Dialog1 ? page3Dialog2 ? 'zoomIn-out' : 'page3zoomIn2 duration0-3 delay0-5' : 'opacityHide'"></div>
+                <div class="icon2 page3__third__imagenary zoomIn delay2-0" v-show="page3Dialog2"></div>
+            </div>
+            <div class="page3__fourth page3FourthMoveAni delay3-0" v-show="page3Dialog2">
+                <div class="page3__fourth__bg zoomIn delay3-0"></div>
             </div>
         </div>
     </div>

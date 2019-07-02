@@ -17,6 +17,7 @@ var imgArray = [
 	"images/page0-video-2.png",
 	"images/page0-video-3.png",
 	"images/page0-video-bg.png",
+	"images/page0-video-frame.png",
 	"images/page0-video-shadow.png",
 	"images/page0-words.png",
 
@@ -38,6 +39,21 @@ var imgArray = [
 	"images/page2-phone.png",
 	"images/page2-third-wechat.png",
 	"images/page2-wechat-title.png",
+
+	"images/page3-bg.png",
+	"images/page3-desk.png",
+	"images/page3-face-01.png",
+	"images/page3-face-02.png",
+	"images/page3-fourth-bg.png",
+	"images/page3-light.png",
+	"images/page3-phone.png",
+	"images/page3-screen.png",
+	"images/page3-second-bg.png",
+	"images/page3-second-man.png",
+	"images/page3-second-manturn.png",
+	"images/page3-shadow.png",
+	"images/page3-third-bg.png",
+	"images/page3-window.png"
 ];
 var now = 0;
 // jQuery.ajax({

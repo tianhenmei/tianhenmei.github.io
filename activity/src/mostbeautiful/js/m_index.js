@@ -74,7 +74,14 @@ app = new Vue({
         fivePhoneStatus: false,
         dialogStatus: false,
         darkTextStatus: false,
-        darkExistStatus: false
+        darkExistStatus: false,
+
+        babyCryStatus: false,
+        manStandStatus: false,
+        page3ThirdStatus: false,
+        page3Dialog1: false,
+        page3Dialog2: false,
+        page3Imagenary: false
     },
     computed:{
         qrcodeUrl:function(){
@@ -240,6 +247,8 @@ app = new Vue({
                 this.playFirst()
             } else if(index === 2) {
                 this.playSecond();
+            } else if(index === 3) {
+                this.playThird();
             }
         },
         playFirst:function(){
@@ -272,6 +281,31 @@ app = new Vue({
         },
         playSecond:function(){
 
+        },
+        playThird:function(){
+            var self = this
+            setTimeout(function(){
+                self.babyCryStatus = true
+                setTimeout(function(){
+                    self.manStandStatus = true
+                    setTimeout(function(){
+                        self.page3ThirdStatus = true
+                        self.showVideoDialog()
+                    },1500)
+                }, 1000)
+            }, 8000);
+        },
+        showVideoDialog:function(){
+            var self = this
+            setTimeout(function(){
+                self.page3Dialog1 = true
+                setTimeout(function(){
+                    self.page3Dialog2 = true
+                    // setTimeout(function(){
+                    //     self.page3Imagenary = true
+                    // },2000)
+                },2000)
+            },2500)
         }
         // toggleMusicEvent:function(){
         //     var icon = this.$refs['music-icon'];
