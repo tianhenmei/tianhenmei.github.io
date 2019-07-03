@@ -121,6 +121,14 @@ app = new Vue({
             return this.$refs.mySwiper.swiper
         }
     },
+    created: function(){
+        var script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        script.onload = function(){
+            new VConsole()
+        }
+        document.body.appendChild(script)
+    },
     mounted:function(){
         pageStatus = true;
         var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
