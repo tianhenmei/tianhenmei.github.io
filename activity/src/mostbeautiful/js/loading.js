@@ -23,6 +23,8 @@ var imgArray = [
 
 	"images/page1-anut.png",
 	"images/page1-bg.png",
+	"images/page1-desk.png",
+	"images/page1-person.png",
 	"images/page1-five-mom.png",
 	"images/page1-fourth-phone.png",
 	"images/page1-light.png",

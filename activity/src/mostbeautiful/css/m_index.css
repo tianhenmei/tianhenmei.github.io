@@ -3,13 +3,6 @@
   font-family: "DINCondBlack";
   src: url("../images/DINCond-Black.otf"); }
 
-[id]:not(#app, #page0__center, #music, #loading, #loading__num, #loading__layer, #loading__words, #loading__icon, #loading__girl, #canvas),
-iframe {
-  width: 0 !important;
-  height: 0 !important;
-  opacity: 0 !important;
-  display: none !important; }
-
 /*common&rest*/
 body {
   font-family: "Hiragino Sans GB", "Microsoft Yahei", SimSun, Arial, "Helvetica Neue", Helvetica;
@@ -531,6 +524,24 @@ body {
   position: absolute;
   left: 0rem;
   top: 0rem; }
+
+.page1__desk {
+  width: 14.44267rem;
+  height: 25.216rem;
+  background: url("../images/page1-desk.png") no-repeat center bottom;
+  background-size: 100%;
+  position: absolute;
+  left: 0rem;
+  bottom: 0rem; }
+
+.page1__person {
+  width: 15.46667rem;
+  height: 20.84267rem;
+  background: url("../images/page1-person.png") no-repeat center bottom;
+  background-size: 100%;
+  position: absolute;
+  right: 0rem;
+  bottom: 0rem; }
 
 .page1__text {
   width: 2.41067rem;

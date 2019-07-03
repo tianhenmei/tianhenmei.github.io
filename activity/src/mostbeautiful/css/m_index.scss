@@ -96,13 +96,13 @@
 $speed: 1;
 $durations: 1s;
 
-[id]:not(#app,#page0__center,#music,#loading,#loading__num,#loading__layer,#loading__words,#loading__icon,#loading__girl,#canvas),
-iframe {
-    width:0!important;
-    height:0!important;
-    opacity:0!important;
-    display:none!important;
-}
+// [id]:not(#app,#page0__center,#music,#loading,#loading__num,#loading__layer,#loading__words,#loading__icon,#loading__girl,#canvas,#__vconsole),
+// iframe {
+//     width:0!important;
+//     height:0!important;
+//     opacity:0!important;
+//     display:none!important;
+// }
 
 /*common&rest*/
 
@@ -530,6 +530,20 @@ body {
         background:url('../images/page1-bg.png') no-repeat center bottom;
         background-size:100%;
         @include leftTop(0,0);
+    }
+    &__desk {
+        width:rem(677);
+        height:rem(1182);
+        background:url('../images/page1-desk.png') no-repeat center bottom;
+        background-size:100%;
+        @include leftBottom(0,0);
+    }
+    &__person {
+        width:rem(725);
+        height:rem(977);
+        background:url('../images/page1-person.png') no-repeat center bottom;
+        background-size:100%;
+        @include rightBottom(0,0);
     }
     &__text {
         width: rem(113);
