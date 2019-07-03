@@ -75,6 +75,10 @@ app = new Vue({
         dialogStatus: false,
         darkTextStatus: false,
         darkExistStatus: false,
+        page1ResultStatus: false,
+        toVideoListStatus: false,
+
+        page2ResultStatus: false,
 
         babyCryStatus: false,
         manStandStatus: false,
@@ -259,6 +263,17 @@ app = new Vue({
                 this.playThird();
             }
         },
+        playNextVideo: function(){
+            var self = this
+            this.toVideoListStatus = true
+            setTimeout(function(){
+                self.toVideoListStatus = false
+                self.activePage = 0
+                self.page0.videoStatus = true
+                self.page0.buildingAnimate = 'hide'
+                self.resetVideoStatus()
+            }, 500)
+        },
         playFirst:function(){
             var self = this
             setTimeout(function() {
@@ -278,17 +293,27 @@ app = new Vue({
         showDialog:function(){
             var self = this
             setTimeout(function(){
-                self.dialogStatus = true;
-                setTimeout(function(){
+                // self.dialogStatus = true;
+                // setTimeout(function(){
                     self.darkTextStatus = true;
                     setTimeout(function(){
                         self.darkExistStatus = true;
+                        self.showPage1Result()
                     }, 2800)
-                }, 1500)
-            },11000);
+                // }, 1500)
+            },8500);
+        },
+        showPage1Result:function(){
+            var self = this
+            setTimeout(function(){
+                self.page1ResultStatus = true
+            }, 2500)
         },
         playSecond:function(){
 
+        },
+        showPage2Result: function(){
+            this.page2ResultStatus = true
         },
         playThird:function(){
             var self = this
@@ -314,6 +339,26 @@ app = new Vue({
                     // },2000)
                 },2000)
             },2500)
+        },
+        resetVideoStatus:function(){
+            this.secondPhoneStatus = true
+            this.thirdPhoneStatus = false
+            this.fourthPhoneStatus = false
+            this.fivePhoneStatus = false
+            this.dialogStatus = false
+            this.darkTextStatus = false
+            this.darkExistStatus = false
+            this.page1ResultStatus = false
+            this.toVideoListStatus = false
+
+            this.page2ResultStatus = false
+
+            this.babyCryStatus = false
+            this.manStandStatus = false
+            this.page3ThirdStatus = false
+            this.page3Dialog1 = false
+            this.page3Dialog2 = false
+            this.page3Imagenary =false
         }
         // toggleMusicEvent:function(){
         //     var icon = this.$refs['music-icon'];

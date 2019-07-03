@@ -55,7 +55,14 @@ var imgArray = [
 	"images/page3-second-manturn.png",
 	"images/page3-shadow.png",
 	"images/page3-third-bg.png",
-	"images/page3-window.png"
+	"images/page3-window.png",
+
+	"images/page1-result-card.png",
+	"images/page1-result-mom.png",
+	"images/page2-result-card.png",
+	"images/page2-result-me.png",
+	"images/page3-result-card.png",
+	"images/page3-result-man.png"
 ];
 var now = 0;
 // jQuery.ajax({

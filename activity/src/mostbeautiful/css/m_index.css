@@ -630,7 +630,9 @@ body {
 .page1__five__bubble {
   width: 6.93333rem;
   height: 3.456rem;
-  background-position: -11.52rem -2.98667rem; }
+  background-position: -11.52rem -2.98667rem;
+  -webkit-transform-origin: 75.07% 98.76%;
+          transform-origin: 75.07% 98.76%; }
 
 .page1__five__sigh {
   width: 9.92rem;
@@ -702,7 +704,7 @@ body {
     background-size: 100% 100%;
     position: absolute;
     left: 50%;
-    top: 7.27467rem;
+    top: 5.568rem;
     margin: 0 0 0 -6.69867rem; }
   .page1__dark .exist__text {
     width: 4.672rem;
@@ -711,17 +713,17 @@ body {
     .page1__dark .exist__text--01 {
       position: absolute;
       left: 50%;
-      top: 13.80267rem;
+      top: 12.096rem;
       margin: 0 0 0 -5.61067rem; }
     .page1__dark .exist__text--02 {
       position: absolute;
       left: 50%;
-      top: 14.89067rem;
+      top: 13.184rem;
       margin: 0 0 0 1.19467rem; }
     .page1__dark .exist__text--03 {
       position: absolute;
       left: 50%;
-      top: 18.02667rem;
+      top: 16.32rem;
       margin: 0 0 0 -3.328rem; }
   .page1__dark .message__time {
     width: 6.57067rem;
@@ -752,6 +754,64 @@ body {
       left: 50%;
       top: 16.08533rem;
       margin: 0 0 0 -5.41867rem; }
+
+.page1__result {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  background-color: #323970; }
+  .page1__result__logo {
+    width: 2.00533rem;
+    height: 1.36533rem;
+    background-position: -12.37333rem -5.97333rem;
+    position: absolute;
+    left: 50%;
+    top: 1.55733rem;
+    margin: 0 0 0 -6.016rem; }
+  .page1__result__name {
+    width: 6.08rem;
+    height: 0.85333rem;
+    background-position: -14.72rem -5.97333rem;
+    position: absolute;
+    left: 50%;
+    top: 1.728rem;
+    margin: 0 0 0 -3.84rem; }
+  .page1__result__card {
+    width: 13.33333rem;
+    height: 10.53867rem;
+    background: url("../images/page1-result-card.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    top: 3.15733rem;
+    margin: 0 0 0 -6.656rem; }
+  .page1__result__mom {
+    width: 11.43467rem;
+    height: 14.08rem;
+    background: url("../images/page1-result-mom.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    top: 10.26133rem;
+    margin: 0 0 0 -5.86667rem; }
+  .page1__result__leftbtn {
+    width: 5.67467rem;
+    height: 2.00533rem;
+    background-position: -12.37333rem -7.78667rem;
+    position: absolute;
+    left: 50%;
+    top: 22.336rem;
+    margin: 0 0 0 -6.12267rem; }
+  .page1__result__rightbtn {
+    width: 5.16267rem;
+    height: 2.00533rem;
+    background-position: -8.53333rem -10.66667rem;
+    position: absolute;
+    left: 50%;
+    top: 22.336rem;
+    margin: 0 0 0 0.91733rem; }
 
 .page2 {
   background-color: #21354d; }
@@ -890,7 +950,7 @@ body {
       background-size: 100% 100%;
       position: absolute;
       left: 50%;
-      top: 7.21067rem;
+      top: 5.76rem;
       margin: 0 0 0 -6.18667rem; }
       .page2__third .wechat__logo {
         width: 2.56rem;
@@ -906,7 +966,7 @@ body {
         background-position: 0 -4.90667rem;
         position: absolute;
         left: 50%;
-        top: 23.40267rem;
+        top: 21.952rem;
         margin: 0 0 0 -5.99467rem; }
       .page2__third .wechat__rightbtn {
         width: 5.71733rem;
@@ -914,8 +974,33 @@ body {
         background-position: -6.4rem -4.90667rem;
         position: absolute;
         left: 50%;
-        top: 23.40267rem;
+        top: 21.952rem;
         margin: 0 0 0 1.04533rem; }
+  .page2__result {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
+    background-color: #323970; }
+    .page2__result__card {
+      width: 13.33333rem;
+      height: 10.53867rem;
+      background: url("../images/page2-result-card.png") no-repeat center top;
+      background-size: 100% 100%;
+      position: absolute;
+      left: 50%;
+      top: 3.15733rem;
+      margin: 0 0 0 -6.656rem; }
+    .page2__result__me {
+      width: 11.264rem;
+      height: 13.22667rem;
+      background: url("../images/page2-result-me.png") no-repeat center top;
+      background-size: 100% 100%;
+      position: absolute;
+      left: 50%;
+      top: 9.96267rem;
+      margin: 0 0 0 -5.65333rem; }
 
 .page3__first {
   width: 100%;
@@ -1179,6 +1264,32 @@ body {
     top: 0rem;
     -webkit-transform-origin: 68.26% 13.26%;
             transform-origin: 68.26% 13.26%; }
+
+.page3__result {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+  background-color: #323970; }
+  .page3__result__card {
+    width: 13.33333rem;
+    height: 10.53867rem;
+    background: url("../images/page3-result-card.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    top: 3.15733rem;
+    margin: 0 0 0 -6.656rem; }
+  .page3__result__man {
+    width: 12.62933rem;
+    height: 15.72267rem;
+    background: url("../images/page3-result-man.png") no-repeat center top;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 50%;
+    top: 10.21867rem;
+    margin: 0 0 0 -5.76rem; }
 
 .share-float {
   display: none;
@@ -3845,6 +3956,10 @@ body {
 .duration1-0 {
   -webkit-animation-duration: 1.0s;
           animation-duration: 1.0s; }
+
+.duration1-5 {
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s; }
 
 .duration2-0 {
   -webkit-animation-duration: 2.0s;

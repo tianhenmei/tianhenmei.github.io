@@ -16,7 +16,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="stylesheet" href="css/swiper.min.css"/>
-		<link rel="stylesheet" href="css/m_index.css?v=$version$">
+		<link rel="stylesheet" href="css/m_index.css?v=2223$version$">
 		<!---上线之后加-->
 		<title>工作中的你最美</title>
 		<script>
@@ -125,11 +125,11 @@
             <div class="words words-1-7 opacityChange-half duration0-4 delay2-3"></div>
         </div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <script type="text/javascript" src="js/loading.js?v=2223$version$"></script> 
     <div class="wrapper pages" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
             <div class="page0__center hide" id="page0__center">
-                <div class="page0__main zoomBigIn-out duration1-0 delay5-0">
+                <div class="page0__main zoomBigIn-out duration1-0 delay5-0" v-show="!page0.videoStatus">
                     <div class="page0__line opacityChange duration0-3 delay0-3"></div>
                     <div class="page0__content opacityChange delay0-6"></div>
                     <div class="page0__shadow opacityChange delay0-6"></div>
@@ -158,16 +158,16 @@
                 </div>
                 <div class="page0__building" :class="page0.buildingAnimate">
                     <div class="page0__building__words">
-                        <div class="building__words building__words--01 littleTopIn duration1-0 delay7-0"></div>
-                        <div class="building__words building__words--02 littleTopIn duration1-0 delay6-5"></div>
-                        <div class="building__words building__words--03 littleTopIn duration1-0 delay6-0"></div>
+                        <div class="building__words building__words--01 littleTopIn duration1-5 delay8-0"></div>
+                        <div class="building__words building__words--02 littleTopIn duration1-5 delay7-0"></div>
+                        <div class="building__words building__words--03 littleTopIn duration1-5 delay6-0"></div>
                     </div>
                     <div class="page0__door opacityChange delay8-0" @click.stop.prevent="openDoorEvent">
                         <div class="page0__door__icon"></div>
                         <div class="page0__door__text doorTextHeightChange"></div>
                     </div>
                 </div>
-                <div class="page0__video rightIn" v-show="page0.videoStatus">
+                <div class="page0__video" :class="page0.buildingAnimate == 'hide' ? 'opacityChange' : 'rightIn'" v-show="page0.videoStatus">
                     <div class="page0__video__frame"></div>
                     <div class="page0__video__content">
                         <swiper :options="swiperOption" ref="mySwiper">
@@ -192,7 +192,7 @@
                 </div>
             </div>
         </div>
-        <div class="page page1" :class="activePage == 1 ? 'active' : 'hide'">
+        <div class="page page1" :class="activePage == 1 ? toVideoListStatus ? 'opacityChange-out' : 'active' : 'hide'">
             <div class="page1__first firstZoom delay5-5">
                 <div class="page1__bg"></div>
                 <div class="page1__desk"></div>
@@ -216,31 +216,40 @@
                     <div class="icon page1__five__sigh littleBottomIn duration1-0 delay4-5"></div>
                 </div>
                 <div class="page1__dark" v-show="fivePhoneStatus">
-                    <div class="page1__dark__bg opacityChange1 delay7-5"></div>
-                    <div class="page1__dark__dialogLayer" :class="dialogStatus ? 'topIn-out' : ''">
+                    <div class="page1__dark__bg opacityChange1 delay8-0"></div>
+                    <!-- <div class="page1__dark__bg opacityChange1 delay7-5"></div> -->
+                    <!-- <div class="page1__dark__dialogLayer" :class="dialogStatus ? 'topIn-out' : ''">
                         <div class="icon page1__dark__dialog page1__dark__dialog--01 littleBottomIn delay8-0"></div>
                         <div class="icon page1__dark__dialog page1__dark__dialog--02 littleBottomIn delay8-5"></div>
-                    </div>
-                    <div class="page1__dark__textLayer opacityChange-out delay2-5" v-show="darkTextStatus">
+                    </div> -->
+                    <div class="page1__dark__textLayer" :class="page1ResultStatus ? 'opacityChange-out delay0-3': ''" v-show="darkTextStatus">
                         <div class="icon page1__dark__text page1__dark__text--01 littleBottomIn duration1-0"></div>
                         <div class="icon page1__dark__text page1__dark__text--02 littleBottomIn duration1-0 delay1-0"></div>
                     </div>
-                    <div class="page1__dark__exist flipToBack duration1-0 delay3-0" v-show="darkExistStatus">
+                    <div class="page1__dark__exist" :class="page1ResultStatus ? 'opacityChange-out delay0-3': ''" v-show="darkExistStatus">
                         <div class="exist__img bounceInRight"></div>
                         <div class="icon exist__text exist__text--01 opacityChange-half duration0-3 delay0-5"></div>
                         <div class="icon exist__text exist__text--02 opacityChange-half duration0-3 delay0-7"></div>
                         <div class="icon exist__text exist__text--03 opacityChange-half duration0-3 delay1-0"></div>
                     </div>
-                    <div class="page1__dark__message flipToFront duration1-0 delay3-0" v-show="darkExistStatus">
+                    <!-- <div class="page1__dark__message" :class="!page1ResultStatus ? 'flipToFront duration1-0 delay3-0' : 'opacityChange-out'" v-show="darkExistStatus">
                         <div class="icon message__time"></div>
                         <div class="icon message__text message__text--01"></div>
                         <div class="icon message__text message__text--02"></div>
                         <div class="icon message__text message__text--03"></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
+            <div class="page1__result opacityChange delay0-5" v-show="page1ResultStatus">
+                <div class="icon2 page1__result__logo"></div>
+                <div class="icon2 page1__result__name"></div>
+                <div class="page1__result__card"></div>
+                <div class="page1__result__mom"></div>
+                <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
+            </div>
         </div>
-        <div class="page page2" :class="activePage == 2 ? 'active' : 'hide'">
+        <div class="page page2" :class="activePage == 2 ? toVideoListStatus ? 'opacityChange-out' : 'active' : 'hide'">
             <div class="page2__first firstZoom delay1-0"></div>
             <div class="page2__second opacityChange delay1-5">
                 <div class="page2__second__phone"></div>
@@ -265,9 +274,17 @@
                 <div class="page2__third__wechat bottomInAni duration2-0 delay8-0">
                     <div class="wechat"></div>
                     <div class="icon2 wechat__logo rightIn duration1-0 delay10-5"></div>
-                    <div class="icon2 wechat__leftbtn littleBottomIn duration1-0 delay10-5"></div>
+                    <div class="icon2 wechat__leftbtn littleBottomIn duration1-0 delay10-5" @click.stop.prevent="showPage2Result"></div>
                     <div class="icon2 wechat__rightbtn littleBottomIn duration1-0 delay10-5"></div>
                 </div>
+            </div>
+            <div class="page2__result opacityChange delay0-5" v-show="page2ResultStatus">
+                <div class="icon2 page1__result__logo"></div>
+                <div class="icon2 page1__result__name"></div>
+                <div class="page2__result__card"></div>
+                <div class="page2__result__me"></div>
+                <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
             </div>
         </div>
         <div class="page page3" :class="activePage == 3 ? 'active' : 'hide'">
@@ -309,10 +326,18 @@
                 <div class="page3__third__bg"></div>
                 <div class="icon2 page3__third__dialog1" :class="!page3Dialog1 ? 'page3zoomIn1 duration0-3 delay1-0' : 'zoomIn-out'"></div>
                 <div class="icon2 page3__third__dialog2" :class="page3Dialog1 ? page3Dialog2 ? 'zoomIn-out' : 'page3zoomIn2 duration0-3 delay0-5' : 'opacityHide'"></div>
-                <div class="icon2 page3__third__imagenary zoomIn delay2-0" v-show="page3Dialog2"></div>
+                <!-- <div class="icon2 page3__third__imagenary zoomIn delay2-0" v-show="page3Dialog2"></div> -->
             </div>
-            <div class="page3__fourth page3FourthMoveAni delay3-0" v-show="page3Dialog2">
+            <!-- <div class="page3__fourth page3FourthMoveAni delay3-0" v-show="page3Dialog2">
                 <div class="page3__fourth__bg zoomIn delay3-0"></div>
+            </div> -->
+            <div class="page3__result zoomIn delay2-0" v-show="page3Dialog2">
+                <div class="icon2 page1__result__logo"></div>
+                <div class="icon2 page1__result__name"></div>
+                <div class="page3__result__card"></div>
+                <div class="page3__result__man"></div>
+                <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
             </div>
         </div>
     </div>
@@ -325,7 +350,7 @@
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/swiper.min.js"></script>
     <script src="js/vue-awesome-swiper.js"></script>
-    <script src="js/m_index.js?v=2222$version$"></script>
+    <script src="js/m_index.js?v=2223$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript">
         if(isWeiXin()){

@@ -617,6 +617,7 @@ body {
             width:rem(325);
             height:rem(162);
             background-position: rem(-540) rem(-140);
+            transform-origin: 75.07% 98.76%
         }
         &__sigh {
             width:rem(465);
@@ -677,20 +678,20 @@ body {
                 height:rem(271);
                 background:url('../images/page1-anut.png') no-repeat center top;
                 background-size:100% 100%;
-                @include center(61,341);
+                @include center(61,341-80);
             }
             &__text {
                 width:rem(219);
                 height:rem(112);
                 background-position:0 rem(-700);
                 &--01 {
-                    @include center(112, 647);
+                    @include center(112, 647-80);
                 }
                 &--02 {
-                    @include center(431, 698);
+                    @include center(431, 698-80);
                 }
                 &--03 {
-                    @include center(219, 845);
+                    @include center(219, 845-80);
                 }
             }
         }
@@ -717,6 +718,51 @@ body {
                     @include center(121,754);
                 }
             }
+        }
+    }
+    // page1__result
+    &__result {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#323970;
+        &__logo {
+            width:rem(94);
+            height:rem(64);
+            background-position:rem(-580) rem(-280);
+            @include center(93,141-68);
+        }
+        &__name {
+            width:rem(285);
+            height:rem(40);
+            background-position:rem(-690) rem(-280);
+            @include center(195,149-68);
+        }
+        &__card {
+            width:rem(625);
+            height:rem(494);
+            background:url('../images/page1-result-card.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(63,216-68);
+        }
+        &__mom {
+            width:rem(536);
+            height:rem(660);
+            background:url('../images/page1-result-mom.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(100,549-68);
+        }
+        &__leftbtn {
+            width:rem(266);
+            height:rem(94);
+            background-position:rem(-580) rem(-365);
+            @include center(88,1115-68);
+        }
+        &__rightbtn {
+            width:rem(242);
+            height:rem(94);
+            background-position:rem(-400) rem(-500);
+            @include center(418,1115-68);
         }
     }
 }
@@ -840,7 +886,7 @@ body {
             height:rem(555);
             background:url('../images/page2-third-wechat.png') no-repeat center top;
             background-size:100% 100%;
-            @include center(85,338);
+            @include center(85,338-68);
             &__logo {
                 width:rem(120);
                 height:rem(72);
@@ -851,14 +897,34 @@ body {
                 width:rem(268);
                 height:rem(115);
                 background-position:0 rem(-230);
-                @include center(94,1097);
+                @include center(94,1097-68);
             }
             &__rightbtn {
                 width:rem(268);
                 height:rem(115);
                 background-position:rem(-300) rem(-230);
-                @include center(424,1097);
+                @include center(424,1097-68);
             }
+        }
+    }
+    &__result {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#323970;
+        &__card {
+            width:rem(625);
+            height:rem(494);
+            background:url('../images/page2-result-card.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(63,216-68);
+        }
+        &__me {
+            width:rem(528);
+            height:rem(620);
+            background:url('../images/page2-result-me.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(110,535-68);
         }
     }
 }
@@ -1076,6 +1142,26 @@ body {
             background-size:100%;
             @include leftTop(0,0);
             transform-origin:68.26% 13.26%;
+        }
+    }
+    &__result {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#323970;
+        &__card {
+            width:rem(625);
+            height:rem(494);
+            background:url('../images/page3-result-card.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(63,216-68);
+        }
+        &__man {
+            width:rem(592);
+            height:rem(737);
+            background:url('../images/page3-result-man.png') no-repeat center top;
+            background-size:100% 100%;
+            @include center(105,547-68);
         }
     }
 }
@@ -2653,6 +2739,9 @@ body {
 }
 .duration1-0 {
     animation-duration:1.0s;
+}
+.duration1-5 {
+    animation-duration:1.5s;
 }
 .duration2-0 {
     animation-duration:2.0s;
