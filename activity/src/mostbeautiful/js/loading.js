@@ -33,6 +33,8 @@ var imgArray = [
 	"images/page1-second-text.png",
 	"images/page1-text.png",
 	"images/page1-third-phone.png",
+	"images/page1-wuyu-bottom.png",
+	"images/page1-wuyu-girl.png",
 
 	"images/page2-finger.png",
 	"images/page2-first.png",
@@ -41,12 +43,17 @@ var imgArray = [
 	"images/page2-phone.png",
 	"images/page2-third-wechat.png",
 	"images/page2-wechat-title.png",
+	"images/page2-five-content.png",
+	"images/page2-five-top.png",
+	"images/page2-fourth-keyboard.png",
+	"images/page2-fourth-top.png",
+	"images/page2-ticket.png",
 
 	"images/page3-bg.png",
 	"images/page3-desk.png",
 	"images/page3-face-01.png",
 	"images/page3-face-02.png",
-	"images/page3-fourth-bg.png",
+	// "images/page3-fourth-bg.png",
 	"images/page3-light.png",
 	"images/page3-phone.png",
 	"images/page3-screen.png",
@@ -62,7 +69,10 @@ var imgArray = [
 	"images/page2-result-card.png",
 	"images/page2-result-me.png",
 	"images/page3-result-card.png",
-	"images/page3-result-man.png"
+	"images/page3-result-man.png",
+	"images/page1-result-save.png",
+	"images/page2-result-save.png",
+	"images/page3-result-save.png"
 ];
 var now = 0;
 // jQuery.ajax({

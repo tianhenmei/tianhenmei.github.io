@@ -16,7 +16,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="stylesheet" href="css/swiper.min.css"/>
-		<link rel="stylesheet" href="css/m_index.css?v=2223$version$">
+        <link rel="stylesheet" href="css/m_index.css?v=2224$version$">
 		<!---上线之后加-->
 		<title>工作中的你最美</title>
 		<script>
@@ -81,9 +81,11 @@
                 loadingComplete = function(){
                     var loading = document.getElementById('loading')
                     var appElement = document.getElementById('app');
+                    var loadingMusic = document.getElementById('loadingMusic')
                     appElement.className = appElement.className.replace(' hide','');
 
                     loading.className += ' opacityChange-out duration0-3'
+                    loadingMusic.pause();
                     setTimeout(() => {
                         var page0Center = document.getElementById('page0__center')
                         document.getElementById('loading').className += ' hide';
@@ -125,7 +127,7 @@
             <div class="words words-1-7 opacityChange-half duration0-4 delay2-3"></div>
         </div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=2223$version$"></script> 
+    <script type="text/javascript" src="js/loading.js?v=2224$version$"></script> 
     <div class="wrapper pages" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
             <div class="page0__center hide" id="page0__center">
@@ -169,6 +171,7 @@
                 </div>
                 <div class="page0__video" :class="page0.buildingAnimate == 'hide' ? 'opacityChange' : 'rightIn'" v-show="page0.videoStatus">
                     <div class="page0__video__frame"></div>
+                    <div class="icon2 page0__video__name"></div>
                     <div class="page0__video__content">
                         <swiper :options="swiperOption" ref="mySwiper">
                             <!-- slides -->
@@ -188,6 +191,11 @@
                         <div class="page0__video__btn" @click.stop.prevent="startPlayVideo"></div>
                         <div class="icon page0__video__prev" @click.stop.prevent="swiperToPrev"></div>
                         <div class="icon page0__video__next" @click.stop.prevent="swiperToNext"></div>
+                    </div>
+                    <div class="page0__video__title">
+                        <div class="icon2 video__title video__title--01" :class="activeVideoIndex == 0 ? 'opacityChange' : 'opacityChange-out'"></div>
+                        <div class="icon2 video__title video__title--02" :class="activeVideoIndex == 1 ? 'opacityChange' : 'opacityChange-out'"></div>
+                        <div class="icon2 video__title video__title--03" :class="activeVideoIndex == 2 ? 'opacityChange' : 'opacityChange-out'"></div>
                     </div>
                 </div>
             </div>
@@ -213,10 +221,25 @@
                     <div class="page1__five__bubbleParent bubblePopupMove delay1-0">
                         <div class="icon page1__five__bubble bubblePopup delay1-0"></div>
                     </div>
-                    <div class="icon page1__five__sigh littleBottomIn duration1-0 delay4-5"></div>
+                    <!-- <div class="icon page1__five__sigh littleBottomIn duration1-0 delay4-5"></div> -->
+                    <div class="page1__five__wuyuParent page1WuyuRotateOutAni delay10-5">
+                        <div class="page1__five__wuyu page1WuyuAni delay4-5">
+                            <div class="wuyu__bg page1WuyuZoomAni delay4-5">
+                                <div class="wuyu__bglayer"></div>
+                                <div class="wuyu__girl"></div>
+                            </div>
+                            <div class="icon2 wuyu__line widthChange duration1-0 delay5-0"></div>
+                            <div class="wuyu__text rightOutIn delay5-0">
+                                <div class="icon2 wuyu__text01"></div>
+                                <div class="icon2 wuyu__text02 littleZoomText delay8-0"></div>
+                                <div class="icon2 wuyu__text03"></div>
+                                <div class="icon2 wuyu__text04"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="page1__dark" v-show="fivePhoneStatus">
-                    <div class="page1__dark__bg opacityChange1 delay8-0"></div>
+                <div class="page1__dark" v-show="page1WuyuNextStatus">
+                    <div class="page1__dark__bg opacityChange1 delay6-0"></div>
                     <!-- <div class="page1__dark__bg opacityChange1 delay7-5"></div> -->
                     <!-- <div class="page1__dark__dialogLayer" :class="dialogStatus ? 'topIn-out' : ''">
                         <div class="icon page1__dark__dialog page1__dark__dialog--01 littleBottomIn delay8-0"></div>
@@ -246,6 +269,7 @@
                 <div class="page1__result__card"></div>
                 <div class="page1__result__mom"></div>
                 <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <img class="page1__result__save" src="images/page1-result-save.png" />
                 <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
             </div>
         </div>
@@ -255,28 +279,49 @@
                 <div class="page2__second__phone"></div>
                 <div class="page2__second__pageLayer">
                     <div class="page2__second__page page2PageMove delay1-0"></div>
+                    <div class="page2__second__pageLast opacityChange1 duration0-1 delay5-9"></div>
                     <div class="page2__second__title"></div>
                 </div>
+                <div class="page2__second__big zoomIn delay8-0">
+                    <div class="big__ticket"></div>
+                    <div class="icon2 page2__second__seat01 zoomIn origin-rb delay9-0"></div>
+                    <div class="icon2 page2__second__seat02 zoomIn origin-lb delay9-2"></div>
+                </div>
                 <div class="page2__second__fringe"></div>
-                <div class="page2__second__finger fingerMove delay1-0"></div>
-                <div class="page2__second__bubbleParent page2BubbleMoveAni delay3-0">
-                    <div class="icon page2__second__bubble page2BubbleAni delay3-0"></div>
+                <div class="icon page2__second__text page2__second__text--01 littleRightBottomInPage2Text1Ani delay4-0"></div>
+                <div class="icon page2__second__text page2__second__text--02 littleLeftBottomInPage2Text2Ani delay4-5"></div>
+                <div class="icon page2__second__text page2__second__text--03 littleBottomInPage2Text3Ani delay5-0"></div>
+                <div class="page2__second__fingerParent fingerMove delay1-0">
+                    <div class="page2__second__finger fingerToClickAni delay6-0"></div>
                 </div>
-                <div class="icon page2__second__text page2__second__text--01 littleRightBottomIn delay4-0"></div>
-                <div class="icon page2__second__text page2__second__text--02 littleLeftBottomIn delay4-5"></div>
-                <div class="icon page2__second__text page2__second__text--03 littleBottomIn delay5-0"></div>
+                <div class="page2__second__bubbleParent page2BubbleMoveAni delay10-0">
+                    <div class="icon page2__second__bubble page2BubbleAni delay10-0"></div>
+                </div>
             </div>
-            <div class="page2__third opacityChange delay6-0">
-                <div class="page2__third__textLayer topOutAni duration2-0 delay8-0">
-                    <div class="icon2 text__01 littleBottomIn delay6-5"></div>
-                    <div class="icon2 text__02 littleBottomIn delay6-8"></div>
+            <div class="page2__fourth page2FourthChangeAni delay12-5">
+                <div class="page2__fourth__top"></div>
+                <div class="page2__fourth__bottom"></div>
+                <div class="page2__fourth__fingerParent fourthFingerMove delay15-0">
+                    <div class="page2__fourth__finger fourthFingerToClickAni delay15-5"></div>
                 </div>
-                <div class="page2__third__wechat bottomInAni duration2-0 delay8-0">
+            </div>
+            <div class="page2__third page2ThirdOpacityAni delay12-0">
+                <div class="page2__third__textLayer">
+                    <div class="icon2 text__01 littleBottomIn delay12-5"></div>
+                    <div class="icon2 text__02 littleBottomIn delay12-8"></div>
+                </div>
+                <!-- <div class="page2__third__wechat bottomInAni duration2-0 delay8-0">
                     <div class="wechat"></div>
                     <div class="icon2 wechat__logo rightIn duration1-0 delay10-5"></div>
                     <div class="icon2 wechat__leftbtn littleBottomIn duration1-0 delay10-5" @click.stop.prevent="showPage2Result"></div>
                     <div class="icon2 wechat__rightbtn littleBottomIn duration1-0 delay10-5"></div>
-                </div>
+                </div> -->
+            </div>
+            <div class="page2__five page2FiveAni delay16-0">
+                <div class="page2__five__top"></div>
+                <div class="page2__five__content"></div>
+                <div class="icon2 page2__five__leftbtn littleBottomIn duration1-0 delay17-5" @click.stop.prevent="showPage2Result"></div>
+                <div class="icon2 page2__five__rightbtn littleBottomIn duration1-0 delay17-5"></div>
             </div>
             <div class="page2__result opacityChange delay0-5" v-show="page2ResultStatus">
                 <div class="icon2 page1__result__logo"></div>
@@ -284,6 +329,7 @@
                 <div class="page2__result__card"></div>
                 <div class="page2__result__me"></div>
                 <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <img class="page1__result__save" src="images/page2-result-save.png" />
                 <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
             </div>
         </div>
@@ -337,9 +383,16 @@
                 <div class="page3__result__card"></div>
                 <div class="page3__result__man"></div>
                 <div class="icon2 page1__result__leftbtn littleZoom duration0-5 delay1-0"></div>
+                <img class="page1__result__save" src="images/page3-result-save.png" />
                 <div class="icon2 page1__result__rightbtn littleZoom duration0-5 delay1-2" @click.stop.prevent="playNextVideo"></div>
             </div>
         </div>
+    </div>
+    <div class="audio-layer">
+        <audio style="opacity:0;" id="loadingMusic" preload="auto" src="images/loading.mp3"></audio>
+        <audio style="opacity:0;" id="video1" preload="auto" src="images/video1-total.mp3"></audio>
+        <audio style="opacity:0;" id="video2" preload="auto" src="images/video2-total.mp3"></audio>
+        <audio style="opacity:0;" id="video3" preload="auto" src="images/video3-total.mp3"></audio>
     </div>
     <div class="music-box">
         <div class="music-icon open">
@@ -350,8 +403,39 @@
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/swiper.min.js"></script>
     <script src="js/vue-awesome-swiper.js"></script>
-    <script src="js/m_index.js?v=2223$version$"></script>
+    <script src="js/m_index.js?v=2224$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script>
+        var loadingMusic = document.getElementById('loadingMusic')
+        var tnow = new Date().getTime();
+        var playLoadingStatus = false
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            var temp = new Date().getTime() - tnow;
+            if(loadingMusic.paused){
+                setTimeout(function(){
+                    if (window.WeixinJSBridge) {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            loadingMusic.load();
+                            loadingMusic.play();
+                        });
+                    } else {
+                        loadingMusic.load();
+                        loadingMusic.play();
+                    }
+                }, temp > 2000 ? 0 : 2000-temp)
+            }
+        }, false);
+        // setTimeout(function(){
+        //     if (!playLoadingStatus) {
+        //         loadingMusic.play();
+        //         if (loadingMusic.paused) {
+        //             playLoadingStatus = false
+        //         } else {
+        //             playLoadingStatus = true
+        //         }
+        //     }
+        // }, 2000)
+    </script>
     <script type="text/javascript">
         if(isWeiXin()){
             ShareWeChat();

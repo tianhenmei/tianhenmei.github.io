@@ -460,6 +460,12 @@ body {
             background-size:100% 100%;
             @include centerb(11,1150-1359);
         }
+        &__name {
+            width:rem(382);
+            height:rem(55);
+            background-position:rem(-400) rem(-150);
+            @include center(185,221-128);
+        }
         &__content {
             width:rem(422);
             height:rem(611);
@@ -510,6 +516,26 @@ body {
             height:rem(72);
             @include rightTop(-33-82,271);
             background-position:0 rem(-140);
+        }
+        &__title {
+            width:rem(386);
+            height:rem(40);
+            @include centerb(191,328-50+140);
+            z-index: 2;
+        }
+        .video__title {
+            width:rem(386);
+            height:rem(40);
+            @include leftTop(0,0);
+            &--01 {
+                background-position:rem(-400) 0;
+            }
+            &--02 {
+                background-position:rem(-400) rem(-50);
+            }
+            &--03 {
+                background-position:rem(-400) rem(-100);
+            }
         }
     }
 }
@@ -624,6 +650,74 @@ body {
             height:rem(85);
             background-position:0 rem(-240);
             @include centerb(144,137);
+        }
+        &__wuyuParent {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
+            z-index:2;
+        }
+        &__wuyu {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
+        }
+        .wuyu {
+            &__bg {
+                width:100%;
+                height:100%;
+                background:#83b7c2;
+                @include leftTop(0,0);
+            }
+            &__bglayer {
+                width:100%;
+                height:rem(237);
+                background: url('../images/page1-wuyu-bottom.png') no-repeat center bottom;
+                background-size:100% 100%;
+                @include leftBottom(0,0);
+            }
+            &__girl {
+                width:rem(750);
+                height:rem(1334);
+                background:url('../images/page1-wuyu-girl.png') no-repeat center bottom;
+                background-size:100%;
+                @include centerb(0,0);
+            }
+            &__line {
+                width:rem(66);
+                height:rem(140);
+                background-position:rem(-950) rem(-675);
+                @include centerb(403,961-140);
+            }
+            &__text {
+                width:100%;
+                height:100%;
+                @include leftTop(0,0);
+            }
+            &__text01 {
+                width:rem(260);
+                height:rem(72);
+                background-position:rem(-400) rem(-675);
+                @include centerb(62,1055-72);
+            }
+            &__text02 {
+                width:rem(237);
+                height:rem(93);
+                background-position:rem(-690) rem(-675);
+                @include centerb(123,961-93);
+            }
+            &__text03 {
+                width:rem(436);
+                height:rem(51);
+                background-position:rem(-400) rem(-830);
+                @include centerb(168,664-51);
+            }
+            &__text04 {
+                width:rem(445);
+                height:rem(51);
+                background-position:rem(-400) rem(-900);
+                @include centerb(292,578-51);
+            }
         }
     }
     // page1__dark
@@ -756,13 +850,21 @@ body {
             width:rem(266);
             height:rem(94);
             background-position:rem(-580) rem(-365);
-            @include center(88,1115-68);
+            // @include center(88,1115-68);
+            @include centerb(88,120);
+        }
+        &__save {
+            width:100%;
+            height:100%;
+            opacity:0;
+            @include leftTop(0,0);
         }
         &__rightbtn {
             width:rem(242);
             height:rem(94);
             background-position:rem(-400) rem(-500);
-            @include center(418,1115-68);
+            // @include center(418,1115-68);
+            @include centerb(418,120);
         }
     }
 }
@@ -801,6 +903,7 @@ body {
             border-radius:rem(40) rem(40) rem(30) rem(30);
             overflow:hidden;
             @include leftBottom(122,82);
+            transform: translate3d(0,0,0);
         }
         &__title {
             width:rem(509);
@@ -817,18 +920,60 @@ body {
             background-size:100%;
             @include leftTop(0,509 / 750 * 107+10);
         }
+        &__pageLast {
+            width:rem(509);
+            height:rem(509 / 750 * 1706);
+            background:url('../images/page2-page.png') no-repeat center top;
+            background-size:100%;
+            @include leftTop(0,509 / 750 * 107+10);
+            transform:translate3d(0,rem(-75.4 * 3),0);
+        }
+        &__fingerParent {
+            width:rem(548);
+            height:rem(883);
+            @include rightBottom(-303,-553);
+            z-index:2;
+        }
         &__finger {
-            width:rem(269);
-            height:rem(355);
+            width:rem(548);
+            height:rem(883);
             background:url('../images/page2-finger.png') no-repeat right bottom;
             background-size:100%;
-            @include rightBottom(0,0);
             transform-origin: 100% 100%;
+        }
+        &__big {
+            width:rem(514);
+            height:rem(1018);
+            background-color:#1b1b1b;
+            border-radius:rem(40) rem(40) rem(30) rem(30);
+            overflow:hidden;
+            @include leftBottom(120,80);
+            z-index:1;
+        }
+        .big__ticket {
+            width:100%;
+            height: rem(514);
+            background:url('../images/page2-ticket.png') no-repeat center top;
+            background-size: 100%;
+            @include leftTop(0,255);
+        }
+        &__seat01 {
+            width:rem(168);
+            height:rem(68);
+            background-position: rem(-820) 0;
+            @include leftTop(8,248+22);
+        }
+        &__seat02 {
+            width:rem(171);
+            height:rem(66);
+            background-position: rem(-820) rem(-100);
+            @include leftTop(319,191);
         }
         &__bubbleParent {
             width:rem(380);
             height:rem(162);
             @include leftBottom(312,936);
+            z-index:2;
         }
         &__bubble {
             width:rem(380);
@@ -857,6 +1002,7 @@ body {
         height:100%;
         @include leftTop(0,0);
         background-color:#1b1b1b;
+        z-index:2;
         &__textLayer {
             width:100%;
             height:100%;
@@ -907,11 +1053,81 @@ body {
             }
         }
     }
+    &__fourth {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#fff;
+        z-index:2;
+        &__top {
+            width:100%;
+            height:100%;
+            background:url('../images/page2-fourth-top.png') no-repeat center top;
+            background-size:100%;
+            @include leftTop(0,0);
+        }
+        &__bottom {
+            width:100%;
+            height:100%;
+            background:url('../images/page2-fourth-keyboard.png') no-repeat center bottom;
+            background-size:100%;
+            @include leftBottom(0,0);
+        }
+        &__fingerParent {
+            width:100%;
+            height:100%;
+            @include rightTop(0,0);
+        }
+        &__finger {
+            width:rem(548);
+            height:rem(883);
+            background:url('../images/page2-finger.png') no-repeat right bottom;
+            background-size:100%;
+            transform-origin: 100% 100%;
+            @include rightBottom(-408,-883);
+        }
+    }
+    &__five {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#fff;
+        z-index:2;
+        &__top {
+            width:100%;
+            height:100%;
+            background:url('../images/page2-five-top.png') no-repeat center top;
+            background-size:100%;
+            @include leftTop(0,0);
+        }
+        &__content {
+            width:100%;
+            height:100%;
+            background:url('../images/page2-five-content.png') no-repeat center top;
+            background-size:100%;
+            @include leftTop(0,0);
+        }
+        &__leftbtn {
+            width:rem(268);
+            height:rem(115);
+            background-position:0 rem(-230);
+            // @include center(94,1097-68);
+            @include centerb(94,126);
+        }
+        &__rightbtn {
+            width:rem(268);
+            height:rem(115);
+            background-position:rem(-300) rem(-230);
+            // @include center(424,1097-68);
+            @include centerb(424,126);
+        }
+    }
     &__result {
         width:100%;
         height:100%;
         @include leftTop(0,0);
         background-color:#323970;
+        z-index:5;
         &__card {
             width:rem(625);
             height:rem(494);
@@ -1135,14 +1351,14 @@ body {
         width:100%;
         height:100%;
         @include leftBottom(0,0);
-        &__bg {
-            width:100%;
-            height:100%;
-            background:#475978 url('../images/page3-fourth-bg.png') no-repeat center bottom;
-            background-size:100%;
-            @include leftTop(0,0);
-            transform-origin:68.26% 13.26%;
-        }
+        // &__bg {
+        //     width:100%;
+        //     height:100%;
+        //     background:#475978 url('../images/page3-fourth-bg.png') no-repeat center bottom;
+        //     background-size:100%;
+        //     @include leftTop(0,0);
+        //     transform-origin:68.26% 13.26%;
+        // }
     }
     &__result {
         width:100%;
@@ -1239,6 +1455,23 @@ body {
         transform:translate3d(0,0,0) scale3d(1,1,1);
     }
 }
+.littleRightBottomInPage2Text1Ani {
+    animation:littleRightBottomInPage2Text1Ani 3s both ease-in;
+}
+@keyframes littleRightBottomInPage2Text1Ani {
+    0% {
+        transform:translate3d(rem(236),rem(336),0) scale3d(0,0,0);
+    }
+    16.6%, 100% {
+        transform:translate3d(0,0,0) scale3d(1,1,1);
+    }
+    0%, 83.3% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
+    }
+}
 
 .littleLeftBottomIn {
     animation:littleLeftBottomIn 0.5s both ease-in;
@@ -1249,6 +1482,23 @@ body {
     }
     100% {
         transform:translate3d(0,0,0) scale3d(1,1,1);
+    }
+}
+.littleLeftBottomInPage2Text2Ani {
+    animation:littleLeftBottomInPage2Text2Ani 3s both ease-in;
+}
+@keyframes littleLeftBottomInPage2Text2Ani {
+    0% {
+        transform:translate3d(rem(-169),rem(317),0) scale3d(0,0,0);
+    }
+    16.6%, 100% {
+        transform:translate3d(0,0,0) scale3d(1,1,1);
+    }
+    0%, 83.3% {
+        opacity:1;
+    }
+    100% {
+        opacity:0;
     }
 }
 .littleTopInfinite {
@@ -1553,6 +1803,22 @@ body {
         transform: translateX(0);
     }
 }
+.rightOutIn {
+    animation:rightOutIn 6s both ease-in-out;
+}
+@keyframes rightOutIn {
+    0% {
+        opacity:0;
+        transform: translateX(100%);
+    }
+    1% {
+        opacity:1;
+    }
+    100% {
+        opacity:1;
+        transform: translateX(0);
+    }
+}
 .rightIn-out {
     animation:rightIn-out 0.5s both ease-in-out;
 }
@@ -1751,6 +2017,24 @@ body {
         transform: translateY(0);
     }
 }
+.littleBottomInPage2Text3Ani {
+    animation:littleBottomInPage2Text3Ani 3s both ease-in-out;
+}
+@keyframes littleBottomInPage2Text3Ani {
+    0% {
+        opacity:0;
+        transform: translateY(100px);
+    }
+    16.6%, 100% {
+        transform: translateY(0);
+    }
+    16.6%, 83.3% {
+        opacity: 1;
+    }
+    100% {
+        opacity:0;
+    }
+}
 .littleTopIn {
     animation:littleTopIn 0.5s both ease-in-out;
 }
@@ -1886,6 +2170,7 @@ body {
     }
 }
 .widthChange {
+    transform: scale3d(0,0,0);
     animation:widthChange 0.5s both linear;
 }
 @keyframes widthChange {
@@ -2142,6 +2427,17 @@ body {
     }
     50% {
         transform: scale3d(1.1,1.1,1.1);
+    }
+}
+.littleZoomText {
+    animation:littleZoomText 2s both ease-in-out;
+}
+@keyframes littleZoomText {
+    0%, 30%, 60%, 90%, 100% {
+        transform: scale3d(1,1,1);
+    }
+    15%, 75% {
+        transform: scale3d(1.3,1.3,1.3);
     }
 }
 .movePageULast {
@@ -2418,8 +2714,47 @@ body {
         transform:translate3d(0,0,0);
     }
 }
+.fingerToClickAni {
+    animation: fingerToClickAni 3s both linear;
+}
+@keyframes fingerToClickAni {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    33.3%, 39.9%{
+        transform: translate3d(rem(-168), rem(-430), 0);
+    }
+    46.6%, 66.6% {
+        transform: translate3d(rem(-168), rem(-430), 0) rotateX(15deg);
+    }
+    80%, 100% {
+        transform:translate3d(0,rem(30),0);
+    }
+}
+.fourthFingerMove {
+    animation:fourthFingerMove 0.5s both linear;
+}
+@keyframes fourthFingerMove {
+    0% {
+        transform: translate3d(rem(-200),0,0);
+    }
+    100% {
+        transform: translate3d(0,-100%,0);
+    }
+}
+.fourthFingerToClickAni {
+    animation: fourthFingerToClickAni 0.5s both linear;
+}
+@keyframes fourthFingerToClickAni {
+    0% {
+        transform:rotateX(0);
+    }
+    100% {
+        transform:rotateX(15deg);
+    }
+}
 .page2PageMove {
-    animation:page2PageMove 5s both linear;
+    animation:page2PageMove 5s forwards linear;
 }
 @keyframes page2PageMove {
     0% {
@@ -2440,7 +2775,7 @@ body {
 }
 @keyframes page2BubbleMoveAni {
     0% {
-        transform:translate3d(rem(-100),rem(420),0);
+        transform:translate3d(rem(-100),rem(220),0);
     }
     100% {
         transform:translate3d(0,0,0)
@@ -2462,10 +2797,10 @@ body {
 }
 @keyframes topOutAni {
     0% {
-        transform:translate3d(0,0,0);
+        transform:translate3d(0,100%,0);
     }
     100% {
-        transform: translate3d(0,-100%,0);
+        transform: translate3d(0,0,0);
     }
 }
 .bottomInAni {
@@ -2536,6 +2871,105 @@ body {
     }
     100% {
         transform:translate3d(0,0,0);
+    }
+}
+.page2ThirdOpacityAni {
+    animation: page2ThirdOpacityAni 2.5s both linear;
+}
+@keyframes page2ThirdOpacityAni {
+    0%, 100%{
+        opacity:0;
+    }
+    20%, 80%{
+        opacity:1;
+    }
+}
+.page2FourthChangeAni {
+    animation: page2FourthChangeAni 4.5s both linear;
+}
+@keyframes page2FourthChangeAni {
+    0% {
+        opacity:0;
+    }
+    11.1%, 100%{
+        opacity:1;
+    }
+    0%, 89% {
+        transform:translate3d(0,0,0);
+    }
+    88%, 100% {
+        z-index:3;
+    }
+    100% {
+        transform:translate3d(0,100%,0);
+    }
+}
+.page2FiveAni {
+    animation: page2FiveAni 1s both linear;
+}
+@keyframes page2FiveAni {
+    0% {
+        opacity:0;
+        z-index:1;
+    }
+    50%, 100% {
+        opacity:1;
+        z-index:3;
+    }
+}
+// .page1WuyuAni {
+//     animation:page1WuyuAni 7s both linear;
+// }
+// @keyframes page1WuyuAni {
+//     0% {
+//         opacity:0;
+//         transform:translate3d(rem(385), rem(-792), 0);
+//     }
+//     7.14%, 92.85%{
+//         opacity:1;
+//         transform:translate3d(0,0,0);
+//     }
+//     100% {
+//         opacity:1;
+//         transform:translate3d(0,0,0) scale3d(0,0,0) rotateZ(360deg);
+//     }
+// }
+.page1WuyuAni {
+    animation:page1WuyuAni 0.5s both linear;
+}
+@keyframes page1WuyuAni {
+    0% {
+        opacity:0;
+        transform:translate3d(rem(385), rem(-792), 0);
+    }
+    100%{
+        opacity:1;
+        transform:translate3d(0,0,0);
+    }
+}
+.page1WuyuRotateOutAni {
+    animation: page1WuyuRotateOutAni 0.5s both linear;
+}
+@keyframes page1WuyuRotateOutAni {
+    0% {
+        opacity:1;
+        // transform:translate3d(0,0,0);
+    }
+    100% {
+        opacity:0;
+        // transform:translate3d(0,0,0) scale3d(0,0,0);
+    }
+}
+.page1WuyuZoomAni {
+    transform-origin: 0 100%;
+    animation:page1WuyuZoomAni 0.5s both linear;
+}
+@keyframes page1WuyuZoomAni {
+    0% {
+        transform:scale3d(0.143, 0.143, 0.143);
+    }
+    100% {
+        transform:scale3d(1,1,1);
     }
 }
 
@@ -2680,11 +3114,23 @@ body {
 .delay5-7 {
     animation-delay:5.7s;
 }
+.delay5-8 {
+    animation-delay:5.8s;
+}
+.delay5-9 {
+    animation-delay:5.9s;
+}
 .delay6-0 {
     animation-delay:6.0s;
 }
+.delay6-1 {
+    animation-delay:6.1s;
+}
 .delay6-2 {
     animation-delay:6.2s;
+}
+.delay6-4 {
+    animation-delay:6.4s;
 }
 .delay6-5 {
     animation-delay:6.5s;
@@ -2707,8 +3153,17 @@ body {
 .delay8-5 {
     animation-delay:8.5s;
 }
+.delay9-0 {
+    animation-delay:9.0s;
+}
+.delay9-2 {
+    animation-delay:9.2s;
+}
 .delay10-0 {
     animation-delay:10.0s;
+}
+.delay10-2 {
+    animation-delay:10.2s;
 }
 .delay10-5 {
     animation-delay:10.5s;
@@ -2724,6 +3179,39 @@ body {
 }
 .delay12-5 {
     animation-delay:12.5s;
+}
+.delay12-8 {
+    animation-delay:12.8s;
+}
+.delay13-5 {
+    animation-delay:13.5s;
+}
+.delay13-8 {
+    animation-delay:13.8s;
+}
+.delay14-0 {
+    animation-delay:14.0s;
+}
+.delay14-5 {
+    animation-delay:14.5s;
+}
+.delay15-0 {
+    animation-delay:15.0s;
+}
+.delay15-5 {
+    animation-delay:15.5s;
+}
+.delay16-0 {
+    animation-delay:16.0s;
+}
+.delay16-5 {
+    animation-delay:16.5s;
+}
+.delay17-0 {
+    animation-delay:17.0s;
+}
+.delay17-5 {
+    animation-delay:17.5s;
 }
 .delay0-0 {
     animation-delay:0s;
@@ -2749,11 +3237,20 @@ body {
 .duration3-0 {
     animation-duration:3.0s;
 }
+.duration5-0 {
+    animation-duration:5.0s;
+}
 .origin-lt {
     transform-origin:0 0;
 }
 .origin-rt {
     transform-origin:100% 0;
+}
+.origin-rb {
+    transform-origin:100% 100%;
+}
+.origin-lb {
+    transform-origin:0 100%;
 }
 .function-linear {
     animation-timing-function: linear;

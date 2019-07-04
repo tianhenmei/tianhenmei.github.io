@@ -39,6 +39,13 @@ var initialNow = 0,
 //     document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
 // }
 
+var swiper = null
+var audioList = [{
+
+}, {
+    canplayStatus: false,
+    playing: false
+}]
 app = new Vue({
     el:"#app",
     data:{
@@ -56,6 +63,7 @@ app = new Vue({
         animation: null,
         animationActiveIndex: 0,
         showStatus:true,
+        activeVideoIndex: 0,
         swiperOption: {
             // autoplay: {
             //     delay: 3000,
@@ -66,12 +74,24 @@ app = new Vue({
             freeMode: false,
             speed:500,
             loop:true,
-            initialSlide:0
+            initialSlide:0,
+            on: {
+                slideChangeTransitionStart: function() {
+                    if (!swiper) {
+                        swiper = this
+                    }
+                    var appData = app || document.getElementById('app').__vue__
+                    if (appData) {
+                        appData.videoChangeStart((swiper.activeIndex - 1 + 3) % 3)
+                    }
+                }
+            }
         },
         secondPhoneStatus: true,
         thirdPhoneStatus: false,
         fourthPhoneStatus: false,
         fivePhoneStatus: false,
+        page1WuyuNextStatus: false,
         dialogStatus: false,
         darkTextStatus: false,
         darkExistStatus: false,
@@ -126,12 +146,12 @@ app = new Vue({
         }
     },
     created: function(){
-        var script = document.createElement('script')
-        script.src = '//cdn.jsdelivr.net/npm/vconsole'
-        script.onload = function(){
-            new VConsole()
-        }
-        document.body.appendChild(script)
+        // var script = document.createElement('script')
+        // script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        // script.onload = function(){
+        //     new VConsole()
+        // }
+        // document.body.appendChild(script)
     },
     mounted:function(){
         pageStatus = true;
@@ -247,20 +267,39 @@ app = new Vue({
             this.animationActiveIndex = index
         },
         swiperToPrev:function(){
-            this.swiper.slidePrev()
+            swiper.slidePrev()
         },
         swiperToNext:function(){
-            this.swiper.slideNext()
+            swiper.slideNext()
         },
         startPlayVideo:function() {
+            var self = this
             var index = (this.swiper.activeIndex - 1 + 3) % 3 + 1
-            this.activePage = index
             if (index === 1) {
-                this.playFirst()
+                self.playVideo(document.getElementById('video1'), index, self.playFirst);
             } else if(index === 2) {
-                this.playSecond();
+                self.playVideo(document.getElementById('video2'), index, self.playSecond);
             } else if(index === 3) {
-                this.playThird();
+                self.playVideo(document.getElementById('video3'), index, self.playThird);
+            }
+        },
+        playVideo:function(audio, index, callback){
+            var self = this;
+            console.log('audio.readyState: ', audio.readyState)
+            audio.currentTime = 0;
+            audio.volume = 1;
+            audio.load()
+            if (audio.readyState === 4) {
+                console.log(audio.paused)
+                self.activePage = index
+                callback();
+            } else {
+                audio.play()
+                audio.oncanplaythrough = function(){
+                    console.log('oncanplaythrough audio.readyState: ', audio.readyState)
+                    self.activePage = index
+                    callback();
+                }
             }
         },
         playNextVideo: function(){
@@ -285,7 +324,14 @@ app = new Vue({
                     setTimeout(function(){
                         self.fourthPhoneStatus = false
                         self.fivePhoneStatus = true
-                        self.showDialog()
+                        setTimeout(function(){
+                            self.page1WuyuNextStatus = true
+                            // setTimeout(function(){
+                            //     self.fivePhoneStatus = false
+                            //     self.page1WuyuNextStatus = false
+                            // }, 2000)
+                            self.showDialog()
+                        }, 3000)
                     }, 500)
                 }, 1000)
             }, 10000)
@@ -310,7 +356,8 @@ app = new Vue({
             }, 2500)
         },
         playSecond:function(){
-
+            var audio = document.getElementById('video2');
+            audio.play();
         },
         showPage2Result: function(){
             this.page2ResultStatus = true
@@ -345,6 +392,7 @@ app = new Vue({
             this.thirdPhoneStatus = false
             this.fourthPhoneStatus = false
             this.fivePhoneStatus = false
+            this.page1WuyuNextStatus = false
             this.dialogStatus = false
             this.darkTextStatus = false
             this.darkExistStatus = false
@@ -359,6 +407,9 @@ app = new Vue({
             this.page3Dialog1 = false
             this.page3Dialog2 = false
             this.page3Imagenary =false
+        },
+        videoChangeStart: function(index){
+            this.activeVideoIndex = index
         }
         // toggleMusicEvent:function(){
         //     var icon = this.$refs['music-icon'];
