@@ -316,6 +316,10 @@ body {
     background:url('../images/icon2.png') no-repeat 0 0;
     background-size:rem(1024) rem(1024);
 }
+.icon3 {
+    background:url('../images/icon3.png') no-repeat 0 0;
+    background-size:rem(512) rem(256);
+}
 .page0{
     &__center,
     &__main {
@@ -937,9 +941,23 @@ body {
         &__finger {
             width:rem(548);
             height:rem(883);
+        }
+        &__finger1 {
+            width:rem(548);
+            height:rem(883);
+        }
+        &__finger2 {
+            width:rem(548);
+            height:rem(883);
             background:url('../images/page2-finger.png') no-repeat right bottom;
             background-size:100%;
             transform-origin: 100% 100%;
+        }
+        &__bigParent {
+            width:rem(514);
+            height:rem(1018);
+            @include leftBottom(120,80);
+            z-index:1;
         }
         &__big {
             width:rem(514);
@@ -947,13 +965,18 @@ body {
             background-color:#1b1b1b;
             border-radius:rem(40) rem(40) rem(30) rem(30);
             overflow:hidden;
-            @include leftBottom(120,80);
-            z-index:1;
         }
         .big__ticket {
             width:100%;
             height: rem(514);
             background:url('../images/page2-ticket.png') no-repeat center top;
+            background-size: 100%;
+            @include leftTop(0,255);
+        }
+        .big__ticket2 {
+            width:100%;
+            height: rem(514);
+            background:url('../images/page2-ticket2.png') no-repeat center top;
             background-size: 100%;
             @include leftTop(0,255);
         }
@@ -994,6 +1017,28 @@ body {
             &--03 {
                 background-position:rem(-630) rem(-620);
                 @include leftBottom(244,204-38);
+            }
+        }
+        &__text2 {
+            width:rem(261);
+            height:rem(91);
+            &--01 {
+                background-position:0 0;
+                @include leftTop(8,205);
+                transform-origin:69.73% 94.5%;
+            }
+            &--02 {
+                width:rem(250);
+                height:rem(109);
+                background-position:0 rem(-100);
+                @include leftTop(247,154);
+                transform-origin:39.2% 92.66%;
+            }
+            &--03 {
+                width:rem(142);
+                background-position:rem(-280) 0;
+                @include leftTop(124,647);
+                transform-origin:69.01% 0;
             }
         }
     }
@@ -1120,6 +1165,7 @@ body {
             background-position:rem(-300) rem(-230);
             // @include center(424,1097-68);
             @include centerb(424,126);
+            display:block;
         }
     }
     &__result {
@@ -1469,7 +1515,7 @@ body {
         opacity:1;
     }
     100% {
-        opacity:0;
+        // opacity:0;
     }
 }
 
@@ -1498,7 +1544,7 @@ body {
         opacity:1;
     }
     100% {
-        opacity:0;
+        // opacity:0;
     }
 }
 .littleTopInfinite {
@@ -2032,7 +2078,7 @@ body {
         opacity: 1;
     }
     100% {
-        opacity:0;
+        // opacity:0;
     }
 }
 .littleTopIn {
@@ -2170,7 +2216,7 @@ body {
     }
 }
 .widthChange {
-    transform: scale3d(0,0,0);
+    transform: translate3d(0,0,0);
     animation:widthChange 0.5s both linear;
 }
 @keyframes widthChange {
@@ -2731,6 +2777,40 @@ body {
         transform:translate3d(0,rem(30),0);
     }
 }
+.fingerQuickClick {
+    animation: fingerQuickClick 1.2s both linear;
+}
+@keyframes fingerQuickClick {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    33.3% {
+        transform:translate3d(rem(-68), rem(-210), 0) rotateX(0deg);
+    }
+    50%, 66.7% {
+        transform:translate3d(rem(-68), rem(-210), 0) rotateX(15deg);
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.fingerQuickClick2 {
+    animation: fingerQuickClick2 1.2s both linear;
+}
+@keyframes fingerQuickClick2 {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    33.3% {
+        transform:translate3d(rem(-168), 0, 0) rotateX(0deg);
+    }
+    50%, 66.7% {
+        transform:translate3d(rem(-168), 0, 0) rotateX(15deg);
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
 .fourthFingerMove {
     animation:fourthFingerMove 0.5s both linear;
 }
@@ -2771,14 +2851,20 @@ body {
     }
 }
 .page2BubbleMoveAni {
-    animation:page2BubbleMoveAni 0.5s both linear;
+    animation:page2BubbleMoveAni 3.3s both linear;
 }
 @keyframes page2BubbleMoveAni {
     0% {
         transform:translate3d(rem(-100),rem(220),0);
     }
-    100% {
+    15.15%, 100% {
         transform:translate3d(0,0,0)
+    }
+    69.69% {
+        opacity: 1;
+    }
+    84.84%, 100% {
+        opacity: 0;
     }
 }
 .page2BubbleAni {
@@ -3174,8 +3260,17 @@ body {
 .delay11-5 {
     animation-delay:11.5s;
 }
+.delay11-7 {
+    animation-delay:11.7s;
+}
+.delay11-9 {
+    animation-delay:11.9s;
+}
 .delay12-0 {
     animation-delay:12.0s;
+}
+.delay12-3 {
+    animation-delay:12.3s;
 }
 .delay12-5 {
     animation-delay:12.5s;
@@ -3191,6 +3286,9 @@ body {
 }
 .delay14-0 {
     animation-delay:14.0s;
+}
+.delay14-3 {
+    animation-delay:14.3s;
 }
 .delay14-5 {
     animation-delay:14.5s;

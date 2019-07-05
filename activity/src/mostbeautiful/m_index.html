@@ -282,30 +282,41 @@
                     <div class="page2__second__pageLast opacityChange1 duration0-1 delay5-9"></div>
                     <div class="page2__second__title"></div>
                 </div>
-                <div class="page2__second__big zoomIn delay8-0">
-                    <div class="big__ticket"></div>
-                    <div class="icon2 page2__second__seat01 zoomIn origin-rb delay9-0"></div>
-                    <div class="icon2 page2__second__seat02 zoomIn origin-lb delay9-2"></div>
+                <div class="page2__second__bigParent zoomIn-out delay12-8">
+                    <div class="page2__second__big zoomIn delay8-0">
+                        <div class="big__ticket"></div>
+                        <div class="icon2 page2__second__seat01 zoomIn origin-rb delay9-0"></div>
+                        <div class="icon2 page2__second__seat02 zoomIn origin-lb delay9-2"></div>
+                    </div>
+                </div>
+                <div class="page2__second__bigParent">
+                    <div class="page2__second__big zoomIn delay14-3">
+                        <div class="big__ticket2"></div>
+                        <div class="icon3 page2__second__text2 page2__second__text2--01 littleRightBottomInPage2Text1Ani delay15-0"></div>
+                        <div class="icon3 page2__second__text2 page2__second__text2--02 littleLeftBottomInPage2Text2Ani delay15-5"></div>
+                        <div class="icon3 page2__second__text2 page2__second__text2--03 littleBottomInPage2Text3Ani delay16-0"></div>
+                    </div>
                 </div>
                 <div class="page2__second__fringe"></div>
-                <div class="icon page2__second__text page2__second__text--01 littleRightBottomInPage2Text1Ani delay4-0"></div>
-                <div class="icon page2__second__text page2__second__text--02 littleLeftBottomInPage2Text2Ani delay4-5"></div>
-                <div class="icon page2__second__text page2__second__text--03 littleBottomInPage2Text3Ani delay5-0"></div>
                 <div class="page2__second__fingerParent fingerMove delay1-0">
-                    <div class="page2__second__finger fingerToClickAni delay6-0"></div>
+                    <div class="page2__second__finger fingerToClickAni delay6-0">
+                        <div class="page2__second__finger1 fingerQuickClick delay11-5">
+                            <div class="page2__second__finger2 fingerQuickClick2 delay13-8"></div>
+                        </div>
+                    </div> 
                 </div>
                 <div class="page2__second__bubbleParent page2BubbleMoveAni delay10-0">
                     <div class="icon page2__second__bubble page2BubbleAni delay10-0"></div>
                 </div>
             </div>
-            <div class="page2__fourth page2FourthChangeAni delay12-5">
+            <div class="page2__fourth page2FourthChangeAni delay12-5" v-show="page2NextStatus">
                 <div class="page2__fourth__top"></div>
                 <div class="page2__fourth__bottom"></div>
                 <div class="page2__fourth__fingerParent fourthFingerMove delay15-0">
                     <div class="page2__fourth__finger fourthFingerToClickAni delay15-5"></div>
                 </div>
             </div>
-            <div class="page2__third page2ThirdOpacityAni delay12-0">
+            <div class="page2__third page2ThirdOpacityAni delay12-0" v-show="page2NextStatus">
                 <div class="page2__third__textLayer">
                     <div class="icon2 text__01 littleBottomIn delay12-5"></div>
                     <div class="icon2 text__02 littleBottomIn delay12-8"></div>
@@ -317,11 +328,11 @@
                     <div class="icon2 wechat__rightbtn littleBottomIn duration1-0 delay10-5"></div>
                 </div> -->
             </div>
-            <div class="page2__five page2FiveAni delay16-0">
+            <div class="page2__five page2FiveAni delay16-0" v-show="page2NextStatus">
                 <div class="page2__five__top"></div>
                 <div class="page2__five__content"></div>
                 <div class="icon2 page2__five__leftbtn littleBottomIn duration1-0 delay17-5" @click.stop.prevent="showPage2Result"></div>
-                <div class="icon2 page2__five__rightbtn littleBottomIn duration1-0 delay17-5"></div>
+                <a class="icon2 page2__five__rightbtn littleBottomIn duration1-0 delay17-5" href="https://a2.digoo.cn/2019/zt/22" target="_blank"></a>
             </div>
             <div class="page2__result opacityChange delay0-5" v-show="page2ResultStatus">
                 <div class="icon2 page1__result__logo"></div>

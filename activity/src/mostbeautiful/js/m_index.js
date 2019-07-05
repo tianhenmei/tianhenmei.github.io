@@ -98,6 +98,7 @@ app = new Vue({
         page1ResultStatus: false,
         toVideoListStatus: false,
 
+        page2NextStatus: false,
         page2ResultStatus: false,
 
         babyCryStatus: false,
@@ -175,9 +176,9 @@ app = new Vue({
                 $(".music-icon").removeClass('open').addClass('close');
             }
         });
-        if (this.activePage === 2) {
-            this.playSecond()
-        }
+        // if (this.activePage === 2) {
+        //     this.playSecond()
+        // }
     },
     methods:{
         getFitTop:function(def,ratio){
@@ -357,7 +358,11 @@ app = new Vue({
         },
         playSecond:function(){
             var audio = document.getElementById('video2');
+            var self = this;
             audio.play();
+            setTimeout(function(){
+                self.page2NextStatus = true;
+            }, 19000 - 12500)
         },
         showPage2Result: function(){
             this.page2ResultStatus = true

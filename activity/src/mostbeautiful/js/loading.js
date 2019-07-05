@@ -5,6 +5,7 @@ var imgArray = [
 	"images/loading-words.png",
 	"images/icon.png",
 	"images/icon2.png",
+	"images/icon3.png",
 	"images/page0-building-words.png",
 	"images/page0-building.png",
 	"images/page0-content.png",
@@ -48,6 +49,7 @@ var imgArray = [
 	"images/page2-fourth-keyboard.png",
 	"images/page2-fourth-top.png",
 	"images/page2-ticket.png",
+	"images/page2-ticket2.png",
 
 	"images/page3-bg.png",
 	"images/page3-desk.png",
