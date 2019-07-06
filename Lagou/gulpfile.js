@@ -258,7 +258,7 @@ gulp.task('server', function() {
     connect.server({
         host: ['0.0.0.0'],
         root: './',
-        port: params.dev.port || 8181,
+        port: params.dev.port || 8180,
         livereload: {
             port: params.dev.reload || 35730
         },
