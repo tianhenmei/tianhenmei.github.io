@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>2019拉勾白皮书</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingSuccess = function(){
+                var cover = document.getElementById('cover');
+                cover.className = cover.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
+    </script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<!-- <div class="music-box">
+    <div class="music-icon open">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+    </div>
+</div> -->
+<div class="loading" id="loading">
+    <div class="icon">
+        <img src="images/loding.gif" />
+    </div>
+    <div class="title clearfix">
+        <div class="l zoomIn700 delay0">l</div>
+        <div class="o zoomIn700 delay0-2">o</div>
+        <div class="a zoomIn700 delay0-4">a</div>
+        <div class="d zoomIn700 delay0-6">d</div>
+        <div class="t zoomIn700 delay0-8">.</div>
+        <div class="t zoomIn700 delay1-0">.</div>
+        <div class="t zoomIn700 delay1-2">.</div>
+    </div>
+</div>
+<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+<div id="app">
+    <div class="cover hide" id="cover">
+        <div class="bg"></div>
+        <div class="cover__starall opacityChange delay0-5"></div>
+        <div class="icon cover__star top65In delay1-5"></div>
+        <div class="icon cover__start topIn delay1-0"></div>
+        <div class="icon cover__linet topIn delay1-0"></div>
+        <div class="cover__lagou opacityChange delay0-5"></div>
+        <div class="icon cover__logo rightIn delay1-0"></div>
+        <div class="icon cover__line2 heightChange duration1-0 delay1-2"></div>
+        <div class="icon cover__line3 heightChange delay1-0"></div>
+        <div class="icon cover__line4 heightChange delay1-0"></div>
+        <div class="icon cover__title1 bottomIn80 delay1-2"></div>
+        <div class="icon cover__title2 bottomIn80 delay1-5"></div>
+        <div class="icon cover__title3 bottomIn80 delay1-8"></div>
+        <div class="icon cover__detail1 littleBottomIn delay2-1"></div>
+        <div class="icon cover__detail2 littleBottomIn delay2-4"></div>
+        <div class="icon cover__detail3 littleBottomIn delay2-7"></div>
+        <div class="icon cover__down opacityChange delay1-4"></div>
+    </div>
+    <div class="page page0 hide">
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="icon page0__line1 heightChange delay0-5"></div>
+        <div class="icon page0__line2 page0Line2MoveAni delay1-0"></div>
+        <div class="page0__title">
+            <div class="icon page0__title--01 littleBottomIn delay0-8"></div>
+            <div class="icon page0__title--02 littleBottomIn delay1-0"></div>
+            <div class="icon page0__title--03 littleBottomIn delay1-2"></div>
+            <div class="icon page0__title--04 littleBottomIn delay1-4"></div>
+        </div>
+        <div class="page0__watermark opacityChange delay0-5"></div>
+        <div class="page0__content">
+            <ul class="page0__list clearfix">
+                <li class="page0__one" v-for="(one, index) in page0.list">
+                    <div class="icon page0__one__bg opacityChange delay1-5"></div>
+                    <div class="icon page0__one__column heightChange delay2-0" :class="'page0__one__column--'+index"></div>
+                    <div class="icon page0__one__line opacityChange delay1-5"></div>
+                    <div class="icon page0__one__qtime opacityChange delay1-5" :class="'page0__one__qtime--'+index"></div>
+                    <div class="icon page0__one__num opacityChange duration0-2 delay2-5" :class="'page0__one__num--'+index+' delay'+getDelayTime(25, index, 2)"></div>
+                </li>
+            </ul>
+            <div class="page0__proline widthChange duration2-0 delay2-5"></div>
+        </div>
+        <div class="icon page0__info1 opacityChange delay1-5"></div>
+        <div class="icon page0__info2 opacityChange delay1-5"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
+    </div>
+    <div class="page page1 hide">
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="icon page0__line1 page1__line1 heightChange delay0-5"></div>
+        <div class="icon page0__line2 page1__line2 page1Line2MoveAni delay1-0"></div>
+        <div class="page1__title">
+            <div class="page1-icon page1__title--01 littleBottomIn delay0-8"></div>
+            <div class="page1-icon page1__title--02 littleBottomIn delay1-0"></div>
+            <div class="page1-icon page1__title--03 littleBottomIn delay1-2"></div>
+        </div>
+        <div class="page0__watermark page1__watermark opacityChange delay1-2"></div>
+        <div class="page1__frame opacityChange delay1-2"></div>
+        <div class="page1__content">
+            <div class="page1-icon page1__content__line heightChange delay4-0"></div>
+            <div class="page1-icon page1__content__time opacityChange delay4-5"></div>
+            <div class="page1-icon page1__content__larrow widthChange delay5-0"></div>
+            <div class="page1__content__rarrowParent">
+                <div class="page1-icon page1__content__rarrow page1RightArrowAni delay5-0"></div>
+            </div>
+            <ul class="page1__list clearfix">
+                <li class="page1__one" v-for="(one, index) in page1.list">
+                    <div class="page1-icon page1__one__num opacityChange duration0-16" :class="'page1__one__num--'+index+' delay'+getDelayTime(19, index, 2)"></div>
+                    <div class="page1-icon page1__one__time opacityChange delay1-7"></div>
+                    <div class="page1-icon page1__one__line heightChange duration0-2" :class="'page1__one__line--'+index+' delay'+getDelayTime(17, index, 2)"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="page1__proline widthChange duration2-0 delay1-7"></div>
+        <div class="page1-icon page1__info opacityChange delay1-2"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
+    </div>
+    <div class="page page2 hide">
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="icon page0__line1 heightChange delay0-5"></div>
+        <div class="icon page0__line2 page0Line2MoveAni delay1-0"></div>
+        <div class="page2__title">
+            <div class="page1-icon page2__title--01 littleBottomIn delay0-8"></div>
+            <div class="page1-icon page2__title--02 littleBottomIn delay1-0"></div>
+            <div class="page1-icon page2__title--03 littleBottomIn delay1-2"></div>
+            <div class="page1-icon page2__title--04 littleBottomIn delay1-4"></div>
+        </div>
+        <div class="page0__watermark page3__watermark opacityChange delay1-2"></div>
+        <div class="page2__shadow opacityChange delay1-2"></div>
+        <div class="page2__content">
+            <div class="page2__circle rotate360 delay1-7">
+                <div class="page2__circle--01parent">
+                    <div class="page1-icon page2__circle--01 page2Circle1Ani delay3-0"></div>
+                </div>  
+                <div class="page1-icon page2__circle--02"></div>
+                <div class="page1-icon page2__circle--03"></div>
+                <div class="page1-icon page2__circle--04"></div>
+                <div class="page2__circle--05parent">
+                    <div class="page1-icon page2__circle--05 page2Circle5Ani delay4-0"></div>
+                </div>
+            </div>
+
+            <div class="page1-icon page2__data--01 opacityChange delay1-9"></div>
+            <div class="page1-icon page2__data--02 opacityChange delay2-1"></div>
+            <div class="page1-icon page2__data--03 opacityChange delay2-3"></div>
+            <div class="page1-icon page2__data--04 opacityChange delay2-5"></div>
+            <div class="page1-icon page2__data--05 opacityChange delay2-7"></div>
+
+            <div class="page2__line--01parent page2Line1ParentAni delay1-7">
+                <div class="page1-icon page2__line--01 page2Line1Ani delay1-7"></div>
+            </div>
+            <div class="page2__line--02parent page2Line2ParentAni duration0-2 delay1-9">
+                <div class="page1-icon page2__line--02 page2Line2Ani duration0-2 delay1-9"></div>
+            </div>
+            <div class="page2__line--03parent page2Line3ParentAni duration0-2 delay2-1">
+                <div class="page1-icon page2__line--03 page2Line3Ani duration0-2 delay2-1"></div>
+            </div>
+            <div class="page2__line--04parent">
+                <div class="page1-icon page2__line--04 page2Line4Ani duration0-2 delay2-3"></div>
+            </div>
+            <div class="page2__line--05parent">
+                <div class="page1-icon page2__line--05 page2Line5Ani duration0-2 delay2-5"></div>
+            </div>
+        </div>
+        <div class="page1-icon page2__info opacityChange delay1-2"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
+    </div>
+    <div class="page page3 hide">
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="icon page0__line1 heightChange delay0-5"></div>
+        <div class="icon page0__line2 page3__line2 page3Line2MoveAni delay1-0"></div>
+        <div class="page3__title">
+            <div class="page3-icon page3__title--01 littleBottomIn delay0-8"></div>
+            <div class="page3-icon page3__title--02 littleBottomIn delay1-0"></div>
+            <div class="page3-icon page3__title--03 littleBottomIn delay1-2"></div>
+            <div class="page3-icon page3__title--04 littleBottomIn delay1-4">
+                <div class="page3-icon page3__title--num01 littleZoomIn delay2-0"></div>
+            </div>
+            <div class="page3-icon page3__title--05 littleBottomIn delay1-6">
+                <div class="page3-icon page3__title--num02 littleZoomIn delay2-5"></div>
+            </div>
+        </div>
+        <div class="page0__watermark page3__watermark opacityChange delay1-2"></div>
+        <div class="page3__content">
+            <div class="page3__column--01parent">
+                <div class="page3__column page3__column--01">
+                    <div class="page3-icon page3__column--01--r1 littleTopIn delay1-7"></div>
+                    <div class="page3-icon page3__column--01--r2 littleTopIn delay1-9"></div>
+                    <div class="page3-icon page3__column--01--r3 littleTopIn delay2-1"></div>
+                    <div class="page3-icon page3__column--01--r4 littleTopIn delay2-3"></div>
+                </div>
+                <div class="page3__column--01--lineParent">
+                    <div class="page3-icon page3__column--01--line page3__column--01--line01 page3ColumnLineAni delay1-9"></div>
+                    <div class="page3-icon page3__column--01--line page3__column--01--line02 page3ColumnLineAni delay2-1"></div>
+                    <div class="page3-icon page3__column--01--line page3__column--01--line03 page3ColumnLineAni delay2-3"></div>
+                    <div class="page3-icon page3__column--01--line page3__column--01--line04 page3ColumnLineAni delay2-5"></div>
+                </div>
+
+                <div class="page3-icon page3__column--01--num01 opacityChange delay2-1"></div>
+                <div class="page3-icon page3__column--01--num02 opacityChange delay2-3"></div>
+                <div class="page3-icon page3__column--01--num03 opacityChange delay2-5"></div>
+                <div class="page3-icon page3__column--01--num04 opacityChange delay2-7"></div>
+            </div>
+            <div class="page3__column--02parent heightChange delay1-7">
+                <div class="page3__column page3__column--02">
+                    <div class="page3-icon page3__column--02--r1 littleTopIn delay1-7"></div>
+                    <div class="page3-icon page3__column--02--r2 littleTopIn delay1-9"></div>
+                    <div class="page3-icon page3__column--02--r3 littleTopIn delay2-1"></div>
+                    <div class="page3-icon page3__column--02--r4 littleTopIn delay2-3"></div>
+                </div>
+                <div class="page3-icon page3__column--02--line page3__column--02--line01 page3ColumnLineAni delay1-9"></div>
+                <div class="page3-icon page3__column--02--line page3__column--02--line02 page3ColumnLineAni delay2-1"></div>
+                <div class="page3-icon page3__column--02--line page3__column--02--line03 page3ColumnLineAni delay2-3"></div>
+                <div class="page3-icon page3__column--02--line page3__column--02--line04 page3ColumnLineAni delay2-5"></div>
+
+                <div class="page3-icon page3__column--02--num01 opacityChange delay2-1"></div>
+                <div class="page3-icon page3__column--02--num02 opacityChange delay2-3"></div>
+                <div class="page3-icon page3__column--02--num03 opacityChange delay2-5"></div>
+                <div class="page3-icon page3__column--02--num04 opacityChange delay2-7"></div>
+            </div>
+        </div>
+        <div class="page3-icon page3__time opacityChange delay1-7"></div>
+        <div class="page3-icon page3__info opacityChange delay1-9"></div>
+        <div class="page3-icon page3__clasify opacityChange delay1-9"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
+    </div>
+    <div class="page page4 hide">
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="icon page0__line1 heightChange delay0-5"></div>
+        <div class="icon page0__line2 page3__line2 page3Line2MoveAni delay1-0"></div>
+        <div class="page4__title">
+            <div class="page4-icon page4__title--01 littleBottomIn delay0-8"></div>
+            <div class="page4-icon page4__title--02 littleBottomIn delay1-0"></div>
+            <div class="page4-icon page4__title--03 littleBottomIn delay1-2"></div>
+            <div class="page4-icon page4__title--04 littleBottomIn delay1-4"></div>
+            <div class="page4-icon page4__title--05 littleBottomIn delay1-6"></div>
+        </div>
+        <div class="page0__watermark page3__watermark opacityChange delay1-2"></div>
+        <div class="page4__content">
+            <ul class="page4__list">
+                <li class="page4__one" v-for="(item, index) in page4.list">
+                    <div class="page4-icon page4__one__bg opacityChange delay1-7"></div>
+                    <div class="page4-icon page4__one__name opacityChange delay1-7" :class="'page4__one__name--'+index"></div>
+                    <div class="page4-icon page4__one__row widthChange delay2-3" :class="'page4__one__row--'+index"></div>
+                    <div class="page4-icon page4__one__num opacityZoomChange" :class="'page4__one__num--'+index + ' '+item"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="page4-icon page4__info opacityChange delay1-9"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
+    </div>
+    <div class="page page5 hide">
+        
+    </div>
+    <div class="page page6 hide">
+        
+    </div>
+    <div class="page page7 hide">
+       
+    </div>
+    <div class="page page8 hide">
+       
+    </div>
+</div>
+
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "2017年互联网职场竟然这么“难”",
+        desc: "加班、心烦、买房难 ……8个数据告诉你2017互联网职场",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
+        activityType: '2017LEADERRESULT',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+</body>
+</html>
