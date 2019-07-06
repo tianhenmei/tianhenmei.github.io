@@ -16,7 +16,7 @@
 		<meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="stylesheet" href="css/swiper.min.css"/>
-        <link rel="stylesheet" href="css/m_index.css?v=2226$version$">
+        <link rel="stylesheet" href="css/m_index.css?v=2227$version$">
 		<!---上线之后加-->
 		<title>工作中的你最美</title>
 		<script>
@@ -90,6 +90,18 @@
                         var page0Center = document.getElementById('page0__center')
                         document.getElementById('loading').className += ' hide';
                         page0Center.className = page0Center.className.replace(' hide', '');
+                        setTimeout(function(){
+                            var paudio = document.getElementById('pressAudio');
+                            
+                            if (window.WeixinJSBridge) {
+                                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                                    paudio.load();
+                                    paudio.play();
+                                });
+                            } else {
+                                paudio.play();
+                            }
+                        }, 6000);
                     }, 500);
                 },
                 loadingSuccess = function(){
@@ -127,7 +139,7 @@
             <div class="words words-1-7 opacityChange-half duration0-4 delay2-3"></div>
         </div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=2226$version$"></script> 
+    <script type="text/javascript" src="js/loading.js?v=2227$version$"></script> 
     <div class="wrapper pages" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : 'hide'">
             <div class="page0__center hide" id="page0__center">
@@ -177,15 +189,18 @@
                             <!-- slides -->
                             <swiper-slide class="page0__video__one page0__video__one--1">
                                 <div class="page0__video__shadow"></div>
-                                <div class="icon page0__video__playbtn"></div>
+                                <div class="page0__video__playbtn"></div>
+                                <div class="page0__video__loading loadingRotateAni" v-show="videoPlayingStatus"></div>
                             </swiper-slide>
                             <swiper-slide class="page0__video__one page0__video__one--2">
                                 <div class="page0__video__shadow"></div>
-                                <div class="icon page0__video__playbtn"></div>
+                                <div class="page0__video__playbtn"></div>
+                                <div class="page0__video__loading loadingRotateAni" v-show="videoPlayingStatus"></div>
                             </swiper-slide>
                             <swiper-slide class="page0__video__one page0__video__one--3">
                                 <div class="page0__video__shadow"></div>
-                                <div class="icon page0__video__playbtn"></div>
+                                <div class="page0__video__playbtn"></div>
+                                <div class="page0__video__loading loadingRotateAni" v-show="videoPlayingStatus"></div>
                             </swiper-slide>
                         </swiper>
                         <div class="page0__video__btn" @click.stop.prevent="startPlayVideo"></div>
@@ -197,6 +212,7 @@
                         <div class="icon2 video__title video__title--02" :class="activeVideoIndex == 1 ? 'opacityChange' : 'opacityChange-out'"></div>
                         <div class="icon2 video__title video__title--03" :class="activeVideoIndex == 2 ? 'opacityChange' : 'opacityChange-out'"></div>
                     </div>
+                    <div class="page0__video__mask" v-show="videoPlayingStatus"></div>
                 </div>
             </div>
         </div>
@@ -309,7 +325,8 @@
                         <div class="icon exist__text exist__text--01 opacityChange-half duration0-3 delay0-5"></div>
                         <div class="icon exist__text exist__text--02 opacityChange-half duration0-3 delay0-7"></div>
                         <div class="icon exist__text exist__text--03 opacityChange-half duration0-3 delay1-0"></div>
-                        <div class="icon2 page2__five__leftbtn littleBottomIn duration1-0 delay2-5" @click.stop.prevent="showPage1Result"></div>
+                        <div class="page1__five__logo rightIn duration1-0 delay2-5"></div>
+                        <div class="page1__five__leftbtn littleBottomIn duration1-0 delay2-5" @click.stop.prevent="showPage1Result"></div>
                         <a class="icon2 page2__five__rightbtn littleBottomIn duration1-0 delay2-5" href="https://a2.digoo.cn/2019/zt/22" target="_blank"></a>
                     </div>
                     <!-- <div class="page1__dark__message" :class="!page1ResultStatus ? 'flipToFront duration1-0 delay3-0' : 'opacityChange-out'" v-show="darkExistStatus">
@@ -460,20 +477,21 @@
     </div>
     <div class="audio-layer">
         <audio style="opacity:0;" id="loadingMusic" preload="auto" src="images/loading.mp3"></audio>
+        <audio style="opacity:0;" id="pressAudio" loop="loop" preload="auto" src="images/pressAudio.mp3"></audio>
         <audio style="opacity:0;" id="video1" preload="auto" src="images/video1-total2.mp3"></audio>
         <audio style="opacity:0;" id="video2" preload="auto" src="images/video2-total2.mp3"></audio>
         <audio style="opacity:0;" id="video3" preload="auto" src="images/video3-total.mp3"></audio>
     </div>
     <div class="music-box">
         <div class="music-icon open">
-            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music04.mp3"></audio>
+            <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/bgmusic.mp3"></audio>
         </div>
     </div>
     <script src="js/jquery.1.10.1.min.js"></script>
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/swiper.min.js"></script>
     <script src="js/vue-awesome-swiper.js"></script>
-    <script src="js/m_index.js?v=2226$version$"></script>
+    <script src="js/m_index.js?v=2227$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var loadingMusic = document.getElementById('loadingMusic')

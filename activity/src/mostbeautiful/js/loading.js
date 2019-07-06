@@ -22,6 +22,11 @@ var imgArray = [
 	"images/page0-video-shadow.png",
 	"images/page0-words.png",
 
+	"images/page0-video-btn.png",
+	"images/page0-video-loading.png",
+	"images/page1-five-logo.png",
+	"images/page1-leftbtn.png",
+
 	"images/page1-anut.png",
 	"images/page1-bg.png",
 	"images/page1-desk.png",

@@ -502,11 +502,25 @@ body {
             top:0;
         }
         &__playbtn,
-        &__btn {
-            width:rem(126);
-            height:rem(126);
-            @include leftTop(151,245);
-            background-position:rem(-100) rem(-60);
+        &__btn,
+        &__loading {
+            width:rem(122);
+            height:rem(122);
+            @include leftTop(151+2,245+2);
+            z-index:2;
+        }
+        &__playbtn {
+            background:url('../images/page0-video-btn.png') no-repeat center top;
+            background-size:100% 100%;
+        }
+        &__loading {
+            background:url('../images/page0-video-loading.png') no-repeat center top;
+            background-size:100% 100%;
+        }
+        &__mask {
+            width:100%;
+            height:100%;
+            @include leftTop(0,0);
             z-index:2;
         }
         .page0__video__prev {
@@ -795,6 +809,20 @@ body {
             //     background-position:rem(-400) rem(-900);
             //     @include centerb(292,578-51);
             // }
+        }
+        &__leftbtn {
+            width:rem(266);
+            height:rem(111);
+            background:url('../images/page1-leftbtn.png') no-repeat center top;
+            background-size:100% 100%;
+            @include centerb(88,129);
+        }
+        &__logo {
+            width:rem(104);
+            height:rem(64);
+            background:url('../images/page1-five-logo.png') no-repeat center top;
+            background-size:100% 100%;
+            @include centerr(61,132);
         }
     }
     // page1__dark
@@ -3176,7 +3204,17 @@ body {
         transform:scale3d(1,1,1);
     }
 }
-
+.loadingRotateAni {
+    animation: loadingRotateAni 2s both linear infinite;
+}
+@keyframes loadingRotateAni {
+    0% {
+        transform:translate3d(0,0,0) rotateZ(0deg);
+    }
+    100% {
+        transform:translate3d(0,0,0) rotateZ(360deg);
+    }
+}
 
 
 

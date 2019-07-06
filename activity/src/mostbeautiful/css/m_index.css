@@ -498,13 +498,25 @@ body {
     position: absolute;
     left: 0;
     top: 0; }
-  .page0__video__playbtn, .page0__video__btn {
-    width: 2.688rem;
-    height: 2.688rem;
+  .page0__video__playbtn, .page0__video__btn, .page0__video__loading {
+    width: 2.60267rem;
+    height: 2.60267rem;
     position: absolute;
-    left: 3.22133rem;
-    top: 5.22667rem;
-    background-position: -2.13333rem -1.28rem;
+    left: 3.264rem;
+    top: 5.26933rem;
+    z-index: 2; }
+  .page0__video__playbtn {
+    background: url("../images/page0-video-btn.png") no-repeat center top;
+    background-size: 100% 100%; }
+  .page0__video__loading {
+    background: url("../images/page0-video-loading.png") no-repeat center top;
+    background-size: 100% 100%; }
+  .page0__video__mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0rem;
+    top: 0rem;
     z-index: 2; }
   .page0__video .page0__video__prev {
     width: 1.74933rem;
@@ -925,6 +937,26 @@ body {
   .page1__five .wuyu__text-5-6 {
     background-position: -2.02667rem -13.44rem;
     left: 2.02667rem; }
+
+.page1__five__leftbtn {
+  width: 5.67467rem;
+  height: 2.368rem;
+  background: url("../images/page1-leftbtn.png") no-repeat center top;
+  background-size: 100% 100%;
+  position: absolute;
+  left: 50%;
+  bottom: 2.752rem;
+  margin: 0 0 0 -6.12267rem; }
+
+.page1__five__logo {
+  width: 2.21867rem;
+  height: 1.36533rem;
+  background: url("../images/page1-five-logo.png") no-repeat center top;
+  background-size: 100% 100%;
+  position: absolute;
+  right: 50%;
+  top: 2.816rem;
+  margin: 0 -7.34933rem 0 0; }
 
 .page1__dark {
   width: 100%;
@@ -4600,6 +4632,26 @@ body {
   100% {
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); } }
+
+.loadingRotateAni {
+  -webkit-animation: loadingRotateAni 2s both linear infinite;
+          animation: loadingRotateAni 2s both linear infinite; }
+
+@-webkit-keyframes loadingRotateAni {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) rotateZ(0deg);
+            transform: translate3d(0, 0, 0) rotateZ(0deg); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotateZ(360deg);
+            transform: translate3d(0, 0, 0) rotateZ(360deg); } }
+
+@keyframes loadingRotateAni {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0) rotateZ(0deg);
+            transform: translate3d(0, 0, 0) rotateZ(0deg); }
+  100% {
+    -webkit-transform: translate3d(0, 0, 0) rotateZ(360deg);
+            transform: translate3d(0, 0, 0) rotateZ(360deg); } }
 
 .delay0-1 {
   -webkit-animation-delay: 0.1s;

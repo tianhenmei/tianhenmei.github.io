@@ -5,39 +5,39 @@ var initialNow = 0,
     initialLast = 0;
 
 // // 音乐
-// backgroundMusic(document.getElementById("music"));
-// // 音乐播放
-// function backgroundMusic(audio){
-//     // 自动播放音乐效果，解决浏览器或者APP自动播放问题
-//     if(audio.paused){
-//         audio.load();
-//         audio.play();
-//     }
-//     function musicInBrowserHandler() {
-//         if(audio.paused){
-//             audio.load();
-//             audio.play();
-//         }
-//         document.body.removeEventListener('touchstart', musicInBrowserHandler);
-//     }
-//     document.body.addEventListener('touchstart', musicInBrowserHandler);
+backgroundMusic(document.getElementById("music"));
+// 音乐播放
+function backgroundMusic(audio){
+    // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+    if(audio.paused){
+        audio.load();
+        audio.play();
+    }
+    function musicInBrowserHandler() {
+        if(audio.paused){
+            audio.load();
+            audio.play();
+        }
+        document.body.removeEventListener('touchstart', musicInBrowserHandler);
+    }
+    document.body.addEventListener('touchstart', musicInBrowserHandler);
 
-//     // 自动播放音乐效果，解决微信自动播放问题
-//     function musicInWeixinHandler() {
-//         if(audio.paused){
-//             audio.load();
-//             audio.play();
-//         }
-//         document.addEventListener("WeixinJSBridgeReady", function () {
-//             if(audio.paused){
-//                 audio.load();
-//                 audio.play();
-//             }
-//         }, false);
-//         document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
-//     }
-//     document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
-// }
+    // 自动播放音乐效果，解决微信自动播放问题
+    function musicInWeixinHandler() {
+        if(audio.paused){
+            audio.load();
+            audio.play();
+        }
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            if(audio.paused){
+                audio.load();
+                audio.play();
+            }
+        }, false);
+        document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+}
 
 var swiper = null
 var audioList = [{
@@ -107,7 +107,9 @@ app = new Vue({
         page3Dialog1: false,
         page3Dialog1Hide: false,
         page3Dialog2: false,
-        page3Imagenary: false
+        page3Imagenary: false,
+
+        videoPlayingStatus: false
     },
     computed:{
         qrcodeUrl:function(){
@@ -242,6 +244,11 @@ app = new Vue({
             this.page0.buildingAnimate = 'leftIn-out';
             this.page0.videoStatus = true
             // this.addAnimation();
+            document.getElementById('pressAudio').pause();
+            if($('#music')[0].paused){
+                $('#music')[0].play();
+                $(".music-icon").removeClass('close').addClass('open');
+            }
         },
         addAnimation:function(){
             var self = this
@@ -296,9 +303,11 @@ app = new Vue({
                 self.activePage = index
                 callback();
             } else {
+                self.videoPlayingStatus = true;
                 audio.play()
                 audio.oncanplaythrough = function(){
                     console.log('oncanplaythrough audio.readyState: ', audio.readyState)
+                    self.videoPlayingStatus = false;
                     self.activePage = index
                     callback();
                 }
