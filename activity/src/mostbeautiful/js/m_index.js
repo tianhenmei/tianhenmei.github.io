@@ -112,12 +112,6 @@ app = new Vue({
         videoPlayingStatus: false
     },
     computed:{
-        qrcodeUrl:function(){
-            return 'https://activity.lagou.com/activity/dist/2018-autumn/m_index.html'
-        },
-        createCode:function(){
-            return encodeURIComponent(this.qrcodeUrl)
-        },
         setSaveStyle:function(){
             var height = RC.w / GC.w * GC.h - RC.h,
                 width = RC.h / GC.h * GC.w - RC.w,

@@ -82,13 +82,6 @@ var imgArray = [
 	"images/page3-result-save.png"
 ];
 var now = 0;
-// jQuery.ajax({
-//     type:'get',
-//     url:'https://activity.lagou.com/activityapi/common/getNow',
-//     success:function(data){
-//         now = data.content;
-//     }
-// });
 // 资源加载
 var Loader = function(){
 	this.currProgress = 0;  // 当前加载进度
