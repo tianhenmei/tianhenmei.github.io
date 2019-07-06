@@ -105,6 +105,7 @@ app = new Vue({
         manStandStatus: false,
         page3ThirdStatus: false,
         page3Dialog1: false,
+        page3Dialog1Hide: false,
         page3Dialog2: false,
         page3Imagenary: false
     },
@@ -332,7 +333,7 @@ app = new Vue({
                             //     self.page1WuyuNextStatus = false
                             // }, 2000)
                             self.showDialog()
-                        }, 3000)
+                        }, 5500)
                     }, 500)
                 }, 1000)
             }, 10000)
@@ -345,16 +346,17 @@ app = new Vue({
                     self.darkTextStatus = true;
                     setTimeout(function(){
                         self.darkExistStatus = true;
-                        self.showPage1Result()
-                    }, 2800)
+                        // self.showPage1Result()
+                    }, 2000)
                 // }, 1500)
-            },8500);
+            },7000);
         },
         showPage1Result:function(){
             var self = this
-            setTimeout(function(){
-                self.page1ResultStatus = true
-            }, 2500)
+            self.page1ResultStatus = true
+            // setTimeout(function(){
+            //     self.page1ResultStatus = true
+            // }, 2500)
         },
         playSecond:function(){
             var audio = document.getElementById('video2');
@@ -362,7 +364,7 @@ app = new Vue({
             audio.play();
             setTimeout(function(){
                 self.page2NextStatus = true;
-            }, 19000 - 12500)
+            }, 19000 - 12500 + 2000)
         },
         showPage2Result: function(){
             this.page2ResultStatus = true
@@ -385,12 +387,15 @@ app = new Vue({
             setTimeout(function(){
                 self.page3Dialog1 = true
                 setTimeout(function(){
-                    self.page3Dialog2 = true
+                    self.page3Dialog1Hide = true
                     // setTimeout(function(){
                     //     self.page3Imagenary = true
                     // },2000)
                 },2000)
             },2500)
+        },
+        showPage3Result:function(){
+            this.page3Dialog2 = true;
         },
         resetVideoStatus:function(){
             this.secondPhoneStatus = true
@@ -404,12 +409,14 @@ app = new Vue({
             this.page1ResultStatus = false
             this.toVideoListStatus = false
 
+            this.page2NextStatus = false
             this.page2ResultStatus = false
 
             this.babyCryStatus = false
             this.manStandStatus = false
             this.page3ThirdStatus = false
             this.page3Dialog1 = false
+            this.page3Dialog1Hide = false
             this.page3Dialog2 = false
             this.page3Imagenary =false
         },
