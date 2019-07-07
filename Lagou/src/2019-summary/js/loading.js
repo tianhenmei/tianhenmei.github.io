@@ -2,9 +2,36 @@
 var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-summary/';
 var imgArray = [
+	"images/loading.gif",
 	"images/cover-lagou.png",
 	"images/cover-star.png",
-	"images/icon.png"
+	"images/icon.png",
+	"images/page0-lagou.png",
+	"images/page0-line.png",
+	"images/page0-watermark.png",
+	"images/page1-frame.png",
+	"images/page1-icon.png",
+	"images/page1-line.png",
+	"images/page2-shadow.png",
+	"images/page3-icon.png",
+	"images/page4-icon.png",
+	"images/page5-frame.png",
+	"images/page5-green.png",
+	"images/page5-icon.png",
+	"images/page5-yellow.png",
+	"images/page6-icon.png",
+	"images/page7-frame.png",
+	"images/page7-icon.png",
+	"images/page8-frame.png",
+	"images/page8-icon.png",
+	"images/page9-frame.png",
+	"images/page9-proline.png",
+	"images/page10-cylinder-bg.png",
+	"images/page10-icon.png",
+	"images/page11-bottom-lagou.png",
+	"images/page11-ercode.png",
+	"images/page11-lagou.png",
+	"images/page11-star.png"
 ];
 var now = 0;
 // jQuery.ajax({

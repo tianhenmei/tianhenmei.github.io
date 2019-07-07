@@ -21,7 +21,7 @@ var PageMove = function () {
                 x: 0,
                 y: 0
             },
-            now: 7,
+            now: 0,
             last: 0,
             page: {
                 up: {
@@ -33,7 +33,7 @@ var PageMove = function () {
                     now: (options.animation ? options.animation : "move") + "DNow"
                 }
             },
-            pageLength: jQuery(".page").length,
+            pageLength: jQuery(".page, .cover").length,
             isMoving: false,
             clickStatus: false
         };
@@ -66,7 +66,15 @@ var PageMove = function () {
             //     app.$data['page'+self.data.now].status = 'in';
             // },500)
             var now = self.data.now === 0 ? '.cover' : '.page' + (self.data.now-1),
-                last = self.data.last === 0 ? '.cover' : '.page' + self.data.last
+                last = self.data.last === 0 ? '.cover' : '.page' + (self.data.last-1);
+            if (self.data.now > 0 && self.data.now < self.data.pageLength - 1) {
+                var dot = jQuery('.dotLayer').children('.dot')
+                jQuery('.dotLayer').removeClass('hide');
+                dot.removeClass('active');
+                dot.eq(self.data.now-1).addClass('active');
+            } else {
+                jQuery('.dotLayer').addClass('hide');
+            }
             jQuery(".page, .cover").removeClass("moveDLast")
                            .removeClass("moveDNow")
                            .removeClass("moveULast")
@@ -145,44 +153,17 @@ var PageMove = function () {
                 case 7:
                 case 8:
                 case 9:
-                    self.data.now += 1;
-                    self.pageMove(od, self);
-                    break;
-                case 9:
                 case 10:
-                    var dataname = 'data'+(self.data.now - 1);
-                    if (self.data.direction.x == "up") {
-                        if(app.$data[dataname].current == app.$data[dataname].length - 1){
-                        }else {
-                            app.$data[dataname].current += 1;
-                            self._dataMove(od,self);
-                            break;
-                        }
-                    } else {
-                        if(app.$data[dataname].current == 0){
-                        }else {
-                            od = "up";
-                            app.$data[dataname].current -= 1;
-                            self._dataMove(od,self);
-                            break;
-                        }
-                    }
+                case 11:
                 default:
                     self.data.last = self.data.now;
-                    if (self.data.direction.x == "up") {
+                    if (self.data.direction.y == "up") {
                         self.data.now += 1;
                     } else {
-                        // if(self.data.now == 8){
-                        //     self.data.isMoving = false;
-                        //     self.data.clickStatus = false;
-                        //     app.$data.flipStatus = false;
-                        //     return;
-                        // }
                         self.data.now -= 1;
                         od = "up";
                     }
 
-                    // console.log(self.data.now);
                     if ( self.data.now >= self.data.pageLength) {
                         self.data.now = self.data.pageLength - 1;
                         self.data.last = self.data.now - 1;
@@ -190,7 +171,6 @@ var PageMove = function () {
                         self.data.clickStatus = false;
                         app.$data.flipStatus = false;
                         return;
-                        self.data.now = 0;
                     }
                     if (self.data.now <= -1) {
                         self.data.last = 1;
@@ -221,7 +201,7 @@ var PageMove = function () {
             }, { passive: false });
             document.addEventListener("touchend", function (ev) {
                 var initdisc = 40,
-                    disc = self.data.end.x == 0 ? false : Math.abs(self.data.end.x - self.data.start.x) > initdisc;
+                    disc = self.data.end.y == 0 ? false : Math.abs(self.data.end.y - self.data.start.y) > initdisc;
                 self.data.direction.x = self.data.end.x - self.data.start.x > initdisc ? "down" : self.data.end.x - self.data.start.x < initdisc ? "up" : "down";
                 self.data.direction.y = self.data.end.y - self.data.start.y > initdisc ? "down" : self.data.end.y - self.data.start.y < initdisc ? "up" : "down";
                 if (app.$data.pageStatus && !self.data.clickStatus && !self.data.isMoving && disc) {
