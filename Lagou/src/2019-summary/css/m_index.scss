@@ -1115,14 +1115,296 @@ html,body {
 /***page4 end***************************************************/
 
 /***page5 start***************************************************/
+.page5-icon {
+    background:url('../images/page5-icon.png') no-repeat 0 0;
+    background-size:rem(1024) rem(1024);
+}
 .page5 {
-    
+    &__line1 {
+        width:rem(10);
+        height:rem(287);
+        background-position:rem(-650) rem(-160);
+        @include center(51,121);
+    }
+    &__line2 {
+        width:rem(10);
+        height:rem(89);
+        background-position:rem(-680) rem(-160);
+        @include center(51,350);
+    }
+    &__title {
+        width:rem(610);
+        height:rem(323);
+        @include center(85,118);
+        &--01 {
+            width:rem(188);
+            height:rem(68);
+            background-position:0 0;
+            @include leftTop(0,0);
+        }
+        &--02 {
+            width:rem(460);
+            height:rem(55);
+            background-position:0 rem(-88);
+            @include leftTop(0,88);
+        }
+        &--03 {
+            width:rem(330);
+            height:rem(58);
+            background-position:0 rem(-154);
+            @include leftTop(0,154);
+        }
+        &--04 {
+            width:rem(595);
+            height:rem(37);
+            background-position:0 rem(-240);
+            @include leftTop(0,240);
+        }
+        &--05 {
+            width:rem(441);
+            height:rem(37);
+            background-position:0 rem(-285);
+            @include leftTop(0,285);
+        }
+    }
+    &__comment {
+        width:rem(253);
+        height:rem(132);
+        background-position:rem(-650) 0;
+        @include center(63,504);
+    }
+    &__city {
+        width:rem(621);
+        height:rem(92);
+        background-position:0 rem(-380);
+        @include center(70,887);
+    }
+    &__frame {
+        width:rem(597);
+        height:rem(377);
+        background:url('../images/page5-frame.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(80,502);
+    }
+    &__content {
+        width:rem(671);
+        height:rem(469);
+        @include center(38,473);
+    }
+    &__green {
+        width:rem(599);
+        height:rem(391);
+        background:url('../images/page5-green.png') no-repeat left top;
+        background-size:rem(599) rem(391);
+        @include center(80,490);
+    }
+    &__yellow {
+        width:rem(599);
+        height:rem(255);
+        background:url('../images/page5-yellow.png') no-repeat left top;
+        background-size:rem(599) rem(255);
+        @include center(80,614);
+        &__num {
+            &--n {
+                width:rem(45);
+                height:rem(24);
+                position:absolute;
+            }
+            &--01 { background-position:0 rem(-490); left:0; top:rem(344); }
+            &--02 { background-position:rem(-50) rem(-490); left:rem(80); top:rem(320); }
+            &--03 { background-position:rem(-50*2) rem(-490); left:rem(133); top:rem(266); }
+            &--04 { background-position:rem(-50*3) rem(-490); left:rem(182); top:rem(255); }
+            &--05 { background-position:rem(-50*4) rem(-490); left:rem(223); top:rem(333); }
+            &--06 { background-position:rem(-50*5) rem(-490); left:rem(275); top:rem(168); }
+            &--07 { background-position:rem(-50*6) rem(-490); left:rem(332); top:rem(271); }
+            &--08 { background-position:rem(-50*7) rem(-490); left:rem(379); top:rem(114); }
+            &--09 { background-position:rem(-50*8) rem(-490); left:rem(425); top:rem(221); }
+            &--10 { background-position:rem(-50*9) rem(-490); left:rem(477); top:rem(182); }
+            &--11 { background-position:rem(-50*10) rem(-490); left:rem(520); top:rem(317); }
+            &--12 { background-position:rem(-50*11) rem(-490); left:rem(577); top:rem(185); }
+            &--12 { background-position:rem(-50*12) rem(-490); left:rem(626); top:rem(190); }
+        }
+    }
+    &__green {
+        &__num {
+            &--01 { background-position:0 rem(-530); left:rem(326); top:rem(25); }
+            &--02 { background-position:rem(-50) rem(-530); left:rem(504); top:rem(7); }
+        }
+        &__circle {
+            &--n {
+                width:rem(35);
+                height:rem(35);
+                background-position:rem(-100) rem(-530);
+            }
+            &--01 { @include leftTop(324,45); }
+            &--02 { @include leftTop(423,41); }
+            &--03 { @include leftTop(471,0); }
+        }
+    }
+    &__info {
+        width:rem(250);
+        height:rem(32);
+        background-position:0 rem(-330);
+        @include center(69,1002);
+    }
 }
 /***page5 end***************************************************/
 
 /***page6 start***************************************************/
+.page6-icon {
+    background:url('../images/page6-icon.png') no-repeat 0 0;
+    background-size:rem(1024) rem(1024);
+}
 .page6 {
-    
+    &__line1 {
+        width:rem(10);
+        height:rem(256);
+        background-position:rem(-500) 0;
+        @include center(51,121);
+    }
+    &__line2 {
+        width:rem(10);
+        height:rem(89);
+        background-position:rem(-520) 0;
+        @include center(51,314);
+    }
+    &__title {
+        width:rem(438);
+        height:rem(304);
+        @include center(84,112);
+        &--01 {
+            width:rem(190);
+            height:rem(68);
+            background-position:0 0;
+            @include leftTop(0,0);
+        }
+        &--02 {
+            width:rem(398);
+            height:rem(55);
+            background-position:0 rem(-87);
+            @include leftTop(0,87);
+        }
+        &--03 {
+            width:rem(406);
+            height:rem(37);
+            background-position:0 rem(-181);
+            @include leftTop(0,181);
+        }
+        &--04 {
+            width:rem(186);
+            height:rem(37);
+            background-position:0 rem(-224);
+            @include leftTop(0,224);
+        }
+        &--05 {
+            width:rem(423);
+            height:rem(25);
+            background-position:0 rem(-269);
+            @include leftTop(0,269);
+        }
+    }
+    &__watermark {
+        @include center(66,451);
+    }
+    &__content {
+        width:rem(633);
+        height:rem(505);
+        @include center(61,462);
+    }
+    &__list {
+        width:rem(633+20);
+    }
+    &__one {
+        width:rem(65);
+        height:rem(505);
+        float:left;
+        position:relative;
+        &__bg {
+            width:rem(27);
+            height:rem(390);
+            background-position:rem(-500) rem(-580);
+            @include leftBottom(0,115);
+        }
+        &__column {
+            width:rem(27);
+            height:rem(390);
+            background-position:0 rem(-580);
+            @include leftBottom(0,115);
+            &--1 { background-position:rem(-50) rem(-580); }
+            &--2 { background-position:rem(-50*2) rem(-580); }
+            &--3 { background-position:rem(-50*3) rem(-580); }
+            &--4 { background-position:rem(-50*4) rem(-580); }
+            &--5 { background-position:rem(-50*5) rem(-580); }
+            &--6 { background-position:rem(-50*6) rem(-580); }
+            &--7 { background-position:rem(-50*7) rem(-580); }
+            &--8 { background-position:rem(-50*8) rem(-580); }
+            &--9 { background-position:rem(-50*9) rem(-580); }
+        }
+        &__num {
+            width:rem(40);
+            height:rem(22);
+            background-position:0 rem(-490);
+            @include leftTop(2,3);
+            &--1 { left:rem(-5); top:rem(47); background-position:rem(-50) rem(-490); }
+            &--2 { left:rem(-3); top:rem(48); background-position:rem(-50*2) rem(-490); }
+            &--3 { left:rem(-3); top:rem(55); background-position:rem(-50*3) rem(-490); }
+            &--4 { left:rem(-3); top:rem(77); background-position:rem(-50*4) rem(-490); }
+            &--5 { left:rem(-5); top:rem(90); background-position:rem(-50*5) rem(-490); }
+            &--6 { left:rem(-6); top:rem(98); background-position:rem(-50*6) rem(-490); }
+            &--7 { left:rem(-5); top:rem(104); background-position:rem(-50*7) rem(-490); }
+            &--8 { left:rem(-6); top:rem(105); background-position:rem(-50*8) rem(-490); }
+            &--9 { left:rem(-6); top:rem(113); background-position:rem(-50*9) rem(-490); }
+        }
+        &__name {
+            width:rem(22);
+            height:rem(97);
+            background-position:0 rem(-380);
+            @include leftTop(2,386);
+            &--1 { background-position:rem(-50) rem(-380); }
+            &--2 { background-position:rem(-50*2) rem(-380); }
+            &--3 { background-position:rem(-50*3) rem(-380); }
+            &--4 { background-position:rem(-50*4) rem(-380); }
+            &--5 { background-position:rem(-50*5) rem(-380); }
+            &--6 { background-position:rem(-50*6) rem(-380); }
+            &--7 { background-position:rem(-50*7) rem(-380); }
+            &--8 { background-position:rem(-50*8) rem(-380); }
+            &--9 { background-position:rem(-50*9) rem(-380); }
+        }
+        &__white {
+            width:rem(30);
+            height:rem(31);
+            background-position:0 rem(-530);
+            @include leftTop(23,232);
+            &--1 { left:rem(24); top:rem(261); background-position:rem(-50*2) rem(-530); }
+            &--2 { left:rem(-17); top:rem(186); background-position:rem(-50*3) rem(-530); }
+            &--3 { left:rem(-19); top:rem(146); background-position:rem(-50*4) rem(-530); }
+            &--4 { left:rem(-18); top:rem(243); background-position:rem(-50*5) rem(-530); }
+            &--5 { left:rem(3); top:rem(16); background-position:rem(-50*6) rem(-530); }
+            &--6 { left:rem(6); top:rem(64); background-position:rem(-50*7) rem(-530); }
+            &--7 { left:rem(18); top:rem(243); background-position:rem(-50*8) rem(-530); }
+            &--8 { left:rem(23); top:rem(186); background-position:rem(-50*9) rem(-530); }
+            &--9 { left:0; top:rem(-56); background-position:rem(-50*9) rem(-530); }
+        }
+    }
+    &__proline {
+        width:rem(595);
+        height:rem(302);
+        background:url('../images/page6-proline.png') no-repeat left top;
+        background-size:rem(595) rem(302);
+        @include center(70,431);
+    }
+    &__detail {
+        width:rem(130);
+        height:rem(64);
+        background-position:rem(-550) 0;
+        @include center(568,969);
+    }
+    &__info {
+        width:rem(376);
+        height:rem(30);
+        background-position:0 rem(-330);
+        @include center(51,1005);
+    }
 }
 /***page6 end***************************************************/
 
@@ -1943,18 +2225,7 @@ html,body {
     }
 }
 .zoomChange{
-    -webkit-animation:zoomChange 0.5s linear both;
     animation:zoomChange 0.5s linear both;
-}
-@-webkit-keyframes zoomChange{
-    0% {
-        -webkit-transform:scale3d(0,0,0);
-        transform:scale3d(0,0,0);
-    }
-    100% {
-        -webkit-transform:scale3d(1,1,1);
-        transform:scale3d(1,1,1);
-    }
 }
 @keyframes zoomChange{
     0% {
@@ -1967,15 +2238,7 @@ html,body {
     }
 }
 .zoomChangeOut{
-    -webkit-animation:zoomChangeOut 0.5s linear both;
     animation:zoomChangeOut 0.5s linear both;
-}
-@-webkit-keyframes zoomChangeOut{
-    0% { }
-    100% {
-        -webkit-transform:scale3d(0,0,0);
-        transform:scale3d(0,0,0);
-    }
 }
 @keyframes zoomChangeOut{
     0% { }
@@ -1985,7 +2248,6 @@ html,body {
     }
 }
 .zoomInChange{
-    -webkit-animation:zoomInChange 0.5s linear both;
     animation:zoomInChange 0.5s linear both;
 }
 @keyframes zoomInChange{
@@ -2446,6 +2708,36 @@ html,body {
 @keyframes page3Line2MoveAni {
     0% {
         transform: translate3d(0, rem(-170-40), 0);
+        opacity:0;
+    }
+    50%, 100% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.page5Line2MoveAni {
+    animation:page5Line2MoveAni 0.5s both linear;
+}
+@keyframes page5Line2MoveAni {
+    0% {
+        transform: translate3d(0, rem(-229), 0);
+        opacity:0;
+    }
+    50%, 100% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.page6Line2MoveAni {
+    animation:page6Line2MoveAni 0.5s both linear;
+}
+@keyframes page6Line2MoveAni {
+    0% {
+        transform: translate3d(0, rem(-193), 0);
         opacity:0;
     }
     50%, 100% {

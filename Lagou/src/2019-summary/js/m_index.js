@@ -21,7 +21,7 @@ var PageMove = function () {
                 x: 0,
                 y: 0
             },
-            now: 4,
+            now: 6,
             last: 0,
             page: {
                 up: {
@@ -141,6 +141,10 @@ var PageMove = function () {
                 case 3:
                 case 4:
                 case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
                     self.data.now += 1;
                     self.pageMove(od, self);
                     break;
@@ -298,6 +302,11 @@ app = new Vue({
                 'delay3-4', 'delay3-3', 'delay3-2', 'delay3-1', 'delay3-0', 'delay2-9', 'delay2-8'
             ]
         },
+        page6:{
+            list: [
+                0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+            ]
+        },
         totalDay:0,
         isiPhone:false,
         testStatus:false
@@ -305,14 +314,7 @@ app = new Vue({
     mounted:function(){
         // this.setDay();
         this.isiPhone = this.ismobile()  == 'iphone' ? true : false;
-        if(this.isiPhone){
-            this.page6['animation-in'].li0.water = 'skewScaleIphone delay2-0';
-        }
         this.from = getQueryString('xand');
-        var now = new Date().getTime(),
-            first = new Date('2018/01/01 00:00:00').getTime(),
-            middle = (first - now) > 0 ? (first - now) : 0;
-        this.page8.day = Math.ceil(middle / 3600 / 1000 / 24);
         if(getQueryString('xtest')){
             this.testStatus = true
         }

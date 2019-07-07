@@ -336,7 +336,7 @@ app = new Vue({
                             //     self.page1WuyuNextStatus = false
                             // }, 2000)
                             self.showDialog()
-                        }, 5500)
+                        }, 6000)
                     }, 500)
                 }, 1000)
             }, 10000)

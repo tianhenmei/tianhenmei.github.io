@@ -353,10 +353,78 @@
         <div class="icon page0__down opacityChange delay2-0"></div>
     </div>
     <div class="page page5 hide">
-        
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="page5-icon page5__line1 heightChange delay0-5"></div>
+        <div class="page5-icon page5__line2 page5Line2MoveAni delay1-0"></div>
+        <div class="page5__title">
+            <div class="page5-icon page5__title--01 littleBottomIn delay0-8"></div>
+            <div class="page5-icon page5__title--02 littleBottomIn delay1-0"></div>
+            <div class="page5-icon page5__title--03 littleBottomIn delay1-2"></div>
+            <div class="page5-icon page5__title--04 littleBottomIn delay1-4"></div>
+            <div class="page5-icon page5__title--05 littleBottomIn delay1-6"></div>
+        </div>
+        <div class="page5-icon page5__comment opacityChange delay2-9"></div>
+        <div class="page5-icon page5__city opacityChange delay1-9"></div>
+        <div class="page0__watermark page3__watermark opacityChange delay1-2"></div>
+        <div class="page5__frame opacityChange delay1-2"></div>
+        <div class="page5__green widthChange duration2-0 delay4-4"></div>
+        <div class="page5__yellow widthChange duration2-0 delay2-4"></div>
+        <div class="page5__content">
+            <div class="page5__yellow__num">
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--01 opacityChange duration0-2 delay2-4"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--02 opacityChange duration0-2 delay2-6"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--03 opacityChange duration0-2 delay2-8"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--04 opacityChange duration0-2 delay3-0"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--05 opacityChange duration0-2 delay3-2"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--06 opacityChange duration0-2 delay3-4"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--07 opacityChange duration0-2 delay3-6"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--08 opacityChange duration0-2 delay3-8"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--09 opacityChange duration0-2 delay4-0"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--10 opacityChange duration0-2 delay4-2"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--11 opacityChange duration0-2 delay4-4"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--12 opacityChange duration0-2 delay4-6"></div>
+                <div class="page5-icon page5__yellow__num--n page5__yellow__num--13 opacityChange duration0-2 delay4-8"></div>
+            </div>
+            <div class="page5__green__num">
+                <div class="page5-icon page5__yellow__num--n page5__green__num--01 opacityChange duration0-2 delay5-4"></div>
+                <div class="page5-icon page5__yellow__num--n page5__green__num--02 opacityChange duration0-2 delay5-8"></div>
+            </div>
+            <div class="page5__green__circle">
+                <div class="page5-icon page5__green__circle--n page5__green__circle--01 zoomInChange duration0-2 delay5-4"></div>
+                <div class="page5-icon page5__green__circle--n page5__green__circle--02 zoomInChange duration0-2 delay5-6"></div>
+                <div class="page5-icon page5__green__circle--n page5__green__circle--03 zoomInChange duration0-2 delay5-8"></div>
+            </div>
+        </div>
+        <div class="page5-icon page5__info opacityChange delay1-9"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
     </div>
     <div class="page page6 hide">
-        
+        <div class="page0__lagou opacityChange delay0-5"></div>
+        <div class="page6-icon page6__line1 heightChange delay0-5"></div>
+        <div class="page6-icon page6__line2 page6Line2MoveAni delay1-0"></div>
+        <div class="page6__title">
+            <div class="page6-icon page6__title--01 littleBottomIn delay0-8"></div>
+            <div class="page6-icon page6__title--02 littleBottomIn delay1-0"></div>
+            <div class="page6-icon page6__title--03 littleBottomIn delay1-2"></div>
+            <div class="page6-icon page6__title--04 littleBottomIn delay1-4"></div>
+            <div class="page6-icon page6__title--05 littleBottomIn delay1-6"></div>
+        </div>
+        <div class="page0__watermark page6__watermark opacityChange delay1-2"></div>
+        <div class="page6__content">
+            <ul class="page6__list clearfix">
+                <li class="page6__one" v-for="(one,index) in page6.list">
+                    <div class="page6-icon page6__one__bg opacityChange delay1-2"></div>
+                    <div class="page6-icon page6__one__column heightChange delay1-7" :class="'page6__one__column--'+index"></div>
+                    <div class="page6-icon page6__one__num opacityChange delay2-2" :class="'page6__one__num--'+index"></div>
+                    <div class="page6-icon page6__one__name opacityChange delay1-2" :class="'page6__one__name--'+index"></div>
+                    <div class="page6-icon page6__one__white opacityChange" :class="'page6__one__white--'+index+' delay'+getDelayTime(22, index, 2)"></div>
+                </li>
+            </ul>
+        </div>
+        <div class="page6__proline widthChange duration2-0 delay2-2"></div>
+        <div class="page6-icon page6__detail opacityChange delay1-9"></div>
+        <div class="page6-icon page6__info opacityChange delay1-9"></div>
+        <div class="icon page0__down opacityChange delay2-0"></div>
     </div>
     <div class="page page7 hide">
        
