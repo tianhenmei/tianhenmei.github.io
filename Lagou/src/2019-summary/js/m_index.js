@@ -21,7 +21,7 @@ var PageMove = function () {
                 x: 0,
                 y: 0
             },
-            now: 6,
+            now: 7,
             last: 0,
             page: {
                 up: {
