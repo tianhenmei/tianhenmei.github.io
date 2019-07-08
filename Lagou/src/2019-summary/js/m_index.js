@@ -230,43 +230,13 @@ var PM = new PageMove({ animation: "move" });
 app = new Vue({
     el:"#app",
     data:{
+        fontSize: 16,
+        heightStatus: 0,
+        shortHeight: 0,
+        moreWidth: 0,
         pageStatus:true,
         flipStatus:false,  // 翻页状态
         from:'',
-        bottom:{
-            "status":"in",
-            "direction":"next",
-            "animation-in-prev":{
-                'prev':'leftIn delay0-5',
-                'prevLine':'',
-                'logo':'bottomIn delay0-5',
-                'next':'rightIn delay0-5',
-                'nextLine':'',
-                'nextInfinite':'rightInfinite delay1-0'
-            },
-            "animation-in-next":{
-                'prev':'leftIn delay0-5',
-                'prevLine':'',
-                'logo':'bottomIn delay0-5',
-                'next':'rightIn delay0-5',
-                'nextLine':'',
-                'nextInfinite':'rightInfinite delay1-0'
-            },
-            "animation-out-prev":{
-                'prev':'opacityChangeOut delay0',
-                'prevLine':'rightOpacityOut delay0',
-                'logo':'opacityChangeOut delay0',
-                'next':'',
-                'nextLine':'',
-            },
-            "animation-out-next":{
-                'prev':'opacityChangeOut delay0',
-                'prevLine':'',
-                'logo':'opacityChangeOut delay0',
-                'next':'',
-                'nextLine':'leftOpacityOut delay0',
-            }
-        },
         page0:{
             list: [
                 0, 1, 2, 3, 4, 5, 6, 7, 8
@@ -298,8 +268,25 @@ app = new Vue({
         if(getQueryString('xtest')){
             this.testStatus = true
         }
+        var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+            currentSize = parseFloat((GC.w / GC.h).toFixed(1));
+        this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
+        if(rightSize > currentSize){
+            this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+        }else{
+            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
+            this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
+        }
     },
     methods:{
+        setRem:function(value){
+            return value / (750 / 16)+'rem';
+        },
+        getFitTop:function(def,ratio,max,limit){
+            var n = this.heightStatus * ratio;
+            n = (max && n > max ? max : n) + (limit ? limit : 0);
+            return this.setRem(def+n);
+        },
         ismobile:function(){
             var u = navigator.userAgent, app = navigator.appVersion;
             if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){

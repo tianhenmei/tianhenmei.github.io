@@ -231,6 +231,45 @@ app = new Vue({
                 return false;
             }
         },
+        setHiddenEvent2:function(){
+            var self = this
+            var hidden, visibilityChange; 
+            if (typeof document.hidden !== "undefined") {
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.mozHidden !== "undefined") { // Firefox up to v17
+                hidden = "mozHidden";
+                visibilityChange = "mozvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") { // Chrome up to v32, Android up to v4.4, Blackberry up to v10
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+            
+            var videoElement = document.getElementById("videoElement");
+
+            // If the page is hidden, pause the video;
+            // if the page is shown, play the video
+            function handleVisibilityChange() {
+                self.setPauseVideo(hidden);
+            }
+
+            // Warn if the browser doesn't support addEventListener or the Page Visibility API
+            if (typeof document.addEventListener === "undefined" || typeof document[hidden] === "undefined") {
+                alert("This demo requires a modern browser that supports the Page Visibility API.");
+            } else {
+                // Handle page visibility change   
+                document.addEventListener(visibilityChange, handleVisibilityChange, false);
+                    
+                // // When the video pauses and plays, change the title.
+                // videoElement.addEventListener("pause", function(){
+                //     document.title = 'Paused';
+                // }, false);
+                    
+                // videoElement.addEventListener("play", function(){
+                //     document.title = 'Playing'
+                // }, false);
+            }
+        },
         setHiddenEvent:function(){
             var self = this
             var hiddenProperty = 'hidden' in document ? 'hidden' :    
@@ -239,7 +278,7 @@ app = new Vue({
                 null;
             var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
             var lastPlayingStatus = false;
-            // alert('hiddenProperty: ' + visibilityChangeEvent)
+            alert('hiddenProperty: ' + visibilityChangeEvent+' ' + document[hiddenProperty])
             var onVisibilityChange = function(){
                 // alert('hiddenProperty: ' + visibilityChangeEvent)
                 if (!document[hiddenProperty]) { 
@@ -280,8 +319,54 @@ app = new Vue({
                 }
             }
             document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-            window.unonload = function(){
-                alert('onbeforeunload')
+            // window.onblur = function(){
+            //     alert('onbeforeunload')
+            // }
+            // window.onfocus = function(){
+            //     alert('onfocus')
+            // }
+            // $(document).on("hide", function() { 
+            //     alert("browser page has been hidden");
+            // });
+        },
+        setPauseVideo:function(hiddenProperty){
+            var self = this;
+            var lastPlayingStatus = false;
+            if (!document[hiddenProperty]) { 
+                // 再次进入
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                        $('#music')[0].play();
+                        $(".music-icon").removeClass('close').addClass('open');
+                        if (self.activePage === 0 && lastPlayingStatus) {
+                            document.getElementById('pressAudio').play();
+                        }
+                    });
+                } else {
+                    $('#music')[0].play();
+                    $(".music-icon").removeClass('close').addClass('open');
+                    if (self.activePage === 0 && lastPlayingStatus) {
+                        document.getElementById('pressAudio').play();
+                    }
+                }
+            } else {
+                var audio = null
+                // 页面离开
+                if (self.activePage === 0) {
+                    audio = document.getElementById('pressAudio')
+                    if (!audio.paused) {
+                        lastPlayingStatus = true;
+                        audio.pause()
+                    }
+                } else if(self.activePage > 0) {
+                    audio = document.getElementById('video'+self.activePage)
+                    if (!audio.paused) {
+                        audio.pause()
+                        self.clearPlayStatus()
+                    }
+                }
+                $('#music')[0].pause();
+                $(".music-icon").removeClass('open').addClass('close');
             }
         },
         retryEvent:function(){
