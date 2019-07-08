@@ -1249,7 +1249,7 @@ html,body {
             &--10 { background-position:rem(-50*9) rem(-490); left:rem(477); top:rem(182); }
             &--11 { background-position:rem(-50*10) rem(-490); left:rem(520); top:rem(317); }
             &--12 { background-position:rem(-50*11) rem(-490); left:rem(577); top:rem(185); }
-            &--12 { background-position:rem(-50*12) rem(-490); left:rem(626); top:rem(190); }
+            &--13 { background-position:rem(-50*12) rem(-490); left:rem(626); top:rem(190); }
         }
     }
     &__green {
@@ -1402,14 +1402,14 @@ html,body {
             height:rem(31);
             background-position:0 rem(-530);
             @include leftTop(23,232);
-            &--1 { left:rem(24); top:rem(261); background-position:rem(-50*2) rem(-530); }
-            &--2 { left:rem(-17); top:rem(186); background-position:rem(-50*3) rem(-530); }
-            &--3 { left:rem(-19); top:rem(146); background-position:rem(-50*4) rem(-530); }
-            &--4 { left:rem(-18); top:rem(243); background-position:rem(-50*5) rem(-530); }
-            &--5 { left:rem(3); top:rem(16); background-position:rem(-50*6) rem(-530); }
-            &--6 { left:rem(6); top:rem(64); background-position:rem(-50*7) rem(-530); }
-            &--7 { left:rem(18); top:rem(243); background-position:rem(-50*8) rem(-530); }
-            &--8 { left:rem(23); top:rem(186); background-position:rem(-50*9) rem(-530); }
+            &--1 { left:rem(24); top:rem(261); background-position:rem(-50*1) rem(-530); }
+            &--2 { left:rem(-17); top:rem(186); background-position:rem(-50*2) rem(-530); }
+            &--3 { left:rem(-19); top:rem(146); background-position:rem(-50*3) rem(-530); }
+            &--4 { left:rem(-18); top:rem(243); background-position:rem(-50*4) rem(-530); }
+            &--5 { left:rem(3); top:rem(16); background-position:rem(-50*5) rem(-530); }
+            &--6 { left:rem(6); top:rem(64); background-position:rem(-50*6) rem(-530); }
+            &--7 { left:rem(18); top:rem(243); background-position:rem(-50*7) rem(-530); }
+            &--8 { left:rem(23); top:rem(186); background-position:rem(-50*8) rem(-530); }
             &--9 { left:0; top:rem(-56); background-position:rem(-50*9) rem(-530); }
         }
     }
@@ -1809,6 +1809,12 @@ html,body {
         height:rem(522);
         @include center(96,442);
     }
+    &__dataLayer, 
+    &__numLayer {
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+    }
     &__cylinder{
         width:rem(593);
         height:rem(522);
@@ -1825,13 +1831,13 @@ html,body {
             width:rem(90);
             height:rem(86);
             background-position:rem(-103) rem(-330);
-            @include leftTop(191,92);
+            @include leftTop(191,92+1);
         }
         &--02 {
             width:rem(99);
             height:rem(99);
             background-position:rem(-103) rem(-420);
-            @include leftTop(130-3,115-3);
+            @include leftTop(130-2,115-2);
         }
         &--03 {
             width:rem(97);
@@ -1849,7 +1855,7 @@ html,body {
             width:rem(195);
             height:rem(387);
             background-position:rem(-205) rem(-330);
-            @include leftTop(273,92);
+            @include leftTop(273,92+1);
         }
     }
     &__num {
@@ -1943,6 +1949,7 @@ html,body {
             width:rem(116);
             height:rem(29);
             background-position:rem(-600) rem(-420);
+            background-color:transparent;
             @include leftTop(0,0);
         }
     }
@@ -3711,8 +3718,19 @@ html,body {
         transform:translate3d(0,0,0);
     }
 }
+.page10Line5ParentAni {
+    animation:page10Line5ParentAni 0.5s both linear;
+}
+@keyframes page10Line5ParentAni {
+    0%, 50% {
+        width:rem(0);
+    }
+    100% {
+        width:rem(116);
+    }
+}
 .page10Line5Ani {
-    animation:page10Line5Ani 0.5s both linear;
+    // animation:page10Line5Ani 0.5s both linear;
 }
 @keyframes page10Line5Ani {
     0% {

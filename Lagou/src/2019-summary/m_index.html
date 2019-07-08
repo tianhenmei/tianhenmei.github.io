@@ -132,7 +132,7 @@
     </div> -->
     <div class="loading__img"></div>
     <div class="loading__lineParent" id="progress-bg">
-        <div class="loading__line" id="progress"></div>
+        <div class="loading__line" id="progress" style="width:0;"></div>
     </div>
     <div class="loading__num" id="progress-number">0%</div>
     <!-- <div class="title clearfix">
@@ -146,6 +146,12 @@
     </div> -->
 </div>
 <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+<script>
+    document.getElementById('loading').addEventListener('touchmove', function(e){
+        e.stopPropagation()
+        e.preventDefault()
+    }, {passive: false})
+</script>
 <div id="app">
     <div class="cover hide" id="cover">
         <div class="bg"></div>
@@ -586,7 +592,7 @@
                 <div class="page10__data--04parent page10Line4ParentAni duration1-0 delay2-3">
                     <div class="page10-icon page10__data page10__data--04 page10Line4Ani duration1-0 delay2-3"></div>
                 </div>
-                <div class="page10__data--05parent">
+                <div class="page10__data--05parent page10Line5ParentAni duration1-0 delay2-5">
                     <div class="page10-icon page10__data page10__data--05 page10Line5Ani duration1-0 delay2-5"></div>
                 </div>
             </div>

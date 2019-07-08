@@ -278,7 +278,6 @@ app = new Vue({
                 null;
             var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
             var lastPlayingStatus = false;
-            alert('hiddenProperty: ' + visibilityChangeEvent+' ' + document[hiddenProperty])
             var onVisibilityChange = function(){
                 // alert('hiddenProperty: ' + visibilityChangeEvent)
                 if (!document[hiddenProperty]) { 
