@@ -2,36 +2,39 @@
 var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-summary/';
 var imgArray = [
-	"images/loading.gif",
-	"images/cover-lagou.png",
-	"images/cover-star.png",
-	"images/icon.png",
-	"images/page0-lagou.png",
-	"images/page0-line.png",
-	"images/page0-watermark.png",
-	"images/page1-frame.png",
-	"images/page1-icon.png",
-	"images/page1-line.png",
-	"images/page2-shadow.png",
-	"images/page3-icon.png",
-	"images/page4-icon.png",
-	"images/page5-frame.png",
-	"images/page5-green.png",
-	"images/page5-icon.png",
-	"images/page5-yellow.png",
-	"images/page6-icon.png",
-	"images/page7-frame.png",
-	"images/page7-icon.png",
-	"images/page8-frame.png",
-	"images/page8-icon.png",
-	"images/page9-frame.png",
-	"images/page9-proline.png",
-	"images/page10-cylinder-bg.png",
-	"images/page10-icon.png",
-	"images/page11-bottom-lagou.png",
-	"images/page11-ercode.png",
-	"images/page11-lagou.png",
-	"images/page11-star.png"
+	// "images/loading.gif",
+	loadingHost + "images/loading-img.png",
+	loadingHost + "images/loading-line.png",
+	loadingHost + "images/cover-lagou.png",
+	loadingHost + "images/cover-star.png",
+	loadingHost + "images/icon.png",
+	loadingHost + "images/page0-lagou.png",
+	loadingHost + "images/page0-line.png",
+	loadingHost + "images/page0-watermark.png",
+	loadingHost + "images/page1-frame.png",
+	loadingHost + "images/page1-icon.png",
+	loadingHost + "images/page1-line.png",
+	loadingHost + "images/page2-shadow.png",
+	loadingHost + "images/page3-icon.png",
+	loadingHost + "images/page4-icon.png",
+	loadingHost + "images/page5-frame.png",
+	loadingHost + "images/page5-green.png",
+	loadingHost + "images/page5-icon.png",
+	loadingHost + "images/page5-yellow.png",
+	loadingHost + "images/page6-icon.png",
+	loadingHost + "images/page7-frame.png",
+	loadingHost + "images/page7-icon.png",
+	loadingHost + "images/page8-frame.png",
+	loadingHost + "images/page8-icon.png",
+	loadingHost + "images/page9-frame.png",
+	loadingHost + "images/page9-proline.png",
+	loadingHost + "images/page10-cylinder-bg.png",
+	loadingHost + "images/page10-icon.png",
+	loadingHost + "images/page11-bottom-lagou.png",
+	loadingHost + "images/page11-ercode.png",
+	loadingHost + "images/page11-lagou.png",
+	loadingHost + "images/page11-star.png",
+	loadingHost + "images/page11-btn.png"
 ];
 var now = 0;
 // jQuery.ajax({
@@ -50,10 +53,10 @@ var Loader = function(){
 	var loaded = 0;
 
 	var loading = document.getElementById('loading')//,
-		// number = document.getElementById('progress-number'),
-		// progress_bg = document.getElementById('progress-bg'),
-		// progress = document.getElementById('progress'),
-		// w = progress_bg.offsetWidth;// / imgArray.length;//20;
+		number = document.getElementById('progress-number'),
+		progress_bg = document.getElementById('progress-bg'),
+		progress = document.getElementById('progress'),
+		w = progress_bg.offsetWidth;// / imgArray.length;//20;
 	this.Loading = function(imgArray,success){
 		var self = this;
 		for( var i = 0 ; i < imgArray.length; i++ ){
@@ -62,9 +65,9 @@ var Loader = function(){
 				var img = new Image();
 				img.onload = function(){
 					loaded ++;
-					// self.currProgress = loaded / imgArray.length * 100;
-					// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
-					// number.innerHTML = (self.currProgress).toFixed(1)+"%";
+					self.currProgress = loaded / imgArray.length * 100;
+					progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
+					number.innerHTML = (self.currProgress).toFixed(1)+"%";
 					if( loaded == imgArray.length ){
 						success();  // 回调函数
 					}
@@ -76,9 +79,9 @@ var Loader = function(){
 					}
 				};
 				// img.src = ctx + "/template/1024/" + imgArray[i];
-                img.src = loadingHost + imgArray[i];
+                img.src = imgArray[i];
 			}else{
-				this.loadMusic(loadingHost + imgArray[i]);
+				this.loadMusic(imgArray[i]);
 			}
 		}
 	};
@@ -105,8 +108,8 @@ var Loader = function(){
 		})
 	};
 	this.success = function(){
-		// progress.style.width = w+"px";
-		// number.innerHTML = "100%";
+		progress.style.width = w+"px";
+		number.innerHTML = "100%";
 		var last = new Date().getTime(),
 			middle = last - startTime;
 		if(middle >= 2000){

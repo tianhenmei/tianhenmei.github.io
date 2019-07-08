@@ -110,7 +110,7 @@ html,body {
 .loading {
     width:100%;
     height:100%;
-    background-color:#181b1f;
+    background-color:#fff;
     // filter:Alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=150,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#68e0cf,endcolorstr=#209cff,gradientType=0);
     // -ms-filter:Alpha(opacity=100 finishopacity=100 style=1 startx=0,starty=0,finishx=150,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#68e0cf,endcolorstr=#209cff,gradientType=0);/*IE8*/	
     // background:#48c1e5;
@@ -139,6 +139,32 @@ html,body {
             font-size:rem(38);
             color:#fff;
         }
+    }
+    &__img {
+        width:rem(188);
+        height:rem(166);
+        background:url('../images/loading-img.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(281,571-128);
+    }
+    &__lineParent {
+        width:rem(151);
+        height:rem(131);
+        @include center(310,579-128);
+    }
+    &__line {
+        width:rem(151);
+        height:rem(131);
+        background:url('../images/loading-line.png') no-repeat left bottom;
+        background-size:rem(151) rem(131);
+    }
+    &__num {
+        width:rem(750);
+        line-height:rem(54);
+        font-size:rem(34);
+        color:#000d1a;
+        text-align:center;
+        @include center(0,760-128);
     }
 }
 .icon {
@@ -1975,7 +2001,8 @@ html,body {
             width:rem(10);
             height:rem(90);
             background-position: rem(-900) 0;
-            @include center(316,826);
+            // @include center(316,826);
+            @include center(142,786);
         }
         &--06 {
             width:rem(10);
@@ -2001,13 +2028,13 @@ html,body {
             width:rem(401);
             height:rem(117);
             background-position:rem(-340) rem(-740);
-            @include center(73,357);
+            @include center(73,404); // 357
         }
         &--03 {
             width:rem(320);
             height:rem(183);
             background-position:rem(-680) rem(-500);
-            @include center(76,523);
+            @include center(76,576); // 523
         }
         &--04 {
             width:rem(195);
@@ -2024,6 +2051,14 @@ html,body {
         // height:rem(226);
         // background-position:rem(-780) rem(-740);
         // @include center(82,826);
+    }
+    &__btn {
+        width:rem(391);
+        height:rem(86);
+        background:url('../images/page11-btn.png') no-repeat center top;
+        background-size:100% 100%;
+        @include centerb(177,201); // 920
+        display:block;
     }
     &__bottom {
         width:rem(650);

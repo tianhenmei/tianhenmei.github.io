@@ -176,6 +176,7 @@ app = new Vue({
         // if (this.activePage === 2) {
         //     this.playSecond()
         // }
+        this.setHiddenEvent();
     },
     methods:{
         getFitTop:function(def,ratio){
@@ -228,6 +229,59 @@ app = new Vue({
                 return true;
             } else {
                 return false;
+            }
+        },
+        setHiddenEvent:function(){
+            var self = this
+            var hiddenProperty = 'hidden' in document ? 'hidden' :    
+                'webkitHidden' in document ? 'webkitHidden' :    
+                'mozHidden' in document ? 'mozHidden' :    
+                null;
+            var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+            var lastPlayingStatus = false;
+            // alert('hiddenProperty: ' + visibilityChangeEvent)
+            var onVisibilityChange = function(){
+                // alert('hiddenProperty: ' + visibilityChangeEvent)
+                if (!document[hiddenProperty]) { 
+                    // 再次进入
+                    if (window.WeixinJSBridge) {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            $('#music')[0].play();
+                            $(".music-icon").removeClass('close').addClass('open');
+                            if (self.activePage === 0 && lastPlayingStatus) {
+                                document.getElementById('pressAudio').play();
+                            }
+                        });
+                    } else {
+                        $('#music')[0].play();
+                        $(".music-icon").removeClass('close').addClass('open');
+                        if (self.activePage === 0 && lastPlayingStatus) {
+                            document.getElementById('pressAudio').play();
+                        }
+                    }
+                } else {
+                    var audio = null
+                    // 页面离开
+                    if (self.activePage === 0) {
+                        audio = document.getElementById('pressAudio')
+                        if (!audio.paused) {
+                            lastPlayingStatus = true;
+                            audio.pause()
+                        }
+                    } else if(self.activePage > 0) {
+                        audio = document.getElementById('video'+self.activePage)
+                        if (!audio.paused) {
+                            audio.pause()
+                            self.clearPlayStatus()
+                        }
+                    }
+                    $('#music')[0].pause();
+                    $(".music-icon").removeClass('open').addClass('close');
+                }
+            }
+            document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+            window.unonload = function(){
+                alert('onbeforeunload')
             }
         },
         retryEvent:function(){
@@ -306,6 +360,14 @@ app = new Vue({
                     callback();
                 }
             }
+        },
+        clearPlayStatus: function(){
+            this.toVideoListStatus = true
+            this.toVideoListStatus = false
+            this.activePage = 0
+            this.page0.videoStatus = true
+            this.page0.buildingAnimate = 'hide'
+            this.resetVideoStatus()
         },
         playNextVideo: function(){
             var self = this

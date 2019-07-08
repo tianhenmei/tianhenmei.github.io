@@ -13,12 +13,12 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>2019拉勾白皮书</title>
+    <title>拉勾互联网招聘白皮书</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
     <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
     <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
-    <link rel="stylesheet" href="css/m_index.css?v=2224$version$">
+    <link rel="stylesheet" href="css/m_index.css?v=2225$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -127,10 +127,15 @@
     </div>
 </div> -->
 <div class="loading" id="loading">
-    <div class="loading__icon">
+    <!-- <div class="loading__icon">
         <img src="images/loading.gif" />
+    </div> -->
+    <div class="loading__img"></div>
+    <div class="loading__lineParent" id="progress-bg">
+        <div class="loading__line" id="progress"></div>
     </div>
-    <div class="title clearfix">
+    <div class="loading__num" id="progress-number">0%</div>
+    <!-- <div class="title clearfix">
         <div class="l zoomIn700 delay0">l</div>
         <div class="o zoomIn700 delay0-2">o</div>
         <div class="a zoomIn700 delay0-4">a</div>
@@ -138,7 +143,7 @@
         <div class="t zoomIn700 delay0-8">.</div>
         <div class="t zoomIn700 delay1-0">.</div>
         <div class="t zoomIn700 delay1-2">.</div>
-    </div>
+    </div> -->
 </div>
 <script type="text/javascript" src="js/loading.js?v=$version$"></script> 
 <div id="app">
@@ -591,6 +596,7 @@
         <div class="icon page0__down opacityChange delay2-0"></div>
     </div>
     <div class="page page11 hide">
+        <div class="page11__bottom"></div>
         <div class="page11__lagou opacityChange delay0-5"></div>
         <div class="page11__star opacityChange delay0-5"></div>
         <div class="page10-icon page11__line--01 heightChange delay0-5"></div>
@@ -604,10 +610,16 @@
         <div class="page10-icon page11__title--01 littleBottomIn delay0-5"></div>
         <div class="page10-icon page11__title--02 littleBottomIn delay1-5"></div>
         <div class="page10-icon page11__title--03 littleBottomIn delay1-7"></div>
-        <div class="page10-icon page11__title--04 littleBottomIn delay1-9"></div>
+        <!-- <div class="page10-icon page11__title--04 littleBottomIn delay1-9"></div> -->
         <!-- <div class="page10-icon page11__ercode littleBottomIn delay2-1"></div> -->
-        <img class="page11__ercode littleBottomIn delay2-1" src="images/page11-ercode.png" />
-        <div class="page11__bottom"></div>
+        <!-- <img class="page11__ercode littleBottomIn delay2-1" src="images/page11-ercode.png" /> -->
+        <a class="page11__btn littleBottomIn delay1-9"
+            href="https://www.lgstatic.com/2019%E4%B8%8A%E5%8D%8A%E5%B9%B4%E6%8B%89%E5%8B%BE%E4%BA%92%E8%81%94%E7%BD%91%E8%A1%8C%E4%B8%9A%E6%8B%9B%E8%81%98%E7%99%BD%E7%9A%AE%E4%B9%A6.pdf"
+            target="_blank"
+            download="2019上半年拉勾互联网行业招聘白皮书.pdf"
+            data-lg-tj-id="1mv7"
+            data-lg-tj-no="0001" 
+            data-lg-tj-cid="null"></a>
     </div>
     <div class="dotLayer hide">
         <div class="icon dot active"></div>
@@ -633,7 +645,7 @@
     }
 </script>
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=2224$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=2225$version$"></script>
 
 <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
@@ -641,11 +653,11 @@
 <script type="text/javascript">
     //微信分享
     var datas = {
-        title: "2017年互联网职场竟然这么“难”",
-        desc: "加班、心烦、买房难 ……8个数据告诉你2017互联网职场",
-        imgUrl: 'https://activity.lagou.com/activity/dist/2017-summary/images/share.png',
-        activityType: '2017LEADERRESULT',
-        shareUrl: 'https://activity.lagou.com/activity/dist/2017-summary/m_index.html'
+        title: "五分钟了解，2019HR招聘四大挑战",
+        desc: "《2019上半年拉勾互联网行业招聘白皮书》新鲜出炉",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2019-summary/images/share.png',
+        activityType: '2019SUMMARY',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2019-summary/m_index.html'
     };
     share(datas);
     //app 分享
@@ -660,6 +672,6 @@
     }
 </script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
+<script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
 </body>
 </html>
