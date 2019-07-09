@@ -278,6 +278,7 @@ app = new Vue({
                 null;
             var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
             var lastPlayingStatus = false;
+            var lastActivePage = 0
             var onVisibilityChange = function(){
                 // alert('hiddenProperty: ' + visibilityChangeEvent)
                 if (!document[hiddenProperty]) { 
@@ -286,20 +287,21 @@ app = new Vue({
                         WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                             $('#music')[0].play();
                             $(".music-icon").removeClass('close').addClass('open');
-                            if (self.activePage === 0 && lastPlayingStatus) {
+                            if (lastActivePage === 0 && lastPlayingStatus) {
                                 document.getElementById('pressAudio').play();
                             }
                         });
                     } else {
                         $('#music')[0].play();
                         $(".music-icon").removeClass('close').addClass('open');
-                        if (self.activePage === 0 && lastPlayingStatus) {
+                        if (lastActivePage === 0 && lastPlayingStatus) {
                             document.getElementById('pressAudio').play();
                         }
                     }
                 } else {
                     var audio = null
                     // 页面离开
+                    lastActivePage = self.activePage
                     if (self.activePage === 0) {
                         audio = document.getElementById('pressAudio')
                         if (!audio.paused) {
