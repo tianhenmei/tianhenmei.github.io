@@ -312,8 +312,8 @@ app = new Vue({
                         audio = document.getElementById('video'+self.activePage)
                         if (!audio.paused) {
                             audio.pause()
-                            self.clearPlayStatus()
                         }
+                        self.clearPlayStatus()
                     }
                     $('#music')[0].pause();
                     $(".music-icon").removeClass('open').addClass('close');
