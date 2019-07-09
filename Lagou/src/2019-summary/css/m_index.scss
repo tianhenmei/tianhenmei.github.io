@@ -361,9 +361,9 @@ html,body {
         }
         &__column {
             width:rem(27);
-            height:rem(382);
+            height:rem(382-8);
             background-position: rem(-23) rem(-630);
-            @include leftBottom(42,102);
+            @include leftBottom(42,102+8);
             &--1 { background-position: rem(-96) rem(-630); }
             &--2 { background-position: rem(-171) rem(-630); }
             &--3 { background-position: rem(-245) rem(-630); }
@@ -1428,9 +1428,9 @@ html,body {
         }
         &__column {
             width:rem(27);
-            height:rem(390);
+            height:rem(390-17);
             background-position:0 rem(-580);
-            @include leftBottom(0,115);
+            @include leftBottom(0,115+17);
             &--1 { background-position:rem(-50) rem(-580); }
             &--2 { background-position:rem(-50*2) rem(-580); }
             &--3 { background-position:rem(-50*3) rem(-580); }
@@ -1564,9 +1564,9 @@ html,body {
     }
     &__column {
         width: rem(45);
-        height:rem(403);
+        height:rem(403-8);
         position:absolute;
-        bottom:rem(41);
+        bottom:rem(41+8);
         &--01 { left:rem(14); background-position:0 rem(-420); }
         &--02 { left:rem(55); background-position:rem(-50*1) rem(-420); }
         &--03 { left:rem(176); background-position:rem(-50*2) rem(-420); }
@@ -1670,9 +1670,9 @@ html,body {
     }
     &__column {
         width:rem(33);
-        height:rem(417);
+        height:rem(417-3);
         position:absolute;
-        bottom:rem(43);
+        bottom:rem(43+3);
         &--01 { left:rem(32-4); background-position:0 rem(-490);}
         &--02 { left:rem(142-4); background-position:rem(-50*1) rem(-490);}
         &--03 { left:rem(252-4); background-position:rem(-50*2) rem(-490);}
