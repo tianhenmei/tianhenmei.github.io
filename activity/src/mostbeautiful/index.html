@@ -532,6 +532,77 @@
         //         }
         //     }
         // }, 2000)
+        window.didAppear = function(){
+            console.log('didAppear')
+        }
+        window.didDisappear = function(){
+            console.log('didDisappear')
+        }
+        window.willDisappear = function(){
+            console.log('willDisappear')
+        }
+        var hiddenStatus = false
+        var lastActivePage = 0
+        window.onNativeBroadcast = function(value){
+            var vm = document.getElementById('app').__vue__
+            if (hiddenStatus) {
+                // 再次进入
+                if (window.WeixinJSBridge) {
+                    WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                        $('#music')[0].play();
+                        $(".music-icon").removeClass('close').addClass('open');
+                        if (lastActivePage === 0 && lastPlayingStatus) {
+                            document.getElementById('pressAudio').play();
+                        }
+                    });
+                } else {
+                    $('#music')[0].play();
+                    $(".music-icon").removeClass('close').addClass('open');
+                    if (lastActivePage === 0 && lastPlayingStatus) {
+                        document.getElementById('pressAudio').play();
+                    }
+                }
+                hiddenStatus = false
+            } else {
+                // 页面离开
+                var audio = null
+
+                hiddenStatus = true
+                lastActivePage = vm.activePage
+                
+                if (vm.activePage === 0) {
+                    audio = document.getElementById('pressAudio')
+                    if (!audio.paused) {
+                        lastPlayingStatus = true;
+                        audio.pause()
+                    }
+                } else if(vm.activePage > 0) {
+                    audio = document.getElementById('video'+vm.activePage)
+                    if (!audio.paused) {
+                        audio.pause()
+                    }
+                    vm.clearPlayStatus()
+                }
+                $('#music')[0].pause();
+                $(".music-icon").removeClass('open').addClass('close');
+            }
+        }
+        window.didEnterBackground = function(){
+            console.log('didEnterBackground')
+        }
+        // // 进入后台：
+        // (function(){
+        //     if(window.didEnterBackground) {
+        //         didEnterBackground()
+        //     }
+        // })()
+        // // 恢复到前台：
+        // (function(){
+        //     if(window.willEnterForeground) {
+        //         willEnterForeground()
+        //     }
+        // })()
+
     </script>
     <script type="text/javascript">
         if(isWeiXin()){
