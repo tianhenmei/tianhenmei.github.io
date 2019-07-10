@@ -177,6 +177,7 @@ app = new Vue({
                         });
                     } else {
                         paudio.play();
+                    }
                 }
 
             }else{
