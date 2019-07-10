@@ -153,6 +153,7 @@ app = new Vue({
     },
     mounted:function(){
         pageStatus = true;
+        var self = this;
         var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
             currentSize = parseFloat((GC.w / GC.h).toFixed(1));
         if(rightSize > currentSize){
@@ -167,10 +168,26 @@ app = new Vue({
             if($('#music')[0].paused){
                 $('#music')[0].play();
                 $(".music-icon").removeClass('close').addClass('open');
+                if(!self.page0.videoStatus && self.activePage === 0) {
+                    var paudio = document.getElementById('pressAudio');
+                    paudio.pause()
+                }
 
             }else{
                 $('#music')[0].pause();
                 $(".music-icon").removeClass('open').addClass('close');
+                if(!self.page0.videoStatus && self.activePage === 0) {
+                    var paudio = document.getElementById('pressAudio');
+                    if (window.WeixinJSBridge) {
+                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                            if (!self.page0.videoStatus && self.activePage === 0) {
+                                paudio.play();
+                            }
+                        });
+                    } else {
+                        paudio.play()
+                    }
+                }
             }
         });
         // if (this.activePage === 2) {
