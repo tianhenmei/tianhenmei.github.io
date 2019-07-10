@@ -170,7 +170,7 @@ app = new Vue({
                 $(".music-icon").removeClass('close').addClass('open');
                 if(!self.page0.videoStatus && self.activePage === 0) {
                     var paudio = document.getElementById('pressAudio');
-                    paudio.pause()
+                    paudio.play()
                 }
 
             }else{
@@ -181,11 +181,11 @@ app = new Vue({
                     if (window.WeixinJSBridge) {
                         WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                             if (!self.page0.videoStatus && self.activePage === 0) {
-                                paudio.play();
+                                paudio.pause();
                             }
                         });
                     } else {
-                        paudio.play()
+                        paudio.pause()
                     }
                 }
             }
