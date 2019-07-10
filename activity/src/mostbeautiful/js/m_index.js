@@ -169,6 +169,7 @@ app = new Vue({
                 $('#music')[0].play();
                 $(".music-icon").removeClass('close').addClass('open');
                 if(!self.page0.videoStatus && self.activePage === 0) {
+                    var paudio = document.getElementById('pressAudio');
                     if (window.WeixinJSBridge) {
                         WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
                             if (!self.page0.videoStatus && self.activePage === 0) {
