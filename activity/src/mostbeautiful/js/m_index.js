@@ -168,6 +168,7 @@ app = new Vue({
             if($('#music')[0].paused){
                 $('#music')[0].play();
                 $(".music-icon").removeClass('close').addClass('open');
+                globalMusicStatus = true;
                 if(!self.page0.videoStatus && self.activePage === 0) {
                     var paudio = document.getElementById('pressAudio');
                     if (window.WeixinJSBridge) {
@@ -184,6 +185,7 @@ app = new Vue({
             }else{
                 $('#music')[0].pause();
                 $(".music-icon").removeClass('open').addClass('close');
+                globalMusicStatus = false
                 if(!self.page0.videoStatus && self.activePage === 0) {
                     var paudio = document.getElementById('pressAudio');
                     paudio.pause();
