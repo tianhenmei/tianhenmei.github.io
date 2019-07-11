@@ -498,7 +498,7 @@
     <script src="js/vue.js?v=$version$"></script> 
     <script src="js/swiper.min.js"></script>
     <script src="js/vue-awesome-swiper.js"></script>
-    <script src="js/m_index.js?v=2236$version$"></script>
+    <script src="js/m_index.js?v=2237$version$"></script>
     <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script>
         var loadingMusic = document.getElementById('loadingMusic')
@@ -511,16 +511,20 @@
                     if (loadingCompleteStatus) {
                         return
                     } else {
-                        if (window.WeixinJSBridge) {
-                            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
-                                if (!loadingCompleteStatus) {
-                                    loadingMusic.load();
-                                    loadingMusic.play();
-                                }
-                            });
-                        } else {
-                            loadingMusic.load();
-                            loadingMusic.play();
+                        if (globalMusicStatus) {
+                            if (window.WeixinJSBridge) {
+                                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                                    if (!loadingCompleteStatus) {
+                                        if (globalMusicStatus) {
+                                            loadingMusic.load();
+                                            loadingMusic.play();
+                                        }
+                                    }
+                                });
+                            } else {
+                                loadingMusic.load();
+                                loadingMusic.play();
+                            }
                         }
                     }
                 }, temp > 2000 ? 0 : 2000-temp)
