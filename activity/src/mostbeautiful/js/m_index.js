@@ -302,19 +302,23 @@ app = new Vue({
                 // alert('hiddenProperty: ' + visibilityChangeEvent)
                 if (!document[hiddenProperty]) { 
                     // 再次进入
-                    if (window.WeixinJSBridge) {
-                        WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    if (globalMusicStatus) {
+                        if (window.WeixinJSBridge) {
+                            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                                if (globalMusicStatus) {
+                                    $('#music')[0].play();
+                                    $(".music-icon").removeClass('close').addClass('open');
+                                    if (lastActivePage === 0 && lastPlayingStatus) {
+                                        document.getElementById('pressAudio').play();
+                                    }
+                                }
+                            });
+                        } else {
                             $('#music')[0].play();
                             $(".music-icon").removeClass('close').addClass('open');
                             if (lastActivePage === 0 && lastPlayingStatus) {
                                 document.getElementById('pressAudio').play();
                             }
-                        });
-                    } else {
-                        $('#music')[0].play();
-                        $(".music-icon").removeClass('close').addClass('open');
-                        if (lastActivePage === 0 && lastPlayingStatus) {
-                            document.getElementById('pressAudio').play();
                         }
                     }
                 } else {
@@ -398,7 +402,7 @@ app = new Vue({
             this.page0.videoStatus = true
             // this.addAnimation();
             document.getElementById('pressAudio').pause();
-            if($('#music')[0].paused){
+            if(globalMusicStatus && $('#music')[0].paused){
                 $('#music')[0].play();
                 $(".music-icon").removeClass('close').addClass('open');
             }
