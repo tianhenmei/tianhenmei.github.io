@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- viewport 设置视窗宽为设备宽度，默认不缩放，不允许用户缩放。 -->
+    <!-- 忽略电话号码和邮箱识别 -->
+    <!-- iOS隐藏工具栏和菜单栏 -->
+    <!-- iOS顶部状态栏(手机信号、时间、电池)的背景颜色。默认值为default（白色），可以定为black（黑色）和black-translucent（灰色半透明） -->
+    <meta charset="utf-8">
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no,email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="full-screen" content="true">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="360-fullscreen" content="true">
+    <link rel="stylesheet" href="css/m_index.css?v=$version$">
+    <link rel="prefetch" href="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"/>  
+    <!---上线之后加-->
+    <title>拉勾年度TOP雇主颁奖盛典</title>
+    <script>
+        var lastSize = 16,
+            bodyElement = document.documentElement || document.body,
+            html = document.getElementsByTagName("html")[0],
+            RC = {
+                w: 750,
+                h: 1206
+            },
+            GC = {
+                w: document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h: document.documentElement.clientHeight || window.innerHeight || screen.height
+            },
+            lagoufrom = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false,
+            app = null,
+            currentCount = 0;
+        
+        function shareSuccess(){
+            currentCount++
+            if(app){
+                app.shareSuccessCallback()
+            }
+        }
+        function getQueryString(parm) {
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        function setFontSize() {
+            var portrait = false,
+                resize = "orientationchange" in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16;
+
+            try {
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch (e) { }
+            if(rightSize > currentSize){  // 长屏
+                lastHTMLSize = 16;
+            }else if(rightSize < currentSize){  //宽屏
+                lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+            }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                lastHTMLSize = lastHTMLSize + 2;
+            }else if(/(MI 5s)/gi.test(navigator.userAgent)){
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    lastHTMLSize = lastHTMLSize + 2.5;
+                }
+            }
+            
+            lastSize = lastHTMLSize;
+            html.style.fontSize=GC.w/lastHTMLSize+'px';
+        }
+
+        setFontSize();
+        // 随机文案索引
+        var shareRandomIndex = Math.floor(Math.random() * 10+1);  // 9
+        var PageMove = null;
+        var PM = null;
+        var app = null;
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingComplete = function(){
+                var appElement = document.getElementById('app'),
+                    btn = document.getElementById('video__btn'),
+                    videos = document.getElementById('videos'),
+                    num = document.getElementById('loading__num'),
+                    video = document.getElementById('video');
+                // test
+                // appElement.className = appElement.className.replace(' hide','');
+                btn.className = btn.className.replace(' hide','');
+                num.className += ' hide';
+                btn.addEventListener('click',function(e){
+                    // e.stopPropagation();
+                    // e.preventDefault();
+                    try{
+                        video.play();
+                    }catch(e){
+                        alert(e);
+                    }
+
+                    var loading = document.getElementById('loading'),
+                        text = document.getElementById('video__text');
+                    // btn.className += ' hide';
+                    // loading.className += ' hide';
+                    loading.className += ' opacityChange-out';
+                    videos.className = videos.className.replace(' hide','');
+                    setTimeout(function(){
+                        if(video.paused){
+                            video.play();
+                        }
+                        loading.className += ' hide';
+                        // video.className = video.className.replace(' hide','');
+                    },500);
+                    video.addEventListener("ended",function(){
+                        videos.className += ' opacityChange-out';
+                        setTimeout(function(){
+                            videos.className += ' hide';
+                            appElement.className = appElement.className.replace(' hide','');
+                            PM = new PageMove({ animation: "move" });
+                        },500);
+                    });
+                    video.addEventListener("timeupdate",function(){
+                        var timeDisplay;
+                        // 当前播放秒数
+                        timeDisplay = Math.floor(video.currentTime);
+                        if(timeDisplay == 23){
+                            // 当前logo刚出来的时候
+                        }
+                    },false);
+                    text.addEventListener("click",function(){
+                        video.pause();
+                        videos.className += ' opacityChange-out';
+                        setTimeout(function(){
+                            videos.className += ' hide';
+                            appElement.className = appElement.className.replace(' hide','');
+                            PM = new PageMove({ animation: "move" });
+                        },500);
+                    },false);
+                },false);
+            },
+            loadingSuccess = function(){
+                var now = Date.now(),
+                    space = now - startTime,
+                    // pro = document.getElementById('loading__progress'),
+                    number = document.getElementById('loading__num');
+                number.innerHTML = "100%";
+                // if(space < 3500){
+                //     setTimeout(function(){
+                //         loadingComplete();
+                //     },3500 - space)
+                // }else{
+                    loadingComplete();
+                // }
+            };
+    </script>
+    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+</head>
+<body>
+    <div class="videos hide" id="videos">
+        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"></video>
+        <div class="video__text" id="video__text">跳过</div>
+    </div>
+    <div class="loading" id="loading">
+        <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
+        <div class="loading__titleLayer">
+            <div class="loading__title02 loading__title02--t1 opacityChange duration0-1 delay1-0"></div>
+            <div class="loading__title02 loading__title02--a1 opacityChange duration0-1 delay1-1"></div>
+            <div class="loading__title02 loading__title02--l1 opacityChange duration0-1 delay1-2"></div>
+            <div class="loading__title02 loading__title02--e1 opacityChange duration0-1 delay1-3"></div>
+            <div class="loading__title02 loading__title02--n1 opacityChange duration0-1 delay1-4"></div>
+            <div class="loading__title02 loading__title02--t12 opacityChange duration0-1 delay1-5"></div>
+            <div class="loading__title02 loading__title02--O2 opacityChange duration0-1 delay1-6"></div>
+            <div class="loading__title02 loading__title02--r2 opacityChange duration0-1 delay1-7"></div>
+            <div class="loading__title02 loading__title02--g2 opacityChange duration0-1 delay1-8"></div>
+            <div class="loading__title02 loading__title02--a2 opacityChange duration0-1 delay1-9"></div>
+            <div class="loading__title02 loading__title02--n2 opacityChange duration0-1 delay2-0"></div>
+            <div class="loading__title02 loading__title02--i2 opacityChange duration0-1 delay2-1"></div>
+            <div class="loading__title02 loading__title02--z2 opacityChange duration0-1 delay2-2"></div>
+            <div class="loading__title02 loading__title02--a22 opacityChange duration0-1 delay2-3"></div>
+            <div class="loading__title02 loading__title02--t2 opacityChange duration0-1 delay2-4"></div>
+            <div class="loading__title02 loading__title02--i22 opacityChange duration0-1 delay2-5"></div>
+            <div class="loading__title02 loading__title02--o22 opacityChange duration0-1 delay2-6"></div>
+            <div class="loading__title02 loading__title02--n22 opacityChange duration0-1 delay2-7"></div>
+            <div class="loading__title02 loading__title02--p3 opacityChange duration0-1 delay2-8"></div>
+            <div class="loading__title02 loading__title02--o3 opacityChange duration0-1 delay2-9"></div>
+            <div class="loading__title02 loading__title02--w3 opacityChange duration0-1 delay3-0"></div>
+            <div class="loading__title02 loading__title02--e3 opacityChange duration0-1 delay3-1"></div>
+            <div class="loading__title02 loading__title02--r3 opacityChange duration0-1 delay3-2"></div>
+        </div>
+        <!--<div class="loading__title loading__title01 littleBottomIn delay0-5"></div>-->
+        <!--<div class="loading__progress" id="loading__progress">
+            <div class="progress" id="progress"></div>
+        </div>-->
+        <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
+        <div class="video__btn hide" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">
+            <div class="circle circle00"></div>
+            <div class="circle circle01"></div>
+            <div class="circle circle02"></div>
+            <div class="circle circle03"></div>
+            <div class="start-text">登顶之路</div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <div class="wrapper pages hide" id="app">
+        <div class="page page0" :class="activePage == 0 ? 'active' : ''">
+            <div class="page0__bg01 opacityChange duration0-5 delay1-0"></div>
+            <div class="page0__bg02 opacityChange duration0-5 delay2-5"></div>
+            <div class="icon page0__logo rightIn duration1-0 delay0-5" :style="{top:getFitTop(23,1/4)}"></div>
+            <!--<div class="page0__dot01 opacityChange delay1-0"></div>
+            <div class="page0__dot02 opacityChange delay1-0"></div>-->
+            <div class="icon page0__grotesque littleBottomIn delay0-5" :style="{top:getFitTop(266-128,1/4)}"></div>
+            <!--<div class="icon page0__2018 rightIn duration2-0 delay0-5"></div>
+            <div class="icon page0__talent leftIn duration2-0 delay0-7"></div>
+            <div class="icon page0__organization leftIn duration2-0 delay1-0"></div>
+            <div class="icon page0__power leftIn duration2-0 delay1-4"></div>
+            <div class="icon page0__circle opacityChange delay3-0"></div>-->
+            <div class="page0__title page0__title1 littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(414-128,2/4)}"></div>
+            <div class="page0__title page0__title2 littleBottomIn duration1-0 delay1-2" :style="{top:getFitTop(513-128,2/4)}"></div>
+            <!--<div class="page0__line littleBottomIn duration1-0 delay2-2" :style="{top:getFitTop(999-128,3/4)}"></div>-->
+            <div class="page0__textLayer" :style="{top:getFitTop(747-128,3/4)}">
+                <div class="icon page0__text page0__text1 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text2 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon2 leftIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text3 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon3 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__text page0__text4 rightIn duration1-0 delay1-7"></div>
+                <div class="icon page0__icon page0__icon4 rightIn duration1-0 delay1-7"></div>
+            </div>
+            <div class="page0__move" :class="page0[page0.status].move">
+                <div class="icon page0__move--center moveTopInfinite delay1-5"></div>
+            </div>
+        </div>
+    <script type="text/javascript">
+        pageStatus = true;
+        if(loadingStatus){
+            pageStatus = false;
+            loadingStatus = false;
+            loadingSuccess();
+        }
+    </script>
+    <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <!--<script src="https://www.lgstatic.com/topic/js/share_20161124.js"></script>-->
+    <script type="text/javascript">
+        function share(datas){
+            function encode(url) {
+                return encodeURIComponent(url).replace(/'/g, "%27").replace(/"/g, "%22");
+            }
+                    //统计分享次数
+            function countShare(datas) {
+                var parameter =  datas.parameter;
+                var countUrl = "https://activity.lagou.com/activityapi/weixin/countShare.json?activityType="+datas.activityType;
+                $.ajax({
+                    type: 'get',
+                    contentType:"application/x-www-form-urlencoded;charset=UTF-8",
+                    url: countUrl,
+                    dataType:'jsonp',
+                    jsonp:'jsoncallback',
+                    success: function(data){
+                        if(data.success){
+                            var a = $('.shareCount').eq(1).html();
+                            a++;
+                            $('.shareCount').eq(1).html(a);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+
+                    }
+                })
+                return
+            }
+            surl = window.location.href;
+            var url = "https://www.lagou.com/weixin/wx_share.json?url=" + encode(window.location.href.split('#')[0]);
+            var callback = function (json) {
+                var data = json.message;
+                data = eval("(" + data + ")");
+                wx.config({
+                    debug: false,
+                    appId: data.appId,
+                    timestamp: data.timestamp,
+                    nonceStr: data.nonceStr,
+                    signature: data.signature,
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo']
+                });
+                wx.ready(function () {
+                    var shareData = {
+                        title: datas.title,
+                        desc: datas.desc,
+                        link: datas.shareUrl, // 分享链接
+                        imgUrl: datas.imgUrl,
+                        success: function () {
+                            //alert('已分享');         
+                            // 用户确认分享后执行的回调函数
+                            shareSuccess()
+                            if(datas.goToUrl){
+                                window.location.href = "http://mp.weixin.qq.com/s?__biz=MzAxNzEyODA2NQ==&mid=204001564&idx=1&sn=940c1a21ef9d50dd645e6129e1a17f06#rd";
+                            }
+                            if(datas.activityType){
+                                countShare(datas);
+                            }
+                            
+                        }
+                    };
+                    wx.onMenuShareAppMessage(shareData);
+                    wx.onMenuShareTimeline(shareData);
+                    wx.onMenuShareQQ(shareData);
+                    wx.onMenuShareWeibo(shareData);
+                    console.log('weixin support set success.');
+                });
+                wx.error(function (res) {
+                    //alert(res.errMsg);
+                });
+            };
+            $.ajax({
+                url: url,
+                dataType: "jsonp",
+                jsonp: "jsoncallback",
+                success: function (response) {
+                    callback && callback(response);
+                },
+                error: function (xhr, type) {
+                    console.log('xhr:' + xhr + "type:" + type);
+                    // alert("网络错误请重试")
+                }
+            })
+        }
+    </script>
+    <script type="text/javascript">
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
+        //微信分享
+        var datas = {
+            title: "2019招聘秘籍首发，阿里腾讯大厂齐聚，六大城市巡回颁奖盛典~",
+            desc: "洞悉行业趋势，抢占人才高地",
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.png",
+            activityType: 'ACTIVITY_H5_AWARD_2018',
+            shareUrl:baseUrl
+        };
+        share(datas);
+        //app 分享
+        function getShareInfo(){
+            var share={
+                share_title:datas.title,
+                share_desc:datas.desc,
+                share_url:datas.shareUrl,
+                share_imgUrl:datas.imgUrl
+            };
+            return share;
+        }
+
+    </script>
+    <script src="js/vue.js?v=$version$"></script> 
+    <script src="js/m_index.js?v=$version$"></script>
+    
+    <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
+    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+</body>
+</html>
