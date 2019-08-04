@@ -193,10 +193,9 @@
     </div>
     <div class="page page1" :class="activePage === 1 ? 'active' : 'hide'">
         <div class="page1__bg"></div>
-        <div class="page1__window"></div>
-        <div class="page1__top"></div>
-        <div class="icon page1__title"></div>
         <div class="page1__bottom" :style="{top: getFitTop(0,1)}">
+            <div class="page1__window"></div>
+            <div class="page1__top"></div>
             <div class="icon page1__name"></div>
             <div class="page1__inputLayer">
                 <input class="page1__input" type="text" v-model="companyName" placeholder="输入公司名称定制海报"
@@ -209,6 +208,7 @@
                     data-lg-tj-cid="null"></div>
             </div>
         </div>
+        <div class="icon page1__title"></div>
         <div class="page1__tips" v-show="showTips">请输入公司名称定制海报</div>
     </div>
     <div class="page page2" :class="activePage === 2 ? 'active' : 'hide'">
