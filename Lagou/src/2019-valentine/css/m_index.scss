@@ -464,13 +464,15 @@ html,body {
         font-weight:bold;
         @include center(98,991);
         &__one {
-            height:rem(50);
-            // line-height:rem(50);
-            padding:rem(6) rem(16);
+            // height:rem(50);
+            line-height:rem(50);
+            // line-height:1;
+            padding:0 rem(16);
             margin-bottom:rem(10);
             background:url('../images/page2-input.png') no-repeat rem(-26) rem(-24);
             background-size:rem(1522) rem(123);
-            display:inline-block;
+            // display:inline-block;
+            float:left;
         }
         &__name {
             max-width:rem(420);
