@@ -46,12 +46,12 @@ app = new Vue({
         testStatus:false
     },
     created:function(){
-        // var script = document.createElement('script')
-        // script.src = '//cdn.jsdelivr.net/npm/vconsole'
-        // script.onload = function(){
-        //     new VConsole()
-        // }
-        // document.body.appendChild(script)
+        var script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        script.onload = function(){
+            new VConsole()
+        }
+        document.body.appendChild(script)
     },
     mounted:function(){
         // this.setDay();
@@ -66,6 +66,7 @@ app = new Vue({
         var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
             currentSize = parseFloat((GC.w / GC.h).toFixed(1));
         this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
+        console.log(rightSize+', '+currentSize)
         if(rightSize > currentSize){
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
         }else{
@@ -79,9 +80,10 @@ app = new Vue({
             return value / (1080 / 16)+'rem';
         },
         getFitTop:function(def,ratio,max,limit){
-            var n = this.heightStatus * ratio;
-            n = (max && n > max ? max : n) + (limit ? limit : 0);
-            return this.setRem(def+n);
+            return this.setRem(def+this.shortHeight * ratio)
+            // var n = this.heightStatus * ratio;
+            // n = (max && n > max ? max : n) + (limit ? limit : 0);
+            // return this.setRem(def+n);
         },
         ismobile:function(){
             var u = navigator.userAgent, app = navigator.appVersion;
