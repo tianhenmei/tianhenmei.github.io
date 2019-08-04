@@ -63,20 +63,20 @@ app = new Vue({
         // if(getQueryString('xtest')){
         //     this.testStatus = true
         // }
-        // var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
-        //     currentSize = parseFloat((GC.w / GC.h).toFixed(1));
-        // this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
-        // if(rightSize > currentSize){
-        //     this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
-        // }else{
-        //     this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
-        //     this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
-        // }
+        var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+            currentSize = parseFloat((GC.w / GC.h).toFixed(1));
+        this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
+        if(rightSize > currentSize){
+            this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+        }else{
+            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
+            this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
+        }
         this.initCanvas()
     },
     methods:{
         setRem:function(value){
-            return value / (750 / 16)+'rem';
+            return value / (1080 / 16)+'rem';
         },
         getFitTop:function(def,ratio,max,limit){
             var n = this.heightStatus * ratio;
