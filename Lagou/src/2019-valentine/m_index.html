@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>七夕diy海报</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
+    <link rel="stylesheet" href="css/m_index.css?v=2000$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:1080,
+                h:1736
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        function showPage() {
+            var page0 = document.getElementById('page0');
+            var loading = document.getElementById('loading')
+            page0.className = page0.className.replace(' hide','');
+            loading.className += ' opacityChangeOut';
+            setTimeout(function() {
+                loading.className += ' hide';
+            }, 500)
+        }
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingSuccess = function(){
+                var now = new Date().getTime()
+                if (now - startTime > 2000) {
+                    showPage()
+                } else {
+                    setTimeout(function() {
+                        showPage()
+                    }, now - startTime)
+                }
+            }
+    </script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<!-- <div class="music-box">
+    <div class="music-icon open">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+    </div>
+</div> -->
+<div class="loading" id="loading">
+    <div class="loading__star"></div>
+    <div class="loading__img"></div>
+    <div class="loading__line"></div>
+    <div class="loading__circle circleMoveInfinite"></div>
+    <div class="loading__num" id="progress-number">0%</div>
+    <!-- <div class="title clearfix">
+        <div class="l zoomIn700 delay0">l</div>
+        <div class="o zoomIn700 delay0-2">o</div>
+        <div class="a zoomIn700 delay0-4">a</div>
+        <div class="d zoomIn700 delay0-6">d</div>
+        <div class="t zoomIn700 delay0-8">.</div>
+        <div class="t zoomIn700 delay1-0">.</div>
+        <div class="t zoomIn700 delay1-2">.</div>
+    </div> -->
+</div>
+<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+<script>
+    document.getElementById('loading').addEventListener('touchmove', function(e){
+        e.stopPropagation()
+        e.preventDefault()
+    }, {passive: false})
+</script>
+<div id="app">
+    <div class="page page0 hide" :class="(pageChanging && lastPage === 0) ? 'opacityChangeOut z-index-2 active' : (activePage > 0 ? 'hide' : '')" id="page0">
+        <div class="page0__bg"></div>
+        <div class="page0__c01"></div>
+        <div class="page0__star"></div>
+        <div class="page0__dark"></div>
+        <div class="icon page0__moon"></div>
+        <div class="icon page0__c02"></div>
+        <div class="icon page0__c03"></div>
+        <div class="page0__c05"></div>
+        <div class="page0__c06"></div>
+        <div class="icon page0__c04"></div>
+        <div class="page0__words littleBottomParentIn delay0-5 duration8-0">
+            <div class="icon page0__w page0__w01 opacityChange delay0-5"></div>
+            <div class="icon page0__w page0__w02 opacityChange delay1-5"></div>
+            <div class="icon page0__w page0__w03 opacityChange delay2-5"></div>
+            <div class="icon page0__w page0__w04 opacityChange delay3-5"></div>
+            <div class="icon page0__w page0__w05 opacityChange delay4-5"></div>
+            <div class="icon page0__w page0__w06 opacityChange delay5-5"></div>
+            <div class="icon page0__w page0__w07 opacityChange delay6-5"></div>
+            <div class="icon page0__w page0__w08 opacityChange delay7-5"></div>
+        </div>
+        <div class="icon page0__btn zoomIn delay8-5">
+            <div class="page0__btn__center" @click.stop.prevent="btnClickEvent"
+                data-lg-tj-id="1k6a"
+                data-lg-tj-no="0001" 
+                data-lg-tj-cid="null"></div>
+        </div>
+    </div>
+    <div class="page page1" :class="activePage === 1 ? 'active' : 'hide'">
+        <div class="page1__bg"></div>
+        <div class="page1__window"></div>
+        <div class="page1__top"></div>
+        <div class="icon page1__title"></div>
+        <div class="icon page1__name"></div>
+        <div class="page1__inputLayer">
+            <input class="page1__input" type="text" v-model="companyName" placeholder="输入公司名称定制海报"
+                @blur="onblurEvent" />
+        </div>
+        <div class="icon page1__btn">
+            <div class="page1__btn__center" @click.stop.prevent="showSavePage"
+                data-lg-tj-id="1k6a"
+                data-lg-tj-no="0002" 
+                data-lg-tj-cid="null"></div>
+        </div>
+        <div class="page1__tips" v-show="showTips">请输入公司名称定制海报</div>
+    </div>
+    <div class="page page2" :class="activePage === 2 ? 'active' : 'hide'">
+        <div class="page2__canvas">
+            <canvas class="canvas" id="canvas" ref="canvas"></canvas>
+        </div>
+        <div class="page2__bg">
+            <div class="page2__bg__center"></div>
+        </div>
+        <div class="page2__decoration"></div>
+        <div class="page2__title" :class="'page2__title--'+activeTitle"></div>
+        <div class="page2__subtitle" :class="'page2__subtitle--'+activeSubtitle"></div>
+        <div class="page2__inputLayer clearfix">
+            <div class="page2__input page2__input__left"></div>
+            <div class="page2__input page2__input__center">
+                {{companyName}}
+            </div>
+            <div class="page2__input page2__input__right"></div>
+        </div>
+        <div class="page2__search">
+            上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】<br/>
+            立即与我相遇
+        </div>
+        <div class="page2__btnLayer">
+            <div class="page2__btn page2__btn__change">
+                <div class="page2__btn__center" @click.stop.prevent="changeTextEvent"
+                    data-lg-tj-id="1k6a"
+                    data-lg-tj-no="0003" 
+                    data-lg-tj-cid="null"></div>
+            </div>
+            <div class="page2__btn page2__btn__save">
+                <div class="page2__btn__center" @click.stop.prevent="toSaveEvent"
+                    data-lg-tj-id="1k6a"
+                    data-lg-tj-no="0004" 
+                    data-lg-tj-cid="null"></div>
+            </div>
+        </div>
+        <div class="page2__save" :class="saveStatus ? 'move-to-open' : 'hide'">
+            <div class="page2__bg">
+                <div class="page2__bg__center"></div>
+            </div>
+            <div class="page2__decoration"></div>
+            <div class="page2__title" :class="'page2__title--'+activeTitle"></div>
+            <div class="page2__subtitle" :class="'page2__subtitle--'+activeSubtitle"></div>
+            <div class="page2__inputLayer clearfix">
+                <div class="page2__input page2__input__left"></div>
+                <div class="page2__input page2__input__center">
+                    {{companyName}}
+                </div>
+                <div class="page2__input page2__input__right"></div>
+            </div>
+            <div class="page2__search">
+                上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】<br/>
+                立即与我相遇
+            </div>
+            <div class="page2__logo"></div>
+            <div class="page2__ercode"></div>
+        </div>
+        <img class="page2__img" v-show="url" :src="url"
+            @touchstart="imgTouchstart"
+            @touchend="imgTouchend"
+            @click.stop.prevent="clickImageEvent" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=2000$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "裁员潮下互联网人才依旧难招，原来是因为……",
+        desc: "拉勾解密招聘魔咒：为什么TA找不到工作我招不到人", // "《2019上半年拉勾互联网行业招聘白皮书》新鲜出炉",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2019-valentine/images/share.png',
+        activityType: '2019_VALENTINE',
+        shareUrl: window.location.href // 'https://activity.lagou.com/activity/dist/2019-summary/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
+</body>
+</html>
