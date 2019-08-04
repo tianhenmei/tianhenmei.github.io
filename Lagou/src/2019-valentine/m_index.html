@@ -18,7 +18,7 @@
     <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
     <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
     <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
-    <link rel="stylesheet" href="css/m_index.css?v=2000$version$">
+    <link rel="stylesheet" href="css/m_index.css?v=2001$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -196,16 +196,18 @@
         <div class="page1__window"></div>
         <div class="page1__top"></div>
         <div class="icon page1__title"></div>
-        <div class="icon page1__name"></div>
-        <div class="page1__inputLayer">
-            <input class="page1__input" type="text" v-model="companyName" placeholder="输入公司名称定制海报"
-                @blur="onblurEvent" />
-        </div>
-        <div class="icon page1__btn">
-            <div class="page1__btn__center" @click.stop.prevent="showSavePage"
-                data-lg-tj-id="1k6a"
-                data-lg-tj-no="0002" 
-                data-lg-tj-cid="null"></div>
+        <div class="page1__bottom" :style="{top: getFitTop(0,1)}">
+            <div class="icon page1__name"></div>
+            <div class="page1__inputLayer">
+                <input class="page1__input" type="text" v-model="companyName" placeholder="输入公司名称定制海报"
+                    @blur="onblurEvent" />
+            </div>
+            <div class="icon page1__btn">
+                <div class="page1__btn__center" @click.stop.prevent="showSavePage"
+                    data-lg-tj-id="1k6a"
+                    data-lg-tj-no="0002" 
+                    data-lg-tj-cid="null"></div>
+            </div>
         </div>
         <div class="page1__tips" v-show="showTips">请输入公司名称定制海报</div>
     </div>
@@ -282,7 +284,7 @@
     }
 </script>
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=2000$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=2001$version$"></script>
 
 <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
