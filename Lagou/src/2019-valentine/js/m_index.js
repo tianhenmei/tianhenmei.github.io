@@ -312,7 +312,7 @@ app = new Vue({
             // 长按
             if (this.touchstart && now - this.touchstart >= 2000) {
                 postEncodingID({
-                    'data-lg-tj-id': '1k6a',
+                    'data-lg-tj-id': '1n47',
                     'data-lg-tj-no': '0005' ,
                     'data-lg-tj-cid': 'null'
                 })
