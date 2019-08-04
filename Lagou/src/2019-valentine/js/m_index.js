@@ -46,12 +46,12 @@ app = new Vue({
         testStatus:false
     },
     created:function(){
-        var script = document.createElement('script')
-        script.src = '//cdn.jsdelivr.net/npm/vconsole'
-        script.onload = function(){
-            new VConsole()
-        }
-        document.body.appendChild(script)
+        // var script = document.createElement('script')
+        // script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        // script.onload = function(){
+        //     new VConsole()
+        // }
+        // document.body.appendChild(script)
     },
     mounted:function(){
         // this.setDay();
@@ -63,13 +63,13 @@ app = new Vue({
         // if(getQueryString('xtest')){
         //     this.testStatus = true
         // }
-        var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
-            currentSize = parseFloat((GC.w / GC.h).toFixed(1));
+        var rightSize = parseFloat((RC.w / RC.h).toFixed(2)),
+            currentSize = parseFloat((GC.w / GC.h).toFixed(2));
         this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
-        console.log(rightSize+', '+currentSize)
-        if(rightSize > currentSize){
+        console.log(rightSize, currentSize)
+        if(rightSize > currentSize){ // 长屏
             this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
-        }else{
+        }else if(rightSize < currentSize){
             this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
             this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
         }
@@ -80,7 +80,25 @@ app = new Vue({
             return value / (1080 / 16)+'rem';
         },
         getFitTop:function(def,ratio,max,limit){
-            return this.setRem(def-this.shortHeight * ratio)
+            var r = 0
+            // 长屏
+            if (this.heightStatus) {
+                r = def + this.heightStatus * ratio
+                if (r > 0) {
+                    return 0
+                }
+                return this.setRem(r)
+            }
+            // 刚好屏
+            if (this.shortHeight === 0) {
+                return this.setRem(def)
+            }
+            // 宽屏
+            r = def - this.shortHeight * ratio
+            if (r < -256) {
+                r = -256
+            }
+            return this.setRem(r)
             // var n = this.heightStatus * ratio;
             // n = (max && n > max ? max : n) + (limit ? limit : 0);
             // return this.setRem(def+n);
@@ -221,6 +239,8 @@ app = new Vue({
         drawContent:function(){
             var self = this
             var sw = 0
+            var nx = 0
+            var lx = 0
 
             this.ctx.fillStyle = "#722236"
             this.ctx.font = "60px normal"
@@ -240,19 +260,42 @@ app = new Vue({
 
             this.ctx.lineWidth = 1
             this.ctx.font = "36px normal"
-            this.ctx.fillText('上拉勾搜索 【',98,991+60)
-            this.ctx.strokeText('上拉勾搜索 【',98,991+60)
+            this.ctx.fillText('上拉勾搜索 【',98+16,991+60)
+            this.ctx.strokeText('上拉勾搜索 【',98+16,991+60)
             sw = this.ctx.measureText('上拉勾搜索 【').width
             
-            this.ctx.fillText(this.companyName,98+sw,991+60)
-            this.ctx.strokeText(this.companyName,98+sw,991+60)
-            var nx = this.ctx.measureText(this.companyName).width
+            this.ctx.fillText(this.companyName,98+16+sw,991+60)
+            this.ctx.strokeText(this.companyName,98+16+sw,991+60)
+            nx = this.ctx.measureText(this.companyName).width
 
-            this.ctx.fillText('】',98+sw+nx,991+60)
-            this.ctx.strokeText('】',98+sw+nx,991+60)
+            this.ctx.fillText('】',98+16+sw+nx,991+60)
+            this.ctx.strokeText('】',98+16+sw+nx,991+60)
+            lx = this.ctx.measureText('】').width
 
-            this.ctx.fillText("立即与我相遇", 98, 991+60+60)
-            this.ctx.strokeText("立即与我相遇", 98, 991+60+60)
+            this.ctx.drawImage(this.loadedImgs[3], 
+                26, 24, 32+sw+nx+lx, 50, 
+                98, 991+20, 32+sw+nx+lx, 50)
+            this.ctx.fillText('上拉勾搜索 【',98+16,991+60)
+            this.ctx.strokeText('上拉勾搜索 【',98+16,991+60)
+            sw = this.ctx.measureText('上拉勾搜索 【').width
+            
+            this.ctx.fillText(this.companyName,98+16+sw,991+60)
+            this.ctx.strokeText(this.companyName,98+16+sw,991+60)
+            nx = this.ctx.measureText(this.companyName).width
+
+            this.ctx.fillText('】',98+16+sw+nx,991+60)
+            this.ctx.strokeText('】',98+16+sw+nx,991+60)
+            lx = this.ctx.measureText('】').width
+
+            this.ctx.fillText("立即与我相遇", 98+16, 991+60+60)
+            this.ctx.strokeText("立即与我相遇", 98+16, 991+60+60)
+            lx = this.ctx.measureText('立即与我相遇').width
+
+            this.ctx.drawImage(this.loadedImgs[3], 
+                26, 24, lx+32, 50, 
+                98, 991+20+60, lx+32, 50)
+            this.ctx.fillText("立即与我相遇", 98+16, 991+60+60)
+            this.ctx.strokeText("立即与我相遇", 98+16, 991+60+60)
 
             // 绘制完毕，导出图片地址
             setTimeout(function(){
@@ -273,11 +316,13 @@ app = new Vue({
                     'data-lg-tj-no': '0005' ,
                     'data-lg-tj-cid': 'null'
                 })
+            } else {
+                this.showImage = false
             }
             this.touchstart = 0
         },
         clickImageEvent:function(){
-            this.showImage = false
+            
         }
     }
 })

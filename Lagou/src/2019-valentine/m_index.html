@@ -193,7 +193,7 @@
     </div>
     <div class="page page1" :class="activePage === 1 ? 'active' : 'hide'">
         <div class="page1__bg"></div>
-        <div class="page1__bottom" :style="{top: getFitTop(90,1)}">
+        <div class="page1__bottom" :style="{bottom: getFitTop(-256,1)}">
             <div class="page1__window"></div>
             <div class="page1__top"></div>
             <div class="icon page1__name"></div>
@@ -229,8 +229,8 @@
             <div class="page2__input page2__input__right"></div>
         </div>
         <div class="page2__search">
-            上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】<br/>
-            立即与我相遇
+            <div class="page2__search__div"><p class="page2__search__one">上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】</p></div>
+            <div class="page2__search__div"><p class="page2__search__one">立即与我相遇</p></div>
         </div>
         <div class="page2__btnLayer">
             <div class="page2__btn page2__btn__change">
@@ -261,8 +261,8 @@
                 <div class="page2__input page2__input__right"></div>
             </div>
             <div class="page2__search">
-                上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】<br/>
-                立即与我相遇
+                <div class="page2__search__div"><p class="page2__search__one">上拉勾搜索 【<span class="page2__search__name">{{companyName}}</span>】</p></div>
+                <div class="page2__search__div"><p class="page2__search__one">立即与我相遇</p></div>
             </div>
             <div class="page2__logo"></div>
             <div class="page2__ercode"></div>
