@@ -530,6 +530,17 @@ html,body {
         @include leftTop(0,0);
         opacity:0;
     }
+    &__tips {
+        width:100%;
+        height:rem(180);
+        line-height:rem(180);
+        color:#fff;
+        font-size:rem(40);
+        text-align:center;
+        background:#000;
+        background-color:rgba(0,0,0,0.8);
+        @include leftBottom(0,0);
+    }
 }
 /***page2 end***************************************************/
 
@@ -643,6 +654,17 @@ html,body {
     100% {
         opacity:1;
         transform: scale3d(1,1,1);
+    }
+}
+.tips-move {
+    animation:tipsMove 3s 1s both linear;
+}
+@keyframes tipsMove {
+    0%, 100% {
+        transform:translate3d(0,100%,0);
+    }
+    16.66%, 83.33% {
+        transform:translate3d(0,0,0);
     }
 }
 

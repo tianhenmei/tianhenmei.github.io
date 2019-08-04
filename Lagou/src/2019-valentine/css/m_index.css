@@ -591,6 +591,19 @@ html, body {
   top: 0rem;
   opacity: 0; }
 
+.page2__tips {
+  width: 100%;
+  height: 2.66667rem;
+  line-height: 2.66667rem;
+  color: #fff;
+  font-size: 0.59259rem;
+  text-align: center;
+  background: #000;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  left: 0rem;
+  bottom: 0rem; }
+
 /***page2 end***************************************************/
 .circleMoveInfinite {
   -webkit-animation: circleMoveInfinite 8s both linear infinite;
@@ -913,6 +926,26 @@ html, body {
     opacity: 1;
     -webkit-transform: scale3d(1, 1, 1);
             transform: scale3d(1, 1, 1); } }
+
+.tips-move {
+  -webkit-animation: tipsMove 3s 1s both linear;
+          animation: tipsMove 3s 1s both linear; }
+
+@-webkit-keyframes tipsMove {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); }
+  16.66%, 83.33% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
+
+@keyframes tipsMove {
+  0%, 100% {
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0); }
+  16.66%, 83.33% {
+    -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0); } }
 
 .delay0-5 {
   -webkit-animation-delay: 0.5s;

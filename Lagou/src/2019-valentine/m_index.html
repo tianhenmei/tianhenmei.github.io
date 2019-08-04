@@ -27,7 +27,6 @@
             if (r != null) return unescape(r[2]); 
             return null;
         }
-        var app = getQueryString('lagoufrom');
 
         var lastSize = 16,
             htmlStatus = 0,
@@ -40,7 +39,7 @@
                 w:bodyElement.clientWidth,
                 h:bodyElement.clientHeight
             },
-            app = getQueryString('lagoufrom'),
+            appfrom = getQueryString('lagoufrom'),
             checkStatus = false,
             initStatus = false;
         
@@ -71,7 +70,7 @@
                 }else if(rightSize < currentSize){  //宽屏
                     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
                     htmlStatus = 1;
-                    if(app == 'ios' || app == 'android'){
+                    if(appfrom == 'ios' || appfrom == 'android'){
                         lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
                     }
                 }else if(/(Mi-4c)/g.test(navigator.userAgent)){
@@ -245,7 +244,7 @@
                     data-lg-tj-cid="null"></div>
             </div>
         </div>
-        <div class="page2__save" :class="saveStatus ? 'move-to-open' : 'hide'">
+        <div class="page2__save" :class="saveStatus && showImage ? 'move-to-open' : 'hide'">
             <div class="page2__bg">
                 <div class="page2__bg__center"></div>
             </div>
@@ -266,10 +265,11 @@
             <div class="page2__logo"></div>
             <div class="page2__ercode"></div>
         </div>
-        <img class="page2__img" v-show="url" :src="url"
+        <img class="page2__img" v-show="showImage && url" :src="url"
             @touchstart="imgTouchstart"
             @touchend="imgTouchend"
             @click.stop.prevent="clickImageEvent" />
+        <div class="page2__tips tips-move" v-show="showImage && url">{{saveTips}}</div>
     </div>
 </div>
 

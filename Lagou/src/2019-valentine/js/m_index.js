@@ -32,6 +32,8 @@ app = new Vue({
         activeTitle: 0,
         activeSubtitle: 0,
         touchstart: 0,
+        showImage: false,
+        saveTips: '长按保存图片',
 
         heightStatus: 0,
         shortHeight: 0,
@@ -54,19 +56,22 @@ app = new Vue({
     mounted:function(){
         // this.setDay();
         this.isiPhone = this.ismobile()  == 'iphone' ? true : false;
-        this.from = getQueryString('xand');
-        if(getQueryString('xtest')){
-            this.testStatus = true
-        }
-        var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
-            currentSize = parseFloat((GC.w / GC.h).toFixed(1));
-        this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
-        if(rightSize > currentSize){
-            this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
-        }else{
-            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
-            this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
-        }
+        this.from = appfrom// getQueryString('xand');
+        // if (this.from == 'ios' || this.from == 'android') {
+        //     this.saveTips = '截图保存或微信打开长按保存'
+        // }
+        // if(getQueryString('xtest')){
+        //     this.testStatus = true
+        // }
+        // var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+        //     currentSize = parseFloat((GC.w / GC.h).toFixed(1));
+        // this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
+        // if(rightSize > currentSize){
+        //     this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+        // }else{
+        //     this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
+        //     this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
+        // }
         this.initCanvas()
     },
     methods:{
@@ -250,6 +255,7 @@ app = new Vue({
             // 绘制完毕，导出图片地址
             setTimeout(function(){
                 self.url = self.canvas.toDataURL("image/png")
+                self.showImage = true
                 self.saveStatus = true
             }, 500)
         },
@@ -269,7 +275,7 @@ app = new Vue({
             this.touchstart = 0
         },
         clickImageEvent:function(){
-            
+            this.showImage = false
         }
     }
 })
