@@ -119,7 +119,7 @@
             startTime = new Date().getTime(),
             loadingSuccess = function(){
                 var now = new Date().getTime()
-                if (now - startTime > 2000) {
+                if (now - startTime > 3000) {
                     showPage()
                 } else {
                     setTimeout(function() {
@@ -143,7 +143,7 @@
     <div class="loading__star"></div>
     <div class="loading__img"></div>
     <div class="loading__line"></div>
-    <div class="loading__circle circleMoveInfinite"></div>
+    <div class="loading__circle circleMoveInfinite delay1-0"></div>
     <div class="loading__num" id="progress-number">0%</div>
     <!-- <div class="title clearfix">
         <div class="l zoomIn700 delay0">l</div>
