@@ -80,7 +80,7 @@ app = new Vue({
             return value / (1080 / 16)+'rem';
         },
         getFitTop:function(def,ratio,max,limit){
-            return this.setRem(def+this.shortHeight * ratio)
+            return this.setRem(def-this.shortHeight * ratio)
             // var n = this.heightStatus * ratio;
             // n = (max && n > max ? max : n) + (limit ? limit : 0);
             // return this.setRem(def+n);
