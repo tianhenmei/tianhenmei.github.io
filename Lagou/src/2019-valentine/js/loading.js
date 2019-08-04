@@ -53,7 +53,7 @@ var Loader = function(){
 				var img = new Image();
 				img.onload = function(){
 					loaded ++;
-					// self.currProgress = loaded / imgArray.length * 100;
+					self.currProgress = loaded / imgArray.length * 100;
 					// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
 					number.innerHTML = (self.currProgress).toFixed(1)+"%";
 					if( loaded == imgArray.length ){
