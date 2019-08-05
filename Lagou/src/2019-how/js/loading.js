@@ -79,7 +79,7 @@ var Loader = function(){
 		clearTimeout(this.timer)
 		this.timer = setTimeout(function(){
 			self.count += 0.5
-			self.currProgress = Math.floor(loaded / imgArray.length * 100) + self.count
+			self.currProgress = Math.floor(loaded / imgArray.length * 100 + self.count)
 			if (self.currProgress >= 99) {
 				self.currProgress = 99
 			}
