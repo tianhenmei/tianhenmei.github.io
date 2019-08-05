@@ -247,7 +247,7 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background: #000;
+    background: #48bf8f;
 }
 .loading {
     width: 100%;
@@ -417,6 +417,18 @@ body {
         text-align:center;
         @include leftTop(0,578);
     }
+    video {
+        object-fit: contain !important;
+    }
+    video.center {
+        object-position:50% 50% !important;
+    }
+    video::-webkit-media-controls {
+        display: none!important;
+    }
+    video::-webkit-media-controls-enclosure {
+        display: none!important;
+    }
     .video__btn {
         width:rem(300);
         height:rem(180);
@@ -501,10 +513,14 @@ body {
 }
 
 .videos {
-    width:100%;
-    height:100%;
-    @include leftTop(0,0);
-    background-color:#000;
+    // width:100%;
+    // height:100%;
+    // @include leftTop(0,0);
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate3d(-50%, -50%, 0);
+    background-color:#48bf8f;
     .video {
         width:100%;
         height:100%;
@@ -534,7 +550,7 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    background-color:#000;
+    background-color:#48bf8f;
 }
 
 .page {
@@ -552,183 +568,27 @@ body {
     transition: all .5s ease-out;
     -webkit-transition: all .5s ease-out;
 }
-.icon {
-    background:url('../images/icon.png') no-repeat 0 0;
-    background-size:rem(1024) rem(1024);
-}
-.icon-02 {
-    background:url('../images/icon-02.png') no-repeat 0 0;
-    background-size:rem(1024) rem(1024);
-}
-.icon-text {
-    background:url('../images/icon-text.png') no-repeat 0 0;
-    background-size:rem(1024) rem(1024);
-}
 .page0 {
-    // page0__bg01
-    &__bg01 {
-        width:rem(694);
-        height:rem(682);
-        // width:100%;
-        // height:100%;
-        background:url('../images/page0-bg01-02.png') no-repeat center top;
+    &__content {
+        width:rem(851);
+        height:rem(1152);
+        background:url('../images/page0-content.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(33,27-128);
+        @include center(-50,-76);
     }
-    // page0__bg02
-    &__bg02 {
-        width:100%;
-        height:100%;
-        background:url('../images/page0-bg02-02.png') no-repeat center bottom;
-        background-size:100%;
-        @include leftBottom(0,0);
-    }
-    // page0__move 
-    &__move {
-        width:rem(50);
-        height:rem(77);
-        @include centerb(352,38);
-        .page0__move--center {
-            width:rem(50);
-            height:rem(77);
-            background-position:rem(-910) 0;
-        }
-    }
-    // page0__logo
-    &__logo {
-        width:rem(274);
-        height:rem(78);
-        background-position:0 rem(-310);
-        @include rightTop(-84,23);
-    }
-    // page0__dot01
-    &__dot01 {
-        width:rem(123);
-        height:rem(184);
-        background:url('../images/page0-dot01.png') no-repeat center top;
+    &__btnLayer {
+        width:rem(750);
+        height:rem(793);
+        background:url('../images/page0-btn.png') no-repeat center top;
         background-size:100% 100%;
-        @include center(138,261-128);
+        @include center(0,415);
     }
-    // page0__dot02
-    &__dot02 {
-        width:rem(124);
-        height:rem(182);
-        background:url('../images/page0-dot02.png') no-repeat center top;
-        background-size:100% 100%;
-        @include center(527,436-128);
-    }
-    // page0__grotesque
-    &__grotesque {
-        width:rem(248);
-        height:rem(100);
-        background-position:rem(-580) rem(-180);
-        @include center(250,266-128);
-    }
-    // page0__2018 
-    &__2018 {
-        width:rem(163);
-        height:rem(27);
-        background-position:rem(-370) 0;
-        @include center(476,647-128);
-    }
-    // page0__talent 
-    &__talent {
-        width:rem(94);
-        height:rem(28);
-        background-position:rem(-700) 0;
-        @include center(99,433-128);
-    }
-    // page0__organization 
-    &__organization {
-        width:rem(188);
-        height:rem(32);
-        background-position:rem(-700) rem(-43);
-        @include center(99,475-128);
-    }
-    // page0__power 
-    &__power {
-        width:rem(90);
-        height:rem(26);
-        background-position:rem(-700) rem(-87);
-        @include center(99,519-128);
-    }
-    // page0__circle 
-    &__circle {
-        width:rem(18);
-        height:rem(18);
-        background-position:rem(-370) rem(-35);
-        @include center(104,651-128);
-    }
-    // page0__title
-    &__title {
-        width:rem(656);
-        background:url('../images/page0-title.png') no-repeat 0 0;
-        background-size:rem(656) rem(178);
-    }
-    // page0__title1
-    &__title1 {
-        height:rem(93);
-        background-position:0 0;
-        @include center(46,414-128);
-    }
-    // page0__title2
-    &__title2 {
-        height:rem(90);
-        background-position:0 rem(-94);
-        @include center(46+12,513-128);
-    }
-    // page0__line
-    &__line {
-        width:rem(46);
-        height:rem(2);
-        background-color:#d4b76f;
-        @include center(351,999-128);
-    }
-    // page0__textLayer
-    &__textLayer {
-        width:rem(550);
-        height:rem(140);
-        @include center(100,747-128);
-        .page0__text {
-            width:rem(176);
-            height:rem(42);
-        }
-        .page0__text1 {
-            background-position:0 rem(-180);
-            @include leftTop(32,0);
-        }
-        .page0__text2 {
-            background-position:0 rem(-252);
-            @include leftTop(32,72);
-        }
-        .page0__text3 {
-            background-position:rem(-310) rem(-180);
-            @include leftTop(342,0);
-        }
-        .page0__text4 {
-            background-position:rem(-310) rem(-252);
-            @include leftTop(342,72);
-        }
-        .page0__icon {
-            width:rem(42);
-            height:rem(42);
-        }
-        .page0__icon1 {
-            background-position:rem(-185) rem(-180);
-            @include leftTop(217,0);
-        }
-        .page0__icon2 {
-            background-position:rem(-185) rem(-252);
-            @include leftTop(217,72);
-        }
-        .page0__icon3 {
-            background-position:rem(-259) rem(-180);
-            @include leftTop(291,0);
-        }
-        .page0__icon4 {
-            background-position:rem(-259) rem(-252);
-            @include leftTop(291,72);
-        }
+    &__btn {
+        width:rem(586);
+        height:rem(102);
+        @include leftTop(82,622);
+        outline:none;
+        display:block;
     }
 }
 

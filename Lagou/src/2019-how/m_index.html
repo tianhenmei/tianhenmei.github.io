@@ -16,8 +16,8 @@
     <meta name="full-screen" content="true">
     <meta name="x5-fullscreen" content="true">
     <meta name="360-fullscreen" content="true">
-    <link rel="stylesheet" href="css/m_index.css?v=$version$">
-    <link rel="prefetch" href="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"/>  
+    <link rel="stylesheet" href="css/m_index.css?v=2000$version$">
+    <link rel="preload" href="images/movie.mp4"/>  
     <!---上线之后加-->
     <title>拉勾年度TOP雇主颁奖盛典</title>
     <script>
@@ -120,6 +120,11 @@
                         loading.className += ' hide';
                         // video.className = video.className.replace(' hide','');
                     },500);
+                    postEncodingID({
+                        'data-lg-tj-id': '1n5b',
+                        'data-lg-tj-no': '0001' ,
+                        'data-lg-tj-cid': 'null'
+                    })
                     video.addEventListener("ended",function(){
                         videos.className += ' opacityChange-out';
                         setTimeout(function(){
@@ -136,23 +141,48 @@
                             // 当前logo刚出来的时候
                         }
                     },false);
-                    text.addEventListener("click",function(){
-                        video.pause();
-                        videos.className += ' opacityChange-out';
-                        setTimeout(function(){
-                            videos.className += ' hide';
-                            appElement.className = appElement.className.replace(' hide','');
-                            PM = new PageMove({ animation: "move" });
-                        },500);
-                    },false);
+                    // text.addEventListener("click",function(){
+                    //     video.pause();
+                    //     videos.className += ' opacityChange-out';
+                    //     setTimeout(function(){
+                    //         videos.className += ' hide';
+                    //         appElement.className = appElement.className.replace(' hide','');
+                    //         PM = new PageMove({ animation: "move" });
+                    //     },500);
+                    // },false);
                 },false);
             },
             loadingSuccess = function(){
+                var rightSize = parseFloat((RC.w / RC.h).toFixed(3)),
+                    currentSize = parseFloat((GC.w / GC.h).toFixed(3))
                 var now = Date.now(),
                     space = now - startTime,
                     // pro = document.getElementById('loading__progress'),
-                    number = document.getElementById('loading__num');
+                    number = document.getElementById('loading__num'),
+                    video = document.getElementById('video'),
+                    MC = {
+                        w: 1080,
+                        h: 1920
+                    };
                 number.innerHTML = "100%";
+                var width = 0,
+                    height = 0;
+                if(rightSize > currentSize){  // 长屏
+                    var h = GC.h+10
+                    var u = navigator.userAgent;
+                    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+                    h = isAndroid && u.match(/MicroMessenger/i) == 'micromessenger' ? screen.height : h
+                    width = h / MC.h * MC.w
+                    height = h
+                    video.style.width = width + 'px'
+                    video.style.height = h + 'px'
+                } else {
+                    var w = GC.w
+                    width = w
+                    height = w / MC.w * MC.h
+                    video.style.width = width + 'px'
+                    video.style.height = height + 'px'
+                }
                 // if(space < 3500){
                 //     setTimeout(function(){
                 //         loadingComplete();
@@ -166,8 +196,16 @@
 </head>
 <body>
     <div class="videos hide" id="videos">
-        <video class="video" id="video" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" x5-video-player-type="h5" x5-video-player-fullscreen="true" width="750" height="1334" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/movie-03.mp4"></video>
-        <div class="video__text" id="video__text">跳过</div>
+        <!--  x5-video-player-type="h5" -->
+        <video class="video center" id="video" 
+            x5-video-player-type="h5"
+            webkit-playsinline="true" 
+            x-webkit-airplay="allow" 
+            playsinline="true" 
+            x5-video-player-fullscreen="true" x5-video-orientation="portraint" width="1080" height="1920" preload="auto" 
+            src="images/movie.mp4"
+            style="object-fit:cover"></video>
+        <!-- <div class="video__text" id="video__text">跳过</div> -->
     </div>
     <div class="loading" id="loading">
         <div class="loading__title loading__title01 littleBottomIn delay0-5"></div>
@@ -201,7 +239,7 @@
             <div class="progress" id="progress"></div>
         </div>-->
         <div class="loading__num littleBottomIn delay1-5 clearfix" id="loading__num">0%</div>
-        <div class="video__btn hide" id="video__btn" data-link="1" data-lg-tj-id="1k66" data-lg-tj-no="0001" data-lg-tj-cid="null">
+        <div class="video__btn hide" id="video__btn">
             <div class="circle circle00"></div>
             <div class="circle circle01"></div>
             <div class="circle circle02"></div>
@@ -209,35 +247,16 @@
             <div class="start-text">登顶之路</div>
         </div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=252$version$"></script> 
+    <script type="text/javascript" src="js/loading.js?v=2000$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : ''">
-            <div class="page0__bg01 opacityChange duration0-5 delay1-0"></div>
-            <div class="page0__bg02 opacityChange duration0-5 delay2-5"></div>
-            <div class="icon page0__logo rightIn duration1-0 delay0-5" :style="{top:getFitTop(23,1/4)}"></div>
-            <!--<div class="page0__dot01 opacityChange delay1-0"></div>
-            <div class="page0__dot02 opacityChange delay1-0"></div>-->
-            <div class="icon page0__grotesque littleBottomIn delay0-5" :style="{top:getFitTop(266-128,1/4)}"></div>
-            <!--<div class="icon page0__2018 rightIn duration2-0 delay0-5"></div>
-            <div class="icon page0__talent leftIn duration2-0 delay0-7"></div>
-            <div class="icon page0__organization leftIn duration2-0 delay1-0"></div>
-            <div class="icon page0__power leftIn duration2-0 delay1-4"></div>
-            <div class="icon page0__circle opacityChange delay3-0"></div>-->
-            <div class="page0__title page0__title1 littleBottomIn duration1-0 delay1-0" :style="{top:getFitTop(414-128,2/4)}"></div>
-            <div class="page0__title page0__title2 littleBottomIn duration1-0 delay1-2" :style="{top:getFitTop(513-128,2/4)}"></div>
-            <!--<div class="page0__line littleBottomIn duration1-0 delay2-2" :style="{top:getFitTop(999-128,3/4)}"></div>-->
-            <div class="page0__textLayer" :style="{top:getFitTop(747-128,3/4)}">
-                <div class="icon page0__text page0__text1 leftIn duration1-0 delay1-7"></div>
-                <div class="icon page0__icon page0__icon1 leftIn duration1-0 delay1-7"></div>
-                <div class="icon page0__text page0__text2 leftIn duration1-0 delay1-7"></div>
-                <div class="icon page0__icon page0__icon2 leftIn duration1-0 delay1-7"></div>
-                <div class="icon page0__text page0__text3 rightIn duration1-0 delay1-7"></div>
-                <div class="icon page0__icon page0__icon3 rightIn duration1-0 delay1-7"></div>
-                <div class="icon page0__text page0__text4 rightIn duration1-0 delay1-7"></div>
-                <div class="icon page0__icon page0__icon4 rightIn duration1-0 delay1-7"></div>
-            </div>
-            <div class="page0__move" :class="page0[page0.status].move">
-                <div class="icon page0__move--center moveTopInfinite delay1-5"></div>
+            <div class="page0__content"></div>
+            <div class="page0__btnLayer">
+                <a class="page0__btn" href="javascript:void(0);" target="_blank"
+                    @click.prevent="openLink"
+                    data-lg-tj-id="1n5b"
+                    data-lg-tj-no="0001" 
+                    data-lg-tj-cid="null"></a>
             </div>
         </div>
     <script type="text/javascript">
@@ -337,13 +356,13 @@
         }
     </script>
     <script type="text/javascript">
-        var baseUrl = 'https://activity.lagou.com/activity/dist/2018-award/m_index.html';
+        var baseUrl = 'https://activity.lagou.com/activity/dist/2019-how/m_index.html';
         //微信分享
         var datas = {
             title: "2019招聘秘籍首发，阿里腾讯大厂齐聚，六大城市巡回颁奖盛典~",
             desc: "洞悉行业趋势，抢占人才高地",
-            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2018-award/images/share.png",
-            activityType: 'ACTIVITY_H5_AWARD_2018',
+            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2019-how/images/share.png",
+            activityType: '2019_HOW',
             shareUrl:baseUrl
         };
         share(datas);
@@ -358,9 +377,90 @@
             return share;
         }
 
+        function postEncodingID(data) {
+            var _PID = "",
+            _PNO = "",
+            _PV = 0,
+            _PCONTENTID = "",
+            _PRANDOM = "",
+            _GAMETHOD = "",
+            _GAMSGTYPE = "",
+            _GATJ = "",
+            _GATJVAL = 0,
+            v = 1,
+            t = "a",
+            dl = encodeURIComponent(window.location.href),
+            dr = document.referrer,
+            dt = document.title;
+            var _ELS = document;
+            var arr_GATJ = [];
+            try {
+                _PID = data["data-lg-tj-id"] || "idnull"
+                _PNO = data["data-lg-tj-no"] || "idnull"
+                _PCONTENTID = data["data-lg-tj-cid"] || "idnull"
+                _PRANDOM = getRandom()
+                _GAMETHOD = data["data-lg-gatj-method"] || "send"
+                _GAMSGTYPE = data["data-lg-gatj-msgtype"] || "event"
+                _GATJ = data["data-lg-gatj-msg"] || ""
+                _GATJVAL = parseInt(data["data-lg-gatj-val"] || 0)
+                if (_GATJ && typeof ga == "function") {
+                    arr_GATJ.push(_GAMETHOD, _GAMSGTYPE);
+                    arr_GATJ = arr_GATJ.concat(_GATJ.split(",")); !! _GATJVAL && arr_GATJ.push(_GATJVAL);
+                    ga.apply(null, arr_GATJ)
+                }
+                if (_PID != "idnull") {
+                    var _params = {};
+                    _params.v = v;
+                    _params.t = 'div';//target.tagName.toLocaleLowerCase();
+                    _params.dl = dl;  
+                    _params.dr = dr;
+                    _params.dt = dt;
+                    _params.aid = [_PID, _PNO, _PV, _PCONTENTID, _PRANDOM].join("_");
+                    imgGET(_params)
+                } else {
+                    return
+                }
+            } catch(e) {}
+        }
+        function imgGET(params) {
+            var REMOTE = {
+                server: "https://a.lagou.com/track"
+            };
+            var _img = new Image();
+            paramsArr = [];
+            for (var item in params) {
+                if (typeof item == "string") {
+                    paramsArr.push(item + "=" + params[item])
+                }
+            }
+            _img.src = REMOTE.server + "?" + paramsArr.join("&")
+        }
+        function getRandom(digit) {
+            window._CASH_RANDOM ? "": window._CASH_RANDOM = {};
+            var _cash_random = window._CASH_RANDOM || {},
+            _digit = digit || 4,
+            _random = getRandomSimple();
+            while (_cash_random[_random]) {
+                _random = getRandomSimple();
+                if (!_cash_random[_random]) {
+                    break
+                }
+            }
+            window._CASH_RANDOM[_random] = _random;
+            return _random;
+            function getRandomSimple() {
+                var random = "";
+                for (var i = 0; i < _digit; i++) {
+                    var r = Math.floor(Math.random() * 10);
+                    random += r.toString()
+                }
+                return random.toString()
+            }
+        }
+
     </script>
     <script src="js/vue.js?v=$version$"></script> 
-    <script src="js/m_index.js?v=$version$"></script>
+    <script src="js/m_index.js?v=2000$version$"></script>
     
     <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
     <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>

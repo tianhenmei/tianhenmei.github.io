@@ -1,16 +1,11 @@
 // JavaScript Document
-// var loadingHost = '';
-var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2018-award/';
+var loadingHost = '';
+// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-how/';
 var imgArray = [
 	// "images/LTe50012.ttf",
-	// "images/movie-03.mp4",
-	loadingHost+"images/icon.png",
-	loadingHost+"images/page0-bg01-02.png",
-	loadingHost+"images/page0-bg02-02.png",
-	loadingHost+"images/page0-dot01.png",
-	loadingHost+"images/page0-dot02.png",
-	loadingHost+"images/page0-grotesque.png",
-	loadingHost+"images/page0-title.png"
+	loadingHost+"images/movie.mp4",
+	loadingHost+"images/page0-content.png",
+	loadingHost+"images/page0-btn.png"
 ];
 var now = 0;
 // jQuery.ajax({
