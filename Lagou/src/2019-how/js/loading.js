@@ -74,24 +74,6 @@ var Loader = function(){
 			// alert(e);
 		}
 	};
-	this.loadVideo = function(id, success) {
-		var video = document.getElementById(id);
-		var len = imgArray.length
-		video.oncanplaythrough = loadVideoCallback
-		video.load();
-		if(video.readyState === 4) {
-			loadVideoCallback()
-		} else {
-			loopTimer()
-		}
-		function loadVideoCallback() {
-			loaded++;
-			clearTimeout(this.timer)
-			if( loaded == imgArray.length ){
-				success();  // 回调函数
-			}
-		}
-	};
 	this.loopTimer = function(){
 		var self = this
 		clearTimeout(this.timer)
@@ -110,6 +92,25 @@ var Loader = function(){
 			number.innerHTML = l+"%";
 			self.loopTimer()
 		}, 1000);
+	};
+	this.loadVideo = function(id, success) {
+		var self = this
+		var video = document.getElementById(id);
+		var len = imgArray.length
+		video.oncanplaythrough = loadVideoCallback
+		video.load();
+		if(video.readyState === 4) {
+			loadVideoCallback()
+		} else {
+			self.loopTimer()
+		}
+		function loadVideoCallback() {
+			loaded++;
+			clearTimeout(this.timer)
+			if( loaded == imgArray.length ){
+				success();  // 回调函数
+			}
+		}
 	};
 	this.loadMusic = function(path){
 		$.ajax({
