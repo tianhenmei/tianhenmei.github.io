@@ -41,10 +41,10 @@ var Loader = function(){
 					(function(path){
 						var img = new Image();
 						img.onload = function(){
-							loaded ++;
+							loaded++;
 							// alert('success: '+path);
-							self.count++
-							self.currProgress = self.count // Math.floor(loaded / imgArray.length * 100)
+							// self.count++
+							self.currProgress = Math.floor(loaded / imgArray.length * 100)
 							// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
 							var n = (self.currProgress).toFixed(1),
 								arr = n.split('.'),
@@ -75,14 +75,17 @@ var Loader = function(){
 			// alert(e);
 		}
 	};
-	this.loopTimer = function(){
+	this.loopTimer = function(success){
 		var self = this
 		clearTimeout(this.timer)
 		this.timer = setTimeout(function(){
-			self.count += 1 // 0.5
-			self.currProgress = self.count // Math.floor(loaded / imgArray.length * 100 + self.count)
+			self.count += Math.floor(Math.random() * 4 + 1) // 0.5
+			self.currProgress = Math.floor(loaded / imgArray.length * 100 + self.count)
 			if (self.currProgress >= 99) {
 				self.currProgress = 99
+				number.innerHTML = '100%'
+				success()
+				return
 			}
 			var n = (self.currProgress).toFixed(1),
 				arr = n.split('.'),
@@ -90,20 +93,20 @@ var Loader = function(){
 			if(arr[1] == '0'){
 				l = arr[0];
 			}
-			number.innerHTML = l+"%";
-			self.loopTimer()
+			number.innerHTML = l+"%"
+			self.loopTimer(success)
 		}, 1000);
 	};
 	this.loadVideo = function(id, success) {
 		var self = this
 		var video = document.getElementById(id);
 		var len = imgArray.length
-		video.oncanplaythrough = loadVideoCallback
+		video.onloadeddata = loadVideoCallback
 		video.load();
 		if(video.readyState === 4) {
 			loadVideoCallback()
 		} else {
-			self.loopTimer()
+			self.loopTimer(success)
 		}
 		function loadVideoCallback() {
 			loaded++;
