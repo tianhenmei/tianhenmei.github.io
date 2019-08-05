@@ -43,7 +43,8 @@ var Loader = function(){
 						img.onload = function(){
 							loaded ++;
 							// alert('success: '+path);
-							self.currProgress = Math.floor(loaded / imgArray.length * 100)
+							self.count++
+							self.currProgress = self.count // Math.floor(loaded / imgArray.length * 100)
 							// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
 							var n = (self.currProgress).toFixed(1),
 								arr = n.split('.'),
@@ -78,8 +79,8 @@ var Loader = function(){
 		var self = this
 		clearTimeout(this.timer)
 		this.timer = setTimeout(function(){
-			self.count += 0.5
-			self.currProgress = Math.floor(loaded / imgArray.length * 100 + self.count)
+			self.count += 1 // 0.5
+			self.currProgress = self.count // Math.floor(loaded / imgArray.length * 100 + self.count)
 			if (self.currProgress >= 99) {
 				self.currProgress = 99
 			}
