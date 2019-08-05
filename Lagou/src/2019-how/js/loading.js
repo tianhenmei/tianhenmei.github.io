@@ -81,6 +81,8 @@ var Loader = function(){
 		video.load();
 		if(video.readyState === 4) {
 			loadVideoCallback()
+		} else {
+			loopTimer()
 		}
 		function loadVideoCallback() {
 			loaded++;
