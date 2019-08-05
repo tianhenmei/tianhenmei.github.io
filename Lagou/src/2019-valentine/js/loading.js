@@ -1,6 +1,6 @@
 // JavaScript Document
 var loadingHost = '';
-// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-summary/';
+// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-valentine/';
 var imgArray = [
 	// "images/loading.gif",
 	loadingHost + "images/loading-img.png",
@@ -22,7 +22,11 @@ var imgArray = [
 	loadingHost + "images/page2-input.png",
 	loadingHost + "images/page2-logo.png",
 	loadingHost + "images/page2-title-01.png",
-	loadingHost + "images/page2-subtitle-01.png"
+	loadingHost + "images/page2-title-02.png",
+	loadingHost + "images/page2-title-03.png",
+	loadingHost + "images/page2-subtitle-01.png",
+	loadingHost + "images/page2-subtitle-02.png",
+	loadingHost + "images/page2-subtitle-03.png"
 ];
 var now = 0;
 // jQuery.ajax({
