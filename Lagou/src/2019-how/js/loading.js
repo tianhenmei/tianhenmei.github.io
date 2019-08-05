@@ -3,9 +3,10 @@ var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-how/';
 var imgArray = [
 	// "images/LTe50012.ttf",
-	loadingHost+"images/movie.mp4",
+	// loadingHost+"images/movie.mp4",
 	loadingHost+"images/page0-content.png",
-	loadingHost+"images/page0-btn.png"
+	loadingHost+"images/page0-btn.png",
+	"video"
 ];
 var now = 0;
 // jQuery.ajax({
@@ -20,6 +21,8 @@ var Loader = function(){
 	this.currProgress = 0;  // 当前加载进度
 	this.isCompleted = false; // 判断是否加载完毕
 	this.total = 100;  // 最大值100
+	this.timer = null
+	this.count = 0
 
 	var loaded = 0;
 
@@ -64,12 +67,47 @@ var Loader = function(){
 						img.src = imgArray[i];
 					})(imgArray[i]);
 				}else{
-					this.loadMusic(imgArray[i]);
+					this.loadVideo(imgArray[i], success);
 				}
 			}
 		}catch(e){
 			// alert(e);
 		}
+	};
+	this.loadVideo = function(id, success) {
+		var video = document.getElementById(id);
+		var len = imgArray.length
+		video.oncanplaythrough = loadVideoCallback
+		video.load();
+		if(video.readyState === 4) {
+			loadVideoCallback()
+		}
+		function loadVideoCallback() {
+			loaded++;
+			clearTimeout(this.timer)
+			if( loaded == imgArray.length ){
+				success();  // 回调函数
+			}
+		}
+	};
+	this.loopTimer = function(){
+		var self = this
+		clearTimeout(this.timer)
+		this.timer = setTimeout(function(){
+			self.count++
+			self.currProgress = Math.floor(loaded / imgArray.length * 100) + self.count
+			if (self.currProgress >= 99) {
+				self.currProgress = 99
+			}
+			var n = (self.currProgress).toFixed(1),
+				arr = n.split('.'),
+				l = n;
+			if(arr[1] == '0'){
+				l = arr[0];
+			}
+			number.innerHTML = l+"%";
+			self.loopTimer()
+		}, 1000);
 	};
 	this.loadMusic = function(path){
 		$.ajax({
