@@ -3,7 +3,7 @@ var loadingHost = '';
 // var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-how/';
 var imgArray = [
 	// "images/LTe50012.ttf",
-	// loadingHost+"images/movie.mp4",
+	// loadingHost+"images/movie-02.mp4",
 	loadingHost+"images/page0-content.png",
 	loadingHost+"images/page0-btn.png",
 	"video"
