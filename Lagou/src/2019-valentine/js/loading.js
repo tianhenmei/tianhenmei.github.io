@@ -6,6 +6,8 @@ var imgArray = [
 	loadingHost + "images/loading-img.png",
 	loadingHost + "images/loading-line.png",
 	loadingHost + "images/icon.png",
+	loadingHost + "images/close.png",
+	loadingHost + "images/open.png",
 	loadingHost + "images/page0-bg.png",
 	loadingHost + "images/page0-c01.png",
 	loadingHost + "images/page0-c05.png",

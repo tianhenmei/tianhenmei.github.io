@@ -213,7 +213,7 @@
         <div class="page1__tips" v-show="showTips">请输入公司名称定制海报</div>
         <div class="page1__lagou"></div>
     </div>
-    <div class="page page2" :class="activePage === 2 ? 'active' : 'hide'">
+    <div class="page page2" :class="(activePage === 2 ? 'active' : 'hide') + (showImage && url ? ' page2__index' : '')">
         <div class="page2__canvas">
             <canvas class="canvas" id="canvas" ref="canvas"></canvas>
         </div>
@@ -274,6 +274,11 @@
             @touchend="imgTouchend"
             @click.stop.prevent="clickImageEvent" />
         <div class="page2__tips tips-move" v-show="showImage && url">{{saveTips}}</div>
+    </div>
+</div>
+<div class="music-box">
+    <div class="music-icon open" id="music-icon">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="images/music.mp3"></audio>
     </div>
 </div>
 

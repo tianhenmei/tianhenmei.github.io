@@ -28,6 +28,23 @@ html, body {
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden; }
 
+.music-box {
+  width: 1.13333rem;
+  height: 1.04444rem;
+  position: absolute;
+  right: 0.59259rem;
+  top: 0.59259rem; }
+  .music-box .music-icon {
+    width: 1.13333rem;
+    height: 1.04444rem;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 100%; }
+  .music-box .open {
+    background-image: url("../images/open.png"); }
+  .music-box .close {
+    background-image: url("../images/close.png"); }
+
 #app {
   width: 100%;
   height: 100%;
@@ -408,6 +425,9 @@ html, body {
 
 /***page1 end***************************************************/
 /***page2 start***************************************************/
+.page2__index {
+  z-index: 2; }
+
 .page2__bg {
   width: 100%;
   height: 100%;

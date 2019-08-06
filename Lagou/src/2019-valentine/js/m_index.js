@@ -1,5 +1,40 @@
 "use strict";
+// 音乐
+backgroundMusic(document.getElementById("music"));
+// 音乐播放
+function backgroundMusic(audio){
+    // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+    if(audio.paused){
+        audio.load();
+        audio.play();
+    }
+    function musicInBrowserHandler() {
+        if(audio.paused){
+            audio.load();
+            audio.play();
+        }
+        document.body.removeEventListener('touchstart', musicInBrowserHandler);
+    }
+    document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+    // 自动播放音乐效果，解决微信自动播放问题
+    function musicInWeixinHandler() {
+        if(audio.paused){
+            audio.load();
+            audio.play();
+        }
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            if(audio.paused){
+                audio.load();
+                audio.play();
+            }
+        }, false);
+        document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+    document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+}
 var app = null;
+var closeMusicStatus = false
 app = new Vue({
     el:"#app",
     data:{
@@ -74,6 +109,18 @@ app = new Vue({
             this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
         }
         this.initCanvas()
+        //音乐
+        jQuery('.music-icon').on('click',function(){
+            if(jQuery('#music')[0].paused){
+                jQuery('#music')[0].play();
+                jQuery(".music-icon").removeClass('close').addClass('open');
+
+            }else{
+                closeMusicStatus = true
+                jQuery('#music')[0].pause();
+                jQuery(".music-icon").removeClass('open').addClass('close');
+            }
+        });
     },
     methods:{
         setRem:function(value){
@@ -141,6 +188,10 @@ app = new Vue({
             this.pageChanging = true
             this.lastPage = 0
             this.activePage = 1
+            var music = jQuery('#music')[0]
+            if(music.paused && !closeMusicStatus){
+                music.play()
+            }
             setTimeout(function() {
                 self.pageChanging = false
             }, 500)
