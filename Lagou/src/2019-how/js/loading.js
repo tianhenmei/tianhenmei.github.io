@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-how/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-how/';
 var imgArray = [
 	// "images/LTe50012.ttf",
 	// loadingHost+"images/movie-02.mp4",
