@@ -2,8 +2,14 @@
 var loadingHost = '';
 // var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-birthday/';
 var imgArray = [
-	loadingHost + "images/cover-bg.png",
+	loadingHost + "images/loading.gif",
+	loadingHost + "images/cover-bg-02.png",
 	loadingHost + "images/cover-kid.png",
+	loadingHost + "images/cover-kid-lefthand.png",
+	loadingHost + "images/cover-kid-leftleg.png",
+	loadingHost + "images/cover-kid-righthand.png",
+	loadingHost + "images/cover-kid-rightleg.png",
+	loadingHost + "images/cover-title-bg.png",
 	loadingHost + "images/icon.png",
 	loadingHost + "images/page0-bg.png",
 	loadingHost + "images/page0-lefthand.png",
@@ -103,10 +109,10 @@ var Loader = function(){
 	var loaded = 0;
 
 	var loading = document.getElementById('loading')//,
-		number = document.getElementById('progress-number'),
-		progress_bg = document.getElementById('progress-bg'),
-		progress = document.getElementById('progress'),
-		w = progress_bg.offsetWidth;// / imgArray.length;//20;
+		number = document.getElementById('progress-number') // ,
+		// progress_bg = document.getElementById('progress-bg'),
+		// progress = document.getElementById('progress'),
+		// w = progress_bg.offsetWidth;// / imgArray.length;//20;
 	this.Loading = function(imgArray,success){
 		var self = this;
 		for( var i = 0 ; i < imgArray.length; i++ ){
@@ -116,7 +122,7 @@ var Loader = function(){
 				img.onload = function(){
 					loaded ++;
 					self.currProgress = loaded / imgArray.length * 100;
-					progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
+					// progress.style.width = self.currProgress / 100 * w+"px";  // self.currProgress / 100 * w+"px"
 					number.innerHTML = (self.currProgress).toFixed(1)+"%";
 					if( loaded == imgArray.length ){
 						success();  // 回调函数
@@ -158,7 +164,7 @@ var Loader = function(){
 		})
 	};
 	this.success = function(){
-		progress.style.width = w+"px";
+		// progress.style.width = w+"px";
 		number.innerHTML = "100%";
 		var last = new Date().getTime(),
 			middle = last - startTime;

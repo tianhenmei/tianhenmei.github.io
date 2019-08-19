@@ -80,18 +80,26 @@ var PageMove = function () {
                            .removeClass("moveULast")
                            .removeClass("moveUNow")
                            .removeClass("pageCurrent")
+                           .removeClass('zoomChangeOut')
                            .addClass("hide");
-            jQuery(now).removeClass("hide")
-                .addClass(self.data.page[od].now)
-                .addClass("pageCurrent");
-            jQuery(last).removeClass("hide").addClass(self.data.page[od].last);
+            if (self.data.last === 1 && self.data.now === 2) {
+                jQuery(now).removeClass("hide")
+                    .addClass("pageCurrent");
+                jQuery(last).removeClass("hide").addClass('zoomChangeOut');
+            } else {
+                jQuery(now).removeClass("hide")
+                    .addClass(self.data.page[od].now)
+                    .addClass("pageCurrent");
+                jQuery(last).removeClass("hide").addClass(self.data.page[od].last);
+            }
             if(od == 'up'){
                 var lastPage = jQuery(last);
                 setTimeout(function(){
                     jQuery(".page, .cover").removeClass("moveDLast")
                         .removeClass("moveDNow")
                         .removeClass("moveULast")
-                        .removeClass("moveUNow");
+                        .removeClass("moveUNow")
+                        .removeClass('zoomChangeOut');
                     jQuery(last).attr('style','').addClass("hide");
                     jQuery(now).removeClass("hide").addClass("pageCurrent");
                     app.$data.flipStatus = false;
@@ -102,7 +110,8 @@ var PageMove = function () {
                     jQuery(".page, .cover").removeClass("moveDLast")
                             .removeClass("moveDNow")
                             .removeClass("moveULast")
-                            .removeClass("moveUNow");
+                            .removeClass("moveUNow")
+                            .removeClass('zoomChangeOut');
                     jQuery(last).attr('style','').addClass("hide");
                     jQuery(now).removeClass("hide").addClass("pageCurrent");
                     app.$data.flipStatus = false;
@@ -113,7 +122,8 @@ var PageMove = function () {
                 jQuery(".page, .cover").removeClass("moveDLast")
                            .removeClass("moveDNow")
                            .removeClass("moveULast")
-                           .removeClass("moveUNow");
+                           .removeClass("moveUNow")
+                           .removeClass('zoomChangeOut');
                 jQuery(last).attr('style','').addClass("hide");
                 jQuery(now).removeClass("hide").addClass("pageCurrent");
                 self.data.isMoving = false;
@@ -761,9 +771,9 @@ app = new Vue({
             this.catchIndex = ''
             for (i = 0; i < this.offset.length; i++) {
                 temp = this.offset[i]
-                if (pageX >= (temp.left - 20) && pageY >= temp.top 
-                    && (pageX + hand.w / 2) <=(temp.left + temp.w)
-                    && (pageY + hand.h / 2) <=(temp.top + temp.h)) {
+                if (pageX >= (temp.left - 30) && pageY >= (temp.top - 30)
+                    && (pageX + hand.w * 0.36) <=(temp.left + temp.w)
+                    && (pageY + hand.h * 0.27) <=(temp.top + temp.h)) {
                     this.catchIndex = this.goodsActiveIndex + '-' + i
                     break
                 }

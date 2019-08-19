@@ -123,12 +123,15 @@ html,body {
     // background-size:100% 100%;
     @include leftTop(0,0);
     &__icon {
-        width:rem(88);
-        height:rem(88);
-        @include center(331,421);
+        width:100%;
+        height:100%;
+        @include leftTop(0,0);
+        background-color:#fff;
+        overflow:hidden;
         img {
-            width:rem(88);
-            height:rem(88);
+            width:rem(750);
+            height:rem(1334);
+            @include center(0,0);
         }
     }
     .title {
@@ -162,9 +165,10 @@ html,body {
         width:rem(750);
         line-height:rem(54);
         font-size:rem(34);
-        color:#000d1a;
+        // color:#000d1a;
+        color:#432e97;
         text-align:center;
-        @include center(0,760-128);
+        @include center(0,760);
     }
 }
 .icon {
@@ -182,11 +186,18 @@ html,body {
     left:0;
     top:0;
     &__bg {
-        width:rem(983);
-        height:rem(1576);
-        background:url('../images/cover-bg.png') no-repeat center top;
+        // width:rem(983);
+        // height:rem(1576);
+        // background:url('../images/cover-bg.png') no-repeat center top;
+        // background-size:100% 100%;
+        // @include leftTop(-141,-199);
+        width: 100%;
+        height: 100%;
+        // width:rem(754);
+        // height:rem(1339);
+        background:url('../images/cover-bg-02.png') no-repeat center top;
         background-size:100% 100%;
-        @include leftTop(-141,-199);
+        @include leftTop(-3,-2-128);
     }
     &__logo {
         width:rem(326);
@@ -194,11 +205,19 @@ html,body {
         background-position:0 0;
         @include center(392,156-128);
     }
+    &__titlebg {
+        width:rem(625);
+        height:rem(462);
+        background:url('../images/cover-title-bg.png') no-repeat center top;
+        background-size:100% 100%;
+        @include center(53,367-128);
+    }
     &__title {
         width:rem(580);
         height:rem(420);
         background-position:0 rem(-60);
-        @include center(78,381-128);
+        @include center(81,393-128);
+        // @include center(78,381-128);
     }
     &__square1 {
         width:rem(116);
@@ -213,11 +232,78 @@ html,body {
         @include center(288,222-128);
     }
     &__kid {
-        width:rem(481);
-        height:rem(521);
-        background:url('../images/cover-kid.png') no-repeat center top;
-        background-size:100% 100%;
-        @include center(-53,829-128);
+        width:rem(477);
+        height:rem(523);
+        @include center(-52,828-128);
+        &__lefthand {
+            width:rem(171);
+            height:rem(161);
+            background:url('../images/cover-kid-lefthand.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(228,168);
+            transform-origin:17.543% 79.503%;
+        }
+        &__leftleg {
+            width:rem(262);
+            height:rem(208);
+            background:url('../images/cover-kid-leftleg.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(203,279);
+            transform-origin:23.664% 73.076%;
+        }
+        &__body {
+            width:rem(477);
+            height:rem(523);
+            background:url('../images/cover-kid.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(0,0);
+        }
+        &__righthand {
+            width:rem(103);
+            height:rem(228);
+            background:url('../images/cover-kid-righthand.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(207,114);
+            transform-origin:29.126% 90.350%;
+        }
+        &__rightleg {
+            width:rem(292);
+            height:rem(153);
+            background:url('../images/cover-kid-rightleg.png') no-repeat center top;
+            background-size:100% 100%;
+            @include leftTop(185,354);
+            transform-origin:11.986% 78.431%;
+        }
+    }
+    &__cube01 {
+        width:rem(80);
+        height:rem(75);
+        background-position:0 rem(-50);
+        @include center(279,212-128);
+    }
+    &__cube02 {
+        width:rem(124);
+        height:rem(114);
+        background-position:rem(-100) rem(-50);
+        @include center(560,335-128);
+    }
+    &__cube03 {
+        width:rem(98);
+        height:rem(93);
+        background-position:rem(-250) rem(-50);
+        @include center(316,846-128);
+    }
+    &__cube04 {
+        width:rem(51);
+        height:rem(49);
+        background-position:rem(-370) rem(-50);
+        @include center(174,150-128);
+    }
+    &__cube05 {
+        width:rem(68);
+        height:rem(66);
+        background-position:rem(-450) rem(-50);
+        @include center(483,910-128);
     }
 }
 .page {
@@ -268,19 +354,29 @@ html,body {
         .t04 { background-position:0 rem(-239); top:rem(239); }
         .t05 { background-position:0 rem(-329); top:rem(329); }
     }
+    &__lefthandParent {
+        width:rem(233);
+        height:rem(388);
+        @include centerb(43, 1334-1468);
+    }
     &__lefthand {
         width:rem(233);
         height:rem(388);
         background:url('../images/page0-lefthand.png') no-repeat center top;
         background-size:100% 100%;
-        @include centerb(43, 1334-1468);
+        transform-origin:27.896% 91.494%;
+    }
+    &__righthandParent {
+        width:rem(332);
+        height:rem(453);
+        @include centerb(403, 1334-1461);
     }
     &__righthand {
         width:rem(332);
         height:rem(453);
         background:url('../images/page0-righthand.png') no-repeat center top;
         background-size:100% 100%;
-        @include centerb(403, 1334-1461);
+        transform-origin:79.8192% 90.507%;
     }
     &__btn {
         width:rem(316);
@@ -476,7 +572,8 @@ html,body {
             width:rem(281);
             height:rem(640);
             background-image:url('../images/page1-catch-1-1.png');
-            @include center(368, 90-128);
+            // @include center(368, 90-128);
+            @include center(368, 230-128);
         }
         &--1-2 {
             width:rem(310);
@@ -1176,7 +1273,7 @@ html,body {
 
 
 .moveULast {
-    animation:moveULast 0.5s linear both;
+    animation:moveULast 0.75s linear both;
     z-index:2;
 }
 @keyframes moveULast{
@@ -1184,7 +1281,7 @@ html,body {
         transform:translate3d(0,0,0);
     }
     100% {
-        transform:translate3d(0,100%,0);
+        transform:translate3d(0,150%,0);
     }
 }
 .moveDNow {
@@ -1338,38 +1435,6 @@ html,body {
     0% {
         -webkit-transform:translate3d(0,rem(1206),0);
         transform:translate3d(0,rem(1206),0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-    }
-}
-.leftIn {
-    -webkit-animation:leftIn 0.5s ease-in-out both;
-    animation:leftIn 0.5s ease-in-out both;
-}
-@-webkit-keyframes leftIn{
-    0% {
-        -webkit-transform:translate3d(rem(-750),0,0);
-        transform:translate3d(rem(-750),0,0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-    }
-}
-@keyframes leftIn{
-    0% {
-        -webkit-transform:translate3d(rem(-750),0,0);
-        transform:translate3d(rem(-750),0,0);
         opacity:0;
     }
     1% {
@@ -1951,16 +2016,6 @@ html,body {
         transform:scale3d(1,1,1);
     }
 }
-.zoomChangeOut{
-    animation:zoomChangeOut 0.5s linear both;
-}
-@keyframes zoomChangeOut{
-    0% { }
-    100% {
-        -webkit-transform:scale3d(0,0,0);
-        transform:scale3d(0,0,0);
-    }
-}
 .zoomInChange{
     animation:zoomInChange 0.5s linear both;
 }
@@ -1976,18 +2031,6 @@ html,body {
     100% {
         -webkit-transform:scale3d(1,1,1);
         transform:scale3d(1,1,1);
-    }
-}
-.littleZoomIn{
-    -webkit-animation:littleZoomIn 0.5s linear both;
-    animation:littleZoomIn 0.5s linear both;
-}
-@keyframes littleZoomIn{
-    0%, 100% {
-        transform:scale3d(1,1,1);
-    }
-    50% {
-        transform:scale3d(2,2,2);
     }
 }
 .page1ZoomCenter {
@@ -2788,21 +2831,6 @@ html,body {
     }
 }
 
-
-.page3ColumnRotateAni {
-    animation:page3ColumnRotateAni 5s both linear;
-}
-@keyframes page3ColumnRotateAni {
-    0% {
-        transform:rotateY(0deg);
-    }
-    50% {
-        transform:rotateY(360deg);
-    }
-    100% {
-        transform:rotateY(0deg);
-    }
-}
 .page3ColumnLineAni {
     transform-origin: 100% 100%;
     animation: page3ColumnLineAni 0.5s both linear;
@@ -2884,6 +2912,156 @@ html,body {
         opacity:1;
     }
     100% {
+        opacity:0;
+    }
+}
+.littleRTMoveAni{
+    animation:littleRTMoveAni 1s ease-in-out both infinite alternate;
+}
+@keyframes littleRTMoveAni{
+   0% {
+       transform:translate3d(-5px,5px,0);
+   }
+   100% {
+       transform:translate3d(0,0,0);
+   }
+}
+.littleLRMoveAni{
+    animation:littleLRMoveAni 1s ease-in-out both infinite alternate;
+}
+@keyframes littleLRMoveAni{
+   0% {
+       transform:rotateZ(-2deg);
+   }
+   100% {
+    transform:rotateZ(2deg);
+   }
+}
+.littleTBMoveAni{
+    animation:littleTBMoveAni 1s ease-in-out both infinite alternate;
+}
+@keyframes littleTBMoveAni{
+   0% {
+       transform:rotateZ(0deg);
+   }
+   100% {
+    transform:rotateZ(5deg);
+   }
+}
+.littleTMoveAni{
+    animation:littleTMoveAni 1s ease-in-out both infinite alternate;
+}
+@keyframes littleTMoveAni{
+   0% {
+        transform:translate3d(0, -2px, 0);
+   }
+   100% {
+        transform:translate3d(0, 3px, 0);
+   }
+}
+.littleLMoveAni{
+    animation:littleLMoveAni 1s ease-in-out both infinite alternate;
+}
+@keyframes littleLMoveAni{
+   0% {
+        transform:translate3d(-2px, 0, 0);
+   }
+   100% {
+        transform:translate3d(3px, 0, 0);
+   }
+}
+.littleZoomIn{
+    animation:littleZoomIn 6s linear both infinite alternate;
+}
+@keyframes littleZoomIn{
+    0% {
+        transform:scale3d(0,0,0);
+        opacity: 0;
+    }
+    20%, 30% {
+        transform:scale3d(0.8,0.8,0.8) rotateZ(30deg);
+        opacity:1;
+    }
+    50% {
+        transform:scale3d(0.1,0.1,0.1) rotateZ(0);
+        opacity:0;
+    }
+    80%, 100% {
+        transform:scale3d(1,1,1) rotateZ(-30deg);
+        opacity: 1;
+    }
+}
+.leftIn {
+    animation:leftIn 1s ease-in-out both;
+}
+@keyframes leftIn{
+    0% {
+        transform:translate3d(rem(-750),0,0);
+        opacity:0;
+    }
+    1% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.rotateXIn {
+    animation:rotateXIn 0.5s both linear;
+}
+@keyframes rotateXIn {
+    0% {
+        transform:rotateX(360deg);
+    }
+    100% {
+        transform:rotateX(0deg);
+    }
+}
+.littleTBMoveRotate {
+    animation:littleTBMoveRotate 1s both linear infinite alternate;
+}
+@keyframes littleTBMoveRotate {
+    0% {
+        transform:translate3d(0, -20px, 0) rotateZ(3deg);
+    }
+    100% {
+        transform:translate3d(0, 0, 0);
+    }
+}
+.littleLTMoveRotate {
+    animation:littleLTMoveRotate 1s both linear infinite alternate;
+}
+@keyframes littleLTMoveRotate {
+    0% {
+        transform:translate3d(-20px, -20px, 0) rotateZ(-3deg);
+    }
+    100% {
+        transform:translate3d(0, 0, 0);
+    }
+}
+.selfBottomIn{
+    animation:selfBottomIn 1.5s ease-in-out both;
+}
+@-webkit-keyframes selfBottomIn{
+   0% {
+       transform:translate3d(0,100%,0);
+       opacity:0;
+   }
+   1% {
+       opacity:1;
+   }
+   100% {
+       transform:translate3d(0,0,0);
+   }
+}
+.zoomChangeOut{
+    animation:zoomChangeOut 0.5s linear both;
+    z-index:2;
+}
+@keyframes zoomChangeOut{
+    0% { }
+    100% {
+        transform:scale3d(0,0,0);
         opacity:0;
     }
 }

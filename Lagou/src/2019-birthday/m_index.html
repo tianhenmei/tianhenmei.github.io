@@ -108,9 +108,13 @@
             pageStatus = false,
             startTime = new Date().getTime(),
             loadingSuccess = function(){
-                var cover = document.getElementById('cover');
+                var cover = document.getElementById('cover'),
+                    loading = document.getElementById('loading');
+                loading.className += ' opacityChange-out'
                 cover.className = cover.className.replace(' hide','');
-                document.getElementById('loading').className += ' hide';
+                setTimeout(function(){
+                    document.getElementById('loading').className += ' hide';
+                }, 500)
             }
     </script>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
@@ -125,13 +129,13 @@
     </div>
 </div> -->
 <div class="loading" id="loading">
-    <!-- <div class="loading__icon">
+    <div class="loading__icon">
         <img src="images/loading.gif" />
-    </div> -->
-    <div class="loading__img"></div>
+    </div>
+    <!-- <div class="loading__img"></div>
     <div class="loading__lineParent" id="progress-bg">
         <div class="loading__line" id="progress" style="width:0;"></div>
-    </div>
+    </div> -->
     <div class="loading__num" id="progress-number">0%</div>
     <!-- <div class="title clearfix">
         <div class="l zoomIn700 delay0">l</div>
@@ -154,26 +158,42 @@
     <div class="cover hide" id="cover">
         <div class="cover__bg" :style="{top: getFitTop(-199, 1, 199)}"></div>
         <div class="icon cover__logo"></div>
-        <div class="icon cover__title"></div>
-        <div class="icon cover__square1"></div>
-        <div class="icon cover__square2"></div>
-        <div class="icon cover__kid" :style="{top: getFitTop(829-128, 2/4)}"></div>
+        <div class="cover__titlebg"></div>
+        <div class="icon cover__title littleTMoveAni delay0-2"></div>
+        <!-- <div class="icon cover__square1"></div>
+        <div class="icon cover__square2"></div> -->
+        <div class="cover__kid littleRTMoveAni" :style="{top: getFitTop(828-128, 2/4)}">
+            <div class="cover__kid__lefthand littleTBMoveAni"></div>
+            <div class="cover__kid__leftleg littleTBMoveAni"></div>
+            <div class="cover__kid__body"></div>
+            <div class="cover__kid__righthand littleLRMoveAni delay0-2"></div>
+            <div class="cover__kid__rightleg littleTBMoveAni delay0-2"></div>
+        </div>
+        <div class="page3-icon cover__cube01 littleRTMoveAni"></div>
+        <div class="page3-icon cover__cube02 littleTMoveAni"></div>
+        <div class="page3-icon cover__cube03 littleLMoveAni"></div>
+        <div class="page3-icon cover__cube04 littleZoomIn delay0-5"></div>
+        <div class="page3-icon cover__cube05 littleZoomIn delay1-0"></div>
     </div>
     <div class="page page0 hide">
         <div class="page0__bg" :style="{top: getFitTop(-425, 1, 0)}"></div>
         <div class="page0__square" :style="{top: getFitTop(-104, 1)}"></div>
         <div class="icon cover__logo"></div>
-        <div class="icon page0__title"></div>
+        <div class="icon page0__title leftIn duration0-5 delay0-5"></div>
         <div class="page0__txt">
-            <div class="txt t01" :style="{top: getFitTop(0, 2/4)}"></div>
-            <div class="txt t02" :style="{top: getFitTop(60, 11/20)}"></div>
-            <div class="txt t03" :style="{top: getFitTop(149, 12/20)}"></div>
-            <div class="txt t04" :style="{top: getFitTop(239, 13/20)}"></div>
-            <div class="txt t05" :style="{top: getFitTop(329, 14/20)}"></div>
+            <div class="txt t01 leftIn delay0-7" :style="{top: getFitTop(0, 2/4)}"></div>
+            <div class="txt t02 leftIn delay0-9" :style="{top: getFitTop(60, 11/20)}"></div>
+            <div class="txt t03 leftIn delay1-1" :style="{top: getFitTop(149, 12/20)}"></div>
+            <div class="txt t04 leftIn delay1-3" :style="{top: getFitTop(239, 13/20)}"></div>
+            <div class="txt t05 leftIn delay1-5" :style="{top: getFitTop(329, 14/20)}"></div>
         </div>
-        <div class="page0__lefthand"></div>
-        <div class="page0__righthand"></div>
-        <div class="icon page0__btn" :style="{top: getFitTop(912-128, 1)}"
+        <div class="page0__lefthandParent selfBottomIn delay0-5">
+            <div class="page0__lefthand littleTBMoveRotate delay2-0"></div>
+        </div>
+        <div class="page0__righthandParent selfBottomIn delay0-5">
+            <div class="page0__righthand littleLTMoveRotate delay2-0"></div>
+        </div>
+        <div class="icon page0__btn opacityChange delay0-5" :style="{top: getFitTop(912-128, 1)}"
             @click.stop.prevent="startTestEvent"></div>
     </div>
     <div class="page page1 hide">
@@ -203,7 +223,7 @@
         <div class="icon page1__rightbutton" @click.stop.prevent="rightMoveEvent"></div>
         <div class="page1__cover" v-show="catchIndex"></div>
         <div class="icon cover__logo"></div>
-        <div class="page1__left bottomMoveIn delay1-0"></div>
+        <div class="page1__left bottomMoveIn duration1-0 delay1-0"></div>
         <div class="icon page1__bottommove" v-show="catchIndex"></div>
         <div class="page1__right"
             v-show="!catchIndex"
@@ -211,7 +231,7 @@
             @touchstart.stop.prevent="touchstartEvent"
             @touchmove.stop.prevent="touchmoveEvent"
             @touchend.stop.prevent="touchendEvent">
-            <div class="page1__right__center bottomMoveIn delay1-0"></div>
+            <div class="page1__right__center bottomMoveIn duration1-0 delay1-2"></div>
         </div>
         <div class="page1__catch" v-show="catchIndex">
             <div class="page1__catch--item" :class="'page1__catch--'+catchIndex"></div>
