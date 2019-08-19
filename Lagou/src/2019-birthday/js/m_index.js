@@ -605,6 +605,7 @@ app = new Vue({
         showSuccessHideAni: false,
         result: '',
         resultStatus: false,
+        resultHideStatus: false,
         touchstart: 0,
         isiPhone:false,
         testStatus:false
@@ -914,6 +915,7 @@ app = new Vue({
             this.touchstart = Date.now()
         },
         imgTouchend:function(event){
+            var _this = this
             var now = Date.now()
             // 长按
             if (this.touchstart && now - this.touchstart >= 2000) {
@@ -924,7 +926,11 @@ app = new Vue({
                 // })
             } else {
                 event.stopPropagation()
-                this.resultStatus = false
+                this.resultHideStatus = true
+                setTimeout(function() {
+                    _this.resultHideStatus = false
+                    _this.resultStatus = false
+                }, 500)
             }
             this.touchstart = 0
         },

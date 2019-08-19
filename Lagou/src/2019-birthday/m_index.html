@@ -156,7 +156,7 @@
 </script>
 <div id="app">
     <div class="cover hide" id="cover">
-        <div class="cover__bg" :style="{top: getFitTop(-199, 1, 199)}"></div>
+        <div class="cover__bg"></div>
         <div class="icon cover__logo"></div>
         <div class="cover__titlebg"></div>
         <div class="icon cover__title littleTMoveAni delay0-2"></div>
@@ -193,7 +193,7 @@
         <div class="page0__righthandParent selfBottomIn delay0-5">
             <div class="page0__righthand littleLTMoveRotate delay2-0"></div>
         </div>
-        <div class="icon page0__btn opacityChange delay0-5" :style="{top: getFitTop(912-128, 1)}"
+        <div class="icon page0__btn opacityChange delay0-5" :style="{top: getFitTop(912-128 + 116, 5/8)}"
             @click.stop.prevent="startTestEvent"></div>
     </div>
     <div class="page page1 hide">
@@ -224,7 +224,7 @@
         <div class="page1__cover" v-show="catchIndex"></div>
         <div class="icon cover__logo"></div>
         <div class="page1__left bottomMoveIn duration1-0 delay1-0"></div>
-        <div class="icon page1__bottommove" v-show="catchIndex"></div>
+        <div class="icon page1__bottommove littleMoveAni" v-show="catchIndex"></div>
         <div class="page1__right"
             v-show="!catchIndex"
             ref="page1__right"
@@ -339,7 +339,10 @@
                 :class="showSuccess ? 'zoomOut' : showSuccessHideAni ? 'zoomInChange' : ''"></div>
             <div class="icon page3__modal__close" @click.stop.prevent="closeSuccessModal"></div>
         </div>
-        <div class="page3__canvas zoomOut" v-show="result && resultStatus">
+        <div class="page3__canvas zoomOut" v-show="result && (resultStatus || resultHideStatus)"
+            :class="{
+                'opacityChange-out': resultHideStatus
+            }">
             <div class="page3__canvas__pm" v-show="result === 'pm'">
                 <div class="pm__bg"></div>
                 <div class="pm__star"></div>

@@ -197,7 +197,8 @@ html,body {
         // height:rem(1339);
         background:url('../images/cover-bg-02.png') no-repeat center top;
         background-size:100% 100%;
-        @include leftTop(-3,-2-128);
+        // @include leftTop(-3,-2-128);
+        @include leftTop(-3,-2);
     }
     &__logo {
         width:rem(326);
@@ -382,7 +383,8 @@ html,body {
         width:rem(316);
         height:rem(116);
         background-position:rem(-620) rem(-130);
-        @include centerb(44,1334-(912-128+116));
+        // @include centerb(44,1334-(912-128+116));
+        @include center(44, 912-128 + 116);
     }
 }
 /***page0 end***************************************************/
@@ -738,7 +740,7 @@ html,body {
     }
     &__list {
         width:100%;
-        height:100%;
+        height:rem(800);
         @include leftTop(0,345-128);
         &__swiper {
             width:100%;
@@ -2914,6 +2916,17 @@ html,body {
     100% {
         opacity:0;
     }
+}
+.littleMoveAni{
+    animation:littleMoveAni 1s linear both infinite alternate;
+}
+@keyframes littleMoveAni{
+   0% {
+       transform:translate3d(0,-10px,0);
+   }
+   60%, 100% {
+       transform:translate3d(0,0,0);
+   }
 }
 .littleRTMoveAni{
     animation:littleRTMoveAni 1s ease-in-out both infinite alternate;
