@@ -1023,8 +1023,8 @@ app = new Vue({
                     break
                 case 'market':
                     this.ctx.drawImage(this.loadedImgs[index], -407,-222) // bg
-                    this.ctx.drawImage(this.loadedImgs[index+3], 29,157-128) // star
-                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 29,157-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+3], 105,240-128) // title
                     // this.ctx.drawImage(this.loadedImgs[index+2], 153,799-128) // leg
                     this.ctx.drawImage(this.loadedImgs[index+1], 85,391-128) // center
                     break
