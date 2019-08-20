@@ -93,6 +93,7 @@ var imgArray = [
 	loadingHost + "images/page3-canvas-tech-title.png",
 	loadingHost + "images/page3-canvas-tech.png",
 
+	"images/page3-canvas-logo.png",
 	"images/page3-canvas-bottom.png",
 	"images/page3-canvas-ercode.png",
 	"images/page3-canvas-hugleg.png",

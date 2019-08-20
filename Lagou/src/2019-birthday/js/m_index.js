@@ -661,6 +661,15 @@ app = new Vue({
 
             'images/page3-canvas-logo.png'
         ],
+        resultObj: {
+            design: { bg: '#5924a3', index:4, title: '设计大咖' },
+            func: { bg: '#432e97', index:9, title: '职能大咖' },
+            market: { bg: '#f95085', index: 14, title: '市场大咖' },
+            op: { bg: '#f96277', index: 18, title: '运营大咖' },
+            pm: { bg: '#2a2aad', index: 23, title: '产品大咖' },
+            sell: { bg: '#ffb806', index: 28, title: '销售大咖' },
+            tech: { bg: '#2dad5b', index: 33, title: '技术大咖' } 
+        },
         canvas: null,
         ctx: null,
         drawStatus: false,
@@ -992,15 +1001,7 @@ app = new Vue({
         },
         drawContent:function(){
             var self = this
-            var obj = {
-                design: { bg: '#5924a3', index:4, title: '设计大咖' },
-                func: { bg: '#432e97', index:9, title: '职能大咖' },
-                market: { bg: '#f95085', index: 14, title: '市场大咖' },
-                op: { bg: '#f96277', index: 18, title: '运营大咖' },
-                pm: { bg: '#2a2aad', index: 23, title: '产品大咖' },
-                sell: { bg: '#ffb806', index: 28, title: '销售大咖' },
-                tech: { bg: '#2dad5b', index: 33, title: '技术大咖' } 
-            }
+            var obj = this.resultObj
             var index = obj[this.result].index
             this.ctx.fillStyle = obj[this.result].bg
             this.ctx.rect(0,0,this.canvas.width,this.canvas.height)

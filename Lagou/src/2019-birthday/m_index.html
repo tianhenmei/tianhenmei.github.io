@@ -16,7 +16,7 @@
     <title>拉勾抓周</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="css/swiper.min.css?v=$version$"/>
-    <link rel="stylesheet" href="css/m_index.css?v=2223$version$">
+    <link rel="stylesheet" href="css/m_index.css?v=2224$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -356,7 +356,7 @@
             <div class="page3__canvas__pm" v-show="result === 'pm'">
                 <div class="pm__bg"></div>
                 <div class="pm__star"></div>
-                <div class="pm__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="pm__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="pm__leg" :style="{top:getFitTop(800-128, 2/8)}"></div>
                 <div class="pm__center" :style="{top:getFitTop(380-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -367,7 +367,7 @@
             <div class="page3__canvas__op" v-show="result === 'op'">
                 <div class="op__bg"></div>
                 <div class="op__star"></div>
-                <div class="op__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="op__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="op__leg" :style="{top:getFitTop(821-128, 2/8)}"></div>
                 <div class="op__center" :style="{top:getFitTop(404-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -378,7 +378,7 @@
             <div class="page3__canvas__tech" v-show="result === 'tech'">
                 <div class="tech__bg"></div>
                 <div class="tech__star"></div>
-                <div class="tech__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="tech__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="tech__leg" :style="{top:getFitTop(825-128, 2/8)}"></div>
                 <div class="tech__center" :style="{top:getFitTop(388-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -389,7 +389,7 @@
             <div class="page3__canvas__design" v-show="result === 'design'">
                 <div class="design__bg"></div>
                 <div class="design__star"></div>
-                <div class="design__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="design__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="design__leg" :style="{top:getFitTop(768-128, 2/8)}"></div>
                 <div class="design__center" :style="{top:getFitTop(380-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -400,7 +400,7 @@
             <div class="page3__canvas__market" v-show="result === 'market'">
                 <div class="market__bg"></div>
                 <div class="market__star" :style="{top:getFitTop(157-128, 1/2)}"></div>
-                <div class="market__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="market__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <!-- <div class="market__leg"></div> -->
                 <div class="market__center" :style="{top:getFitTop(391-128, 7/16)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -411,7 +411,7 @@
             <div class="page3__canvas__sell" v-show="result === 'sell'">
                 <div class="sell__bg"></div>
                 <div class="sell__star"></div>
-                <div class="sell__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="sell__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="sell__leg" :style="{top:getFitTop(808-128, 2/8)}"></div>
                 <div class="sell__center" :style="{top:getFitTop(384-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
@@ -422,13 +422,17 @@
             <div class="page3__canvas__func" v-show="result === 'func'">
                 <div class="func__bg"></div>
                 <div class="func__star" :style="{top:getFitTop(20-128, 1/2, 208)}"></div>
-                <div class="func__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
+                <!-- <div class="func__title" :style="{top:getFitTop(240-128, 1/8)}"></div> -->
                 <div class="func__leg" :style="{top:getFitTop(799-128, 2/8)}"></div>
                 <div class="func__center" :style="{top:getFitTop(390-128, 2/8)}"></div>
                 <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
+            </div>
+            <div class="page3__canvas__title" :style="{top:getFitTop(240-128, 1/8)}">
+                未来的{{resultObj[result] ? resultObj[result].title : ''}}<br/>
+                是{{resultObj[result] ? resultObj[result].title : ''}}
             </div>
             <div class="icon cover__logo"></div>
             <div class="page3__canvas__hugleg" :style="{top:getFitTop(993-128, 1)}"></div>
@@ -450,7 +454,7 @@
 <script type="text/javascript" src="js/vue2.1.10.js"></script>
 <script type="text/javascript" src="js/swiper.min.js?v=$version$"></script>
 <script type="text/javascript" src="js/vue-awesome-swiper.js?v=$version$"></script>
-<script type="text/javascript" src="js/m_index.js?v=2223$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=2224$version$"></script>
 
 <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
