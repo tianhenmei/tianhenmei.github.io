@@ -37,7 +37,7 @@ var PageMove = function () {
             isMoving: false,
             clickStatus: false
         };
-        this._initPageMoveEvent();
+        // this._initPageMoveEvent();
     }
     
     _createClass(PageMove, [{
@@ -157,7 +157,7 @@ var PageMove = function () {
                     if (!app.catchIndex) {
                         break
                     }
-                case 0:
+                // case 0:
                 // case 1:
                 // case 3:
                 case 4:
@@ -238,7 +238,6 @@ var PageMove = function () {
     return PageMove;
 }();
 
-var app = null;
 var PM = new PageMove({ animation: "move" });
 app = new Vue({
     el:"#app",
@@ -515,7 +514,7 @@ app = new Vue({
                     city: '重庆',
                     requirement: '本科及以上',
                     classify: '硬件,移动互联网',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'i/image/M00/42/CE/CgpFT1ld-4yAZLJ6AAAv0QGHSIM153.png',
@@ -526,7 +525,7 @@ app = new Vue({
                     city: '杭州',
                     requirement: '本科及以上',
                     classify: '企业服务',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'i/image2/M00/1A/BF/CgoB5loBbLqAVCfvAADrf-y8Zm8795.png',
@@ -537,7 +536,7 @@ app = new Vue({
                     city: '南京',
                     requirement: '本科及以上',
                     classify: '消费生活,移动互联网',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'images/logo_default.png',
@@ -548,7 +547,7 @@ app = new Vue({
                     city: '徐州',
                     requirement: '本科及以上',
                     classify: '数据服务,软件开发',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }
             ], [
@@ -561,7 +560,7 @@ app = new Vue({
                     city: '杭州',
                     requirement: '本科及以上',
                     classify: '移动互联网',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'images/logo_default.png',
@@ -572,7 +571,7 @@ app = new Vue({
                     city: '石家庄',
                     requirement: '学历不限',
                     classify: '企业服务',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'i/image2/M01/74/17/CgotOV1Oy3KATOAyAAAScJIeDE8578.png',
@@ -583,7 +582,7 @@ app = new Vue({
                     city: '上海',
                     requirement: '本科及以上',
                     classify: '移动互联网 企业服务',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }, {
                     logo: 'i/image2/M01/44/D8/CgoB5lz_T7WAPv4MAAJuKTImCvU634.jpg',
@@ -594,7 +593,7 @@ app = new Vue({
                     city: '北京',
                     requirement: '本科及以上',
                     classify: '房产家居,软件开发',
-                    checkStatus: false,
+                    checkStatus: true,
                     sendStatus: false
                 }
             ]
@@ -608,7 +607,65 @@ app = new Vue({
         resultHideStatus: false,
         touchstart: 0,
         isiPhone:false,
-        testStatus:false
+        testStatus:false,
+        // 加载图片
+        load:0,
+        loadedImgs:[],
+        imgs: [
+            // 0
+            'images/page3-canvas-bottom.png',
+            'images/page3-canvas-ercode.png',
+            'images/page3-canvas-hugleg.png',
+            'images/page3-canvas-tips.png',
+            // 4
+            'images/page3-canvas-design-bg.png',
+            'images/page3-canvas-design-center.png',
+            'images/page3-canvas-design-leg.png',
+            'images/page3-canvas-design-star.png',
+            'images/page3-canvas-design-title.png',
+            // 9
+            'images/page3-canvas-func-bg.png',
+            'images/page3-canvas-func-center.png',
+            'images/page3-canvas-func-leg.png',
+            'images/page3-canvas-func-star.png',
+            'images/page3-canvas-func-title.png',
+            // 14
+            'images/page3-canvas-market-bg.png',
+            'images/page3-canvas-market-center.png',
+            'images/page3-canvas-market-star.png',
+            'images/page3-canvas-market-title.png',
+            // 18
+            'images/page3-canvas-op-bg.png',
+            'images/page3-canvas-op-center.png',
+            'images/page3-canvas-op-leg.png',
+            'images/page3-canvas-op-star.png',
+            'images/page3-canvas-op-title.png',
+            // 23
+            'images/page3-canvas-pm-bg.png',
+            'images/page3-canvas-pm-center.png',
+            'images/page3-canvas-pm-leg.png',
+            'images/page3-canvas-pm-star.png',
+            'images/page3-canvas-pm-title.png',
+            // 28
+            'images/page3-canvas-sell-bg.png',
+            'images/page3-canvas-sell-center.png',
+            'images/page3-canvas-sell-leg.png',
+            'images/page3-canvas-sell-star.png',
+            'images/page3-canvas-sell-title.png',
+            // 33
+            'images/page3-canvas-tech-bg.png',
+            'images/page3-canvas-tech-center.png',
+            'images/page3-canvas-tech-leg.png',
+            'images/page3-canvas-tech-star.png',
+            'images/page3-canvas-tech-title.png',
+
+            'images/page3-canvas-logo.png'
+        ],
+        canvas: null,
+        ctx: null,
+        drawStatus: false,
+        saveStatus: false,
+        url: ''
     },
     mounted:function(){
         // this.setDay();
@@ -626,6 +683,7 @@ app = new Vue({
             this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
             this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
         }
+        this.initCanvas()
     },
     methods:{
         setRem:function(value){
@@ -685,6 +743,44 @@ app = new Vue({
                 return '0-'+l;
             }
             return s + '-' + l
+        },
+        initCanvas:function() {
+            var width = 750,
+                height = 1206,
+                self = this
+
+            this.canvas = this.$refs['canvas']
+            this.ctx = this.canvas.getContext("2d")
+            this.canvas.width = width
+            this.canvas.height = height
+
+            this.ctx.fillStyle = "#fff"
+            this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
+            this.ctx.fill()
+
+            this.imgs.forEach(function(url){
+                var img = new Image()
+                img.onload = function(){
+                    self.load++
+                    if(self.load == self.imgs.length){
+                        self.setDefaultCanvas()
+                    }
+                }
+                img.src = url,
+                self.loadedImgs.push(img)
+            })
+        },
+        initCoverMove:function(){
+            var _this = this
+            setTimeout(function(){
+                var cover = document.getElementById('cover')
+                var page0 = document.getElementById('page0')
+                cover.className += ' opacityChange-out'
+                page0.className = page0.className.replace(' hide','')
+                setTimeout(function(){
+                    cover.className += ' hide'
+                }, 500)
+            }, 2000)
         },
         startTestEvent:function() {
             var _this = this;
@@ -802,6 +898,18 @@ app = new Vue({
             this.move.end.y = 0;
             elem.style.transform = this.getMoveStyle()
         },
+        chooseGoodsEvent:function(pindex, index){
+            var _this = this
+            this.catchIndex = pindex + '-' + index
+            setTimeout(function() {
+                var page1 = document.getElementById('page1')
+                var page2 = document.getElementById('page2')
+                page2.className = page2.className.replace(' hide','').replace(' zoomInChange','') + ' zoomOut'
+                setTimeout(function() {
+                    page1.className += ' hide'
+                }, 500)
+            }, 1500)
+        },
         getMoveStyle:function() {
             var start = this.move.start,
                 end = this.move.end;
@@ -811,15 +919,35 @@ app = new Vue({
             return 'translate3d(0, 0, 0)'
         },
         retryEvent:function() {
-            PM.data.last = 3
-            PM.data.now = 2
-            PM.pageMove('up', PM);
+            var page1 = document.getElementById('page1')
+            var page2 = document.getElementById('page2')
+            page1.className = page1.className.replace(' hide','')
+            page2.className = page2.className.replace(' zoomOut','') + ' zoomInChange'
+            setTimeout(function() {
+                page2.className += ' hide'
+            }, 500)
+            // PM.data.last = 3
+            // PM.data.now = 2
+            // PM.pageMove('up', PM);
             this.catchIndex = ''
         },
         makesureEvent:function() {
-            PM.data.last = 3
-            PM.data.now = 4
-            PM.pageMove('down', PM);
+            var _this = this
+            var page2 = document.getElementById('page2')
+            var page3 = document.getElementById('page3')
+            page3.className = page3.className.replace(' hide','') + ' topIn'
+            setTimeout(function() {
+                page2.className += ' hide'
+                page3.className = page3.className.replace(' topIn','')
+                _this.clearCanvas()
+                _this.drawStatus = true
+                if(_this.load == _this.imgs.length){
+                    _this.setDefaultCanvas()
+                }
+            }, 750)
+            // PM.data.last = 3
+            // PM.data.now = 4
+            // PM.pageMove('down', PM);
             this.initPositionSwiper()
             switch(this.catchIndex) {
                 case '0-0':
@@ -849,6 +977,117 @@ app = new Vue({
                     this.result = 'sell'
                     break;
             }
+        },
+        setDefaultCanvas:function(){
+            // this.ctx.drawImage(this.loadedImgs[0], -114, -1002)
+            // this.ctx.drawImage(this.loadedImgs[1], -50, 280)
+            // this.ctx.drawImage(this.loadedImgs[2], 99, 1473)
+            // this.ctx.drawImage(this.loadedImgs[4], 832, 0)
+            if(this.drawStatus){
+                // this.ctx.drawImage(this.loadedImgs[5+this.activeTitle], 102, 193)
+                // this.ctx.drawImage(this.loadedImgs[8+this.activeSubtitle], 102, 652)
+                this.drawContent()
+                this.drawStatus = false
+            }
+        },
+        drawContent:function(){
+            var self = this
+            var obj = {
+                design: { bg: '#5924a3', index:4, title: '设计大咖' },
+                func: { bg: '#432e97', index:9, title: '职能大咖' },
+                market: { bg: '#f95085', index: 14, title: '市场大咖' },
+                op: { bg: '#f96277', index: 18, title: '运营大咖' },
+                pm: { bg: '#2a2aad', index: 23, title: '产品大咖' },
+                sell: { bg: '#ffb806', index: 28, title: '销售大咖' },
+                tech: { bg: '#2dad5b', index: 33, title: '技术大咖' } 
+            }
+            var index = obj[this.result].index
+            this.ctx.fillStyle = obj[this.result].bg
+            this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
+
+            switch(this.result) {
+                case 'design':
+                    this.ctx.drawImage(this.loadedImgs[index], -193,-369) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 29,157-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 392,768-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 70,380-128) // center
+                    break
+                case 'func':
+                    this.ctx.drawImage(this.loadedImgs[index], -149,-227) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 14,20-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 153,799-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 65,390-128) // center
+                    break
+                case 'market':
+                    this.ctx.drawImage(this.loadedImgs[index], -407,-222) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 29,157-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    // this.ctx.drawImage(this.loadedImgs[index+2], 153,799-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 85,391-128) // center
+                    break
+                case 'op':
+                    this.ctx.drawImage(this.loadedImgs[index], -185,-366) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 9,140-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 245,821-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 57,404-128) // center
+                    break
+                case 'pm':
+                    this.ctx.drawImage(this.loadedImgs[index], -93,-226) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 40,10) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 395,800-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 55,380-128) // center
+                    break
+                case 'sell':
+                    this.ctx.drawImage(this.loadedImgs[index], -158,-301) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 13,180-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 147,808-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 61,384-128) // center
+                    break
+                case 'tech':
+                    this.ctx.drawImage(this.loadedImgs[index], -154,-337) // bg
+                    this.ctx.drawImage(this.loadedImgs[index+3], 9,140-128) // star
+                    // this.ctx.drawImage(this.loadedImgs[index+4], 105,240-128) // title
+                    this.ctx.drawImage(this.loadedImgs[index+2], 286,825-128) // leg
+                    this.ctx.drawImage(this.loadedImgs[index+1], 60,388-128) // center
+                    break
+            }
+            var st = 0
+            this.ctx.lineWidth = 3
+            this.ctx.fillStyle = "#ffffff"
+            this.ctx.strokeStyle = '#ffffff'
+            this.ctx.font = "60px normal"
+            this.ctx.fillText('未来的',105,240-128+72)
+            this.ctx.strokeText('未来的',105,240-128+72)
+            st = this.ctx.measureText('未来的').width
+            this.ctx.fillText(obj[this.result].title,105+st,240-128+72)
+            this.ctx.strokeText(obj[this.result].title,105+st,240-128+72)
+            this.ctx.fillText('是'+obj[this.result].title,105,240-128+87+72)
+            this.ctx.strokeText('是'+obj[this.result].title,105,240-128+87+72)
+
+            this.ctx.drawImage(this.loadedImgs[38], 392,156-128)
+            this.ctx.drawImage(this.loadedImgs[1], 119,977-128)
+            this.ctx.drawImage(this.loadedImgs[2], 319,993-128)
+            this.ctx.drawImage(this.loadedImgs[3], 76, 1132-128)
+            this.ctx.drawImage(this.loadedImgs[0], 0, 1206 - 69) // center
+
+            // 绘制完毕，导出图片地址
+            setTimeout(function(){
+                self.url = self.canvas.toDataURL("image/png")
+                // self.showImage = true
+                // self.saveStatus = true
+            }, 500)
+        },
+        clearCanvas:function(){
+            this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height);
+
+            this.ctx.fillStyle = "#fff"
+            this.ctx.rect(0,0,this.canvas.width,this.canvas.height)
+            this.ctx.fill()
         },
         chooseEvent:function(one) {
             one.checkStatus = !one.checkStatus

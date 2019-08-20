@@ -25,8 +25,8 @@
             if (r != null) return unescape(r[2]); 
             return null;
         }
-        var app = getQueryString('lagoufrom');
 
+        var app = null;
         var lastSize = 16,
             htmlStatus = 0,
             bodyElement = document.documentElement || document.body,
@@ -38,7 +38,7 @@
                 w:bodyElement.clientWidth,
                 h:bodyElement.clientHeight
             },
-            app = getQueryString('lagoufrom'),
+            lagoufrom = getQueryString('lagoufrom'),
             checkStatus = false,
             initStatus = false;
         
@@ -69,7 +69,7 @@
                 }else if(rightSize < currentSize){  //宽屏
                     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
                     htmlStatus = 1;
-                    if(app == 'ios' || app == 'android'){
+                    if(lagoufrom == 'ios' || lagoufrom == 'android'){
                         lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
                     }
                 }else if(/(Mi-4c)/g.test(navigator.userAgent)){
@@ -114,6 +114,7 @@
                 cover.className = cover.className.replace(' hide','');
                 setTimeout(function(){
                     document.getElementById('loading').className += ' hide';
+                    app.initCoverMove()
                 }, 500)
             }
     </script>
@@ -175,28 +176,33 @@
         <div class="page3-icon cover__cube04 littleZoomIn delay0-5"></div>
         <div class="page3-icon cover__cube05 littleZoomIn delay1-0"></div>
     </div>
-    <div class="page page0 hide">
+    <div class="page page0 hide" id="page0">
         <div class="page0__bg" :style="{top: getFitTop(-425, 1, 0)}"></div>
         <div class="page0__square" :style="{top: getFitTop(-104, 1)}"></div>
         <div class="icon cover__logo"></div>
-        <div class="icon page0__title leftIn duration0-5 delay0-5"></div>
-        <div class="page0__txt">
-            <div class="txt t01 leftIn delay0-7" :style="{top: getFitTop(0, 2/4)}"></div>
-            <div class="txt t02 leftIn delay0-9" :style="{top: getFitTop(60, 11/20)}"></div>
-            <div class="txt t03 leftIn delay1-1" :style="{top: getFitTop(149, 12/20)}"></div>
-            <div class="txt t04 leftIn delay1-3" :style="{top: getFitTop(239, 13/20)}"></div>
-            <div class="txt t05 leftIn delay1-5" :style="{top: getFitTop(329, 14/20)}"></div>
+        <div class="page0__titleLayer bottomInShow280 duration5-5 delay0-5">
+            <div class="icon page0__title opacityChange duration1-0 delay0-5"></div>
+            <div class="icon page0__title2 opacityChange duration1-0 delay1-5"></div>
         </div>
-        <div class="page0__lefthandParent selfBottomIn delay0-5">
-            <div class="page0__lefthand littleTBMoveRotate delay2-0"></div>
+        <div class="page0__txt bottomInShow280 duration5-5 delay2-5 ">
+            <div class="txt t01 opacityChange duration1-0 delay2-5" :style="{top: getFitTop(0, 2/4)}"></div>
+            <div class="txt t02 opacityChange duration1-0 delay3-5" :style="{top: getFitTop(60, 11/20)}"></div>
+            <div class="txt t03 opacityChange duration1-0 delay4-5" :style="{top: getFitTop(149, 12/20)}"></div>
+            <div class="txt t04 opacityChange duration1-0 delay5-5" :style="{top: getFitTop(239, 13/20)}"></div>
+            <div class="txt t05 opacityChange duration1-0 delay6-5" :style="{top: getFitTop(329, 14/20)}"></div>
         </div>
-        <div class="page0__righthandParent selfBottomIn delay0-5">
-            <div class="page0__righthand littleLTMoveRotate delay2-0"></div>
+        <div class="page0__lefthandParent selfBottomIn delay8-0">
+            <div class="page0__lefthand littleTBMoveRotate delay8-5"></div>
         </div>
-        <div class="icon page0__btn opacityChange delay0-5" :style="{top: getFitPosition(912-128 + 116, 5/8)}"
-            @click.stop.prevent="startTestEvent"></div>
+        <div class="page0__righthandParent selfBottomIn delay8-0">
+            <div class="page0__righthand littleLTMoveRotate delay8-5"></div>
+        </div>
+        <div class="page0__btn littleBottomIn duration1-0 delay7-5" :style="{top: getFitPosition(912-128 + 116, 5/8)}"
+            @click.stop.prevent="startTestEvent">
+            <div class="icon page0__btnCenter flash delay8-5"></div>
+        </div>
     </div>
-    <div class="page page1 hide">
+    <div class="page page1 hide" id="page1">
         <div class="page1__bg" :style="{top: getFitTop(-339+128, 1, 0)}"></div>
         <div class="page1__square" :style="{top: getFitTop(-128, 1, 128)}"></div>
         <div class="page1__goods swiper-container" ref="goodsSwiper" id="goodsSwiper">
@@ -206,7 +212,8 @@
                         :class="[
                             'page1__item--'+pindex+'-'+index,
                             'page1__item--'+(index === 0 || index === 1 ? 'first' : 'second')
-                        ]">
+                        ]"
+                        @click.stop.prevent="chooseGoodsEvent(pindex, index)">
                         <div class="icon page1__item__bg"></div>
                         <div class="page1__click rubberBand delay0-5"
                             v-show="!catchIndex || catchIndex !== pindex + '-' + index"
@@ -224,13 +231,13 @@
         <div class="page1__cover" v-show="catchIndex"></div>
         <div class="icon cover__logo"></div>
         <div class="page1__left bottomMoveIn duration1-0 delay1-0"></div>
-        <div class="icon page1__bottommove littleMoveAni" v-show="catchIndex"></div>
+        <!-- <div class="icon page1__bottommove littleMoveAni" v-show="catchIndex"></div> -->
         <div class="page1__right"
             v-show="!catchIndex"
-            ref="page1__right"
-            @touchstart.stop.prevent="touchstartEvent"
+            ref="page1__right">
+            <!-- @touchstart.stop.prevent="touchstartEvent"
             @touchmove.stop.prevent="touchmoveEvent"
-            @touchend.stop.prevent="touchendEvent">
+            @touchend.stop.prevent="touchendEvent" -->
             <div class="page1__right__center bottomMoveIn duration1-0 delay1-2"></div>
         </div>
         <div class="page1__catch" v-show="catchIndex">
@@ -248,7 +255,7 @@
             <div class="page1__catch--item page1__catch--4-3"></div> -->
         </div>
     </div>
-    <div class="page page2 hide">
+    <div class="page page2 hide" id="page2">
         <div class="page0__bg page2__bg" :style="{top: getFitTop(-425, 1, 0)}"></div>
         <div class="page0__square" :style="{top: getFitTop(-104, 1)}"></div>
         <div class="icon cover__logo"></div>
@@ -271,8 +278,8 @@
         <div class="icon page2__tips"
             :style="{top: getFitTop(1260, 5/8)}"></div>
     </div>
-    <div class="page page3 hide">
-        <div class="page3__bg" :style="{top: getFitTop(-355, 1, 0)}"></div>
+    <div class="page page3 hide" id="page3">
+        <div class="page3__bg" :style="{top: getFitTZero(-355, 1, 0)}"></div>
         <div class="page3__bgbottom"></div>
         <div class="icon cover__logo"></div>
         <div class="icon page3__title" :style="{top:getFitTop(238-128, 1/8)}"></div>
@@ -317,9 +324,9 @@
             </div>
         </div>
         <div class="icon page1__leftbutton page3__leftbutton" @click.stop.prevent="leftPositionEvent"
-            :style="{top:getFitTop(639-128, 2/8)}"></div>
+            :style="{top:getFitTop(639-128-10, 2/8)}"></div>
         <div class="icon page1__rightbutton page3__rightbutton" @click.stop.prevent="rightPositionEvent"
-            :style="{top:getFitTop(639-128, 2/8)}"></div>
+            :style="{top:getFitTop(639-128-10, 2/8)}"></div>
         <div class="page3-icon page3__tips" :style="{top:getFitTop(1131-128, 3/8)}"></div>
         <div class="page3__create" :style="{top:getFitTop(1118-128, 3/4)}">
             <div class="page3__create__center" @click.stop.prevent="createEvent"></div>
@@ -343,13 +350,16 @@
             :class="{
                 'opacityChange-out': resultHideStatus
             }">
+            <div class="page3__canvas__content">
+                <canvas id="canvas" ref="canvas"></canvas>
+            </div>
             <div class="page3__canvas__pm" v-show="result === 'pm'">
                 <div class="pm__bg"></div>
                 <div class="pm__star"></div>
                 <div class="pm__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="pm__leg" :style="{top:getFitTop(800-128, 2/8)}"></div>
                 <div class="pm__center" :style="{top:getFitTop(380-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-pm.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -360,7 +370,7 @@
                 <div class="op__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="op__leg" :style="{top:getFitTop(821-128, 2/8)}"></div>
                 <div class="op__center" :style="{top:getFitTop(404-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-op.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -371,7 +381,7 @@
                 <div class="tech__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="tech__leg" :style="{top:getFitTop(825-128, 2/8)}"></div>
                 <div class="tech__center" :style="{top:getFitTop(388-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-tech.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -382,7 +392,7 @@
                 <div class="design__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="design__leg" :style="{top:getFitTop(768-128, 2/8)}"></div>
                 <div class="design__center" :style="{top:getFitTop(380-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-design.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -393,7 +403,7 @@
                 <div class="market__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <!-- <div class="market__leg"></div> -->
                 <div class="market__center" :style="{top:getFitTop(391-128, 7/16)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-market.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -404,7 +414,7 @@
                 <div class="sell__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="sell__leg" :style="{top:getFitTop(808-128, 2/8)}"></div>
                 <div class="sell__center" :style="{top:getFitTop(384-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-sell.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />
@@ -415,7 +425,7 @@
                 <div class="func__title" :style="{top:getFitTop(240-128, 1/8)}"></div>
                 <div class="func__leg" :style="{top:getFitTop(799-128, 2/8)}"></div>
                 <div class="func__center" :style="{top:getFitTop(390-128, 2/8)}"></div>
-                <img class="page3__canvas__img" src="images/page3-canvas-func.png"
+                <img class="page3__canvas__img" :src="url"
                     @touchstart="imgTouchstart"
                     @touchend="imgTouchend"
                     @click.stop.prevent="clickImageEvent" />

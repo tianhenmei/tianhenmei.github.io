@@ -185,6 +185,7 @@ html,body {
     position:absolute;
     left:0;
     top:0;
+    z-index:2;
     &__bg {
         // width:rem(983);
         // height:rem(1576);
@@ -334,11 +335,23 @@ html,body {
         background-size:100% 100%;
         @include center(-194,-104);
     }
-    &__title {
+    &__titleLayer {
         width:rem(643);
         height:rem(204);
-        background-position:0 rem(-490);
         @include center(52,249-128);
+    }
+    &__title {
+        width:rem(643);
+        height:rem(109);
+        // height:rem(204);
+        background-position:0 rem(-490);
+        @include leftTop(0,0);
+    }
+    &__title2 {
+        width:rem(643);
+        height:rem(88);
+        background-position:0 rem(-490-109);
+        @include leftTop(0,109);
     }
     &__txt {
         width:rem(622);
@@ -385,9 +398,13 @@ html,body {
     &__btn {
         width:rem(316);
         height:rem(116);
-        background-position:rem(-620) rem(-130);
         // @include centerb(44,1334-(912-128+116));
         @include center(44, 912-128 + 116);
+    }
+    &__btnCenter {
+        width:rem(316);
+        height:rem(116);
+        background-position:rem(-620) rem(-130);
     }
 }
 /***page0 end***************************************************/
@@ -484,14 +501,14 @@ html,body {
         width:rem(162);
         height:rem(162);
         background-position:0 rem(-700);
-        @include leftTop(-84,504-128);
+        @include leftTop(-84,504-128+118);
         z-index:2;
     }
     &__rightbutton {
         width:rem(162);
         height:rem(162);
         background-position:rem(-200) rem(-700);
-        @include rightTop(-84,504-128);
+        @include rightTop(-84,504-128+118);
         z-index:2;
     }
     &__cover {
@@ -547,74 +564,86 @@ html,body {
             width:rem(353);
             height:rem(391);
             background-image:url('../images/page1-catch-0-0.png');
-            @include center(201, 816-128);
+            // @include center(201, 816-128);
+            @include center(198.5, 407.5);
         }
         &--0-1 {
             width:rem(251);
             height:rem(726);
             background-image:url('../images/page1-catch-0-1.png');
-            @include center(333, 309-128);
+            // @include center(333, 309-128);
+            @include center(249.5, 240);
         }
         &--0-2 {
             width:rem(334);
             height:rem(424);
             background-image:url('../images/page1-catch-0-2.png');
-            @include center(2, 653-128);
+            // @include center(2, 653-128);
+            @include center(208, 391);
         }
         &--0-3 {
             width:rem(331);
             height:rem(454);
             background-image:url('../images/page1-catch-0-3.png');
-            @include center(379, 647-128);
+            // @include center(379, 647-128);
+            @include center(209.5, 376);
         }
         &--1-0 {
             width:rem(289);
             height:rem(412);
             background-image:url('../images/page1-catch-1-0.png');
-            @include center(47, 216-128);
+            // @include center(47, 216-128);
+            @include center(230.5, 397);
         }
         &--1-1 {
             width:rem(281);
             height:rem(640);
             background-image:url('../images/page1-catch-1-1.png');
             // @include center(368, 90-128);
-            @include center(368, 230-128);
+            // @include center(368, 230-128);
+            @include center(234.5, 283);
         }
         &--1-2 {
             width:rem(310);
             height:rem(763);
             background-image:url('../images/page1-catch-1-2.png');
-            @include center(31, 341-128);
+            // @include center(31, 341-128);
+            @include center(220, 221.5);
         }
         &--1-3 {
             width:rem(360);
             height:rem(451);
             background-image:url('../images/page1-catch-1-3.png');
-            @include center(319, 653-128);
+            // @include center(319, 653-128);
+            @include center(195, 377.5);
         }
         &--2-0 {
             width:rem(567);
             height:rem(585);
             background-image:url('../images/page1-catch-2-0.png');
-            @include center(97, 459-128);
+            // @include center(97, 459-128);
+            @include center(91.5, 310.5);
         }
         &--2-1 {
             width:rem(335);
             height:rem(390);
             background-image:url('../images/page1-catch-2-1.png');
-            @include center(389, 277-128);
+            // @include center(389, 277-128);
+            @include center(207.5, 408);
         }
         &--2-2 {
             width:rem(277);
             height:rem(413);
             background-image:url('../images/page1-catch-2-2.png');
-            @include center(88, 586-128);
+            // @include center(88, 586-128);
+            @include center(236.5, 396.5);
         }
         &--2-3 {
             width:rem(264);
             height:rem(423);
             background-image:url('../images/page1-catch-2-3.png');
-            @include center(389, 613-128);
+            // @include center(389, 613-128);
+            @include center(243, 391.5);
         }
     }
 }
@@ -622,6 +651,7 @@ html,body {
 
 /***page2 start***************************************************/
 .page2 {
+    z-index:2;
     &__leftbutton {
         width:rem(316);
         height:rem(135);
@@ -685,6 +715,7 @@ html,body {
 
 /***page3 start***************************************************/
 .page3 {
+    z-index:2;
     &__bg {
         width:rem(1164);
         height:rem(1743);
@@ -911,7 +942,7 @@ html,body {
     &__rightbutton,
     &__leftbutton {
         z-index:2;
-        top:rem(639-128);
+        top:rem(639-128-10);
     }
 
     &__canvas {
@@ -919,6 +950,7 @@ html,body {
         height:100%;
         @include leftTop(0,0);
         z-index:3;
+        &__content,
         &__pm,
         &__op,
         &__tech,
@@ -929,6 +961,11 @@ html,body {
             width:100%;
             height:100%;
             @include leftTop(0,0);
+        }
+        canvas {
+            width:100%;
+            height:100%;
+            opacity:0;
         }
         &__pm {
             background-color:#2a2aad;
@@ -1371,38 +1408,6 @@ html,body {
         transform:scale3d(1,1,1);
     }
 }
-.topIn{
-     -webkit-animation:topIn 0.5s ease-in-out both;
-    animation:topIn 0.5s ease-in-out both;
-}
-@-webkit-keyframes topIn{
-    0% {
-        -webkit-transform:translate3d(0,rem(-1206),0);
-        transform:translate3d(0,rem(-1206),0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-    }
-}
-@keyframes topIn{
-    0% {
-        -webkit-transform:translate3d(0,rem(-1206),0);
-        transform:translate3d(0,rem(-1206),0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-    }
-}
 .top65In {
     animation: top65In 0.5s both linear;
 }
@@ -1415,38 +1420,6 @@ html,body {
         opacity:1;
     }
     100% {
-        transform:translate3d(0,0,0);
-    }
-}
-.bottomIn{
-     -webkit-animation:bottomIn 0.5s ease-in-out both;
-    animation:bottomIn 0.5s ease-in-out both;
-}
-@-webkit-keyframes bottomIn{
-    0% {
-        -webkit-transform:translate3d(0,rem(1206),0);
-        transform:translate3d(0,rem(1206),0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-    }
-}
-@keyframes bottomIn{
-    0% {
-        -webkit-transform:translate3d(0,rem(1206),0);
-        transform:translate3d(0,rem(1206),0);
-        opacity:0;
-    }
-    1% {
-        opacity:1;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
         transform:translate3d(0,0,0);
     }
 }
@@ -1574,34 +1547,6 @@ html,body {
         opacity:0;
     }
 }
-.littleBottomIn{
-     -webkit-animation:littleBottomIn 0.5s ease-in-out both;
-    animation:littleBottomIn 0.5s ease-in-out both;
-}
-@-webkit-keyframes littleBottomIn{
-    0% {
-        -webkit-transform:translate3d(0,20px,0);
-        transform:translate3d(0,20px,0);
-        opacity:0;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-        opacity:1;
-    }
-}
-@keyframes littleBottomIn{
-    0% {
-        -webkit-transform:translate3d(0,20px,0);
-        transform:translate3d(0,20px,0);
-        opacity:0;
-    }
-    100% {
-        -webkit-transform:translate3d(0,0,0);
-        transform:translate3d(0,0,0);
-        opacity:1;
-    }
-}
 .littleBottomOut{
     -webkit-animation:littleBottomOut 0.5s ease-in-out both;
    animation:littleBottomOut 0.5s ease-in-out both;
@@ -1620,34 +1565,6 @@ html,body {
         -webkit-transform:translate3d(0,20px,0);
         transform:translate3d(0,20px,0);
         opacity:0;
-   }
-}
-.bottomIn80{
-    -webkit-animation:bottomIn80 0.5s ease-in-out both;
-   animation:bottomIn80 0.5s ease-in-out both;
-}
-@-webkit-keyframes bottomIn80{
-   0% {
-       -webkit-transform:translate3d(0,80px,0);
-       transform:translate3d(0,80px,0);
-       opacity:0;
-   }
-   100% {
-       -webkit-transform:translate3d(0,0,0);
-       transform:translate3d(0,0,0);
-       opacity:1;
-   }
-}
-@keyframes bottomIn80{
-   0% {
-       -webkit-transform:translate3d(0,80px,0);
-       transform:translate3d(0,80px,0);
-       opacity:0;
-   }
-   100% {
-       -webkit-transform:translate3d(0,0,0);
-       transform:translate3d(0,0,0);
-       opacity:1;
    }
 }
 .bottomOut80{
@@ -3058,7 +2975,7 @@ html,body {
 .selfBottomIn{
     animation:selfBottomIn 1.5s ease-in-out both;
 }
-@-webkit-keyframes selfBottomIn{
+@keyframes selfBottomIn{
    0% {
        transform:translate3d(0,100%,0);
        opacity:0;
@@ -3070,6 +2987,76 @@ html,body {
        transform:translate3d(0,0,0);
    }
 }
+.bottomIn{
+    animation:bottomIn 0.5s linear both;
+}
+@keyframes bottomIn{
+    0% {
+        transform:translate3d(0,rem(1206),0);
+        opacity:0;
+    }
+    1% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(0,0,0);
+    }
+}
+.littleBottomIn{
+    animation:littleBottomIn 0.5s linear both;
+}
+@keyframes littleBottomIn{
+    0% {
+        transform:translate3d(0,20px,0);
+        opacity:0;
+    }
+    100% {
+        transform:translate3d(0,0,0);
+        opacity:1;
+    }
+}
+.bottomIn100{
+    animation:bottomIn100 0.5s linear both;
+}
+@keyframes bottomIn100{
+   0% {
+       transform:translate3d(0,80px,0);
+       opacity:0;
+   }
+   100% {
+       transform:translate3d(0,0,0);
+       opacity:1;
+   }
+}
+.bottomIn280{
+    animation:bottomIn280 0.5s linear both;
+}
+@keyframes bottomIn280{
+   0% {
+       transform:translate3d(0,280px,0);
+       opacity:0;
+   }
+   100% {
+       transform:translate3d(0,0,0);
+       opacity:1;
+   }
+}
+.bottomInShow280 {
+    animation:bottomInShow280 0.5s linear both;
+}
+@keyframes bottomInShow280{
+   0% {
+       transform:translate3d(0,280px,0);
+       opacity:0;
+   }
+   1% {
+       opacity: 1;
+   }
+   100% {
+       transform:translate3d(0,0,0);
+       opacity:1;
+   }
+}
 .zoomChangeOut{
     animation:zoomChangeOut 0.5s linear both;
     z-index:2;
@@ -3079,6 +3066,61 @@ html,body {
     100% {
         transform:scale3d(0,0,0);
         opacity:0;
+    }
+}
+.flash {
+    animation: flash 2.5s both linear infinite;
+}
+@keyframes flash {
+    // 0% {
+    //     -webkit-transform: scale(1);
+    //     transform: scale(1)
+    // }
+    // 2.8% {
+    //     -webkit-transform: scale(1.3);
+    //     transform: scale(1.3)
+    // }
+    // 5.6% {
+    //     -webkit-transform: scale(1);
+    //     transform: scale(1)
+    // }
+    // 8.4% {
+    //     -webkit-transform: scale(1.3);
+    //     transform: scale(1.3)
+    // }
+    // 14%, 100% {
+    //     -webkit-transform: scale(1);
+    //     transform: scale(1)
+    // }
+    0% {
+        transform: scaleX(1)
+    }
+    12.5% {
+        transform: scale3d(1.05,1.05,1.05)
+    }
+    25%, 100% {
+        transform: scaleX(1)
+    }
+    // 5%, 20% {
+    //     opacity: 0
+    // }
+    // 0%, 15%, 25%, 100% {
+    //     opacity: 1
+    // }
+}
+.topIn{
+    animation:topIn 0.75s ease-in-out both;
+}
+@keyframes topIn{
+    0% {
+        transform:translate3d(0,-150%,0);
+        opacity:0;
+    }
+    1% {
+        opacity:1;
+    }
+    100% {
+        transform:translate3d(0,0,0);
     }
 }
 
@@ -3379,6 +3421,10 @@ html,body {
     -webkit-animation-delay:8.0s;
     animation-delay:8.0s;
 }
+.delay8-5 {
+    -webkit-animation-delay:8.5s;
+    animation-delay:8.5s;
+}
 
 .infinite{
     -webkit-animation-iteration-count:infinite;
@@ -3430,6 +3476,18 @@ html,body {
 .duration2-0 {
     -webkit-animation-duration:2.0s;
     animation-duration:2.0s;
+}
+.duration2-5 {
+    -webkit-animation-duration:2.5s;
+    animation-duration:2.5s;
+}
+.duration3-5 {
+    -webkit-animation-duration:3.5s;
+    animation-duration:3.5s;
+}
+.duration5-5 {
+    -webkit-animation-duration:5.5s;
+    animation-duration:5.5s;
 }
 
 

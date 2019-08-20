@@ -35,14 +35,15 @@ var imgArray = [
 	loadingHost + "images/page1-catch-2-3.png",
 	loadingHost + "images/page3-bg.png",
 	loadingHost + "images/page3-bgbottom.png",
-	loadingHost + "images/page3-canvas-bottom.png",
-	loadingHost + "images/page3-canvas-ercode.png",
-	loadingHost + "images/page3-canvas-hugleg.png",
-	loadingHost + "images/page3-canvas-tips.png",
 	loadingHost + "images/page3-create.png",
 	loadingHost + "images/page3-icon.png",
 	loadingHost + "images/page3-send.png",
 	loadingHost + "images/page3-success.png",
+
+	loadingHost + "images/page3-canvas-bottom.png",
+	loadingHost + "images/page3-canvas-ercode.png",
+	loadingHost + "images/page3-canvas-hugleg.png",
+	loadingHost + "images/page3-canvas-tips.png",
 
 	loadingHost + "images/page3-canvas-design-bg.png",
 	loadingHost + "images/page3-canvas-design-center.png",
@@ -90,7 +91,60 @@ var imgArray = [
 	loadingHost + "images/page3-canvas-tech-leg.png",
 	loadingHost + "images/page3-canvas-tech-star.png",
 	loadingHost + "images/page3-canvas-tech-title.png",
-	loadingHost + "images/page3-canvas-tech.png"
+	loadingHost + "images/page3-canvas-tech.png",
+
+	"images/page3-canvas-bottom.png",
+	"images/page3-canvas-ercode.png",
+	"images/page3-canvas-hugleg.png",
+	"images/page3-canvas-tips.png",
+
+	"images/page3-canvas-design-bg.png",
+	"images/page3-canvas-design-center.png",
+	"images/page3-canvas-design-leg.png",
+	"images/page3-canvas-design-star.png",
+	"images/page3-canvas-design-title.png",
+	"images/page3-canvas-design.png",
+
+	"images/page3-canvas-func-bg.png",
+	"images/page3-canvas-func-center.png",
+	"images/page3-canvas-func-leg.png",
+	"images/page3-canvas-func-star.png",
+	"images/page3-canvas-func-title.png",
+	"images/page3-canvas-func.png",
+
+	"images/page3-canvas-market-bg.png",
+	"images/page3-canvas-market-center.png",
+	"images/page3-canvas-market-star.png",
+	"images/page3-canvas-market-title.png",
+	"images/page3-canvas-market.png",
+
+	"images/page3-canvas-op-bg.png",
+	"images/page3-canvas-op-center.png",
+	"images/page3-canvas-op-leg.png",
+	"images/page3-canvas-op-star.png",
+	"images/page3-canvas-op-title.png",
+	"images/page3-canvas-op.png",
+	
+	"images/page3-canvas-pm-bg.png",
+	"images/page3-canvas-pm-center.png",
+	"images/page3-canvas-pm-leg.png",
+	"images/page3-canvas-pm-star.png",
+	"images/page3-canvas-pm-title.png",
+	"images/page3-canvas-pm.png",
+
+	"images/page3-canvas-sell-bg.png",
+	"images/page3-canvas-sell-center.png",
+	"images/page3-canvas-sell-leg.png",
+	"images/page3-canvas-sell-star.png",
+	"images/page3-canvas-sell-title.png",
+	"images/page3-canvas-sell.png",
+
+	"images/page3-canvas-tech-bg.png",
+	"images/page3-canvas-tech-center.png",
+	"images/page3-canvas-tech-leg.png",
+	"images/page3-canvas-tech-star.png",
+	"images/page3-canvas-tech-title.png",
+	"images/page3-canvas-tech.png"
 ];
 var now = 0;
 // jQuery.ajax({
