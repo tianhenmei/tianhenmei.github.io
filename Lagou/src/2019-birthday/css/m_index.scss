@@ -191,14 +191,17 @@ html,body {
         // background:url('../images/cover-bg.png') no-repeat center top;
         // background-size:100% 100%;
         // @include leftTop(-141,-199);
-        width: 100%;
-        height: 100%;
+        width: rem(1244);
+        height: rem(1844);
+        @include center(-240,-240-128);
+        // width: 100%;
+        // height: 100%;
         // width:rem(754);
         // height:rem(1339);
-        background:url('../images/cover-bg-02.png') no-repeat center top;
+        background:url('../images/cover-bg.jpg') no-repeat center top;
         background-size:100% 100%;
         // @include leftTop(-3,-2-128);
-        @include leftTop(-3,-2);
+        // @include leftTop(-3,-2);
     }
     &__logo {
         width:rem(326);

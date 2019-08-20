@@ -633,8 +633,25 @@ app = new Vue({
         },
         getFitTop:function(def,ratio,max,limit){
             var n = this.heightStatus * ratio;
+
             n = (max !== undefined && n > max ? max : n) + (limit ? limit : 0);
             return this.setRem(def+n);
+        },
+        getFitTZero:function(def,ratio,max,limit){
+            var n = this.heightStatus * ratio + def;
+        
+            n = (max !== undefined && n > max ? max : n) + (limit ? limit : 0);
+            return this.setRem(n);
+        },
+        getFitPosition:function(def,ratio,max,limit) {
+            if (this.heightStatus) {
+                var n = this.heightStatus * ratio + def;
+                
+                n = (max !== undefined && n > max ? max : n) + (limit ? limit : 0);
+                return this.setRem(n);
+            } else if (this.shortHeight){
+                return this.setRem(def - 100);
+            }
         },
         ismobile:function(){
             var u = navigator.userAgent, app = navigator.appVersion;
