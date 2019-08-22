@@ -711,16 +711,18 @@ app = new Vue({
             return this.setRem(n);
         },
         getFitPosition:function(def,ratio,max,limit) {
+            let maxTop = GC.h - 388 / (750 / 16) * this.fontSize - 20
             if (this.heightStatus) {
-                var n = this.heightStatus * ratio + def;
-                
-                n = (max !== undefined && n > max ? max : n) + (limit ? limit : 0);
-                return this.setRem(n);
+                var n = this.heightStatus * ratio + def
+
+                n = ((max !== undefined && n > max ? max : n) + (limit ? limit : 0)) / (750 / 16) * this.fontSize
+                if (n > maxTop) {
+                    return maxTop + 'px'
+                } else {
+                    return n + 'px'
+                }
             } else if (this.shortHeight){
-                console.log(this.shortHeight)
-                var cheight = RC.w / GC.w * GC.h
-                // return this.setRem(def - 200 + this.shortHeight);
-                return this.setRem(cheight - 254);
+                return maxTop + 'px'
             }
         },
         ismobile:function(){
