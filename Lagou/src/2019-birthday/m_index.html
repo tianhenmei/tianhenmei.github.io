@@ -215,12 +215,15 @@
                         ]"
                         @click.stop.prevent="chooseGoodsEvent(pindex, index)">
                         <div class="icon page1__item__bg"></div>
-                        <div class="page1__click rubberBand delay0-5"
-                            v-show="!catchIndex || catchIndex !== pindex + '-' + index"
-                            :class="[
-                                'page1__click--'+pindex+'-'+index,
-                                'page1__click--'+(index === 0 || index === 1 ? 'first' : 'second')
-                            ]">
+                        <div class="page1__clickParent flash" :class="'delay'+getDelayTime(15,index,2)">
+                            <div class="page1__click rubberBand delay0-5"
+                                :class="[
+                                    'page1__click--'+pindex+'-'+index,
+                                    'page1__click--'+(index === 0 || index === 1 ? 'first' : 'second'),
+                                    catchIndex === pindex + '-' + index ? 'itemHideChange delay0-7' : ''
+                                ]">
+                                <!-- v-show="!catchIndex || catchIndex !== pindex + '-' + index" -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,7 +243,7 @@
             @touchend.stop.prevent="touchendEvent" -->
             <div class="page1__right__center bottomMoveIn duration1-0 delay1-2"></div>
         </div>
-        <div class="page1__catch" v-show="catchIndex">
+        <div class="page1__catch" v-show="catchIndex" :class="catchIndex ? 'inmidateChange delay0-7' : ''">
             <div class="page1__catch--item" :class="'page1__catch--'+catchIndex"></div>
             <!-- <div class="page1__catch--item page1__catch--0-1"></div>
             <div class="page1__catch--item page1__catch--0-2"></div>
@@ -253,6 +256,11 @@
             <div class="page1__catch--item page1__catch--4-1"></div>
             <div class="page1__catch--item page1__catch--4-2"></div>
             <div class="page1__catch--item page1__catch--4-3"></div> -->
+        </div>
+        <div class="page1__handLayer" v-show="catchIndex">
+            <div class="page1__handParent" :class="'page1__item--'+catchIndex">
+                <div class="page1__hand handChange delay0-5"></div>
+            </div>
         </div>
     </div>
     <div class="page page2 hide" id="page2">

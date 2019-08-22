@@ -471,6 +471,11 @@ html,body {
         &--2-2 { left:rem(61); top:rem(360); }
         &--2-3 { left:rem(61+311); top:rem(360); }
     }
+    &__clickParent {
+        width:rem(370);
+        height:rem(380);
+        @include leftTop(0,0);
+    }
     &__click {
         width:rem(370);
         background:url('../images/page1-goods.png') no-repeat 0 0;
@@ -561,90 +566,108 @@ html,body {
             background-size:100% 100%;
         }
         &--0-0 {
-            width:rem(353);
-            height:rem(391);
+            width:rem(349);
+            height:rem(249);
             background-image:url('../images/page1-catch-0-0.png');
             // @include center(201, 816-128);
-            @include center(198.5, 407.5);
+            @include center((750 - 349) / 2, (1206 - 249) / 2);
         }
         &--0-1 {
-            width:rem(251);
-            height:rem(726);
+            width:rem(294);
+            height:rem(569);
             background-image:url('../images/page1-catch-0-1.png');
             // @include center(333, 309-128);
-            @include center(249.5, 240);
+            @include center((750 - 294) / 2, (1206 - 569) / 2);
         }
         &--0-2 {
-            width:rem(334);
-            height:rem(424);
+            width:rem(280);
+            height:rem(335);
             background-image:url('../images/page1-catch-0-2.png');
             // @include center(2, 653-128);
-            @include center(208, 391);
+            @include center((750 - 280) / 2, (1206 - 335) / 2);
         }
         &--0-3 {
-            width:rem(331);
-            height:rem(454);
+            width:rem(285);
+            height:rem(317);
             background-image:url('../images/page1-catch-0-3.png');
             // @include center(379, 647-128);
-            @include center(209.5, 376);
+            @include center((750 - 285) / 2, (1206 - 317) / 2);
         }
         &--1-0 {
             width:rem(289);
-            height:rem(412);
+            height:rem(285);
             background-image:url('../images/page1-catch-1-0.png');
             // @include center(47, 216-128);
-            @include center(230.5, 397);
+            @include center(230.5, (1206 - 285) / 2);
         }
         &--1-1 {
-            width:rem(281);
-            height:rem(640);
+            width:rem(332);
+            height:rem(479);
             background-image:url('../images/page1-catch-1-1.png');
             // @include center(368, 90-128);
             // @include center(368, 230-128);
-            @include center(234.5, 283);
+            @include center((750 - 332) / 2, (1206 - 479) / 2);
         }
         &--1-2 {
-            width:rem(310);
-            height:rem(763);
+            width:rem(349);
+            height:rem(615);
             background-image:url('../images/page1-catch-1-2.png');
             // @include center(31, 341-128);
-            @include center(220, 221.5);
+            @include center((750 - 349) / 2, (1206 - 615) / 2);
         }
         &--1-3 {
-            width:rem(360);
-            height:rem(451);
+            width:rem(372);
+            height:rem(274);
             background-image:url('../images/page1-catch-1-3.png');
             // @include center(319, 653-128);
-            @include center(195, 377.5);
+            @include center((750 - 372) / 2, (1206 - 274) / 2);
         }
         &--2-0 {
             width:rem(567);
-            height:rem(585);
+            height:rem(442);
             background-image:url('../images/page1-catch-2-0.png');
             // @include center(97, 459-128);
-            @include center(91.5, 310.5);
+            @include center((750 - 567) / 2, (1206 - 442) / 2);
         }
         &--2-1 {
-            width:rem(335);
-            height:rem(390);
+            width:rem(284);
+            height:rem(285);
             background-image:url('../images/page1-catch-2-1.png');
             // @include center(389, 277-128);
-            @include center(207.5, 408);
+            @include center((750 - 284) / 2, (1206 - 285) / 2);
         }
         &--2-2 {
             width:rem(277);
-            height:rem(413);
+            height:rem(279);
             background-image:url('../images/page1-catch-2-2.png');
             // @include center(88, 586-128);
-            @include center(236.5, 396.5);
+            @include center((750 - 277) / 2, (1206 - 279) / 2);
         }
         &--2-3 {
             width:rem(264);
-            height:rem(423);
+            height:rem(275);
             background-image:url('../images/page1-catch-2-3.png');
             // @include center(389, 613-128);
-            @include center(243, 391.5);
+            @include center((750 - 264) / 2, (1206 - 275) / 2);
         }
+    }
+    &__handLayer {
+        width:rem(250);
+        height:rem(300);
+        @include center(0+60,200+90);
+        z-index: 2;
+    }
+    &__handParent {
+        width:rem(250);
+        height:rem(300);
+        overflow:hidden;
+        position:absolute;
+    }
+    &__hand {
+        width:rem(250);
+        height:rem(1200);
+        background:url('../images/page1-hand.png') no-repeat center top;
+        background-size:100% 100%;
     }
 }
 /***page1 end***************************************************/
@@ -3128,6 +3151,48 @@ html,body {
     }
     100% {
         transform:translate3d(0,0,0);
+    }
+}
+.inmidateChange {
+    animation: inmidateChange 0.5s both linear;
+}
+@keyframes inmidateChange {
+    0% {
+        opacity:0;
+    }
+    1%, 100% {
+        opacity:1;
+    }
+}
+.itemHideChange {
+    animation: itemHideChange 0.5s both linear;
+}
+@keyframes itemHideChange {
+    0% {
+        opacity:1;
+    }
+    1%, 100% {
+        opacity:0;
+    }
+}
+.handChange {
+    animation: handChange 0.2s both steps(1, end);
+}
+@keyframes handChange {
+    0% {
+        transform:translate3d(0,0,0);
+    }
+    25% {
+        transform:translate3d(0,rem(-300),0);
+    }
+    50% {
+        transform:translate3d(0,rem(-600),0);
+    }
+    75% {
+        transform:translate3d(0,rem(-900),0);
+    }
+    100% {
+        transform:translate3d(0,rem(-1200),0);
     }
 }
 

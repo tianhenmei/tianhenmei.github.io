@@ -717,7 +717,10 @@ app = new Vue({
                 n = (max !== undefined && n > max ? max : n) + (limit ? limit : 0);
                 return this.setRem(n);
             } else if (this.shortHeight){
-                return this.setRem(def - 100);
+                console.log(this.shortHeight)
+                var cheight = RC.w / GC.w * GC.h
+                // return this.setRem(def - 200 + this.shortHeight);
+                return this.setRem(cheight - 254);
             }
         },
         ismobile:function(){
@@ -917,7 +920,7 @@ app = new Vue({
                 setTimeout(function() {
                     page1.className += ' hide'
                 }, 500)
-            }, 1500)
+            }, 2000)
         },
         getMoveStyle:function() {
             var start = this.move.start,
