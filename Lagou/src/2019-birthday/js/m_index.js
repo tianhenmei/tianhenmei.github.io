@@ -793,8 +793,14 @@ app = new Vue({
                 page0.className = page0.className.replace(' hide','')
                 setTimeout(function(){
                     cover.className += ' hide'
+                    _this.loadReset()
                 }, 500)
             }, 2000)
+        },
+        loadReset:function() {
+            loadRest(function() {
+                console.log('加载剩下的success')
+            })
         },
         startTestEvent:function() {
             var _this = this;
