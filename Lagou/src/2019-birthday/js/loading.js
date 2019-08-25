@@ -4,7 +4,7 @@ var loadingHost = '';
 var imgArray = [
 	[
 		loadingHost + "images/loading.gif",
-		loadingHost + "images/cover-bg-02.png",
+		loadingHost + "images/cover-bg.jpg",
 		loadingHost + "images/cover-kid.png",
 		loadingHost + "images/cover-kid-lefthand.png",
 		loadingHost + "images/cover-kid-leftleg.png",
@@ -17,12 +17,18 @@ var imgArray = [
 		loadingHost + "images/page0-righthand.png",
 		loadingHost + "images/page0-square.png",
 		loadingHost + "images/page0-txt.png",
-	], [
 		loadingHost + "images/page1-bg.png",
 		loadingHost + "images/page1-goods.png",
 		loadingHost + "images/page1-square.png",
 		loadingHost + "images/page1-left.png",
 		loadingHost + "images/page1-right.png",
+		loadingHost + "images/page3-bg.png",
+		loadingHost + "images/page3-bgbottom.png",
+		loadingHost + "images/page3-create.png",
+		loadingHost + "images/page3-icon.png",
+		loadingHost + "images/page3-send.png",
+		loadingHost + "images/page3-success.png"
+	], [
 		loadingHost + "images/page1-catch-0-0.png",
 		loadingHost + "images/page1-catch-0-1.png",
 		loadingHost + "images/page1-catch-0-2.png",
@@ -35,12 +41,6 @@ var imgArray = [
 		loadingHost + "images/page1-catch-2-1.png",
 		loadingHost + "images/page1-catch-2-2.png",
 		loadingHost + "images/page1-catch-2-3.png",
-		loadingHost + "images/page3-bg.png",
-		loadingHost + "images/page3-bgbottom.png",
-		loadingHost + "images/page3-create.png",
-		loadingHost + "images/page3-icon.png",
-		loadingHost + "images/page3-send.png",
-		loadingHost + "images/page3-success.png",
 
 		loadingHost + "images/page3-canvas-bottom.png",
 		loadingHost + "images/page3-canvas-ercode.png",
