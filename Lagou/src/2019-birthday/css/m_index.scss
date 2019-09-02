@@ -864,6 +864,8 @@ html,body {
                         line-height:rem(42);
                         font-size:rem(30);
                         color:#333333;
+                        display:block;
+                        text-decoration: none;
                     }
                     &__positionName {
                         max-width:rem(250);
@@ -902,6 +904,13 @@ html,body {
                             background-position:rem(-680-50) rem(-570);
                             transform-origin: 42% 60%;
                         }
+                    }
+                    &__sent {
+                        height:rem(50);
+                        line-height:rem(50);
+                        font-size:rem(24);
+                        color:#00b38a;
+                        @include leftTop(371,38);
                     }
                 }
                 &__item:before {
@@ -960,6 +969,30 @@ html,body {
             height:rem(67);
             background-position:rem(-810) rem(-570);
             @include center(342,653);
+        }
+        &--imcomplete {
+            background:#000;
+            background-color:rgba(0,0,0,0.5);
+            filter:alpha(opacity=50);
+            *zoom:1;
+        }
+        &__imcomplete {
+            width:rem(467);
+            height:rem(580);
+            // background:url('../images/page3-imcomplete.png') no-repeat center top;
+            // background-size:100% 100%;
+            @include center(139, 442-128);
+            transform-origin: 50% 50%;
+            &__img {
+                width:100%;
+                height:100%;
+            }
+            &__close {
+                width:rem(67);
+                height:rem(67);
+                background-position:rem(-810) rem(-570);
+                @include center(342,653+280);
+            }
         }
     }
     &__rightbutton,

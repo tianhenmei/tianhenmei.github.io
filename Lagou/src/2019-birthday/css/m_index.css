@@ -922,7 +922,9 @@ html, body {
         .page3__list__one .one__item__position {
           line-height: 0.896rem;
           font-size: 0.64rem;
-          color: #333333; }
+          color: #333333;
+          display: block;
+          text-decoration: none; }
         .page3__list__one .one__item__positionName {
           max-width: 5.33333rem;
           overflow: hidden;
@@ -960,6 +962,14 @@ html, body {
             background-position: -15.57333rem -12.16rem;
             -webkit-transform-origin: 42% 60%;
                     transform-origin: 42% 60%; }
+        .page3__list__one .one__item__sent {
+          height: 1.06667rem;
+          line-height: 1.06667rem;
+          font-size: 0.512rem;
+          color: #00b38a;
+          position: absolute;
+          left: 7.91467rem;
+          top: 0.81067rem; }
       .page3__list__one .one__item:before {
         content: '';
         width: 24.064rem;
@@ -1020,6 +1030,31 @@ html, body {
       left: 50%;
       top: 13.93067rem;
       margin: 0 0 0 -0.704rem; }
+    .page3__modal--imcomplete {
+      background: #000;
+      background-color: rgba(0, 0, 0, 0.5);
+      filter: alpha(opacity=50);
+      *zoom: 1; }
+    .page3__modal__imcomplete {
+      width: 9.96267rem;
+      height: 12.37333rem;
+      position: absolute;
+      left: 50%;
+      top: 6.69867rem;
+      margin: 0 0 0 -5.03467rem;
+      -webkit-transform-origin: 50% 50%;
+              transform-origin: 50% 50%; }
+      .page3__modal__imcomplete__img {
+        width: 100%;
+        height: 100%; }
+      .page3__modal__imcomplete__close {
+        width: 1.42933rem;
+        height: 1.42933rem;
+        background-position: -17.28rem -12.16rem;
+        position: absolute;
+        left: 50%;
+        top: 19.904rem;
+        margin: 0 0 0 -0.704rem; }
   .page3__rightbutton, .page3__leftbutton {
     z-index: 2;
     top: 10.688rem; }

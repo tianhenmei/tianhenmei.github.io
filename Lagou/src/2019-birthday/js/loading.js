@@ -43,6 +43,8 @@ var imgArray = [
 		loadingHost + "images/page1-catch-2-2.png",
 		loadingHost + "images/page1-catch-2-3.png",
 
+		loadingHost + "images/page3-imcomplete.png",
+
 		loadingHost + "images/page3-canvas-bottom.png",
 		loadingHost + "images/page3-canvas-ercode.png",
 		loadingHost + "images/page3-canvas-hugleg.png",

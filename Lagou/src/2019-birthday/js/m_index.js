@@ -239,9 +239,14 @@ var PageMove = function () {
 }();
 
 var PM = new PageMove({ animation: "move" });
+var pro_test = false
 app = new Vue({
     el:"#app",
     data:{
+        // host: 'https://gate.lagou.com/',
+        host: pro_test ? 'http://192.168.1.101:8090/' : 'https://gate.lagou.com/', 
+        userInfo: null,
+        deliveredPositionIds: [],
         fontSize: 16,
         heightStatus: 0,
         shortHeight: 0,
@@ -506,93 +511,47 @@ app = new Vue({
         positionList: [
             [
                 {
-                    logo: 'i/image/M00/57/6F/CgpEMlmAB7qAfWSUAAG8bbOymTQ080.jpg',
-                    companyName: 'skymmer',
-                    positionId: 6299135,
-                    positionName: 'php开发工程师',
-                    salary: '7k-10k',
-                    city: '重庆',
-                    requirement: '本科及以上',
-                    classify: '硬件,移动互联网',
+                    companyLogo: 'images/logo_default.png',
+                    companyShortName: '...',
+                    positionId: 0,
+                    positionName: '...',
+                    salary: '-',
+                    city: '-',
+                    education: '-',
+                    industryField: '-',
                     checkStatus: true,
                     sendStatus: false
                 }, {
-                    logo: 'i/image/M00/42/CE/CgpFT1ld-4yAZLJ6AAAv0QGHSIM153.png',
-                    companyName: '钉钉',
-                    positionId: 6299041,
-                    positionName: '阿里巴巴钉钉2020校招内推',
-                    salary: '15k-25k',
-                    city: '杭州',
-                    requirement: '本科及以上',
-                    classify: '企业服务',
+                    companyLogo: 'images/logo_default.png',
+                    companyShortName: '...',
+                    positionId: 0,
+                    positionName: '...',
+                    salary: '-',
+                    city: '-',
+                    education: '-',
+                    industryField: '-',
                     checkStatus: true,
                     sendStatus: false
                 }, {
-                    logo: 'i/image2/M00/1A/BF/CgoB5loBbLqAVCfvAADrf-y8Zm8795.png',
-                    companyName: '苏宁易购',
-                    positionId: 6299037,
-                    positionName: 'Java开发工程师',
-                    salary: '16k-30k',
-                    city: '南京',
-                    requirement: '本科及以上',
-                    classify: '消费生活,移动互联网',
+                    companyLogo: 'images/logo_default.png',
+                    companyShortName: '...',
+                    positionId: 0,
+                    positionName: '...',
+                    salary: '-',
+                    city: '-',
+                    education: '-',
+                    industryField: '-',
                     checkStatus: true,
                     sendStatus: false
                 }, {
-                    logo: 'images/logo_default.png',
-                    companyName: '智地科技',
-                    positionId: 6299061,
-                    positionName: '网站开发',
-                    salary: '5k-10k',
-                    city: '徐州',
-                    requirement: '本科及以上',
-                    classify: '数据服务,软件开发',
-                    checkStatus: true,
-                    sendStatus: false
-                }
-            ], [
-                {
-                    logo: 'i/image/M00/37/3A/CgqKkVdfvu2AY63nAAAVOgWxiUk948.jpg',
-                    companyName: '连线网络',
-                    positionId: 6299232,
-                    positionName: '互联网产品经理',
-                    salary: '15k-20k',
-                    city: '杭州',
-                    requirement: '本科及以上',
-                    classify: '移动互联网',
-                    checkStatus: true,
-                    sendStatus: false
-                }, {
-                    logo: 'images/logo_default.png',
-                    companyName: '八维化工',
-                    positionId: 6299193,
-                    positionName: '质检员化验员倒班工作稳定',
-                    salary: '3k-4k',
-                    city: '石家庄',
-                    requirement: '学历不限',
-                    classify: '企业服务',
-                    checkStatus: true,
-                    sendStatus: false
-                }, {
-                    logo: 'i/image2/M01/74/17/CgotOV1Oy3KATOAyAAAScJIeDE8578.png',
-                    companyName: '蓝墙网络',
-                    positionId: 6299193,
-                    positionName: '一线创业团队 B端产品经理',
-                    salary: '10k-15k',
-                    city: '上海',
-                    requirement: '本科及以上',
-                    classify: '移动互联网 企业服务',
-                    checkStatus: true,
-                    sendStatus: false
-                }, {
-                    logo: 'i/image2/M01/44/D8/CgoB5lz_T7WAPv4MAAJuKTImCvU634.jpg',
-                    companyName: '嘉居科技',
-                    positionId: 6031966,
-                    positionName: 'c++开发工程师 ',
-                    salary: '12k-22k',
-                    city: '北京',
-                    requirement: '本科及以上',
-                    classify: '房产家居,软件开发',
+                    companyLogo: 'images/logo_default.png',
+                    companyShortName: '...',
+                    positionId: 0,
+                    positionName: '...',
+                    salary: '-',
+                    city: '-',
+                    education: '-',
+                    industryField: '-',
                     checkStatus: true,
                     sendStatus: false
                 }
@@ -600,12 +559,16 @@ app = new Vue({
         ],
         showTips: false,
         showTipsHideAni: false,
+        tipsContent: '请先选择需要投递的职位',
         showSuccess: false,
         showSuccessHideAni: false,
+        showImcomplete: false,
+        showImcompleteHideAni: false,
         result: '',
         resultStatus: false,
         resultHideStatus: false,
         touchstart: 0,
+        scanstart: 0,
         isiPhone:false,
         testStatus:false,
         // 加载图片
@@ -693,6 +656,7 @@ app = new Vue({
             this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
         }
         this.initCanvas()
+        this.getUserInfo()
     },
     methods:{
         setRem:function(value){
@@ -742,6 +706,9 @@ app = new Vue({
             }else{
                 return 'android';
             }
+        },
+        getCount(num) {
+            return '0000'.slice((num + '').length) + num;
         },
         /***********************************
          * 显示与隐藏
@@ -955,6 +922,11 @@ app = new Vue({
             var _this = this
             var page2 = document.getElementById('page2')
             var page3 = document.getElementById('page3')
+            if (!_this.userInfo) { // 未登录
+                window.location.href = 'https://passport.lagou.com/login/login.html?signature=4A715341C95691ADBECBA06157566BBB&service=' + 
+                    encodeURIComponent(window.location.href) +  // 'https://activity.lagou.com/activity/dist/2019-birthday/m_index.html') + 
+                    '&action=login&serviceId=lagou&ts=' + Date.now()
+            }
             page3.className = page3.className.replace(' hide','') + ' topIn'
             setTimeout(function() {
                 page2.className += ' hide'
@@ -965,10 +937,6 @@ app = new Vue({
                     _this.setDefaultCanvas()
                 }
             }, 750)
-            // PM.data.last = 3
-            // PM.data.now = 4
-            // PM.pageMove('down', PM);
-            this.initPositionSwiper()
             switch(this.catchIndex) {
                 case '0-0':
                 case '0-1':
@@ -997,6 +965,7 @@ app = new Vue({
                     this.result = 'sell'
                     break;
             }
+            this.getPositionList()
         },
         setDefaultCanvas:function(){
             // this.ctx.drawImage(this.loadedImgs[0], -114, -1002)
@@ -1075,9 +1044,10 @@ app = new Vue({
             this.ctx.font = "60px normal"
             this.ctx.fillText('未来的',105,240-128+72)
             this.ctx.strokeText('未来的',105,240-128+72)
+            var username = this.userInfo ? this.userInfo.resumeUserName : ''
             st = this.ctx.measureText('未来的').width
-            this.ctx.fillText(obj[this.result].title,105+st,240-128+72)
-            this.ctx.strokeText(obj[this.result].title,105+st,240-128+72)
+            this.ctx.fillText(username,105+st,240-128+72)
+            this.ctx.strokeText(username,105+st,240-128+72)
             this.ctx.fillText('是'+obj[this.result].title,105,240-128+87+72)
             this.ctx.strokeText('是'+obj[this.result].title,105,240-128+87+72)
 
@@ -1104,7 +1074,7 @@ app = new Vue({
         chooseEvent:function(one) {
             one.checkStatus = !one.checkStatus
         },
-        initPositionSwiper:function(){
+        initPositionSwiper:function(index){
             this.swiperAnimation.position = new Swiper('#positionSwiper', {
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
@@ -1117,7 +1087,7 @@ app = new Vue({
                 autoplay: false,
                 speed:500,
                 loop:false,
-                initialSlide:0,
+                initialSlide: index || 0,
                 on:{
                     slideChangeTransitionStart:function(){
                         var sapp = app || this.$el[0].__vue__.$root
@@ -1151,6 +1121,11 @@ app = new Vue({
                 _this = this,
                 i = 0,
                 j = 0;
+            // isComplete int 简历是否完整 (0 不完整 1 完整)
+            if (+_this.userInfo.isComplete === 0) {
+                _this.showImcomplete = true
+                return
+            }
             for (i = 0; i < this.positionList.length; i++) {
                 for (j = 0; j < this.positionList[i].length; j++) {
                     if (this.positionList[i][j].checkStatus) {
@@ -1159,17 +1134,62 @@ app = new Vue({
                 }
             }
             if (arr.length) {
-                this.showSuccess = true
+                _this.getAjaxData({
+                    url: 'v1/neirong/delivers/batchDeliver',
+                    method: pro_test ? 'get' : 'post',
+                    data: {
+                        positionIds: arr,
+                        type: 2
+                    },
+                }, function(result){
+                    switch (+result.state) {
+                        case 2108002: // 投递失败
+                            _this.showTipsEvent('投递失败')
+                            break
+                        case 2108001: // 简历不完善
+                            _this.showTipsEvent('简历不完善')
+                            break
+                        case 1:
+                            var ids = result.content.deliveredPositionIds
+                            var i = 0
+                            for (i = 0; i < ids.length; i++) {
+                                if (!~_this.deliveredPositionIds.indexOf(ids[i])) {
+                                    _this.deliveredPositionIds.push(ids[i])
+                                }
+                            }
+                            var arr = _this.deliveredPositionIds
+                            var list = _this.positionList
+                            var j = 0
+                            for (i = 0; i < list.length; i++) {
+                                for (j = 0; j < list[i].length; j++) {
+                                    if (~arr.indexOf(list[i][j].positionId)) {
+                                        list[i][j].checkStatus = false
+                                        list[i][j].sendStatus = true
+                                    }
+                                }
+                            }
+                            _this.showSuccess = true
+                            // _this.$nextTick(function(){
+                            //     _this.initPositionSwiper(this.positionActiveIndex)
+                            // })
+                            break
+                    }
+                })
             } else {
-                this.showTips = true
-                setTimeout(function(){
-                    _this.showTips = false
-                    _this.showTipsHideAni = true
-                    setTimeout(function() {
-                        _this.showTipsHideAni = false
-                    }, 500)
-                }, 2000)
+                _this.showTipsEvent('请先选择需要投递的职位')
             }
+        },
+        showTipsEvent:function(tips) {
+            var _this = this
+            this.showTips = true
+            setTimeout(function(){
+                _this.showTips = false
+                _this.showTipsHideAni = true
+                _this.tipsContent = tips
+                setTimeout(function() {
+                    _this.showTipsHideAni = false
+                }, 500)
+            }, 2000)
         },
         closeSuccessModal:function(){
             var _this = this
@@ -1177,6 +1197,14 @@ app = new Vue({
             this.showSuccessHideAni = true
             setTimeout(function() {
                 _this.showSuccessHideAni = false
+            }, 500)
+        },
+        closeImcompleteModal: function() {
+            var _this = this
+            this.showImcomplete = false
+            this.showImcompleteHideAni = true
+            setTimeout(function() {
+                _this.showImcompleteHideAni = false
             }, 500)
         },
         imgTouchstart:function(){
@@ -1187,11 +1215,11 @@ app = new Vue({
             var now = Date.now()
             // 长按
             if (this.touchstart && now - this.touchstart >= 2000) {
-                // postEncodingID({
-                //     'data-lg-tj-id': '1n47',
-                //     'data-lg-tj-no': '0005' ,
-                //     'data-lg-tj-cid': 'null'
-                // })
+                postEncodingID({
+                    'data-lg-tj-id': '1nb6',
+                    'data-lg-tj-no': '9001' ,
+                    'data-lg-tj-cid': 'null'
+                })
             } else {
                 event.stopPropagation()
                 this.resultHideStatus = true
@@ -1206,6 +1234,24 @@ app = new Vue({
             if (!this.resultStatus) {
                 event.stopPropagation()
             }
+        },
+        imgTouchstart2:function(){
+            this.scanstart = Date.now()
+        },
+        imgTouchend2:function(event){
+            var _this = this
+            var now = Date.now()
+            // 长按
+            if (this.scanstart && now - this.scanstart >= 2000) {
+                postEncodingID({
+                    'data-lg-tj-id': '1nb6',
+                    'data-lg-tj-no': '9002' ,
+                    'data-lg-tj-cid': 'null'
+                })
+            }
+            this.scanstart = 0
+        },
+        clickImageEvent2:function(event){
         },
 
 
@@ -1262,6 +1308,169 @@ app = new Vue({
                 PM.data.now += 1;
                 PM.pageMove("down",PM);
             }
+        },
+        getUserInfo:function() {
+            var _this = this
+            _this.getAjaxData({
+                url: 'v1/entry/cuser/baseStatus/get', 
+                method: 'get',
+                data:{}
+            }, function(result){
+                var data = result.content
+                _this.userInfo = data
+                _this.deliveredPositionIds = data.deliveredPositionIds || []
+            })
+        },
+        getPositionList:function() {
+            var _this = this
+            var obj = {
+                op: 0,
+                tech: 1,
+                pm: 2,
+                design: 3,
+                market: 4,
+                sell: 5,
+                func: 6
+            }
+            // 0 运营岗，1 技术岗，2 产品岗，3 设计岗，4 市场岗，5 销售岗，6 职能岗
+            _this.getAjaxData({
+                url: 'v1/entry/activity/zhuazhou/queryPositions',
+                method: pro_test ? 'get' : 'post',
+                data: {
+                    positionCategory: obj[_this.result] + ''
+                },
+            }, function(result){
+                var data = result.content
+                var ids = _this.deliveredPositionIds
+                var res = (data || []).map(function(current, index) {
+                    if (~ids.indexOf(current.positionId)) {
+                        // 已投递
+                        current.checkStatus = false
+                        current.sendStatus = true
+                    } else {
+                        current.checkStatus = true
+                        current.sendStatus = false
+                    }
+                    return current
+                })
+                var arr = []
+                var len = Math.ceil(res.length / 4)
+                var i = 0
+                for (i = 0; i < len; i++) {
+                    arr.push(res.slice(i * 4, (i + 1) * 4))
+                }
+                _this.positionList = arr
+                if (len > 1) {
+                    _this.$nextTick(function(){
+                        _this.initPositionSwiper()
+                    }) 
+                }
+            })
+        },
+        getAjaxData:function(params, callback) {
+            var _this = this
+            jQuery.ajax({
+                type: params.method,
+                url: this.host + params.url,
+                data: params.data || {},
+                success: function(result) {
+                    if (result.content) {
+                        callback(result)
+                    }
+                },
+                error: function(xhr, type) {
+                    // alert(xhr)
+                    // alert('网络原因请重新尝试!');
+                },
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('X-L-REQ-HEADER', '{"deviceType":1}');
+                    xhr.setRequestHeader('Content-Type', 'application/json;charset=utf-8');
+                }
+            });
+        },
+        toPosition: function(item){
+            window.location.href = 'https://m.lagou.com/jobs/' + item.positionId + '.html'
         }
     }
 })
+
+function postEncodingID(data) {
+	var _PID = "",
+	_PNO = "",
+	_PV = 0,
+	_PCONTENTID = "",
+	_PRANDOM = "",
+	_GAMETHOD = "",
+	_GAMSGTYPE = "",
+	_GATJ = "",
+	_GATJVAL = 0,
+	v = 1,
+	t = "a",
+	dl = encodeURIComponent(window.location.href),
+	dr = document.referrer,
+	dt = document.title;
+    var _ELS = document;
+    var arr_GATJ = [];
+    try {
+        _PID = data["data-lg-tj-id"] || "idnull"
+        _PNO = data["data-lg-tj-no"] || "idnull"
+        _PCONTENTID = data["data-lg-tj-cid"] || "idnull"
+        _PRANDOM = getRandom()
+        _GAMETHOD = data["data-lg-gatj-method"] || "send"
+        _GAMSGTYPE = data["data-lg-gatj-msgtype"] || "event"
+        _GATJ = data["data-lg-gatj-msg"] || ""
+        _GATJVAL = parseInt(data["data-lg-gatj-val"] || 0)
+        if (_GATJ && typeof ga == "function") {
+            arr_GATJ.push(_GAMETHOD, _GAMSGTYPE);
+            arr_GATJ = arr_GATJ.concat(_GATJ.split(",")); !! _GATJVAL && arr_GATJ.push(_GATJVAL);
+            ga.apply(null, arr_GATJ)
+        }
+        if (_PID != "idnull") {
+            var _params = {};
+            _params.v = v;
+            _params.t = 'div';//target.tagName.toLocaleLowerCase();
+            _params.dl = dl;  
+            _params.dr = dr;
+            _params.dt = dt;
+            _params.aid = [_PID, _PNO, _PV, _PCONTENTID, _PRANDOM].join("_");
+            imgGET(_params)
+        } else {
+            return
+        }
+    } catch(e) {}
+}
+function imgGET(params) {
+    var REMOTE = {
+		server: "https://a.lagou.com/track"
+	};
+    var _img = new Image();
+    paramsArr = [];
+    for (var item in params) {
+        if (typeof item == "string") {
+            paramsArr.push(item + "=" + params[item])
+        }
+    }
+    _img.src = REMOTE.server + "?" + paramsArr.join("&")
+}
+function getRandom(digit) {
+    window._CASH_RANDOM ? "": window._CASH_RANDOM = {};
+    var _cash_random = window._CASH_RANDOM || {},
+    _digit = digit || 4,
+    _random = getRandomSimple();
+    while (_cash_random[_random]) {
+        _random = getRandomSimple();
+        if (!_cash_random[_random]) {
+            break
+        }
+    }
+    window._CASH_RANDOM[_random] = _random;
+    return _random;
+    function getRandomSimple() {
+        var random = "";
+        for (var i = 0; i < _digit; i++) {
+            var r = Math.floor(Math.random() * 10);
+            random += r.toString()
+        }
+        return random.toString()
+    }
+}

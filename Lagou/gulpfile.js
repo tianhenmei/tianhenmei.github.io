@@ -8,7 +8,8 @@ var del = require('del');
 var watch = require('gulp-watch');
 var through2 = require('through2');
 var mkdirp = require('mkdirp');
-var Proxy = require('gulp-connect-proxy');
+// var Proxy = require('gulp-connect-proxy');
+var Proxy = require('http-proxy-middleware')
 var connect = require('gulp-connect');
 var reload = require('require-nocache')(module);
 var scss = require('gulp-sass');
@@ -264,10 +265,10 @@ gulp.task('server', function() {
         },
         middleware:function(connect,opt){
             return [
-                // Proxy('/activityapi',  {
-                //     target: 'http://activity.lagou.com',
+                // Proxy('/v1',  {
+                //     target: 'https://gate.lagou.com',
                 //     changeOrigin:true
-                // }),
+                // })
                 // proxy('/otherServer', {
                 //     target: 'http://IP:Port',
                 //     changeOrigin:true

@@ -202,7 +202,10 @@
             <div class="page0__righthand littleLTMoveRotate delay8-5"></div>
         </div>
         <div class="page0__btn littleBottomIn duration1-0 delay7-5" :style="{top: getFitPosition(912-128 + 116, 5/8)}"
-            @click.stop.prevent="startTestEvent">
+            @click.stop.prevent="startTestEvent"
+            data-lg-tj-id="1nb6" 
+            data-lg-tj-no="0001" 
+            data-lg-tj-cid="idnull">
             <div class="icon page0__btnCenter flash delay8-5"></div>
         </div>
     </div>
@@ -217,7 +220,10 @@
                             'page1__item--'+pindex+'-'+index,
                             'page1__item--'+(index === 0 || index === 1 ? 'first' : 'second')
                         ]"
-                        @click.stop.prevent="chooseGoodsEvent(pindex, index)">
+                        @click.stop.prevent="chooseGoodsEvent(pindex, index)"
+                        data-lg-tj-id="1nb6" 
+                        :data-lg-tj-no="getCount(20 + pindex * 10 + index)" 
+                        data-lg-tj-cid="idnull">
                         <div class="icon page1__item__bg"></div>
                         <div class="page1__clickParent flash" :class="'delay'+getDelayTime(15,index,2)">
                             <div class="page1__click rubberBand delay0-5"
@@ -284,9 +290,15 @@
             </div>
         </div>
         <div class="icon page2__leftbutton" @click.stop.prevent="makesureEvent"
+            data-lg-tj-id="1nb6" 
+            data-lg-tj-no="0002" 
+            data-lg-tj-cid="idnull"
             :style="{top: getFitTop(1012, 4/8)}"></div>
         <div class="icon page2__rightbutton" @click.stop.prevent="retryEvent"
-            :style="{top: getFitTop(1012, 4/8)}"></div>
+            :style="{top: getFitTop(1012, 4/8)}"
+            data-lg-tj-id="1nb6" 
+            data-lg-tj-no="0003" 
+            data-lg-tj-cid="idnull"></div>
         <div class="icon page2__tips"
             :style="{top: getFitTop(1260, 5/8)}"></div>
     </div>
@@ -309,20 +321,27 @@
                                             'one__item--last': index === 3
                                         }">
                                         <div class="one__item__logo">
-                                            <img class="one__item__img" :src="'https://www.lgstatic.com/thumbnail_120x120/'+one.logo" />
+                                            <img class="one__item__img" :src="'https://www.lgstatic.com/thumbnail_120x120/'+one.companyLogo" />
                                         </div>
                                         <div class="one__item__detail">
-                                            <div class="one__item__position clearfix">
+                                            <a class="one__item__position clearfix"
+                                                target="_blank"
+                                                href="javascript:void(0);"
+                                                :onclick="'self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
+                                                data-lg-tj-id="1nb6" 
+                                                :data-lg-tj-no="getCount(10 + pindex * 10 + index)" 
+                                                :data-lg-tj-cid="one.positionId">
                                                 <div class="one__item__positionName">{{one.positionName}}</div>
                                                 <div class="one__item__salary">{{one.salary}}</div>
-                                            </div>
-                                            <div class="one__item__name">{{one.companyName}}</div>
+                                            </a>
+                                            <div class="one__item__name">{{one.companyShortName}}</div>
                                             <div class="one__item__info clearfix">
                                                 <span class="one__item__address">{{one.city}}</span>
-                                                <span class="one__item__classify">{{one.classify}}</span>
-                                                <span class="one__item__requirement">{{one.requirement}}</span>
+                                                <span class="one__item__classify">{{one.industryField}}</span>
+                                                <span class="one__item__requirement">{{one.education}}</span>
                                             </div>
-                                            <div class="icon one__item__check" @click.stop.prevent="chooseEvent(one)">
+                                            <div class="one__item__sent" v-if="one.sendStatus">已投递</div>
+                                            <div class="icon one__item__check" v-else @click.stop.prevent="chooseEvent(one)">
                                                 <div class="icon one__item__check--checked" 
                                                     :class="one.checkStatus ? 'zoomOut' : 'zoomInChange'"></div>
                                             </div>
@@ -336,20 +355,28 @@
             </div>
         </div>
         <div class="icon page1__leftbutton page3__leftbutton" @click.stop.prevent="leftPositionEvent"
-            :style="{top:getFitTop(639-128-10, 2/8)}"></div>
+            :style="{top:getFitTop(639-128-10, 2/8)}"
+            v-show="positionList.length > 1"></div>
         <div class="icon page1__rightbutton page3__rightbutton" @click.stop.prevent="rightPositionEvent"
-            :style="{top:getFitTop(639-128-10, 2/8)}"></div>
-        <div class="page3-icon page3__tips" :style="{top:getFitTop(1131-128, 3/8)}"></div>
+            :style="{top:getFitTop(639-128-10, 2/8)}"
+            v-show="positionList.length > 1"></div>
+        <div class="page3-icon page3__tips" :style="{top:getFitTop(1131-128, 3/8)}" v-show="positionList.length > 1"></div>
         <div class="page3__create" :style="{top:getFitTop(1118-128, 3/4)}">
-            <div class="page3__create__center" @click.stop.prevent="createEvent"></div>
+            <div class="page3__create__center" @click.stop.prevent="createEvent"
+                data-lg-tj-id="1nb6" 
+                data-lg-tj-no="0004" 
+                data-lg-tj-cid="idnull"></div>
         </div>
         <div class="page3__send" :style="{top:getFitTop(1118-128, 3/4)}">
-            <div class="page3__send__center" @click.stop.prevent="sendEvent"></div>
+            <div class="page3__send__center" @click.stop.prevent="sendEvent"
+                data-lg-tj-id="1nb6" 
+                data-lg-tj-no="0005" 
+                data-lg-tj-cid="idnull"></div>
         </div>
         <div class="page3__modal"
             v-show="showTips || showTipsHideAni"
             :class="showTips ? 'zoomOut' : showTipsHideAni ? 'zoomInChange' : ''">
-            <div class="page3__modal__tips">请先选择需要投递的职位</div>
+            <div class="page3__modal__tips">{{tipsContent}}</div>
         </div>
         <div class="page3__modal page3__modal--success" 
             v-show="showSuccess || showSuccessHideAni"
@@ -357,6 +384,18 @@
             <div class="page3__modal__success"
                 :class="showSuccess ? 'zoomOut' : showSuccessHideAni ? 'zoomInChange' : ''"></div>
             <div class="icon page3__modal__close" @click.stop.prevent="closeSuccessModal"></div>
+        </div>
+        <div class="page3__modal page3__modal--imcomplete" 
+            v-show="showImcomplete || showImcompleteHideAni"
+            :class="showImcomplete ? 'opacityChange' : showImcompleteHideAni ? 'opacityChange-out' : ''">
+            <div class="page3__modal__imcomplete"
+                :class="showImcomplete ? 'zoomOut' : showImcompleteHideAni ? 'zoomInChange' : ''">
+                <img class="page3__modal__imcomplete__img" src="images/page3-imcomplete.png"
+                    @touchstart="imgTouchstart2"
+                    @touchend="imgTouchend2"
+                    @click.stop.prevent="clickImageEvent2" />
+            </div>
+            <div class="icon page3__modal__imcomplete__close" @click.stop.prevent="closeImcompleteModal"></div>
         </div>
         <div class="page3__canvas zoomOut" v-show="result && (resultStatus || resultHideStatus)"
             :class="{
@@ -443,7 +482,7 @@
                     @click.stop.prevent="clickImageEvent" />
             </div>
             <div class="page3__canvas__title" :style="{top:getFitTop(240-128, 1/8)}">
-                未来的{{resultObj[result] ? resultObj[result].title : ''}}<br/>
+                未来的{{userInfo && userInfo.resumeUserName}}<br/>
                 是{{resultObj[result] ? resultObj[result].title : ''}}
             </div>
             <div class="icon cover__logo"></div>
@@ -477,8 +516,8 @@
         title: "裁员潮下互联网人才依旧难招，原来是因为……",
         desc: "拉勾解密招聘魔咒：为什么TA找不到工作我招不到人", // "《2019上半年拉勾互联网行业招聘白皮书》新鲜出炉",
         imgUrl: 'https://activity.lagou.com/activity/dist/2019-birthday/images/share.png',
-        activityType: '2019SUMMARY',
-        shareUrl: window.location.href // 'https://activity.lagou.com/activity/dist/2019-summary/m_index.html'
+        activityType: '2019BIRTHDAY',
+        shareUrl: 'https://activity.lagou.com/activity/dist/2019-birthday/m_index.html'
     };
     share(datas);
     //app 分享
