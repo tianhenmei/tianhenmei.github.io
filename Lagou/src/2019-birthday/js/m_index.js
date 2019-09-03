@@ -246,6 +246,7 @@ app = new Vue({
         // host: 'https://gate.lagou.com/',
         host: pro_test ? 'http://192.168.1.101:8090/' : 'https://gate.lagou.com/', 
         userInfo: null,
+        timestamp: 0,
         deliveredPositionIds: [],
         fontSize: 16,
         heightStatus: 0,
@@ -641,24 +642,27 @@ app = new Vue({
     },
     mounted:function(){
         // this.setDay();
-        this.isiPhone = this.ismobile()  == 'iphone' ? true : false;
-        this.from = getQueryString('xand');
-        if(getQueryString('xtest')){
-            this.testStatus = true
-        }
-        var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
-            currentSize = parseFloat((GC.w / GC.h).toFixed(1));
-        this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
-        if(rightSize > currentSize){
-            this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
-        }else{
-            this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
-            this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
-        }
+        this.init()
         this.initCanvas()
         this.getUserInfo()
     },
     methods:{
+        init:function() {
+            this.isiPhone = this.ismobile()  == 'iphone' ? true : false;
+            this.from = getQueryString('xand');
+            if(getQueryString('xtest')){
+                this.testStatus = true
+            }
+            var rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1));
+            this.fontSize = parseFloat(document.getElementsByTagName("html")[0].style.fontSize)
+            if(rightSize > currentSize){
+                this.heightStatus = Math.floor(RC.w / GC.w * GC.h - RC.h);
+            }else{
+                this.shortHeight = Math.floor(RC.h - RC.w / GC.w * GC.h);
+                this.moreWidth = Math.floor(RC.h / GC.h * GC.w - RC.w);
+            }
+        },
         setRem:function(value){
             return value / (750 / 16)+'rem';
         },
@@ -896,6 +900,11 @@ app = new Vue({
                     page1.className += ' hide'
                 }, 500)
             }, 2000)
+            postEncodingID({
+                'data-lg-tj-id': '1nb6',
+                'data-lg-tj-no': _this.getCount(20 + pindex * 10 + index) ,
+                'data-lg-tj-cid': 'null'
+            })
         },
         getMoveStyle:function() {
             var start = this.move.start,
@@ -906,12 +915,17 @@ app = new Vue({
             return 'translate3d(0, 0, 0)'
         },
         retryEvent:function() {
+            var _this = this
             var page1 = document.getElementById('page1')
             var page2 = document.getElementById('page2')
             page1.className = page1.className.replace(' hide','')
             page2.className = page2.className.replace(' zoomOut','') + ' zoomInChange'
             setTimeout(function() {
                 page2.className += ' hide'
+                if (!_this.swiperAnimation.goods) {
+                    _this.initGoodsSwiper()
+                    _this.initOffset()
+                }
             }, 500)
             // PM.data.last = 3
             // PM.data.now = 2
@@ -923,9 +937,13 @@ app = new Vue({
             var page2 = document.getElementById('page2')
             var page3 = document.getElementById('page3')
             if (!_this.userInfo) { // 未登录
-                window.location.href = 'https://passport.lagou.com/login/login.html?signature=4A715341C95691ADBECBA06157566BBB&service=' + 
-                    encodeURIComponent(window.location.href) +  // 'https://activity.lagou.com/activity/dist/2019-birthday/m_index.html') + 
+                var url = ''
+                url = 'https://passport.lagou.com/login/login.html?signature=4A715341C95691ADBECBA06157566BBB&service=' + 
+                    encodeURIComponent('https://activity.lagou.com/activity/dist/2019-birthday/m_index.html?catched=' + _this.catchIndex) +  // 'https://activity.lagou.com/activity/dist/2019-birthday/m_index.html') + 
                     '&action=login&serviceId=lagou&ts=' + Date.now()
+                window.location.href = url
+                // history.replaceState(null, null, url);
+                return
             }
             page3.className = page3.className.replace(' hide','') + ' topIn'
             setTimeout(function() {

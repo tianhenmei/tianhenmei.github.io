@@ -50,6 +50,15 @@
             return null;
         }
         function setFontSize(){
+            if (bodyElement.clientHeight !== GC.h) {
+                GC.w = bodyElement.clientWidth
+                GC.h = bodyElement.clientHeight
+            }
+            if (app) {
+                app.heightStatus = 0
+                app.shortHeight = 0
+                app.init()
+            }
             var portrait =  false,
                 resize = "orientationchange"in window ? window.orientationchange : window.resize,
                 rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
@@ -104,18 +113,49 @@
         //     day.className = day.className.replace(' hide','');
         //     title.className = title.className.replace(' hide','');
         // }
+        window.addEventListener("popstate", function (e) {
+            // alert('popstate')
+            setFontSize();
+        }, false);
+        window.onhashchange = function(){
+            // alert('onhashchange')
+            setFontSize();
+        }
+        window.addEventListener('visibilitychange', function () {
+            // alert('visibilitychange')
+            setFontSize();
+        });
+        window.addEventListener('pageshow', function () {
+            // alert('pageshow')
+            setFontSize();
+        })
+
+        window.addEventListener('pagehide', function () {
+            // alert('pagehide')
+            setFontSize();
+        })
         var loadingStatus = false,
             pageStatus = false,
             startTime = new Date().getTime(),
             loadingSuccess = function(){
                 var cover = document.getElementById('cover'),
-                    loading = document.getElementById('loading');
+                    loading = document.getElementById('loading'),
+                    page2 = document.getElementById('page2'),
+                    catched = getQueryString('catched');
                 loading.className += ' opacityChange-out'
-                cover.className = cover.className.replace(' hide','');
-                setTimeout(function(){
-                    document.getElementById('loading').className += ' hide';
-                    app.initCoverMove()
-                }, 500)
+                if (catched && /^\d-\d/.test(catched)) {
+                    page2.className = page2.className.replace(' hide','');
+                    app.catchIndex = catched
+                    setTimeout(function(){
+                        document.getElementById('loading').className += ' hide';
+                    }, 500)
+                } else {
+                    cover.className = cover.className.replace(' hide','');
+                    setTimeout(function(){
+                        document.getElementById('loading').className += ' hide';
+                        app.initCoverMove()
+                    }, 500)
+                }
             }
     </script>
 <script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
@@ -220,10 +260,7 @@
                             'page1__item--'+pindex+'-'+index,
                             'page1__item--'+(index === 0 || index === 1 ? 'first' : 'second')
                         ]"
-                        @click.stop.prevent="chooseGoodsEvent(pindex, index)"
-                        data-lg-tj-id="1nb6" 
-                        :data-lg-tj-no="getCount(20 + pindex * 10 + index)" 
-                        data-lg-tj-cid="idnull">
+                        @click.stop.prevent="chooseGoodsEvent(pindex, index)">
                         <div class="icon page1__item__bg"></div>
                         <div class="page1__clickParent flash" :class="'delay'+getDelayTime(15,index,2)">
                             <div class="page1__click rubberBand delay0-5"
@@ -274,6 +311,7 @@
         </div>
     </div>
     <div class="page page2 hide" id="page2">
+        <div class="cover__timestamp" style="opacity:0; position:absolute; left:0; top:0;">{{timestamp}}</div>
         <div class="page0__bg page2__bg" :style="{top: getFitTop(-425, 1, 0)}"></div>
         <div class="page0__square" :style="{top: getFitTop(-104, 1)}"></div>
         <div class="icon cover__logo"></div>
@@ -300,7 +338,8 @@
             data-lg-tj-no="0003" 
             data-lg-tj-cid="idnull"></div>
         <div class="icon page2__tips"
-            :style="{top: getFitTop(1260, 5/8)}"></div>
+            :style="{bottom: setRem(20), top: 'auto'}"></div>
+            <!-- :style="{top: getFitTop(1260, 5/8)}" -->
     </div>
     <div class="page page3 hide" id="page3">
         <div class="page3__bg" :style="{top: getFitTZero(-355, 1, 0)}"></div>
