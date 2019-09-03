@@ -1,6 +1,6 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-birthday/';
+// var loadingHost = '';
+var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-birthday/';
 var imgArray = [
 	[
 		loadingHost + "images/loading.gif",

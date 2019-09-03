@@ -1137,10 +1137,10 @@ app = new Vue({
                 _this.getAjaxData({
                     url: 'v1/neirong/delivers/batchDeliver',
                     method: pro_test ? 'get' : 'post',
-                    data: {
+                    data: JSON.stringify({
                         positionIds: arr,
                         type: 2
-                    },
+                    }),
                 }, function(result){
                     switch (+result.state) {
                         case 2108002: // 投递失败
@@ -1336,15 +1336,19 @@ app = new Vue({
             _this.getAjaxData({
                 url: 'v1/entry/activity/zhuazhou/queryPositions',
                 method: pro_test ? 'get' : 'post',
-                data: {
+                data: JSON.stringify({
                     positionCategory: obj[_this.result] + ''
-                },
+                }),
             }, function(result){
                 var data = result.content
                 var ids = _this.deliveredPositionIds
                 var res = (data || []).map(function(current, index) {
                     if (~ids.indexOf(current.positionId)) {
                         // 已投递
+                        current.checkStatus = false
+                        current.sendStatus = true
+                    } else if (+current.isDelivered === 1) {
+                        _this.deliveredPositionIds.push(current.positionId)
                         current.checkStatus = false
                         current.sendStatus = true
                     } else {
@@ -1373,6 +1377,9 @@ app = new Vue({
                 type: params.method,
                 url: this.host + params.url,
                 data: params.data || {},
+                xhrFields: {
+                    withCredentials: true
+                },
                 success: function(result) {
                     if (result.content) {
                         callback(result)
