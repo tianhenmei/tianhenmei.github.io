@@ -105,7 +105,7 @@ html,body {
     width:100%;
     height:100%;
     position:relative;
-    background:#432e97;
+    background:#fff;
 }
 .loading {
     width:100%;
@@ -186,6 +186,7 @@ html,body {
     left:0;
     top:0;
     z-index:2;
+    background: #432e97;
     &__bg {
         // width:rem(983);
         // height:rem(1576);
@@ -438,6 +439,7 @@ html,body {
         // float:left;
         position:relative;
     }
+    &__inner,
     &__item {
         width:rem(311);
         position:absolute;
@@ -505,6 +507,7 @@ html,body {
     &__leftbutton {
         width:rem(162);
         height:rem(162);
+        border-radius: rem(162);
         background-position:0 rem(-700);
         @include leftTop(-84,504-128+118);
         z-index:2;
@@ -512,6 +515,7 @@ html,body {
     &__rightbutton {
         width:rem(162);
         height:rem(162);
+        border-radius: rem(162);
         background-position:rem(-200) rem(-700);
         @include rightTop(-84,504-128+118);
         z-index:2;
@@ -839,6 +843,11 @@ html,body {
                     padding-top:rem(27);
                     padding-bottom:rem(27);
                     position:relative;
+                    &__a {
+                        outline:none;
+                        display:block;
+                        -webkit-tap-highlight-color:transparent;
+                    }
                     &__logo {
                         width:rem(122);
                         height:rem(122);
@@ -882,9 +891,13 @@ html,body {
                         float:left;
                     }
                     &__name {
+                        width:rem(320);
                         line-height:rem(38);
                         font-size:rem(28);
                         color:#333;
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
                     }
                     &__info {
                         line-height:rem(29);
@@ -892,12 +905,17 @@ html,body {
                         font-size:rem(24); // 19.5
                         transform-origin: 0 0;
                         transform:scale3d(0.8125,0.8125,0.8125);
+                        color:#666666;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                     }
                     &__check {
                         width:rem(50);
                         height:rem(50);
                         background-position:rem(-680) rem(-570);
                         @include leftTop(371,38);
+                        outline:none;
                         &--checked {
                             width:rem(50);
                             height:rem(50);

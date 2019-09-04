@@ -141,8 +141,12 @@
                 var cover = document.getElementById('cover'),
                     loading = document.getElementById('loading'),
                     page2 = document.getElementById('page2'),
+                    music = document.getElementById('music'),
                     catched = getQueryString('catched');
                 loading.className += ' opacityChange-out'
+                if(music.paused){
+                    playAudio(music,function(){});
+                }
                 if (catched && /^\d-\d/.test(catched)) {
                     page2.className = page2.className.replace(' hide','');
                     app.catchIndex = catched
@@ -164,11 +168,11 @@
 </script>
 </head>
 <body>
-<!-- <div class="music-box">
+<div class="music-box">
     <div class="music-icon open">
-        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2019-birthday/images/bg.mp3"></audio>
     </div>
-</div> -->
+</div>
 <div class="loading" id="loading">
     <div class="loading__icon">
         <img src="images/loading.gif" />
@@ -194,6 +198,68 @@
         e.stopPropagation()
         e.preventDefault()
     }, {passive: false})
+    function playAudio(elem,callback,status){
+        if (window.WeixinJSBridge) {
+            WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                if(!status){
+                    elem.currentTime = 0;
+                }
+                elem.play();
+                callback()
+            }, false);
+        }else{
+            if(!status){
+                elem.currentTime = 0;
+            }
+            try {
+                elem.play();
+            } catch(err) {
+                console.error(err)
+            }
+            callback()
+        }
+    }
+    
+    // 音乐播放
+    function backgroundMusic(audio){
+        function musicPlay(audio,status){
+            if(audio.paused){
+                audio.load();
+                audio.play();
+            }
+        }
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        musicPlay(audio)
+        function musicInBrowserHandler() {
+            musicPlay(audio)
+            document.body.removeEventListener('touchstart', musicInBrowserHandler,false);
+        }
+        document.body.addEventListener('touchstart', musicInBrowserHandler,false);
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(audio,true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(audio,true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler,false);
+        }
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler,false);
+    }
+    backgroundMusic(document.getElementById('music'))
+    document.addEventListener('click', function() {
+        var bgMusic = document.getElementById('music');
+        if(bgMusic.paused){
+            bgMusic.play();
+        }
+    })
+    function initWeixinEvent(){
+        var bgMusic = document.getElementById('music');
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            if(bgMusic.paused){
+                bgMusic.play();
+            }
+        }, false);
+    }
 </script>
 <div id="app">
     <div class="cover hide" id="cover">
@@ -235,18 +301,18 @@
             <div class="txt t04 opacityChange duration1-0 delay4-5" :style="{top: getFitTop(239, 13/20)}"></div>
             <div class="txt t05 opacityChange duration1-0 delay5-5" :style="{top: getFitTop(329, 14/20)}"></div>
         </div>
-        <div class="page0__lefthandParent selfBottomIn delay8-0">
-            <div class="page0__lefthand littleTBMoveRotate delay8-5"></div>
+        <div class="page0__lefthandParent selfBottomIn delay6-0">
+            <div class="page0__lefthand littleTBMoveRotate delay6-5"></div>
         </div>
-        <div class="page0__righthandParent selfBottomIn delay8-0">
-            <div class="page0__righthand littleLTMoveRotate delay8-5"></div>
+        <div class="page0__righthandParent selfBottomIn delay6-0">
+            <div class="page0__righthand littleLTMoveRotate delay6-5"></div>
         </div>
-        <div class="page0__btn littleBottomIn duration1-0 delay7-5" :style="{top: getFitPosition(912-128 + 116, 5/8)}"
+        <div class="page0__btn littleBottomIn duration1-0 delay5-5" :style="{top: getFitPosition(912-128 + 116, 5/8)}"
             @click.stop.prevent="startTestEvent"
             data-lg-tj-id="1nb6" 
             data-lg-tj-no="0001" 
             data-lg-tj-cid="idnull">
-            <div class="icon page0__btnCenter flash delay8-5"></div>
+            <div class="icon page0__btnCenter flash delay6-5"></div>
         </div>
     </div>
     <div class="page page1 hide" id="page1">
@@ -259,8 +325,8 @@
                         :class="[
                             'page1__item--'+pindex+'-'+index,
                             'page1__item--'+(index === 0 || index === 1 ? 'first' : 'second')
-                        ]"
-                        @click.stop.prevent="chooseGoodsEvent(pindex, index)">
+                        ]">
+                        <!-- @click.stop.prevent="chooseGoodsEvent(pindex, index)" -->
                         <div class="icon page1__item__bg"></div>
                         <div class="page1__clickParent flash" :class="'delay'+getDelayTime(15,index,2)">
                             <div class="page1__click rubberBand delay0-5"
@@ -270,6 +336,11 @@
                                     catchIndex === pindex + '-' + index ? 'itemHideChange delay0-7' : ''
                                 ]">
                                 <!-- v-show="!catchIndex || catchIndex !== pindex + '-' + index" -->
+                                <div class="page1__inner"
+                                        :class="[
+                                        'page1__item--inner--'+pindex+'-'+index,
+                                        'page1__inner--'+(index === 0 || index === 1 ? 'first' : 'second')
+                                    ]"></div>
                             </div>
                         </div>
                     </div>
@@ -359,32 +430,34 @@
                                         :class="{
                                             'one__item--last': index === 3
                                         }">
-                                        <div class="one__item__logo">
-                                            <img class="one__item__img" :src="'https://www.lgstatic.com/thumbnail_120x120/'+one.companyLogo" />
-                                        </div>
-                                        <div class="one__item__detail">
-                                            <a class="one__item__position clearfix"
-                                                target="_blank"
-                                                href="javascript:void(0);"
-                                                :onclick="'self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
-                                                data-lg-tj-id="1nb6" 
-                                                :data-lg-tj-no="getCount(10 + pindex * 10 + index)" 
-                                                :data-lg-tj-cid="one.positionId">
-                                                <div class="one__item__positionName">{{one.positionName}}</div>
-                                                <div class="one__item__salary">{{one.salary}}</div>
-                                            </a>
-                                            <div class="one__item__name">{{one.companyShortName}}</div>
-                                            <div class="one__item__info clearfix">
-                                                <span class="one__item__address">{{one.city}}</span>
-                                                <span class="one__item__classify">{{one.industryField}}</span>
-                                                <span class="one__item__requirement">{{one.education}}</span>
+                                        <a class="one__item__a clearfix"
+                                            target="_blank"
+                                            href="javascript:void(0);"
+                                            :onclick="'self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
+                                            data-lg-tj-id="1nb6" 
+                                            :data-lg-tj-no="getCount(10 + pindex * 10 + index)" 
+                                            :data-lg-tj-cid="one.positionId">
+                                            <div class="one__item__logo">
+                                                <img class="one__item__img" :src="'https://www.lgstatic.com/thumbnail_120x120/'+(one.companyLogo || 'images/logo_default.png')" />
                                             </div>
-                                            <div class="one__item__sent" v-if="one.sendStatus">已投递</div>
-                                            <div class="icon one__item__check" v-else @click.stop.prevent="chooseEvent(one)">
-                                                <div class="icon one__item__check--checked" 
-                                                    :class="one.checkStatus ? 'zoomOut' : 'zoomInChange'"></div>
+                                            <div class="one__item__detail">
+                                                <div class="one__item__position clearfix">
+                                                    <div class="one__item__positionName">{{one.positionName}}</div>
+                                                    <div class="one__item__salary">{{one.salary}}</div>
+                                                </div>
+                                                <div class="one__item__name">{{one.companyShortName}}</div>
+                                                <div class="one__item__info clearfix">
+                                                    <span class="one__item__address">{{one.city}}</span>
+                                                    <span class="one__item__classify">{{one.industryField}}</span>
+                                                    <span class="one__item__requirement">{{one.education}}</span>
+                                                </div>
+                                                <div class="one__item__sent" v-if="one.sendStatus">已投递</div>
+                                                <div class="icon one__item__check" v-else @click.stop.prevent="chooseEvent(one)">
+                                                    <div class="icon one__item__check--checked" 
+                                                        :class="one.checkStatus ? 'zoomOut' : 'zoomInChange'"></div>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -521,8 +594,8 @@
                     @click.stop.prevent="clickImageEvent" />
             </div>
             <div class="page3__canvas__title" :style="{top:getFitTop(240-128, 1/8)}">
-                未来的{{userInfo && userInfo.resumeUserName}}<br/>
-                是{{resultObj[result] ? resultObj[result].title : ''}}
+                未来的{{getName0}}<br/>
+                {{getName1}}是{{resultObj[result] ? resultObj[result].title : ''}}
             </div>
             <div class="icon cover__logo"></div>
             <div class="page3__canvas__hugleg" :style="{top:getFitTop(993-128, 1)}"></div>
@@ -532,7 +605,10 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue2.1.10.js"></script>
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/swiper.min.js"></script>
+<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue-awesome-swiper.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=2229$version$"></script>
 <script type="text/javascript">
     pageStatus = true;
     if(loadingStatus){
@@ -541,11 +617,6 @@
         loadingSuccess();
     }
 </script>
-<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue2.1.10.js"></script>
-<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/swiper.min.js"></script>
-<script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue-awesome-swiper.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=2229$version$"></script>
-
 <script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
  <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 

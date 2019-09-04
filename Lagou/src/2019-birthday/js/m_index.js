@@ -244,7 +244,7 @@ app = new Vue({
     el:"#app",
     data:{
         // host: 'https://gate.lagou.com/',
-        host: pro_test ? 'http://192.168.1.101:8090/' : 'https://gate.lagou.com/', 
+        host: 'https://gate.lagou.com/', 
         userInfo: null,
         timestamp: 0,
         deliveredPositionIds: [],
@@ -405,10 +405,9 @@ app = new Vue({
                         '<span class="page2__content__name--small">非著名脑力工作者，</span>'+
                         '<span class="page2__content__name--big">产品经理</span>'+
                     '</div>'+
-                    '<div class="page2__content__title">'+
+                    '<div class="page2__content__name">'+
                         '角色可谓是四两拨千斤的存在。'+
-                    '</div>'+
-                    '<div class="page2__content__name">颜色不是问题，关键是要有一件，<br/>可以说是入行必备工服。</div>',
+                    '</div>',
                 detail: [
                     '产品经理是运营和技术的强力纽带和<br/>'+
                     '翻译机，友好得搞定双方诉求。',
@@ -640,6 +639,27 @@ app = new Vue({
         saveStatus: false,
         url: ''
     },
+    computed: {
+        getName0: function() {
+            var username = this.userInfo ? this.userInfo.resumeUserName : ''
+            if (!username) {
+                return ''
+            }
+            var arr = this.setTextLimit(pro_test ? '哈哈哈哈坲我鞥哦几哦弄机构将哦' : username, 12, 20)
+            return arr[0]
+        },
+        getName1: function() {
+            var username = this.userInfo ? this.userInfo.resumeUserName : ''
+            if (!username) {
+                return ''
+            }
+            var arr = this.setTextLimit(pro_test ? '哈哈哈哈坲我鞥哦几哦弄机构将哦' : username, 12, 20)
+            if (arr.length > 1) {
+                return arr[1]
+            }
+            return ''
+        }
+    },
     mounted:function(){
         // this.setDay();
         this.init()
@@ -775,6 +795,11 @@ app = new Vue({
         },
         startTestEvent:function() {
             var _this = this;
+            var music = document.getElementById('music')
+            if(music.paused){
+                playAudio(music,function(){});
+            }
+            
             PM.data.last = 1
             PM.data.now = 2
             PM.pageMove('down', PM);
@@ -784,6 +809,7 @@ app = new Vue({
             }, 500)
         },
         initGoodsSwiper:function() {
+            var _this = this
             this.swiperAnimation.goods = new Swiper('#goodsSwiper', {
                 // wrapperClass:"swiper-wrapper",
                 // slideClass:"swiper-slide",
@@ -795,9 +821,19 @@ app = new Vue({
                 // },
                 autoplay: false,
                 speed:500,
-                loop:false,
+                loop:true,
                 initialSlide:0,
                 on:{
+                    click: function (event) {
+                        var classname = event.target.className
+                        var res = classname.match(/page1__item--inner--(\d-\d)/)
+                        if (res) {
+                            var arr = res[1].split('-')
+                            if (arr.length >= 2) {
+                                _this.chooseGoodsEvent(arr[0], arr[1])
+                            }
+                        }
+                    },
                     slideChangeTransitionStart:function(){
                         var sapp = app || this.$el[0].__vue__.$root
                         sapp.changeActiveIndex(this.activeIndex)
@@ -810,18 +846,20 @@ app = new Vue({
             // this.$refs['goodsSwiper'].swiper.slideTo(this.goodsActiveIndex)
         },
         leftMoveEvent:function() {
-            var index = this.goodsActiveIndex - 1
-            if (index < 0) {
-                index = this.goods.length - 1
-            }
-            this.$refs['goodsSwiper'].swiper.slideTo(index)
+            // var index = this.goodsActiveIndex - 1
+            // if (index < 0) {
+            //     index = this.goods.length - 1
+            // }
+            // this.$refs['goodsSwiper'].swiper.slideTo(index)
+            this.$refs['goodsSwiper'].swiper.slidePrev()
         },
         rightMoveEvent:function() {
-            var index = this.goodsActiveIndex + 1
-            if (index >= this.goods.length) {
-                index = 0
-            }
-            this.$refs['goodsSwiper'].swiper.slideTo(index)
+            // var index = this.goodsActiveIndex + 1
+            // if (index >= this.goods.length) {
+            //     index = 0
+            // }
+            // this.$refs['goodsSwiper'].swiper.slideTo(index)
+            this.$refs['goodsSwiper'].swiper.slideNext()
         },
         initOffset:function(){
             var elem = null
@@ -997,6 +1035,18 @@ app = new Vue({
                 this.drawStatus = false
             }
         },
+        setTextLimit:function(str,size, max){
+            var re = /[\u4E00-\u9FA5]/g,
+                value = str.replace(re,"çç"),
+                len = 0,
+                mlen = 0;
+            if(value.length > size){
+                len = value.slice(0, size).replace(/(çç)/g,"ç").length
+                mlen = value.slice(0, max).replace(/(çç)/g,"ç").length
+                return [str.slice(0, len), value.length > max ? str.slice(len, mlen) + '...' : str.slice(len)]
+            }
+            return [str]
+        },
         drawContent:function(){
             var self = this
             var obj = this.resultObj
@@ -1063,11 +1113,13 @@ app = new Vue({
             this.ctx.fillText('未来的',105,240-128+72)
             this.ctx.strokeText('未来的',105,240-128+72)
             var username = this.userInfo ? this.userInfo.resumeUserName : ''
+            var arr = this.setTextLimit(pro_test ? '哈哈哈哈坲我鞥哦几哦弄机构将哦' : username, 12, 20)
             st = this.ctx.measureText('未来的').width
-            this.ctx.fillText(username,105+st,240-128+72)
-            this.ctx.strokeText(username,105+st,240-128+72)
-            this.ctx.fillText('是'+obj[this.result].title,105,240-128+87+72)
-            this.ctx.strokeText('是'+obj[this.result].title,105,240-128+87+72)
+            this.ctx.fillText(arr[0],105+st,240-128+72)
+            this.ctx.strokeText(arr[0],105+st,240-128+72)
+
+            this.ctx.fillText((arr.length > 1 ? arr[1] : '') + '是'+obj[this.result].title,105,240-128+87+72)
+            this.ctx.strokeText((arr.length > 1 ? arr[1] : '') + '是'+obj[this.result].title,105,240-128+87+72)
 
             this.ctx.drawImage(this.loadedImgs[38], 392,156-128)
             this.ctx.drawImage(this.loadedImgs[1], 119,977-128)
@@ -1136,6 +1188,7 @@ app = new Vue({
         },
         sendEvent:function(){
             var arr = [],
+                nosend = [],
                 _this = this,
                 i = 0,
                 j = 0;
@@ -1149,12 +1202,15 @@ app = new Vue({
                     if (this.positionList[i][j].checkStatus) {
                         arr.push(this.positionList[i][j].positionId)
                     }
+                    if (!this.positionList[i][j].sendStatus) {
+                        nosend.push(this.positionList[i][j].positionId)
+                    }
                 }
             }
             if (arr.length) {
                 _this.getAjaxData({
                     url: 'v1/neirong/delivers/batchDeliver',
-                    method: pro_test ? 'get' : 'post',
+                    method: 'post',
                     data: JSON.stringify({
                         positionIds: arr,
                         type: 2
@@ -1194,7 +1250,11 @@ app = new Vue({
                     }
                 })
             } else {
-                _this.showTipsEvent('请先选择需要投递的职位')
+                if (nosend.length) {
+                    _this.showTipsEvent('请先选择需要投递的职位')
+                } else {
+                    _this.showTipsEvent('职位已投递 ，快来生成海报看看自己的大咖属性吧~')
+                }
             }
         },
         showTipsEvent:function(tips) {
@@ -1353,7 +1413,7 @@ app = new Vue({
             // 0 运营岗，1 技术岗，2 产品岗，3 设计岗，4 市场岗，5 销售岗，6 职能岗
             _this.getAjaxData({
                 url: 'v1/entry/activity/zhuazhou/queryPositions',
-                method: pro_test ? 'get' : 'post',
+                method: 'post',
                 data: JSON.stringify({
                     positionCategory: obj[_this.result] + ''
                 }),
