@@ -984,15 +984,6 @@ app = new Vue({
                 return
             }
             page3.className = page3.className.replace(' hide','') + ' topIn'
-            setTimeout(function() {
-                page2.className += ' hide'
-                page3.className = page3.className.replace(' topIn','')
-                _this.clearCanvas()
-                _this.drawStatus = true
-                if(_this.load == _this.imgs.length){
-                    _this.setDefaultCanvas()
-                }
-            }, 750)
             switch(this.catchIndex) {
                 case '0-0':
                 case '0-1':
@@ -1021,6 +1012,21 @@ app = new Vue({
                     this.result = 'sell'
                     break;
             }
+            this.showPage3()
+        },
+        showPage3:function() {
+            var _this = this
+            var page2 = document.getElementById('page2')
+            var page3 = document.getElementById('page3')
+            setTimeout(function() {
+                page2.className += ' hide'
+                page3.className = page3.className.replace(' topIn','')
+                _this.clearCanvas()
+                _this.drawStatus = true
+                if(_this.load == _this.imgs.length){
+                    _this.setDefaultCanvas()
+                }
+            }, 750)
             this.getPositionList()
         },
         setDefaultCanvas:function(){

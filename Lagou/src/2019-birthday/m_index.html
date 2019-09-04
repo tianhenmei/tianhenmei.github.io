@@ -141,13 +141,24 @@
                 var cover = document.getElementById('cover'),
                     loading = document.getElementById('loading'),
                     page2 = document.getElementById('page2'),
+                    page3 = document.getElementById('page3'),
                     music = document.getElementById('music'),
-                    catched = getQueryString('catched');
+                    catched = getQueryString('catched'),
+                    position = sessionStorage.getItem('2019-birthday-position');
                 loading.className += ' opacityChange-out'
                 if(music.paused){
                     playAudio(music,function(){});
                 }
-                if (catched && /^\d-\d/.test(catched)) {
+                if (position) {
+                    page3.className = page3.className.replace(' hide','');
+                    if (app) {
+                        app.catchIndex = position
+                        app.showPage3()
+                    }
+                    setTimeout(function(){
+                        document.getElementById('loading').className += ' hide';
+                    }, 500)
+                } else if (catched && /^\d-\d/.test(catched)) {
                     page2.className = page2.className.replace(' hide','');
                     app.catchIndex = catched
                     setTimeout(function(){
@@ -433,7 +444,7 @@
                                         <a class="one__item__a clearfix"
                                             target="_blank"
                                             href="javascript:void(0);"
-                                            :onclick="'self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
+                                            :onclick="'sessionStorage.setItem(\'2019-birthday-position\', \''+catchIndex+'\'); self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
                                             data-lg-tj-id="1nb6" 
                                             :data-lg-tj-no="getCount(10 + pindex * 10 + index)" 
                                             :data-lg-tj-cid="one.positionId">
