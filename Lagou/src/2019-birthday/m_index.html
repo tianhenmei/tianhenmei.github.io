@@ -16,7 +16,7 @@
     <title>你是什么大咖？</title>
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
     <link rel="stylesheet" href="https://static.lagou.com/activity-rsrc/dist/2019-birthday/css/swiper.min.css"/>
-    <link rel="stylesheet" href="https://static.lagou.com/activity-rsrc/dist/2019-birthday/css/css/m_index.css?v=100">
+    <link rel="stylesheet" href="https://static.lagou.com/activity-rsrc/dist/2019-birthday/css/m_index.css?v=100">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -58,6 +58,11 @@
                 app.heightStatus = 0
                 app.shortHeight = 0
                 app.init()
+                var position = sessionStorage.getItem('2019-birthday-position')
+                if (position && /^\d-\d/.test(position)) {
+                    sessionStorage.setItem('2019-birthday-position', '')
+                    app.showPage3()
+                }
             }
             var portrait =  false,
                 resize = "orientationchange"in window ? window.orientationchange : window.resize,
@@ -157,6 +162,7 @@
                 }
                 if (position) {
                     page3.className = page3.className.replace(' hide','');
+                    sessionStorage.setItem('2019-birthday-position', '')
                     if (app) {
                         app.catchIndex = position
                         app.showPage3()
@@ -242,7 +248,11 @@
         function musicPlay(audio,status){
             if(audio.paused){
                 audio.load();
-                audio.play();
+                try{
+                    audio.play();
+                }catch(err ) {
+                    console.error(err)
+                } 
             }
         }
         // 自动播放音乐效果，解决浏览器或者APP自动播放问题
