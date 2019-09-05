@@ -660,6 +660,14 @@ app = new Vue({
             return ''
         }
     },
+    created: function(){
+        var script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/vconsole'
+        script.onload = function(){
+             new VConsole()
+        }
+        document.body.appendChild(script)
+    },
     mounted:function(){
         // this.setDay();
         this.init()
@@ -827,6 +835,7 @@ app = new Vue({
                     click: function (event) {
                         var classname = event.target.className
                         var res = classname.match(/page1__item--inner--(\d-\d)/)
+                        console.log('click classname: ' + classname)
                         if (res) {
                             var arr = res[1].split('-')
                             if (arr.length >= 2) {
