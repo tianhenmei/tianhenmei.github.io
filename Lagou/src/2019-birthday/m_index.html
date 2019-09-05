@@ -35,8 +35,8 @@
                 h:1206
             },
             GC = {
-                w:bodyElement.clientWidth,
-                h:bodyElement.clientHeight
+                w:document.documentElement.clientWidth || window.innerWidth || screen.width,
+                h:document.documentElement.clientHeight || window.innerHeight || screen.height
             },
             lagoufrom = getQueryString('lagoufrom'),
             checkStatus = false,
@@ -51,8 +51,8 @@
         }
         function setFontSize(){
             if (bodyElement.clientHeight !== GC.h) {
-                GC.w = bodyElement.clientWidth
-                GC.h = bodyElement.clientHeight
+                GC.w = document.documentElement.clientWidth || window.innerWidth || screen.width
+                GC.h = document.documentElement.clientHeight || window.innerHeight || screen.height
             }
             if (app) {
                 app.heightStatus = 0
@@ -83,6 +83,12 @@
                     }
                 }else if(/(Mi-4c)/g.test(navigator.userAgent)){
                     lastHTMLSize = lastHTMLSize + 2;
+                }
+                if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    console.log(navigator.userAgent)
+                    if(/(Redmi Note7 Pro)/ig.test(navigator.userAgent)){
+                        lastHTMLSize = lastHTMLSize + 2;
+                    }
                 }
                 lastSize = lastHTMLSize;
                 html.style.fontSize=GC.w/lastHTMLSize+'px';
