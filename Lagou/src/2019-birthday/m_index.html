@@ -40,7 +40,9 @@
             },
             lagoufrom = getQueryString('lagoufrom'),
             checkStatus = false,
-            initStatus = false;
+            initStatus = false,
+            backExecute = false,
+            restartExecute = false;
         
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -60,8 +62,13 @@
                 app.init()
                 var position = sessionStorage.getItem('2019-birthday-position')
                 if (position && /^\d-\d/.test(position)) {
-                    sessionStorage.setItem('2019-birthday-position', '')
-                    app.showPage3()
+                    if (!backExecute && !restartExecute) {
+                        backExecute = true
+                        restartExecute = true
+                        app.catchIndex = position
+                        app.showPage3()
+                        backgroundMusic(document.getElementById('music'), true)
+                    }
                 }
             }
             var portrait =  false,
@@ -83,15 +90,16 @@
                 }else if(rightSize < currentSize){  //宽屏
                     lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
                     htmlStatus = 1;
-                    if(lagoufrom == 'ios' || lagoufrom == 'android'){
+                    if(lagoufrom == 'ios' || lagoufrom == 'android' || /lagou\/\S*/gi.test(navigator.userAgent)){
                         lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
                     }
                 }else if(/(Mi-4c)/g.test(navigator.userAgent)){
                     lastHTMLSize = lastHTMLSize + 2;
                 }
                 if(lagoufrom == 'ios' || lagoufrom == 'android' || /lagou\/\S*/gi.test(navigator.userAgent)){
-                    alert(navigator.userAgent)
                     if(/(Redmi Note ?7 Pro)/ig.test(navigator.userAgent)){
+                        lastHTMLSize = lastHTMLSize + 2;
+                    } else if(/SM-A6060/ig.test(navigator.userAgent)){
                         lastHTMLSize = lastHTMLSize + 2;
                     }
                 }
@@ -136,6 +144,9 @@
             // alert('visibilitychange')
             setFontSize();
         });
+        // window.onfocus = function() {
+        //     alert('onfocus')
+        // }
         window.addEventListener('pageshow', function () {
             // alert('pageshow')
             setFontSize();
@@ -162,10 +173,12 @@
                 }
                 if (position) {
                     page3.className = page3.className.replace(' hide','');
-                    sessionStorage.setItem('2019-birthday-position', '')
+                    // sessionStorage.setItem('2019-birthday-position', '')
                     if (app) {
-                        app.catchIndex = position
-                        app.showPage3()
+                        if (!restartExecute) {
+                            app.catchIndex = position
+                            app.showPage3()
+                        }
                     }
                     setTimeout(function(){
                         document.getElementById('loading').className += ' hide';
@@ -244,7 +257,7 @@
     }
     
     // 音乐播放
-    function backgroundMusic(audio){
+    function backgroundMusic(audio, already){
         function musicPlay(audio,status){
             if(audio.paused){
                 audio.load();
@@ -271,14 +284,25 @@
             document.removeEventListener('DOMContentLoaded', musicInWeixinHandler,false);
         }
         document.addEventListener('DOMContentLoaded', musicInWeixinHandler,false);
+        if (already && window.WeixinJSBridge) {
+            // 微信环境
+            setTimeout(function(){
+                WeixinJSBridge.invoke('getNetworkType', {}, function (e) {
+                    if (audio.paused) {
+                        // audio.load()
+                        audio.play()
+                    }
+                })
+            }, 500)
+        }
     }
     backgroundMusic(document.getElementById('music'))
-    document.addEventListener('click', function() {
-        var bgMusic = document.getElementById('music');
-        if(bgMusic.paused){
-            bgMusic.play();
-        }
-    })
+    // document.addEventListener('click', function() {
+    //     var bgMusic = document.getElementById('music');
+    //     if(bgMusic.paused){
+    //         bgMusic.play();
+    //     }
+    // })
     function initWeixinEvent(){
         var bgMusic = document.getElementById('music');
         document.addEventListener("WeixinJSBridgeReady", function () {
@@ -460,10 +484,11 @@
                                         <a class="one__item__a clearfix"
                                             target="_blank"
                                             href="javascript:void(0);"
-                                            :onclick="'sessionStorage.setItem(\'2019-birthday-position\', \''+catchIndex+'\'); self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''"
+                                            :onclick="'app.toPositionLink()'"
                                             data-lg-tj-id="1nb6" 
                                             :data-lg-tj-no="getCount(10 + pindex * 10 + index)" 
                                             :data-lg-tj-cid="one.positionId">
+                                            <!-- :onclick="'sessionStorage.setItem(\'2019-birthday-position\', \''+catchIndex+'\'); self.location=\'https://m.lagou.com/jobs/' + one.positionId + '.html\''" -->
                                             <div class="one__item__logo">
                                                 <img class="one__item__img" :src="'https://www.lgstatic.com/thumbnail_120x120/'+(one.companyLogo || 'images/logo_default.png')" />
                                             </div>
@@ -635,7 +660,7 @@
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue2.1.10.js"></script>
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/swiper.min.js"></script>
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/2019-birthday/js/vue-awesome-swiper.js"></script>
-<script type="text/javascript" src="js/m_index.js?v=2230$version$"></script>
+<script type="text/javascript" src="js/m_index.js?v=2231$version$"></script>
 <script type="text/javascript">
     pageStatus = true;
     if(loadingStatus){

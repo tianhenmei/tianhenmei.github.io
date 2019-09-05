@@ -255,6 +255,7 @@ app = new Vue({
         pageStatus:true,
         flipStatus:false,  // 翻页状态
         from:'',
+        positionLoading: false,
         goods: [
             [
                 { id: 0, name: '键盘'},
@@ -660,14 +661,14 @@ app = new Vue({
             return ''
         }
     },
-    created: function(){
-        var script = document.createElement('script')
-        script.src = '//cdn.jsdelivr.net/npm/vconsole'
-        script.onload = function(){
-             new VConsole()
-        }
-        document.body.appendChild(script)
-    },
+    // created: function(){
+    //     var script = document.createElement('script')
+    //     script.src = '//cdn.jsdelivr.net/npm/vconsole'
+    //     script.onload = function(){
+    //          new VConsole()
+    //     }
+    //     document.body.appendChild(script)
+    // },
     mounted:function(){
         // this.setDay();
         this.init()
@@ -983,6 +984,9 @@ app = new Vue({
             var _this = this
             var page2 = document.getElementById('page2')
             var page3 = document.getElementById('page3')
+            // if (pro_test) {
+            //     _this.userInfo = {}
+            // }
             if (!_this.userInfo) { // 未登录
                 var url = ''
                 url = 'https://passport.lagou.com/login/login.html?signature=4A715341C95691ADBECBA06157566BBB&service=' + 
@@ -993,6 +997,39 @@ app = new Vue({
                 return
             }
             page3.className = page3.className.replace(' hide','') + ' topIn'
+            this.showPage3()
+        },
+        toPositionLink:function(){
+            backExecute = false
+            restartExecute = false
+            sessionStorage.setItem('2019-birthday-position', this.catchIndex)
+            this.recordTime()
+            window.location.href = 'https://m.lagou.com/jobs/6317417.html'
+        },
+        recordTime:function(){
+            var _this = this
+            if (lagoufrom == 'ios' || lagoufrom == 'android' || /lagou\/\S*/gi.test(navigator.userAgent)) {
+                setTimeout(function(){
+                    var hidden = document.hidden || document.mozHidden || document.msHidden || document.webkitHidden
+                    if (hidden) {
+                        _this.recordTime()
+                    } else {
+                        if (!backExecute) {
+                            backExecute = true
+                            _this.showPage3()
+                            backgroundMusic(document.getElementById('music'), true)
+                        }
+                    }
+                }, 1000)
+            } else if (window.WeixinJSBridge) {
+                document.getElementById('music').pause()
+            }
+        },
+        showPage3:function() {
+            var _this = this
+            var page2 = document.getElementById('page2')
+            var page3 = document.getElementById('page3')
+            // sessionStorage.setItem('2019-birthday-position', '')
             switch(this.catchIndex) {
                 case '0-0':
                 case '0-1':
@@ -1021,12 +1058,6 @@ app = new Vue({
                     this.result = 'sell'
                     break;
             }
-            this.showPage3()
-        },
-        showPage3:function() {
-            var _this = this
-            var page2 = document.getElementById('page2')
-            var page3 = document.getElementById('page3')
             setTimeout(function() {
                 page2.className += ' hide'
                 page3.className = page3.className.replace(' topIn','')
@@ -1425,6 +1456,11 @@ app = new Vue({
                 sell: 5,
                 func: 6
             }
+            if (this.positionLoading) {
+                return
+            }
+            // alert('getPositionList')
+            this.positionLoading = true
             // 0 运营岗，1 技术岗，2 产品岗，3 设计岗，4 市场岗，5 销售岗，6 职能岗
             _this.getAjaxData({
                 url: 'v1/entry/activity/zhuazhou/queryPositions',
@@ -1433,6 +1469,7 @@ app = new Vue({
                     positionCategory: obj[_this.result] + ''
                 }),
             }, function(result){
+                _this.positionLoading = false
                 var data = result.content
                 var ids = _this.deliveredPositionIds
                 var res = (data || []).map(function(current, index) {
@@ -1479,6 +1516,7 @@ app = new Vue({
                     }
                 },
                 error: function(xhr, type) {
+                    _this.positionLoading = false
                     // alert(xhr)
                     // alert('网络原因请重新尝试!');
                 },
