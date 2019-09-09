@@ -999,12 +999,12 @@ app = new Vue({
             page3.className = page3.className.replace(' hide','') + ' topIn'
             this.showPage3()
         },
-        toPositionLink:function(){
+        toPositionLink:function(id){
             backExecute = false
             restartExecute = false
             sessionStorage.setItem('2019-birthday-position', this.catchIndex)
             this.recordTime()
-            window.location.href = 'https://m.lagou.com/jobs/6317417.html'
+            window.location.href = 'https://m.lagou.com/jobs/' + id + '.html'
         },
         recordTime:function(){
             var _this = this
