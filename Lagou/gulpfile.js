@@ -8,8 +8,6 @@ var del = require('del');
 var watch = require('gulp-watch');
 var through2 = require('through2');
 var mkdirp = require('mkdirp');
-// var Proxy = require('gulp-connect-proxy');
-var Proxy = require('http-proxy-middleware')
 var connect = require('gulp-connect');
 var reload = require('require-nocache')(module);
 var scss = require('gulp-sass');
@@ -21,19 +19,14 @@ var sprite = require('gulp.spritesmith-multi');
 var hash = require('hash-file');
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
-var gulp_autoprefixer = require('gulp-autoprefixer');
 var rev = require('gulp-rev');
-var revColl = require('gulp-rev-collector');
-var babel = require('gulp-babel');
-// 将es6编译后的es5打包（require浏览器不识别）
-var browserify = require("browserify");
-var source = require('vinyl-source-stream');
-var through2 = require('through2');
+var revCollector = require('gulp-rev-collector');
+var runSequence = require('run-sequence');
 /*var _url = require( 'url' );
-// 压缩css
-var cleanCSS = require('gulp-clean-css'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');*/
+ // 压缩css
+ var cleanCSS = require('gulp-clean-css'),
+ concat = require('gulp-concat'),
+ uglify = require('gulp-uglify');*/
 
 var jspmCfg = 'jspm.config.js';
 var mockDir = 'mock';
@@ -71,49 +64,6 @@ params[type] = _.reduce(paramGroups, function(res, grp) {
 }, {});
 /*****************/
 
-var js_src = './src',
-    js_dist = './dist'
-/********************************************************************
- * compile: 将es6 打包成 es5
- * ****************************************************/
-gulp.task('compile:es6',function(){
-    var file = js_src+'/'+params.compile.dir
-    return gulp.src(file+'/**/*.js')
-        .pipe(babel())
-        .pipe(gulp.dest(js_dist+'/'+params.compile.dir));
-});
-/********************************************************************
- * compile: 将es6 打包成 es5 后能在浏览器上直接调用
- * ****************************************************/
-gulp.task('compile:browser',['compile:es6'],function(){
-    var initJSPath = js_dist+'/'+params.compile.dir
-    return gulp.src(initJSPath+'/**/*.js')
-        .pipe(through2.obj(function(file, enc, next) {
-            var folder = file.path.split(/\//g),
-                filename = folder[folder.length - 1],
-                filePath = folder.slice(0,folder.length-1).join('/'),
-                bundlePath = file.path.replace(/(\.js)?$/, '.bundle.js'),
-                extname = /(.bundle)/g.test(filename) ? '.js' : '.bundle.js';
-
-            browserify(file.path)
-                // .transform(reactify)
-                .bundle(function(err, res) {
-                    err && console.log(err.stack);
-                    file.contents = res;
-                    next(null, file);
-                })
-                .pipe(source(filename))
-                .pipe(rename({
-                    extname:extname,//'.bundle.js'
-                }))
-                .pipe(gulp.dest(filePath));
-    }));
-});
-
-
-gulp.task('compile',['compile:es6','compile:browser']);
-
-
 gulp.task('dev', ['dev:scss', 'dev:watch', 'dev:reload', 'server']);
 
 /** 初始化, 比如生成文件夹 **/
@@ -133,8 +83,7 @@ gulp.task('dev:scss', ['dev:init'], function(cb) {
     gulp.src(srcScss)
         .pipe(scss().on('error', gutil.log))
         .pipe(rename({extname: '.css'}))
-        .pipe(gulp_autoprefixer())
-        // .pipe(postcss([autoprefixer()]))
+        .pipe(postcss([autoprefixer()]))
         //.pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(gulp.dest(srcDir))
         .on('end', function() {
@@ -183,51 +132,50 @@ gulp.task('dev:watch', ['dev:init'], function() {
         });
 
     /*watch(sourJs)
-        .on('change',function(absFilePath){
-            var paths = getPaths(absFilePath);
+     .on('change',function(absFilePath){
+     var paths = getPaths(absFilePath);
 
-            gulp.src(paths.srcPath)
-                .pipe(rename(function (path) {
-                    if(path.basename.indexOf('.min') == -1){
-                        path.basename += ".min";
-                    }
-                    path.extname = ".js";
-                }))
-                .pipe(uglify())
-                .pipe(gulp.dest(path.dirname(paths.srcPath)));
-        })
-        .on('add', function(absFilePath) {
-            var paths = getPaths(absFilePath);
+     gulp.src(paths.srcPath)
+     .pipe(rename(function (path) {
+     if(path.basename.indexOf('.min') == -1){
+     path.basename += ".min";
+     }
+     path.extname = ".js";
+     }))
+     .pipe(uglify())
+     .pipe(gulp.dest(path.dirname(paths.srcPath)));
+     })
+     .on('add', function(absFilePath) {
+     var paths = getPaths(absFilePath);
 
-            gulp.src(paths.srcPath)
-                .pipe(rename(function (path) {
-                    if(path.basename.indexOf('.min') == -1){
-                        path.basename += ".min";
-                    }
-                    path.extname = ".js"
-                }))
-                .pipe(gulp.dest(path.dirname(paths.srcPath)));
-        });*/
+     gulp.src(paths.srcPath)
+     .pipe(rename(function (path) {
+     if(path.basename.indexOf('.min') == -1){
+     path.basename += ".min";
+     }
+     path.extname = ".js"
+     }))
+     .pipe(gulp.dest(path.dirname(paths.srcPath)));
+     });*/
     watch(srcScss)
         .on('change', function(absFilePath) {
             var paths = getPaths(absFilePath);
-            
+
             gulp.src(paths.srcPath)
                 .pipe(scss().on('error', gutil.log))
                 .pipe(rename({extname: '.css'}))
-                .pipe(gulp_autoprefixer())
-                // .pipe(postcss([autoprefixer()]))
+                .pipe(postcss([autoprefixer()]))
                 //.pipe(cleanCSS({compatibility: 'ie8'}))
                 .pipe(gulp.dest(path.dirname(paths.srcPath)));
             /*gulp.src(paths.srcPath)
-                .pipe(rename(function (path) {
-                    if(path.basename.indexOf('.min') == -1){
-                        path.basename += ".min";
-                    }
-                    path.extname = ".css";
-                }))
-                .pipe(cleanCSS({compatibility: 'ie8'}))
-                .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
+             .pipe(rename(function (path) {
+             if(path.basename.indexOf('.min') == -1){
+             path.basename += ".min";
+             }
+             path.extname = ".css";
+             }))
+             .pipe(cleanCSS({compatibility: 'ie8'}))
+             .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
         })
         .on('add', function(absFilePath) {
             var paths = getPaths(absFilePath);
@@ -235,17 +183,16 @@ gulp.task('dev:watch', ['dev:init'], function() {
             gulp.src(paths.srcPath)
                 .pipe(scss().on('error', gutil.log))
                 .pipe(rename({extname: '.css'}))
-                .pipe(gulp_autoprefixer())
-                // .pipe(postcss([autoprefixer()]))
+                .pipe(postcss([autoprefixer()]))
                 .pipe(gulp.dest(path.dirname(paths.srcPath)));
             /*gulp.src(paths.srcPath)
-                .pipe(rename(function (path) {
-                    if(path.basename.indexOf('.min') == -1){
-                        path.basename += ".min";
-                    }
-                    path.extname = ".css"
-                }))
-                .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
+             .pipe(rename(function (path) {
+             if(path.basename.indexOf('.min') == -1){
+             path.basename += ".min";
+             }
+             path.extname = ".css"
+             }))
+             .pipe(gulp.dest(path.dirname(paths.srcPath)));*/
         })
         .on('unlink', function(absFilePath) {
             var paths = getPaths(absFilePath);
@@ -259,65 +206,53 @@ gulp.task('server', function() {
     connect.server({
         host: ['0.0.0.0'],
         root: './',
-        port: params.dev.port || 8180,
+        port: params.dev.port || 8181,
         livereload: {
             port: params.dev.reload || 35730
         },
-        middleware:function(connect,opt){
-            return [
-                // Proxy('/v1',  {
-                //     target: 'https://gate.lagou.com',
-                //     changeOrigin:true
-                // })
-                // proxy('/otherServer', {
-                //     target: 'http://IP:Port',
-                //     changeOrigin:true
-                // })
-            ]
-        },
-        // middleware: function() {
-        //     var middlewares = [];
+        middleware: function() {
+            var middlewares = [];
 
-        //     middlewares.push(function(req, res, next) {
-        //         var url = req.url;
-        //         var match = url.match(/\.json$|\.jsonp\?callback=(\w+)/);
-        //         //console.log('@@@@@'+url.split('.')[1].split('?')[0]);
-        //         if(match) {
-        //            /* var oldUrl = req.url.split('/');
-        //             url = oldUrl[oldUrl.length - 1].split('?')[0];
-        //             *///console.log('&&&&&&&&&&&&&&&&&&   '+url);
-        //             url = url.replace(/\//g, '-');
-        //             url = url.replace(/^-|-$/, '');
-        //             url = url.replace(/\.json$|\.jsonp\?callback=(\w+)$/, '');
+            middlewares.push(function(req, res, next) {
+                var url = req.url;
+                var match = url.match(/\.json$|\.jsonp\?callback=(\w+)/);
+                //console.log('@@@@@'+url.split('.')[1].split('?')[0]);
+                if(match) {
+                    /* var oldUrl = req.url.split('/');
+                     url = oldUrl[oldUrl.length - 1].split('?')[0];
+                     *///console.log('&&&&&&&&&&&&&&&&&&   '+url);
+                    url = url.replace(/\//g, '-');
+                    url = url.replace(/^-|-$/, '');
+                    url = url.replace(/\.json$|\.jsonp\?callback=(\w+)$/, '');
 
-        //             var filePath = path.join(mockDir, url + '.js');
-        //             fs.exists(filePath, function (exist) {
-        //                 if (!exist) {
-        //                     fs.writeFileSync(filePath, 'module.exports = {\n};');
-        //                 }
+                    var filePath = path.join(mockDir, url + '.js');
+                    fs.exists(filePath, function (exist) {
+                        if (!exist) {
+                            fs.writeFileSync(filePath, 'module.exports = {\n};');
+                        }
 
-        //                 res.setHeader('Content-Type', 'application/json;charset="UTF-8"');
-        //                 if(match[1]) {
-        //                     res.end(match[1] + '(' + JSON.stringify(reload('./' + filePath)) + ')');
-        //                 } else {
-        //                     res.end(JSON.stringify(reload('./' + filePath)));
-        //                 }
-        //             });
-        //         } else if(/\.upload/.test(req.url)) {
-        //             setTimeout(function() {
-        //                 res.end('OK');
-        //             }, 1000);
-        //         }/*else if(/\.upload/.test(req.url)) {
-        //             setTimeout(function() {
-        //                 res.end('OK');
-        //             }, 1000);
-        //         }*/ else {
-        //             next();
-        //         }
-        //     });
+                        res.setHeader('Content-Type', 'application/json;charset="UTF-8"');
+                        if(match[1]) {
+                            res.end(match[1] + '(' + JSON.stringify(reload('./' + filePath)) + ')');
+                        } else {
+                            res.end(JSON.stringify(reload('./' + filePath)));
+                        }
+                    });
+                } else if(/\.upload/.test(req.url)) {
+                    setTimeout(function() {
+                        res.end('OK');
+                    }, 1000);
+                }/*else if(/\.upload/.test(req.url)) {
+                 setTimeout(function() {
+                 res.end('OK');
+                 }, 1000);
+                 }*/ else {
+                    next();
+                }
+            });
 
-        //     return middlewares;
-        // }
+            return middlewares;
+        }
     });
 });
 /******************/
@@ -361,36 +296,61 @@ gulp.task('imagemin', function(cb) {
 
 gulp.task('dist', ['dist:version']);
 
+
 /** 生成版本号 **/
-gulp.task('dist:version', ['dist:bundle'], function() {1
-// gulp.task('dist:version', ['dist:copy'], function() {
-    var dir = path.join(distDir, params.dist && params.dist.dir || '.');
-    //var targetHtml = path.join(dir, '/**/*.*');
+gulp.task('dist:version', ['dist:bundle'], function(cb) {
+    var dir = path.join(distDir+'/template', params.dist && params.dist.dir || '.');
     var targetHtml = path.join(dir, '/**/*.html');
     var vRe = /(['"])([\S]+)\?v=\$version\$[\S]*\1/g;
-
+    var otherRe = /(['"])[\S]+\.(js|png|css|jpg|gif|mp3|MP3)\1/g;
+    var backgroundImageURLReg = /(['"])(url)[\S]+[/]\1/g;
+    var httpReg = /http/;
     gulp.src(targetHtml)
         .pipe(through2.obj(function(file, encoding, done) {
-            var dir = path.dirname(file.path.slice(__dirname.length + 1));
+            var dir = path.dirname(file.path.replace('template', 'static').slice(__dirname.length + 1));
             var contents = String(file.contents);
             contents = contents.replace(vRe, function(s0, s1, s2) {
                 var p = path.join(dir, s2);
                 var v = hash.sync(p);
 
-                return '"https://www.lgstatic.com/activity-rsrc/' + p + '?v=' + v + '"';
+                return "'https://www.lgstatic.com/plat-activity-fed/" + p.replace("dist/static/", "") + "?v=" + v + "'";
             });
+
+            contents = contents.replace(otherRe, function(s0, s1, s2) {
+                s0 = s0.substring(1, s0.length-1);
+                if (httpReg.test(s0)) {
+                    return '"' + s0 + '"';
+                }
+                var p = path.join(dir, s0);
+
+                return "'https://www.lgstatic.com/plat-activity-fed/" + p.replace('dist/static/', '') + "'" ;
+            })
+
+            contents = contents.replace(backgroundImageURLReg, function(s0, s1, s2) {
+                s0 = s0.substring(1, s0.length-1);
+                s0 = s0.replace('url(', '')
+                if (httpReg.test(s0)) {
+                    return '"url(' + s0 + '"';
+                }
+                var p = path.join(dir, s0);
+
+                return "'url(https://www.lgstatic.com/plat-activity-fed/" + p.replace('dist/static/', '') + "'" ;
+            })
 
             file.contents = new Buffer(contents);
             this.push(file);
             done();
         }))
-        .pipe(gulp.dest(dir));
+        .pipe( gulp.dest(dir) )
+        .on('end', function() {
+            cb();
+        });
 });
 /*****************/
 
 /** 针对ES6模块进行打包操作 **/
 gulp.task('dist:bundle', ['dist:url'], function(cb) {
-    var dir = path.join(distDir, params.dist && params.dist.dir || '.');
+    var dir = path.join(distDir+'/template', params.dist && params.dist.dir || '.');
     var targetHtml = path.join(dir, '/**/*.html');
 
     gulp.src(targetHtml)
@@ -405,10 +365,10 @@ gulp.task('dist:bundle', ['dist:url'], function(cb) {
                 done();
                 return;
             }
-
+            
             entryJs = entryJs[1];
             var pathJs = /\.js$/.test(entryJs) ? entryJs : (entryJs + '.js');
-            entryJs = path.join(path.dirname(file.path.slice(__dirname.length + 1)), pathJs);
+            entryJs = path.join(path.dirname(file.path.replace('template', 'static').slice(__dirname.length + 1)), pathJs);
 
             var bundleJs = entryJs.replace('.js', '.bundle.js');
             var cmd = 'jspm bundle ' + entryJs + ' ' + bundleJs + ' --minify';
@@ -416,13 +376,10 @@ gulp.task('dist:bundle', ['dist:url'], function(cb) {
             exec(cmd, function(err) {
                 if(err) {
                     console.log(err);
-
                     self.push(file);
                     done();
                     return;
                 }
-
-                console.log(cmd);
 
                 var headTail = /<\/\s*head\s*>/;
                 var pathCssBundle = pathJs.replace('.js', '.bundle.css');
@@ -440,7 +397,7 @@ gulp.task('dist:bundle', ['dist:url'], function(cb) {
             });
         }))
         .pipe(through2.obj(function(file, encoding, done) {
-            var dir = path.dirname(file.path.slice(__dirname + 1));
+            var dir = path.dirname(file.path.replace('template', 'static').slice(__dirname + 1));
             var contents = String(file.contents);
 
             var importRe = /System.import\s*\(\s*'\s*(\S*)\s*'\s*\)/;
@@ -498,7 +455,7 @@ gulp.task('dist:url', ['dist:copy'], function(cb) {
             contents = contents.replace(/baseURL: "[^"]+"/, function() {
                 return 'baseURL: "' + path.join('/', params.dist.url || '') + '"';
             });
-            
+
             file.contents = new Buffer(contents);
             this.push(file);
             done();
@@ -511,17 +468,16 @@ gulp.task('dist:url', ['dist:copy'], function(cb) {
 /**********************************/
 
 /** 拷贝源代码到编译目录 **/
-gulp.task('dist:copy', function(cb) {
+gulp.task('dist:copy', ['dist:copyHtml'], function(cb) {
     var targetDir = path.join(srcDir, params.dist && params.dist.dir || '.');
     var targetAll = path.join(targetDir, '/**/*.*');
-    var targetScss = path.join(targetDir, '/**/*.scss');
 
-    var targetDistDir = path.join(distDir, params.dist && params.dist.dir || '.');
+    var targetDistDir = path.join(distDir+'/static', params.dist && params.dist.dir || '.');
     gulp.src([targetAll])
         .pipe(through2.obj(function(file, encoding, done) {
             var name = file.path.split('.'),
                 extname = name[name.length - 1];
-            if(extname != 'scss'){
+            if(extname != 'scss' && extname != 'html'){
                 this.push(file);
             }
             done();
@@ -532,6 +488,24 @@ gulp.task('dist:copy', function(cb) {
             cb();
         });
 });
+
+gulp.task('dist:copyHtml', function(cb) {
+    var targetDir = path.join(srcDir, params.dist && params.dist.dir || '.');
+    var targetHtml = path.join(targetDir, '/**/*.html');
+
+    var targetDistDir = path.join(distDir+'/template', params.dist && params.dist.dir || '.');
+    gulp.src([targetHtml])
+        .pipe(through2.obj(function(file, encoding, done) {
+            this.push(file);
+            done();
+        }))
+        //.pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest(targetDistDir))
+        .on('end', function() {
+            cb();
+        });
+})
+
 /*********************/
 
 /** 在编译之前先将 dist 目录删掉 **/
@@ -542,13 +516,12 @@ gulp.task('remove', function() {
 
 /** 上传编译好的文件到999测试服务器 */
 gulp.task('upload', function(cb) {
-    console.log(params.upload);
-    var dir = path.join(srcDir, params.upload && params.upload.dir || '.');  // distDir
+    var dir = path.join(distDir, params.upload && params.upload.dir || '.');
     gulp.src(dir + '/**/*.*')
         .pipe(through2.obj(function(file, encoding, done) {
             var filePath = path.relative(__dirname, file.path)
-            var toPath = path.join('/usr/local/src/h5/', filePath)  // /data/static/activity/
-            var cmd = `curl -F "to=${toPath}" -F "file=@${filePath}" http://120.78.185.177/`,  // http://receiver1.lagou.com/upload
+            var toPath = path.join('/data/static/activity/', filePath)
+            var cmd = `curl -F "to=${toPath}" -F "file=@${filePath}" http://receiver1.lagou.com/upload`,
                 extname = path.extname(file.path)
             if(extname == '.psd'){
                 console.log('NoSending: ' + filePath);
