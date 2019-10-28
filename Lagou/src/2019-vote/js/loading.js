@@ -8,6 +8,7 @@ var imgArray = [
 	loadingHost+"images/loading-title.png",
 	"images/LTe50012.ttf",
 	"images/DIN-Regular.otf",
+	"images/music.mp3",
 	loadingHost+"images/icon-02.png",
 	loadingHost+"images/icon-text.png",
 	loadingHost+"images/icon.png",
@@ -59,7 +60,6 @@ var imgArray = [
 	loadingHost+"images/page3-btn-savelong.png",
 	loadingHost+"images/page3-btn-share.png",
 	loadingHost+"images/page3-btn-showrank.png",
-	loadingHost+"images/page3-create.png",
 	loadingHost+"images/page3-drag-bg.png",
 	loadingHost+"images/page3-drag-btn.png",
 	loadingHost+"images/page3-drag-end.png",
@@ -92,11 +92,7 @@ var imgArray = [
 	"images/create-share03.png",
 	"images/create-share04.png",
 	"images/create-share05.png",
-	"images/create-share06.png",
-	"images/create-share07.png",
-	"images/create-share08.png",
-	"images/create-share09.png",
-	"images/create-share10.png"
+	"images/create-share06.png"
 ];
 var now = 0;
 // jQuery.ajax({

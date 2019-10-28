@@ -294,7 +294,7 @@ var initialNow = 0,
     saveMode = "development",
     initialText = mode !== 'production' ? '测试' : '',
     initialPhone =  mode !== 'production' ? '12345678900' : '',
-    randomIndex = Math.floor(Math.random() * 10);
+    randomIndex = Math.floor(Math.random() * 6) % 6;
 
 // 音乐
 if(mode != "development"){
@@ -845,7 +845,7 @@ app = new Vue({
                             icon:'',
                             height:setRem(33 * 9 + 26 + 2 + 45),
                             title:'获奖权益',
-                            info:'a. 点亮拉勾平台<span class="green">“入围TOP雇主”</span><br/><span class="space">图标一年；</span><br/>'+
+                            info:'a. 点亮拉勾平台<span class="green">“TOP雇主”</span><br/><span class="space">图标一年；</span><br/>'+
                                 'b. 北京拉勾年度TOP雇主<br/><span class="space">颁奖盛典<span class="green">门票一张</span>；</span><br/>'+
                                 'c. 获得拉勾独家出品的<br/><span class="space green">《2019互联网行业招聘白皮书》</span><br/><span class="space">实体版及电子版各一份；</span><br/>' + 
                                 'd. 面向全媒体公布拉勾2019·<br/><span class="space">中国互联网TOP雇主<span class="green">评选名单</span></span>',
@@ -905,42 +905,45 @@ app = new Vue({
                 },{
                     cn:'生活服务领域',
                     en:'shfw'
-                },{
+                }/*,{
                     cn:'游戏领域',
                     en:'yx'
-                },{
+                }*/,{
                     cn:'金融领域',
                     en:'jy'
-                },{
+                }/*,{
                     cn:'知识付费领域',
                     en:'zsff'
-                },{
+                }*/,{
                     cn:'教育领域',
                     en:'jyu'
                 },{
                     cn:'文娱领域',
                     en:'wy'
-                },{
+                }, {
+                    cn: '物联网领域',
+                    en: 'wlw'
+                }/*, {
                     cn:'新媒体领域',
                     en:'xmt'
                 },{
                     cn:'社交领域',
                     en:'sj'
-                },{
+                }*/,{
                     cn:'硬件领域',
                     en:'yj'
                 },{
                     cn:'企业服务领域',
                     en:'qyfw'
                 },{
-                    cn:'人工智能（AI）领域',
+                    cn:'人工智能领域',
                     en:'rgzn'
                 },{
                     cn:'全球化领域',
                     en:'qqh'
                 },{
-                    cn:'其他',
-                    en:'other'
+                    cn:'社交领域',
+                    en:'sj'
                 }
             ],
             awardTypesTips: '', // 最多选择两项
@@ -1387,11 +1390,7 @@ app = new Vue({
             "images/create-share03.png",
             "images/create-share04.png",
             "images/create-share05.png",
-            "images/create-share06.png",
-            "images/create-share07.png",
-            "images/create-share08.png",
-            "images/create-share09.png",  // 13
-            "images/create-share10.png"  // 14
+            "images/create-share06.png"
         ],
         shareArr:[{
             w:543,
@@ -3694,6 +3693,14 @@ app = new Vue({
                 self.setSearchRankList([one.en]);
             }
         },
+        inputBlurEvent: function() {
+            setTimeout(function() {
+                var active = document.activeElement
+                if (active.tagName !== 'INPUT') {
+                    $('html, body').scrollTop(0);
+                }
+            }, 300);
+        }
     }
 })
 },{}]},{},[1]);
