@@ -745,19 +745,19 @@ app = new Vue({
                             icon:'none',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             title:'影响力',
-                            info: '组织结构及公司运作机制上<br/>具有先进性与成熟度',
+                            info: '业务发展稳定，快速成长，<br/>用人需求攀升',
                             // info:'行业的品牌影响力<br/>'+
                             //     '人力资源行业内拥有良好口碑<br/>'+
                             //     '对校园群体的吸引力<br/>'+
                             //     '企业的发展空间与潜力',
-                            backgroundPosition:setRem(-700)+' '+setRem(-50*9)
+                            backgroundPosition:setRem(-700)+' '+setRem(-50*10)
                         },{
                             icon:'none',
                             height:setRem(33 * 2 + 26 + 2 + 45),
                             title:'凝聚力',
-                            info: '业务发展稳定，快速成长，<br/>用人需求攀升',
+                            info: '组织结构及公司运作机制上<br/>具有先进性与成熟度',
                             // info:'集体效能，权力分配、归属心里<br/>在共同责任目标上的统一感',
-                            backgroundPosition:setRem(-700)+' '+setRem(-50*10)
+                            backgroundPosition:setRem(-700)+' '+setRem(-50*9)
                         },{
                             icon:'none',
                             height:setRem(33 * 2 + 26 + 2 + 45),
@@ -791,13 +791,13 @@ app = new Vue({
                     t:615,
                     name:'奖项设置',
                     listStatus:true,
-                    totalHeight:902-33,  // 902
+                    totalHeight:902+33,  // 902
                     detail:[
                         {
                             icon:'page2__content--iconall',
                             height:setRem(33 * 3 + 26 + 2 + 45),
                             title:'综合榜',
-                            info:'年度卓越TOP雇主<br/>年度领先TOP雇主<br/>年度新锐TOP雇主',
+                            info:'2019拉勾年度卓越TOP雇主<br/>2019拉勾年度领先TOP雇主<br/>2019拉勾年度新锐TOP雇主',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*6)
                         },{
                             icon:'page2__content--iconarea',
@@ -807,7 +807,7 @@ app = new Vue({
                             backgroundPosition:setRem(-700)+' '+setRem(-50*7)
                         },{
                             icon:'page2__content--iconindrustry',
-                            height:setRem(33 * 10 + 26 + 2 + 45),
+                            height:setRem(33 * 12 + 26 + 2 + 45),
                             title:'行业榜',
                             info:''+
                                 '2019拉勾年度电商领域TOP 雇主<br/>'+
@@ -819,7 +819,9 @@ app = new Vue({
                                 '2019拉勾年度硬件领域TOP 雇主<br/>'+
                                 '2019拉勾年度企业服务领域TOP 雇主<br/>'+
                                 '2019拉勾年度人工智能领域TOP 雇主<br/>'+
-                                '2019拉勾年度全球化领域TOP 雇主<br/>',
+                                '2019拉勾年度全球化领域TOP 雇主<br/>'+
+                                '2019拉勾年度社交领域TOP 雇主<br/>'+
+                                '2019拉勾年度游戏领域TOP 雇主<br/>',
                             backgroundPosition:setRem(-700)+' '+setRem(-50*8),
                             classname:'none-outer'
                         }
@@ -905,10 +907,10 @@ app = new Vue({
                 },{
                     cn:'生活服务领域',
                     en:'shfw'
-                }/*,{
+                },{
                     cn:'游戏领域',
                     en:'yx'
-                }*/,{
+                },{
                     cn:'金融领域',
                     en:'jy'
                 }/*,{
@@ -1024,11 +1026,15 @@ app = new Vue({
         timeupdate:Date.now(),
         rankClassify:[
             {
-                cn:'2018拉勾年度年度top雇主',
+                cn:'2019拉勾年度卓越TOP雇主',
+                en:'zygz',
+                parent:0
+            },{
+                cn:'2019拉勾年度领先TOP雇主',
                 en:'xrgz',
                 parent:0
             },{
-                cn:'2018拉勾年度新锐top雇主',
+                cn:'2019拉勾年度新锐TOP雇主',
                 en:'zjgz',
                 parent:0
             },{
@@ -1047,11 +1053,11 @@ app = new Vue({
                 cn:'金融',
                 en:'jy',
                 parent:1
-            },{
+            }/*,{
                 cn:'知识付费',
                 en:'zsff',
                 parent:1
-            },{
+            }*/,{
                 cn:'教育',
                 en:'jyu',
                 parent:1
@@ -1059,11 +1065,11 @@ app = new Vue({
                 cn:'文娱',
                 en:'wy',
                 parent:1
-            },{
+            }/*,{
                 cn:'新媒体',
                 en:'xmt',
                 parent:1
-            },{
+            }*/,{
                 cn:'社交',
                 en:'sj',
                 parent:1
@@ -1076,18 +1082,18 @@ app = new Vue({
                 en:'qyfw',
                 parent:1
             },{
-                cn:'人工智能（AI）',
+                cn:'人工智能',
                 en:'rgzn',
                 parent:1
             },{
                 cn:'全球化',
                 en:'qqh',
                 parent:1
-            },{
+            }/*,{
                 cn:'其他',
                 en:'other',
                 parent:1
-            },{
+            }*/,{
                 cn:'华北区',
                 en:'hb',
                 parent:2
@@ -2837,7 +2843,7 @@ app = new Vue({
                             var i = 0;
                             if(index == 0){
                                 for(i = 0; i < data.length; i++){
-                                    data[i].optionName = '2018拉勾年度'+data[i].optionName;
+                                    data[i].optionName = '2019拉勾年度'+data[i].optionName;
                                 }
                             }
                             self.rankAllData[index] = data;
@@ -2875,6 +2881,7 @@ app = new Vue({
         closeRank:function(){
             this.rankStatus = false
         },
+        // 没用的方法
         voteCompanyEvent:function(one){
             var self = this
             // if(this.votedCompanyIds.indexOf(one.id) != -1){
@@ -3220,6 +3227,7 @@ app = new Vue({
         closeSuccess:function(){
             this.successStatus = false
         },
+        // 没用方法
         getUserRank:function(one){
             var self = this
             $.ajax({
@@ -3461,6 +3469,7 @@ app = new Vue({
                 return false;
             }
         },
+        // 没用方法
         getUserWeixinData:function(){
             var self = this
             $.ajax({
@@ -3490,6 +3499,7 @@ app = new Vue({
                 }
             });
         },
+        // 没用方法
         shareSuccessCallback:function(){
             var self = this
             $.ajax({
