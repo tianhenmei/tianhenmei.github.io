@@ -464,7 +464,7 @@ app = new Vue({
     data:{
         // test
         mode:mode,// "development",//"production",
-        lg:"1k46",
+        lg:"1k6a",
         activePage:initialNow,
         pageStatus:true,
         heightStatus:0,
@@ -953,13 +953,13 @@ app = new Vue({
             awardList: [
                 {
                     cn:'年度TOP雇主',
-                    en:'YEAR'
+                    en:'ZHL'
                 }, {
                     cn:'行业TOP雇主',
-                    en:'INDRUSTRY'
+                    en:'QUL'
                 }, {
                     cn:'区域TOP雇主',
-                    en:'AREA'
+                    en:'HYL'
                 }
             ]
         },
@@ -1025,32 +1025,32 @@ app = new Vue({
         ],
         timeupdate:Date.now(),
         rankClassify:[
-            {
+            /*{
                 cn:'2019拉勾年度卓越TOP雇主',
                 en:'zygz',
                 parent:0
-            },{
+            },*/{
                 cn:'2019拉勾年度领先TOP雇主',
                 en:'xrgz',
                 parent:0
-            },{
+            }/*,{
                 cn:'2019拉勾年度新锐TOP雇主',
                 en:'zjgz',
                 parent:0
-            },{
+            }*/,{
                 cn:'电商领域',
                 en:'dsly',
                 parent:1
             },{
-                cn:'生活服务',
+                cn:'生活服务领域',
                 en:'shfw',
                 parent:1
             },{
-                cn:'游戏',
+                cn:'游戏领域',
                 en:'yx',
                 parent:1
             },{
-                cn:'金融',
+                cn:'金融领域',
                 en:'jy',
                 parent:1
             }/*,{
@@ -1058,35 +1058,39 @@ app = new Vue({
                 en:'zsff',
                 parent:1
             }*/,{
-                cn:'教育',
+                cn:'教育领域',
                 en:'jyu',
                 parent:1
             },{
-                cn:'文娱',
+                cn:'文娱领域',
                 en:'wy',
+                parent:1
+            },{
+                cn:'物联网领域',
+                en:'wlw',
                 parent:1
             }/*,{
                 cn:'新媒体',
                 en:'xmt',
                 parent:1
             }*/,{
-                cn:'社交',
+                cn:'社交领域',
                 en:'sj',
                 parent:1
             },{
-                cn:'硬件',
+                cn:'硬件领域',
                 en:'yj',
                 parent:1
             },{
-                cn:'企业服务',
+                cn:'企业服务领域',
                 en:'qyfw',
                 parent:1
             },{
-                cn:'人工智能',
+                cn:'人工智能领域',
                 en:'rgzn',
                 parent:1
             },{
-                cn:'全球化',
+                cn:'全球化领域',
                 en:'qqh',
                 parent:1
             }/*,{
@@ -2508,6 +2512,7 @@ app = new Vue({
                         user:signup.user,
                         position:signup.position,
                         phone:signup.phone,
+                        rewardType: signup.awardTypes.join(',')
                     },
                     success: function(result) {
                         if (result.success) {

@@ -7,6 +7,7 @@
         user
         position
         phone
+	rewardType
     }
     返回值：报名公司信息（同去年保持不变）
     参数industryfield可能的取值：
@@ -22,10 +23,10 @@
         人工智能领域: 'rgzn'
         全球化领域: 'qqh'
         社交领域: 'sj'
-    新增参数奖项列表（以下为前端定义）：
-        年度TOP雇主: 'YEAR'
-        行业TOP雇主: 'INDRUSTRY'
-        区域TOP雇主: 'AREA'
+    新增参数rewardType 多个选项使用“,”号分隔 奖项列表可能的取值：
+        年度TOP雇主: 'ZHL'
+        行业TOP雇主: 'QUL'
+        区域TOP雇主: 'HYL'
 2、获取公司信息
     url: https://activity.lagou.com/activityapi/employer/employerInfo
     method: get,
@@ -58,20 +59,21 @@
         type // 排行榜大类：传值分别是ZHL（综合类）、QUL（区域类）、HYL（行业类），其他参数返回为空
     }
     排行榜分类定义：
-        2019拉勾年度卓越TOP雇主: 'zygz'
         2019拉勾年度领先TOP雇主: 'xrgz'
-        2019拉勾年度新锐TOP雇主: 'zjgz'
+        
         电商领域: 'dsly'
-        生活服务: 'shfw'
-        游戏: 'yx'
-        金融: 'jy'
-        教育: 'jyu'
-        文娱: 'wy'
-        社交: 'sj'
-        硬件: 'yj'
-        企业服务: 'qyfw'
-        人工智能: 'rgzn'
-        全球化: 'qqh'
+        生活服务领域: 'shfw'
+        游戏领域':'yx'
+        金融领域: 'jy'
+        教育领域: 'jyu'
+        文娱领域: 'wy'
+        物联网领域: 'wlw'
+        硬件领域: 'yj'
+        企业服务领域: 'qyfw'
+        人工智能领域: 'rgzn'
+        全球化领域: 'qqh'
+        社交领域: 'sj'
+
         华北区: 'hb'
         华东区: 'hd'
         华南区: 'hn'
