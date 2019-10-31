@@ -956,10 +956,10 @@ app = new Vue({
                     en:'ZHL'
                 }, {
                     cn:'行业TOP雇主',
-                    en:'QUL'
+                    en:'HYL'
                 }, {
                     cn:'区域TOP雇主',
-                    en:'HYL'
+                    en:'QUL'
                 }
             ]
         },
