@@ -291,7 +291,7 @@ var initialNow = 0,
     initialCompanyId = 0,
     createStatus = false,
     mode = "production",//"production", development
-    saveMode = "development",
+    saveMode = "production",
     initialText = mode !== 'production' ? '测试' : '',
     initialPhone =  mode !== 'production' ? '12345678900' : '',
     randomIndex = Math.floor(Math.random() * 6) % 6;
