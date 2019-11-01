@@ -1030,7 +1030,7 @@ app = new Vue({
                 en:'zygz',
                 parent:0
             },*/{
-                cn:'2019拉勾年度领先TOP雇主',
+                cn:'2019拉勾年度TOP雇主',
                 en:'xrgz',
                 parent:0
             }/*,{
