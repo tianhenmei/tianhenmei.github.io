@@ -1422,12 +1422,13 @@ body {
             padding-top:rem(40);
             z-index:10;
         }
+        // 报名搜索
         &--search {
             padding-top:rem(35);
             overflow:hidden;
             &_bar_bg{
                 width:rem(6);
-                height:rem(228);
+                height:rem(300);
                 // background:#fff;
                 position:absolute;
                 right:0;
@@ -1443,6 +1444,7 @@ body {
             }
         }
         &--one {
+            height:rem(52);
             line-height:rem(52);
             text-align:center;
             font-size:rem(26);
@@ -1450,8 +1452,12 @@ body {
             opacity:0.4;
         }
         &--text {
+            width: rem(420);
             display:inline-block;
             text-decoration:underline;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         &--btn {
             width:rem(505);
@@ -1843,7 +1849,7 @@ body {
         border-radius:rem(12);
         // border-radius:rem(147);
         // border:rem(2) solid #5a5241;
-        // background-color:#fff;
+        background-color:#fff;
         // @include leftTop(110,110);
         @include leftTop(62,6);
     }
@@ -1937,7 +1943,7 @@ body {
     &__share {
         width:rem(278);
         height:rem(86);
-        background:url('../images/page3-btn-share.png') no-repeat center top;
+        background:url('../images/page3-btn-share1.png') no-repeat center top;
         background-size:100% 100%;
         // background:url('../images/page3-share-btn.png') no-repeat center top;
         // background-size:100% 100%;
@@ -2132,7 +2138,7 @@ body {
             height:rem(255);
             border-radius:rem(12);
             // border:rem(2) solid #5a5241;
-            // background-color:#fff;
+            background-color:#fff;
             @include leftTop(104,6);
         }
         &__name {
@@ -2319,7 +2325,7 @@ body {
     &__vote {
         width:rem(278);
         height:rem(86);
-        background:url('../images/page3-btn-share.png') no-repeat center top;
+        background:url('../images/page3-btn-share1.png') no-repeat center top;
         background-size:100% 100%;
         @include center(385,1100);
     }
@@ -2520,7 +2526,7 @@ body {
 			left:0;
 			top:0;
 			li {
-				width:rem(450);
+				width:rem(520);
 				height:rem(53);
 				line-height:rem(53);
 				padding:0 0 0 rem(26);

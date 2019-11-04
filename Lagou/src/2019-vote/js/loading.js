@@ -58,7 +58,7 @@ var imgArray = [
 	
 	loadingHost+"images/page3-btn-metoo.png",
 	loadingHost+"images/page3-btn-savelong.png",
-	loadingHost+"images/page3-btn-share.png",
+	loadingHost+"images/page3-btn-share1.png",
 	loadingHost+"images/page3-btn-showrank.png",
 	loadingHost+"images/page3-drag-bg.png",
 	loadingHost+"images/page3-drag-btn.png",

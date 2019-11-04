@@ -1031,7 +1031,7 @@ app = new Vue({
                 en:'zygz',
                 parent:0
             },*/{
-                cn:'2019拉勾年度TOP雇主',
+                cn:'2019拉勾年度领先TOP雇主',
                 en:'xrgz',
                 parent:0
             }/*,{
@@ -2808,7 +2808,7 @@ app = new Vue({
                 }
             });
         },
-        setSearchScroll:function(){
+        setSearchScroll:function(data){
             var classname = 'search_list',
                 elem = $('.search_list'),
                 bar = elem.find('.' + classname + '_bar')
@@ -2817,9 +2817,11 @@ app = new Vue({
             this.scrollData['search_list'] = new scrollClass({
                 classname: classname,
                 height: 252,
+                totalHeight: this.getRem(252),
                 space: 12,
                 number: 4.19,
                 one: 53,
+                length: data.length || 0,
                 fixedHeight: false
             })
         },
@@ -3155,6 +3157,9 @@ app = new Vue({
         },
         drawCompanyLogo:function(img){
             img.setAttribute('crossorigin', 'anonymous');
+            this.ctx.roundRect(145 + 104, 250 + 6, 255, 255, 12);
+            this.ctx.fillStyle = '#ffffff';
+            this.ctx.fill();
             this.drawCirclePicture(
                 img, // url,// base64,
                 145 + 104, 250 + 6,
@@ -3285,6 +3290,7 @@ app = new Vue({
                         var data = result.content || [];
                         if(data.length > 0){
                             self.page2.signupList = data;
+                            self.page2.companyTips = '';
                             self.page2.signupSearchStatus = true;
                             self.$nextTick(function(){
                                 self.setSignupSearchScroll();
@@ -3311,7 +3317,7 @@ app = new Vue({
             this.scrollData['page2__signup--search'] = new scrollClass({
                 classname: classname,
                 height: 270,
-                totalHeight:this.getRem(270),
+                totalHeight:this.getRem(305),
                 space: 0,
                 number: 5.19,
                 one: 52,
@@ -3322,6 +3328,7 @@ app = new Vue({
             this.page2.signup.company = one.companyname;
             this.page2.signup.companyId = one.id;
             this.page2.signupSearchStatus = false;
+            this.page2.companyTips = '';
         },
         searchCompanyEvent:function(){
             var self = this
@@ -3341,9 +3348,10 @@ app = new Vue({
                         var data = result.content || [];
                         if(data.length > 0){
                             self.search_list = data
+                            self.search_tips = ''
                             self.searchStatus = true
                             self.$nextTick(function(){
-                                self.setSearchScroll()
+                                self.setSearchScroll(self.search_list)
                             })
                         }else{
                             self.search_tips = '* 您输入的企业不存在'
