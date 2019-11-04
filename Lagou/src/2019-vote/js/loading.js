@@ -1,14 +1,14 @@
 // JavaScript Document
-var loadingHost = '';
-// var loadingHost = 'https://www.lgstatic.com/activity-rsrc/dist/2019-vote/';
+// var loadingHost = '';
+var loadingHost = 'https://www.lgstatic.com/plat-activity-fed/2019-vote/';
 var imgArray = [
 	loadingHost+"images/loading-bg.png",
 	loadingHost+"images/loading-complete.png",
 	loadingHost+"images/loading-icon.png",
 	loadingHost+"images/loading-title.png",
-	"images/LTe50012.ttf",
-	"images/DIN-Regular.otf",
-	"images/music.mp3",
+	loadingHost+"images/LTe50012.ttf",
+	loadingHost+"images/DIN-Regular.otf",
+	loadingHost+"images/music.mp3",
 	loadingHost+"images/icon-02.png",
 	loadingHost+"images/icon-text.png",
 	loadingHost+"images/icon.png",
@@ -83,16 +83,16 @@ var imgArray = [
 	loadingHost+"images/signup-btn.png",
 
 
-	"images/canvas-ercode-bg.png",
-	"images/canvas-logo-bg.png",
-	"images/canvas-title.png",
-	"images/canvas-top.png",
-	"images/create-share01.png",
-	"images/create-share02.png",
-	"images/create-share03.png",
-	"images/create-share04.png",
-	"images/create-share05.png",
-	"images/create-share06.png"
+	loadingHost+"images/canvas-ercode-bg.png",
+	loadingHost+"images/canvas-logo-bg.png",
+	loadingHost+"images/canvas-title.png",
+	loadingHost+"images/canvas-top.png",
+	loadingHost+"images/create-share01.png",
+	loadingHost+"images/create-share02.png",
+	loadingHost+"images/create-share03.png",
+	loadingHost+"images/create-share04.png",
+	loadingHost+"images/create-share05.png",
+	loadingHost+"images/create-share06.png"
 ];
 var now = 0;
 // jQuery.ajax({
@@ -124,6 +124,7 @@ var Loader = function(){
 				if( /((.png)|(.jpg)|(.jpeg)|(.gif))/g.test(ext)){
 					(function(path){
 						var img = new Image();
+						img.crossOrigin="anonymous";
 						img.onload = function(){
 							loaded ++;
 							// alert('success: '+path);

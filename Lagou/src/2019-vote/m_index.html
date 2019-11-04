@@ -11,7 +11,7 @@
     <meta name="format-detection" content="telphone=no, email=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="stylesheet" href="css/m_index.css?v=223$version$">
+    <link rel="stylesheet" href="./css/m_index.css?v=$version$">
     <!---上线之后加-->
     <title>中国互联网TOP雇主</title>
     <script>
@@ -106,7 +106,7 @@
                 // }
             };
     </script>
-    <script src="js/jquery.1.10.1.min.js?v=$version$"></script>
+    <script src="./js/jquery.1.10.1.min.js?v=$version$"></script>
 </head>
 <body>
     <!-- <div class="loading__bg loading__bg--01"></div>
@@ -120,7 +120,7 @@
         <div class="loading__complete" id="iconLoaded" style="display: none;"></div>
         <div class="loading__num littleBottomIn delay1-0 clearfix" id="loading__num">0%</div>
     </div>
-    <script type="text/javascript" src="js/loading.js?v=223$version$"></script> 
+    <script type="text/javascript" src="./js/loading.js?v=$version$"></script> 
     <div class="wrapper pages hide" id="app">
         <div class="page page0" :class="activePage == 0 ? 'active' : ''">
             <div class="page0__bg opacityChange delay0-5"></div>
@@ -498,10 +498,10 @@
                 <div class="list company-list" ref="company-list">
                     <div class="one" v-if="companyList">
                         <div class="one-center">
-                            <a class="logo-bg" target="_blank"
+                            <div class="logo-bg" target="_blank"
                                 href="javascript:void(0);" :onclick="'self.location=\'https://www.lagou.com/center/company_'+companyList.id+'.html\';'" class="logo" target="_blank" data-link="1" data-lg-tj-id="lg" data-lg-tj-no="" :data-lg-tj-cid="companyList.id">
                                 <img :src="getCompanyLogo(companyList.logo)" class="logo-img" />
-                            </a>
+                            </div>
                             <div class="company-name">{{companyList.companyShortName || companyList.companyName}}</div>
                             <div class="name-line"></div>
                             <div class="page3__list">
@@ -886,7 +886,7 @@
         }
     </script>
     <script type="text/javascript">
-        var baseUrl = 'https://activity.lagou.com/activity/dist/2019-vote/m_index.html';
+        var baseUrl = 'https://activity.lagou.com/activities/2019-vote/m_index.html';
         var randomText = [
                 '我们总是轻言放弃，而登顶之路则是，再来一次。',
                 'TOP之路，一旦开始，就要坚持到底。',
@@ -902,7 +902,7 @@
         var datas = {
             title: "拉勾2019·中国互联网TOP雇主评选",
             desc: "参与投票，送你的企业登上TOP雇主的领奖台", // randomText[shareRandomIndex >= 8 ? 8 : shareRandomIndex],
-            imgUrl: "https://www.lgstatic.com/activity-rsrc/dist/2019-vote/images/share.png",
+            imgUrl: "https://www.lgstatic.com/plat-activity-fed/2019-vote/images/share.png",
             activityType: 'ACTIVITY_H5_VOTE_2019',
             shareUrl:baseUrl
         };
@@ -919,13 +919,10 @@
         }
 
     </script>
-    <!-- <script src="https://www.lgstatic.com/activity/js/swiper.min.js"></script> -->
-    <!-- <script src="https://www.lgstatic.com/activity/js/swiper.animate1.0.2.min.js"></script> -->
-    <script src="js/vue.js?v=$version$"></script> 
-    <script src="js/jquery.qrcode.min.js?v=$version$"></script>
-    <script src="js/m_index.js?v=223$version$"></script>
+    <script src="./js/vue.js?v=$version$"></script> 
+    <script src="./js/jquery.qrcode.min.js?v=$version$"></script>
+    <script src="./js/m_index.js?v=$version$"></script>
     <script type="text/javascript" src="https://www.lgstatic.com/activity/js/analytics.js"></script>
-    <!--<script type="text/javascript" src="http://www.lgstatic.com/topic/js/plat_tj_mobile.js"></script>-->
-    <script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>
+    <script type="text/javascript" src="./js/plat_tj_mobile.js?v=$version$"></script>
 </body>
 </html>

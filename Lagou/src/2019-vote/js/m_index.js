@@ -3,6 +3,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function noop(){}
+var loadingHost = 'https://www.lgstatic.com/plat-activity-fed/2019-vote/';
 var scrollClass = function(options) {
     this.elem = null;
     this.initHeight = 0;
@@ -1388,19 +1389,19 @@ app = new Vue({
         down:0,
         url:'',
         loadingArray:[
-            "images/page2-bg.png",
-            "images/canvas-title.png",
-            "images/canvas-top.png",
-            "images/page0-logo.png",
-            "images/canvas-ercode-bg.png",
-            "images/canvas-logo-bg.png",
+            loadingHost+"images/page2-bg.png",
+            loadingHost+"images/canvas-title.png",
+            loadingHost+"images/canvas-top.png",
+            loadingHost+"images/page0-logo.png",
+            loadingHost+"images/canvas-ercode-bg.png",
+            loadingHost+"images/canvas-logo-bg.png",
 
-            "images/create-share01.png",  // 6
-            "images/create-share02.png",
-            "images/create-share03.png",
-            "images/create-share04.png",
-            "images/create-share05.png",
-            "images/create-share06.png"
+            loadingHost+"images/create-share01.png",  // 6
+            loadingHost+"images/create-share02.png",
+            loadingHost+"images/create-share03.png",
+            loadingHost+"images/create-share04.png",
+            loadingHost+"images/create-share05.png",
+            loadingHost+"images/create-share06.png"
         ],
         shareArr:[{
             w:543,
@@ -2956,6 +2957,7 @@ app = new Vue({
                 self = this;
             this.loadingArray.forEach(function(url){
                 var img = new Image()
+                img.crossOrigin="anonymous";
                 img.onload = function(){
                     self.initImageLoading()
                 }
@@ -3015,12 +3017,13 @@ app = new Vue({
                 self = this;
             if(saveMode == "development"){
                 imgs = [
-                    "images/share.jpg",
-                    "images/share.jpg",
+                    "images/share.png",
+                    "images/share.png",
                 ]
             }
             imgs.forEach(function(url){
                 var img = new Image()
+                img.crossOrigin="anonymous"
                 img.onload = function(){
                     loaded++
                     if(loaded == imgs.length){
@@ -3042,7 +3045,7 @@ app = new Vue({
             // this.drawUserPicture(this.loadedImgs2[0])
             // this.drawUserInfo()
             var index = randomIndex;// shareRandomIndex >= 8 ? 8 : shareRandomIndex;
-            this.ctx.drawImage(this.loadedImgs[5+index],107, 655);
+            this.ctx.drawImage(this.loadedImgs[6+index],107, 655);
             this.drawCompanyLogo(this.loadedImgs2[0]);
             this.drawCompanyInfo()
             this.drawErcode(this.loadedImgs2[1])
@@ -3057,7 +3060,7 @@ app = new Vue({
             },1000)
         },
         drawErcode:function(img){
-            this.ctx.drawImage(img,0,0,img.width,img.height,217,1009,130,130);
+            this.ctx.drawImage(img,0,0,img.width,img.height,216,1009,130,130);
         },
         drawUserPicture:function(img){
             var height = this.getHeight() - RC.h,//RC.w / GC.w * GC.h - RC.h,
@@ -3107,6 +3110,7 @@ app = new Vue({
                 draw(img);
                 var src = temp.toDataURL("image/png"),
                     image = new Image()
+                    img.crossOrigin="anonymous";
                 if(crossStatus){
                     image.setAttribute('crossorigin', 'anonymous');
                 }
@@ -3169,6 +3173,7 @@ app = new Vue({
         // getBase64("https://z649319834.github.io/Learn_Example/video_track/webvtt.jpg")
         getBase64:function(imgUrl,callback) {
             var img = new Image()
+            img.crossOrigin="anonymous";
             img.onload = function(){
                 console.log(this)
             }
@@ -3770,6 +3775,7 @@ function imgGET(params) {
 		server: "https://a.lagou.com/track"
 	};
     var _img = new Image();
+    img.crossOrigin="anonymous";
     paramsArr = [];
     for (var item in params) {
         if (typeof item == "string") {
