@@ -3332,6 +3332,7 @@ app = new Vue({
         },
         searchCompanyEvent:function(){
             var self = this
+            self.showSignupStatus = false;
             if(!this.search_name){
                 this.search_tips = '* 请输入企业名称或企业ID'
                 return
