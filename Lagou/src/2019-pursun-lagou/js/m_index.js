@@ -527,6 +527,8 @@
             loading__num.innerText = Math.round(e.progress) + '%'
         })
     loader.load(function(loader) {
+        var main = document.getElementById('main')
+        main.className = main.className.replace(/( hide)/g, '')
         loader.resources.question.loop = true
         loader.resources.support.loop = true
         loader.resources.question.sound.flag = true
