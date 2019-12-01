@@ -65,7 +65,17 @@
         'images/p4-pcon.png',
         'images/p4-line1.png',
         'images/p4-line2.png',
-        'images/p4-line3.png'
+        'images/p4-line3.png',
+        'images/p5-spread.png',
+        'images/p5-man.png',
+        'images/p5-word1.png',
+        'images/p5-word2.png',
+        'images/p6-bg.png',
+        'images/p6-content-bottom.png',
+        'images/p6-content-top.png',
+        'images/p6-content.png',
+        'images/p6-tips.png',
+        'images/save-bg.png'
     ]
     var spriteSheet = {
         icon: {

@@ -66,7 +66,18 @@
         host + 'images/p4-pcon.png',
         host + 'images/p4-line1.png',
         host + 'images/p4-line2.png',
-        host + 'images/p4-line3.png'
+        host + 'images/p4-line3.png',
+        host + 'images/p4-line3.png',
+        host + 'images/p5-spread.png',
+        host + 'images/p5-man.png',
+        host + 'images/p5-word1.png',
+        host + 'images/p5-word2.png',
+        host + 'images/p6-bg.png',
+        host + 'images/p6-content-bottom.png',
+        host + 'images/p6-content-top.png',
+        host + 'images/p6-content.png',
+        host + 'images/p6-tips.png',
+        host + 'images/save-bg.png'
     ]
     var spriteSheet = {
         icon: {
