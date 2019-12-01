@@ -1,0 +1,726 @@
+@function rem($n){
+    @return $n / (750 / 16) + rem;
+}
+@function rem1080($n){
+    @return $n * (750 / 1080) / (750 / 16) + rem;
+}
+@function v1080($n){
+    @return $n * (750 / 1080);
+}
+@function getTop($n) {
+	@return ($n - 1206 / 2) / (750 / 16) + rem;
+}
+@function getLeft($n) {
+	@return ($n - 750 / 2) / (750 / 16) + rem;
+}
+@function getLeft1080($n) {
+	@return ($n* (750 / 1080) - 750 / 2) / (750 / 16) + rem;
+}
+@function getRight($n) {
+	@return (($n - 750) / 2) / (750 / 16) + rem;
+}
+@mixin center($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: rem($top);
+	margin:0 0 0 getLeft($left);
+}
+@mixin center1080($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: rem1080($top);
+	margin:0 0 0 getLeft1080($left);
+}
+@mixin centerlt($left,$top) {	
+	position:absolute;
+	left:50%;
+	top: 50%;
+	margin:getTop($top) 0 0 getLeft($left);
+}
+@mixin centerr($right,$top) {	
+	position:absolute;
+	right:50%;
+	top: rem($top);
+	margin:0 getRight($right) 0 0;
+}
+@mixin centerb($left,$bottom) {	
+	position:absolute;
+	left:50%;
+	bottom: rem($bottom);
+	margin:0 0 0 getLeft($left);
+}
+@mixin centerb1080($left,$bottom) {	
+	position:absolute;
+	left:50%;
+	bottom: rem1080($bottom);
+	margin:0 0 0 getLeft1080($left);
+}
+@mixin centerrb($right,$bottom) {	
+	position:absolute;
+	right:50%;
+	bottom: rem($bottom);
+	margin:0 getRight($right) 0 0;
+}
+@mixin leftTop($left,$top) {	
+	position:absolute;
+    left:rem($left);
+	top: rem($top);
+}
+@mixin rightTop($right,$top) {	
+	position:absolute;
+    right:rem($right);
+	top: rem($top);
+}
+@mixin leftBottom($left,$bottom) {	
+	position:absolute;
+    left:rem($left);
+	bottom: rem($bottom);
+}
+.clearfix:after{
+    content: "020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+* {
+    margin:0;
+    padding:0;
+}
+ul,ol,li {
+    list-style:none;
+}
+img {
+    display:block;
+}
+a {
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:none;
+}
+@font-face {  
+    font-family: 'gobold';  
+    src:url('../images/Gobold.ttf');
+    font-weight: normal;  
+    font-style: normal;  
+}  
+html,body {
+    width:100%;
+    height:100%;
+    // height:auto;
+    // min-height:100%;
+    font-family: Hiragino Sans GB,Microsoft Yahei,SimSun,Arial,Helvetica Neue,Helvetica;
+    -webkit-font-smoothing: antialiased;
+    // overflow-x: hidden;
+    overflow:hidden;
+    background:#0b1422;
+    -webkit-transform-style: preserve-3d;
+    -webkit-backface-visibility:hidden;
+}
+// body {
+//     height:100%;
+//     min-height:auto;
+// }
+
+.loading {
+    width:100%;
+    height:100%;
+    background:#0b1422;
+    @include leftTop(0, 0);
+    .loading__progress {
+        width: rem(149);
+        height: rem(20);
+        background: url('../images/p4-pbg.png') no-repeat center top;
+        background-size: 100% 100%;
+        @include center((750 - 149) / 2, 730);
+        .progress {
+            width:0;
+            height:rem(20);
+            background: url('../images/p4-pcon.png') no-repeat center top;
+            background-size: rem(149) rem(20);
+            transition: all 0.2s both linear;
+        }
+    }
+    .loading__num {
+        width: 100%;
+        font-size: rem(32);
+        color: #fff;
+        text-align: center;
+        @include leftTop(0, 800);
+    }
+}
+.icon {
+    background-image: url('../images/icon.png');
+    background-repeat: no-repeat;
+    background-size: rem(1024) rem(1024);
+}
+.main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &__start {
+        &__words01,
+        &__words02,
+        &__words03,
+        &__words04 {
+            width: rem(360);
+            height: rem(44);
+            @include center(170, 133);
+        }
+        &__words01 {
+            background-position: 0 0;
+        }
+        &__words02 {
+            background-position: 0 rem(-60);
+            top: rem(133 + 60);
+        }
+        &__words03 {
+            background-position: 0 rem(-120);
+            top: rem(133 + 60 * 2);
+        }
+        &__words04 {
+            background-position: 0 rem(-180);
+            top: rem(133 + 60 * 3);
+        }
+        &__shadow {
+            width: rem(308);
+            height: rem(450);
+            background-position: rem(-410) 0;
+            @include center(168, 429);
+        }
+        &__book {
+            width: rem(314);
+            height: rem(499);
+            background-position: 0 rem(-310);
+            @include center(215, 464);
+        }
+    }
+    canvas {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+#app {
+    width:100%;
+    // height:auto;
+    height:100%;
+    position:relative;
+    // background:#0b1422;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.p5 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    &__bg {
+        width: 100%;
+        height: 100%;
+        background-color: #3875ff;
+        @include leftTop(0, 0);
+    }
+    &__spread {
+        width: rem(1373);
+        height: rem(1958);
+        background: url('../images/p5-spread.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(-312, -182 - 150 - 128);
+    }
+    &__man {
+        width: rem(701);
+        height: rem(700);
+        background: url('../images/p5-man.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(40, 340 - 150 - 128);
+    }
+    &__c1 {
+        width: rem(224);
+        height: rem(93);
+        background: url('../images/p5-c1.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(25, 579 - 150 - 128);
+    }
+    &__c2 {
+        width: rem(268);
+        height: rem(127);
+        background: url('../images/p5-c2.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(477, 954 - 150 - 128);
+    }
+    &__word1 {
+        width: rem(680);
+        height: rem(150);
+        @include center(30, 1153 - 150 - 128);
+        &__w1,
+        &__w2 {
+            width: rem(680);
+            height: rem(66);
+            background: url('../images/p5-word1.png') no-repeat 0 0;
+            background-size: rem(680) rem(133);
+        }
+        &__w1 {
+            @include leftTop(0, 0);
+        }
+        &__w2 {
+            background-position: 0 rem(-72);
+            @include leftTop(0, 72);
+        }
+    }
+    &__word2 {
+        width: rem(509);
+        height: rem(230);
+        @include center(123, 1185 - 150 - 128);
+        &__w1,
+        &__w2,
+        &__w3 {
+            width: rem(509);
+            height: rem(66);
+            background: url('../images/p5-word2.png') no-repeat 0 0;
+            background-size: rem(509) rem(213);
+        }
+        &__w1 {
+            @include leftTop(0, 0);
+        }
+        &__w2 {
+            background-position: 0 rem(-72);
+            @include leftTop(0, 72);
+        }
+        &__w3 {
+            background-position: 0 rem(-151);
+            @include leftTop(0, 151);
+        }
+    }
+    &__tipsParent {
+        width: rem(279);
+        height: rem(296);
+        @include center(245, 842 - 150 - 128);
+    }
+    &__tips {
+        width: rem(279);
+        height: rem(296);
+        background: url('../images/p5-tips.png') no-repeat center top;
+        background-size: 100% 100%;
+    }
+    &__arrowParent {
+        width: rem(69);
+        height: rem(75);
+        @include center(326, 1089 - 150 - 128);
+    }
+    &__arrow {
+        width: rem(69);
+        height: rem(75);
+        background: url('../images/p5-arrow.png') no-repeat center center;
+        background-size: 100% 100%;
+    }
+}
+.p6 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    background:#0b1422;
+    &__bg {
+        &__top,
+        &__left,
+        &__right,
+        &__bottom {
+            background: url('../images/p6-bg.png') no-repeat 0 0;
+            background-size: rem(750) rem(1634);
+        }
+        &__left {
+            width: rem(68);
+            height: 100%;
+            background-position: 0 0;
+            @include leftTop(0, 0);
+        }
+        &__right {
+            width: rem(77);
+            height: 100%;
+            background-position: rem(-673) rem(-39);
+            @include rightTop(0, 39);
+        }
+        &__top {
+            width: 100%;
+            height: rem(39);
+            background-position: rem(-8) 0;
+            @include leftTop(68, 0);
+        }
+        &__bottom {
+            width: rem(605);
+            height: rem(36);
+            background-position: rem(-68) rem(-1598);
+            @include leftBottom(68, 0);
+        }
+    }
+    &__tips {
+        width: rem(491);
+        height: rem(67);
+        background: url('../images/p6-tips.png') no-repeat center top;
+        background-size: 100% 100%;
+        @include center(131, 1067);
+    }
+    &__content {
+        width: rem(464);
+        height: rem(947);
+        @include center(143, 78);
+        &__center {
+            width: 100%;
+            height: 100%;
+            background: url('../images/p6-content.png') no-repeat center center;
+            background-size: rem(464) rem(947);
+            @include leftTop(0, 0);
+        }
+        &__mask1 {
+            width: rem(464);
+            height: rem(473.5);
+            @include leftTop(0, 0);
+            background-color: #0b1422;
+        }
+        &__mask2 {
+            width: rem(464);
+            height: rem(473.5);
+            @include leftBottom(0, 0);
+            background-color: #0b1422;
+        }
+        &__top {
+            width: rem(464);
+            height: rem(33);
+            background: url('../images/p6-content-top.png') no-repeat center center;
+            background-size: 100% 100%;
+            @include leftTop(0, 0);
+        }
+        &__bottom {
+            width: rem(464);
+            height: rem(33);
+            background: url('../images/p6-content-bottom.png') no-repeat center center;
+            background-size: 100% 100%;
+            @include leftBottom(0, 0);
+        }
+        &__title {
+            width: rem(370);
+            line-height: rem(36);
+            @include leftTop(50, 224);
+            font-size: rem(26);
+            color: #fff;
+            text-align:center;
+            word-break: break-all;
+        }
+        &__words {
+            width: rem(130);
+            height: rem(408);
+            @include leftTop(170, 308);
+            img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .spreadOut {
+        .p6__content__mask1, 
+        .p6__content__mask2 {
+            animation: heightToShrink 2s 0.5s both linear;
+        }
+        .p6__content__mask1 {
+            transform-origin: 50% 0;
+        }
+        .p6__content__mask2 {
+            transform-origin: 50% 100%;
+        }
+        .p6__content__top {
+            animation: centerToTop 2s 0.5s both linear;
+        }
+        .p6__content__bottom {
+            animation: centerToBottom 2s 0.5s both linear;
+        }
+    }
+    .spreadKeep {
+        .p6__content__mask1, 
+        .p6__content__mask2 {
+            height: 0;
+        }
+        .p6__content__top {
+            top: 0;
+        }
+        .p6__content__bottom {
+            bottom: 0;
+        }
+    }
+    .spreadInOut {
+        .p6__content__mask1, 
+        .p6__content__mask2 {
+            animation: maskHeightChange 4s both linear;
+        }
+        .p6__content__mask1 {
+            transform-origin: 50% 0;
+        }
+        .p6__content__mask2 {
+            transform-origin: 50% 100%;
+        }
+        .p6__content__top {
+            animation: centerToTopAlter 4s both linear;
+        }
+        .p6__content__bottom {
+            animation: centerToBottomAlter 4s both linear;
+        }
+    }
+    &__canvas {
+        width: rem(750);
+        height: rem(1334);
+        @include center(0, 0);
+        opacity: 0;
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+        &__img {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            @include leftTop(0, 0);
+        }
+    }
+    &__save {
+        width: rem(182);
+        height: rem(62);
+        background: url('../images/p6-save.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(286, 851);
+    }
+    .saveKeep {
+        opacity: 1;
+    }
+    &__more {
+        width: rem(184);
+        height: rem(63);
+        background: url('../images/p6-more.png') no-repeat center center;
+        background-size: 100% 100%;
+        @include center(283, 1175);
+    }
+}
+
+.zoomIn {
+    animation: zoomIn 0.5s 0.5s linear both;
+}
+@keyframes zoomIn {
+    0% {
+        transform: scale3d(0, 0, 0)
+    }
+    100% {
+        transform: scale3d(1, 1, 1)
+    }
+}
+.littleZoomInfinite {
+    animation: littleZoomInfinite 1s 0.5s linear both infinite alternate;
+}
+@keyframes littleZoomInfinite {
+    0% {
+        transform: scale3d(1, 1, 1)
+    }
+    100% {
+        transform: scale3d(1.05, 1.05, 1.05)
+    }
+}
+.blinkRotate {
+    animation: blinkRotate 0.5s steps(1, end) both infinite;
+}
+@keyframes blinkRotate {
+    0%, 100% {
+        transform: rotateZ(0);
+    }
+    50% {
+        transform: rotateZ(5deg);
+    }
+}
+.leftToOut {
+    animation: leftToOut 5s 0.5s linear both;
+}
+@keyframes leftToOut {
+    0% {
+        transform: translate3d(0, 0, 0)
+    }
+    100% {
+        transform: translate3d(750px, 0, 0)
+    }
+}
+.rightToOut {
+    animation: rightToOut 5s 0.5s linear both;
+}
+@keyframes rightToOut {
+    0% {
+        transform: translate3d(0, 0, 0)
+    }
+    100% {
+        transform: translate3d(-750px, 0, 0)
+    }
+}
+.littleBottomIn {
+    animation: littleBottomIn 1s 0.5s linear both;
+}
+@keyframes littleBottomIn {
+    0% {
+        transform: translate3d(0, 50px, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+.opacityChange {
+    animation: opacityChange 0.5s 0.5s linear both;
+}
+@keyframes opacityChange {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.opacityChangeOut {
+    animation: opacityChangeOut 0.5s 0.5s linear both;
+}
+@keyframes opacityChangeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.moveUpDown {
+    animation: moveUpDown 1s 0.5s linear both infinite alternate;
+}
+@keyframes moveUpDown {
+    0% {
+        transform: translate3d(0, 10px, 0);
+    }
+    100% {
+        transform: translate3d(0, -10px, 0);
+    }
+}
+@keyframes heightToShrink {
+    0% {
+        transform: scaleY(1);
+    }
+    100% {
+        transform: scaleY(0);
+    }
+}
+@keyframes maskHeightChange {
+    0%, 100% {
+        transform: scaleY(0);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+@keyframes centerToTop {
+    0% {
+        transform: translate3d(0, rem(440), 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes centerToTopAlter {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, rem(440), 0);
+    }
+}
+@keyframes centerToBottom {
+    0% {
+        transform: translate3d(0, rem(-440), 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes centerToBottomAlter {
+    0%, 100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(0, rem(-440), 0);
+    }
+}
+.spreadOpacity {
+    animation: spreadOpacity 2s 0.5s both linear;
+}
+@keyframes spreadOpacity {
+    0%, 75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.spreadOpacityAlter {
+    animation: spreadOpacityAlter 4s both linear;
+}
+@keyframes spreadOpacityAlter {
+    0%, 100% {
+        opacity: 1;
+    }
+    12.5%, 87.5% {
+        opacity: 0;
+    }
+}
+
+.delay0-5 {
+    animation-delay: 0.5s;
+}
+.delay1-0 {
+    animation-delay: 1s;
+}
+.delay1-3 {
+    animation-delay: 1.3s;
+}
+.delay2-5 {
+    animation-delay: 2.5s;
+}
+.delay3-0 {
+    animation-delay: 3.0s;
+}
+.delay3-3 {
+    animation-delay: 3.3s;
+}
+.delay3-5 {
+    animation-delay: 3.5s;
+}
+.delay3-6 {
+    animation-delay: 3.6s;
+}
+.delay4-0 {
+    animation-delay: 4.0s;
+}
+.delay4-3 {
+    animation-delay: 4.3s;
+}
+.delay4-5 {
+    animation-delay: 4.5s;
+}
+.delay4-6 {
+    animation-delay: 4.6s;
+}
+.hide {
+    display:none;
+}
