@@ -1334,15 +1334,15 @@
             spriteBox.line3.mask.width = 388
         }
         if (move > first + 850) {
-            if (move < first + 930) {
-                spriteBox.q4w3.alpha = scrollTo(first + 850, first + 930, move, 1, 0)
-            } else if (move <  first + 1010) {
+            if (move < first + 900) {
+                spriteBox.q4w3.alpha = scrollTo(first + 850, first + 900, move, 1, 0)
+            } else if (move <  first + 950) {
                 spriteBox.q4w3.alpha = 0
-                spriteBox.q4w2.alpha = scrollTo(first + 930, first + 1010, move, 1, 0)
-            } else if (move < first + 1090) {
+                spriteBox.q4w2.alpha = scrollTo(first + 900, first + 950, move, 1, 0)
+            } else if (move < first + 1000) {
                 spriteBox.q4w3.alpha = 0
                 spriteBox.q4w2.alpha = 0
-                spriteBox.q4w1.alpha = scrollTo(first + 1010, first + 1090, move, 1, 0)
+                spriteBox.q4w1.alpha = scrollTo(first + 950, first + 1000, move, 1, 0)
             } else {
                 spriteBox.q4w3.alpha = 0
                 spriteBox.q4w2.alpha = 0
