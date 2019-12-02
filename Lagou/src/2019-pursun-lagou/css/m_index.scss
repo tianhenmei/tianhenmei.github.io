@@ -134,17 +134,85 @@ html,body {
     background:#0b1422;
     @include leftTop(0, 0);
     .loading__progress {
-        width: rem(149);
-        height: rem(20);
-        background: url('../images/p4-pbg.png') no-repeat center top;
+        width: rem(162);
+        height: rem(162);
+        background: url('../images/loading-pbg.png') no-repeat center top;
         background-size: 100% 100%;
-        @include center((750 - 149) / 2, 730);
+        @include center((750 - 162) / 2, 530);
         .progress {
             width:0;
             height:rem(20);
             background: url('../images/p4-pcon.png') no-repeat center top;
             background-size: rem(149) rem(20);
             transition: all 0.2s both linear;
+            opacity: 0;
+        }
+        .circle__content {
+            width: rem(162);
+            height: rem(162);
+            @include leftTop(0, 0);
+        }
+        .draw-circle1 {
+            width: rem(162);
+            height: rem(162);
+            @include leftTop(0, 0);
+        }
+        .draw-circle2 {
+            width: rem(134);
+            height: rem(134);
+            @include leftTop((162 - 134) / 2, (162 - 134) / 2);
+        }
+        .draw-circle3 {
+            width: rem(107);
+            height: rem(107);
+            @include leftTop((162 - 107) / 2, (162 - 107) / 2);
+        }
+        .draw-circle4 {
+            width: rem(78);
+            height: rem(78);
+            @include leftTop((162 - 78) / 2, (162 - 78) / 2);
+        }
+        .draw-circle5 {
+            width: rem(50);
+            height: rem(50);
+            @include leftTop((162 - 50) / 2, (162 - 50) / 2);
+        }
+        .draw-circle6 {
+            width: rem(23);
+            height: rem(22);
+            @include leftTop((162 - 23) / 2, (162 - 22) / 2);
+            background: url(../images/loading-c6.png) no-repeat center center;
+            background-size: 100% 100%;
+        }
+        .circle-transform {
+            transform-origin: 50% 50%;
+            // transform: scaleX(-1) rotateZ(-90deg); 
+        }
+    }
+    .loading__ani {
+        width: rem(194);
+        height: rem(422);
+        @include center((750 - 162) / 2, 530);
+        .circle__complete {
+            width: rem(162);
+            height: rem(162);
+            @include leftTop(0, 0);
+            background: url('../images/loading-com.png') no-repeat center top;
+            background-size: 100% 100%;
+        }
+        .loading__hand {
+            width: rem(107);
+            height: rem(134);
+            @include leftTop(79, 144);
+            background: url('../images/loading-hand.png') no-repeat center top;
+            background-size: 100% 100%;
+        }
+        .loading__words {
+            width: rem(106);
+            height: rem(44);
+            @include leftTop(28, 365);
+            background: url('../images/loading-btn.png') no-repeat center top;
+            background-size: 100% 100%;
         }
     }
     .loading__num {
@@ -152,7 +220,7 @@ html,body {
         font-size: rem(32);
         color: #fff;
         text-align: center;
-        @include leftTop(0, 800);
+        @include leftTop(0, 730);
     }
 }
 .icon {
@@ -535,6 +603,17 @@ html,body {
         transform: scale3d(1.05, 1.05, 1.05)
     }
 }
+.littleHandMove {
+    animation: littleHandMove 1s 0.5s linear both infinite alternate;
+}
+@keyframes littleHandMove {
+    0% {
+        transform: translate3d(0, 10px, 0)
+    }
+    100% {
+        transform: translate3d(0, -10px, 0)
+    }
+}
 .blinkRotate {
     animation: blinkRotate 0.5s steps(1, end) both infinite;
 }
@@ -596,6 +675,17 @@ html,body {
     animation: opacityChangeOut 0.5s 0.5s linear both;
 }
 @keyframes opacityChangeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.opacityChangeOut0 {
+    animation: opacityChangeOut0 0.5s linear both;
+}
+@keyframes opacityChangeOut0 {
     0% {
         opacity: 1;
     }
@@ -684,7 +774,20 @@ html,body {
         opacity: 0;
     }
 }
+.mapSvgDraw {
+    animation: mapSvgDraw 0.5s linear both;
+}
+  
+@keyframes mapSvgDraw {
+    0% { }
+    100% {
+      stroke-dashoffset: 0; 
+    } 
+}
 
+.delay0 {
+    animation-delay: 0s;
+}
 .delay0-5 {
     animation-delay: 0.5s;
 }

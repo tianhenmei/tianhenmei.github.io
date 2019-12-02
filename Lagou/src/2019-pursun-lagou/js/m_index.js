@@ -527,28 +527,48 @@
     // 预加载
     var loader = new PIXI.loaders.Loader();
     loader.add(imgArr)
-        .add("support", host + "images/support-music.mp3")
-        .add("open", host + "images/open-music.mp3")
-        .add("question", host + "images/question-music.mp3")
+    .add("support", host + "images/support-music.mp3")
+    .add("open", host + "images/open-music.mp3")
+    .add("question", host + "images/question-music.mp3")
         .onProgress.add(function(e){
             var loading__num = document.getElementById('loading__num')
             var progress = document.getElementById('progress')
             progress.style.width = Math.round(e.progress) + '%'
             loading__num.innerText = Math.round(e.progress) + '%'
+            var ct = $('.circle-transform')
+            var arr = [
+                495, 405, 320, 228, 136
+            ]
+            var i = 0
+            for ( i = 0; i < ct.length; i++) {
+                ct.eq(i).css({
+                    'stroke-dashoffset': arr[i] * (100 - e.progress) / 100 + ''
+                })
+            }
         })
     loader.load(function(loader) {
-        var main = document.getElementById('main')
-        main.className = main.className.replace(/( hide)/g, '')
-        loader.resources.question.loop = true
-        loader.resources.support.loop = true
-        loader.resources.question.sound.flag = true
-        loader.resources.support.sound.flag = true
-        loader.resources.open.sound.flag = true
-        if (isWeiXin()) {
-            getUserWeixinData()   
-        }
-        initCanvas()
-        setup()
+        var loading__ani = document.getElementById('loading__ani')
+        var loading__num = document.getElementById('loading__num')
+        loading__ani.className = loading__ani.className.replace(/( hide)/g, '')
+        loading__num.className += ' opacityChangeOut0'
+
+        loading__ani.addEventListener('click', function() {
+            document.getElementById('loading').className = 'loading opacityChangeOut0'
+            setTimeout(function() {
+                var main = document.getElementById('main')
+                main.className = main.className.replace(/( hide)/g, '')
+                loader.resources.question.loop = true
+                loader.resources.support.loop = true
+                loader.resources.question.sound.flag = true
+                loader.resources.support.sound.flag = true
+                loader.resources.open.sound.flag = true
+                if (isWeiXin()) {
+                    getUserWeixinData()   
+                }
+                initCanvas()
+                setup()
+            }, 500)
+        }, false)
     })
     // 创建元素容器，类似 ‘组’概练，Container可以嵌套Container
     var container = new PIXI.Container()
@@ -645,11 +665,15 @@
                 if (move > 250) {
                     scrollPart2(move)
                 }
-            } else if(move < 1109) {
+            } else if(move < 1409) {
+                scrollPart1(move, true)
                 scrollPart2(move)
-            } else if(move < 3409) {
+            } else if(move < 3509) {
                 scrollPart3(move)
             } else if (move < 4800) {
+                var icon2 = spriteSheet.icon2
+                var first = 1209
+                spriteBox.run.y = -(move - first - 2000) * 0.1 + scrollTo(first + 1700, first + 2000, first + 2000, icon2.run.options.y + icon2.run.position.h / 2, icon2.run.options.y + icon2.run.position.h / 2 + 200)
                 scrollPart4(move)
             }
         })
@@ -1092,7 +1116,7 @@
         container.addChild(part4)
     }
      
-    function scrollPart1(move) {
+    function scrollPart1(move, scaleStatus) {
         var icon = spriteSheet.icon
         var arr = [
             's1', 's2', 's3', 's4', 's5', 's6', 's7', 's8', 's9', 's10',
@@ -1112,7 +1136,7 @@
                     spriteBox[arr[i]][j] = scrollTo(tempM[j].min, tempM[j].max, move * tempM[j].speed, temp.options[j] + tempM[j].gap, temp.options[j])
                 }
             }
-            if (tempS) {
+            if (tempS && !scaleStatus) {
                 for (j in tempS) {
                     spriteBox[arr[i]].scale[j] = scrollTo(tempS[j].min, tempS[j].max, move * tempS[j].speed, tempS[j].start, tempS[j].end)
                 }
@@ -1156,7 +1180,7 @@
         //     spriteBox[arr[i]].y = scrollTo(472, 1109, move, 0, 1)
         // }
         spriteBox['part2'].alpha = scrollTo(250, 472 + 200, move, 0, 1)
-        if (move > 472) {
+        if (move > 472 && move < 1109) {
             spriteBox['person'].x = scrollTo(472, 1109, move, 562 + 60, 562 - 110)
             spriteBox['person'].y = scrollTo(472, 1109, move, 297 + 50, 297 - 50)
         }
@@ -1175,44 +1199,48 @@
         if (move < 472) {
             spriteBox['p2w1'].alpha = 0
         }
-        if (move < max1) {
-            y = icon.p2w1.options.y + icon.p2w1.position.h / 2
-            // spriteBox['p2w1'].scale.x = scrollTo(472, max1, move, 0, 1)
-            // spriteBox['p2w1'].scale.y = scrollTo(472, max1, move, 0, 1)
-            spriteBox['p2w1'].y = scrollTo(472, max1, move, y - 200, y)
-            spriteBox['p2w1'].alpha = scrollTo(472, max1, move, 0, 1)
-
-            // spriteBox['p2w2'].scale.x = 0
-            // spriteBox['p2w2'].scale.y = 0
-            spriteBox['p2w2'].alpha = 0
-        } else if (move < max2) {
-            y = icon.p2w2.options.y + icon.p2w2.position.h / 2
-            // spriteBox['p2w2'].scale.x = scrollTo(472, max2, move, 0, 1)
-            // spriteBox['p2w2'].scale.y = scrollTo(472, max2, move, 0, 1)
-            spriteBox['p2w2'].y = scrollTo(472, max2, move, y + 200, y)
-            spriteBox['p2w2'].alpha = scrollTo(472, max2, move, 0, 1)
+        if (move < 1109) {
+            if (move < max1) {
+                y = icon.p2w1.options.y + icon.p2w1.position.h / 2
+                // spriteBox['p2w1'].scale.x = scrollTo(472, max1, move, 0, 1)
+                // spriteBox['p2w1'].scale.y = scrollTo(472, max1, move, 0, 1)
+                spriteBox['p2w1'].y = scrollTo(472, max1, move, y - 200, y)
+                spriteBox['p2w1'].alpha = scrollTo(472, max1, move, 0, 1)
+    
+                // spriteBox['p2w2'].scale.x = 0
+                // spriteBox['p2w2'].scale.y = 0
+                spriteBox['p2w2'].alpha = 0
+            } else if (move < max2) {
+                y = icon.p2w2.options.y + icon.p2w2.position.h / 2
+                // spriteBox['p2w2'].scale.x = scrollTo(472, max2, move, 0, 1)
+                // spriteBox['p2w2'].scale.y = scrollTo(472, max2, move, 0, 1)
+                spriteBox['p2w2'].y = scrollTo(472, max2, move, y + 200, y)
+                spriteBox['p2w2'].alpha = scrollTo(472, max2, move, 0, 1)
+            }
         }
-        spriteBox['man'].x = scrollTo(472, 1109, move, 368 + 500, 368)
-        spriteBox['ya'].scale.x = scrollTo(472, 1109, move, 0, 1)
-        spriteBox['ya'].scale.y = scrollTo(472, 1109, move, 0, 1)
+        spriteBox['man'].x = scrollTo(472 + 300, 1409, move, 368 + 500, 368)
+        spriteBox['ya'].scale.x = scrollTo(472 + 300, 1409, move, 0, 1)
+        spriteBox['ya'].scale.y = scrollTo(472 + 300, 1409, move, 0, 1)
 
-        spriteBox['p2w3'].alpha = scrollTo(472 + 400, 1109, move, 0, 1)
+        spriteBox['p2w3'].alpha = scrollTo(472 + 300 + 400, 1409, move, 0, 1)
     }
 
     function scrollPart3(move) {
         var icon = spriteSheet.icon
         var icon2 = spriteSheet.icon2
 
-        if (move > 1109 + 200) {
+        var first = 1209
+
+        if (move > first + 200) {
             spriteBox.rainbow.mask.scale.y = 1
-            spriteBox.rainbow.mask.height = scrollTo(1109 + 200, 2609, move, 0, 1399)
-            spriteBox.g1.alpha = scrollTo(1109 + 200, 1109 + 400, move, 0, 1)
-            spriteBox.m1.alpha = scrollTo(1109 + 400, 1109 + 600, move, 0, 1)
-            spriteBox.g2.alpha = scrollTo(1109 + 600, 1109 + 800, move, 0, 1)
-            spriteBox.m2.alpha = scrollTo(1109 + 800, 1109 + 1000, move, 0, 1)
-            spriteBox.g3.alpha = scrollTo(1109 + 1000, 1109 + 1200, move, 0, 1)
-            spriteBox.m3.alpha = scrollTo(1109 + 1200, 1109 + 1400, move, 0, 1)
-            if (move < 1109 + 2000) {
+            spriteBox.rainbow.mask.height = scrollTo(first + 200, 2609, move, 0, 1399)
+            spriteBox.g1.alpha = scrollTo(first + 200, first + 400, move, 0, 1)
+            spriteBox.m1.alpha = scrollTo(first + 400, first + 600, move, 0, 1)
+            spriteBox.g2.alpha = scrollTo(first + 600, first + 800, move, 0, 1)
+            spriteBox.m2.alpha = scrollTo(first + 800, first + 1000, move, 0, 1)
+            spriteBox.g3.alpha = scrollTo(first + 1000, first + 1200, move, 0, 1)
+            spriteBox.m3.alpha = scrollTo(first + 1200, first + 1400, move, 0, 1)
+            if (move < first + 2000) {
                 if (!loader.resources.question.sound.isPlaying && loader.resources.question.sound.flag && musicOn) {
                     loader.resources.question.sound.play()
                     loader.resources.question.sound.flag = false
@@ -1222,94 +1250,105 @@
                 loader.resources.question.sound.pause()
             }
 
-            if (move < 1109 + 500 && move > 1109 + 300) {
-                spriteBox.g1w.scale.x = scrollTo(1109 + 300, 1109 + 500, move, 0, 1)
-                spriteBox.g1w.scale.y = scrollTo(1109 + 300, 1109 + 500, move, 0, 1)
+            if (move < first + 500 && move > first + 300) {
+                spriteBox.g1w.scale.x = scrollTo(first + 300, first + 500, move, 0, 1)
+                spriteBox.g1w.scale.y = scrollTo(first + 300, first + 500, move, 0, 1)
             }
-            if (move < 1109 + 700 && move > 1109 + 500) {
-                spriteBox.m1w.scale.x = scrollTo(1109 + 500, 1109 + 700, move, 0, 1)
-                spriteBox.m1w.scale.y = scrollTo(1109 + 500, 1109 + 700, move, 0, 1)
-            }
-
-            if (move < 1109 + 900 && move > 1109 + 700) {
-                spriteBox.g2w.scale.x = scrollTo(1109 + 700, 1109 + 900, move, 0, 1)
-                spriteBox.g2w.scale.y = scrollTo(1109 + 700, 1109 + 900, move, 0, 1)
-            }
-            if (move <  1109 + 1100 && move > 1109 + 900) {
-                spriteBox.m2w.scale.x = scrollTo(1109 + 900, 1109 + 1100, move, 0, 1)
-                spriteBox.m2w.scale.y = scrollTo(1109 + 900, 1109 + 1100, move, 0, 1)
+            if (move < first + 700 && move > first + 500) {
+                spriteBox.m1w.scale.x = scrollTo(first + 500, first + 700, move, 0, 1)
+                spriteBox.m1w.scale.y = scrollTo(first + 500, first + 700, move, 0, 1)
             }
 
-            if (move < 1109 + 1300 && move > 1109 + 1100) {
-                spriteBox.g3w.scale.x = scrollTo(1109 + 1100, 1109 + 1300, move, 0, 1)
-                spriteBox.g3w.scale.y = scrollTo(1109 + 1100, 1109 + 1300, move, 0, 1)
+            if (move < first + 900 && move > first + 700) {
+                spriteBox.g2w.scale.x = scrollTo(first + 700, first + 900, move, 0, 1)
+                spriteBox.g2w.scale.y = scrollTo(first + 700, first + 900, move, 0, 1)
             }
-            if (move < 1109 + 1500 && move > 1109 + 1300) {
-                spriteBox.m3w.scale.x = scrollTo(1109 + 1300, 1109 + 1500, move, 0, 1)
-                spriteBox.m3w.scale.y = scrollTo(1109 + 1300, 1109 + 1500, move, 0, 1)
+            if (move <  first + 1100 && move > first + 900) {
+                spriteBox.m2w.scale.x = scrollTo(first + 900, first + 1100, move, 0, 1)
+                spriteBox.m2w.scale.y = scrollTo(first + 900, first + 1100, move, 0, 1)
+            }
+
+            if (move < first + 1300 && move > first + 1100) {
+                spriteBox.g3w.scale.x = scrollTo(first + 1100, first + 1300, move, 0, 1)
+                spriteBox.g3w.scale.y = scrollTo(first + 1100, first + 1300, move, 0, 1)
+            }
+            if (move < first + 1500 && move > first + 1300) {
+                spriteBox.m3w.scale.x = scrollTo(first + 1300, first + 1500, move, 0, 1)
+                spriteBox.m3w.scale.y = scrollTo(first + 1300, first + 1500, move, 0, 1)
             }
             var len = 14
             var i = 0
             for (i = 1; i < len + 1; i++) {
-                if (move > 1109 + 1500 + 35 * (i - 1) && move < 1109 + 1500 + 35 * i) {
+                if (move > first + 1500 + 35 * (i - 1) && move < first + 1500 + 35 * i) {
                     spriteBox['ball' + i].alpha = 1
                 } else {
                     spriteBox['ball' + i].alpha = 0
                 }
             }
-            if (move >= 1109 + 1500 + 35 * 14) {
+            if (move >= first + 1500 + 35 * 14) {
                 spriteBox['ball14'].alpha = 1
             }
-            if (move < 1109 + 2000 && move > 1109 + 1700) {
-                spriteBox.run.scale.x = scrollTo(1109 + 1700, 1109 + 2000, move, 1, 0.3)
-                spriteBox.run.scale.y = scrollTo(1109 + 1700, 1109 + 2000, move, 1, 0.3)
-                spriteBox.run.y = scrollTo(1109 + 1700, 1109 + 2000, move, icon2.run.options.y + icon2.run.position.h / 2, icon2.run.options.y + icon2.run.position.h / 2 + 200)
+            if (move < first + 2000 && move > first + 1700) {
+                spriteBox.run.scale.x = scrollTo(first + 1700, first + 2000, move, 1, 0.3)
+                spriteBox.run.scale.y = scrollTo(first + 1700, first + 2000, move, 1, 0.3)
+                spriteBox.run.y = scrollTo(first + 1700, first + 2000, move, icon2.run.options.y + icon2.run.position.h / 2, icon2.run.options.y + icon2.run.position.h / 2 + 200)
+            }
+            if (move > first + 2000) {
+                spriteBox.run.y = -(move - first - 2000) * 0.1 + scrollTo(first + 1700, first + 2000, first + 2000, icon2.run.options.y + icon2.run.position.h / 2, icon2.run.options.y + icon2.run.position.h / 2 + 200)
             }
             // 小勾同情
-            if (move < 1109 + 2200 && move > 1109 + 2000) {
-                spriteBox.xgou.x = scrollTo(1109 + 2000, 1109 + 2200, move, 127 - 50, 127)
-                spriteBox.le.x = scrollTo(1109 + 2000, 1109 + 2200, move, 127 - 50 + 161 + icon2.le.position.w / 2, 127 + 161 + icon2.le.position.w / 2)
-                spriteBox.re.x = scrollTo(1109 + 2000, 1109 + 2200, move, 127 - 50 + 202 + icon2.re.position.w / 2, 127 + 202 + icon2.re.position.w / 2)
+            if (move < first + 2200 && move > first + 2000) {
+                spriteBox.xgou.x = scrollTo(first + 2000, first + 2200, move, 127 - 50, 127)
+                spriteBox.le.x = scrollTo(first + 2000, first + 2200, move, 127 - 50 + 161 + icon2.le.position.w / 2, 127 + 161 + icon2.le.position.w / 2)
+                spriteBox.re.x = scrollTo(first + 2000, first + 2200, move, 127 - 50 + 202 + icon2.re.position.w / 2, 127 + 202 + icon2.re.position.w / 2)
 
-                spriteBox.tq1.x = scrollTo(1109 + 2000, 1109 + 2200, move, icon2.tq1.options.x + 200, icon2.tq1.options.x)
+                spriteBox.tq1.x = scrollTo(first + 2000, first + 2200, move, icon2.tq1.options.x + 200, icon2.tq1.options.x)
             }
-            if (move < 1109 + 2300 && move > 1109 + 2100) {
-                spriteBox.tq2.x = scrollTo(1109 + 2100, 1109 + 2300, move, icon2.tq2.options.x + 300, icon2.tq2.options.x)
+            if (move < first + 2300 && move > first + 2100) {
+                spriteBox.tq2.x = scrollTo(first + 2100, first + 2300, move, icon2.tq2.options.x + 300, icon2.tq2.options.x)
             }
         }
     }
 
     function scrollPart4(move) {
         var icon2 = spriteSheet.icon2
+        var first = 3509
         
-        if (move < 3409 + 100) {
-            spriteBox.q4w1.alpha = scrollTo(3409, 3409 + 100, move, 0, 1)
-        } else if (move < 3409 + 200) {
-            spriteBox.q4w2.alpha = scrollTo(3409 + 100, 3409 + 200, move, 0, 1)
-        } else if (move < 3409 + 300) {
-            spriteBox.q4w3.alpha = scrollTo(3409 + 200, 3409 + 300, move, 0, 1)
-        } else if (move < 3409 + 550) {
-            spriteBox.line1.mask.width = scrollTo(3409 + 300, 3409 + 550, move, 0, 388)
-            spriteBox.q4w3.alpha = scrollTo(3409 + 300, 3409 + 550, move, 1, 0)
-        } else if (move < 3409 + 810) {
+        if (move < first + 100) {
+            spriteBox.q4w1.alpha = scrollTo(first, first + 100, move, 0, 1)
+        } else if (move < first + 200) {
+            spriteBox.q4w2.alpha = scrollTo(first + 100, first + 200, move, 0, 1)
+        } else if (move < first + 300) {
+            spriteBox.q4w3.alpha = scrollTo(first + 200, first + 300, move, 0, 1)
+        } else if (move < first + 550) {
+            spriteBox.line1.mask.width = scrollTo(first + 300, first + 550, move, 0, 388)
+        } else if (move < first + 810) {
             spriteBox.line1.mask.width = 388
-            spriteBox.line2.mask.height = scrollTo(3409 + 550, 3409 + 810, move, 0, 193)
-            spriteBox.q4w3.alpha = 0
-            spriteBox.q4w2.alpha = scrollTo(3409 + 550, 3409 + 810, move, 1, 0)
-        } else if (move < 3409 + 1050) {
+            spriteBox.line2.mask.height = scrollTo(first + 550, first + 810, move, 0, 193)
+        } else if (move < first + 1050) {
             spriteBox.line1.mask.width = 388
             spriteBox.line2.mask.height = 193
-            spriteBox.line3.mask.width = scrollTo(3409 + 810, 3409 + 1050, move, 0, 388)
-            spriteBox.q4w3.alpha = 0
-            spriteBox.q4w2.alpha = 0
-            spriteBox.q4w1.alpha = scrollTo(3409 + 810, 3409 + 1050, move, 1, 0)
-        } else {
+            spriteBox.line3.mask.width = scrollTo(first + 810, first + 1050, move, 0, 388)
+        } else if (move > first + 1050){
             spriteBox.line1.mask.width = 388
             spriteBox.line2.mask.height = 193
             spriteBox.line3.mask.width = 388
-            spriteBox.q4w3.alpha = 0
-            spriteBox.q4w2.alpha = 0
-            spriteBox.q4w1.alpha = 0
+        }
+        if (move > first + 850) {
+            if (move < first + 930) {
+                spriteBox.q4w3.alpha = scrollTo(first + 850, first + 930, move, 1, 0)
+            } else if (move <  first + 1010) {
+                spriteBox.q4w3.alpha = 0
+                spriteBox.q4w2.alpha = scrollTo(first + 930, first + 1010, move, 1, 0)
+            } else if (move < first + 1090) {
+                spriteBox.q4w3.alpha = 0
+                spriteBox.q4w2.alpha = 0
+                spriteBox.q4w1.alpha = scrollTo(first + 1010, first + 1090, move, 1, 0)
+            } else {
+                spriteBox.q4w3.alpha = 0
+                spriteBox.q4w2.alpha = 0
+                spriteBox.q4w1.alpha = 0
+            }
         }
     }
 
@@ -1448,20 +1487,21 @@
         var p6__save = document.getElementById('p6__save')
         var status = false
         p6__more.addEventListener('click', function() {
-            if (status) {
-                return
-            }
-            status = true
-            p6__content.className = p6__content.className.replace(/( spreadOut)|( spreadKeep)/g, '') + ' spreadInOut'
-            p6__save.className = p6__save.className.replace(/( spreadOpacity)|( spreadKeep)/g, '') + ' spreadOpacityAlter'
-            setTimeout(function() {
-                drawPicture()
-            }, 2000)
-            setTimeout(function() {
-                p6__content.className = p6__content.className.replace(/( spreadInOut)/g, ' spreadKeep')
-                p6__save.className = p6__save.className.replace(/( spreadOpacityAlter)/g, ' saveKeep')
-                status = false
-            }, 4000)
+            window.location.href = 'https://activity.lagou.com/topic/2019topguzhu.html'
+            // if (status) {
+            //     return
+            // }
+            // status = true
+            // p6__content.className = p6__content.className.replace(/( spreadOut)|( spreadKeep)/g, '') + ' spreadInOut'
+            // p6__save.className = p6__save.className.replace(/( spreadOpacity)|( spreadKeep)/g, '') + ' spreadOpacityAlter'
+            // setTimeout(function() {
+            //     drawPicture()
+            // }, 2000)
+            // setTimeout(function() {
+            //     p6__content.className = p6__content.className.replace(/( spreadInOut)/g, ' spreadKeep')
+            //     p6__save.className = p6__save.className.replace(/( spreadOpacityAlter)/g, ' saveKeep')
+            //     status = false
+            // }, 4000)
         }, false)
     }
 

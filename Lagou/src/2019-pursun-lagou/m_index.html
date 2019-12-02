@@ -13,10 +13,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-    <title>追光者</title>
+    <title>来自2020年的锦囊 by 拉勾</title>
     <!-- <link rel="prefetch" href="images/loading_bg.jpg" />  -->
     <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
-    <link rel="stylesheet" href="https://www.lgstatic.com/plat-activity-fed/2019-pursun/css/m_index.css?v=$version$">
+    <link rel="stylesheet" href="./css/m_index.css?v=$version$">
     <script type="text/javascript">
         function getQueryString(parm){
             var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
@@ -83,8 +83,82 @@
 <div class="loading" id="loading">
     <div class="loading__progress" id="loading__progress">
         <div class="progress" id="progress"></div>
+        <div class="circle__content" id="circle__content">
+            <div class="draw-circle draw-circle1">
+                <svg width="100%" height="100%" viewbox="0 0 162 162" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="fill-img1" patternUnits="userSpaceOnUse" width="162" height="162">
+                        <image class="img-transform" xlink:href="./images/loading-c1.png"
+                            x="0" y="0" width="162" height="162">
+                        </image>
+                        </pattern>
+                    </defs>
+                    <!--  mapSvgDraw delay1-0 -->
+                    <circle class="circle-transform" fill="none" stroke="url(#fill-img1)" stroke-width="26" stroke-miterlimit="1" cx="81" cy="81" r="81" 
+                            stroke-dasharray="495 1000" stroke-dashoffset="495" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="draw-circle draw-circle2">
+                <svg width="100%" height="100%" viewbox="0 0 134 134" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="fill-img2" patternUnits="userSpaceOnUse" width="134" height="134">
+                        <image class="img-transform" xlink:href="./images/loading-c2.png"
+                            x="0" y="0" width="134" height="134">
+                        </image>
+                        </pattern>
+                    </defs>
+                    <circle class="circle-transform" fill="none" stroke="url(#fill-img2)" stroke-width="26" stroke-miterlimit="1" cx="67" cy="67" r="67" 
+                            stroke-dasharray="405 1000" stroke-dashoffset="405" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="draw-circle draw-circle3">
+                <svg width="100%" height="100%" viewbox="0 0 107 107" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="fill-img3" patternUnits="userSpaceOnUse" width="107" height="107">
+                        <image class="img-transform" xlink:href="./images/loading-c3.png"
+                            x="0" y="0" width="107" height="107">
+                        </image>
+                        </pattern>
+                    </defs>
+                    <circle class="circle-transform" fill="none" stroke="url(#fill-img3)" stroke-width="26" stroke-miterlimit="1" cx="53.5" cy="53.5" r="53.5" 
+                            stroke-dasharray="320 1000" stroke-dashoffset="320" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="draw-circle draw-circle4">
+                <svg width="100%" height="100%" viewbox="0 0 78 78" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="fill-img4" patternUnits="userSpaceOnUse" width="78" height="78">
+                        <image class="img-transform" xlink:href="./images/loading-c4.png"
+                            x="0" y="0" width="78" height="78">
+                        </image>
+                        </pattern>
+                    </defs>
+                    <circle class="circle-transform" fill="none" stroke="url(#fill-img4)" stroke-width="26" stroke-miterlimit="1" cx="39" cy="39" r="39" 
+                            stroke-dasharray="228 1000" stroke-dashoffset="228" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="draw-circle draw-circle5">
+                <svg width="100%" height="100%" viewbox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <pattern id="fill-img5" patternUnits="userSpaceOnUse" width="50" height="50">
+                        <image class="img-transform" xlink:href="./images/loading-c5.png"
+                            x="0" y="0" width="50" height="50">
+                        </image>
+                        </pattern>
+                    </defs>
+                    <circle class="circle-transform" fill="none" stroke="url(#fill-img5)" stroke-width="26" stroke-miterlimit="1" cx="25" cy="25" r="25" 
+                            stroke-dasharray="136 1000" stroke-dashoffset="136" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="draw-circle draw-circle6"></div>
+        </div>
     </div>
     <div class="loading__num clearfix" id="loading__num">0%</div>
+    <div class="loading__ani hide opacityChange delay0-5" id="loading__ani" data-link="1" data-lg-tj-id="1k6a" data-lg-tj-no="0001" data-lg-tj-cid="null">
+        <div class="circle__complete littleZoomInfinite delay1-0"></div>
+        <div class="loading__hand littleHandMove delay1-0"></div>
+        <div class="loading__words littleBottomIn delay1-0"></div>
+    </div>
 </div>
 <div id="main" class="main hide"></div>
 <div id="app" class="app hide">
@@ -120,7 +194,7 @@
             <div class="p6__content__center"></div>
             <div class="p6__content__title" id="p6__content__title">小友，给你的锦囊是</div>
             <div class="p6__content__words">
-                <img src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/images/p6-s1.png" id="p6__content__words" />
+                <img src="./images/p6-s1.png" id="p6__content__words" />
             </div>
             <div class="p6__content__mask1"></div>
             <div class="p6__content__mask2"></div>
@@ -140,8 +214,8 @@
 <script type="text/javascript" src="https://static.lagou.com/activity-rsrc/dist/common/js/share2.js"></script> 
 <script type="text/javascript">
     var datas = {
-        title: "放开我，我要加班！",
-        desc: "画出你的加班时刻",
+        title: "一个来自2020年的锦囊",
+        desc: "手握锦囊，不再迷茫",
         imgUrl: 'https://www.lgstatic.com/plat-activity-fed/2019-pursun/images/share.png',
         activityType: '2019PURSUN',
         shareUrl: 'https://activity.lagou.com/activities/2019-pursun/m_index.html'
@@ -159,12 +233,12 @@
         return share;
     }
 </script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/TweenMax.min.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/pixi.min.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/Animate.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/pixi-sound.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/Scroller.js"></script>
-<script type="text/javascript" src="https://www.lgstatic.com/plat-activity-fed/2019-pursun/js/m_index.js?v=$version$"></script>
+<script type="text/javascript" src="./js/TweenMax.min.js"></script>
+<script type="text/javascript" src="./js/pixi.min.js"></script>
+<script type="text/javascript" src="./js/Animate.js"></script>
+<script type="text/javascript" src="./js/pixi-sound.js"></script>
+<script type="text/javascript" src="./js/Scroller.js"></script>
+<script type="text/javascript" src="./js/m_index.js?v=$version$"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
 <script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/plat_tj.js"></script>
 <script type="text/javascript">
