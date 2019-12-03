@@ -530,6 +530,7 @@
     .add("support", host + "images/support-music.mp3")
     .add("open", host + "images/open-music.mp3")
     .add("question", host + "images/question-music.mp3")
+    // .add("bgmusic", host + "images/music.mp3")
         .onProgress.add(function(e){
             var loading__num = document.getElementById('loading__num')
             var progress = document.getElementById('progress')
@@ -549,11 +550,21 @@
     loader.load(function(loader) {
         var loading__ani = document.getElementById('loading__ani')
         var loading__num = document.getElementById('loading__num')
+        var music = document.getElementById('music')
         loading__ani.className = loading__ani.className.replace(/( hide)/g, '')
         loading__num.className += ' opacityChangeOut0'
 
         loading__ani.addEventListener('click', function() {
             document.getElementById('loading').className = 'loading opacityChangeOut0'
+            if (musicOn) {
+                music.play()
+            }
+            // loader.resources.bgmusic.loop = true
+            // loader.resources.bgmusic.sound.flag = true
+            // if (!loader.resources.bgmusic.sound.isPlaying && loader.resources.bgmusic.sound.flag && musicOn) {
+            //     loader.resources.bgmusic.sound.play()
+            //     loader.resources.bgmusic.sound.flag = false
+            // }
             setTimeout(function() {
                 var main = document.getElementById('main')
                 main.className = main.className.replace(/( hide)/g, '')
@@ -1092,6 +1103,18 @@
         spriteBox.hand.interactive = true
         spriteBox.hand.buttonMode = true
 
+        spriteBox.title1.anchor.set(0.5, 0.5)
+        spriteBox.title1.x = icon2.title1.options.x + icon2.title1.position.w / 2
+        spriteBox.title1.y = icon2.title1.options.y + icon2.title1.position.h / 2
+
+        spriteBox.title2.anchor.set(0.5, 0.5)
+        spriteBox.title2.x = icon2.title2.options.x + icon2.title2.position.w / 2
+        spriteBox.title2.y = icon2.title2.options.y + icon2.title2.position.h / 2
+
+        spriteBox.title3.anchor.set(0.5, 0.5)
+        spriteBox.title3.x = icon2.title3.options.x + icon2.title3.position.w / 2
+        spriteBox.title3.y = icon2.title3.options.y + icon2.title3.position.h / 2
+
         // 添加动画
         TweenMax.fromTo(spriteBox.hand, 1, {
             x: icon2.hand.options.x + 10,
@@ -1248,6 +1271,9 @@
             } else {
                 loader.resources.question.sound.flag = true
                 loader.resources.question.sound.pause()
+                if (musicOn && music.paused) {
+                    music.play()
+                }
             }
 
             if (move < first + 500 && move > first + 300) {
@@ -1333,6 +1359,43 @@
             spriteBox.line1.mask.width = 388
             spriteBox.line2.mask.height = 193
             spriteBox.line3.mask.width = 388
+        }
+        if (move > first + 700) {
+            if (move < first + 810) {
+                spriteBox.title1.scale.x = scrollTo(first + 700, first + 810, move, 1, 1.1)
+                spriteBox.title1.scale.y = scrollTo(first + 700, first + 810, move, 1, 1.1)
+            } else if (move < first + 1050) {
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title1.scale.x = 1.1
+                if (move > first + 940) {
+                    spriteBox.title2.scale.x = scrollTo(first + 940, first + 1050, move, 1, 1.1)
+                    spriteBox.title2.scale.y = scrollTo(first + 940, first + 1050, move, 1, 1.1)
+                }
+            } else if (move < first + 1290) {
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title2.scale.x = 1.1
+                spriteBox.title2.scale.x = 1.1
+                if (move > first + 1180) {
+                    spriteBox.title3.scale.x = scrollTo(first + 1180, first + 1290, move, 1, 1.1)
+                    spriteBox.title3.scale.y = scrollTo(first + 1180, first + 1290, move, 1, 1.1)
+                }
+            }
+        } else {
+            spriteBox.title1.scale.x = 1
+            spriteBox.title1.scale.x = 1
+            spriteBox.title2.scale.x = 1
+            spriteBox.title2.scale.x = 1
+            spriteBox.title3.scale.x = 1
+            spriteBox.title3.scale.x = 1
+        }
+        if (move > first + 1290) {
+            spriteBox.title1.scale.x = 1.1
+            spriteBox.title1.scale.x = 1.1
+            spriteBox.title2.scale.x = 1.1
+            spriteBox.title2.scale.x = 1.1
+            spriteBox.title3.scale.x = 1.1
+            spriteBox.title3.scale.x = 1.1
         }
         if (move > first + 850) {
             if (move < first + 900) {
@@ -1571,6 +1634,7 @@
         var load = 0
         canvasImgs.forEach(function(url){
             var img = new Image()
+            img.crossOrigin="anonymous";
             img.onload = function(){
                 load++
                 if (load === canvasImgs.length) {}
@@ -1582,6 +1646,7 @@
 
     function drawPicture() {
         var img = new Image()
+        img.crossOrigin="anonymous";
         var index = Math.ceil(Math.random() * 47)
         var p6__content__words = document.getElementById('p6__content__words')
         var p6__canvas__img = document.getElementById('p6__canvas__img')
@@ -1679,7 +1744,7 @@ function imgGET(params) {
         server: "https://a.lagou.com/track"
     };
     var _img = new Image();
-    img.crossOrigin="anonymous";
+    _img.crossOrigin="anonymous";
     paramsArr = [];
     for (var item in params) {
         if (typeof item == "string") {

@@ -31,51 +31,52 @@
         passive: false
     });
 
+    var host = 'https://www.lgstatic.com/plat-activity-fed/2019-pursun/'
     var imgArr = [
-        'images/icon.png',
-        'images/icon2.png',
-        'images/p2-bg1.png',
-        'images/p2-bg2.png',
-        'images/p2-bg3.png',
-        'images/p2-person.png',
-        'images/p2-gou.png',
-        'images/p2-man.png',
-        'images/p3-rb.png',
-        'images/p3-bg.png',
-        'images/p3-bg2.png',
-        'images/p3-xgou.png',
-        'images/p3-sun-01.png',
-        'images/p3-sun-02.png',
-        'images/p3-sun-03.png',
-        'images/p3-sun-04.png',
-        'images/p3-sun-05.png',
-        'images/p3-sun-06.png',
-        'images/p3-sun-07.png',
-        'images/p3-sun-08.png',
-        'images/p3-sun-09.png',
-        'images/p3-sun-10.png',
-        'images/p3-sun-11.png',
-        'images/p3-sun-12.png',
-        'images/p3-sun-13.png',
-        'images/p3-sun-14.png',
-        'images/p4-rm-01.png',
-        'images/p4-rm-02.png',
-        'images/p4-rm-03.png',
-        'images/p4-pbg.png',
-        'images/p4-pcon.png',
-        'images/p4-line1.png',
-        'images/p4-line2.png',
-        'images/p4-line3.png',
-        'images/p5-spread.png',
-        'images/p5-man.png',
-        'images/p5-word1.png',
-        'images/p5-word2.png',
-        'images/p6-bg.png',
-        'images/p6-content-bottom.png',
-        'images/p6-content-top.png',
-        'images/p6-content.png',
-        'images/p6-tips.png',
-        'images/save-bg.png'
+        host + 'images/icon.png',
+        host + 'images/icon2.png',
+        host + 'images/p2-bg1.png',
+        host + 'images/p2-bg2.png',
+        host + 'images/p2-bg3.png',
+        host + 'images/p2-person.png',
+        host + 'images/p2-gou.png',
+        host + 'images/p2-man.png',
+        host + 'images/p3-rb.png',
+        host + 'images/p3-bg.png',
+        host + 'images/p3-bg2.png',
+        host + 'images/p3-xgou.png',
+        host + 'images/p3-sun-01.png',
+        host + 'images/p3-sun-02.png',
+        host + 'images/p3-sun-03.png',
+        host + 'images/p3-sun-04.png',
+        host + 'images/p3-sun-05.png',
+        host + 'images/p3-sun-06.png',
+        host + 'images/p3-sun-07.png',
+        host + 'images/p3-sun-08.png',
+        host + 'images/p3-sun-09.png',
+        host + 'images/p3-sun-10.png',
+        host + 'images/p3-sun-11.png',
+        host + 'images/p3-sun-12.png',
+        host + 'images/p3-sun-13.png',
+        host + 'images/p3-sun-14.png',
+        host + 'images/p4-rm-01.png',
+        host + 'images/p4-rm-02.png',
+        host + 'images/p4-rm-03.png',
+        host + 'images/p4-pbg.png',
+        host + 'images/p4-pcon.png',
+        host + 'images/p4-line1.png',
+        host + 'images/p4-line2.png',
+        host + 'images/p4-line3.png',
+        host + 'images/p5-spread.png',
+        host + 'images/p5-man.png',
+        host + 'images/p5-word1.png',
+        host + 'images/p5-word2.png',
+        host + 'images/p6-bg.png',
+        host + 'images/p6-content-bottom.png',
+        host + 'images/p6-content-top.png',
+        host + 'images/p6-content.png',
+        host + 'images/p6-tips.png',
+        host + 'images/save-bg.png'
     ]
     var spriteSheet = {
         icon: {
@@ -504,8 +505,8 @@
     var canvas = null
     var ctx = null
     var canvasImgs = [
-        'images/save-bg.png',
-        'images/save-ercode.png'
+        host + 'images/save-bg.png',
+        host + 'images/save-ercode.png'
     ]
     var loadedImgs = []
     var canvasUrl = ''
@@ -526,9 +527,10 @@
     // 预加载
     var loader = new PIXI.loaders.Loader();
     loader.add(imgArr)
-        .add("support", "images/support-music.mp3")
-        .add("open", "images/open-music.mp3")
-        .add("question", "images/question-music.mp3")
+    .add("support", host + "images/support-music.mp3")
+    .add("open", host + "images/open-music.mp3")
+    .add("question", host + "images/question-music.mp3")
+    // .add("bgmusic", host + "images/music.mp3")
         .onProgress.add(function(e){
             var loading__num = document.getElementById('loading__num')
             var progress = document.getElementById('progress')
@@ -548,11 +550,21 @@
     loader.load(function(loader) {
         var loading__ani = document.getElementById('loading__ani')
         var loading__num = document.getElementById('loading__num')
+        var music = document.getElementById('music')
         loading__ani.className = loading__ani.className.replace(/( hide)/g, '')
         loading__num.className += ' opacityChangeOut0'
 
         loading__ani.addEventListener('click', function() {
             document.getElementById('loading').className = 'loading opacityChangeOut0'
+            if (musicOn) {
+                music.play()
+            }
+            // loader.resources.bgmusic.loop = true
+            // loader.resources.bgmusic.sound.flag = true
+            // if (!loader.resources.bgmusic.sound.isPlaying && loader.resources.bgmusic.sound.flag && musicOn) {
+            //     loader.resources.bgmusic.sound.play()
+            //     loader.resources.bgmusic.sound.flag = false
+            // }
             setTimeout(function() {
                 var main = document.getElementById('main')
                 main.className = main.className.replace(/( hide)/g, '')
@@ -581,8 +593,8 @@
     })
 
     function setup(){
-        spriteBox.icon = loader.resources['images/icon.png'].texture
-        spriteBox.icon2 = loader.resources['images/icon2.png'].texture
+        spriteBox.icon = loader.resources[host + 'images/icon.png'].texture
+        spriteBox.icon2 = loader.resources[host + 'images/icon2.png'].texture
         // 序幕
         drawStart()
         // 第一部分
@@ -683,7 +695,7 @@
     function drawStart() {
         var con = new PIXI.Container()
         var icon = spriteSheet.icon
-        var createIcon = getImageFromIcon(con, spriteBox.icon, 'images/icon.png', icon)
+        var createIcon = getImageFromIcon(con, spriteBox.icon, host + 'images/icon.png', icon)
         con.x = 0
         con.y = 0
         createIcon([
@@ -739,7 +751,7 @@
     function drawPart1() {
         // 第一部分
         var part1 = new PIXI.Container()
-        var createIcon1 = getImageFromIcon(part1, spriteBox.icon, 'images/icon.png', spriteSheet.icon)
+        var createIcon1 = getImageFromIcon(part1, spriteBox.icon, host + 'images/icon.png', spriteSheet.icon)
         part1.x = 0
         part1.y = 0
 
@@ -792,37 +804,37 @@
         // 第二部分，盘古大厦
         var part2 = new PIXI.Container()
         var icon = spriteSheet.icon
-        var createIcon = getImageFromIcon(part2, spriteBox.icon, 'images/icon.png', icon)
+        var createIcon = getImageFromIcon(part2, spriteBox.icon, host + 'images/icon.png', icon)
         part2.x = 0
         part2.y = 1371
         part2.alpha = 0
 
-        spriteBox.bg1 = createSprite(part2, 'images/p2-bg1.png', {
+        spriteBox.bg1 = createSprite(part2, host + 'images/p2-bg1.png', {
             x: -50,
             y: 0
         })
 
-        spriteBox.bg2 = createSprite(part2, 'images/p2-bg2.png', {
+        spriteBox.bg2 = createSprite(part2, host + 'images/p2-bg2.png', {
             x: 346,
             y: 34
         })
 
-        spriteBox.bg3 = createSprite(part2, 'images/p2-bg3.png', {
+        spriteBox.bg3 = createSprite(part2, host + 'images/p2-bg3.png', {
             x: -68,
             y: 491
         })
 
-        spriteBox.person = createSprite(part2, 'images/p2-person.png', {
+        spriteBox.person = createSprite(part2, host + 'images/p2-person.png', {
             x: 562 + 60,
             y: 297 + 50
         })
 
-        spriteBox.man = createSprite(part2, 'images/p2-man.png', {
+        spriteBox.man = createSprite(part2, host + 'images/p2-man.png', {
             x: 368,
             y: 744
         })
 
-        spriteBox.gou = createSprite(part2, 'images/p2-gou.png', {
+        spriteBox.gou = createSprite(part2, host + 'images/p2-gou.png', {
             x: 35,
             y: 709
         })
@@ -865,41 +877,41 @@
         var part3 = new PIXI.Container()
         var icon = spriteSheet.icon
         var icon2 = spriteSheet.icon2
-        var createIcon = getImageFromIcon(part3, spriteBox.icon, 'images/icon.png', icon)
-        var createIcon2 = getImageFromIcon(part3, spriteBox.icon2, 'images/icon2.png', icon2)
+        var createIcon = getImageFromIcon(part3, spriteBox.icon, host + 'images/icon.png', icon)
+        var createIcon2 = getImageFromIcon(part3, spriteBox.icon2, host + 'images/icon2.png', icon2)
         part3.x = 0
         part3.y = 2317
 
-        spriteBox.p3bg = createSprite(part3, 'images/p3-bg.png', {
+        spriteBox.p3bg = createSprite(part3, host + 'images/p3-bg.png', {
             x: -68,
             y: 309
         })
 
-        spriteBox.p3bg2 = createSprite(part3, 'images/p3-bg2.png', {
+        spriteBox.p3bg2 = createSprite(part3, host + 'images/p3-bg2.png', {
             x: 30,
             y: 2122
         })
 
-        spriteBox.ball1 = createSprite(part3, 'images/p3-sun-01.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball2 = createSprite(part3, 'images/p3-sun-02.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball3 = createSprite(part3, 'images/p3-sun-03.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball4 = createSprite(part3, 'images/p3-sun-04.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball5 = createSprite(part3, 'images/p3-sun-05.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball6 = createSprite(part3, 'images/p3-sun-06.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball7 = createSprite(part3, 'images/p3-sun-07.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball8 = createSprite(part3, 'images/p3-sun-08.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball9 = createSprite(part3, 'images/p3-sun-09.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball10 = createSprite(part3, 'images/p3-sun-10.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball11 = createSprite(part3, 'images/p3-sun-11.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball12 = createSprite(part3, 'images/p3-sun-12.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball13 = createSprite(part3, 'images/p3-sun-13.png', { x: 349, y: 1225, alpha:0 })
-        spriteBox.ball14 = createSprite(part3, 'images/p3-sun-14.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball1 = createSprite(part3, host + 'images/p3-sun-01.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball2 = createSprite(part3, host + 'images/p3-sun-02.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball3 = createSprite(part3, host + 'images/p3-sun-03.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball4 = createSprite(part3, host + 'images/p3-sun-04.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball5 = createSprite(part3, host + 'images/p3-sun-05.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball6 = createSprite(part3, host + 'images/p3-sun-06.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball7 = createSprite(part3, host + 'images/p3-sun-07.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball8 = createSprite(part3, host + 'images/p3-sun-08.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball9 = createSprite(part3, host + 'images/p3-sun-09.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball10 = createSprite(part3, host + 'images/p3-sun-10.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball11 = createSprite(part3, host + 'images/p3-sun-11.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball12 = createSprite(part3, host + 'images/p3-sun-12.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball13 = createSprite(part3, host + 'images/p3-sun-13.png', { x: 349, y: 1225, alpha:0 })
+        spriteBox.ball14 = createSprite(part3, host + 'images/p3-sun-14.png', { x: 349, y: 1225, alpha:0 })
 
         // createIcon2([
         //     'ball'
         // ])
 
-        spriteBox.rainbow = createSprite(part3, 'images/p3-rb.png', {
+        spriteBox.rainbow = createSprite(part3, host + 'images/p3-rb.png', {
             x: 600,
             y: 0
         })
@@ -925,7 +937,7 @@
             'run'
         ])
 
-        spriteBox.xgou = createSprite(part3, 'images/p3-xgou.png', {
+        spriteBox.xgou = createSprite(part3, host + 'images/p3-xgou.png', {
             x: 127 - 50,
             y: 2124
         })
@@ -986,21 +998,21 @@
         var part4 = new PIXI.Container()
         var p4rm = new PIXI.Container()
         var icon2 = spriteSheet.icon2
-        var createIcon2 = getImageFromIcon(part4, spriteBox.icon2, 'images/icon2.png', icon2)
+        var createIcon2 = getImageFromIcon(part4, spriteBox.icon2, host + 'images/icon2.png', icon2)
         part4.x = 0
         part4.y = 4703
 
-        spriteBox.line1 = createSprite(part4, 'images/p4-line1.png', {
+        spriteBox.line1 = createSprite(part4, host + 'images/p4-line1.png', {
             x: 152,
             y: 231
         })
 
-        spriteBox.line2 = createSprite(part4, 'images/p4-line2.png', {
+        spriteBox.line2 = createSprite(part4, host + 'images/p4-line2.png', {
             x: 196,
             y: 481
         })
 
-        spriteBox.line3 = createSprite(part4, 'images/p4-line3.png', {
+        spriteBox.line3 = createSprite(part4, host + 'images/p4-line3.png', {
             x: 158,
             y: 752
         })
@@ -1038,25 +1050,25 @@
 
         p4rm.x = 71
         p4rm.y = 104
-        spriteBox.rm = createSprite(p4rm, 'images/p4-rm-01.png', {
+        spriteBox.rm = createSprite(p4rm, host + 'images/p4-rm-01.png', {
             x: 0,
             y: 0
         })
-        spriteBox.rm2 = createSprite(p4rm, 'images/p4-rm-02.png', {
+        spriteBox.rm2 = createSprite(p4rm, host + 'images/p4-rm-02.png', {
             x: 0,
             y: 0
         })
-        spriteBox.rm3 = createSprite(p4rm, 'images/p4-rm-03.png', {
+        spriteBox.rm3 = createSprite(p4rm, host + 'images/p4-rm-03.png', {
             x: 0,
             y: 0
         })
 
-        spriteBox.pbg = createSprite(p4rm, 'images/p4-pbg.png', {
+        spriteBox.pbg = createSprite(p4rm, host + 'images/p4-pbg.png', {
             x: 5, // 76,
             y: -44 // 60
         })
 
-        spriteBox.pcon = createSprite(p4rm, 'images/p4-pcon.png', {
+        spriteBox.pcon = createSprite(p4rm, host + 'images/p4-pcon.png', {
             x: 5, // 76,
             y: -44 // 60
         })
@@ -1090,6 +1102,18 @@
         spriteBox.btn.buttonMode = true
         spriteBox.hand.interactive = true
         spriteBox.hand.buttonMode = true
+
+        spriteBox.title1.anchor.set(0.5, 0.5)
+        spriteBox.title1.x = icon2.title1.options.x + icon2.title1.position.w / 2
+        spriteBox.title1.y = icon2.title1.options.y + icon2.title1.position.h / 2
+
+        spriteBox.title2.anchor.set(0.5, 0.5)
+        spriteBox.title2.x = icon2.title2.options.x + icon2.title2.position.w / 2
+        spriteBox.title2.y = icon2.title2.options.y + icon2.title2.position.h / 2
+
+        spriteBox.title3.anchor.set(0.5, 0.5)
+        spriteBox.title3.x = icon2.title3.options.x + icon2.title3.position.w / 2
+        spriteBox.title3.y = icon2.title3.options.y + icon2.title3.position.h / 2
 
         // 添加动画
         TweenMax.fromTo(spriteBox.hand, 1, {
@@ -1247,6 +1271,9 @@
             } else {
                 loader.resources.question.sound.flag = true
                 loader.resources.question.sound.pause()
+                if (musicOn && music.paused) {
+                    music.play()
+                }
             }
 
             if (move < first + 500 && move > first + 300) {
@@ -1332,6 +1359,43 @@
             spriteBox.line1.mask.width = 388
             spriteBox.line2.mask.height = 193
             spriteBox.line3.mask.width = 388
+        }
+        if (move > first + 700) {
+            if (move < first + 810) {
+                spriteBox.title1.scale.x = scrollTo(first + 700, first + 810, move, 1, 1.1)
+                spriteBox.title1.scale.y = scrollTo(first + 700, first + 810, move, 1, 1.1)
+            } else if (move < first + 1050) {
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title1.scale.x = 1.1
+                if (move > first + 940) {
+                    spriteBox.title2.scale.x = scrollTo(first + 940, first + 1050, move, 1, 1.1)
+                    spriteBox.title2.scale.y = scrollTo(first + 940, first + 1050, move, 1, 1.1)
+                }
+            } else if (move < first + 1290) {
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title1.scale.x = 1.1
+                spriteBox.title2.scale.x = 1.1
+                spriteBox.title2.scale.x = 1.1
+                if (move > first + 1180) {
+                    spriteBox.title3.scale.x = scrollTo(first + 1180, first + 1290, move, 1, 1.1)
+                    spriteBox.title3.scale.y = scrollTo(first + 1180, first + 1290, move, 1, 1.1)
+                }
+            }
+        } else {
+            spriteBox.title1.scale.x = 1
+            spriteBox.title1.scale.x = 1
+            spriteBox.title2.scale.x = 1
+            spriteBox.title2.scale.x = 1
+            spriteBox.title3.scale.x = 1
+            spriteBox.title3.scale.x = 1
+        }
+        if (move > first + 1290) {
+            spriteBox.title1.scale.x = 1.1
+            spriteBox.title1.scale.x = 1.1
+            spriteBox.title2.scale.x = 1.1
+            spriteBox.title2.scale.x = 1.1
+            spriteBox.title3.scale.x = 1.1
+            spriteBox.title3.scale.x = 1.1
         }
         if (move > first + 850) {
             if (move < first + 900) {
@@ -1570,6 +1634,7 @@
         var load = 0
         canvasImgs.forEach(function(url){
             var img = new Image()
+            img.crossOrigin="anonymous";
             img.onload = function(){
                 load++
                 if (load === canvasImgs.length) {}
@@ -1581,6 +1646,7 @@
 
     function drawPicture() {
         var img = new Image()
+        img.crossOrigin="anonymous";
         var index = Math.ceil(Math.random() * 47)
         var p6__content__words = document.getElementById('p6__content__words')
         var p6__canvas__img = document.getElementById('p6__canvas__img')
@@ -1623,8 +1689,8 @@
                 p6__canvas__img.src = canvasUrl
             }, 500)
         }
-        img.src = 'images/p6-s' + index + '.png'
-        p6__content__words.src = 'images/p6-s' + index + '.png'
+        img.src = host + 'images/p6-s' + index + '.png'
+        p6__content__words.src = host + 'images/p6-s' + index + '.png'
     }
     // },{}]},{},[1]);
     
@@ -1678,7 +1744,7 @@ function imgGET(params) {
         server: "https://a.lagou.com/track"
     };
     var _img = new Image();
-    img.crossOrigin="anonymous";
+    _img.crossOrigin="anonymous";
     paramsArr = [];
     for (var item in params) {
         if (typeof item == "string") {
