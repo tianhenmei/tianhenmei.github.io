@@ -510,6 +510,7 @@
     ]
     var loadedImgs = []
     var canvasUrl = ''
+    var music = document.getElementById('music')
     var musicOn = true
     // 以可视区域大小创建渲染器
     // var renderer = PIXI.autoDetectRenderer(GC.w, GC.h)
@@ -550,7 +551,6 @@
     loader.load(function(loader) {
         var loading__ani = document.getElementById('loading__ani')
         var loading__num = document.getElementById('loading__num')
-        var music = document.getElementById('music')
         loading__ani.className = loading__ani.className.replace(/( hide)/g, '')
         loading__num.className += ' opacityChangeOut0'
 
@@ -1502,6 +1502,9 @@
                 moveStatus = false
                 loader.resources.support.sound.flag = true
                 loader.resources.support.sound.pause()
+                if (musicOn && music.paused) {
+                    music.play()
+                }
                 setTimeout(function() {
                     var app = document.getElementById('app')
                     app.className = app.className.replace(/( hide)/g, '')
@@ -1514,6 +1517,9 @@
             spriteBox.light3.alpha = 1
             loader.resources.support.sound.flag = true
             loader.resources.support.sound.pause()
+            if (musicOn && music.paused) {
+                music.play()
+            }
         }
     }
 
@@ -1576,6 +1582,11 @@
         if (!loader.resources.open.sound.isPlaying && loader.resources.open.sound.flag && musicOn) {
             loader.resources.open.sound.play()
             loader.resources.open.sound.flag = false
+            setTimeout(function() {
+                if (musicOn && music.paused) {
+                    music.play()
+                }
+            }, 2000)
         }
         drawPicture()
     }
