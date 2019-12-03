@@ -80,9 +80,9 @@
     </script>
 </head>
 <body>
-<div class="bgmusic" style="display: none;">
+<!-- <div class="bgmusic" style="display: none;">
     <audio id="music" loop="loop" preload="auto" src="./images/music.mp3"></audio>
-</div>
+</div> -->
 <div class="loading" id="loading">
     <div class="loading__progress" id="loading__progress">
         <div class="progress" id="progress"></div>
@@ -195,6 +195,7 @@
         <div class="p6__tips"></div>
         <div class="p6__content spreadOut" id="p6__content">
             <div class="p6__content__center"></div>
+            <img class="p6__content__userpic hide" id="p6__content__userpic" src="" />
             <div class="p6__content__title" id="p6__content__title">小友，给你的锦囊是</div>
             <div class="p6__content__words">
                 <img src="./images/p6-s1.png" id="p6__content__words" />
@@ -206,6 +207,7 @@
         </div>
         <div class="p6__save spreadOpacity" id="p6__save"></div>
         <div class="p6__canvas">
+            <canvas id="temp-canvas"></canvas>
             <canvas id="p6__canvas"></canvas>
             <img class="p6__canvas__img" id="p6__canvas__img" src="" />
         </div>

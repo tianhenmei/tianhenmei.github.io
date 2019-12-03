@@ -479,6 +479,13 @@ html,body {
             background-size: 100% 100%;
             @include leftBottom(0, 0);
         }
+        &__userpic {
+            width: rem(87);
+            height: rem(87);
+            border-radius: rem(87);
+            overflow: hidden;
+            @include leftTop(338-143, 184-78);
+        }
         &__title {
             width: rem(370);
             line-height: rem(36);

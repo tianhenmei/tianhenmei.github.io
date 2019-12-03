@@ -502,6 +502,8 @@
     var move = 0
     var contentLength = 6037
     var nickname = ''
+    var isTesting = false
+    var userpic = isTesting ? 'images/share.png' : false
     var canvas = null
     var ctx = null
     var canvasImgs = [
@@ -510,7 +512,7 @@
     ]
     var loadedImgs = []
     var canvasUrl = ''
-    var music = document.getElementById('music')
+    // var music = document.getElementById('music')
     var musicOn = true
     // 以可视区域大小创建渲染器
     // var renderer = PIXI.autoDetectRenderer(GC.w, GC.h)
@@ -548,6 +550,9 @@
                 })
             }
         })
+    if (isWeiXin()) {
+        getUserWeixinData()   
+    }
     loader.load(function(loader) {
         var loading__ani = document.getElementById('loading__ani')
         var loading__num = document.getElementById('loading__num')
@@ -556,9 +561,9 @@
 
         loading__ani.addEventListener('click', function() {
             document.getElementById('loading').className = 'loading opacityChangeOut0'
-            if (musicOn) {
-                music.play()
-            }
+            // if (musicOn) {
+            //     music.play()
+            // }
             // loader.resources.bgmusic.loop = true
             // loader.resources.bgmusic.sound.flag = true
             // if (!loader.resources.bgmusic.sound.isPlaying && loader.resources.bgmusic.sound.flag && musicOn) {
@@ -573,9 +578,6 @@
                 loader.resources.question.sound.flag = true
                 loader.resources.support.sound.flag = true
                 loader.resources.open.sound.flag = true
-                if (isWeiXin()) {
-                    getUserWeixinData()   
-                }
                 initCanvas()
                 setup()
             }, 500)
@@ -1271,9 +1273,9 @@
             } else {
                 loader.resources.question.sound.flag = true
                 loader.resources.question.sound.pause()
-                if (musicOn && music.paused) {
-                    music.play()
-                }
+                // if (musicOn && music.paused) {
+                //     music.play()
+                // }
             }
 
             if (move < first + 500 && move > first + 300) {
@@ -1502,9 +1504,9 @@
                 moveStatus = false
                 loader.resources.support.sound.flag = true
                 loader.resources.support.sound.pause()
-                if (musicOn && music.paused) {
-                    music.play()
-                }
+                // if (musicOn && music.paused) {
+                //     music.play()
+                // }
                 setTimeout(function() {
                     var app = document.getElementById('app')
                     app.className = app.className.replace(/( hide)/g, '')
@@ -1517,9 +1519,9 @@
             spriteBox.light3.alpha = 1
             loader.resources.support.sound.flag = true
             loader.resources.support.sound.pause()
-            if (musicOn && music.paused) {
-                music.play()
-            }
+            // if (musicOn && music.paused) {
+            //     music.play()
+            // }
         }
     }
 
@@ -1564,7 +1566,7 @@
             // p6__content.className = p6__content.className.replace(/( spreadOut)|( spreadKeep)/g, '') + ' spreadInOut'
             // p6__save.className = p6__save.className.replace(/( spreadOpacity)|( spreadKeep)/g, '') + ' spreadOpacityAlter'
             // setTimeout(function() {
-            //     drawPicture()
+            //     doDraw()
             // }, 2000)
             // setTimeout(function() {
             //     p6__content.className = p6__content.className.replace(/( spreadInOut)/g, ' spreadKeep')
@@ -1582,13 +1584,13 @@
         if (!loader.resources.open.sound.isPlaying && loader.resources.open.sound.flag && musicOn) {
             loader.resources.open.sound.play()
             loader.resources.open.sound.flag = false
-            setTimeout(function() {
-                if (musicOn && music.paused) {
-                    music.play()
-                }
-            }, 2000)
+            // setTimeout(function() {
+            //     if (musicOn && music.paused) {
+            //         music.play()
+            //     }
+            // }, 2000)
         }
-        drawPicture()
+        doDraw()
     }
 
      // 区间最小值, 区间最大值, top, 初始位置, 终点, 速度, 方向
@@ -1613,7 +1615,9 @@
             url: 'https://activity.lagou.com/activityapi/weixin/authUserDetail',
             success: function(data) {
                 if (data.state == 200 && data.content) { // 已登录
+                    // {"success":true,"state":200,"content":{"nickname":"-Tina-","headimgurl":"http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKRJ7wvbbNdHPC2ZJCt1d1wBC92ibiaAOPMD9fzaYD8lOic0dTePn8XV3k4SjdMqBPFiaycNl8y9F6oKQ/132"}}
                     nickname = data.content.nickname || ''
+                    userpic = data.content.headimgurl || ''
                     var p6__content__title = document.getElementById('p6__content__title')
                     p6__content__title.innerHTML = nickname + '小友，给你的锦囊是'
                 } else{ // 未登录
@@ -1637,22 +1641,72 @@
     }
 
     function initCanvas() {
+        //圆角矩形
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+            var min_size = Math.min(w, h);
+            if (r > min_size / 2) r = min_size / 2;
+            // 开始绘制
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        }
         canvas = document.getElementById('p6__canvas')
         ctx = canvas.getContext("2d")
         canvas.width = 750
         canvas.height = 1334
 
+        loadImgFunc(canvasImgs)
+    }
+
+    function loadImgFunc(arr, callback) {
         var load = 0
-        canvasImgs.forEach(function(url){
+        arr.forEach(function(url){
             var img = new Image()
             img.crossOrigin="anonymous";
             img.onload = function(){
                 load++
-                if (load === canvasImgs.length) {}
+                if (load === arr.length) {
+                    if (typeof callback === 'function') {
+                        callback()
+                    }
+                }
             }
             img.src = url
             loadedImgs.push(img)
         })
+    }
+
+    function doDraw() {
+        drawBaseBg()
+        if (userpic && loadedImgs.length === 2) {
+            var upelem = document.getElementById('p6__content__userpic')
+            upelem.className = upelem.className.replace(/( hide)/g, '')
+            upelem.src = userpic
+            loadImgFunc([
+                isTesting ? 'images/share.png' : 'https://activity.lagou.com/activityapi/votelike/userHeadImg'
+            ], function() {
+                drawCirclePicture(loadedImgs[2], 338,184,87,87,-1,true, function() {
+                    drawPicture()
+                })
+            })
+        } else {
+            drawPicture()
+        }
+    }
+
+    function drawBaseBg() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "#0b1422"
+        ctx.rect(0, 0, canvas.width, canvas.height)
+        ctx.fill()
+
+        ctx.drawImage(loadedImgs[0], 0, 0)
+        ctx.drawImage(loadedImgs[1], 288, 1075)
     }
 
     function drawPicture() {
@@ -1661,13 +1715,6 @@
         var index = Math.ceil(Math.random() * 47)
         var p6__content__words = document.getElementById('p6__content__words')
         var p6__canvas__img = document.getElementById('p6__canvas__img')
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#0b1422"
-        ctx.rect(0, 0, canvas.width, canvas.height)
-        ctx.fill()
-
-        ctx.drawImage(loadedImgs[0], 0, 0)
-        ctx.drawImage(loadedImgs[1], 288, 1075)
 
         var txt = nickname + '小友，给你的锦囊是'
         var arr = txt.split('')
@@ -1702,6 +1749,41 @@
         }
         img.src = host + 'images/p6-s' + index + '.png'
         p6__content__words.src = host + 'images/p6-s' + index + '.png'
+    }
+
+    function drawCirclePicture(img,x,y,w,h,r,crossStatus, callback) {
+        var temp = document.getElementById('temp-canvas')
+        var c2 = temp.getContext('2d')
+        var draw = function(obj) {
+            if(c2.createPattern && c2.roundRect){
+                // 创建图片纹理
+                var pattern = c2.createPattern(obj, "no-repeat");
+                // 如果要绘制一个圆，使用下面代码
+                // c2.arc(obj.width / 2, obj.height / 2, Math.max(obj.width, obj.height) / 2, 0, 2 * Math.PI);
+                // 这里使用圆角矩形
+                c2.roundRect(0, 0, obj.width, obj.height, r ==-1 ? obj.width : r);
+                
+                // 填充绘制的圆
+                c2.fillStyle = pattern;
+                c2.fill();
+            }else{
+                c2.drawImage(obj,0,0)
+            }
+        }
+        temp.width = 750
+        temp.height = 750
+        c2.clearRect(0,0,750,750)
+        draw(img)
+        var src = temp.toDataURL("image/png"),
+            image = new Image();
+        image.crossOrigin="anonymous";
+        image.onload = function(){
+            ctx.drawImage(image,0,0,img.width,img.height,x,y,w,h)
+            if (typeof callback === 'function') {
+                callback()
+            }
+        }
+        image.src = src
     }
     // },{}]},{},[1]);
     
