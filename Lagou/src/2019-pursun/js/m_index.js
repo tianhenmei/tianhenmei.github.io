@@ -512,7 +512,7 @@
     ]
     var loadedImgs = []
     var canvasUrl = ''
-    // var music = document.getElementById('music')
+    var music = document.getElementById('music')
     var musicOn = true
     // 以可视区域大小创建渲染器
     // var renderer = PIXI.autoDetectRenderer(GC.w, GC.h)
@@ -561,9 +561,9 @@
 
         loading__ani.addEventListener('click', function() {
             document.getElementById('loading').className = 'loading opacityChangeOut0'
-            // if (musicOn) {
-            //     music.play()
-            // }
+            if (musicOn) {
+                music.play()
+            }
             // loader.resources.bgmusic.loop = true
             // loader.resources.bgmusic.sound.flag = true
             // if (!loader.resources.bgmusic.sound.isPlaying && loader.resources.bgmusic.sound.flag && musicOn) {
@@ -1273,9 +1273,9 @@
             } else {
                 loader.resources.question.sound.flag = true
                 loader.resources.question.sound.pause()
-                // if (musicOn && music.paused) {
-                //     music.play()
-                // }
+                if (musicOn && music.paused) {
+                    music.play()
+                }
             }
 
             if (move < first + 500 && move > first + 300) {
@@ -1504,9 +1504,9 @@
                 moveStatus = false
                 loader.resources.support.sound.flag = true
                 loader.resources.support.sound.pause()
-                // if (musicOn && music.paused) {
-                //     music.play()
-                // }
+                if (musicOn && music.paused) {
+                    music.play()
+                }
                 setTimeout(function() {
                     var app = document.getElementById('app')
                     app.className = app.className.replace(/( hide)/g, '')
@@ -1519,9 +1519,9 @@
             spriteBox.light3.alpha = 1
             loader.resources.support.sound.flag = true
             loader.resources.support.sound.pause()
-            // if (musicOn && music.paused) {
-            //     music.play()
-            // }
+            if (musicOn && music.paused) {
+                music.play()
+            }
         }
     }
 
@@ -1584,11 +1584,11 @@
         if (!loader.resources.open.sound.isPlaying && loader.resources.open.sound.flag && musicOn) {
             loader.resources.open.sound.play()
             loader.resources.open.sound.flag = false
-            // setTimeout(function() {
-            //     if (musicOn && music.paused) {
-            //         music.play()
-            //     }
-            // }, 2000)
+            setTimeout(function() {
+                if (musicOn && music.paused) {
+                    music.play()
+                }
+            }, 2000)
         }
         doDraw()
     }
