@@ -32,7 +32,7 @@
             bodyElement = document.documentElement || document.body,
             RC = {
                 w:750,
-                h:1206
+                h:1286
             },
             GC = {
                 w:bodyElement.clientWidth || window.innerWidth,
@@ -188,30 +188,34 @@
         </div>
     </div>
     <div class="p6 hide opacityChange" id="p6">
-        <div class="p6__bg__left"></div>
+        <div class="p6__bg"></div>
+        <div class="p6__bg__frame"></div>
+        <!-- <div class="p6__bg__left"></div>
         <div class="p6__bg__top"></div>
         <div class="p6__bg__right"></div>
-        <div class="p6__bg__bottom"></div>
-        <div class="p6__tips"></div>
-        <div class="p6__content spreadOut" id="p6__content">
-            <div class="p6__content__center"></div>
-            <img class="p6__content__userpic hide" id="p6__content__userpic" src="" />
-            <div class="p6__content__title" id="p6__content__title">小友，给你的锦囊是</div>
-            <div class="p6__content__words">
-                <img src="./images/p6-s1.png" id="p6__content__words" />
+        <div class="p6__bg__bottom"></div> -->
+        <div class="p6__center" id="p6__center">
+            <div class="p6__tips"></div>
+            <div class="p6__content spreadOut" id="p6__content">
+                <div class="p6__content__center"></div>
+                <img class="p6__content__userpic hide" id="p6__content__userpic" src="" />
+                <div class="p6__content__title" id="p6__content__title">小友，给你的锦囊是</div>
+                <div class="p6__content__words">
+                    <img src="./images/p6-s1.png" id="p6__content__words" />
+                </div>
+                <div class="p6__content__mask1"></div>
+                <div class="p6__content__mask2"></div>
+                <div class="p6__content__top"></div>
+                <div class="p6__content__bottom"></div>
             </div>
-            <div class="p6__content__mask1"></div>
-            <div class="p6__content__mask2"></div>
-            <div class="p6__content__top"></div>
-            <div class="p6__content__bottom"></div>
+            <div class="p6__save spreadOpacity" id="p6__save"></div>
+            <div class="p6__canvas">
+                <canvas id="temp-canvas"></canvas>
+                <canvas id="p6__canvas"></canvas>
+                <img class="p6__canvas__img" id="p6__canvas__img" src="" />
+            </div>
+            <div class="p6__more" id="p6__more" data-link="1" data-lg-tj-id="1k6a" data-lg-tj-no="0010" data-lg-tj-cid="null"></div>
         </div>
-        <div class="p6__save spreadOpacity" id="p6__save"></div>
-        <div class="p6__canvas">
-            <canvas id="temp-canvas"></canvas>
-            <canvas id="p6__canvas"></canvas>
-            <img class="p6__canvas__img" id="p6__canvas__img" src="" />
-        </div>
-        <div class="p6__more" id="p6__more" data-link="1" data-lg-tj-id="1k6a" data-lg-tj-no="0010" data-lg-tj-cid="null"></div>
     </div>
 </div>
 <script type="text/javascript" src="https://static.lagou.com/activity/js/jquery.1.10.1.min.js"></script>

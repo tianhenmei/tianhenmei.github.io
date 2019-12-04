@@ -1257,6 +1257,7 @@
         var first = 1209
 
         if (move > first + 200) {
+            spriteBox['man'].x = 368
             spriteBox.rainbow.mask.scale.y = 1
             spriteBox.rainbow.mask.height = scrollTo(first + 200, 2609, move, 0, 1399)
             spriteBox.g1.alpha = scrollTo(first + 200, first + 400, move, 0, 1)

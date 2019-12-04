@@ -8,7 +8,7 @@
     @return $n * (750 / 1080);
 }
 @function getTop($n) {
-	@return ($n - 1206 / 2) / (750 / 16) + rem;
+	@return ($n - 1286 / 2) / (750 / 16) + rem;
 }
 @function getLeft($n) {
 	@return ($n - 750 / 2) / (750 / 16) + rem;
@@ -403,37 +403,55 @@ html,body {
     overflow: hidden;
     background:#0b1422;
     &__bg {
-        &__top,
-        &__left,
-        &__right,
-        &__bottom {
-            background: url('../images/p6-bg.png') no-repeat 0 0;
-            background-size: rem(750) rem(1634);
+        width: 100%;
+        height: 100%;
+        background: #0b1422 url('../images/p6-bg-one.png') repeat 0 0;
+        background-size: rem(11) rem(11);
+        &__frame {
+            width: rem(640);
+            height: calc(100% - 1.877rem); // 88px
+            @include center(55, 44);
+            background-color: #0b1422;
         }
-        &__left {
-            width: rem(68);
-            height: 100%;
-            background-position: 0 0;
-            @include leftTop(0, 0);
-        }
-        &__right {
-            width: rem(77);
-            height: 100%;
-            background-position: rem(-673) rem(-39);
-            @include rightTop(0, 39);
-        }
-        &__top {
-            width: 100%;
-            height: rem(39);
-            background-position: rem(-8) 0;
-            @include leftTop(68, 0);
-        }
-        &__bottom {
-            width: rem(605);
-            height: rem(36);
-            background-position: rem(-68) rem(-1598);
-            @include leftBottom(68, 0);
-        }
+        // &__top,
+        // &__left,
+        // &__right,
+        // &__bottom {
+        //     background: url('../images/p6-bg.png') no-repeat 0 0;
+        //     background-size: rem(750) rem(1634);
+        // }
+        // &__left {
+        //     width: rem(68);
+        //     height: 100%;
+        //     background-position: 0 0;
+        //     @include leftTop(0, 0);
+        // }
+        // &__right {
+        //     width: rem(77);
+        //     height: 100%;
+        //     background-position: rem(-673) rem(-39);
+        //     @include rightTop(0, 39);
+        // }
+        // &__top {
+        //     width: 100%;
+        //     height: rem(39);
+        //     background-position: rem(-8) 0;
+        //     @include leftTop(68, 0);
+        // }
+        // &__bottom {
+        //     width: rem(605);
+        //     height: rem(36);
+        //     background-position: rem(-68) rem(-1598);
+        //     @include leftBottom(68, 0);
+        // }
+    }
+    &__center {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transform-origin: 50% 0;
     }
     &__tips {
         width: rem(491);
@@ -484,7 +502,7 @@ html,body {
             height: rem(87);
             border-radius: rem(87);
             overflow: hidden;
-            @include leftTop(338-143, 184-78);
+            @include leftTop(338-143, 184-78-2);
         }
         &__title {
             width: rem(370);

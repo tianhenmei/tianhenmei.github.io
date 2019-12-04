@@ -338,37 +338,27 @@ html, body {
   top: 0;
   overflow: hidden;
   background: #0b1422; }
-  .p6__bg__top, .p6__bg__left, .p6__bg__right, .p6__bg__bottom {
-    background: url("../images/p6-bg.png") no-repeat 0 0;
-    background-size: 16rem 34.85867rem; }
-  .p6__bg__left {
-    width: 1.45067rem;
-    height: 100%;
-    background-position: 0 0;
-    position: absolute;
-    left: 0rem;
-    top: 0rem; }
-  .p6__bg__right {
-    width: 1.64267rem;
-    height: 100%;
-    background-position: -14.35733rem -0.832rem;
-    position: absolute;
-    right: 0rem;
-    top: 0.832rem; }
-  .p6__bg__top {
+  .p6__bg {
     width: 100%;
-    height: 0.832rem;
-    background-position: -0.17067rem 0;
+    height: 100%;
+    background: #0b1422 url("../images/p6-bg-one.png") repeat 0 0;
+    background-size: 0.23467rem 0.23467rem; }
+    .p6__bg__frame {
+      width: 13.65333rem;
+      height: calc(100% - 1.877rem);
+      position: absolute;
+      left: 50%;
+      top: 0.93867rem;
+      margin: 0 0 0 -6.82667rem;
+      background-color: #0b1422; }
+  .p6__center {
+    width: 100%;
+    height: 100%;
     position: absolute;
-    left: 1.45067rem;
-    top: 0rem; }
-  .p6__bg__bottom {
-    width: 12.90667rem;
-    height: 0.768rem;
-    background-position: -1.45067rem -34.09067rem;
-    position: absolute;
-    left: 1.45067rem;
-    bottom: 0rem; }
+    left: 0;
+    top: 0;
+    -webkit-transform-origin: 50% 0;
+            transform-origin: 50% 0; }
   .p6__tips {
     width: 10.47467rem;
     height: 1.42933rem;
@@ -430,7 +420,7 @@ html, body {
       overflow: hidden;
       position: absolute;
       left: 4.16rem;
-      top: 2.26133rem; }
+      top: 2.21867rem; }
     .p6__content__title {
       width: 7.89333rem;
       line-height: 0.768rem;
