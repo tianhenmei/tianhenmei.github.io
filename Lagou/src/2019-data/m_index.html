@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="拉勾网是最权威的互联网行业招聘网站,提供全国真实的互联网招聘信息,工资不面议当面谈,找工作,招聘网,寻人才就来拉勾网,互联网行业找工作首选拉勾网" name="description">
+    <meta content="互联网招聘,找工作,招聘网,人才网" name="keywords">
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache"> 
+    <META HTTP-EQUIV="Expires" CONTENT="0"> 
+    <meta name="baidu-site-verification" content="QIQ6KC1oZ6">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <title>拉勾互联网招聘白皮书</title>
+    <link rel="Shortcut Icon" href="https://www.lgstatic.com/mds/static/common/static/favicon_a35b11d.ico">
+    <!-- <link rel="stylesheet" href="css/swiper.min.css"> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip-back.png?v=2'> -->
+    <!-- <link rel='prefetch' href='https://activity.lagou.com/activity/dist/firstReport2017/images/flip.png?v=2'> -->
+    <link rel="stylesheet" href="css/m_index.css?v=2232$version$">
+    <script type="text/javascript">
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        var app = getQueryString('lagoufrom');
+
+        var lastSize = 16,
+            htmlStatus = 0,
+            bodyElement = document.documentElement || document.body,
+            RC = {
+                w:750,
+                h:1206
+            },
+            GC = {
+                w:bodyElement.clientWidth,
+                h:bodyElement.clientHeight
+            },
+            app = getQueryString('lagoufrom'),
+            checkStatus = false,
+            initStatus = false;
+        
+        function getQueryString(parm){
+            var reg = new RegExp("(^|&)" + parm + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+
+            if (r != null) return unescape(r[2]); 
+            return null;
+        }
+        function setFontSize(){
+            var portrait =  false,
+                resize = "orientationchange"in window ? window.orientationchange : window.resize,
+                rightSize = parseFloat((RC.w / RC.h).toFixed(1)),
+                currentSize = parseFloat((GC.w / GC.h).toFixed(1)),
+                lastHTMLSize = 16,
+                html = document.getElementsByTagName("html")[0];
+
+            try{
+                //横屏： "(orientation: landscape)"
+                //竖屏： "(orientation: portrait)"
+                portrait = window.matchMedia("(orientation: portrait)").matches;
+            } catch(e){}
+
+            // if(portrait){
+                if(rightSize > currentSize){  // 长屏
+                    lastHTMLSize = 16;
+                }else if(rightSize < currentSize){  //宽屏
+                    lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16;// + 4;
+                    htmlStatus = 1;
+                    if(app == 'ios' || app == 'android'){
+                        lastHTMLSize = (RC.h / GC.h * GC.w) / RC.w * 16 + 2;
+                    }
+                }else if(/(Mi-4c)/g.test(navigator.userAgent)){
+                    lastHTMLSize = lastHTMLSize + 2;
+                }
+                lastSize = lastHTMLSize;
+                html.style.fontSize=GC.w/lastHTMLSize+'px';
+            // }else{
+            //     var ff = 750 * document.documentElement.clientWidth / document.documentElement.clientHeight
+            //     alert(ff);
+            //     html.style.fontSize = window.innerWidth / ff * 16+'px';
+            // }
+        }
+    
+        setFontSize();
+        // try{
+        //     var landscape = window.matchMedia('(orientation: landscape)');
+        //     handleOrientationChange(landscape);
+        //     function handleOrientationChange(){
+        //         setFontSize();
+        //     }
+        //     landscape.addListener(handleOrientationChange);
+        // } catch(e){}
+        // function setDay(){
+        //     var day = document.getElementById('day'),
+        //         title = document.getElementById('loading-title'),
+        //         first = new Date('2017/01/01').getTime(),
+        //         now = new Date().getTime(),
+        //         end = now - first;
+        //     end = Math.ceil(end / 3600 / 1000 / 24);
+        //     day.innerHTML = end;
+        //     day.className = day.className.replace(' hide','');
+        //     title.className = title.className.replace(' hide','');
+        // }
+        var loadingStatus = false,
+            pageStatus = false,
+            startTime = new Date().getTime(),
+            loadingSuccess = function(){
+                var cover = document.getElementById('cover');
+                cover.className = cover.className.replace(' hide','');
+                document.getElementById('loading').className += ' hide';
+            }
+    </script>
+<script type="text/javascript" src="js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript">
+    var jQuery = jQuery.noConflict();
+</script>
+</head>
+<body>
+<!-- <div class="music-box">
+    <div class="music-icon open">
+        <audio style="display:none;" id="music" loop="loop" preload="auto" src="https://www.lgstatic.com/activity-rsrc/dist/2017-employSelect/style/music.mp3"></audio>
+    </div>
+</div> -->
+<div class="loading" id="loading">
+    <!-- <div class="loading__icon">
+        <img src="images/loading.gif" />
+    </div> -->
+    <div class="loading__img"></div>
+    <div class="loading__lineParent" id="progress-bg">
+        <div class="loading__line" id="progress" style="width:0;"></div>
+    </div>
+    <div class="loading__num" id="progress-number">0%</div>
+    <!-- <div class="title clearfix">
+        <div class="l zoomIn700 delay0">l</div>
+        <div class="o zoomIn700 delay0-2">o</div>
+        <div class="a zoomIn700 delay0-4">a</div>
+        <div class="d zoomIn700 delay0-6">d</div>
+        <div class="t zoomIn700 delay0-8">.</div>
+        <div class="t zoomIn700 delay1-0">.</div>
+        <div class="t zoomIn700 delay1-2">.</div>
+    </div> -->
+</div>
+<script type="text/javascript" src="js/loading.js?v=$version$"></script> 
+<script>
+    document.getElementById('loading').addEventListener('touchmove', function(e){
+        e.stopPropagation()
+        e.preventDefault()
+    }, {passive: false})
+</script>
+<div id="app">
+    <div class="cover hide" id="cover">
+        <div class="cover__bgcenter zoom-in-rotate delay0-5 duration1-0"
+            :style="{top: getFitTop(151, 1/3)}"></div>
+        <div class="cover__txtbox opacityChange delay1-0" :style="{top: getFitTop(737, 2/3)}">
+            <div class="cover__frame"></div>
+            <!--  water-flow delay1-0 -->
+            <!-- <div class="cover__frameline water-flow delay1-0"></div> -->
+            <div class="cover__rect">
+                <svg width="100%" height="100%" viewBox="0 0 580 235" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape draw-flow" width="580" height="235"
+                        stroke-width="4" fill="none" stroke="#0d6e58"
+                        stroke-dasharray="80 1630" stroke-dashoffset="1440" stroke-linecap="round"></rect>
+                </svg>
+            </div>
+            <div class="cover__rect">
+                <svg width="100%" height="100%" viewBox="0 0 580 235" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape draw-flow2" width="580" height="235"
+                        stroke-width="4" fill="none" stroke="#0d6e58"
+                        stroke-dasharray="118 1630" stroke-dashoffset="280" stroke-linecap="round"></rect>
+                </svg>
+            </div>
+            <div class="cover__rect">
+                <svg width="100%" height="100%" viewBox="0 0 580 235" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape draw-flow3" width="580" height="235"
+                        stroke-width="4" fill="none" stroke="#0d6e58"
+                        stroke-dasharray="25 7 25 7 25 1630" stroke-dashoffset="870" stroke-linecap="round"></rect>
+                </svg>
+            </div>
+        </div>
+        <div class="cover__icon cover__title zoom-in delay1-0"
+            :style="{top: getFitTop(316, 1/3)}"></div>
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="cover__icon cover__infotxt moveL-R delay0-5"></div>
+        <div class="cover__icon cover__infoline moveL-R delay0-7"></div>
+        <div class="cover__txtLayer" :style="{top: getFitTop(768, 2/3)}">
+            <div class="cover__icon cover__txt moveUp100 delay1-5 duration4-0"></div>
+        </div>
+        <div class="cover__bottom" :style="{top: getFitTop(1026, 1)}">
+            <div class="cover__icon cover__show moveUp250px delay1-0 duration2-0"></div>
+            <div class="cover__icon cover__download moveUp250px delay1-2 duration2-0"></div>
+            <div class="cover__btnshow moveUp250px delay1-0 duration2-0" @click.stop.prevent="btnshowEvent">
+                <svg width="100%" height="100%" viewBox="0 0 247 67" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape draw-flow4" width="243" height="65"
+                        stroke-width="4" fill="none" stroke="#00fec1"
+                        stroke-dasharray="43 616" stroke-dashoffset="0" rx="18" ry="18" x="2"></rect>
+                </svg>
+            </div>
+            <div class="cover__btndownload moveUp250px delay1-2 duration2-0" @click.stop.prevent="btndownloadEvent">
+                <svg width="100%" height="100%" viewBox="0 0 247 67" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="shape draw-flow4" width="243" height="65"
+                        stroke-width="4" fill="none" stroke="#00fec1"
+                        stroke-dasharray="43 616" stroke-dashoffset="0" rx="18" ry="18" x="2"></rect>
+                </svg>
+            </div>
+        </div>
+    </div>
+    <div class="page page0 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="cover__icon page0__from opacityChange delay1-0" :style="{top: getFitTop(1072, 7/8)}"></div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+
+        <div class="cover__icon page0__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="cover__icon page0__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="cover__icon page0__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(361, 4/8)}"></div>
+        <div class="cover__icon page0__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(474, 5/8)}"></div>
+        <div class="cover__icon page0__datatitle opacityChange delay2-5" :style="{top: getFitTop(552, 5/8)}"></div>
+        <div class="page0__data" :style="{top: getFitTop(534, 5/8)}">
+            <div class="icon page0__data__yellow page0__data__yellow--1 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--2 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--3 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--4 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--5 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--6 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--7 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--8 heightChange delay3-0"></div>
+            <div class="icon page0__data__yellow page0__data__yellow--9 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--1 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--2 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--3 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--4 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--5 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--6 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--7 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--8 heightChange delay3-0"></div>
+            <div class="icon page0__data__blue page0__data__blue--9 heightChange delay3-0"></div>
+            <div class="page0__data__bg opacityChange delay2-5"></div>
+            <div class="page0__dataline widthChange delay3-5 duration1-5"></div>
+            <div class="icon page0__data__num page0__data__num--1 opacityChange delay3-5"></div>
+            <div class="icon page0__data__num page0__data__num--2 opacityChange delay3-6"></div>
+            <div class="icon page0__data__num page0__data__num--3 opacityChange delay3-7"></div>
+            <div class="icon page0__data__num page0__data__num--4 opacityChange delay3-8"></div>
+            <div class="icon page0__data__num page0__data__num--5 opacityChange delay3-9"></div>
+            <div class="icon page0__data__num page0__data__num--6 opacityChange delay4-0"></div>
+            <div class="icon page0__data__num page0__data__num--7 opacityChange delay4-1"></div>
+            <div class="icon page0__data__num page0__data__num--8 opacityChange delay4-2"></div>
+            <div class="icon page0__data__num page0__data__num--9 opacityChange delay4-3"></div>
+        </div>
+    </div>
+    <div class="page page1 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+
+        <div class="icon page1__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="icon page1__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="icon page1__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="icon page1__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(503, 4/8)}"></div>
+        <div class="icon page1__from opacityChange delay1-0" :style="{top: getFitTop(1072, 7/8)}"></div>
+        <div class="page1__data" :style="{top: getFitTop(558, 5/8)}">
+            <div class="icon page1__title-left opacityChange delay2-5"></div>
+            <div class="icon page1__title-right opacityChange delay2-5"></div>
+            <div class="icon page1__data__address opacityChange delay2-5"></div>
+            <div class="page1__data__leftparent page1__data__leftparent--1 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--1"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--2 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--2"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--3 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--3"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--4 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--4"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--5 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--5"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--6 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--6"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--7 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--7"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--8 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--8"></div></div>
+            <div class="page1__data__leftparent page1__data__leftparent--9 widthChange duration1-0 delay3-0"><div class="icon page1__data__left page1__data__left--9"></div></div>
+            <div class="icon page1__data__right page1__data__right--1 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--2 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--3 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--4 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--5 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--6 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--7 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--8 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__right page1__data__right--9 widthChange duration1-0 delay3-0"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--1 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--2 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--3 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--4 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--5 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--6 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--7 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--8 opacityChange delay3-2"></div>
+            <div class="icon page1__data__lctxt page1__data__lctxt--9 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--1 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--2 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--3 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--4 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--5 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--6 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--7 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--8 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rctxt page1__data__rctxt--9 opacityChange delay3-2"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--1 opacityChange delay3-9"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--2 opacityChange delay3-8"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--3 opacityChange delay3-7"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--4 opacityChange delay3-6"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--5 opacityChange delay3-5"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--6 opacityChange delay3-4"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--7 opacityChange delay3-3"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--8 opacityChange delay3-2"></div>
+            <div class="icon page1__data__ltxt page1__data__ltxt--9 opacityChange delay3-1"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--1 opacityChange delay3-9"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--2 opacityChange delay3-8"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--3 opacityChange delay3-7"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--4 opacityChange delay3-6"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--5 opacityChange delay3-5"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--6 opacityChange delay3-4"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--7 opacityChange delay3-3"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--8 opacityChange delay3-2"></div>
+            <div class="icon page1__data__rtxt page1__data__rtxt--9 opacityChange delay3-1"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--1 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--2 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--3 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--4 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--5 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--6 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--7 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--8 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lnum page1__data__lnum--9 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--1 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--2 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--3 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--4 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--5 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--6 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--7 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--8 opacityChange delay2-5"></div>
+            <div class="icon page1__data__rnum page1__data__rnum--9 opacityChange delay2-5"></div>
+            <div class="icon page1__data__lname opacityChange delay2-5"></div>
+            <div class="icon page1__data__rname opacityChange delay2-5"></div>
+            <div class="icon page1__data__info opacityChange delay2-5"></div>
+            <div class="icon page1__data__unit opacityChange delay2-5"></div>
+        </div>
+    </div>
+    <div class="page page2 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page2__icon page2__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page2__icon page2__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page2__icon page2__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page2__icon page2__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(462, 4/8)}"></div>
+        <div class="page2__icon page2__from opacityChange delay1-0" :style="{top: getFitTop(1046, 7/8)}"></div>
+        <div class="page2__data" :style="{top: getFitTop(522, 5/8)}">
+            <div class="page2__icon page2__data__title opacityChange delay2-5"></div>
+            <div class="page2__icon page2__data__circle rotate-in delay2-5"></div>
+            <div class="page2__data__lineParent page2__data__lineParent--01 heightAfterWidthChange delay2-6"><div class="page2__icon page2__data__line--01"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--02 widthChange delay2-7"><div class="page2__icon page2__data__line--02"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--03 heightChange delay2-8"><div class="page2__icon page2__data__line--03"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--04 widthHeightChange delay2-9"><div class="page2__icon page2__data__line--04"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--05 widthChange delay3-0"><div class="page2__icon page2__data__line--05"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--06 widthChange delay3-1"><div class="page2__icon page2__data__line--06"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--07 widthChange delay3-2"><div class="page2__icon page2__data__line--07"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--08 widthChange delay3-3"><div class="page2__icon page2__data__line--08"></div></div>
+            <div class="page2__data__lineParent page2__data__lineParent--09 heightChange delay3-4"><div class="page2__icon page2__data__line--09"></div></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--01 opacityChange delay2-9"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--02 opacityChange delay3-0"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--03 opacityChange delay3-1"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--04 opacityChange delay3-2"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--05 opacityChange delay3-3"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--06 opacityChange delay3-4"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--07 opacityChange delay3-5"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--08 opacityChange delay3-6"></div>
+            <div class="page2__icon page2__data__txt page2__data__txt--09 opacityChange delay3-7"></div>
+        </div>
+    </div>
+    <div class="page page3 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page3__icon page3__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page3__icon page3__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page3__icon page3__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page3__icon page3__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(462, 4/8)}"></div>
+        <div class="page3__icon page3__from opacityChange delay1-0" :style="{top: getFitTop(1046, 7/8)}"></div>
+        <div class="page3__data" :style="{top: getFitTop(555, 5/8)}">
+            <div class="page3__icon page3__data__title opacityChange delay2-5"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--1 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--2 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--3 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--4 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--5 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--6 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--7 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--8 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__yellow page3__data__yellow--9 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--1 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--2 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--3 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--4 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--5 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--6 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--7 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--8 heightChange delay3-0"></div>
+            <div class="page3__icon page3__data__blue page3__data__blue--9 heightChange delay3-0"></div>
+            <div class="page3__data__bg opacityChange delay2-5"></div>
+            <div class="page3__dataline widthChange delay3-5 duration1-5"></div>
+            <div class="page3__icon page3__data__num page3__data__num--1 opacityChange delay3-5"></div>
+            <div class="page3__icon page3__data__num page3__data__num--2 opacityChange delay3-6"></div>
+            <div class="page3__icon page3__data__num page3__data__num--3 opacityChange delay3-7"></div>
+            <div class="page3__icon page3__data__num page3__data__num--4 opacityChange delay3-8"></div>
+            <div class="page3__icon page3__data__num page3__data__num--5 opacityChange delay3-9"></div>
+            <div class="page3__icon page3__data__num page3__data__num--6 opacityChange delay4-0"></div>
+            <div class="page3__icon page3__data__num page3__data__num--7 opacityChange delay4-1"></div>
+            <div class="page3__icon page3__data__num page3__data__num--8 opacityChange delay4-2"></div>
+            <div class="page3__icon page3__data__num page3__data__num--9 opacityChange delay4-3"></div>
+        </div>
+    </div>
+    <div class="page page4 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page4__icon page4__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page4__icon page4__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page4__icon page4__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(234, 3/8)}"></div>
+        <div class="page4__icon page4__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(357, 4/8)}"></div>
+        <div class="page4__icon page4__from opacityChange delay1-0" :style="{top: getFitTop(938, 7/8)}"></div>
+        <div class="page4__data" :style="{top: getFitTop(466, 5/8)}">
+            <div class="page4__icon page4__data__title opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--01 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--02 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--03 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--04 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--05 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--06 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--07 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--08 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--09 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__name page4__data__name--10 opacityChange delay2-5"></div>
+            <div class="page4__icon page4__data__box page4__data__box--01 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--02 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--03 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--04 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--05 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--06 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--07 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--08 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--09 widthChange duration1-0 delay2-7"></div>
+            <div class="page4__icon page4__data__box page4__data__box--10 widthChange duration1-0 delay2-7"></div>
+            
+            <div class="page4__data__num page4__data__num--zoom littleZoomIn delay4-2"><div class="page4__icon page4__data__num page4__data__num--01 opacityChange delay3-7"></div></div>
+            <div class="page4__icon page4__data__num page4__data__num--02 opacityChange delay3-6"></div>
+            <div class="page4__icon page4__data__num page4__data__num--03 opacityChange delay3-5"></div>
+            <div class="page4__icon page4__data__num page4__data__num--04 opacityChange delay3-4"></div>
+            <div class="page4__icon page4__data__num page4__data__num--05 opacityChange delay3-3"></div>
+            <div class="page4__icon page4__data__num page4__data__num--06 opacityChange delay3-2"></div>
+            <div class="page4__icon page4__data__num page4__data__num--07 opacityChange delay3-1"></div>
+            <div class="page4__icon page4__data__num page4__data__num--08 opacityChange delay3-0"></div>
+            <div class="page4__icon page4__data__num page4__data__num--09 opacityChange delay2-9"></div>
+            <div class="page4__icon page4__data__num page4__data__num--10 opacityChange delay2-8"></div>
+        </div>
+    </div>
+    <div class="page page5 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page5__icon page5__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page5__icon page5__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page5__icon page5__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page5__icon page5__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(462, 4/8)}"></div>
+        <div class="page5__icon page5__from opacityChange delay1-0" :style="{top: getFitTop(959, 7/8)}"></div>
+        <div class="page5__data" :style="{top: getFitTop(540, 5/8)}">
+            <div class="page5__icon page5__data__title opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--01 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--02 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--03 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--04 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--05 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--06 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__name page5__data__name--07 opacityChange delay2-5"></div>
+            <div class="page5__icon page5__data__box page5__data__box--01 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--02 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--03 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--04 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--05 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--06 widthChange delay2-7"></div>
+            <div class="page5__icon page5__data__box page5__data__box--07 widthChange delay2-7"></div>
+            
+            <div class="page5__data__num page5__data__num--zoom littleZoomIn delay3-5"><div class="page5__icon page5__data__num page5__data__num--01 opacityChange delay3-2"></div></div>
+            <div class="page5__icon page5__data__num page5__data__num--02 opacityChange delay3-2"></div>
+            <div class="page5__icon page5__data__num page5__data__num--03 opacityChange delay3-2"></div>
+            <div class="page5__icon page5__data__num page5__data__num--04 opacityChange delay3-2"></div>
+            <div class="page5__icon page5__data__num page5__data__num--05 opacityChange delay3-2"></div>
+            <div class="page5__icon page5__data__num page5__data__num--06 opacityChange delay3-2"></div>
+            <div class="page5__icon page5__data__num page5__data__num--07 opacityChange delay3-2"></div>
+        </div>
+    </div>
+    <div class="page page6 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page6__icon page6__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page6__icon page6__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page6__icon page6__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page6__icon page6__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(506, 4/8)}"></div>
+        <div class="page6__icon page6__from opacityChange delay1-0" :style="{top: getFitTop(1083, 7/8)}"></div>
+        <div class="page6__data" :style="{top: getFitTop(550, 5/8)}">
+            <div class="page6__icon page6__data__title opacityChange delay2-5"></div>
+            <div class="page6__icon page6__data__bg opacityChange delay2-7"></div>
+            <div class="page6__icon page6__data__box page6__data__box--01 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--02 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--03 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--04 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--05 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--06 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__box page6__data__box--07 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data__name page6__data__name--01 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--02 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--03 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--04 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--05 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--06 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data__name page6__data__name--07 opacityChange delay3-2"></div>
+        </div>
+        <div class="page6__data2" :style="{top: getFitTop(841, 6/8)}">
+            <div class="page6__icon page6__data2__title opacityChange delay2-5"></div>
+            <div class="page6__icon page6__data2__bg opacityChange delay2-7"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--01 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--02 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--03 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--04 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--05 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--06 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__box page6__data2__box--07 heightChange delay3-0"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--01 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--02 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--03 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--04 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--05 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--06 opacityChange delay3-2"></div>
+            <div class="page6__icon page6__data2__name page6__data2__name--07 opacityChange delay3-2"></div>
+        </div>
+    </div>
+    <div class="page page7 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page7__icon page7__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page7__icon page7__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page7__icon page7__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page7__icon page7__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(461, 4/8)}"></div>
+        <div class="page7__icon page7__from opacityChange delay1-0" :style="{top: getFitTop(1083, 7/8)}"></div>
+        <div class="page7__row page7__row1" :style="{top: getFitTop(496, 5/8)}">
+            <div class="page7__icon page7__row__name page7__row1__name01 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__name page7__row1__name02 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__circle page7__row1__circle01 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__circle page7__row1__circle02 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__info page7__row1__info01 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row1__info02 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row1__info03 littleLeftIn delay3-3"></div>
+            <div class="page7__icon page7__row__info page7__row1__info04 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row1__info05 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row1__info06 littleLeftIn delay3-3"></div>
+        </div>
+        <div class="page7__row page7__row2" :style="{top: getFitTop(693, 6/8)}">
+            <div class="page7__icon page7__row__name page7__row2__name01 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__name page7__row2__name02 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__circle page7__row2__circle01 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__circle page7__row2__circle02 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__info page7__row2__info01 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row2__info02 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row2__info03 littleLeftIn delay3-3"></div>
+            <div class="page7__icon page7__row__info page7__row2__info04 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row2__info05 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row2__info06 littleLeftIn delay3-3"></div>
+        </div>
+        <div class="page7__row page7__row3" :style="{top: getFitTop(889, 7/8)}">
+            <div class="page7__icon page7__row__name page7__row3__name01 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__name page7__row3__name02 opacityChange delay2-5"></div>
+            <div class="page7__icon page7__row__circle page7__row3__circle01 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__circle page7__row3__circle02 rotate-in delay2-7"></div>
+            <div class="page7__icon page7__row__info page7__row3__info01 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row3__info02 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row3__info03 littleLeftIn delay3-3"></div>
+            <div class="page7__icon page7__row__info page7__row3__info04 littleLeftIn delay2-9"></div>
+            <div class="page7__icon page7__row__info page7__row3__info05 littleLeftIn delay3-1"></div>
+            <div class="page7__icon page7__row__info page7__row3__info06 littleLeftIn delay3-3"></div>
+        </div>
+    </div>
+    <div class="page page8 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page8__icon page8__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page8__icon page8__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page8__icon page8__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(316, 2/8)}"></div>
+        <div class="page8__icon page8__from opacityChange delay1-0" :style="{top: getFitTop(1062, 7/8)}"></div>
+        <div class="page8__row1" :style="{top: getFitTop(362, 3/8)}">
+            <div class="page8__icon page8__row__city page8__row1__city01 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__city page8__row1__city02 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__circle page8__row1__circle01 rotate-zoom-in delay2-7"></div>
+            <div class="page8__icon page8__row__circle page8__row1__circle02 rotate-zoom-in delay2-7"></div>
+            <div class="page8__row__year01 center-lefttop delay3-7"><div class="page8__icon page8__row__year01--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year02 center-leftbottom delay3-7"><div class="page8__icon page8__row__year02--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year03 center-righttop delay3-7"><div class="page8__icon page8__row__year03--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year04 center-rightbottom delay3-7"><div class="page8__icon page8__row__year04--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year05 center-lefttop delay3-7"><div class="page8__icon page8__row__year05--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year06 center-leftbottom delay3-7"><div class="page8__icon page8__row__year06--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year07 center-righttop delay3-7"><div class="page8__icon page8__row__year07--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year08 center-rightbottom delay3-7"><div class="page8__icon page8__row__year08--center zoomChange delay3-7"></div></div>
+        </div>
+        <div class="page8__row2" :style="{top: getFitTop(600, 4/8)}">
+            <div class="page8__icon page8__row__city page8__row2__city01 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__city page8__row2__city02 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__circle page8__row2__circle01 rotate-zoom-in delay2-7"></div>
+            <div class="page8__icon page8__row__circle page8__row2__circle02 rotate-zoom-in delay2-7"></div>
+            <div class="page8__row__year01 center-lefttop delay3-7"><div class="page8__icon page8__row__year01--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year02 center-leftbottom delay3-7"><div class="page8__icon page8__row__year02--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year03 center-righttop delay3-7"><div class="page8__icon page8__row__year03--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year04 center-rightbottom delay3-7"><div class="page8__icon page8__row__year04--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year05 center-lefttop delay3-7"><div class="page8__icon page8__row__year05--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year06 center-leftbottom delay3-7"><div class="page8__icon page8__row__year06--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year07 center-righttop delay3-7"><div class="page8__icon page8__row__year07--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year08 center-rightbottom delay3-7"><div class="page8__icon page8__row__year08--center zoomChange delay3-7"></div></div>
+        </div>
+        <div class="page8__row3" :style="{top: getFitTop(837, 5/8)}">
+            <div class="page8__icon page8__row__city page8__row3__city01 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__city page8__row3__city02 opacityChange delay2-5"></div>
+            <div class="page8__icon page8__row__circle page8__row3__circle01 rotate-zoom-in delay2-7"></div>
+            <div class="page8__icon page8__row__circle page8__row3__circle02 rotate-zoom-in delay2-7"></div>
+            <div class="page8__row__year01 center-lefttop delay3-7"><div class="page8__icon page8__row__year01--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year02 center-leftbottom delay3-7"><div class="page8__icon page8__row__year02--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year03 center-righttop delay3-7"><div class="page8__icon page8__row__year03--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year04 center-rightbottom delay3-7"><div class="page8__icon page8__row__year04--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year05 center-lefttop delay3-7"><div class="page8__icon page8__row__year05--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year06 center-leftbottom delay3-7"><div class="page8__icon page8__row__year06--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year07 center-righttop delay3-7"><div class="page8__icon page8__row__year07--center zoomChange delay3-7"></div></div>
+            <div class="page8__row__year08 center-rightbottom delay3-7"><div class="page8__icon page8__row__year08--center zoomChange delay3-7"></div></div>
+        </div>
+    </div>
+    <div class="page page9 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page9__icon page9__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page9__icon page9__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page9__icon page9__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page9__icon page9__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(417, 7/16)}"></div>
+        <div class="page9__icon page9__from opacityChange delay1-0" :style="{top: getFitTop(1039, 7/8)}"></div>
+        <div class="page9__data" :style="{top: getFitTop(532, 5/8)}">
+            <div class="page9__icon page9__data__title opacityChange delay2-5"></div>
+            <div class="page9__icon page9__data__bg opacityChange delay2-5"></div>
+            <div class="page9__icon page9__data__box01 heightChange delay2-7"></div>
+            <div class="page9__icon page9__data__box02 heightChange delay2-9"></div>
+            <div class="page9__icon page9__data__box03 heightChange delay3-1"></div>
+            <div class="page9__icon page9__data__box04 heightChange delay3-3"></div>
+            <div class="page9__icon page9__data__box05 heightChange delay3-5"></div>
+            <div class="page9__icon page9__data__salary01 opacityChange delay2-9"></div>
+            <div class="page9__icon page9__data__salary02 opacityChange delay2-7"></div>
+            <div class="page9__icon page9__data__salary03 opacityChange delay3-1"></div>
+            <div class="page9__icon page9__data__salary04 opacityChange delay2-9"></div>
+            <div class="page9__icon page9__data__salary05 opacityChange delay3-3"></div>
+            <div class="page9__icon page9__data__salary06 opacityChange delay3-1"></div>
+            <div class="page9__icon page9__data__salary07 opacityChange delay3-5"></div>
+            <div class="page9__icon page9__data__salary08 opacityChange delay3-3"></div>
+            <div class="page9__icon page9__data__salary09 opacityChange delay3-8"></div>
+            <div class="page9__icon page9__data__salary10 opacityChange delay3-5"></div>
+        </div>
+    </div>
+    <div class="page page10 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+        <div class="page10__icon page10__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page10__icon page10__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page10__icon page10__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(426, 7/16)}"></div>
+        <div class="page10__icon page10__from opacityChange delay1-0" :style="{top: getFitTop(1046, 7/8)}"></div>
+        <div class="page10__data" :style="{top: getFitTop(515, 5/8)}">
+            <div class="page10__icon page10__data__title opacityChange delay2-0"></div>
+            <div class="page10__icon page10__data__bg opacityChange delay2-0"></div>
+            <div class="page10__icon page10__data__box page10__data__box01 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box02 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box03 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box04 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box05 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box06 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box07 heightChange delay2-2"></div>
+            <div class="page10__icon page10__data__box page10__data__box08 heightChange delay2-2"></div>
+
+            <div class="page10__icon page10__data__num page10__data__num01 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num02 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num03 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num04 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num05 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num06 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num07 littleBottomIn delay2-7"></div>
+            <div class="page10__icon page10__data__num page10__data__num08 littleBottomIn delay2-7"></div>
+        </div>
+    </div>
+    <div class="page page11 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+
+        <div class="page11__icon page11__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page11__icon page11__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page11__icon page11__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page11__icon page11__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(462, 4/8)}"></div>
+        <div class="page11__icon page11__from opacityChange delay1-0" :style="{top: getFitTop(920, 7/8)}"></div>
+        <div class="page11__data" :style="{top: getFitTop(558, 5/8)}">
+            <div class="page11__icon page11__data__title opacityChange delay2-5"></div>
+            <div class="page11__icon page11__data__bg opacityChange delay2-5"></div>
+            <div class="page11__icon page11__data__box page11__data__box01 widthChange delay2-7"></div>
+            <div class="page11__icon page11__data__box page11__data__box02 widthChange delay2-7"></div>
+            <div class="page11__icon page11__data__box page11__data__box03 widthChange delay2-7"></div>
+            <div class="page11__icon page11__data__box page11__data__box04 widthChange delay2-7"></div>
+            <div class="page11__icon page11__data__box page11__data__box05 widthChange delay2-7"></div>
+            <div class="page11__icon page11__data__box page11__data__box06 widthChange delay2-7"></div>
+
+            <div class="page11__data__num01Parent littleZoomIn delay3-5">
+                <div class="page11__icon page11__data__num page11__data__num01 opacityChange delay3-0"></div>
+            </div>
+            <div class="page11__icon page11__data__num page11__data__num02 opacityChange delay3-0"></div>
+            <div class="page11__icon page11__data__num page11__data__num03 opacityChange delay3-0"></div>
+            <div class="page11__icon page11__data__num page11__data__num04 opacityChange delay3-0"></div>
+            <div class="page11__icon page11__data__num page11__data__num05 opacityChange delay3-0"></div>
+            <div class="page11__icon page11__data__num page11__data__num06 opacityChange delay3-0"></div>
+        </div>
+        
+    </div>
+    <div class="page page12 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page0__arrowbox opacityChange delay1-5" :style="{top: getFitTop(1121, 1)}">
+            <div class="cover__icon page0__arrow moveUpInfinite"></div>
+        </div>
+        <div class="page0__banner opacityChange delay0-5"></div>
+
+        <div class="page12__icon page12__bannertxt moveL-R750 delay0-7 duration2-0"></div>
+        <div class="page12__icon page12__title littleBottomIn delay1-0 duration1-0" :style="{top: getFitTop(137, 2/8)}"></div>
+        <div class="page12__icon page12__subtitle littleBottomIn delay1-5 duration1-0" :style="{top: getFitTop(296, 3/8)}"></div>
+        <div class="page12__icon page12__line widthChange delay2-0 duration1-0" :style="{top: getFitTop(462, 4/8)}"></div>
+        <div class="page12__icon page12__from opacityChange delay1-0" :style="{top: getFitTop(1061, 7/8)}"></div>
+        <div class="page12__data" :style="{top: getFitTop(558, 5/8)}">
+            <div class="page12__icon page12__data__title1 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__title2 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum01 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum02 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum03 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum04 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum05 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum06 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum07 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum08 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum09 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum10 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum11 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum12 littleLeftIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__lnum page12__data__lnum13 littleLeftIn20 delay3-0"></div>
+
+            <div class="page12__icon page12__data__lbox page12__data__lbox01 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox02 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox03 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox04 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox05 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox06 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox07 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox08 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox09 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox10 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox11 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox12 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__lbox page12__data__lbox13 widthChange delay2-7"></div>
+
+            <div class="page12__icon page12__data__txt page12__data__txt01 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt02 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt03 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt04 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt05 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt06 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt07 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt08 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt09 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt10 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt11 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt12 opacityChange delay2-5"></div>
+            <div class="page12__icon page12__data__txt page12__data__txt13 opacityChange delay2-5"></div>
+
+            <div class="page12__icon page12__data__rbox page12__data__rbox01 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox02 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox03 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox04 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox05 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox06 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox07 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox08 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox09 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox10 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox11 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox12 widthChange delay2-7"></div>
+            <div class="page12__icon page12__data__rbox page12__data__rbox13 widthChange delay2-7"></div>
+
+            <div class="page12__icon page12__data__rnum page12__data__rnum01 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum02 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum03 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum04 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum05 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum06 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum07 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum08 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum09 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum10 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum11 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum12 littleRightIn20 delay3-0"></div>
+            <div class="page12__icon page12__data__rnum page12__data__rnum13 littleRightIn20 delay3-0"></div>
+        </div>
+        
+    </div>
+    <div class="page page13 hide">
+        <div class="cover__icon cover__logobg moveDown100 delay0-5"></div>
+        <div class="cover__icon cover__logo moveDown150px delay0-7"></div>
+        <div class="page13__bgcenter zoom-in-rotate delay0-5 duration1-0"
+            :style="{top: getFitTop(204, 1/3)}"></div>
+        <div class="page13__shadow"></div>
+        <div class="page12__icon page13__txt zoomChange delay1-0" :style="{top: getFitTop(436, 1/3)}"></div>
+        <div class="page13__btn" :style="{top: getFitTop(892, 2/3)}" @click.stop.prevent="showErcodeEvent"></div>
+        <div class="page13__btnLayer" :style="{top: getFitTop(892+36, 2/3)}" @click.stop.prevent="showErcodeEvent">
+            <svg width="100%" height="100%" viewBox="0 0 359 66" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <rect class="shape draw-flow5" width="359" height="66"
+                    stroke-width="4" fill="none" stroke="#00ffc1"
+                    stroke-dasharray="43 850" stroke-dashoffset="0" rx="18" ry="18"></rect>
+            </svg>
+        </div>
+        <div class="page13__save zoomChange" v-show="showErcode">
+            <div class="page13__save__ercode"></div>
+            <img class="page13__save__img" src="./images/page13-save-img.png" />
+        </div>
+    </div>
+    <!-- <div class="dotLayer hide">
+        <div class="icon dot active"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+        <div class="icon dot"></div>
+    </div> -->
+</div>
+
+<script type="text/javascript">
+    pageStatus = true;
+    if(loadingStatus){
+        pageStatus = false;
+        loadingStatus = false;
+        loadingSuccess();
+    }
+</script>
+<script type="text/javascript" src="js/vue2.1.10.js"></script>
+<script type="text/javascript" src="js/m_index.js?v=2230$version$"></script>
+
+<script type="text/javascript" src="https://www.lgstatic.com/activity/js/jquery.1.10.1.min.js"></script>
+<script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+ <script type="text/javascript" src="../common/js/share2.js?v=$version$"></script> 
+<script type="text/javascript">
+    //微信分享
+    var datas = {
+        title: "裁员潮下互联网人才依旧难招，原来是因为……",
+        desc: "拉勾解密招聘魔咒：为什么TA找不到工作我招不到人", // "《2019上半年拉勾互联网行业招聘白皮书》新鲜出炉",
+        imgUrl: 'https://activity.lagou.com/activity/dist/2019-summary/images/share.png',
+        activityType: '2019SUMMARY',
+        shareUrl: window.location.href // 'https://activity.lagou.com/activity/dist/2019-summary/m_index.html'
+    };
+    share(datas);
+    //app 分享
+    function getShareInfo(){
+        var share={
+            share_title:datas.title,
+            share_desc:datas.desc,
+            share_url:datas.shareUrl,
+            share_imgUrl:datas.imgUrl
+        };
+        return share;
+    }
+</script>
+<script type="text/javascript" src="https://www.lgstatic.com/common/lg-tongji/js/analytics.js"></script>
+<script type="text/javascript" src="js/plat_tj_mobile.js?v=$version$"></script>	
+</body>
+</html>
