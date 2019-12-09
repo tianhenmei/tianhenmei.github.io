@@ -405,15 +405,15 @@ html,body {
             width:rem(68);
             height:rem(26);
             position: absolute;
-            &--1 { background-position: rem(-35 - 68 * 0) 0; left: rem(82 - 15); top: rem(213); }
-            &--2 { background-position: rem(-35 - 68 * 1) 0; left: rem(150 - 15); top: rem(289); }
-            &--3 { background-position: rem(-35 - 68 * 2) 0; left: rem(218 - 15); top: rem(109); }
-            &--4 { background-position: rem(-35 - 68 * 3) 0; left: rem(285 - 15); top: rem(116); }
-            &--5 { background-position: rem(-35 - 68 * 4) 0; left: rem(356 - 15); top: rem(151); }
-            &--6 { background-position: rem(-35 - 68 * 5) 0; left: rem(424 - 15); top: rem(166); }
-            &--7 { background-position: rem(-35 - 68 * 6) 0; left: rem(490 - 15); top: rem(128); }
-            &--8 { background-position: rem(-35 - 68 * 7) 0; left: rem(560 - 15); top: rem(144); }
-            &--9 { background-position: rem(-35 - 68 * 8) 0; left: rem(627 - 15); top: rem(156); }
+            &--1 { background-position: rem(-35 - 68 * 0) 0; left: rem(82 - 15 - 15); top: rem(213); }
+            &--2 { background-position: rem(-35 - 68 * 1) 0; left: rem(150 - 15 - 15); top: rem(289); }
+            &--3 { background-position: rem(-35 - 68 * 2) 0; left: rem(218 - 15 - 15); top: rem(109); }
+            &--4 { background-position: rem(-35 - 68 * 3) 0; left: rem(285 - 15 - 15); top: rem(116); }
+            &--5 { background-position: rem(-35 - 68 * 4) 0; left: rem(356 - 15 - 15); top: rem(151); }
+            &--6 { background-position: rem(-35 - 68 * 5) 0; left: rem(424 - 15 - 15); top: rem(166); }
+            &--7 { background-position: rem(-35 - 68 * 6) 0; left: rem(490 - 15 - 15); top: rem(128); }
+            &--8 { background-position: rem(-35 - 68 * 7) 0; left: rem(560 - 15 - 15); top: rem(144); }
+            &--9 { background-position: rem(-35 - 68 * 8) 0; left: rem(627 - 15 - 15); top: rem(156); }
         }
         &__yellow {
             width:rem(21);
@@ -1012,8 +1012,8 @@ html,body {
             &--03 { background-position: 0 rem(-330 - 50 * 2); top: rem(65 + 50 * 2); }
             &--04 { background-position: 0 rem(-330 - 50 * 3); top: rem(65 + 50 * 3); }
             &--05 { background-position: 0 rem(-330 - 50 * 4); top: rem(65 + 50 * 4); }
-            &--06 { background-position: 0 rem(-330 - 50 * 5); top: rem(65 + 50 * 5); }
-            &--07 { background-position: 0 rem(-330 - 50 * 6); top: rem(65 + 50 * 6); }
+            &--06 { background-position: 0 rem(-330 - 50 * 5 + 4); top: rem(65 + 50 * 5); }
+            &--07 { background-position: 0 rem(-330 - 50 * 6 + 4); top: rem(65 + 50 * 6); }
         }
         &__box {
             height:rem(30);
@@ -1024,8 +1024,8 @@ html,body {
             &--03 { width:rem(372); background-position: rem(-91) rem(-330 - 50 * 2); top: rem(65 + 50 * 2); }
             &--04 { width:rem(332); background-position: rem(-91) rem(-330 - 50 * 3); top: rem(65 + 50 * 3); }
             &--05 { width:rem(290); background-position: rem(-91) rem(-330 - 50 * 4); top: rem(65 + 50 * 4); }
-            &--06 { width:rem(246); background-position: rem(-91) rem(-330 - 50 * 5); top: rem(65 + 50 * 5); }
-            &--07 { width:rem(186); background-position: rem(-91) rem(-330 - 50 * 6); top: rem(65 + 50 * 6); }
+            &--06 { width:rem(246); background-position: rem(-91) rem(-330 - 50 * 5 + 4); top: rem(65 + 50 * 5); }
+            &--07 { width:rem(186); background-position: rem(-91) rem(-330 - 50 * 6 + 4); top: rem(65 + 50 * 6); }
         }
         &__num {
             width:rem(56);
@@ -1039,8 +1039,8 @@ html,body {
             &--03 { background-position: rem(-580) rem(-330 - 50 * 2); top: rem(65 + 50 * 2); left: rem(467); }
             &--04 { background-position: rem(-580) rem(-330 - 50 * 3); top: rem(65 + 50 * 3); left: rem(426); }
             &--05 { background-position: rem(-580) rem(-330 - 50 * 4); top: rem(65 + 50 * 4); left: rem(383); }
-            &--06 { background-position: rem(-580) rem(-330 - 50 * 5); top: rem(65 + 50 * 5); left: rem(339); }
-            &--07 { background-position: rem(-580) rem(-330 - 50 * 6); top: rem(65 + 50 * 6); left: rem(281); }
+            &--06 { background-position: rem(-580) rem(-330 - 50 * 5 + 4); top: rem(65 + 50 * 5); left: rem(339); }
+            &--07 { background-position: rem(-580) rem(-330 - 50 * 6 + 4); top: rem(65 + 50 * 6); left: rem(281); }
         }
     }
 }
@@ -2439,7 +2439,32 @@ html,body {
         transform:translate3d(0, 0, 0);
     }
 }
-
+.center-left {
+    animation: center-left 0.5s linear both;
+}
+@keyframes center-left {
+    0% {
+        opacity: 0;
+        transform:translate3d(rem(280), 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform:translate3d(0, 0, 0);
+    }
+}
+.center-right {
+    animation: center-right 0.5s linear both;
+}
+@keyframes center-right {
+    0% {
+        opacity: 0;
+        transform:translate3d(rem(-280), 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform:translate3d(0, 0, 0);
+    }
+}
 
 
 
