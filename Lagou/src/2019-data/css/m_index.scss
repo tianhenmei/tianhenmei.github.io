@@ -308,7 +308,8 @@ html,body {
         width:rem(255);
         height:rem(75);
         background-position:rem(-450) 0;
-        @include center(84,0);
+        // @include center(84,0);
+        @include center((750-255)/2, 0);
     }
     &__download {
         width:rem(255);
@@ -319,7 +320,8 @@ html,body {
     &__btnshow {
         width:rem(255);
         height:rem(75);
-        @include center(84,2);
+        // @include center(84,2);
+        @include center((750-255)/2, 2);
     }
     &__btndownload {
         width:rem(255);
