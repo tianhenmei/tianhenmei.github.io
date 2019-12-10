@@ -1,6 +1,6 @@
 // JavaScript Document
 var loadingHost = '';
-// var loadingHost = 'https://static.lagou.com/activity-rsrc/dist/2019-summary/';
+// var loadingHost = 'https://www.lgstatic.com/plat-activity-fed/2019-data/';
 var imgArray = [
 	// "images/loading.gif",
 	loadingHost + "images/loading-img.png",
